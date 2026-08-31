@@ -1,1 +1,1 @@
-CLAUDE.md
+/repo/CLAUDE.md
