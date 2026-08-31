@@ -1,0 +1,78 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Brand palette — captured from the live Wix site (see src/config/site.ts). */
+  --color-maroon-band: #66043d;
+  --color-maroon-btn: #672c44;
+  --color-gold: #eca217;
+  --color-navy: #00305b;
+  --color-navy-light: #0f4c85;
+  --color-btn-border: #9e6185;
+  --color-ink: #34011c;
+  --color-offwhite: #fcf8fa;
+  --color-panel: #fafafa;
+
+  --font-heading: var(--font-raleway), sans-serif;
+  --font-body: var(--font-open-sans), sans-serif;
+  --font-serif-accent: var(--font-eb-garamond), serif;
+  --font-quote: var(--font-jost), sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-navy);
+  background: #ffffff;
+}
+
+/* Subtle hexagon texture used on the maroon bands (recreated as inline SVG —
+   the Wix original painted a licensed tile image). */
+.hex-band {
+  background-color: var(--color-maroon-band);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='112' height='97' viewBox='0 0 112 97'%3E%3Cg fill='none' stroke='%23000000' stroke-opacity='0.16' stroke-width='1.5'%3E%3Cpath d='M28 0l28 16v32L28 64 0 48V16zM84 32l28 16v32L84 96 56 80V48z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Square-cornered primary button with the double-border inset frame look. */
+.btn-primary {
+  display: inline-block;
+  background: var(--color-maroon-btn);
+  color: #ffffff;
+  border: 4px double var(--color-btn-border);
+  border-radius: 0;
+  padding: 0.55rem 1.6rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  transition: filter 150ms ease;
+}
+.btn-primary:hover {
+  filter: brightness(1.15);
+}
+
+.btn-outline {
+  display: inline-block;
+  background: var(--color-offwhite);
+  color: var(--color-ink);
+  border: 1px solid var(--color-ink);
+  border-radius: 0;
+  padding: 0.55rem 1.6rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  transition: background 150ms ease;
+}
+.btn-outline:hover {
+  background: #ffffff;
+}
+
+/* Gold letter-spaced eyebrow labels (CONTACT US, WHO WE ARE, ...). */
+.eyebrow {
+  color: var(--color-gold);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+}
+
+/* Thin partial-corner frame decoration used around hero/about blocks. */
+.corner-frame {
+  position: relative;
+}
