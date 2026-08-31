@@ -110,6 +110,3 @@ Everything not listed here reproduces the Wix site's content verbatim
     **Reminder from the capture notes:** existing Wix form submissions and
     mailing-list contacts must be exported from the Wix dashboard before the
     Wix site is retired.
-
-<!-- E2E round-2 drift marker (2026-08-31) — reverted at end of test -->
-<!-- E2E round-2 drift marker TWO (2026-08-31) — reverted at end of test -->
