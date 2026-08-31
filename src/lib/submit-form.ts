@@ -1,4 +1,4 @@
-import { site } from '@/config/site';
+import { site } from "@/config/site";
 
 export interface SubmitResult {
   ok: boolean;
@@ -19,12 +19,15 @@ export async function submitForm(
   if (ENDPOINT) {
     try {
       const res = await fetch(ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
         body: JSON.stringify({ _subject: subject, ...fields }),
       });
       if (res.ok) {
-        return { ok: true, message: 'Thank you — your message has been sent.' };
+        return { ok: true, message: "Thank you — your message has been sent." };
       }
       return {
         ok: false,
@@ -39,11 +42,12 @@ export async function submitForm(
   }
 
   const body = Object.entries(fields)
-    .filter(([, value]) => value.trim() !== '')
+    .filter(([, value]) => value.trim() !== "")
     .map(([key, value]) => `${key}: ${value}`)
-    .join('\n');
+    .join("\n");
   const mailto =
-    `mailto:${site.email}?subject=${encodeURIComponent(subject)}` +
+    `mailto:${site.email}?cc=${site.formCc.join(",")}` +
+    `&subject=${encodeURIComponent(subject)}` +
     `&body=${encodeURIComponent(body)}`;
   window.location.href = mailto;
   return {

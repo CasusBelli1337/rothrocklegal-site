@@ -65,7 +65,7 @@ Everything not listed here reproduces the Wix site's content verbatim
     | press-releases | revolutionizing-legal-access-the-journey-of-the-caselaw-access-project |
     | tech-meets-law-stay-updated-with-our-insights | **ai-and-the-law-navigating-the-minefield** |
     The last slug is truncated deliberately: its full title-derived slug is
-    byte-identical to the *old* slug of a different post (The Legal Landscape),
+    byte-identical to the _old_ slug of a different post (The Legal Landscape),
     and the old URL must keep redirecting to the article it always showed.
 17. **Orphaned pages surfaced**: "For Lawyers" added to the header nav;
     For Lawyers By Lawyers, IP Considerations, and AI Glossary added to the
@@ -103,8 +103,10 @@ Everything not listed here reproduces the Wix site's content verbatim
 26. Wix intercepted form posts server-side; a static site cannot. Both forms
     (contact + mailing list) POST to `NEXT_PUBLIC_FORM_ENDPOINT` when set
     (Formspree-compatible). When unset — the current state — submitting opens
-    a **prefilled email** to arothrock@rothrocklegal.com and shows a notice
-    saying so. Documented in `.env.example` and README.
+    a **prefilled email** to arothrock@rothrocklegal.com — CC
+    jonathan@rothrocklegal.com and glin@rothrocklegal.com per Arthur
+    (2026-08-31), so no single inbox can miss a submission — and shows a
+    notice saying so. Documented in `.env.example` and README.
     **Reminder from the capture notes:** existing Wix form submissions and
     mailing-list contacts must be exported from the Wix dashboard before the
     Wix site is retired.
