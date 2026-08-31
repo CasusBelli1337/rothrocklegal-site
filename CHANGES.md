@@ -9,7 +9,9 @@ Everything not listed here reproduces the Wix site's content verbatim
    (home services card title).
 2. **"Intellectual Propert Considerations" title-tag typo fixed** → "Property"
    (`/ip-considerations` page metadata; the visible H1 was already correct).
-3. **Copyright year** in the footer: 2024 → **2026**.
+3. **Copyright year** in the footer: 2024 → **2026**. The **© symbol** was also
+   added after "Copyright" (per Arthur, 2026-08-31) so the line reads
+   "Copyright © 2026, Rothrock Legal. All rights reserved."
 4. **"Book a Demo" / "DEMO" buttons** pointed at `/book-a-demo`, a dead,
    never-configured Wix Bookings stub. Both now route to **/contact/**.
 5. **Google map removed** (contact page): the embedded map was pinned on San

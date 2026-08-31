@@ -77,7 +77,7 @@ export function Footer() {
 
         <div className="mt-10 flex flex-col items-center gap-2 border-t border-white/25 pt-6 pb-2 text-sm">
           <p>
-            Copyright {site.copyrightYear}, {site.name}. All rights reserved.
+            Copyright &copy; {site.copyrightYear}, {site.name}. All rights reserved.
           </p>
           <p className="text-xs text-white/80">
             {legalLinks.map((item, i) => (
