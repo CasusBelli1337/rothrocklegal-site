@@ -97,7 +97,7 @@ export const nav: readonly NavItem[] = [
         sublabel: "The trustee won't show us the numbers",
       },
       {
-        label: 'Property disputes (§ 850)',
+        label: 'Property disputes (§ 850)',
         href: '/estate-property-disputes/',
         sublabel: 'The house or the accounts were moved out',
       },
