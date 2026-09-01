@@ -47,10 +47,14 @@ interface LibraryCardProps {
   snippet?: SnippetResult | null;
   bodyHits?: number;
   priority?: boolean;
-  headingLevel?: 'h2' | 'h3';
+  headingLevel?: 'h2' | 'h3' | 'h4';
 }
 
-/** Article card (LIBRARY-SPEC §4): whole card is one link; the title is its accessible name. */
+/**
+ * Article card (LIBRARY-SPEC §4): whole card is one link; the title is its
+ * accessible name. The one card for the library index, the homepage preview,
+ * practice-page related reading, and article related rows.
+ */
 export function LibraryCard({
   item,
   terms = [],
