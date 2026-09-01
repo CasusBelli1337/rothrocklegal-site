@@ -1,6 +1,11 @@
 import { areaServed } from "@/config/service-areas";
 import { site, social } from "@/config/site";
-import { team, teamHref, type TeamMember } from "@/config/team";
+import {
+  credentialLabel,
+  team,
+  teamHref,
+  type TeamMember,
+} from "@/config/team";
 import type { Crumb, FaqItem } from "@/types/content";
 
 /**
@@ -9,11 +14,7 @@ import type { Crumb, FaqItem } from "@/types/content";
  */
 
 export type JsonLdValue =
-  | string
-  | number
-  | boolean
-  | JsonLdObject
-  | JsonLdValue[];
+  string | number | boolean | JsonLdObject | JsonLdValue[];
 export interface JsonLdObject {
   [key: string]: JsonLdValue | undefined;
 }
@@ -90,6 +91,22 @@ export function siteGraph(): JsonLdObject {
   return { "@context": CONTEXT, "@graph": [legalService(), webSite()] };
 }
 
+/** Memberships as Organizations, held offices as OrganizationRoles (schema.org Role pattern). */
+function memberOf(member: TeamMember): JsonLdObject[] {
+  const organizations = verified(member.memberships).map((name) => ({
+    "@type": "Organization",
+    name,
+  }));
+  const roles = member.leadership
+    .filter((r) => verified([r.role, r.organization]).length === 2)
+    .map((r) => ({
+      "@type": "OrganizationRole",
+      roleName: r.role,
+      memberOf: { "@type": "Organization", name: r.organization },
+    }));
+  return [...organizations, ...roles];
+}
+
 export function person(member: TeamMember): JsonLdObject {
   const licensed = Boolean(member.barNumber);
   return {
@@ -102,17 +119,12 @@ export function person(member: TeamMember): JsonLdObject {
     image: absoluteUrl(member.image.large),
     url: absoluteUrl(teamHref(member)),
     description: verified([member.summary])[0],
-    alumniOf: member.education.map((e) => ({
+    alumniOf: verified(member.education.map((e) => e.school)).map((name) => ({
       "@type": "EducationalOrganization",
-      name: e.school,
-    })),
-    memberOf: verified(member.memberships).map((name) => ({
-      "@type": "Organization",
       name,
     })),
-    award: member.credentials.map((c) =>
-      c.years ? `${c.name} (${c.years})` : c.name,
-    ),
+    memberOf: memberOf(member),
+    award: verified(member.credentials.map(credentialLabel)),
     hasCredential: licensed
       ? [
           {
@@ -127,7 +139,7 @@ export function person(member: TeamMember): JsonLdObject {
         ]
       : undefined,
     knowsAbout: KNOWS_ABOUT,
-    sameAs: [...member.sameAs],
+    sameAs: verified(member.sameAs),
   };
 }
 
