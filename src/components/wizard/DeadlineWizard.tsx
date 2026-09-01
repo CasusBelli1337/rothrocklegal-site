@@ -1,5 +1,6 @@
 'use client';
 
+import { Button } from '@/components/ui/Button';
 import { todayISO } from '@/lib/deadlines/dates';
 import { useWizardState, type WizardController } from './use-wizard-state';
 import { WizardResults } from './WizardResults';
@@ -8,23 +9,21 @@ import './wizard.css';
 
 function WizardNav({ wizard }: { wizard: WizardController }) {
   return (
-    <div className="mt-6 flex flex-wrap items-center gap-4">
-      <button
-        type="button"
+    <div className="mt-8 flex flex-wrap items-center gap-3">
+      <Button
+        variant="secondary"
         onClick={wizard.back}
         disabled={wizard.stepIndex === 0}
-        className="wizard-btn wizard-btn-secondary"
+        className="min-w-28"
       >
         Back
-      </button>
-      <button type="submit" className="btn-primary wizard-btn">
-        {wizard.isLast ? 'Show my deadlines' : 'Continue'}
-      </button>
+      </Button>
+      <Button type="submit">{wizard.isLast ? 'Show my deadlines' : 'Continue'}</Button>
       {wizard.stepIndex > 0 && (
         <button
           type="button"
           onClick={wizard.startOver}
-          className="wizard-link ml-auto text-sm text-navy-light underline"
+          className="ml-auto text-small text-ink-3 underline underline-offset-3 hover:text-maroon-700"
         >
           Start over
         </button>
@@ -41,12 +40,12 @@ function WizardForm({ wizard }: { wizard: WizardController }) {
       onSubmit={wizard.next}
       noValidate
       aria-labelledby="wizard-heading"
-      className="border border-gold p-6 sm:p-10"
+      className="rounded-xl border border-line bg-white p-6 sm:p-10"
     >
       <h2 id="wizard-heading" className="sr-only">
         Deadline questions
       </h2>
-      <p className="eyebrow" aria-live="polite">
+      <p className="text-meta text-ink-3 tabular" aria-live="polite">
         Step {stepIndex + 1} of {steps.length}
       </p>
       <div className="wizard-progress mt-3" aria-hidden="true">

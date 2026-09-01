@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef } from 'react';
 import { ContactForm } from '@/components/forms/ContactForm';
+import { Button } from '@/components/ui/Button';
 import { site } from '@/config/site';
 import { computeDeadlines, hasUrgentOrPassed } from '@/lib/deadlines/compute';
 import { buildSummary } from '@/lib/deadlines/summary';
@@ -20,12 +21,10 @@ interface WizardResultsProps {
 function CallNow() {
   return (
     <div className="wizard-alert mt-4 flex flex-wrap items-center justify-between gap-4">
-      <p className="text-base font-semibold text-black">
+      <p className="text-body font-semibold text-ink">
         At least one deadline is close or has already passed. Don&rsquo;t wait.
       </p>
-      <a href={site.phoneHref} className="btn-primary wizard-btn">
-        Call {site.phone} today
-      </a>
+      <Button href={site.phoneHref}>Call {site.phone} today</Button>
     </div>
   );
 }
@@ -33,7 +32,7 @@ function CallNow() {
 function ResultsList({ results }: { results: DeadlineResult[] }) {
   if (results.length === 0) {
     return (
-      <p className="mt-6 text-base text-navy">
+      <p className="mt-6 text-body text-ink-2">
         We could not match your answers to a deadline. That does not mean there isn&rsquo;t one.
         Send us the form below and we will look at your situation.
       </p>
@@ -48,7 +47,7 @@ function ResultsList({ results }: { results: DeadlineResult[] }) {
           </li>
         ))}
       </ol>
-      <p className="mt-6 text-sm text-navy-light">
+      <p className="mt-6 text-small text-ink-3">
         Days are calendar days. When a last day lands on a weekend or a court holiday, California
         law moves it to the next court day (Code of Civil Procedure &sect; 12a); we show the moved
         date and say so. Act before the earlier date to be safe.
@@ -59,12 +58,10 @@ function ResultsList({ results }: { results: DeadlineResult[] }) {
 
 function NextStep({ summary }: { summary: string }) {
   return (
-    <div className="mt-12">
+    <div className="mt-14 rounded-xl border border-line bg-white p-6 sm:p-10">
       <p className="eyebrow">Next step</p>
-      <h2 className="font-serif-accent mt-2 text-3xl font-semibold text-black">
-        Send us this summary
-      </h2>
-      <p className="mt-3 mb-6 text-base text-navy">
+      <h2 className="mt-3 font-serif text-h2 text-ink">Send us this summary</h2>
+      <p className="mt-3 mb-8 max-w-[60ch] text-body text-ink-2">
         Your answers and the estimated dates are already filled in below. Add your name and how to
         reach you, and we will get back to you. Or call {site.phone}.
       </p>
@@ -96,23 +93,23 @@ export function WizardResults({
         id="wizard-results-heading"
         ref={headingRef}
         tabIndex={-1}
-        className="font-serif-accent mt-2 text-3xl font-semibold text-black outline-none"
+        className="mt-3 font-serif text-h2 text-ink outline-none"
       >
         Deadlines that may apply to you
       </h2>
-      <p role="note" className="wizard-banner mt-6 text-base text-black">
+      <p role="note" className="wizard-banner mt-6 text-body text-ink">
         <strong>These are estimates from what you told us.</strong> Deadlines depend on facts we
         haven&rsquo;t seen. Contact us before relying on any date.
       </p>
       {hasUrgentOrPassed(results) && <CallNow />}
       <ResultsList results={results} />
-      <div className="mt-6 flex flex-wrap gap-4">
-        <button type="button" onClick={onEdit} className="wizard-btn wizard-btn-secondary">
+      <div className="mt-6 flex flex-wrap gap-3">
+        <Button variant="secondary" onClick={onEdit}>
           Change my answers
-        </button>
-        <button type="button" onClick={onStartOver} className="wizard-btn wizard-btn-secondary">
+        </Button>
+        <Button variant="ghost" onClick={onStartOver}>
           Start over
-        </button>
+        </Button>
       </div>
       <NextStep summary={summary} />
     </section>

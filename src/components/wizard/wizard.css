@@ -1,21 +1,18 @@
-/* Deadline wizard – kept class-based and token-driven so a site restyle only
-   has to touch the variables. Colors come from the @theme tokens in
-   globals.css (--color-maroon-btn, --color-gold, --color-navy, ...). */
+/* Deadline wizard skin. Every color is a design token from globals.css; the
+   status colors are the only non-maroon/brass colors on the site (DESIGN-BRIEF §2). */
 
 .wizard {
-  --wizard-border: #d9d3d6;
-  --wizard-focus: var(--color-gold);
-  --wizard-open: #1f6f3f;
-  --wizard-urgent: #b45309;
-  --wizard-passed: #9f1239;
-  --wizard-idle: #52525b;
+  --wizard-open: var(--color-success);
+  --wizard-urgent: var(--color-brass-600);
+  --wizard-passed: var(--color-error);
+  --wizard-idle: var(--color-ink-3);
 }
 
 .wizard-enter {
-  animation: wizard-fade-up 320ms ease-out both;
+  animation: wizard-fade-up 320ms var(--ease-out-soft) both;
 }
 .wizard-card-enter {
-  animation: wizard-fade-up 420ms ease-out both;
+  animation: wizard-fade-up 420ms var(--ease-out-soft) both;
   animation-delay: calc(var(--i, 0) * 90ms);
 }
 @keyframes wizard-fade-up {
@@ -39,13 +36,15 @@
 }
 
 .wizard-progress {
-  height: 6px;
-  background: var(--wizard-border);
+  height: 4px;
+  border-radius: 9999px;
+  background: var(--color-line);
+  overflow: hidden;
 }
 .wizard-progress-bar {
   height: 100%;
-  background: var(--color-maroon-btn);
-  transition: width 320ms ease-out;
+  background: var(--color-maroon-700);
+  transition: width 320ms var(--ease-out-soft);
 }
 
 /* Radio / checkbox cards. The real input stays in the tree for keyboard and
@@ -54,7 +53,8 @@
   display: flex;
   gap: 0.75rem;
   align-items: flex-start;
-  border: 1px solid var(--wizard-border);
+  border: 1px solid var(--color-line-strong);
+  border-radius: 0.375rem;
   background: #ffffff;
   padding: 0.9rem 1rem;
   cursor: pointer;
@@ -63,63 +63,48 @@
     background 150ms ease;
 }
 .wizard-choice:hover {
-  border-color: var(--color-btn-border);
+  border-color: var(--color-maroon-500);
 }
 .wizard-choice.is-selected {
-  border-color: var(--color-maroon-btn);
-  background: var(--color-offwhite);
-  box-shadow: inset 0 0 0 1px var(--color-maroon-btn);
+  border-color: var(--color-maroon-700);
+  background: var(--color-maroon-50);
+  box-shadow: inset 0 0 0 1px var(--color-maroon-700);
 }
 .wizard-choice:focus-within {
-  outline: 3px solid var(--wizard-focus);
+  outline: 2px solid var(--color-maroon-500);
   outline-offset: 2px;
 }
 .wizard-choice input {
   margin-top: 0.2rem;
-  accent-color: var(--color-maroon-btn);
+  accent-color: var(--color-maroon-700);
   width: 1.1rem;
   height: 1.1rem;
   flex: none;
 }
 
 .wizard-date {
-  height: 2.75rem;
+  height: 3rem;
   width: 100%;
   max-width: 18rem;
-  border: 1px solid var(--wizard-border);
+  border: 1px solid var(--color-line-strong);
+  border-radius: 0.375rem;
   background: #ffffff;
   padding: 0 0.75rem;
   font-size: 1rem;
-  color: #000000;
+  color: var(--color-ink);
+  font-variant-numeric: tabular-nums;
 }
-.wizard-date:focus-visible,
-.wizard-btn:focus-visible,
-.wizard-link:focus-visible {
-  outline: 3px solid var(--wizard-focus);
-  outline-offset: 2px;
-}
-
-.wizard-btn-secondary {
-  display: inline-block;
-  background: transparent;
-  color: var(--color-navy);
-  border: 1px solid var(--color-navy);
-  padding: 0.55rem 1.4rem;
-  font-size: 0.9rem;
-  letter-spacing: 0.04em;
-}
-.wizard-btn-secondary:hover {
-  background: var(--color-offwhite);
-}
-.wizard-btn-secondary:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
+.wizard-date:focus-visible {
+  outline: none;
+  border-color: var(--color-maroon-500);
+  box-shadow: 0 0 0 3px rgb(152 54 111 / 0.3);
 }
 
-/* Result cards. */
+/* Result cards: hairline card with a status rule on the left. */
 .wizard-result {
-  border: 1px solid var(--wizard-border);
-  border-left-width: 6px;
+  border: 1px solid var(--color-line);
+  border-left-width: 4px;
+  border-radius: 0.75rem;
   background: #ffffff;
   padding: 1.25rem 1.5rem;
 }
@@ -138,9 +123,10 @@
 
 .wizard-pill {
   display: inline-block;
-  padding: 0.2rem 0.6rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 9999px;
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #ffffff;
@@ -159,12 +145,14 @@
 }
 
 .wizard-banner {
-  border: 1px solid var(--color-gold);
-  background: #fff8e6;
+  border-top: 4px solid var(--color-brass-400);
+  border-radius: 0.75rem;
+  background: var(--color-maroon-100);
   padding: 1rem 1.25rem;
 }
 .wizard-alert {
-  border: 1px solid var(--wizard-passed);
-  background: #fff1f2;
+  border: 1px solid var(--color-error);
+  border-radius: 0.75rem;
+  background: #fdf1ef;
   padding: 1rem 1.25rem;
 }
