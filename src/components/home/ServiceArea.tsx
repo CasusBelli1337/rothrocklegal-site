@@ -1,0 +1,54 @@
+import Link from "next/link";
+import { Button } from "@/components/ui/Button";
+import { Container } from "@/components/ui/Container";
+import { Reveal } from "@/components/ui/Reveal";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { cities } from "@/config/service-areas";
+
+const regions = ["the Peninsula", "the East Bay"];
+
+/** HOMEPAGE-SPEC §9: two columns, no map. */
+export function ServiceArea() {
+  return (
+    <section className="py-16 lg:py-24">
+      <Container className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+        <Reveal className="lg:col-span-7">
+          <SectionHeading
+            eyebrow="Service area"
+            title="San Jose first. The whole Bay Area when the case calls for it."
+          />
+          <p className="mt-6 max-w-[62ch] text-body-lg text-ink-2">
+            We meet by appointment in San Jose and by video anywhere in
+            California. Most of our cases are in Santa Clara County Superior
+            Court &ndash; Probate Division at 191 N. First Street, and we
+            regularly appear in San Mateo, Alameda, and San Francisco Superior
+            Courts.
+          </p>
+          <div className="mt-8">
+            <Button variant="secondary" href="/service-areas/">
+              Where we practice
+            </Button>
+          </div>
+        </Reveal>
+        <Reveal className="lg:col-span-5 lg:pt-8">
+          <h3 className="eyebrow">Families we serve come from</h3>
+          <ul className="mt-4 grid grid-cols-2 gap-x-6 gap-y-2 text-body text-ink-2">
+            {cities.map((city) => (
+              <li key={city.slug}>
+                <Link
+                  href={`/service-areas/#${city.slug}`}
+                  className="underline-offset-3 hover:text-maroon-700 hover:underline"
+                >
+                  {city.name}
+                </Link>
+              </li>
+            ))}
+            {regions.map((region) => (
+              <li key={region}>{region}</li>
+            ))}
+          </ul>
+        </Reveal>
+      </Container>
+    </section>
+  );
+}

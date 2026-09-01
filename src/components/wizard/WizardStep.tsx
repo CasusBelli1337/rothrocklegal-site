@@ -47,8 +47,8 @@ function ChoiceCard({
         onChange={(event) => onChange(event.target.checked)}
       />
       <span>
-        <span className="block text-base font-semibold text-black">{option.label}</span>
-        {option.hint && <span className="mt-0.5 block text-sm text-navy-light">{option.hint}</span>}
+        <span className="block text-body font-semibold text-ink">{option.label}</span>
+        {option.hint && <span className="mt-0.5 block text-small text-ink-3">{option.hint}</span>}
       </span>
     </label>
   );
@@ -111,13 +111,13 @@ function DateInput({
   const id = `wizard-${field.key}`;
   return (
     <div className="mt-5">
-      <label htmlFor={id} className="block text-base font-semibold text-black">
+      <label htmlFor={id} className="block text-body font-semibold text-ink">
         {field.label}
         {!field.required && (
-          <span className="ml-2 text-sm font-normal text-navy-light">(optional)</span>
+          <span className="ml-2 text-small font-normal text-ink-3">(optional)</span>
         )}
       </label>
-      <p id={`${id}-help`} className="mt-1 text-sm text-navy-light">
+      <p id={`${id}-help`} className="mt-1 text-small text-ink-3">
         {field.help}
       </p>
       <input
@@ -153,11 +153,11 @@ export function WizardStepView(props: WizardStepProps) {
         id={questionId}
         ref={legendRef}
         tabIndex={-1}
-        className="font-serif-accent text-2xl font-semibold text-black outline-none md:text-3xl"
+        className="font-serif text-h3 text-ink outline-none md:text-h2"
       >
         {step.question}
       </legend>
-      {step.lead && <p className="mt-3 text-base text-navy-light">{step.lead}</p>}
+      {step.lead && <p className="mt-3 text-body text-ink-2">{step.lead}</p>}
       <ChoiceGroup {...props} questionId={questionId} />
       {visibleFields(step, answers).map((field) => (
         <DateInput
@@ -171,7 +171,7 @@ export function WizardStepView(props: WizardStepProps) {
         id="wizard-error"
         role="alert"
         aria-live="assertive"
-        className="mt-4 min-h-6 text-sm font-semibold text-[#9f1239]"
+        className="mt-4 min-h-6 text-small font-semibold text-error"
       >
         {error}
       </p>

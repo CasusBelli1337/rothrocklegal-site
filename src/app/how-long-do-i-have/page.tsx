@@ -1,23 +1,20 @@
-import type { Metadata } from 'next';
-import { PageTitleBand } from '@/components/PageTitleBand';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
+import { Container } from '@/components/ui/Container';
+import { CtaBand } from '@/components/ui/CtaBand';
+import { Eyebrow } from '@/components/ui/Eyebrow';
 import { DeadlineWizard } from '@/components/wizard/DeadlineWizard';
 import { site } from '@/config/site';
+import { webPage } from '@/lib/seo/jsonld';
+import { pageMetadata } from '@/lib/seo/metadata';
 
 const TITLE = 'How Long Do I Have to Contest a Will or Trust in California?';
 const DESCRIPTION =
-  'Usually 120 days after a trustee’s notice or a will is admitted to probate, and one year ' +
-  'from death for most other claims. Answer a few questions to see your estimated deadlines.';
+  'Answer four questions to see which California deadlines may apply. Trust contests can be ' +
+  'barred 120 days after notice.';
+const PATH = '/how-long-do-i-have/';
 
-export const metadata: Metadata = {
-  title: TITLE,
-  description: DESCRIPTION,
-  alternates: { canonical: '/how-long-do-i-have/' },
-  openGraph: {
-    title: `${TITLE} | ${site.name}`,
-    description: DESCRIPTION,
-    url: '/how-long-do-i-have/',
-  },
-};
+export const metadata = pageMetadata({ title: TITLE, description: DESCRIPTION, path: PATH });
 
 const HOW_IT_WORKS: readonly { heading: string; body: string }[] = [
   {
@@ -61,7 +58,7 @@ const HOW_IT_WORKS: readonly { heading: string; body: string }[] = [
 
 function Intro() {
   return (
-    <p className="text-lg leading-relaxed text-navy">
+    <p className="mt-6 max-w-[60ch] text-lead text-ink-2">
       The short answer: in California you usually have <strong>120 days</strong> from the day a
       trustee mails you a formal notice to contest a trust (or <strong>60 days</strong> from getting
       a copy of the trust, if that is later), <strong>120 days</strong> after a judge admits a will
@@ -75,36 +72,33 @@ function Intro() {
 
 function HowItWorks() {
   return (
-    <section aria-labelledby="how-it-works" className="mt-16">
-      <p className="eyebrow">The rules</p>
-      <h2 id="how-it-works" className="font-serif-accent mt-2 text-3xl font-semibold text-black">
-        How the deadlines work
-      </h2>
-      <div className="mt-6 space-y-6">
-        {HOW_IT_WORKS.map((item) => (
-          <div key={item.heading}>
-            <h3 className="text-lg font-bold text-black">{item.heading}</h3>
-            <p className="mt-2 text-[15px] leading-relaxed text-navy">{item.body}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function Disclaimer() {
-  return (
-    <section aria-labelledby="wizard-disclaimer" className="mt-12 border-t border-gray-200 pt-6">
-      <h2 id="wizard-disclaimer" className="text-sm font-bold text-black">
-        Disclaimer
-      </h2>
-      <p className="mt-2 text-sm leading-relaxed text-navy-light">
-        This page is general information, not legal advice, and using it does not make you a client
-        of Rothrock Legal. No attorney&ndash;client relationship exists until you sign an engagement
-        letter with us. The dates it shows are estimates based only on what you entered. Deadlines
-        depend on facts we have not seen, and the law changes. Confirm every date with a lawyer
-        before you rely on it.
-      </p>
+    <section aria-labelledby="how-it-works" className="py-16 lg:py-20">
+      <Container className="max-w-[52rem]">
+        <Eyebrow rule>The rules</Eyebrow>
+        <h2 id="how-it-works" className="mt-3 font-serif text-h2 text-ink">
+          How the deadlines work
+        </h2>
+        <div className="mt-8 space-y-8">
+          {HOW_IT_WORKS.map((item) => (
+            <div key={item.heading}>
+              <h3 className="font-sans text-h4 text-ink">{item.heading}</h3>
+              <p className="mt-2 text-body-lg text-ink-2">{item.body}</p>
+            </div>
+          ))}
+        </div>
+        <section aria-labelledby="wizard-disclaimer" className="mt-12 border-t border-line pt-6">
+          <h3 id="wizard-disclaimer" className="text-small font-semibold text-ink">
+            Disclaimer
+          </h3>
+          <p className="mt-2 text-small text-ink-3">
+            This page is general information, not legal advice, and using it does not make you a
+            client of Rothrock Legal. No attorney&ndash;client relationship exists until you sign an
+            engagement letter with us. The dates it shows are estimates based only on what you
+            entered. Deadlines depend on facts we have not seen, and the law changes. Confirm every
+            date with a lawyer before you rely on it.
+          </p>
+        </section>
+      </Container>
     </section>
   );
 }
@@ -112,15 +106,36 @@ function Disclaimer() {
 export default function HowLongDoIHavePage() {
   return (
     <>
-      <PageTitleBand title="How Long Do I Have to Contest a Will or Trust?" />
-      <div className="mx-auto max-w-4xl px-6 py-14">
-        <Intro />
-        <div className="mt-10">
+      <section className="border-b border-line bg-white">
+        <Container className="py-10 lg:py-16">
+          <Breadcrumbs trail={[{ label: 'Home', href: '/' }, { label: 'How Long Do I Have?' }]} />
+          <div className="mt-8 max-w-[52rem]">
+            <Eyebrow rule>Deadlines</Eyebrow>
+            <h1 className="mt-4 font-serif text-h1 text-ink">
+              How long do I have to contest a will or trust?
+            </h1>
+            <Intro />
+          </div>
+        </Container>
+      </section>
+      <section className="grid-hairline bg-sand py-12 lg:py-16" aria-label="Deadline wizard">
+        <Container className="max-w-[52rem]">
           <DeadlineWizard />
-        </div>
-        <HowItWorks />
-        <Disclaimer />
-      </div>
+        </Container>
+      </section>
+      <HowItWorks />
+      <CtaBand
+        title="Not sure which clock is yours?"
+        lead={<>Call {site.phone} and we&rsquo;ll work it out with you in one conversation.</>}
+      />
+      <JsonLd
+        data={webPage({
+          path: PATH,
+          title: TITLE,
+          description: DESCRIPTION,
+          updated: site.lastUpdated,
+        })}
+      />
     </>
   );
 }

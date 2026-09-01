@@ -7,8 +7,7 @@ export const breachOfFiduciaryDuty: PracticeArea = {
   headline: "The trustee is self-dealing, stalling, or paying themselves.",
   seoTitle: "Trustee Breach of Fiduciary Duty Attorney in San Jose",
   description:
-    "Trustees and executors owe duties. Break them and the court can remove them and make them " +
-    "pay it back. Breach of fiduciary duty, removal, and surcharge in San Jose.",
+    "Trustees and executors owe duties. Break them and the court can remove them and make them pay it back. Trustee breach and removal cases in San Jose.",
   summary:
     "A trustee or executor must act only for the beneficiaries, treat them impartially, avoid " +
     "conflicts, and keep them informed (Probate Code §§ 16000–16081). A trustee who breaks those " +

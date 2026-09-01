@@ -2,15 +2,19 @@ import { site } from "@/config/site";
 
 export interface SubmitResult {
   ok: boolean;
+  /** 'endpoint' = posted to the form service; 'mailto' = opened the visitor's mail app. */
+  mode: "endpoint" | "mailto";
   message: string;
 }
 
 const ENDPOINT = process.env.NEXT_PUBLIC_FORM_ENDPOINT;
 
+const FAILURE = `Something went wrong sending your message. Please email us directly at ${site.email}.`;
+
 /**
  * Submits form fields to the configured Formspree-compatible endpoint.
  * When no endpoint is configured (static hosting, no backend), falls back to
- * opening a prefilled email in the visitor's mail app — never a dead button.
+ * opening a prefilled email in the visitor's mail app: never a dead button.
  */
 export async function submitForm(
   subject: string,
@@ -26,18 +30,15 @@ export async function submitForm(
         },
         body: JSON.stringify({ _subject: subject, ...fields }),
       });
-      if (res.ok) {
-        return { ok: true, message: "Thank you — your message has been sent." };
-      }
-      return {
-        ok: false,
-        message: `Something went wrong sending your message. Please email us directly at ${site.email}.`,
-      };
+      if (res.ok)
+        return {
+          ok: true,
+          mode: "endpoint",
+          message: "Thank you. Your message has been sent.",
+        };
+      return { ok: false, mode: "endpoint", message: FAILURE };
     } catch {
-      return {
-        ok: false,
-        message: `Something went wrong sending your message. Please email us directly at ${site.email}.`,
-      };
+      return { ok: false, mode: "endpoint", message: FAILURE };
     }
   }
 
@@ -52,6 +53,7 @@ export async function submitForm(
   window.location.href = mailto;
   return {
     ok: true,
-    message: `Your message is opening in your email app — just press send. If nothing opens, email us at ${site.email}.`,
+    mode: "mailto",
+    message: `Your message is opening in your email app. Press send there. If nothing opens, email us at ${site.email}.`,
   };
 }

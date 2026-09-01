@@ -1,0 +1,166 @@
+import type { FaqItem } from "@/types/content";
+
+/** Homepage FAQ (HOMEPAGE-SPEC §8). Bracketed answer is [CONFIRM] for Arthur. */
+export const homeFaq: readonly FaqItem[] = [
+  {
+    question: "What does it cost to contest a trust or will?",
+    answer:
+      "[Arthur: fee model in plain English – hourly, hybrid, or contingency in the right case; " +
+      "who pays costs; what the first call costs.]",
+  },
+  {
+    question: "Do I have a case?",
+    answer:
+      "Usually we can tell you after one conversation and a look at the documents. The three " +
+      "things that matter most: what changed, who benefited, and when you found out.",
+  },
+  {
+    question: "How long does a trust contest take?",
+    answer:
+      "Months to a couple of years depending on the court's calendar and whether the other side " +
+      "wants to settle. Many resolve at mediation.",
+  },
+  {
+    question: "Can this be resolved without a trial?",
+    answer:
+      "Often, yes. Most trust and estate disputes settle. We prepare every case as if it will be " +
+      "tried, which is usually what gets it settled.",
+  },
+  {
+    question: "Which courts do you appear in?",
+    answer:
+      "Santa Clara County Superior Court – Probate Division in San Jose most often, plus San " +
+      "Mateo, Alameda, and San Francisco Superior Courts. By video anywhere in California.",
+  },
+];
+
+export interface FaqGroup {
+  title: string;
+  items: readonly FaqItem[];
+}
+
+/** Firm FAQ page (/faq/). The last group rebuilds the four legacy questions in plain English. */
+export const faqGroups: readonly FaqGroup[] = [
+  {
+    title: "Costs and the first call",
+    items: [
+      homeFaq[0],
+      {
+        question: "What should I bring to the first call?",
+        answer:
+          "Whatever you have: the trust or will in any version, amendments, the notice letter and " +
+          "its envelope, letters from the trustee or their lawyer, and a short timeline of who died " +
+          "when and what changed. Do not worry about organizing it. Photos of documents are fine.",
+      },
+      homeFaq[1],
+      {
+        question: "Who pays the legal fees in a trust dispute?",
+        answer:
+          "Usually each side pays its own. The exceptions matter: a trustee who breached their " +
+          "duties can be ordered to pay fees personally, financial elder abuse claims carry a " +
+          "statutory fee award (Welfare and Institutions Code section 15657.5), and some trusts and " +
+          "contracts have fee clauses. We cover this on the first call.",
+      },
+    ],
+  },
+  {
+    title: "Deadlines",
+    items: [
+      {
+        question: "How long do I have to contest a trust in California?",
+        answer:
+          "Usually 120 days from the date the trustee serves the notice required by Probate Code " +
+          "section 16061.7, or 60 days from delivery of the trust terms, whichever is later " +
+          "(Probate Code section 16061.8). Deadlines depend on your facts; confirm yours with a lawyer.",
+      },
+      {
+        question: "How long do I have to contest a will?",
+        answer:
+          "You can object before the will is admitted to probate. Once it is admitted, a petition " +
+          "to revoke probate must be filed within 120 days (Probate Code section 8270).",
+      },
+      {
+        question: "What if I never received a notice?",
+        answer:
+          "Then the 120-day trust contest window may not have started, but do not rely on that. " +
+          "Notices get served at old addresses, and other claims run on their own clocks. Bring us " +
+          "whatever mail you have.",
+      },
+      {
+        question: "Is there a deadline for financial elder abuse claims?",
+        answer:
+          "Four years from when the abuse was discovered or reasonably should have been " +
+          "(Welfare and Institutions Code section 15657.7). If the wrongdoer has died, claims " +
+          "against their estate can be limited to one year from death.",
+      },
+    ],
+  },
+  {
+    title: "The process",
+    items: [
+      homeFaq[2],
+      homeFaq[3],
+      {
+        question: "Will I have to testify?",
+        answer:
+          "If the case goes to trial, probably yes, and you may give a deposition before that. We " +
+          "prepare you for both. Most cases settle before either becomes necessary.",
+      },
+      {
+        question: "Can we meet by video?",
+        answer:
+          "Yes. Most first calls and many meetings happen by video. We meet in person in San Jose " +
+          "by appointment.",
+      },
+    ],
+  },
+  {
+    title: "Courts and where we practice",
+    items: [
+      homeFaq[4],
+      {
+        question: "Do you take cases outside Santa Clara County?",
+        answer:
+          "Yes, throughout the Bay Area: San Mateo, Alameda, and San Francisco Superior Courts " +
+          "regularly, and elsewhere in California by video and travel when the case calls for it.",
+      },
+    ],
+  },
+  {
+    title: "The firm and how we use technology",
+    items: [
+      {
+        question: "How does Rothrock Legal use AI?",
+        answer:
+          "Arthur is the co-founder and CEO of Legion, an AI litigation platform. We use it to go " +
+          "through bank records and medical files and to prepare drafts in days instead of months. " +
+          "Lawyers make every judgment call, check every citation, and sign everything that goes " +
+          "to court.",
+      },
+      {
+        question: "What makes Rothrock Legal different from other firms?",
+        answer:
+          "A small firm focused on trust and estate litigation, run by a trial lawyer who also " +
+          "builds litigation software. You talk to the people doing the work, and the work moves " +
+          "faster than at a firm that bills a junior associate to type.",
+      },
+      {
+        question: "How do I get started?",
+        answer:
+          "Call (408) 420-7034 or send the contact form. We read it, ask about dates, and tell you " +
+          "which deadlines matter before anything else.",
+      },
+      {
+        question: "What is Legion, and how does it relate to Rothrock Legal?",
+        answer:
+          "Legion is an AI litigation platform that Arthur co-founded and runs as CEO. Rothrock " +
+          "Legal is a separate law firm that uses Legion in its own cases. The software does not " +
+          "give legal advice; the lawyers do, and they are responsible for every word that is filed.",
+      },
+    ],
+  },
+];
+
+export const allFaqItems: readonly FaqItem[] = faqGroups.flatMap(
+  (g) => g.items,
+);

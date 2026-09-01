@@ -9,8 +9,8 @@ export const site = {
   canonicalHost: "https://www.rothrocklegal.com",
   /** One sentence used by the homepage meta description and the LegalService JSON-LD. */
   description:
-    "Trust contests, will contests, undue influence, trustee disputes, and elder financial abuse. " +
-    "Rothrock Legal represents families in San Jose, Santa Clara County, and the Bay Area.",
+    "Trust contests, will contests, undue influence, trustee disputes, and elder financial abuse " +
+    "for families in San Jose, Santa Clara County, and the Bay Area.",
   defaultTitle:
     "Trust & Estate Litigation Attorneys in San Jose | Rothrock Legal",
   tagline:

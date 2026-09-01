@@ -1,57 +1,69 @@
-import type { Metadata } from 'next';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
+import { Container } from '@/components/ui/Container';
+import { CtaBand } from '@/components/ui/CtaBand';
+import { Eyebrow } from '@/components/ui/Eyebrow';
+import { FaqAccordion } from '@/components/ui/FaqAccordion';
+import { allFaqItems, faqGroups } from '@/config/faq';
+import { site } from '@/config/site';
+import { faqPage, webPage } from '@/lib/seo/jsonld';
+import { pageMetadata } from '@/lib/seo/metadata';
 
-export const metadata: Metadata = {
-  title: 'FAQ',
-  description:
-    'Frequently asked questions about Rothrock Legal — how we leverage AI technology, what sets ' +
-    'us apart, how to get started, and how Legion relates to the firm.',
-  alternates: { canonical: '/faq/' },
-};
+const TITLE = 'Trust & Estate Litigation FAQ – Costs, Deadlines, Courts';
+const DESCRIPTION =
+  'What it costs to contest a trust or will, how long you have, how long cases take, and which ' +
+  'courts we appear in. Plain-English answers from San Jose.';
+const PATH = '/faq/';
 
-/* Q&A pairing follows the corrected reading order verified against the live
- * site's screenshots (the Wix DOM emitted them out of order). */
-const faqs = [
-  {
-    question: 'How does Rothrock Legal leverage AI technology?',
-    answer:
-      'We utilize cutting-edge AI tools to streamline document drafting, legal research, and ' +
-      'case management, allowing us to provide efficient and cost-effective services to our ' +
-      'clients.',
-  },
-  {
-    question: 'What sets Rothrock Legal apart from other law firms?',
-    answer:
-      'Our unique combination of legal expertise, technological innovation, and a client-centric ' +
-      'approach enables us to deliver tailored solutions that address your specific needs and ' +
-      'goals.',
-  },
-  {
-    question: 'How can I get started with Rothrock Legal?',
-    answer:
-      "Simply contact our office to schedule a consultation. We'll discuss your case, answer " +
-      'your questions, and develop a customized strategy to help you move forward.',
-  },
-  {
-    question: 'What is Legion and how does it relate to Rothrock Legal?',
-    answer:
-      'Legion is a cutting-edge AI legal technology company co-founded by Arthur E. Rothrock. ' +
-      "Rothrock Legal leverages Legion's advanced tools to enhance our legal services and " +
-      'provide our clients with a competitive edge.',
-  },
-];
+export const metadata = pageMetadata({ title: TITLE, description: DESCRIPTION, path: PATH });
 
 export default function FaqPage() {
   return (
-    <div className="mx-auto max-w-5xl px-6 py-16">
-      <h1 className="font-heading text-4xl font-light text-navy">Frequently Asked Questions</h1>
-      <div className="mt-10 space-y-8 border border-maroon-band/60 p-8 sm:p-10">
-        {faqs.map((faq) => (
-          <div key={faq.question}>
-            <h2 className="text-xl font-bold text-gold">{faq.question}</h2>
-            <p className="mt-2 pl-2 text-[15px] leading-relaxed text-navy-light">{faq.answer}</p>
+    <>
+      <section className="border-b border-line bg-white">
+        <Container className="py-10 lg:py-16">
+          <Breadcrumbs trail={[{ label: 'Home', href: '/' }, { label: 'FAQ' }]} />
+          <div className="mt-8 max-w-[52rem]">
+            <Eyebrow rule>Questions</Eyebrow>
+            <h1 className="mt-4 font-serif text-h1 text-ink">
+              The questions people ask before they call.
+            </h1>
+            <p className="mt-6 text-lead text-ink-2">
+              Costs, deadlines, what the process looks like, and where we appear. If yours is not
+              here, call {site.phone} and ask it.
+            </p>
           </div>
-        ))}
-      </div>
-    </div>
+        </Container>
+      </section>
+
+      <Container className="max-w-[52rem] py-16 lg:py-20">
+        <div className="space-y-14">
+          {faqGroups.map((group) => (
+            <section key={group.title} aria-labelledby={`faq-${group.title}`}>
+              <h2 id={`faq-${group.title}`} className="font-serif text-h2 text-ink">
+                {group.title}
+              </h2>
+              <FaqAccordion items={group.items} jsonLd={false} className="mt-6" />
+            </section>
+          ))}
+        </div>
+      </Container>
+
+      <CtaBand
+        title="Still have a question?"
+        lead={
+          <>Ask it. The first conversation is about your dates and your documents, not a pitch.</>
+        }
+      />
+      <JsonLd data={faqPage(allFaqItems)} />
+      <JsonLd
+        data={webPage({
+          path: PATH,
+          title: TITLE,
+          description: DESCRIPTION,
+          updated: site.lastUpdated,
+        })}
+      />
+    </>
   );
 }
