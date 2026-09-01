@@ -7,8 +7,7 @@ export const financialElderAbuse: PracticeArea = {
   headline: "Someone is draining an elder’s money.",
   seoTitle: "Financial Elder Abuse Attorney in San Jose",
   description:
-    'A caregiver with the house, a new "friend" on the accounts, a relative with the debit card. ' +
-    "California financial elder abuse claims, remedies, and deadlines in San Jose.",
+    "A caregiver with the house, a new friend on the accounts, a relative with a debit card. Financial elder abuse claims, remedies, and deadlines in San Jose.",
   summary:
     "Financial elder abuse is taking, hiding, or keeping the property of someone 65 or older for a " +
     "wrongful use, with intent to defraud, or by undue influence (Welfare and Institutions Code " +

@@ -8,8 +8,7 @@ export const businessDisputes: PracticeArea = {
   headline: "A partner or co-owner broke the deal.",
   seoTitle: "Business Dispute Attorney in San Jose",
   description:
-    "Partnership breakups, shareholder and LLC member disputes, breach of contract, and fiduciary " +
-    "claims between co-owners. Business litigation in San Jose and Silicon Valley.",
+    "Partnership breakups, LLC member and shareholder disputes, breach of contract, and fiduciary claims between co-owners. Business litigation in San Jose.",
   summary:
     "Partners, LLC members, and co-owners owe each other duties of loyalty and care, and their " +
     "agreements set the rules for money, control, and exit. When a partner takes more than their " +

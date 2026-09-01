@@ -7,8 +7,7 @@ export const willContests: PracticeArea = {
   headline: "The will isn’t what Mom or Dad said it would be.",
   seoTitle: "Will Contest Lawyer in San Jose",
   description:
-    "Cut out of a will, or a will that appeared late? How to contest a will in California, the " +
-    "120-day deadline after probate, and how Rothrock Legal handles it in San Jose.",
+    "How to contest a will in California: the grounds, the 120-day deadline after probate, and how we handle will contests in San Jose.",
   summary:
     "A California will can be challenged for forgery, fraud, undue influence, lack of capacity, or " +
     "a defect in how it was signed. You can object before the will is admitted to probate, or " +

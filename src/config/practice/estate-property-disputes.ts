@@ -7,8 +7,7 @@ export const estatePropertyDisputes: PracticeArea = {
   headline: "Assets that were supposed to be in the trust are gone.",
   seoTitle: "Probate Code § 850 Petition Attorney in San Jose",
   description:
-    "A house retitled, accounts drained, property that should be in the trust or estate. Probate " +
-    "Code § 850 petitions to recover it, in San Jose and Santa Clara County.",
+    "A house retitled, accounts drained, property that should be in the trust or estate. Probate Code § 850 petitions to recover it, in San Jose.",
   summary:
     "When property that belongs to a trust or estate has ended up in someone else’s name, a " +
     "petition under Probate Code § 850 asks the probate court to decide who owns it and to order " +
