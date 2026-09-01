@@ -1,12 +1,17 @@
 ---
 title: Intellectual Property Considerations
+description: "Patents, copyright, and trade secrets for AI systems: what each protects, where AI-generated work falls through the gaps, and the infringement risks."
+excerpt: The development and use of AI systems can raise a host of intellectual property issues, including questions around protecting AI...
 date: 2023-10-18
-oldSlug: how-to-train-you-ai-to-be-a-man
-category: Press Releases
+updated: 2023-10-18
+author: arthur-rothrock
+category: Technology & the Law
+tags: intellectual property, patents, copyright, trade secrets
+primaryKeyword: AI intellectual property
 image: /images/arthur-headshot.webp
 imageAlt: Arthur E. Rothrock
-readTime: 2 min read
-excerpt: The development and use of AI systems can raise a host of intellectual property issues, including questions around protecting AI...
+draft: false
+oldSlug: how-to-train-you-ai-to-be-a-man
 ---
 
 The development and use of AI systems can raise a host of intellectual property issues, including questions around protecting AI innovations, ownership of AI-generated IP, and potential infringement risks.
@@ -33,3 +38,5 @@ The use of AI systems can also potentially give rise to IP infringement liabilit
 
 - **Patent Infringement:** Patent infringement involving AI may raise challenging divided infringement questions, where multiple parties (potentially including the AI system itself) are involved in practicing the patented invention. Companies using or developing AI should consider seeking freedom-to-operate opinions and including indemnification provisions in license agreements.
 - **Copyright Infringement:** Training AI systems on copyrighted datasets could potentially infringe the reproduction or derivative works rights, although fair use arguments may apply. Several ongoing cases are testing these theories.
+
+This article is general information about the law, not legal advice about your situation. Reading it does not create an attorney-client relationship with Rothrock Legal; that happens only when both sides sign an engagement letter. The law changes, and how it applies depends on facts we have not seen. Before you rely on anything here, confirm it with a lawyer.

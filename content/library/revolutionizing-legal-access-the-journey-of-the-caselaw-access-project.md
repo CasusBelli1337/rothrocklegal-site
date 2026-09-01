@@ -1,16 +1,18 @@
 ---
 title: "Revolutionizing Legal Access: The Journey of the Caselaw Access Project"
+description: How Harvard's Caselaw Access Project digitized 38.6 million pages of US case law, and what free access to that data means for lawyers and the public.
+excerpt: "Revolutionizing Legal Access: The Journey of the Caselaw Access Project The Caselaw Access Project (CAP), a visionary initiative..."
 date: 2024-07-13
 updated: 2024-08-13
-oldSlug: press-releases
-category: Press Releases
+author: arthur-rothrock
+category: Technology & the Law
+tags: Caselaw Access Project, legal research, open data
+primaryKeyword: Caselaw Access Project
 image: /images/open-book.webp
 imageAlt: Open book on a desk in a library
-readTime: 2 min read
-excerpt: Revolutionizing Legal Access: The Journey of the Caselaw Access Project The Caselaw Access Project (CAP), a visionary initiative...
+draft: false
+oldSlug: press-releases
 ---
-
-Revolutionizing Legal Access: The Journey of the Caselaw Access Project
 
 The Caselaw Access Project (CAP), a visionary initiative spearheaded by the President and Fellows of Harvard College, represents a monumental leap towards democratizing access to United States case law. In 2018, CAP finally completed their three-years of effort meticulously digitized their entire case law holdings. By converting 38.6 million pages from 39,796 law books into machine-readable text files, CAP has made available a staggering collection of over 6.4 million published cases, spanning 360 years of legal history, from 1658 to approximately 2019.
 
@@ -29,3 +31,5 @@ In line with Harvard’s commitment to openness, the caselaw data and metadata a
 ### A Future Built on Openness
 
 The Caselaw Access Project stands as a testament to the power of collaboration, innovation, and open access in transforming legal scholarship and public access to law. By providing a vast archive of U.S. case law to the public and removing previous commercial usage restrictions, CAP not only enhances legal research and education but also fosters a more informed and engaged society. As we move forward, the project’s legacy will continue to influence the development of legal resources and the promotion of justice through open access to information.
+
+This article is general information about the law, not legal advice about your situation. Reading it does not create an attorney-client relationship with Rothrock Legal; that happens only when both sides sign an engagement letter. The law changes, and how it applies depends on facts we have not seen. Before you rely on anything here, confirm it with a lawyer.

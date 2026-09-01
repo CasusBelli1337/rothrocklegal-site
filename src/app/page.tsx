@@ -4,7 +4,6 @@ import { Hero } from '@/components/home/Hero';
 import { LegionBand } from '@/components/home/LegionBand';
 import { Services } from '@/components/home/Services';
 import { Testimonials } from '@/components/home/Testimonials';
-import { Updates } from '@/components/home/Updates';
 import { WhoWeAre } from '@/components/home/WhoWeAre';
 
 export const metadata: Metadata = {
@@ -23,7 +22,6 @@ export default function HomePage() {
       <Services />
       <LegionBand />
       <Testimonials />
-      <Updates />
       <ContactSection />
     </>
   );

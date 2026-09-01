@@ -1,12 +1,17 @@
 ---
 title: What is AI?
+description: A plain-English definition of artificial intelligence, its main kinds (machine learning, NLP, computer vision, generative AI), and where it shows up.
+excerpt: AI is a broad term that encompasses computer technologies designed to simulate human intelligence and perform tasks that typically...
 date: 2022-10-13
-oldSlug: insights-into-legal-innovation-and-technology
-category: Latest News
+updated: 2022-10-13
+author: arthur-rothrock
+category: Technology & the Law
+tags: AI, machine learning, generative AI
+primaryKeyword: what is AI
 image: /images/open-book.webp
 imageAlt: Open book on a desk in a library
-readTime: 2 min read
-excerpt: AI is a broad term that encompasses computer technologies designed to simulate human intelligence and perform tasks that typically...
+draft: false
+oldSlug: insights-into-legal-innovation-and-technology
 ---
 
 AI is a broad term that encompasses computer technologies designed to simulate human intelligence and perform tasks that typically require human-like cognition. While there is no single, universally accepted definition of AI, it generally refers to systems that can analyze data, recognize patterns, learn from experience, make informed judgments, predict future behavior, and automate functions.
@@ -23,3 +28,5 @@ AI manifests in many different forms and applications. Some common examples incl
 In practical terms, AI is being deployed across industries to automate and enhance a wide array of functions. Legal departments, for instance, are using AI to streamline contract review, due diligence, e-discovery, and compliance monitoring. Advertisers are harnessing AI to predict market trends and personalize recommendations. And manufacturers are integrating AI into robotic systems to optimize production and quality control.
 
 As AI continues to evolve and permeate our personal and professional lives, it is becoming increasingly important to understand its capabilities, limitations, and implications. While AI has the potential to drive immense efficiency and innovation, it also raises complex questions around ethics, accountability, and the future of work. Navigating this landscape will require ongoing collaboration among technologists, policymakers, legal experts, and ethicists to ensure that the development and deployment of AI serves the interests of both businesses and society at large.
+
+This article is general information about the law, not legal advice about your situation. Reading it does not create an attorney-client relationship with Rothrock Legal; that happens only when both sides sign an engagement letter. The law changes, and how it applies depends on facts we have not seen. Before you rely on anything here, confirm it with a lawyer.

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { site } from '@/config/site';
-import { getAllPosts } from '@/lib/posts';
+import { getArticles } from '@/lib/library/articles';
 
 export const dynamic = 'force-static';
 
@@ -9,23 +9,23 @@ const staticPaths = [
   '/about/',
   '/faq/',
   '/contact/',
-  '/news-and-events/',
+  '/how-long-do-i-have/',
+  '/library/',
   '/for-lawyers-by-lawyers/',
-  '/ip-considerations/',
-  '/ai-glossary/',
   '/privacy-policy/',
   '/disclaimer/',
 ];
 
-/** The old Wix site advertised a sitemap that 404'd — this one is real. */
+/** Indexable URLs only: drafts and redirect stubs stay out (SEO-SPEC §6). */
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = staticPaths.map((path) => ({
     url: `${site.canonicalHost}${path}`,
-    lastModified: new Date(),
+    lastModified: site.lastUpdated,
   }));
-  const posts = getAllPosts().map((post) => ({
-    url: `${site.canonicalHost}/post/${post.slug}/`,
-    lastModified: new Date(post.updated ?? post.date),
+  const articles = getArticles({ includeDrafts: false }).map((article) => ({
+    url: `${site.canonicalHost}/library/${article.slug}/`,
+    lastModified: article.updated,
   }));
-  return [...pages, ...posts];
+  console.log(`sitemap: ${pages.length} pages + ${articles.length} published articles`);
+  return [...pages, ...articles];
 }
