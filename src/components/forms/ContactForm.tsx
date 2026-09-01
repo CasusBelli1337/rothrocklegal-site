@@ -5,7 +5,12 @@ import { submitForm } from '@/lib/submit-form';
 
 const inputClass = 'h-11 w-full border-0 bg-white px-3 text-sm text-black placeholder-gray-500';
 
-export function ContactForm() {
+interface ContactFormProps {
+  /** Prefills the message box (the deadline wizard passes its summary). */
+  initialMessage?: string;
+}
+
+export function ContactForm({ initialMessage }: ContactFormProps = {}) {
   const [status, setStatus] = useState('');
   const [busy, setBusy] = useState(false);
 
@@ -53,7 +58,8 @@ export function ContactForm() {
         <textarea
           id="cf-message"
           name="message"
-          rows={6}
+          rows={initialMessage ? 14 : 6}
+          defaultValue={initialMessage}
           placeholder="Type your message here..."
           className="mt-4 w-full border-0 bg-white p-3 text-sm text-black placeholder-gray-500"
         />
