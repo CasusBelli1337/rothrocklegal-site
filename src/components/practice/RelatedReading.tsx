@@ -23,7 +23,10 @@ export function RelatedReading({ area }: { area: PracticeArea }) {
             Browse the library
           </Button>
         </Reveal>
-        <Reveal stagger className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        <Reveal
+          stagger
+          className={`mt-10 grid gap-5 md:grid-cols-2 ${items.length >= 4 ? 'xl:grid-cols-4' : 'lg:grid-cols-3'}`}
+        >
           {items.map((item) => (
             <LibraryCard key={item.slug} item={item} />
           ))}

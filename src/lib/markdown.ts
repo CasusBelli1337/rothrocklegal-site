@@ -74,7 +74,7 @@ class BlockRenderer {
 
   private line(line: string): void {
     const trimmed = line.trim();
-    if (trimmed === '') return this.flushAll();
+    if (trimmed === '') return this.blank();
     if (trimmed.startsWith('|')) return this.tableRow(trimmed);
     if (this.table.length > 0) this.flushTable();
     const heading = HEADING.exec(trimmed);
@@ -87,6 +87,18 @@ class BlockRenderer {
     this.flushList();
     this.flushQuote();
     this.paragraph.push(trimmed);
+  }
+
+  /**
+   * A blank line ends a paragraph, quote, or table but not a list: items
+   * separated by blank lines ("loose" lists) are one list, so a numbered
+   * walkthrough keeps counting instead of restarting at 1. Every other block
+   * type flushes the list itself when it starts.
+   */
+  private blank(): void {
+    this.flushParagraph();
+    this.flushQuote();
+    if (this.table.length > 0) this.flushTable();
   }
 
   private heading(level: 2 | 3, text: string): void {

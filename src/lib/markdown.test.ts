@@ -26,6 +26,15 @@ describe('renderMarkdown blocks', () => {
     expect(renderMarkdown('- a\n  more')).toBe('<ul><li>a<br />more</li></ul>');
   });
 
+  it('keeps a loose list (items separated by blank lines) as one list', () => {
+    expect(renderMarkdown('1. **File.** x\n\n2. **Serve.** y\n\n3. Trial')).toBe(
+      '<ol><li><strong>File.</strong> x</li><li><strong>Serve.</strong> y</li><li>Trial</li></ol>',
+    );
+    expect(renderMarkdown('- a\n\n- b\n\nafter')).toBe(
+      '<ul><li>a</li><li>b</li></ul>\n<p>after</p>',
+    );
+  });
+
   it('switches list type when the marker changes', () => {
     expect(renderMarkdown('- a\n1. b')).toBe('<ul><li>a</li></ul>\n<ol><li>b</li></ol>');
   });
