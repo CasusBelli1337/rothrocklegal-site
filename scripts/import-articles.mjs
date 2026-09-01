@@ -8,10 +8,12 @@
  *   (default source: ~/projects/rothrock-legal/redesign/articles)
  */
 import fs from "node:fs";
+import { createRequire } from "node:module";
 import os from "node:os";
 import path from "node:path";
 
 const ROOT = process.cwd();
+const limits = createRequire(import.meta.url)("../src/config/seo-limits.json");
 const SOURCE =
   process.argv[2] ??
   path.join(os.homedir(), "projects", "rothrock-legal", "redesign", "articles");
@@ -70,8 +72,8 @@ function parseFrontmatter(source) {
 
 function validateMeta(slug, meta, errors) {
   for (const key of REQUIRED) if (!meta[key]) errors.push(`missing "${key}"`);
-  if (meta.description && meta.description.length > 155)
-    errors.push(`description is ${meta.description.length} chars (max 155)`);
+  if (meta.description && meta.description.length > limits.descriptionMax)
+    errors.push(`description is ${meta.description.length} chars (max ${limits.descriptionMax})`);
   for (const key of ["date", "updated"])
     if (meta[key] && !/^\d{4}-\d{2}-\d{2}$/.test(meta[key]))
       errors.push(`"${key}" must be yyyy-mm-dd`);
