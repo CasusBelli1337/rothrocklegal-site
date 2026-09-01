@@ -7,6 +7,7 @@
  */
 
 import { HeadingIds, renderInline, stripInline, type InlineOptions } from './markdown-inline';
+import { bindSectionSigns } from './typography';
 
 export interface Heading {
   id: string;
@@ -69,12 +70,12 @@ class BlockRenderer {
   }
 
   private inline(text: string): string {
-    return renderInline(text, this.options);
+    return bindSectionSigns(renderInline(text, this.options));
   }
 
   private line(line: string): void {
     const trimmed = line.trim();
-    if (trimmed === '') return this.flushAll();
+    if (trimmed === '') return this.blank();
     if (trimmed.startsWith('|')) return this.tableRow(trimmed);
     if (this.table.length > 0) this.flushTable();
     const heading = HEADING.exec(trimmed);
@@ -87,6 +88,18 @@ class BlockRenderer {
     this.flushList();
     this.flushQuote();
     this.paragraph.push(trimmed);
+  }
+
+  /**
+   * A blank line ends a paragraph, quote, or table but not a list: items
+   * separated by blank lines ("loose" lists) are one list, so a numbered
+   * walkthrough keeps counting instead of restarting at 1. Every other block
+   * type flushes the list itself when it starts.
+   */
+  private blank(): void {
+    this.flushParagraph();
+    this.flushQuote();
+    if (this.table.length > 0) this.flushTable();
   }
 
   private heading(level: 2 | 3, text: string): void {
@@ -172,7 +185,10 @@ class BlockRenderer {
       .slice(2)
       .map((row) => `<tr>${cells(row, 'td')}</tr>`)
       .join('');
-    this.out.push(`<div class="table-wrap"><table>${head}<tbody>${body}</tbody></table></div>`);
+    // tabindex: the wrapper scrolls sideways on phones, so keyboards must be able to reach it.
+    this.out.push(
+      `<div class="table-wrap" tabindex="0"><table>${head}<tbody>${body}</tbody></table></div>`,
+    );
   }
 
   private flushAll(): void {

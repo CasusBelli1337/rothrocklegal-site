@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { useEffect, useId, useRef, useState } from "react";
-import { ArrowRightIcon, ChevronDownIcon } from "@/components/icons";
-import type { NavItem } from "@/config/site";
-import { navLinkClass } from "./nav-link";
+import Link from 'next/link';
+import { useEffect, useId, useRef, useState } from 'react';
+import { ArrowRightIcon, ChevronDownIcon } from '@/components/icons';
+import type { NavItem } from '@/config/site';
+import { navLinkClass } from './nav-link';
 
 interface NavDropdownProps {
   item: NavItem;
@@ -12,7 +12,7 @@ interface NavDropdownProps {
 }
 
 function focusables(root: HTMLElement | null): HTMLElement[] {
-  return root ? Array.from(root.querySelectorAll<HTMLElement>("a[href]")) : [];
+  return root ? Array.from(root.querySelectorAll<HTMLElement>('a[href]')) : [];
 }
 
 /**
@@ -24,6 +24,8 @@ export function NavDropdown({ item, active }: NavDropdownProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  /** True while the pointer is over the trigger, so a mouse click keeps the hover-opened panel open. */
+  const hovering = useRef(false);
   const panelId = useId();
 
   useEffect(() => {
@@ -32,15 +34,15 @@ export function NavDropdown({ item, active }: NavDropdownProps) {
       if (!rootRef.current?.contains(event.target as Node)) setOpen(false);
     };
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key !== "Escape") return;
+      if (event.key !== 'Escape') return;
       setOpen(false);
       triggerRef.current?.focus();
     };
-    document.addEventListener("mousedown", onPointerDown);
-    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener('mousedown', onPointerDown);
+    document.addEventListener('keydown', onKeyDown);
     return () => {
-      document.removeEventListener("mousedown", onPointerDown);
-      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener('mousedown', onPointerDown);
+      document.removeEventListener('keydown', onKeyDown);
     };
   }, [open]);
 
@@ -59,7 +61,7 @@ export function NavDropdown({ item, active }: NavDropdownProps) {
   }
 
   function onTriggerKeyDown(event: React.KeyboardEvent) {
-    if (event.key === "ArrowDown") {
+    if (event.key === 'ArrowDown') {
       setOpen(true);
       requestAnimationFrame(() => focusables(panelRef.current)[0]?.focus());
       event.preventDefault();
@@ -67,9 +69,9 @@ export function NavDropdown({ item, active }: NavDropdownProps) {
   }
 
   function onPanelKeyDown(event: React.KeyboardEvent) {
-    if (event.key === "ArrowDown") moveFocus(event, 1);
-    if (event.key === "ArrowUp") moveFocus(event, -1);
-    if (event.key === "Tab" && !event.shiftKey) {
+    if (event.key === 'ArrowDown') moveFocus(event, 1);
+    if (event.key === 'ArrowUp') moveFocus(event, -1);
+    if (event.key === 'Tab' && !event.shiftKey) {
       const links = focusables(panelRef.current);
       if (document.activeElement === links[links.length - 1]) setOpen(false);
     }
@@ -79,8 +81,14 @@ export function NavDropdown({ item, active }: NavDropdownProps) {
     <div
       ref={rootRef}
       className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
+      onMouseEnter={() => {
+        hovering.current = true;
+        setOpen(true);
+      }}
+      onMouseLeave={() => {
+        hovering.current = false;
+        setOpen(false);
+      }}
     >
       <button
         ref={triggerRef}
@@ -88,13 +96,13 @@ export function NavDropdown({ item, active }: NavDropdownProps) {
         aria-expanded={open}
         aria-controls={panelId}
         aria-haspopup="true"
-        onClick={() => setOpen((value) => !value)}
+        onClick={() => setOpen((value) => hovering.current || !value)}
         onKeyDown={onTriggerKeyDown}
         className={navLinkClass(active)}
       >
         {item.label}
         <ChevronDownIcon
-          className={`h-4 w-4 transition-transform duration-150 ${open ? "rotate-180" : ""}`}
+          className={`h-4 w-4 transition-transform duration-150 ${open ? 'rotate-180' : ''}`}
         />
       </button>
 
@@ -113,12 +121,8 @@ export function NavDropdown({ item, active }: NavDropdownProps) {
               onClick={() => setOpen(false)}
               className="rounded-md px-3 py-2.5 transition-colors hover:bg-maroon-50 focus-visible:bg-maroon-50 focus-visible:outline-none"
             >
-              <span className="block text-[15px] font-medium text-ink">
-                {child.label}
-              </span>
-              <span className="mt-0.5 block text-small text-ink-3">
-                {child.sublabel}
-              </span>
+              <span className="block text-[15px] font-medium text-ink">{child.label}</span>
+              <span className="mt-0.5 block text-small text-ink-3">{child.sublabel}</span>
             </Link>
           ))}
           <Link

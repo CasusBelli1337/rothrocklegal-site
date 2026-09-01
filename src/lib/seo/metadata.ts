@@ -1,19 +1,20 @@
-import type { Metadata } from "next";
-import { site } from "@/config/site";
+import type { Metadata } from 'next';
+import limits from '@/config/seo-limits.json';
+import { site } from '@/config/site';
 
 export interface PageMetadataInput {
   /** Page title. Appended with " | Rothrock Legal" unless `absoluteTitle`. */
   title: string;
   /** Use when the title already ends in the brand (SEO-SPEC §4). */
   absoluteTitle?: boolean;
-  /** ≤ 155 characters. */
+  /** ≤ `descriptionMax` characters (src/config/seo-limits.json, shared with the build gates). */
   description: string;
   /** Trailing-slash path, e.g. '/trust-contests/'. */
   path: string;
   /** Site-relative OG image (1200×630). Defaults to the site card. */
   image?: string;
   imageAlt?: string;
-  type?: "website" | "article" | "profile";
+  type?: 'website' | 'article' | 'profile';
   noindex?: boolean;
   /** Article extras (openGraph.article). */
   article?: {
@@ -27,15 +28,13 @@ export interface PageMetadataInput {
 
 /** Builds the Next `Metadata` for a page so every page calls one helper (SEO-SPEC §2). */
 export function pageMetadata(input: PageMetadataInput): Metadata {
-  if (input.description.length > 160) {
+  if (input.description.length > limits.descriptionMax) {
     throw new Error(
-      `Meta description for ${input.path} is ${input.description.length} chars (max 160)`,
+      `Meta description for ${input.path} is ${input.description.length} chars (max ${limits.descriptionMax})`,
     );
   }
   const image = input.image ?? site.ogImage;
-  const ogTitle = input.absoluteTitle
-    ? input.title
-    : `${input.title} | ${site.name}`;
+  const ogTitle = input.absoluteTitle ? input.title : `${input.title} | ${site.name}`;
   const metadata: Metadata = {
     title: input.absoluteTitle ? { absolute: input.title } : input.title,
     description: input.description,
@@ -45,8 +44,8 @@ export function pageMetadata(input: PageMetadataInput): Metadata {
       description: input.description,
       url: input.path,
       siteName: site.name,
-      locale: "en_US",
-      type: input.type ?? "website",
+      locale: 'en_US',
+      type: input.type ?? 'website',
       images: [
         {
           url: image,
@@ -58,7 +57,7 @@ export function pageMetadata(input: PageMetadataInput): Metadata {
       ...(input.article ?? {}),
     },
     twitter: {
-      card: "summary_large_image",
+      card: 'summary_large_image',
       title: ogTitle,
       description: input.description,
       images: [image],

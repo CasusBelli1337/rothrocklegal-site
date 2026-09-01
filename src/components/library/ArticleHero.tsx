@@ -18,9 +18,9 @@ function titleSize(title: string): string {
   return 'text-h2';
 }
 
-function Dot() {
+function Dot({ className = '' }: { className?: string }) {
   return (
-    <span aria-hidden="true" className="text-white/40">
+    <span aria-hidden="true" className={`text-white/40 ${className}`}>
       &middot;
     </span>
   );
@@ -46,17 +46,21 @@ function ArticleMeta({ article, author }: { article: LibraryArticle; author: Tea
           <span className="text-white/70">, {author.title}</span>
         </span>
       </Link>
-      <Dot />
-      <time dateTime={article.date}>{formatDate(article.date)}</time>
+      {/* The byline wraps after the author on phones; a dot would otherwise lead the second line. */}
+      <Dot className="hidden sm:inline" />
+      {/* Each dot stays with the item before it, so a wrapped line never starts with (or is only) a dot. */}
+      <span className="flex items-center gap-x-3 whitespace-nowrap">
+        <time dateTime={article.date}>{formatDate(article.date)}</time>
+        <Dot />
+      </span>
       {article.updated !== article.date && (
-        <>
-          <Dot />
+        <span className="flex items-center gap-x-3 whitespace-nowrap">
           <span>
             Updated <time dateTime={article.updated}>{formatDate(article.updated)}</time>
           </span>
-        </>
+          <Dot />
+        </span>
       )}
-      <Dot />
       <span>{article.readTime} min read</span>
     </div>
   );
@@ -69,6 +73,7 @@ export function ArticleHero({ article, author }: { article: LibraryArticle; auth
       <Container>
         <Breadcrumbs
           tone="light"
+          jsonLd={!article.draft}
           trail={[
             { label: 'Home', href: '/' },
             { label: 'Library', href: '/library/' },

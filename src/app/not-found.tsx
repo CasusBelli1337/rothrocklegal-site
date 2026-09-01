@@ -1,7 +1,15 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Button, PhoneButton } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { practiceHub, practiceHref } from '@/config/practice-areas';
+
+export const metadata: Metadata = {
+  title: 'Page not found',
+  description:
+    'That page may have moved when the site was rebuilt. Try the practice areas, the deadline wizard, or call Rothrock Legal.',
+  robots: { index: false, follow: true },
+};
 
 const links = [
   { label: practiceHub.title, href: practiceHref(practiceHub) },

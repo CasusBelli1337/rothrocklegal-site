@@ -7,19 +7,31 @@ import type { LibraryListItem } from '@/lib/library/index-item';
 import { Highlight } from './Highlight';
 import type { SnippetResult } from './searchUtils';
 
-/** "DEADLINES | SEP 1, 2026 | 6 MIN READ" meta row shared by the cards. */
+function Separator() {
+  return (
+    <span aria-hidden="true" className="text-ink-4">
+      |
+    </span>
+  );
+}
+
+/**
+ * "DEADLINES | SEP 1, 2026 | 6 MIN READ" meta row shared by the cards. Long
+ * category names wrap the row at three columns, so the only break allowed is
+ * after "CATEGORY |": the second line is always "DATE | READ TIME".
+ */
 export function CardMeta({ item }: { item: LibraryListItem }) {
   return (
     <p className="eyebrow flex flex-wrap items-center gap-x-2 gap-y-1">
-      <span>{item.category}</span>
-      <span aria-hidden="true" className="text-ink-4">
-        |
+      <span className="flex items-center gap-x-2 whitespace-nowrap">
+        {item.category}
+        <Separator />
       </span>
-      <span className="text-ink-3">{formatShortDate(item.date)}</span>
-      <span aria-hidden="true" className="text-ink-4">
-        |
+      <span className="flex items-center gap-x-2 whitespace-nowrap text-ink-3">
+        {formatShortDate(item.date)}
+        <Separator />
+        {item.readTime} min read
       </span>
-      <span className="text-ink-3">{item.readTime} min read</span>
     </p>
   );
 }
@@ -47,10 +59,14 @@ interface LibraryCardProps {
   snippet?: SnippetResult | null;
   bodyHits?: number;
   priority?: boolean;
-  headingLevel?: 'h2' | 'h3';
+  headingLevel?: 'h2' | 'h3' | 'h4';
 }
 
-/** Article card (LIBRARY-SPEC §4): whole card is one link; the title is its accessible name. */
+/**
+ * Article card (LIBRARY-SPEC §4): whole card is one link; the title is its
+ * accessible name. The one card for the library index, the homepage preview,
+ * practice-page related reading, and article related rows.
+ */
 export function LibraryCard({
   item,
   terms = [],

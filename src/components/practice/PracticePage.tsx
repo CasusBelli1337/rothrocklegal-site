@@ -8,6 +8,7 @@ import { getPracticeArea, practiceHref } from '@/config/practice-areas';
 import { getPracticeBody } from '@/lib/practice';
 import { pageMetadata } from '@/lib/seo/metadata';
 import { webPage } from '@/lib/seo/jsonld';
+import { bindSectionSigns } from '@/lib/typography';
 import { PracticeGrid } from './PracticeGrid';
 import { PracticeHero } from './PracticeHero';
 import { PracticeSidebar } from './PracticeSidebar';
@@ -38,19 +39,28 @@ export function PracticePage({ slug }: { slug: string }) {
       {area.hub && <PracticeGrid />}
       <Container className="grid gap-12 py-16 lg:grid-cols-12 lg:gap-16 lg:py-20">
         <article className="lg:col-span-8">
-          <div className="prose-article">
-            {sections.map((section) => (
-              <section key={section.id} id={section.id} aria-labelledby={`${section.id}-h`}>
-                <h2 id={`${section.id}-h`}>{section.heading}</h2>
-                <div dangerouslySetInnerHTML={{ __html: section.html }} />
-              </section>
-            ))}
-          </div>
+          {sections.map((section, i) => (
+            <section
+              key={section.id}
+              id={section.id}
+              aria-labelledby={`${section.id}-h`}
+              className={`scroll-mt-[6.5rem] ${i > 0 ? 'mt-14 lg:mt-16' : ''}`}
+            >
+              <h2 id={`${section.id}-h`} className="font-serif text-h2 text-ink">
+                {section.heading}
+              </h2>
+              {/* Each section body is its own prose block so paragraph spacing applies (prose.css targets direct children). */}
+              <div
+                className="prose-article prose-no-lead mt-6"
+                dangerouslySetInnerHTML={{ __html: section.html }}
+              />
+            </section>
+          ))}
           <Reveal className="mt-14">
             <DeadlineCallout
               eyebrow="Am I too late?"
               title="How long do I have?"
-              body={area.deadline.body}
+              body={bindSectionSigns(area.deadline.body)}
               finePrint="General information, not legal advice. Confirm your dates with a lawyer."
             />
           </Reveal>
@@ -65,12 +75,7 @@ export function PracticePage({ slug }: { slug: string }) {
         <PracticeSidebar area={area} sections={sections} />
       </Container>
       <RelatedReading area={area} />
-      <CtaBand
-        title={<>Tell us what happened.</>}
-        lead={
-          <>A few sentences is enough. We&rsquo;ll read it, check the clock, and call you back.</>
-        }
-      />
+      <CtaBand />
       <JsonLd
         data={webPage({
           path,

@@ -6,6 +6,7 @@ import { Eyebrow } from '@/components/ui/Eyebrow';
 import { practiceHub, type PracticeArea } from '@/config/practice-areas';
 import { getTeamMember, teamHref } from '@/config/team';
 import { formatDate } from '@/lib/format-date';
+import { bindSectionSigns, keepCompounds } from '@/lib/typography';
 import type { Crumb } from '@/types/content';
 
 /** Trail per IA.md §6. */
@@ -25,8 +26,8 @@ export function PracticeHero({ area }: { area: PracticeArea }) {
         <Breadcrumbs trail={practiceTrail(area)} />
         <div className="mt-8 max-w-[52rem]">
           <Eyebrow rule>{area.hub ? 'Practice areas' : practiceHub.title}</Eyebrow>
-          <h1 className="mt-4 font-serif text-h1 text-ink">{area.headline}</h1>
-          <p className="mt-6 text-lead text-ink-2">{area.summary}</p>
+          <h1 className="mt-4 font-serif text-h1 text-ink">{keepCompounds(area.headline)}</h1>
+          <p className="mt-6 text-lead text-ink-2">{bindSectionSigns(area.summary)}</p>
           <p className="mt-5 text-meta text-ink-3">
             By{' '}
             <Link

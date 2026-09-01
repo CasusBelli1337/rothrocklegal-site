@@ -1,5 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import limits from '@/config/seo-limits.json';
+import { site } from '@/config/site';
 import { getTeamMember } from '@/config/team';
 import { parseBool, parseFrontmatter, parseList, requireKey } from '@/lib/frontmatter';
 import { byNewest } from '@/lib/library/dates';
@@ -64,8 +66,8 @@ export const TECH_CATEGORY: LibraryCategory = 'Technology & the Law';
 /** The anchor deadlines article is featured whenever it exists. */
 export const FEATURED_SLUG = 'how-long-do-i-have-to-contest-a-trust-or-will-in-california';
 export const DISCLAIMER_PREFIX = 'This article is general information';
-/** Drafts render (tagged + noindex) unless a release build sets LIBRARY_HIDE_DRAFTS=1. */
-const INCLUDE_DRAFTS_DEFAULT = process.env.LIBRARY_HIDE_DRAFTS !== '1';
+/** The one draft toggle for every article surface lives in site.ts. */
+const INCLUDE_DRAFTS_DEFAULT: boolean = site.showDraftArticles;
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 
 /** Newest first; on the same day, Technology & the Law sorts after the trust-and-estate articles. */
@@ -120,7 +122,8 @@ function loadArticle(fileName: string): LibraryArticle {
   const author = requireKey(meta, 'author', slug);
   getTeamMember(author);
   const description = requireKey(meta, 'description', slug);
-  if (description.length > 160) fail(slug, `description is ${description.length} chars (max 160)`);
+  if (description.length > limits.descriptionMax)
+    fail(slug, `description is ${description.length} chars (max ${limits.descriptionMax})`);
   const image = requireKey(meta, 'image', slug);
   if (!image.startsWith('/images/')) fail(slug, `image must live under /images/, got "${image}"`);
   const tags = parseList(meta.tags);
@@ -182,7 +185,7 @@ export interface ArticleQuery {
   includeDrafts?: boolean;
 }
 
-/** Every article, newest first. Drafts included unless the caller (or LIBRARY_HIDE_DRAFTS=1) says otherwise. */
+/** Every article, newest first. Drafts follow `site.showDraftArticles` unless the caller says otherwise. */
 export function getArticles(query: ArticleQuery = {}): LibraryArticle[] {
   const includeDrafts = query.includeDrafts ?? INCLUDE_DRAFTS_DEFAULT;
   return loadAll().filter((a) => includeDrafts || !a.draft);

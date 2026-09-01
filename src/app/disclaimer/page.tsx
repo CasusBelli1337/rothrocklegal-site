@@ -9,6 +9,7 @@ export const metadata = pageMetadata({
   title: 'Disclaimer & Attorney Advertising',
   description: DESCRIPTION,
   path: '/disclaimer/',
+  noindex: site.legalPagesDraft,
 });
 
 export default function DisclaimerPage() {
@@ -18,7 +19,6 @@ export default function DisclaimerPage() {
       title="Disclaimer and attorney advertising"
       description={DESCRIPTION}
       path="/disclaimer/"
-      draft
     >
       <h2>Attorney advertising</h2>
       <p>
@@ -28,7 +28,9 @@ export default function DisclaimerPage() {
         {site.office.regionName}. The site is provided for general informational purposes only and
         is not intended to be, and should not be relied upon as, legal advice on any matter.
       </p>
-      <h2>No attorney-client relationship</h2>
+      <h2>
+        No <span className="whitespace-nowrap">attorney-client</span> relationship
+      </h2>
       <p>
         Viewing this website, using the deadline wizard, submitting the contact form, or
         communicating with {site.name} by email does not create an attorney-client relationship. An

@@ -1,11 +1,14 @@
-import { ArticleCard } from "@/components/library/ArticleCard";
-import { Button } from "@/components/ui/Button";
-import { Container } from "@/components/ui/Container";
-import { Reveal } from "@/components/ui/Reveal";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { getLibraryPreview } from "@/lib/library/preview";
+import { LibraryCard } from '@/components/library/LibraryCard';
+import { Button } from '@/components/ui/Button';
+import { Container } from '@/components/ui/Container';
+import { Reveal } from '@/components/ui/Reveal';
+import { SectionHeading } from '@/components/ui/SectionHeading';
+import { getLibraryPreview } from '@/lib/library/preview';
 
-/** HOMEPAGE-SPEC §7: the 3 newest articles, never Technology & the Law. */
+/**
+ * HOMEPAGE-SPEC §7: the 3 newest articles, never Technology & the Law.
+ * Drafts appear with their chip while `site.showDraftArticles` is on.
+ */
 export function LibraryPreview() {
   const items = getLibraryPreview(3);
   console.log(`homepage library preview: ${items.length} item(s)`);
@@ -25,7 +28,7 @@ export function LibraryPreview() {
         {items.length > 0 && (
           <Reveal stagger className="mt-10 grid gap-5 md:grid-cols-3">
             {items.map((item) => (
-              <ArticleCard key={item.slug} item={item} />
+              <LibraryCard key={item.slug} item={item} />
             ))}
           </Reveal>
         )}

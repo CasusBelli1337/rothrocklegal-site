@@ -1,5 +1,5 @@
-import { Button, PhoneButton } from "./Button";
-import { Container } from "./Container";
+import { Button, PhoneButton } from './Button';
+import { Container } from './Container';
 
 interface CtaBandProps {
   title?: React.ReactNode;
@@ -10,9 +10,9 @@ interface CtaBandProps {
 
 /** Maroon gradient band: white h2, one lead line, inverse button + phone (DESIGN-BRIEF §6). */
 export function CtaBand({
-  title = "Tell us what happened.",
-  lead = "A few sentences is enough. We will read it, check the clock, and call you back.",
-  primary = { label: "Tell us what happened", href: "/contact/" },
+  title = 'Tell us what happened.',
+  lead = <>A few sentences is enough. We&rsquo;ll read it, check the clock, and call you back.</>,
+  primary = { label: 'Tell us what happened', href: '/contact/' },
   id,
 }: CtaBandProps) {
   return (

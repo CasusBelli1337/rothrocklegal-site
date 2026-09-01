@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import limits from '@/config/seo-limits.json';
 import {
   FEATURED_SLUG,
   TECH_CATEGORY,
@@ -20,7 +21,7 @@ describe('library loader', () => {
     }
     for (const a of articles) {
       expect(a.slug).toMatch(/^[a-z0-9-]+$/);
-      expect(a.description.length).toBeLessThanOrEqual(160);
+      expect(a.description.length).toBeLessThanOrEqual(limits.descriptionMax);
       expect(a.tags.length).toBeGreaterThan(0);
       expect(a.readTime).toBeGreaterThanOrEqual(1);
       expect(a.bodyHtml).toContain('<p>');
@@ -48,7 +49,7 @@ describe('library loader', () => {
     expect(anchor.faq.length).toBeGreaterThanOrEqual(5);
     expect(anchor.faqHeading?.id).toBe('frequently-asked-questions');
     expect(anchor.bodyHtml).not.toContain(anchor.faq[0].question);
-    expect(anchor.bodyHtml).toContain('<div class="table-wrap">');
+    expect(anchor.bodyHtml).toContain('<div class="table-wrap" tabindex="0">');
     expect(anchor.outroHtml).toMatch(/^<h2 id="talk-to-a-trust-litigation-lawyer-in-san-jose">/);
     expect(anchor.outroHtml).toContain('<p class="disclaimer">');
     expect(anchor.toc.map((h) => h.id)).toContain('key-deadlines');
