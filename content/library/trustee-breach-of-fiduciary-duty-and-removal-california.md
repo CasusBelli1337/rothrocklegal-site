@@ -125,6 +125,6 @@ Move fast. Any claim you could have brought against the trustee while alive must
 
 ## Talk to a trust litigation lawyer in San Jose
 
-Rothrock Legal litigates trustee disputes in the Santa Clara County Superior Court's Probate Division at 191 N. First Street in San Jose, and in the San Mateo, Alameda, and San Francisco courts. If a trustee is stonewalling you, paying themselves, or sitting on a house that should have been sold, [contact us](/contact/) and bring whatever paper you have. We will tell you whether you have a removal case, what the court can order, and how much of the three years is left.
+Rothrock Legal litigates trustee disputes in the Santa Clara County Superior Court's Probate Division in San Jose, and in the San Mateo, Alameda, and San Francisco courts. If a trustee is stonewalling you, paying themselves, or sitting on a house that should have been sold, [contact us](/contact/). We will tell you whether you have a removal case, what the court can order, and how much of the three years is left.
 
 This article is general information about California law, not legal advice about your situation. Reading it does not create an attorney-client relationship with Rothrock Legal; that happens only when both sides sign an engagement letter. Deadlines depend on facts we have not seen and the law changes. Before you rely on any date here, confirm it with a lawyer.

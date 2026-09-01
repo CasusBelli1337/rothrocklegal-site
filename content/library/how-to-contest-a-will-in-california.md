@@ -112,6 +112,6 @@ Yes, if the sibling is an heir or was named in an earlier will (Probate Code § 
 
 ## Talk to a trust litigation lawyer in San Jose
 
-Rothrock Legal litigates will and trust contests in the Santa Clara County Superior Court's Probate Division at 191 N. First Street in San Jose, and in the San Mateo, Alameda, and San Francisco courts. If you have a Notice of Petition to Administer Estate in hand, or just learned a will was admitted, [contact us](/contact/) and bring the paperwork. We will tell you which window is open and what it takes to file inside it.
+Rothrock Legal litigates will and trust contests in the Santa Clara County Superior Court's Probate Division in San Jose, and in the San Mateo, Alameda, and San Francisco courts. If you have a Notice of Petition to Administer Estate, or learned a will was admitted, [contact us](/contact/). We will tell you which window is open and how to file inside it.
 
 This article is general information about California law, not legal advice about your situation. Reading it does not create an attorney-client relationship with Rothrock Legal; that happens only when both sides sign an engagement letter. Deadlines depend on facts we have not seen and the law changes. Before you rely on any date here, confirm it with a lawyer.
