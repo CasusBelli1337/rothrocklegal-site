@@ -9,6 +9,7 @@ export const metadata = pageMetadata({
   title: 'Disclaimer & Attorney Advertising',
   description: DESCRIPTION,
   path: '/disclaimer/',
+  noindex: site.legalPagesDraft,
 });
 
 export default function DisclaimerPage() {
@@ -18,7 +19,6 @@ export default function DisclaimerPage() {
       title="Disclaimer and attorney advertising"
       description={DESCRIPTION}
       path="/disclaimer/"
-      draft
     >
       <h2>Attorney advertising</h2>
       <p>

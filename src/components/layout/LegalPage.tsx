@@ -10,13 +10,11 @@ interface LegalPageProps {
   title: string;
   description: string;
   path: string;
-  /** Visible "Draft – pending attorney review" notice. */
-  draft?: boolean;
   children: React.ReactNode;
 }
 
-/** Shell for the privacy policy and disclaimer: hero + prose body. */
-export function LegalPage({ eyebrow, title, description, path, draft, children }: LegalPageProps) {
+/** Shell for the privacy policy and disclaimer: hero + prose body. The draft notice follows `site.legalPagesDraft`. */
+export function LegalPage({ eyebrow, title, description, path, children }: LegalPageProps) {
   return (
     <>
       <section className="border-b border-line bg-white">
@@ -25,7 +23,7 @@ export function LegalPage({ eyebrow, title, description, path, draft, children }
           <div className="mt-8 max-w-[52rem]">
             <Eyebrow rule>{eyebrow}</Eyebrow>
             <h1 className="mt-4 font-serif text-h1 text-ink">{title}</h1>
-            {draft && (
+            {site.legalPagesDraft && (
               <p className="mt-6 rounded-xl border-t-4 border-brass-400 bg-brass-100 p-4 text-small font-medium text-maroon-950">
                 Draft &ndash; pending attorney review. This page was prepared as part of the website
                 redesign and has not yet been approved for publication.

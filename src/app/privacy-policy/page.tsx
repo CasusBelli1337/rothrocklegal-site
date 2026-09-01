@@ -9,6 +9,7 @@ export const metadata = pageMetadata({
   title: 'Privacy Policy',
   description: DESCRIPTION,
   path: '/privacy-policy/',
+  noindex: site.legalPagesDraft,
 });
 
 export default function PrivacyPolicyPage() {
@@ -18,7 +19,6 @@ export default function PrivacyPolicyPage() {
       title="Privacy Policy"
       description={DESCRIPTION}
       path="/privacy-policy/"
-      draft
     >
       <p>
         This Privacy Policy describes how {site.name} (&ldquo;we,&rdquo; &ldquo;us&rdquo;) handles

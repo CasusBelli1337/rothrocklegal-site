@@ -103,7 +103,7 @@ export default async function ArticlePage({ params }: { params: Promise<Params> 
         title="Talk to a trust litigation lawyer in San Jose."
         lead="Tell us what happened. We will read it, check the clock, and call you back."
       />
-      <JsonLd data={jsonLd(article, author.name)} />
+      {!article.draft && <JsonLd data={jsonLd(article, author.name)} />}
     </>
   );
 }

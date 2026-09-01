@@ -4,42 +4,57 @@
  */
 
 export const site = {
-  name: "Rothrock Legal",
+  name: 'Rothrock Legal',
   /** Canonical production host. */
-  canonicalHost: "https://www.rothrocklegal.com",
+  canonicalHost: 'https://www.rothrocklegal.com',
   /** One sentence used by the homepage meta description and the LegalService JSON-LD. */
   description:
-    "Trust contests, will contests, undue influence, trustee disputes, and elder financial abuse " +
-    "for families in San Jose, Santa Clara County, and the Bay Area.",
-  defaultTitle:
-    "Trust & Estate Litigation Attorneys in San Jose | Rothrock Legal",
+    'Trust contests, will contests, undue influence, trustee disputes, and elder financial abuse ' +
+    'for families in San Jose, Santa Clara County, and the Bay Area.',
+  defaultTitle: 'Trust & Estate Litigation Attorneys in San Jose | Rothrock Legal',
   tagline:
-    "Trust and estate litigation for families in San Jose, Santa Clara County, and the San Francisco Bay Area.",
-  phone: "(408) 420-7034",
-  phoneHref: "tel:+14084207034",
-  phoneE164: "+1-408-420-7034",
-  email: "arothrock@rothrocklegal.com",
+    'Trust and estate litigation for families in San Jose, Santa Clara County, and the San Francisco Bay Area.',
+  phone: '(408) 420-7034',
+  phoneHref: 'tel:+14084207034',
+  phoneE164: '+1-408-420-7034',
+  email: 'arothrock@rothrocklegal.com',
   /** Contact-form CCs so a submission is never missed by a single inbox. */
-  formCc: ["jonathan@rothrocklegal.com", "glin@rothrocklegal.com"],
+  formCc: ['jonathan@rothrocklegal.com', 'glin@rothrocklegal.com'],
   /** Office facts shown on the page and mirrored in JSON-LD (SEO-SPEC §3a). No street address. */
   office: {
-    city: "San Jose",
-    region: "CA",
-    regionName: "California",
-    country: "US",
-    appointments: "By appointment and by video. San Jose, California.",
+    city: 'San Jose',
+    region: 'CA',
+    regionName: 'California',
+    country: 'US',
+    appointments: 'By appointment and by video. San Jose, California.',
   },
-  hours: "Mon–Fri, 9–5. Leave a message any time.",
+  hours: 'Mon–Fri, 9–5. Leave a message any time.',
   /** Attorney responsible for the site (Rule 7.2(c); Bus. & Prof. Code § 6157.2(b)). */
-  responsibleAttorney: "Arthur E. Rothrock",
-  /** [CONFIRM] Reply-time promise. Bracketed until Arthur confirms (HOMEPAGE-SPEC §5, §10). */
-  replyPromise: "[the same business day]",
-  resultsDisclaimer:
-    "Every case is different. Past results do not guarantee a similar outcome.",
-  ogImage: "/images/og/site.png",
+  responsibleAttorney: 'Arthur E. Rothrock',
+  /**
+   * Reply-time promise, completing "we get back to you ...". Arthur's call:
+   * the spec's draft was "the same business day"; this is the safe wording
+   * until he confirms (HOMEPAGE-SPEC §5, §10).
+   */
+  replyPromise: 'within one business day',
+  /**
+   * Show `draft: true` articles (chip "Draft – pending attorney review",
+   * noindex) in the library index, homepage preview, related reading, and
+   * article routes. Flip to false when the site ships; sitemap.xml and
+   * llms.txt never list drafts either way.
+   */
+  showDraftArticles: true,
+  /**
+   * The privacy policy and disclaimer are drafts until Arthur signs off: they
+   * show the draft notice, render noindex, and stay out of sitemap.xml and
+   * llms.txt. Set false to publish both.
+   */
+  legalPagesDraft: true,
+  resultsDisclaimer: 'Every case is different. Past results do not guarantee a similar outcome.',
+  ogImage: '/images/og/site.png',
   copyrightYear: 2026,
   /** Bumped only for substantive edits to static pages (sitemap lastModified). */
-  lastUpdated: "2026-09-01",
+  lastUpdated: '2026-09-01',
 } as const;
 
 export interface NavItem {
@@ -53,117 +68,117 @@ export interface NavItem {
 /** Header navigation (IA.md §2). The Header renders whichever shape it gets. */
 export const nav: readonly NavItem[] = [
   {
-    label: "Trust & Estate Litigation",
-    href: "/trust-litigation/",
+    label: 'Trust & Estate Litigation',
+    href: '/trust-litigation/',
     children: [
       {
-        label: "Contesting a trust",
-        href: "/trust-contests/",
+        label: 'Contesting a trust',
+        href: '/trust-contests/',
         sublabel: "Someone changed the trust and it doesn't add up",
       },
       {
-        label: "Contesting a will",
-        href: "/will-contests/",
+        label: 'Contesting a will',
+        href: '/will-contests/',
         sublabel: "The will isn't what Mom or Dad said it would be",
       },
       {
-        label: "Undue influence & capacity",
-        href: "/undue-influence-and-capacity/",
-        sublabel: "Someone got to them when they were vulnerable",
+        label: 'Undue influence & capacity',
+        href: '/undue-influence-and-capacity/',
+        sublabel: 'Someone got to them when they were vulnerable',
       },
       {
-        label: "Trustees who break the rules",
-        href: "/breach-of-fiduciary-duty/",
-        sublabel: "The trustee is self-dealing or stalling",
+        label: 'Trustees who break the rules',
+        href: '/breach-of-fiduciary-duty/',
+        sublabel: 'The trustee is self-dealing or stalling',
       },
       {
-        label: "Accountings & information",
-        href: "/trust-accounting-disputes/",
+        label: 'Accountings & information',
+        href: '/trust-accounting-disputes/',
         sublabel: "The trustee won't show us the numbers",
       },
       {
-        label: "Property disputes (§ 850)",
-        href: "/estate-property-disputes/",
-        sublabel: "The house or the accounts were moved out",
+        label: 'Property disputes (§ 850)',
+        href: '/estate-property-disputes/',
+        sublabel: 'The house or the accounts were moved out',
       },
       {
-        label: "Financial elder abuse",
-        href: "/financial-elder-abuse/",
+        label: 'Financial elder abuse',
+        href: '/financial-elder-abuse/',
         sublabel: "Someone is draining an elder's money",
       },
       {
-        label: "Business & partnership disputes",
-        href: "/business-disputes/",
-        sublabel: "A partner or co-owner broke the deal",
+        label: 'Business & partnership disputes',
+        href: '/business-disputes/',
+        sublabel: 'A partner or co-owner broke the deal',
       },
     ],
   },
-  { label: "How Long Do I Have?", href: "/how-long-do-i-have/" },
-  { label: "Attorneys", href: "/attorneys/" },
-  { label: "Library", href: "/library/" },
-  { label: "About", href: "/about/" },
+  { label: 'How Long Do I Have?', href: '/how-long-do-i-have/' },
+  { label: 'Attorneys', href: '/attorneys/' },
+  { label: 'Library', href: '/library/' },
+  { label: 'About', href: '/about/' },
 ] as const;
 
 export const contactCta: NavItem = {
-  label: "Talk to a lawyer",
-  href: "/contact/",
+  label: 'Talk to a lawyer',
+  href: '/contact/',
 };
 
 /** Footer "Resources" column (IA.md §3). Practice links come from practice-areas.ts. */
 export const footerResources: readonly NavItem[] = [
-  { label: "How Long Do I Have?", href: "/how-long-do-i-have/" },
-  { label: "Library", href: "/library/" },
-  { label: "FAQ", href: "/faq/" },
-  { label: "Where We Practice", href: "/service-areas/" },
-  { label: "Attorneys", href: "/attorneys/" },
-  { label: "About", href: "/about/" },
-  { label: "Contact", href: "/contact/" },
+  { label: 'How Long Do I Have?', href: '/how-long-do-i-have/' },
+  { label: 'Library', href: '/library/' },
+  { label: 'FAQ', href: '/faq/' },
+  { label: 'Where We Practice', href: '/service-areas/' },
+  { label: 'Attorneys', href: '/attorneys/' },
+  { label: 'About', href: '/about/' },
+  { label: 'Contact', href: '/contact/' },
 ] as const;
 
 export const legalLinks: readonly NavItem[] = [
-  { label: "Privacy Policy", href: "/privacy-policy/" },
-  { label: "Disclaimer", href: "/disclaimer/" },
+  { label: 'Privacy Policy', href: '/privacy-policy/' },
+  { label: 'Disclaimer', href: '/disclaimer/' },
 ] as const;
 
 export const social = {
-  linkedin: "https://www.linkedin.com/in/rothrocka/",
+  linkedin: 'https://www.linkedin.com/in/rothrocka/',
   /** Firm-level profiles for LegalService `sameAs` (ARTHUR-DOSSIER.md §15). */
   firmProfiles: [
-    "https://www.linkedin.com/in/rothrocka/",
-    "https://profiles.superlawyers.com/california/san-jose/lawfirm/rothrock-legal/3a179706-d225-41e9-aa54-4d24707b0788.html",
-    "https://www.bestlawyers.com/firms/rothrock-legal/106701/US",
+    'https://www.linkedin.com/in/rothrocka/',
+    'https://profiles.superlawyers.com/california/san-jose/lawfirm/rothrock-legal/3a179706-d225-41e9-aa54-4d24707b0788.html',
+    'https://www.bestlawyers.com/firms/rothrock-legal/106701/US',
   ],
 } as const;
 
 /** Mirror of the `@theme` tokens in globals.css (DESIGN-BRIEF §2). */
 export const palette = {
-  maroon950: "#2B0119",
-  maroon900: "#3F0226",
-  maroon800: "#52032F",
-  maroon700: "#66043D",
-  maroon600: "#7F1A55",
-  maroon500: "#98366F",
-  maroon200: "#E5C2D6",
-  maroon100: "#F3E3EC",
-  maroon50: "#FAF2F6",
-  paper: "#F8F5F0",
-  sand: "#EFEAE2",
-  white: "#FFFFFF",
-  line: "#E2DBD1",
-  lineStrong: "#CBC2B5",
-  ink: "#1B1816",
-  ink2: "#3F3A36",
-  ink3: "#6B645E",
-  ink4: "#8F877F",
-  brass600: "#8C6212",
-  brass500: "#B07A1C",
-  brass400: "#C9932B",
-  brass100: "#F5EAD2",
-  success: "#2E6B4E",
-  error: "#B42318",
+  maroon950: '#2B0119',
+  maroon900: '#3F0226',
+  maroon800: '#52032F',
+  maroon700: '#66043D',
+  maroon600: '#7F1A55',
+  maroon500: '#98366F',
+  maroon200: '#E5C2D6',
+  maroon100: '#F3E3EC',
+  maroon50: '#FAF2F6',
+  paper: '#F8F5F0',
+  sand: '#EFEAE2',
+  white: '#FFFFFF',
+  line: '#E2DBD1',
+  lineStrong: '#CBC2B5',
+  ink: '#1B1816',
+  ink2: '#3F3A36',
+  ink3: '#6B645E',
+  ink4: '#8F877F',
+  brass600: '#8C6212',
+  brass500: '#B07A1C',
+  brass400: '#C9932B',
+  brass100: '#F5EAD2',
+  success: '#2E6B4E',
+  error: '#B42318',
 } as const;
 
 /** Prefix a public asset path with the basePath injected by CI or the editor preview. */
 export function asset(path: string): string {
-  return `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
+  return `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}${path}`;
 }

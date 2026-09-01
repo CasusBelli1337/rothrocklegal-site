@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import limits from '@/config/seo-limits.json';
 import {
   FEATURED_SLUG,
   TECH_CATEGORY,
@@ -20,7 +21,7 @@ describe('library loader', () => {
     }
     for (const a of articles) {
       expect(a.slug).toMatch(/^[a-z0-9-]+$/);
-      expect(a.description.length).toBeLessThanOrEqual(160);
+      expect(a.description.length).toBeLessThanOrEqual(limits.descriptionMax);
       expect(a.tags.length).toBeGreaterThan(0);
       expect(a.readTime).toBeGreaterThanOrEqual(1);
       expect(a.bodyHtml).toContain('<p>');

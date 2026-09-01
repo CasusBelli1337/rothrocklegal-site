@@ -1,15 +1,25 @@
 import { practiceHref, practicePages, practiceHub } from '@/config/practice-areas';
 import { site } from '@/config/site';
-import { team, teamHref } from '@/config/team';
+import { hasPlaceholders, team, teamHref } from '@/config/team';
 import { getLibraryItems } from '@/lib/library/preview';
 
 export const dynamic = 'force-static';
 
 const url = (path: string) => `${site.canonicalHost}${path}`;
 
-/** public /llms.txt generated from config at build (SEO-SPEC §7). */
+/** public /llms.txt generated from config at build (SEO-SPEC §7). Drafts and unverified bios stay out. */
 function build(): string {
   const articles = getLibraryItems().filter((item) => !item.draft);
+  const attorneys = team.filter((m) => !hasPlaceholders(m));
+  const optional = [
+    `[About](${url('/about/')})`,
+    `[FAQ](${url('/faq/')})`,
+    `[Where we practice](${url('/service-areas/')})`,
+    `[Contact](${url('/contact/')})`,
+    ...(site.legalPagesDraft
+      ? []
+      : [`[Privacy](${url('/privacy-policy/')})`, `[Disclaimer](${url('/disclaimer/')})`]),
+  ];
   const lines = [
     `# ${site.name}`,
     `> Trust and estate litigation firm in San Jose, California, serving Santa Clara County and the`,
@@ -25,14 +35,13 @@ function build(): string {
     `- [How long do I have?](${url('/how-long-do-i-have/')}): plain-English California deadline wizard`,
     '',
     '## Attorneys',
-    ...team.map((m) => `- [${m.name}](${url(teamHref(m))}): ${m.title}`),
+    ...attorneys.map((m) => `- [${m.name}](${url(teamHref(m))}): ${m.title}`),
     '',
     '## Library',
     ...articles.map((a) => `- [${a.title}](${url(`/library/${a.slug}/`)}): ${a.excerpt}`),
     '',
     '## Optional',
-    `- [About](${url('/about/')}), [FAQ](${url('/faq/')}), [Where we practice](${url('/service-areas/')}),`,
-    `  [Contact](${url('/contact/')}), [Privacy](${url('/privacy-policy/')}), [Disclaimer](${url('/disclaimer/')})`,
+    `- ${optional.join(', ')}`,
     '',
   ];
   console.log(`llms.txt: ${articles.length} articles listed`);
