@@ -26,9 +26,11 @@ export const metadata = pageMetadata({
 export default function ContactPage() {
   return (
     <>
-      <Container className="pt-8 lg:pt-10">
-        <Breadcrumbs trail={[{ label: 'Home', href: '/' }, { label: 'Contact' }]} />
-      </Container>
+      <div className="bg-white">
+        <Container className="pt-8 lg:pt-10">
+          <Breadcrumbs trail={[{ label: 'Home', href: '/' }, { label: 'Contact' }]} />
+        </Container>
+      </div>
       <ContactBand headingLevel="h1" id="contact-form" />
       <section className="grid-hairline bg-sand py-16 lg:py-20">
         <Container className="grid gap-10 lg:grid-cols-12 lg:gap-12">

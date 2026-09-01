@@ -27,7 +27,7 @@ export function PracticeSidebar({ area, sections }: PracticeSidebarProps) {
       className="space-y-10 lg:col-span-4 lg:sticky lg:top-24 lg:self-start"
       aria-label="Page navigation and statutes"
     >
-      <nav aria-labelledby="on-this-page">
+      <nav aria-labelledby="on-this-page" className="hidden lg:block">
         <SideHeading>On this page</SideHeading>
         <ol className="mt-4 space-y-2 border-l border-line">
           {sections.map((section) => (

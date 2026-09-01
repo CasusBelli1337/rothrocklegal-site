@@ -36,7 +36,7 @@ export function Hero() {
   return (
     <section className="band-maroon">
       <Container className="grid gap-10 py-12 lg:grid-cols-12 lg:items-center lg:gap-12 lg:py-20">
-        <div className="order-2 lg:order-1 lg:col-span-7">
+        <div className="order-2 min-w-0 lg:order-1 lg:col-span-7">
           <Eyebrow tone="light" rule>
             Trust &amp; estate litigation &middot; San Jose &amp; the Bay Area
           </Eyebrow>
@@ -57,7 +57,7 @@ export function Hero() {
           </div>
           <ul
             aria-label="Recognitions"
-            className="-mx-5 mt-10 flex gap-2 overflow-x-auto px-5 pb-1 md:mx-0 md:flex-wrap md:px-0"
+            className="-mx-5 mt-10 flex max-w-[calc(100%+2.5rem)] gap-2 overflow-x-auto px-5 pb-1 md:mx-0 md:max-w-full md:flex-wrap md:px-0"
           >
             {chips.map((chip, i) => (
               <li key={i} className="shrink-0">

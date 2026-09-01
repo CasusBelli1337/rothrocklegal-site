@@ -51,7 +51,7 @@ export default function AboutPage() {
             <ul className="mt-8 flex flex-wrap gap-2" aria-label="Recognitions">
               {arthur.credentials.map((c) => (
                 <li key={c.name}>
-                  <Badge>{c.years ? `${c.name} ${c.years}` : c.name}</Badge>
+                  <Badge wrap>{c.years ? `${c.name} ${c.years}` : c.name}</Badge>
                 </li>
               ))}
             </ul>
