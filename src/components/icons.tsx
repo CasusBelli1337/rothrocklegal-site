@@ -4,10 +4,7 @@ interface IconProps {
   className?: string;
 }
 
-function Svg({
-  children,
-  className,
-}: IconProps & { children: React.ReactNode }) {
+function Svg({ children, className }: IconProps & { children: React.ReactNode }) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -16,11 +13,22 @@ function Svg({
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={className ?? "h-6 w-6"}
+      className={className ?? 'h-6 w-6'}
       aria-hidden="true"
     >
       {children}
     </svg>
+  );
+}
+
+export function QuoteIcon(p: IconProps) {
+  return (
+    <Svg {...p}>
+      <path d="M4 15V9.5A4.5 4.5 0 0 1 8.5 5" />
+      <rect x="4" y="12" width="6" height="7" rx="1" />
+      <path d="M14 15V9.5A4.5 4.5 0 0 1 18.5 5" />
+      <rect x="14" y="12" width="6" height="7" rx="1" />
+    </Svg>
   );
 }
 
@@ -55,7 +63,7 @@ export function LinkedInIcon(p: IconProps) {
     <svg
       viewBox="0 0 24 24"
       fill="currentColor"
-      className={p.className ?? "h-6 w-6"}
+      className={p.className ?? 'h-6 w-6'}
       aria-hidden="true"
     >
       <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z" />
