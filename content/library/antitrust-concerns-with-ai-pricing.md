@@ -1,12 +1,17 @@
 ---
 title: Antitrust Concerns with AI Pricing
+description: How AI pricing algorithms can drift into price fixing under the Sherman Act and FTC Act, and what a business should check before it deploys one.
+excerpt: As businesses increasingly turn to AI to optimize their operations and stay competitive, the use of these powerful tools is raising new...
 date: 2022-07-19
-oldSlug: client-alerts
-category: Client Alerts
+updated: 2022-07-19
+author: arthur-rothrock
+category: Technology & the Law
+tags: antitrust, AI pricing, Sherman Act
+primaryKeyword: AI pricing antitrust
 image: /images/antitrust-pricing.webp
 imageAlt: Businessman standing beside a staircase
-readTime: 2 min read
-excerpt: As businesses increasingly turn to AI to optimize their operations and stay competitive, the use of these powerful tools is raising new...
+draft: false
+oldSlug: client-alerts
 ---
 
 As businesses increasingly turn to AI to optimize their operations and stay competitive, the use of these powerful tools is raising new questions under the antitrust laws. While AI offers immense benefits in terms of efficiency, innovation, and responsiveness to market conditions, it also has the potential to facilitate anticompetitive conduct.
@@ -20,3 +25,5 @@ Another potential antitrust pitfall is the use of AI to facilitate traditional a
 Perhaps most concerning is the prospect of AI systems independently reaching anticompetitive agreements, without any human direction. As AI develops the ability to learn, strategize, and adapt based on market conditions, it’s conceivable that AI systems could conclude that colluding with a competitor is the optimal way to maximize profits. This type of “robot collusion” pushes the boundaries of traditional antitrust concepts of agreement and intent.
 
 To mitigate these risks, companies using AI need to be proactive in their compliance efforts. This includes maintaining detailed records of the AI’s design and objectives, carefully considering the competitive impact of AI deployments, and monitoring the use of similar AI systems by others in the market. Building in antitrust compliance safeguards at the outset, as the European Commission has suggested, may also be prudent.
+
+This article is general information about the law, not legal advice about your situation. Reading it does not create an attorney-client relationship with Rothrock Legal; that happens only when both sides sign an engagement letter. The law changes, and how it applies depends on facts we have not seen. Before you rely on anything here, confirm it with a lawyer.

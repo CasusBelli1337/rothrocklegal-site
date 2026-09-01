@@ -10,6 +10,34 @@
 .prose-article > :first-child {
   margin-top: 0;
 }
+/* The answer-first paragraph (SEO-SPEC §8) reads at lead size. */
+.prose-article > p:first-child {
+  font-size: var(--text-lead);
+  line-height: 1.55;
+  color: var(--color-ink);
+}
+.prose-article h2,
+.prose-article h3 {
+  scroll-margin-top: 6.5rem;
+}
+.prose-article em {
+  font-style: italic;
+}
+.prose-article ul ul,
+.prose-article ul ol,
+.prose-article ol ul,
+.prose-article ol ol {
+  margin-top: 0.5em;
+}
+/* Closing disclaimer paragraph (CONTRACTS §4), marked by the library loader. */
+.prose-article .disclaimer {
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-line);
+  font-size: var(--text-small);
+  line-height: 1.5;
+  color: var(--color-ink-3);
+}
 .prose-article h2 {
   font-size: var(--text-h2);
   line-height: 1.15;

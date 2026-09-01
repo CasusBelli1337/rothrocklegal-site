@@ -1,78 +1,48 @@
-import fs from "node:fs";
-import path from "node:path";
-import { parseBool, parseFrontmatter, requireKey } from "@/lib/frontmatter";
-import {
-  categorySlug,
-  isLibraryCategory,
-  type LibraryCategory,
-} from "@/types/content";
+import { getArticles, type LibraryArticle } from '@/lib/library/articles';
+import type { LibraryCategory } from '@/types/content';
 
 /**
- * Lightweight library reader for previews (homepage "From the library",
- * practice-page "related reading"). Frontmatter only, no body rendering.
- * The library builder owns the full loader; keep this one small.
+ * Lightweight library view for previews (homepage "From the library",
+ * practice-page "related reading"): frontmatter fields only, no body HTML,
+ * so a page that lists three cards does not serialize three articles.
  */
 
-export interface LibraryPreviewItem {
-  slug: string;
-  title: string;
-  excerpt: string;
-  category: LibraryCategory;
-  categorySlug: string;
-  date: string;
-  updated: string;
-  image?: string;
-  imageAlt?: string;
-  draft: boolean;
+export type LibraryPreviewItem = Pick<
+  LibraryArticle,
+  | 'slug'
+  | 'title'
+  | 'excerpt'
+  | 'category'
+  | 'categorySlug'
+  | 'date'
+  | 'updated'
+  | 'image'
+  | 'imageAlt'
+  | 'draft'
+> & {
   /** Minutes, words / 200, min 1. */
   readingTime: number;
-}
+};
 
-const LIBRARY_DIR = path.join(process.cwd(), "content", "library");
-
-function loadItem(fileName: string): LibraryPreviewItem {
-  const slug = fileName.replace(/\.md$/, "");
-  const source = fs.readFileSync(path.join(LIBRARY_DIR, fileName), "utf8");
-  const { meta, body } = parseFrontmatter(source);
-  const category = requireKey(meta, "category", slug);
-  if (!isLibraryCategory(category)) {
-    throw new Error(`"${slug}" has unknown category "${category}"`);
-  }
-  const date = requireKey(meta, "date", slug);
+export function toPreviewItem(article: LibraryArticle): LibraryPreviewItem {
   return {
-    slug,
-    title: requireKey(meta, "title", slug),
-    excerpt: requireKey(meta, "excerpt", slug),
-    category,
-    categorySlug: categorySlug(category),
-    date,
-    updated: meta.updated ?? date,
-    image: meta.image,
-    imageAlt: meta.imageAlt,
-    draft: parseBool(meta.draft),
-    readingTime: Math.max(1, Math.round(body.split(/\s+/).length / 200)),
+    slug: article.slug,
+    title: article.title,
+    excerpt: article.excerpt,
+    category: article.category,
+    categorySlug: article.categorySlug,
+    date: article.date,
+    updated: article.updated,
+    image: article.image,
+    imageAlt: article.imageAlt,
+    draft: article.draft,
+    readingTime: article.readTime,
   };
 }
 
-let cache: LibraryPreviewItem[] | undefined;
-
-/** Every library item, newest first. Empty (with a build log line) until content/library exists. */
+/** Every library item, newest first. */
 export function getLibraryItems(): LibraryPreviewItem[] {
-  if (cache) return cache;
-  if (!fs.existsSync(LIBRARY_DIR)) {
-    console.warn(
-      "library preview: content/library/ does not exist yet; previews render empty",
-    );
-    cache = [];
-    return cache;
-  }
-  const files = fs.readdirSync(LIBRARY_DIR).filter((f) => f.endsWith(".md"));
-  cache = files.map(loadItem).sort((a, b) => b.date.localeCompare(a.date));
-  const drafts = cache.filter((i) => i.draft).length;
-  console.log(
-    `library preview: ${cache.length - drafts} published, ${drafts} draft`,
-  );
-  return cache;
+  return getArticles().map(toPreviewItem);
 }
 
 export interface PreviewOptions {
@@ -88,14 +58,11 @@ export function getLibraryPreview(
   limit: number,
   options: PreviewOptions = {},
 ): LibraryPreviewItem[] {
-  const exclude = options.exclude ?? ["Technology & the Law"];
+  const exclude = options.exclude ?? ['Technology & the Law'];
   const includeDrafts = options.includeDrafts ?? true;
   return getLibraryItems()
     .filter((item) => includeDrafts || !item.draft)
     .filter((item) => !exclude.includes(item.category))
-    .filter(
-      (item) =>
-        !options.categories || options.categories.includes(item.category),
-    )
+    .filter((item) => !options.categories || options.categories.includes(item.category))
     .slice(0, limit);
 }

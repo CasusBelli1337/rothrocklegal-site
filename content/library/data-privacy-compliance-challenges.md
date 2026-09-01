@@ -1,12 +1,17 @@
 ---
 title: Data Privacy Compliance Challenges
+description: AI runs on data, and privacy laws in the US and abroad govern how that data is collected, used, stored, and moved. The compliance problems that creates.
+excerpt: AI requires vast amounts of data to function effectively, which can create tensions with data protection laws around the world. These...
 date: 2022-11-23
-oldSlug: get-jacked-with-ai
-category: Recent Events
+updated: 2022-11-23
+author: arthur-rothrock
+category: Technology & the Law
+tags: data privacy, compliance, AI
+primaryKeyword: AI data privacy compliance
 image: /images/handshake.webp
 imageAlt: Business handshake over a work table
-readTime: 3 min read
-excerpt: AI requires vast amounts of data to function effectively, which can create tensions with data protection laws around the world. These...
+draft: false
+oldSlug: get-jacked-with-ai
 ---
 
 AI requires vast amounts of data to function effectively, which can create tensions with data protection laws around the world. These laws govern the collection, use, processing, disclosure, retention, storage, security, and cross-border transfer of personal information.
@@ -39,3 +44,5 @@ These principles are not unique to the GDPR – they form the backbone of many g
 The Federal Trade Commission (FTC) has issued guidance on managing consumer protection risks from AI, stressing that algorithms should be transparent, explainable, fair, empirically sound, and accountable. The FTC has also warned against discriminatory outcomes and consumer injury.
 
 To help organizations develop trustworthy AI, the National Institute of Standards and Technology (NIST) recently released an AI Risk Management Framework. The White House Office of Science and Technology Policy has also issued an AI Bill of Rights. And the UK has developed guidelines for secure AI development.
+
+This article is general information about the law, not legal advice about your situation. Reading it does not create an attorney-client relationship with Rothrock Legal; that happens only when both sides sign an engagement letter. The law changes, and how it applies depends on facts we have not seen. Before you rely on anything here, confirm it with a lawyer.
