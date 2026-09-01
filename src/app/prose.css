@@ -1,0 +1,95 @@
+/* Article / long-form body (markdown output). */
+.prose-article {
+  font-size: var(--text-body-lg);
+  line-height: 1.7;
+  color: var(--color-ink-2);
+}
+.prose-article > * + * {
+  margin-top: 1.25em;
+}
+.prose-article > :first-child {
+  margin-top: 0;
+}
+.prose-article h2 {
+  font-size: var(--text-h2);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  font-weight: 500;
+  margin-top: 2.25em;
+  margin-bottom: 0.6em;
+}
+.prose-article h3 {
+  font-family: var(--font-sans);
+  font-size: var(--text-h4);
+  line-height: 1.35;
+  font-weight: 600;
+  margin-top: 1.75em;
+  margin-bottom: 0.5em;
+}
+.prose-article h2 + h3 {
+  margin-top: 0.5em;
+}
+.prose-article ul,
+.prose-article ol {
+  padding-left: 1.5rem;
+}
+.prose-article ul {
+  list-style: disc;
+}
+.prose-article ol {
+  list-style: decimal;
+}
+.prose-article li + li {
+  margin-top: 0.5em;
+}
+.prose-article li::marker {
+  color: var(--color-brass-500);
+}
+.prose-article a {
+  color: var(--color-maroon-700);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.prose-article a:hover {
+  color: var(--color-maroon-600);
+}
+.prose-article blockquote {
+  border-left: 3px solid var(--color-maroon-700);
+  padding-left: 1.25rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--color-ink);
+}
+.prose-article hr {
+  border: 0;
+  border-top: 1px solid var(--color-line);
+  margin: 2.5rem 0;
+}
+.prose-article .table-wrap {
+  overflow-x: auto;
+}
+.prose-article table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+.prose-article th {
+  background: var(--color-sand);
+  text-align: left;
+  font-weight: 600;
+  color: var(--color-ink);
+  padding: 0.625rem 0.75rem;
+  border-bottom: 1px solid var(--color-line-strong);
+}
+.prose-article td {
+  padding: 0.625rem 0.75rem;
+  border-bottom: 1px solid var(--color-line);
+  vertical-align: top;
+}
+.prose-article code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}

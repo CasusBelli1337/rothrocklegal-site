@@ -21,7 +21,7 @@ export default function ContactPage() {
           with a clean location band (see CHANGES.md). */}
       <section className="hex-band px-6 py-12 text-center text-white">
         <PinIcon className="mx-auto h-8 w-8 text-gold" />
-        <p className="font-serif-accent mt-3 text-2xl">{site.location}</p>
+        <p className="font-serif-accent mt-3 text-2xl">{`${site.office.city}, ${site.office.regionName}`}</p>
         <p className="mt-2 text-sm text-white/85">
           Serving clients throughout the San Francisco Bay Area and beyond.
         </p>
