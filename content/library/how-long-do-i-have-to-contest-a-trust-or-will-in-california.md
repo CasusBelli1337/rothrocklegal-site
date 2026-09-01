@@ -26,7 +26,7 @@ When someone dies with a living trust, the successor trustee has 60 days to mail
 
 That is the rule in Probate Code § 16061.8. Three details decide real cases:
 
-- The clock runs from mailing, not from the day you read the letter. Service by mail is complete on deposit (Probate Code § 1215). Day one is the postmark.
+- The clock runs from mailing, not from the day you read the letter. Service by mail is complete on deposit (Probate Code § 1215). Count from the postmark.
 - There is no five-day mail extension. In Bridgeman v. Allen a petition filed 133 days after service was thrown out.
 - Filing is what counts, not serving. In Straley v. Gamble the petition was filed inside the window and served two months later. Timely.
 
@@ -50,11 +50,11 @@ One more trap. If the letter did not carry the warning in bold, the court in Har
 
 If a parent died with a will and no trust, the estate goes through probate. In this county that means the Santa Clara County Superior Court, Probate Division, at 191 N. First Street in San Jose. How long to contest a will in California turns on whether the will has been admitted yet:
 
-- Before admission, file a written objection; a summons issues and the other side has 30 days to respond (Probate Code § 8250). You must simply be on file before the court admits the will.
+- Before admission, file a written objection; a summons issues and the other side has 30 days to respond (Probate Code § 8250). Be on file before the court admits the will.
 - After admission, you have 120 days from the order to petition to revoke probate (Probate Code § 8270). A minor, or an adult who was incompetent with no guardian or conservator at the time, can petition any time before final distribution.
-- Found a newer will after an older one was admitted? You get the later of 120 days after the order or 60 days after you learned of the newer will (Probate Code § 8226).
+- Found a newer will after an older one was admitted, and you had notice of the first petition? You get the later of 120 days after the order or 60 days after you learned of it (Probate Code § 8226).
 
-Miss the 120 days and the admission becomes conclusive (Probate Code § 8226), with extrinsic fraud as the only door left (Probate Code § 8007). Our guide to [contesting a will in California](/library/how-to-contest-a-will-in-california/) covers the grounds and the process.
+Miss the 120 days and the admission becomes conclusive (Probate Code § 8226), with extrinsic fraud as the only door left (Probate Code § 8007). Our guide to [contesting a will in California](/library/how-to-contest-a-will-in-california/) covers the grounds and process.
 
 ## The one-year rule catches any claim against someone who has died
 
@@ -68,7 +68,7 @@ The statute "shall not be tolled or extended for any reason" except a few listed
 
 **Breach of trust.** A trustee who self-deals, wastes assets, or refuses to distribute can be ordered to repay the trust and removed (Probate Code §§ 16420, 15642). The money claim runs three years from a written account or report that fairly disclosed the problem, or three years from discovery if you never got one (Probate Code § 16460). A bank statement or a letter can count as a "written report." Ask for an accounting in writing. If the trustee stalls for 60 days, the court can order one (Probate Code § 17200).
 
-**Financial elder abuse.** Taking or keeping property of a person 65 or older for a wrongful use, with intent to defraud, or by undue influence is financial elder abuse (Welfare and Institutions Code § 15610.30). File within four years after you discover, or should have discovered, the facts (Welfare and Institutions Code § 15657.7). The winner recovers attorney's fees (Welfare and Institutions Code § 15657.5) and can ask for double the value taken (Probate Code § 859). If the abuser has died, the one-year rule takes over.
+**Financial elder abuse.** Taking or keeping property of a person 65 or older for a wrongful use, with intent to defraud, or by undue influence is financial elder abuse (Welfare and Institutions Code § 15610.30). File within four years after you discover, or should have discovered, the facts (Welfare and Institutions Code § 15657.7). A winning plaintiff recovers attorney's fees (Welfare and Institutions Code § 15657.5) and can ask for double the value taken (Probate Code § 859). If the abuser has died, the one-year rule takes over.
 
 ## What stops or restarts the clock, and what does not
 
@@ -85,7 +85,7 @@ Things that do not help:
 - Waiting for the trustee to "finish." The 120 days runs while assets are still being gathered.
 - Talking. Calls, emails, demand letters, and family meetings stop nothing. Only a filed petition does.
 
-Missing a deadline can cost more than the case. Most trusts have a no-contest clause, enforceable against a direct contest filed without probable cause (Probate Code § 21311). In Meiri v. Shamtoubi a contest filed months late was held to be exactly that. The daughter lost her entire inheritance.
+Missing a deadline can cost more than the case. Many trusts have a no-contest clause, enforceable against a direct contest filed without probable cause (Probate Code § 21311). In Meiri v. Shamtoubi a contest filed months late was held to be exactly that. The daughter lost her entire inheritance.
 
 ## Key deadlines
 

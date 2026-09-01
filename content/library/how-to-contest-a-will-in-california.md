@@ -18,7 +18,7 @@ How to contest a will in California comes down to two windows. Before the court 
 
 Here's the thing: the deadline is the easy part. The law presumes the will is valid and puts the burden on you to prove otherwise. Contesting a will in California is won on paper: medical records, the drafting lawyer's file, bank statements, witnesses. A hunch is where the case starts, not where it ends.
 
-If you want a date instead of a reading assignment, the [deadline wizard](/how-long-do-i-have/) will give you one.
+The [deadline wizard](/how-long-do-i-have/) will give you a date.
 
 ## Who can contest a will in California? Heirs and people an earlier will named
 
@@ -35,7 +35,7 @@ A will is not invalid because it is unfair. A parent may leave everything to one
 
 1. **Lack of testamentary capacity**. The signer had to understand what a will does, know what they owned, and remember their family and the people the will affects (Probate Code § 6100.5). The bar is "exceptionally low" (Doolittle v. Exchange Bank) and the law presumes capacity (Probate Code § 810). A dementia diagnosis alone does not win; what your parent understood at the moment of signing does. See our guide to [testamentary capacity in California](/library/lack-of-testamentary-capacity-california/).
 2. **Undue influence, fraud, duress, or menace**. A will, or any part of one, is ineffective to the extent it was procured by any of those (Probate Code § 6104). Undue influence is the workhorse: excessive persuasion that overcomes free will and produces an unfair result (Welfare and Institutions Code § 15610.70). The California Supreme Court has called it "pressure brought to bear directly on the testamentary act" (Rice v. Clark). Our guide to [undue influence in California](/library/undue-influence-california-what-it-is-and-how-to-prove-it/) walks through the proof.
-3. **Improper execution**. A formal will must be in writing, signed by the person making it, and witnessed by two people present at the same time (Probate Code § 6110). A handwritten will needs no witnesses if the signature and material terms are in the person's own hand (Probate Code § 6111).
+3. **Improper execution**. A formal will must be in writing, signed by the person making it, and witnessed by two people present at the same time (Probate Code § 6110). A court can excuse a witnessing defect if the proponent proves by clear and convincing evidence that your parent intended it as their will (Probate Code § 6110). A handwritten will needs no witnesses if the signature and material terms are in the person's own hand (Probate Code § 6111).
 4. **Revocation**. A later will revokes an earlier one, expressly or by inconsistency; so does destroying a will with intent to revoke it (Probate Code § 6120). If a newer will is offered against an older one, the court decides the newer will first (Probate Code § 8252).
 5. **Forgery**. The signature is not your parent's. Forgery is first on the Probate Code's list of direct-contest grounds (Probate Code § 21310).
 
@@ -46,7 +46,7 @@ At trial, the person offering the will has to prove only that it was properly si
 Two presumptions flip the burden onto the person who benefited:
 
 - **The common-law presumption**. Under Rice v. Clark, the burden shifts once you show three things. The beneficiary had a confidential relationship with the person who died, actively took part in procuring the will, and would benefit unduly from it.
-- **The statutory presumption**. A gift to the person who drafted the will, or to a care custodian of a dependent adult, is presumed to be the product of fraud or undue influence (Probate Code § 21380). The beneficiary must disprove that by clear and convincing evidence (Probate Code § 21380). The escape hatch is a certificate of independent review from an independent lawyer who counseled the person alone (Probate Code § 21384).
+- **The statutory presumption**. A gift to the person who drafted the will, or to a care custodian of a dependent adult, is presumed to be the product of fraud or undue influence (Probate Code § 21380). A care custodian must disprove that by clear and convincing evidence; a drafter cannot rebut it at all (Probate Code § 21380). The escape hatch is a certificate of independent review from an independent lawyer who counseled the person alone (Probate Code § 21384).
 
 Estate of Winans shows how that plays out. A man of about 90 with a dementia diagnosis signed a new will a month before he died, leaving substantial property to the woman who ran his care home, despite a lawyer's certificate. The Court of Appeal found triable issues on the certificate, on undue influence, and on capacity, and sent the case back for trial.
 
@@ -65,7 +65,7 @@ Probate petitions for San Jose, Palo Alto, Sunnyvale, Cupertino, and the rest of
 
 - **One judge for everything**. New probate cases are assigned at random to an All-Purpose Judge who decides every issue up to trial (Probate Local Rule 1).
 - **Tentative rulings on motions**. Departments that issue them post by 3:00 p.m. the court day before the hearing; to argue, notify the court and the other side by 4:00 p.m. that day (Probate Local Rule 2).
-- **The settlement program**. Parties who stipulate on form PB-4063 get a settlement conference with a neutral from the court's list; the rule says it is not a mediation and has no confidentiality provision (Probate Local Rule 3). Ask your lawyer whether a private mediator is the better room.
+- **The settlement program**. Parties who stipulate on form PB-4063 get a settlement conference with a neutral from the court's list; the rule says it is not a mediation and has no confidentiality provision (Probate Local Rule 3).
 
 ## Most Silicon Valley estates are in a trust, not a will
 
@@ -75,12 +75,12 @@ The trustee mails a notice, and you have 120 days from the mailing to file a pet
 
 ## Key deadlines
 
-| If this happened                                     | You have                                                              | Counted from                   | Rule                   |
-| ---------------------------------------------------- | --------------------------------------------------------------------- | ------------------------------ | ---------------------- |
-| Petition filed; will not yet admitted                | Until the will is admitted; object in writing first                   | The hearing date on the notice | Probate Code § 8250    |
-| The court admitted the will                          | 120 days to petition to revoke probate                                | The order admitting the will   | Probate Code § 8270    |
-| You hold a newer will and had notice of the petition | Later of 120 days after the order or 60 days after you found the will | The order, or your discovery   | Probate Code § 8226    |
-| A trustee mailed you notice of a trust               | 120 days                                                              | The mailing date               | Probate Code § 16061.8 |
+| If this happened                                     | You have                                                                           | Counted from                   | Rule                   |
+| ---------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------ | ---------------------- |
+| Petition filed; will not yet admitted                | Until the will is admitted; object in writing first                                | The hearing date on the notice | Probate Code § 8250    |
+| The court admitted the will                          | 120 days to petition to revoke probate                                             | The order admitting the will   | Probate Code § 8270    |
+| You hold a newer will and had notice of the petition | Later of 120 days after the order or 60 days after you found the will              | The order, or your discovery   | Probate Code § 8226    |
+| A trustee mailed you notice of a trust               | 120 days (or 60 days from delivery of the trust copy inside that window, if later) | The mailing date               | Probate Code § 16061.8 |
 
 A minor, or an adult who was incompetent with no guardian or conservator, when the will was admitted can petition any time before final distribution (Probate Code § 8270). Our [deadlines guide](/library/how-long-do-i-have-to-contest-a-trust-or-will-in-california/) has the other clocks.
 
@@ -88,7 +88,7 @@ A minor, or an adult who was incompetent with no guardian or conservator, when t
 
 ### Can I contest a will after probate has been granted?
 
-Yes, for 120 days after the order admitting the will, by a petition to revoke probate that states your grounds (Probate Code § 8270). People search "contest a will after probate," and the honest answer is yes for 120 days, then almost never. After that the admission is conclusive (Probate Code § 8226), and the only door left is extrinsic fraud in getting the order (Probate Code § 8007).
+Yes, for 120 days after the order admitting the will, by a petition to revoke probate that states your grounds (Probate Code § 8270). The honest answer is yes for 120 days, then almost never. After that the admission is conclusive (Probate Code § 8226), and the only door left is extrinsic fraud in getting the order (Probate Code § 8007).
 
 ### What if I found a newer will?
 

@@ -40,7 +40,7 @@ Example: Dad signs a one-page amendment leaving the Cupertino house to one child
 
 ### Undue influence
 
-Undue influence is "excessive persuasion" that overcomes a person's free will and produces an unfair result (Probate Code § 86; Welfare and Institutions Code § 15610.70). Courts weigh the victim's vulnerability, the influencer's authority, the tactics used, and the fairness of the result, and an unfair result alone is not enough. Where the beneficiary had a confidential relationship with the parent, actively procured the document, and benefits unduly, the burden flips to them (Rice v. Clark). For the drafter of the document and for a caregiver of a dependent adult, the law presumes undue influence; rebutting it takes clear and convincing evidence (Probate Code § 21380).
+Undue influence is "excessive persuasion" that overcomes a person's free will and produces an unfair result (Probate Code § 86; Welfare and Institutions Code § 15610.70). Courts weigh the victim's vulnerability, the influencer's authority, the tactics used, and the fairness of the result, and an unfair result alone is not enough. Where the beneficiary had a confidential relationship with the parent, actively procured the document, and benefits unduly, the burden flips to them (Rice v. Clark). For a caregiver of a dependent adult, the law presumes undue influence, rebuttable only by clear and convincing evidence. For the drafter it cannot be rebutted at all (Probate Code § 21380).
 
 Example: a new "companion" drives Mom to a lawyer Mom has never met, sits in on the meeting, and walks out as sole trustee and sole beneficiary. Two guides go deeper: [undue influence in California](/library/undue-influence-california-what-it-is-and-how-to-prove-it/) and [when a sibling or caregiver got everything](/library/sibling-or-caregiver-got-everything-what-you-can-do/).
 
@@ -54,7 +54,7 @@ Sometimes the signature is not the settlor's. Sometimes it is, but the amendment
 
 ### Revocation
 
-A revocable trust can be revoked by the method written into the trust, or by a signed writing delivered to the trustee while the settlor is alive (Probate Code § 15401). The ground: the document the trustee is enforcing was replaced by a later one the trustee is ignoring. Example: Mom signed a full restatement in 2022 and handed it to her son, the trustee. He is administering the 2015 version because it favors him.
+A revocable trust can be revoked by the method written into the trust (Probate Code § 15401). Unless the trust makes its method the only one, a signed writing delivered to the trustee while the settlor is alive also works. The ground: the document the trustee is enforcing was replaced by a later one the trustee is ignoring. Example: Mom signed a full restatement in 2022 and handed it to her son, the trustee. He is administering the 2015 version because it favors him.
 
 Fixing a drafting mistake is not a contest. If Dad wanted his sons to split the house equally and the amendment's wording says otherwise, the petition is to reform the trust, and the 120-day rule does not apply to it (Packard v. Packard).
 

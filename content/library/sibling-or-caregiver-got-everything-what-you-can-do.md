@@ -14,7 +14,7 @@ imageAlt: A recorded grant deed for a Sunnyvale house lying beside a hospital wr
 draft: true
 ---
 
-What to do if a sibling steals your inheritance depends on one fact most online answers skip: was the person who got everything family, or a caregiver? California treats the two differently. A gift to a caregiver is presumed to be the product of fraud or undue influence, and the caregiver must disprove it by clear and convincing evidence (Probate Code § 21380). A gift to a brother or sister is presumed nothing at all.
+What to do if a sibling steals your inheritance depends on one fact most online answers skip: was the person who got everything family, or a caregiver? California treats the two differently. A gift to a caregiver of a dependent adult is presumed to be the product of fraud or undue influence, and the caregiver must disprove it by clear and convincing evidence (Probate Code § 21380). A gift to a brother or sister is presumed nothing at all.
 
 That does not mean the sibling keeps the house. You prove the case the older way, with the Rice v. Clark test or the red flags in the undue influence statute.
 
@@ -24,7 +24,7 @@ If the change is in a trust, you usually have 120 days from the day the trustee 
 
 A gift in a will, trust, or deed to a "care custodian" of a "dependent adult" is "presumed to be the product of fraud or undue influence." That applies if the document was signed while the caregiver was providing services, or within 90 days before or after (Probate Code § 21380(a)(3)). Lawyers call it Probate Code 21380. The caregiver inheritance laws California applies turn on those two terms, and the caregiver's lawyer will attack both.
 
-A care custodian is anyone who provides health or social services to a dependent adult: medicine, wound care, hygiene, companionship, housekeeping, shopping, cooking, or help with money (Probate Code § 21362). In Bernard v. Foley, two friends took a woman into their home for her last weeks, changed her diapers, gave her medications, and handled her money. She amended her trust for them there, and the California Supreme Court held they were care custodians.
+A care custodian is anyone who provides health or social services to a dependent adult: medicine, wound care, hygiene, companionship, housekeeping, shopping, cooking, or help with money (Probate Code § 21362). In Bernard v. Foley, two friends took a woman into their home for her last two months, changed her diapers, gave her medications, and handled her money. She amended her trust for them there, and the California Supreme Court held they were care custodians.
 
 The statute now protects an unpaid helper whose friendship with your parent began at least 90 days before the care, at least six months before death, and before hospice (Probate Code § 21362(a)). An old friend is safe; a new one is not.
 

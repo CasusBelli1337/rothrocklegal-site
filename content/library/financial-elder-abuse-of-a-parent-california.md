@@ -1,6 +1,6 @@
 ---
 title: Elder Financial Abuse in California: What Families Can Do
-description: Elder financial abuse California law: property comes back, the abuser pays your attorney's fees, often double damages. Four years from discovery to sue.
+description: Elder financial abuse California law: property can come back, the abuser can owe your attorney's fees and double damages. Four years from discovery.
 excerpt: If a caregiver, sibling, spouse, or "friend" took your parent's money or property, California gives the family a civil claim with mandatory attorney's fees and often double damages. Four years from discovery to file, one year if the abuser has died.
 date: 2026-09-01
 updated: 2026-09-01
@@ -14,7 +14,7 @@ imageAlt: An elderly woman's checkbook and a signed power of attorney form on a 
 draft: true
 ---
 
-Someone took advantage of your parent. Maybe a caregiver drained the checking account, a brother with a power of attorney put the house in his name, or a new "friend" walked Mom into a notary's office to sign a trust amendment. Under the elder financial abuse California statute, that is a civil claim with teeth. The property comes back, the abuser pays your attorney's fees, and in many cases the court can order double the value taken.
+Someone took advantage of your parent. Maybe a caregiver drained the checking account, a brother with a power of attorney put the house in his name, or a new "friend" walked Mom into a notary's office to sign a trust amendment. Under the elder financial abuse California statute, that is a civil claim with teeth. The property can come back, the abuser can be ordered to pay your attorney's fees, and in many cases the court can order double the value taken.
 
 You have four years from the day you discovered the facts to file, or one year from the abuser's death if that person has since died. Here's the thing families get wrong. They wait for "the estate to settle" while the abuser keeps moving money.
 
@@ -34,7 +34,7 @@ The son with the power of attorney. In Keading v. Keading, while his sister was 
 
 The spouse. In Lintz v. Lintz a third wife was held liable for financial elder abuse, undue influence, breach of fiduciary duty, and conversion of her husband's separate property. Affirmed; transactions between spouses carry a presumption of undue influence.
 
-The trustee. In Asaro v. Maniscalco a son who was co-trustee of the family trust moved $430,000 in certificates of deposit and a piece of real estate to himself, and the breaches were concealed from a beneficiary. The judgment for breach of trust and financial elder abuse was affirmed.
+The trustee. In Asaro v. Maniscalco a nephew who was co-trustee of the family trust moved $430,000 in certificates of deposit and a piece of real estate to himself, and the breaches were concealed from a beneficiary. The judgment for breach of trust and financial elder abuse was affirmed.
 
 Caregivers, "friends," and bookkeepers stand in the same shoes. If your parent's plan changed late in life in favor of one person, read [what to do when a sibling or caregiver got everything](/library/sibling-or-caregiver-got-everything-what-you-can-do/).
 
@@ -42,14 +42,14 @@ Caregivers, "friends," and bookkeepers stand in the same shoes. If your parent's
 
 Here is the menu of damages for financial elder abuse California courts can order.
 
-| Remedy                    | What it means                                              | Rule                                                       |
-| ------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| Return of the property    | The property or its value comes back                       | Probate Code §§ 850, 859                                   |
-| Compensatory damages      | The losses the taking caused                               | Welfare and Institutions Code § 15657.5                    |
-| Attorney's fees and costs | Mandatory once financial abuse is proven                   | Welfare and Institutions Code § 15657.5                    |
-| Double damages            | "Twice the value of the property recovered"                | Probate Code § 859                                         |
-| Disinheritance            | The abuser is treated as if they died first                | Probate Code § 259                                         |
-| Punitive damages          | Clear and convincing proof of oppression, fraud, or malice | Civil Code § 3294; Welfare and Institutions Code § 15657.5 |
+| Remedy                       | What it means                                              | Rule                                                       |
+| ---------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| Return of the property       | The property or its value comes back                       | Probate Code §§ 850, 859                                   |
+| Compensatory damages         | The losses the taking caused                               | Welfare and Institutions Code § 15657.5                    |
+| Attorney's fees and costs    | Mandatory once financial abuse is proven                   | Welfare and Institutions Code § 15657.5                    |
+| Double damages               | "Twice the value of the property recovered"                | Probate Code § 859                                         |
+| Treated as having died first | Takes none of what the court recovers for the estate       | Probate Code § 259                                         |
+| Punitive damages             | Clear and convincing proof of oppression, fraud, or malice | Civil Code § 3294; Welfare and Institutions Code § 15657.5 |
 
 Fees are not optional. Prove financial abuse by a preponderance of the evidence and "the court shall award to the plaintiff reasonable attorney's fees and costs" (Welfare and Institutions Code § 15657.5). Shall, not may. In Lintz the children recovered their fees for proving the abuse. Fees are what make an elder financial abuse California claim different from an ordinary lawsuit.
 
@@ -59,7 +59,7 @@ Whether you must also prove bad faith is a split. Two of the statute's three rou
 
 As of this writing the split stands, so plead and prove bad faith anyway. Hill also held that double damages are not punitive damages, so they can be pursued against the abuser's estate if the abuser has died.
 
-Disinheritance under Probate Code § 259 takes clear and convincing evidence. You must show financial abuse, bad faith, and reckless, oppressive, fraudulent, or malicious conduct, against a parent who could not manage money or resist undue influence.
+Being treated as having died first under Probate Code § 259 takes clear and convincing evidence. You must show financial abuse, bad faith, and reckless, oppressive, fraudulent, or malicious conduct, against a parent who could not manage money or resist undue influence.
 
 ## You have four years from discovery, or one year if the abuser has died
 
@@ -71,7 +71,7 @@ A petition to recover property for a trust or estate under Probate Code § 850 h
 
 ## Where the case is filed in Santa Clara County, and the two tracks beside it
 
-The probate department has concurrent jurisdiction over civil elder abuse actions (Welfare and Institutions Code § 15657.3). When the money ran through a trust or an estate, which in Silicon Valley is most of the time, the case goes to the Santa Clara County Superior Court, Probate Division, at 191 N. First Street in San Jose. It is usually a Probate Code § 850 petition with the elder abuse claim attached. Families in Palo Alto, Sunnyvale, and Cupertino file here; Peninsula and East Bay matters go to the San Mateo, Alameda, and San Francisco courts.
+When the money ran through a trust or an estate, which in Silicon Valley is most of the time, the case goes to the Santa Clara County Superior Court, Probate Division, at 191 N. First Street in San Jose. It is usually a Probate Code § 850 petition with the elder abuse claim attached. Families in Palo Alto, Sunnyvale, and Cupertino file here; Peninsula and East Bay matters go to the San Mateo, Alameda, and San Francisco courts.
 
 Two other tracks run beside the civil case, and neither replaces it. Santa Clara County Adult Protective Services takes reports on a 24-hour line, (408) 975-4900 or (800) 414-2002, and anyone can report. APS investigates; it does not file your civil case.
 
@@ -98,7 +98,7 @@ It can be. The statute covers property lost "by means of an agreement, donative 
 
 ### Can I report it to the police and still sue?
 
-Yes. The criminal case belongs to the District Attorney under Penal Code § 368; the civil case belongs to your family. A conviction is one of two independent paths to treating the abuser as having died before your parent (Probate Code § 259). Do not wait for a prosecutor's decision before you file.
+Yes. The criminal case belongs to the District Attorney under Penal Code § 368; the civil case belongs to your family. A conviction is one of two independent paths to treating the abuser as having died before your parent, as to what the case recovers (Probate Code § 259). Do not wait for a prosecutor's decision before you file.
 
 ### Does the abuser pay my lawyer?
 
@@ -114,6 +114,6 @@ Four years from the date you discovered, or reasonably should have discovered, t
 
 ## Talk to a trust litigation lawyer in San Jose
 
-Rothrock Legal litigates financial elder abuse, trust, and estate cases in the Santa Clara County Superior Court's Probate Division at 191 N. First Street in San Jose. If you are looking for an elder abuse attorney San Jose families can reach this week, [contact us](/contact/) and bring the bank statements, the power of attorney, and the deed. We will tell you who is liable and how many days you have left.
+Rothrock Legal litigates financial elder abuse, trust, and estate cases in the Santa Clara County Superior Court's Probate Division at 191 N. First Street in San Jose. If you are looking for an elder abuse attorney San Jose families can reach this week, [contact us](/contact/) and bring the bank statements, the power of attorney, and the deed. We will tell you who may be liable and how many days you have left.
 
 This article is general information about California law, not legal advice about your situation. Reading it does not create an attorney-client relationship with Rothrock Legal; that happens only when both sides sign an engagement letter. Deadlines depend on facts we have not seen and the law changes. Before you rely on any date here, confirm it with a lawyer.

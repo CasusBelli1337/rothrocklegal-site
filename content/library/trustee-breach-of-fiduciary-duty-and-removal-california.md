@@ -76,7 +76,7 @@ Concealment can help you. In Asaro v. Maniscalco the trustees never sent the req
 
 ### The death-of-trustee trap
 
-If the trustee has died, the three years no longer control. Any claim you could have brought against the trustee while alive must be filed within one year of the trustee's death. That period "shall not be tolled or extended for any reason" beyond a few listed procedures (Code of Civil Procedure § 366.2). Stoltenberg v. Newman applied the one-year rule to fraud claims based on a deceased trustor-trustee's statements, even though the suit named the successor trustee. See our [deadline guide](/library/how-long-do-i-have-to-contest-a-trust-or-will-in-california/).
+If the trustee dies while your claim is still alive, the three years no longer control. Any claim you could have brought against the trustee while alive must be filed within one year of the trustee's death. That period "shall not be tolled or extended for any reason" beyond a few listed procedures (Code of Civil Procedure § 366.2). Stoltenberg v. Newman applied the one-year rule to fraud claims based on a deceased trustor-trustee's statements, even though the suit named the successor trustee. See our [deadline guide](/library/how-long-do-i-have-to-contest-a-trust-or-will-in-california/).
 
 ## How to remove a trustee in California: the petition, the first hearing, and the replacement
 
@@ -95,7 +95,7 @@ If the trust names a backup or a method for picking one, that controls. If not, 
 ## What to do next
 
 1. Write down dates, amounts, and who said what. Keep every letter, statement, and text from the trustee.
-2. Ask in writing, by mail and email, for a copy of the trust and a full accounting. If 60 days pass with nothing, the court can order both (Probate Code § 17200).
+2. Ask in writing, by mail and email, for a copy of the trust and a full accounting. If 60 days pass with nothing, and nothing came in the prior six months, the court can order both (Probate Code § 17200).
 3. Pull deeds from the county recorder, bank statements, and the trustee's emails.
 4. Calendar the clocks: three years from any written report (Probate Code § 16460), one year from the trustee's death if the trustee died. The [deadline wizard](/how-long-do-i-have/) will give you a date. If money was taken from your parent while alive, it may also be [financial elder abuse](/library/financial-elder-abuse-of-a-parent-california/).
 5. Do not sign a receipt, release, or waiver until a lawyer has read it. A written waiver of accountings sticks until you withdraw it, and then only going forward (Probate Code § 16064).
