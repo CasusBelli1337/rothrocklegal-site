@@ -1,0 +1,170 @@
+/* Deadline wizard – kept class-based and token-driven so a site restyle only
+   has to touch the variables. Colors come from the @theme tokens in
+   globals.css (--color-maroon-btn, --color-gold, --color-navy, ...). */
+
+.wizard {
+  --wizard-border: #d9d3d6;
+  --wizard-focus: var(--color-gold);
+  --wizard-open: #1f6f3f;
+  --wizard-urgent: #b45309;
+  --wizard-passed: #9f1239;
+  --wizard-idle: #52525b;
+}
+
+.wizard-enter {
+  animation: wizard-fade-up 320ms ease-out both;
+}
+.wizard-card-enter {
+  animation: wizard-fade-up 420ms ease-out both;
+  animation-delay: calc(var(--i, 0) * 90ms);
+}
+@keyframes wizard-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wizard-enter,
+  .wizard-card-enter {
+    animation: none;
+  }
+  .wizard-progress-bar {
+    transition: none;
+  }
+}
+
+.wizard-progress {
+  height: 6px;
+  background: var(--wizard-border);
+}
+.wizard-progress-bar {
+  height: 100%;
+  background: var(--color-maroon-btn);
+  transition: width 320ms ease-out;
+}
+
+/* Radio / checkbox cards. The real input stays in the tree for keyboard and
+   screen-reader users; the card is the visible target. */
+.wizard-choice {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  border: 1px solid var(--wizard-border);
+  background: #ffffff;
+  padding: 0.9rem 1rem;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease;
+}
+.wizard-choice:hover {
+  border-color: var(--color-btn-border);
+}
+.wizard-choice.is-selected {
+  border-color: var(--color-maroon-btn);
+  background: var(--color-offwhite);
+  box-shadow: inset 0 0 0 1px var(--color-maroon-btn);
+}
+.wizard-choice:focus-within {
+  outline: 3px solid var(--wizard-focus);
+  outline-offset: 2px;
+}
+.wizard-choice input {
+  margin-top: 0.2rem;
+  accent-color: var(--color-maroon-btn);
+  width: 1.1rem;
+  height: 1.1rem;
+  flex: none;
+}
+
+.wizard-date {
+  height: 2.75rem;
+  width: 100%;
+  max-width: 18rem;
+  border: 1px solid var(--wizard-border);
+  background: #ffffff;
+  padding: 0 0.75rem;
+  font-size: 1rem;
+  color: #000000;
+}
+.wizard-date:focus-visible,
+.wizard-btn:focus-visible,
+.wizard-link:focus-visible {
+  outline: 3px solid var(--wizard-focus);
+  outline-offset: 2px;
+}
+
+.wizard-btn-secondary {
+  display: inline-block;
+  background: transparent;
+  color: var(--color-navy);
+  border: 1px solid var(--color-navy);
+  padding: 0.55rem 1.4rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+}
+.wizard-btn-secondary:hover {
+  background: var(--color-offwhite);
+}
+.wizard-btn-secondary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Result cards. */
+.wizard-result {
+  border: 1px solid var(--wizard-border);
+  border-left-width: 6px;
+  background: #ffffff;
+  padding: 1.25rem 1.5rem;
+}
+.wizard-result.status-open {
+  border-left-color: var(--wizard-open);
+}
+.wizard-result.status-urgent {
+  border-left-color: var(--wizard-urgent);
+}
+.wizard-result.status-passed {
+  border-left-color: var(--wizard-passed);
+}
+.wizard-result.status-not-started {
+  border-left-color: var(--wizard-idle);
+}
+
+.wizard-pill {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+.status-open .wizard-pill {
+  background: var(--wizard-open);
+}
+.status-urgent .wizard-pill {
+  background: var(--wizard-urgent);
+}
+.status-passed .wizard-pill {
+  background: var(--wizard-passed);
+}
+.status-not-started .wizard-pill {
+  background: var(--wizard-idle);
+}
+
+.wizard-banner {
+  border: 1px solid var(--color-gold);
+  background: #fff8e6;
+  padding: 1rem 1.25rem;
+}
+.wizard-alert {
+  border: 1px solid var(--wizard-passed);
+  background: #fff1f2;
+  padding: 1rem 1.25rem;
+}
