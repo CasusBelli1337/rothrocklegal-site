@@ -36,7 +36,7 @@ export function ContactSection() {
         </h2>
         <div className="mt-8 space-y-6">
           <InfoRow icon={<PinIcon />} label="Location">
-            {site.location}
+            {`${site.office.city}, ${site.office.regionName}`}
           </InfoRow>
           <InfoRow icon={<PhoneIcon />} label="Phone">
             <a href={site.phoneHref} className="hover:underline">

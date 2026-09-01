@@ -1,0 +1,139 @@
+import Image from "next/image";
+import Link from "next/link";
+import { LinkedInIcon } from "@/components/icons";
+import { Container } from "@/components/ui/Container";
+import { practiceHref, practicePages } from "@/config/practice-areas";
+import { courts } from "@/config/service-areas";
+import {
+  asset,
+  footerResources,
+  legalLinks,
+  site,
+  social,
+} from "@/config/site";
+
+function ColumnHeading({ children }: { children: React.ReactNode }) {
+  return <h2 className="eyebrow font-sans text-white/60">{children}</h2>;
+}
+
+const linkClass =
+  "text-[15px] text-white/80 transition-colors hover:text-white";
+
+/** Four columns + compliance bar (IA.md §3, SEO-SPEC §12 #6). */
+export function Footer() {
+  return (
+    <footer className="band-maroon">
+      <Container className="grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_0.9fr_1.2fr] lg:py-20">
+        <div>
+          <Image
+            src={asset("/images/logo-white.png")}
+            alt={site.name}
+            width={190}
+            height={105}
+            className="h-14 w-auto"
+          />
+          <p className="mt-5 max-w-[32ch] text-[15px] leading-relaxed text-white/80">
+            {site.tagline}
+          </p>
+          <p className="mt-5 text-[15px]">
+            <a
+              href={site.phoneHref}
+              className="font-semibold text-white hover:underline"
+            >
+              {site.phone}
+            </a>
+          </p>
+          <p className="mt-1 text-[15px]">
+            <a
+              href={`mailto:${site.email}`}
+              className="text-white/80 underline-offset-3 hover:text-white hover:underline"
+            >
+              {site.email}
+            </a>
+          </p>
+          <p className="mt-4 text-small text-white/70">
+            {site.office.appointments}
+          </p>
+          <a
+            href={social.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Arthur Rothrock on LinkedIn"
+            className="mt-5 inline-flex h-10 w-10 items-center justify-center rounded-md border border-white/20 text-white/80 transition-colors hover:border-white/50 hover:text-white"
+          >
+            <LinkedInIcon className="h-5 w-5" />
+          </a>
+        </div>
+
+        <nav aria-label="Practice areas">
+          <ColumnHeading>Practice areas</ColumnHeading>
+          <ul className="mt-5 space-y-2.5">
+            {practicePages.map((area) => (
+              <li key={area.slug}>
+                <Link href={practiceHref(area)} className={linkClass}>
+                  {area.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <nav aria-label="Resources">
+          <ColumnHeading>Resources</ColumnHeading>
+          <ul className="mt-5 space-y-2.5">
+            {footerResources.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className={linkClass}>
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div>
+          <ColumnHeading>Courts we appear in</ColumnHeading>
+          <ul className="mt-5 space-y-3 text-[15px] text-white/80">
+            {courts.map((court) => (
+              <li key={court.name}>
+                {court.name}
+                {court.address && (
+                  <span className="block text-small text-white/60">
+                    {court.address}
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-5 text-small text-white/70">{site.hours}</p>
+        </div>
+      </Container>
+
+      <div className="border-t border-white/15">
+        <Container className="flex flex-col gap-3 py-6 text-small text-white/65">
+          <p>
+            &copy; {site.copyrightYear} {site.name} &middot;{" "}
+            {site.responsibleAttorney}, attorney responsible for this site
+            &middot; {site.office.city}, {site.office.regionName} &middot;
+            Attorney advertising
+          </p>
+          <p className="flex flex-wrap gap-x-4 gap-y-1">
+            {legalLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="underline underline-offset-3 hover:text-white"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </p>
+          <p>
+            {site.resultsDisclaimer} Super Lawyers is a registered trademark of
+            Thomson Reuters.
+          </p>
+        </Container>
+      </div>
+    </footer>
+  );
+}
