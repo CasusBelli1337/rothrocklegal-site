@@ -34,13 +34,19 @@ const DISCLAIMER_PREFIX = "This article is general information";
 
 /** Reads the allowed values straight from the site config so the two can never drift. */
 function configValues(file, pattern) {
-  const source = fs.readFileSync(path.join(ROOT, file), "utf8");
-  return [...source.matchAll(pattern)].map((m) => m[1]);
+  const target = path.join(ROOT, file);
+  const files = fs.statSync(target).isDirectory()
+    ? fs.readdirSync(target).map((name) => path.join(target, name))
+    : [target];
+  return files.flatMap((f) =>
+    [...fs.readFileSync(f, "utf8").matchAll(pattern)].map((m) => m[1]),
+  );
 }
-const TEAM = configValues("src/config/team.ts", /^\s+slug:\s*"([a-z-]+)"/gm);
+// Team members live one per file under src/config/team/ (member.ts is the type).
+const TEAM = configValues("src/config/team", /^\s+slug:\s*['"]([a-z-]+)['"]/gm);
 const CATEGORIES = configValues(
   "src/types/content.ts",
-  /^\s+"([A-Za-z& ]+)",$/gm,
+  /^\s+['"]([A-Za-z& ]+)['"],$/gm,
 );
 if (TEAM.length === 0 || CATEGORIES.length === 0)
   throw new Error("Could not read team slugs or categories from src/");
