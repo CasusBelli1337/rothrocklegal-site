@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { CloseIcon } from '@/components/icons';
 import type { CategoryCount } from '@/lib/library/articles';
 
@@ -58,12 +59,25 @@ function CategoryChips({
   category,
   onCategory,
 }: Pick<FilterBarProps, 'categories' | 'category' | 'onCategory'>) {
+  const rowRef = useRef<HTMLDivElement>(null);
+
+  // On phones the chips scroll sideways; a deep link (?category=...) must show its chip.
+  // Horizontal scroll only, so the page itself never jumps on load.
+  useEffect(() => {
+    const row = rowRef.current;
+    const active = row?.querySelector<HTMLElement>('[aria-pressed="true"]');
+    if (!row || !active) return;
+    const overflow = active.offsetLeft + active.offsetWidth - (row.scrollLeft + row.clientWidth);
+    if (overflow > 0 || active.offsetLeft < row.scrollLeft) row.scrollLeft = active.offsetLeft - 8;
+  }, [category]);
+
   return (
     <div className="flex items-start gap-3">
       <span id="library-category-label" className="eyebrow shrink-0 pt-4">
         Category
       </span>
       <div
+        ref={rowRef}
         role="group"
         aria-labelledby="library-category-label"
         className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 lg:flex-wrap"
@@ -105,7 +119,7 @@ function SearchInput({
         placeholder="Search: 120 days, undue influence, accounting&hellip;"
         autoComplete="off"
         aria-controls={resultsId}
-        className="h-12 w-full rounded-full border border-line-strong bg-white pr-12 pl-12 text-body text-ink placeholder:text-ink-4 focus:border-maroon-500 focus:ring-2 focus:ring-maroon-500/30 focus:outline-none [&::-webkit-search-cancel-button]:hidden"
+        className="h-12 w-full rounded-full border border-line-strong bg-white pr-12 pl-12 text-body text-ink placeholder:text-ellipsis placeholder:text-ink-4 focus:border-maroon-500 focus:ring-2 focus:ring-maroon-500/30 focus:outline-none [&::-webkit-search-cancel-button]:hidden"
       />
       {query !== '' && (
         <button

@@ -99,10 +99,8 @@ export default async function ArticlePage({ params }: { params: Promise<Params> 
         </div>
       </Container>
       <RelatedArticles items={related} />
-      <CtaBand
-        title="Talk to a trust litigation lawyer in San Jose."
-        lead="Tell us what happened. We will read it, check the clock, and call you back."
-      />
+      {/* Articles already close with an H2 "Talk to a trust litigation lawyer in San Jose" (CONTRACTS §6), so the band uses the site-wide title. */}
+      <CtaBand />
       {!article.draft && <JsonLd data={jsonLd(article, author.name)} />}
     </>
   );

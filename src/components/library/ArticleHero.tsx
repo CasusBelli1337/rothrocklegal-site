@@ -48,16 +48,19 @@ function ArticleMeta({ article, author }: { article: LibraryArticle; author: Tea
       </Link>
       {/* The byline wraps after the author on phones; a dot would otherwise lead the second line. */}
       <Dot className="hidden sm:inline" />
-      <time dateTime={article.date}>{formatDate(article.date)}</time>
+      {/* Each dot stays with the item before it, so a wrapped line never starts with (or is only) a dot. */}
+      <span className="flex items-center gap-x-3 whitespace-nowrap">
+        <time dateTime={article.date}>{formatDate(article.date)}</time>
+        <Dot />
+      </span>
       {article.updated !== article.date && (
-        <>
-          <Dot />
+        <span className="flex items-center gap-x-3 whitespace-nowrap">
           <span>
             Updated <time dateTime={article.updated}>{formatDate(article.updated)}</time>
           </span>
-        </>
+          <Dot />
+        </span>
       )}
-      <Dot />
       <span>{article.readTime} min read</span>
     </div>
   );

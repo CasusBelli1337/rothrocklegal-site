@@ -9,6 +9,7 @@ import {
 } from '@/config/practice-areas';
 import { site } from '@/config/site';
 import type { PracticeSection } from '@/lib/practice';
+import { bindSectionSigns } from '@/lib/typography';
 
 interface PracticeSidebarProps {
   area: PracticeArea;
@@ -48,7 +49,9 @@ export function PracticeSidebar({ area, sections }: PracticeSidebarProps) {
         <dl className="mt-4 space-y-3">
           {area.statutes.map((statute) => (
             <div key={statute.cite}>
-              <dt className="text-small font-semibold text-ink">{statute.cite}</dt>
+              <dt className="text-small font-semibold text-ink">
+                {bindSectionSigns(statute.cite)}
+              </dt>
               <dd className="text-small text-ink-2">{statute.plain}</dd>
             </div>
           ))}

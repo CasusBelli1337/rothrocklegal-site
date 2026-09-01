@@ -48,7 +48,7 @@ describe('renderMarkdown blocks', () => {
   it('renders simple pipe tables inside a scroll wrapper', () => {
     const html = renderMarkdown('| A | B |\n| --- | :-: |\n| 1 | **2** |');
     expect(html).toBe(
-      '<div class="table-wrap"><table><thead><tr><th>A</th><th>B</th></tr></thead>' +
+      '<div class="table-wrap" tabindex="0"><table><thead><tr><th>A</th><th>B</th></tr></thead>' +
         '<tbody><tr><td>1</td><td><strong>2</strong></td></tr></tbody></table></div>',
     );
   });

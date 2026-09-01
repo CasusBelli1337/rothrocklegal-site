@@ -104,6 +104,12 @@
 .prose-article .table-wrap {
   overflow-x: auto;
 }
+/* On phones a 3-4 column deadline table scrolls sideways instead of squeezing every cell into a word-per-line column. */
+@media (max-width: 639px) {
+  .prose-article table {
+    min-width: 34rem;
+  }
+}
 .prose-article table {
   width: 100%;
   border-collapse: collapse;

@@ -8,6 +8,7 @@ import { getPracticeArea, practiceHref } from '@/config/practice-areas';
 import { getPracticeBody } from '@/lib/practice';
 import { pageMetadata } from '@/lib/seo/metadata';
 import { webPage } from '@/lib/seo/jsonld';
+import { bindSectionSigns } from '@/lib/typography';
 import { PracticeGrid } from './PracticeGrid';
 import { PracticeHero } from './PracticeHero';
 import { PracticeSidebar } from './PracticeSidebar';
@@ -59,7 +60,7 @@ export function PracticePage({ slug }: { slug: string }) {
             <DeadlineCallout
               eyebrow="Am I too late?"
               title="How long do I have?"
-              body={area.deadline.body}
+              body={bindSectionSigns(area.deadline.body)}
               finePrint="General information, not legal advice. Confirm your dates with a lawyer."
             />
           </Reveal>
@@ -74,12 +75,7 @@ export function PracticePage({ slug }: { slug: string }) {
         <PracticeSidebar area={area} sections={sections} />
       </Container>
       <RelatedReading area={area} />
-      <CtaBand
-        title={<>Tell us what happened.</>}
-        lead={
-          <>A few sentences is enough. We&rsquo;ll read it, check the clock, and call you back.</>
-        }
-      />
+      <CtaBand />
       <JsonLd
         data={webPage({
           path,

@@ -49,7 +49,7 @@ describe('library loader', () => {
     expect(anchor.faq.length).toBeGreaterThanOrEqual(5);
     expect(anchor.faqHeading?.id).toBe('frequently-asked-questions');
     expect(anchor.bodyHtml).not.toContain(anchor.faq[0].question);
-    expect(anchor.bodyHtml).toContain('<div class="table-wrap">');
+    expect(anchor.bodyHtml).toContain('<div class="table-wrap" tabindex="0">');
     expect(anchor.outroHtml).toMatch(/^<h2 id="talk-to-a-trust-litigation-lawyer-in-san-jose">/);
     expect(anchor.outroHtml).toContain('<p class="disclaimer">');
     expect(anchor.toc.map((h) => h.id)).toContain('key-deadlines');

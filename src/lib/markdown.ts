@@ -7,6 +7,7 @@
  */
 
 import { HeadingIds, renderInline, stripInline, type InlineOptions } from './markdown-inline';
+import { bindSectionSigns } from './typography';
 
 export interface Heading {
   id: string;
@@ -69,7 +70,7 @@ class BlockRenderer {
   }
 
   private inline(text: string): string {
-    return renderInline(text, this.options);
+    return bindSectionSigns(renderInline(text, this.options));
   }
 
   private line(line: string): void {
@@ -184,7 +185,10 @@ class BlockRenderer {
       .slice(2)
       .map((row) => `<tr>${cells(row, 'td')}</tr>`)
       .join('');
-    this.out.push(`<div class="table-wrap"><table>${head}<tbody>${body}</tbody></table></div>`);
+    // tabindex: the wrapper scrolls sideways on phones, so keyboards must be able to reach it.
+    this.out.push(
+      `<div class="table-wrap" tabindex="0"><table>${head}<tbody>${body}</tbody></table></div>`,
+    );
   }
 
   private flushAll(): void {
