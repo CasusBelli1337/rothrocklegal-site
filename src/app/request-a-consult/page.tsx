@@ -5,6 +5,7 @@ import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Reveal } from '@/components/ui/Reveal';
 import { site } from '@/config/site';
+import { AFTER_YOU_SEND } from '@/lib/intake/copy';
 import { webPage } from '@/lib/seo/jsonld';
 import { pageMetadata } from '@/lib/seo/metadata';
 
@@ -22,25 +23,6 @@ export const metadata = pageMetadata({
   noindex: false,
 });
 
-const AFTER_STEPS: readonly { title: string; body: string }[] = [
-  {
-    title: 'We run a conflict check.',
-    body: 'Every name you gave us goes against our client list first. If there is a conflict, we tell you we cannot help, without saying why.',
-  },
-  {
-    title: 'A lawyer reads everything.',
-    body: 'Your story, your dates, and your documents. AI helps us organize it; a lawyer decides what it means.',
-  },
-  {
-    title: 'We email you.',
-    body: `We strive to reply ${site.replyPromise}. We set up a video call, ask for one or two more things, or tell you plainly that this is not a case for us.`,
-  },
-  {
-    title: 'You get a written fee estimate before any work starts.',
-    body: 'On the call we tell you what it would take and what it would cost. No pitch, no surprise bills.',
-  },
-];
-
 function AfterYouSend() {
   return (
     <section aria-labelledby="after-you-send" className="bg-white py-16 lg:py-20">
@@ -52,7 +34,7 @@ function AfterYouSend() {
           </h2>
         </Reveal>
         <ol className="mt-8 space-y-6">
-          {AFTER_STEPS.map((step, i) => (
+          {AFTER_YOU_SEND.map((step, i) => (
             <li key={step.title} className="flex gap-5">
               <span
                 aria-hidden="true"
