@@ -1,10 +1,10 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { LinkedInIcon } from '@/components/icons';
+import { BrandLogo } from '@/components/ui/BrandLogo';
 import { Container } from '@/components/ui/Container';
 import { practiceHref, practicePages } from '@/config/practice-areas';
 import { courts } from '@/config/service-areas';
-import { asset, consultCta, footerResources, legalLinks, site, social } from '@/config/site';
+import { consultCta, footerResources, legalLinks, site, social } from '@/config/site';
 
 function ColumnHeading({ children }: { children: React.ReactNode }) {
   return <h2 className="eyebrow font-sans text-white/60">{children}</h2>;
@@ -18,13 +18,7 @@ export function Footer() {
     <footer className="band-maroon">
       <Container className="grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_0.9fr_1.2fr] lg:py-20">
         <div>
-          <Image
-            src={asset('/images/logo-white.png')}
-            alt={site.name}
-            width={190}
-            height={105}
-            className="h-14 w-auto"
-          />
+          <BrandLogo lockup="full" tone="white" className="h-24 w-auto" />
           <p className="mt-5 max-w-[32ch] text-[15px] leading-relaxed text-white/80">
             {site.tagline}
           </p>

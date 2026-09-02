@@ -1,13 +1,13 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { MenuIcon } from '@/components/icons';
+import { BrandLogo } from '@/components/ui/BrandLogo';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
-import { asset, consultCta, nav, site } from '@/config/site';
+import { consultCta, nav, site } from '@/config/site';
 import { MobileMenu } from './MobileMenu';
 import { isActive, navLinkClass } from './nav-link';
 import { NavDropdown } from './NavDropdown';
@@ -33,13 +33,12 @@ export function Header() {
     >
       <Container className="flex h-[60px] items-center justify-between gap-6 lg:h-[72px]">
         <Link href="/" aria-label={`${site.name} home`} className="shrink-0 rounded-md">
-          <Image
-            src={asset('/images/logo.webp')}
+          <BrandLogo
+            lockup="horizontal"
+            tone="maroon"
             alt=""
-            width={55}
-            height={40}
             priority
-            className="h-10 w-auto"
+            className="h-9 w-auto lg:h-11"
           />
         </Link>
 
