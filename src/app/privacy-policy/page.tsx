@@ -1,9 +1,13 @@
 import { LegalPage } from '@/components/layout/LegalPage';
+import { legal } from '@/components/legal/legal-constants';
+import { PrivacyCollect } from '@/components/legal/PrivacyCollect';
+import { PrivacyRights } from '@/components/legal/PrivacyRights';
+import { PrivacyUse } from '@/components/legal/PrivacyUse';
 import { site } from '@/config/site';
 import { pageMetadata } from '@/lib/seo/metadata';
 
 const DESCRIPTION =
-  'How rothrocklegal.com handles the information you send through the contact form and the deadline wizard.';
+  'What Rothrock Legal collects through this site and the consult request, how AI and a lawyer review it, and how to ask us to delete it.';
 
 export const metadata = pageMetadata({
   title: 'Privacy Policy',
@@ -12,6 +16,7 @@ export const metadata = pageMetadata({
   noindex: site.legalPagesDraft,
 });
 
+/** Privacy policy (CalOPPA, Bus. & Prof. Code § 22575). Clause map: redesign/legal-pages/LEGAL-PAGES-CHECK.md. */
 export default function PrivacyPolicyPage() {
   return (
     <LegalPage
@@ -21,49 +26,41 @@ export default function PrivacyPolicyPage() {
       path="/privacy-policy/"
     >
       <p>
-        This Privacy Policy describes how {site.name} (&ldquo;we,&rdquo; &ldquo;us&rdquo;) handles
-        information collected through this website.
-      </p>
-      <h2>What we collect</h2>
-      <p>
-        When you use the contact form, we collect the information you choose to provide: your name,
-        email address, phone number, what happened, and whether you have received a formal notice.
-        This website does not use tracking cookies and does not collect analytics identifiers.
+        <strong>Effective date:</strong> {legal.effectiveDate}. This policy covers
+        www.rothrocklegal.com, including the contact form, the deadline tool, and the consult
+        request.
       </p>
       <p>
-        The deadline wizard on this site saves your answers in your own browser so you can come back
-        to them. Nothing you enter in the wizard is sent to us unless you submit the contact form.
+        {site.name} (&ldquo;we,&rdquo; &ldquo;us&rdquo;) is a law firm in {site.office.city},{' '}
+        {site.office.regionName}. People who come to this site are usually worried about a family
+        member&rsquo;s trust or estate and are deciding whether to tell a lawyer about it. This page
+        explains, in plain English, what happens to what you tell us.
       </p>
-      <h2>How we use it</h2>
-      <p>
-        We use the information you submit only to respond to your inquiry and evaluate a potential
-        engagement. We do not sell or rent your personal information.
-      </p>
-      <h2>Service providers</h2>
-      <p>
-        Form submissions may be processed by a third-party form service acting on our behalf, and
-        email you send us is handled by our email provider. These providers process your information
-        only to deliver it to us.
-      </p>
-      <h2>California privacy rights</h2>
-      <p>
-        California residents may have rights under the California Consumer Privacy Act (CCPA),
-        including the right to know what personal information we hold about you and to request its
-        deletion. To exercise these rights, contact us at{' '}
-        <a href={`mailto:${site.email}`}>{site.email}</a>.
-      </p>
-      <h2>Confidentiality</h2>
-      <p>
-        We keep what you send us confidential, but information submitted through this website is not
-        protected by the attorney-client privilege unless and until an attorney-client relationship
-        is established by a signed engagement letter. Please do not send documents or detailed
-        confidential information through the contact form.
-      </p>
-      <h2>Changes</h2>
-      <p>
-        We may update this policy from time to time. The current version will always be posted on
-        this page.
-      </p>
+
+      <h2>The short version</h2>
+      <ul>
+        <li>We collect only what you type, say, or upload. No tracking, no analytics, no ads.</li>
+        <li>
+          We use it for one thing: to decide whether we can help you, which includes a conflict
+          check.
+        </li>
+        <li>
+          AI helps us organize a consult request so a lawyer can review it faster. A lawyer reviews
+          everything. The AI provider does not train on what you send.
+        </li>
+        <li>We never sell or share your information for advertising.</li>
+        <li>
+          If we do not take your matter, we delete what you sent after{' '}
+          {legal.declinedRetentionMonths} months. You can ask us to delete it sooner.
+        </li>
+        <li>
+          Sending us information does not make you a client, but we keep it confidential either way.
+        </li>
+      </ul>
+
+      <PrivacyCollect />
+      <PrivacyUse />
+      <PrivacyRights />
     </LegalPage>
   );
 }
