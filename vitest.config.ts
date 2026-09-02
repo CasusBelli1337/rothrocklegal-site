@@ -4,8 +4,10 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
   // Mirror tsconfig's `@/*` so loaders that import config can be tested.
   resolve: { alias: { '@': path.resolve(process.cwd(), 'src') } },
+  // Component tests (.test.tsx) opt into jsdom with a `@vitest-environment jsdom` docblock.
+  oxc: { jsx: { runtime: 'automatic' } },
   test: {
-    include: ['src/**/*.test.ts'],
+    include: ['src/**/*.test.{ts,tsx}'],
     environment: 'node',
   },
 });
