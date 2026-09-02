@@ -76,12 +76,15 @@ describe('library loader', () => {
     expect(techRelated.every((a) => a.category === TECH_CATEGORY)).toBe(true);
   });
 
-  it('counts every category, zero included, in CONTRACTS order', () => {
+  it('counts every category, zero included, in LIBRARY_CATEGORIES order', () => {
     const counts = getCategoriesWithCounts();
-    expect(counts).toHaveLength(9);
+    expect(counts).toHaveLength(11);
     expect(counts[0].category).toBe('Deadlines');
     expect(counts.reduce((n, c) => n + c.count, 0)).toBe(articles.length);
     expect(counts.find((c) => c.category === TECH_CATEGORY)?.count).toBe(10);
+    // The practice-page categories exist before any article is filed under them.
+    expect(counts.find((c) => c.category === 'For Trustees')?.slug).toBe('for-trustees');
+    expect(counts.find((c) => c.category === 'Complex Estates')?.slug).toBe('complex-estates');
   });
 
   it('throws for an unknown slug', () => {

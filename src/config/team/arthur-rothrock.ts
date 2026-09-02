@@ -146,6 +146,8 @@ export const arthurRothrock: TeamMember = {
     'trust-accounting-disputes',
     'estate-property-disputes',
     'financial-elder-abuse',
+    'for-trustees',
+    'complex-estates',
     'business-disputes',
   ],
   updatedAt: '2026-09-01',

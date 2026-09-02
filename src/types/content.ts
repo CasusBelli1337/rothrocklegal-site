@@ -21,6 +21,8 @@ export const LIBRARY_CATEGORIES = [
   "Trustees & Fiduciaries",
   "Elder Financial Abuse",
   "Probate Process",
+  "For Trustees",
+  "Complex Estates",
   "Business Disputes",
   "Technology & the Law",
 ] as const;

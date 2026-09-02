@@ -198,6 +198,25 @@ export function BriefcaseIcon(p: IconProps) {
   );
 }
 
+export function ShieldIcon(p: IconProps) {
+  return (
+    <Svg {...p}>
+      <path d="M12 3 5 6v5.5c0 4.2 2.9 7.6 7 9.5 4.1-1.9 7-5.3 7-9.5V6l-7-3z" />
+      <path d="m9.5 12 1.8 1.8L14.8 10" />
+    </Svg>
+  );
+}
+
+export function LayersIcon(p: IconProps) {
+  return (
+    <Svg {...p}>
+      <path d="m12 4 8 4-8 4-8-4 8-4z" />
+      <path d="m4 12 8 4 8-4" />
+      <path d="m4 16 8 4 8-4" />
+    </Svg>
+  );
+}
+
 export function ClockIcon(p: IconProps) {
   return (
     <Svg {...p}>

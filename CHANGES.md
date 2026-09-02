@@ -61,8 +61,18 @@ Nothing here is on `main` yet; a push to `main` is a deploy.
    `/trust-litigation/` hub (`/trust-contests/`, `/will-contests/`,
    `/undue-influence-and-capacity/`, `/breach-of-fiduciary-duty/`,
    `/trust-accounting-disputes/`, `/estate-property-disputes/`,
-   `/financial-elder-abuse/`, `/business-disputes/`); hierarchy is expressed by
-   breadcrumbs and BreadcrumbList JSON-LD, not nested URLs. New:
+   `/financial-elder-abuse/`, `/for-trustees/`, `/complex-estates/`,
+   `/business-disputes/`); hierarchy is expressed by
+   breadcrumbs and BreadcrumbList JSON-LD, not nested URLs. `/for-trustees/`
+   (family-member trustees facing an accounting demand, removal, surcharge, or
+   abuse accusations; the trust can pay in good faith, §§ 15684, 16247) and
+   `/complex-estates/` (multi-property estates, LLCs and family businesses
+   held in trust, blended families) were added on Arthur's direction with a
+   ninth homepage card, a "complex estates" line under the grid, library
+   categories `For Trustees` and `Complex Estates`, and the Peninsula
+   wealth-belt cities (Atherton, Menlo Park, Woodside, Portola Valley,
+   Hillsborough, Burlingame → San Mateo County; Los Altos, Los Altos Hills →
+   Santa Clara County) in `service-areas.ts`. New:
    `/attorneys/` + four profiles, `/how-long-do-i-have/`, `/library/` +
    articles, `/service-areas/`, `/contact/thank-you/`. Kept: `/`, `/about/`,
    `/faq/`, `/contact/`, `/privacy-policy/`, `/disclaimer/`.

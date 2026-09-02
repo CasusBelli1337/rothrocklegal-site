@@ -48,6 +48,8 @@ export const KNOWS_ABOUT = [
   "trust accountings",
   "Probate Code section 850 petitions",
   "financial elder abuse",
+  "trustee defense",
+  "complex and high-value estate litigation",
 ];
 
 export function legalService(): JsonLdObject {

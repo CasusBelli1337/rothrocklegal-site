@@ -47,7 +47,8 @@ export function Hero() {
           </h1>
           <p className="mt-6 max-w-[38rem] text-lead text-white/80">
             A sibling changed the trust. The trustee won&rsquo;t show the accounting. Someone got to
-            Dad before he died. Deadlines can be as short as 120 days &ndash;{' '}
+            Dad before he died. We represent beneficiaries who were cut out and trustees who are
+            being accused. Deadlines can be as short as 120 days &ndash;{' '}
             <Link
               href="/how-long-do-i-have/"
               className="font-medium text-white underline underline-offset-3 hover:text-white/90"
