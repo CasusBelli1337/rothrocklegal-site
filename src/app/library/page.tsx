@@ -34,14 +34,15 @@ export default function LibraryPage() {
             eyebrow="Library"
             title={
               <>
-                Straight answers about trusts, wills, and the people who{' '}
-                <em className="em-word">mishandle</em> them.
+                Straight answers about trusts, wills, and the <em className="em-word">fights</em>{' '}
+                that follow.
               </>
             }
             lead={
               <>
-                Deadlines, trust contests, trustees who won&apos;t account, elder financial abuse
-                &ndash; written in plain English by the lawyers who handle these cases in San Jose.
+                Deadlines, trust contests, accountings, elder financial abuse, and what to do when
+                you are the trustee being accused &ndash; written in plain English by the lawyers
+                who handle these cases in San Jose.
               </>
             }
             className="mt-8"
