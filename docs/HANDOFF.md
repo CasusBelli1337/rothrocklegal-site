@@ -39,8 +39,9 @@ repo holds the editor module and the intake module.
   parts of partially published opinions (audit category 13 enforces it).
 - No em dashes anywhere. Awards named exactly as conferred. No street
   address ever (San Jose + service area).
-- DNS stays at Spaceship for now (flaky host-side, see
-  `~/projects/rothrock-legal/reference/dns/spaceship-reliability-2026-09-01/`).
+- DNS moves to Cloudflare (decided 2026-09-02 for the intake tunnel; the
+  registrar stays Spaceship). Records are already copied; only the
+  nameserver switch remains (see "Intake API" below).
 - Data loss is unacceptable; outages are tolerable. The intake API runs on
   Arthur's rig (on battery backup) with every submission mirrored to
   OneDrive `#RothrockLegal/#Clients/Potential Clients/<reference – name>/`.
@@ -60,7 +61,7 @@ must point at the public intake host (see below) or the consult page falls
 back to the email form; clear article drafts Arthur has read
 (`draft: false` in `content/library/<slug>.md`).
 
-## Intake API – hosting and durability
+## Intake API – hosting (DECIDED 2026-09-02: Cloudflare Tunnel) and durability
 
 - Module: `~/projects/legion-armory/modules/legion-intake` (port 3038;
   public `/api/intake/*` via the Armory Caddy on localhost:9080; admin at
@@ -70,54 +71,71 @@ back to the email form; clear article drafts Arthur has read
   reconcile with count verification, nightly `pg_dump` to
   `Potential Clients/_backups/`, red admin banner on any failure. See the
   module README "Durability and backups".
-- Public ingress is UNDECIDED. Options are in the module's
-  `docs/HOSTING-OPTIONS.md`: (a) Cloudflare Tunnel (needs DNS on
-  Cloudflare; no open ports; recommended), (b) router port-forward + a
-  dedicated public Caddy with Let's Encrypt + dynamic DNS at Spaceship
-  (no third party, exposes the home IP), (c) Cloudflare Workers + R2
-  (serverless fallback). Arthur prefers running from the rig; pick (a) or
-  (b) with him before go-live. SMTP for notifications is unset; the admin
-  page shows pending notifications.
+- Public ingress BUILT 2026-09-02, option (a) Cloudflare Tunnel, per the
+  runbook in the module's `docs/HOSTING-OPTIONS.md` "Decision and runbook":
+  Cloudflare zone `rothrocklegal.com` (account arothrock@, all Spaceship
+  records copied, GitHub Pages records DNS-only), tunnel `rothrock-intake`
+  healthy from the Armory `cloudflared` service, ingress exposes only
+  `/api/intake/*` at `https://intake.rothrocklegal.com` (admin routes 404 at
+  the edge). `deploy.yml` already builds with
+  `NEXT_PUBLIC_INTAKE_API=https://intake.rothrocklegal.com`.
+- STILL PENDING (one step, timed): DNSSEC was disabled at Spaceship on
+  2026-09-02 about 1:25 PM PT; the registry DS record had a 24-hour TTL.
+  On or after 2026-09-03 1:30 PM PT, change the nameservers at Spaceship to
+  `kami.ns.cloudflare.com` and `rocco.ns.cloudflare.com`, verify
+  `https://intake.rothrocklegal.com/api/intake/health` and that
+  www.rothrocklegal.com and email still work, then re-enable DNSSEC on
+  Cloudflare and paste its DS record into Spaceship. Until then the live
+  consult page keeps the email fallback.
+- SMTP DONE 2026-09-02: Google Workspace app password on arothrock@ via the
+  git-ignored `data/keys/intake-smtp.conf`; real test send succeeded.
+  Notifications from the September 1 test intakes stay "pending" (there is
+  no retry endpoint); new submissions email the team.
+- Accounts and secrets created today: `~/projects/rothrock-legal/redesign/
+ACCOUNTS-2026-09-02.txt` (copy in OneDrive `#RothrockLegal/Website/`).
 
-## Next project: the Rothrock Legal lawyer portal
+## Google Business Profile (created 2026-09-02, verification pending)
 
-Arthur's plan: an internal portal (an "Armory for Rothrock Legal") whose
-first job is organizing and grouping consult submissions, growing into the
-tools colleagues need (terminals, timekeeping, matter tools). Suggested
-seed: the intake admin UI + the Armory hub pattern (module manifests,
-JWT auth, Postgres schema-per-module, Caddy routing). Data model to start
-from: Intake → PotentialClient (grouped by parties/decedent) → Matter.
-Keep client documents on the rig + OneDrive; no third-party storage.
+- Profile "Rothrock Legal" exists under arothrock@rothrocklegal.com
+  (location id 14516233535435613881), primary category Estate litigation
+  attorney, service-area business with no public address, 20 service areas,
+  phone (408) 420-7034, website, hidden mailing address 500 Race St Apt 5416.
+- Google offers ONLY video verification. Arthur records it (script in
+  `redesign/GBP-IDENTITY-KIT.md` section 8). Do not edit the profile until
+  it is verified; then complete step 6 of `GBP-LOCAL-SEO.md` (description,
+  services, Q&A, photos, hours, appointment link) from the identity kit.
+- Legion audit: none of Arthur's four signed-in Google accounts owns any
+  Business Profile and a web search shows no Legion knowledge panel, so no
+  conflicting listing was found.
+
+## Next project: the Rothrock Legal lawyer portal (BUILD STARTED 2026-09-02)
+
+Spec APPROVED with Arthur's decisions (light palette, `RLM-YYYY-NNN`,
+current tailnet, firm-owned Postgres 17 holding `portal` + `intake`):
+`~/projects/rothrock-legal/portal/PORTAL-SPEC.md` + `PORTAL-WORKFLOW.md`.
+Repo `~/projects/rothrocklegal-portal` (GitHub `CasusBelli1337/rothrocklegal-portal`,
+private). Its own `CLAUDE.md`/`docs/HANDOFF.md` are the entry points for
+sessions opened there; this file only records that it exists.
 
 ## TODO (in order)
 
-1. **SEO API check of the articles**: run the content engine's SEO audit
-   and keyword tooling (DataForSEO is configured in the engine; see
-   `~/projects/rothrock-legal/redesign/PLAYBOOK.md` for the method) over all
-   21 new articles and the 11 practice pages; confirm titles/descriptions/
-   keywords/headings are optimized for the Bay Area T&E intents in
-   `TOPICS.md` and `TOPICS-TRUSTEE.md`; fix in the staging articles and
-   re-import (`node scripts/import-articles.mjs`).
-2. **Content-engine prompts, Rothrock edition**: read the EC2 content
-   engine's tuned prompts (`modules/legion-content-engine/docs/
-HANDOFF-LGN-1122-content-tuning.md` and the prompt repository) and
-   produce a Rothrock-customized prompt set (family-member audience,
-   trustee/beneficiary lenses, Bay Area local terms, the publication rule,
-   the audit's 13 categories) as `~/projects/rothrock-legal/redesign/
-PROMPTS-ROTHROCK.md`; then Arthur reviews the articles closely.
-3. Google Business Profile: hidden-address service-area profile for
-   Rothrock Legal from the firm's Google account, after checking Legion's
-   profile hides its address; 10-step checklist in
-   `~/projects/rothrock-legal/redesign/GBP-LOCAL-SEO.md` (video verification
-   needs Arthur).
-4. Decide intake ingress (above) and set `NEXT_PUBLIC_INTAKE_API` in
-   `.github/workflows/deploy.yml`; configure SMTP or an email service.
+1. DONE 2026-09-02: SEO API check (`redesign/SEO-API-CHECK.md`; 23 pages
+   changed, commit 747e821). Open judgment calls in its section 4.
+2. DONE 2026-09-02: Rothrock prompt set (`redesign/PROMPTS-ROTHROCK.md`,
+   1,683 lines, 11 prompts). Note: the local engine still holds the
+   pre-tuning prompt rows; the tuned V4/V5 text lives in the seed file.
+   Arthur reviews the articles closely next.
+3. Google Business Profile: created; Arthur's video verification, then
+   step 6 (above).
+4. Intake ingress: nameserver switch on 2026-09-03 (above), then merge
+   `redesign` to `main`.
 5. Clear article drafts as Arthur reads them; the review reports
    (`ARTICLE-REVIEW.md`, `ARTICLE-REVIEW-TRUSTEE.md`, `PRACTICAL-LAW-CHECK.md`,
    `westlaw-check/WESTLAW-KEYCITE.md`) list the per-article judgment calls.
 6. DMARC step-up to `p=quarantine` after ~2–3 weeks of clean reports
-   (fixed 2026-09-01; reports arrive at arothrock@).
-7. Optional: move DNS hosting to Cloudflare (runbook in the DNS report).
+   (fixed 2026-09-01; reports arrive at arothrock@). Note the DMARC record
+   now lives on Cloudflare once the nameservers switch.
+7. Portal phase 1 build (see the portal repo's handoff).
 
 ## Where things are
 
