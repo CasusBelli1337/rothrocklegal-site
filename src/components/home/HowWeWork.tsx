@@ -61,7 +61,8 @@ export function WhyFasterPanel() {
         make every judgment call.
       </p>
       <p className="mt-3 text-body text-ink-2">
-        We are fully remote. We meet by video. No office visits, no parking, no waiting rooms.
+        We meet by video, and in person by appointment when the case calls for it. No office visits,
+        no parking, no waiting rooms.
       </p>
       <p className="mt-3 text-body text-ink-2">
         In June 2026 the federal government ordered the models Legion runs on shut down; Legion took

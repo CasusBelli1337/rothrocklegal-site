@@ -19,7 +19,7 @@ export interface LensSwitch extends LensLink {
   to: Lens;
 }
 
-const HERO_TITLE = 'We handle trust and will disputes for *families* in San Jose and the Bay Area.';
+const HERO_TITLE = 'We handle trust and will disputes for families in San Jose and the Bay Area.';
 const HERO_SUB =
   'A sibling changed the trust. The trustee won’t show the accounting. Someone got to Dad before ' +
   'he died. We represent beneficiaries who were cut out and trustees who are being accused. ' +
@@ -52,7 +52,7 @@ const LIBRARY_LEAD =
 export const lensCopy = {
   heroTitle: {
     neutral: HERO_TITLE,
-    trustee: 'You’re the trustee. Now you’re the one being *accused*.',
+    trustee: 'You’re the trustee. Now you’re the one being accused.',
     beneficiary: HERO_TITLE,
   },
   heroSub: {

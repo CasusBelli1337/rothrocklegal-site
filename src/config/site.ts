@@ -54,7 +54,7 @@ export const site = {
    * show the draft notice, render noindex, and stay out of sitemap.xml and
    * llms.txt. Set false to publish both.
    */
-  legalPagesDraft: true,
+  legalPagesDraft: false,
   resultsDisclaimer: 'Every case is different. Past results do not guarantee a similar outcome.',
   ogImage: '/images/og/site.png',
   copyrightYear: 2026,

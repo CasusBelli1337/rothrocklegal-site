@@ -51,12 +51,7 @@ export default function LibraryPage() {
             as="h1"
             tone="light"
             eyebrow="Library"
-            title={
-              <>
-                Straight answers about trusts, wills, and the <em className="em-word">fights</em>{' '}
-                that follow.
-              </>
-            }
+            title={<>Straight answers about trusts, wills, and the fights that follow.</>}
             lead={
               <>
                 Deadlines, trust contests, accountings, elder financial abuse, and what to do when

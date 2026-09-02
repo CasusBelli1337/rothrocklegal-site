@@ -27,8 +27,8 @@ export { headshot } from './team/member';
 /** Arthur first (HOMEPAGE-SPEC §4), then the team in the dossier's order. */
 export const team: readonly TeamMember[] = [
   arthurRothrock,
-  gerryLin,
   jonathanJoannides,
+  gerryLin,
   maxDischer,
 ];
 

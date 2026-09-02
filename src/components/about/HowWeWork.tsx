@@ -51,8 +51,8 @@ export function HowWeWork() {
               and the courtroom.
             </p>
             <p>
-              We are also fully remote. We meet by video. No office visits, no parking, no waiting
-              rooms.
+              We meet by video, and in person by appointment when the case calls for it. No office
+              visits, no parking, no waiting rooms.
             </p>
           </div>
         </Reveal>

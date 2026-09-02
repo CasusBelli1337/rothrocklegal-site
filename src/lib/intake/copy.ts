@@ -17,7 +17,7 @@ export const CONFIDENTIALITY_NOTE =
   'What you send is kept confidential and used only to evaluate whether we can help. AI helps us organize what you send; a lawyer reviews everything before we reply.';
 
 export const REPLY_PROMISE = 'We strive to respond within one business day, by email.';
-export const REMOTE_NOTE = 'We meet by video. No office visits.';
+export const REMOTE_NOTE = 'We meet by video, and in person by appointment when it helps.';
 
 export const HOW_IT_WORKS = [
   'Tell us what happened, in your own words or out loud.',

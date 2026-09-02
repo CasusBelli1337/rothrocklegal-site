@@ -75,12 +75,12 @@ export default function RequestConsultPage() {
           <div className="mt-8 max-w-[52rem]">
             <Eyebrow rule>Request a consult</Eyebrow>
             <h1 className="mt-4 font-serif text-h1 text-ink">
-              Tell us what happened. We&rsquo;ll tell you what we <em className="em-word">need</em>.
+              Tell us what happened. We&rsquo;ll tell you what we need.
             </h1>
             <p className="mt-6 max-w-[60ch] text-lead text-ink-2">
-              We meet by video. No office visits, no parking, no waiting rooms. Fill this out when
-              you have a few quiet minutes. It saves as you go, and a lawyer reads everything before
-              we reply.
+              We meet by video, and in person by appointment when it helps. No office visits, no
+              parking, no waiting rooms. Fill this out when you have a few quiet minutes. It saves
+              as you go, and a lawyer reads everything before we reply.
             </p>
           </div>
         </Container>
