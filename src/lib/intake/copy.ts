@@ -33,6 +33,26 @@ export const CONFLICT_CAVEAT =
 export const FEE_ESTIMATE_NOTE = 'We give you a written fee estimate before any work starts.';
 export const EVALUATION_UNAVAILABLE = 'We are reviewing what you sent and will follow up by email.';
 
+/** "What happens after you send this", shown under the wizard on /request-a-consult/. */
+export const AFTER_YOU_SEND: readonly { title: string; body: string }[] = [
+  {
+    title: 'We run a conflict check.',
+    body: 'Every name you gave us goes against our client list first. If there is a conflict, we tell you we cannot help, without saying why.',
+  },
+  {
+    title: 'A lawyer reads everything.',
+    body: 'Your story, your dates, and your documents. AI helps us organize it; a lawyer decides what it means.',
+  },
+  {
+    title: 'We email you.',
+    body: `${REPLY_PROMISE} We set up a video call, ask for one or two more things, or tell you plainly that this is not a case for us.`,
+  },
+  {
+    title: 'You get a written fee estimate before any work starts.',
+    body: 'On the call we tell you what it would take and what it would cost. No pitch, no surprise bills.',
+  },
+];
+
 export const STORY_CHIPS = [
   'When did they pass?',
   'Did you get a letter from the trustee?',
