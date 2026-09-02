@@ -53,7 +53,7 @@ Here is the menu of damages for financial elder abuse California courts can orde
 
 Fees are not optional. Prove financial abuse by a preponderance of the evidence and "the court shall award to the plaintiff reasonable attorney's fees and costs" (Welfare and Institutions Code § 15657.5). Shall, not may. In Lintz the children recovered their fees for proving the abuse. Fees are what make an elder financial abuse California claim different from an ordinary lawsuit.
 
-Double means double. A person who took property through elder financial abuse is liable for "twice the value of the property recovered" (Probate Code § 859). Conservatorship of Ribal read that as two times the value in total, not the property plus two times its value. Take $100,000 and the judgment is $200,000, not $300,000.
+Double is added on top. A person who took property through elder financial abuse is liable for "twice the value of the property recovered" (Probate Code § 859). Asaro v. Maniscalco held that penalty comes on top of returning the property, rejecting an earlier reading in Conservatorship of Ribal. Take $100,000: it comes back, plus $200,000.
 
 Whether you must also prove bad faith is a split. Two of the statute's three routes to double damages say "in bad faith" on their face; the financial elder abuse route does not. In Levin v. Winston-Levin the court voided a trust amendment for undue influence but found no bad faith and refused double damages. Keading v. Keading disagreed two years later. It held that the statute "authorizes an award of double damages for the commission of elder financial abuse without a separate finding of bad faith," the reading Hill v. Superior Court had already given it.
 

@@ -56,7 +56,7 @@ Sometimes the signature is not the settlor's. Sometimes it is, but the amendment
 
 A revocable trust can be revoked by the method written into the trust (Probate Code § 15401). Unless the trust makes its method the only one, a signed writing delivered to the trustee while the settlor is alive also works. The ground: the document the trustee is enforcing was replaced by a later one the trustee is ignoring. Example: Mom signed a full restatement in 2022 and handed it to her son, the trustee. He is administering the 2015 version because it favors him.
 
-Fixing a drafting mistake is not a contest. If Dad wanted his sons to split the house equally and the amendment's wording says otherwise, the petition is to reform the trust, and the 120-day rule does not apply to it (Packard v. Packard).
+Fixing a drafting mistake is not a contest. If Dad wanted his sons to split the house equally and the amendment's wording says otherwise, the petition is to reform the trust. The 120-day rule does not apply; a three-year limit does (Packard v. Packard).
 
 ## How to contest a trust in California, step by step
 
@@ -90,7 +90,7 @@ Search for "trust contest attorney San Jose" and you get a page of ads. Ask whoe
 | -------------------------------------------------- | ---------------------------------------------------------------------------------- | ----------------------------------- |
 | The trustee mailed the formal notice after a death | 120 days from mailing, or 60 days from delivery of the trust copy if later         | Probate Code § 16061.8              |
 | No notice was ever served on you                   | No 120-day clock has started, but the outer limit is unsettled; treat it as urgent | Probate Code § 16061.8 by its terms |
-| The document is wrong by mistake, not wrongdoing   | The 120-day rule does not apply to a petition to reform                            | Packard v. Packard                  |
+| The document is wrong by mistake, not wrongdoing   | The 120-day rule does not apply; a three-year limit does                           | Packard v. Packard                  |
 
 Filing is what stops the clock: not a letter, not a phone call, not serving the papers (Straley v. Gamble). Count from the day the notice was mailed, not the day you opened it (Probate Code § 1215). Wills and the one-year rule for claims against someone who has died are covered in [how long you have to contest a trust or will](/library/how-long-do-i-have-to-contest-a-trust-or-will-in-california/), and the [deadline wizard](/how-long-do-i-have/) will give you a date.
 
