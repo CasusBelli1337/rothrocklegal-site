@@ -38,7 +38,7 @@ The caregiver-turned-trustee has a second problem. A sole trustee covered by § 
 
 There is one escape hatch. An independent lawyer counsels your parent, with no heir or beneficiary present, about the gift and its consequences, looks for fraud or undue influence, and signs a certificate saying there was none. Do that and the presumption goes away (Probate Code § 21384).
 
-Read that certificate closely. In Estate of Winans, a man signed a new will a month before he died, with a new lawyer, leaving substantial property to his caregiver. The counseling behind the certificate took "no more than one to five minutes," others were in the room, and the certifying lawyer was named executor. The Court of Appeal found triable issues and sent the case back.
+Read that certificate closely. "Independent" has a statutory meaning: no legal, business, financial, professional, or personal relationship with the caregiver, and no trustee or executor role or payout under the document (Probate Code § 21370). A lawyer who is named executor in the same will, or who does business with the caregiver, is not independent. A certificate signed with the caregiver in the room fails the statute too (Probate Code § 21384), and the lawyer's file is where you prove it.
 
 ## What to do if a sibling steals your inheritance: prove it the Rice v. Clark way
 
@@ -48,7 +48,7 @@ But § 21382 turns off § 21380 and nothing else. Under Rice v. Clark, a presump
 
 In plain words, trust means your parent relied on the sibling as caregiver, bookkeeper, or holder of a power of attorney. Procurement means the sibling picked the lawyer, drove Dad there, or sat in the room. Undue benefit means the result breaks from the plan your parent kept for years and the sibling cannot explain why.
 
-Show those three and your sibling must prove the document was not procured by undue influence. That is how Hamlin v. Jendayi was won. A college professor went into hospice at a former student's home two months before she died, and there signed a trust naming the student trustee and sole beneficiary. Her sisters proved all three elements, and in October 2024 the Court of Appeal affirmed the judgment throwing the trust out.
+Show those three and your sibling must prove the document was not procured by undue influence. That flip is the whole game, and it is why the drafting lawyer's file and the phone records matter more than what anyone remembers.
 
 The statutory definition of undue influence is the other route: "excessive persuasion that causes another person to act or refrain from acting by overcoming that person's free will and results in inequity" (Welfare and Institutions Code § 15610.70(a)). Our guide to [undue influence in California](/library/undue-influence-california-what-it-is-and-how-to-prove-it/) covers its four factors.
 
@@ -111,7 +111,7 @@ No. Relatives within the fourth degree are exempt no matter how much care they g
 
 ### What is a certificate of independent review?
 
-A signed statement from an independent lawyer that he or she counseled your parent privately about the gift, looked for fraud or undue influence, and found none (Probate Code § 21384). Estate of Winans shows that a rushed or compromised certificate can be challenged.
+A signed statement from an independent lawyer that he or she counseled your parent privately about the gift, looked for fraud or undue influence, and found none (Probate Code § 21384). A certificate from a lawyer who was not independent, or who counseled your parent with the caregiver present, does not lift the presumption (Probate Code §§ 21370, 21384).
 
 ### Can you sue a sibling for inheritance in California?
 

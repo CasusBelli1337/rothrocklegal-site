@@ -22,13 +22,13 @@ Any duty broken is a breach of trust (Probate Code § 16400). So this list is al
 
 ## Loyalty means the trust never pays for anything of yours
 
-Administer the trust "solely in the interest of the beneficiaries" (Probate Code § 16002). Do not use trust property for your own profit, and do not take part in any deal where your interest runs against a beneficiary (Probate Code § 16004). If you are also a beneficiary, a transaction that leaves you ahead is presumed a breach, and you must prove it was fair (Probate Code § 16004). Trust property stays separate and titled as trust property (Probate Code § 16009).
+Administer the trust "solely in the interest of the beneficiaries" (Probate Code § 16002). Do not use trust property for your own profit, and do not take part in any deal where your interest runs against a beneficiary (Probate Code § 16004). Any deal between you and a beneficiary that leaves you ahead is presumed a breach, and you must prove it was fair (Probate Code § 16004). Trust property stays separate and titled as trust property (Probate Code § 16009).
 
 - Open a trust bank account under the trust's tax ID, never a joint account.
 - Pay nothing personal from the trust account, not even a car payment until the house sells.
 - Do not buy from, sell to, borrow from, or lend to the trust without informed written consent or a court order.
 
-The mistake is not theft. It is the trustee's own mortgage paid from the trust account. Mixing money turns an honest trustee into a suspected one, because the records can no longer prove you were honest.
+The mistake is the trustee's own mortgage paid from the trust account. Mixing money turns an honest trustee into a suspected one, because the records can no longer prove you were honest.
 
 ## Prudence means a written reason for every asset you keep or sell
 
@@ -63,7 +63,7 @@ The mistake is silence. Silence is the cheapest breach to commit and the most ex
 
 Of all the successor trustee duties California law imposes, four come due almost at once.
 
-1. Serve the notification by trustee within 60 days of the death on every beneficiary and every heir, with the boldface warning (Probate Code § 16061.7). Done right, it gives each recipient 120 days to contest the trust (Probate Code § 16061.8). See our guide to [serving the notification by trustee](/library/how-to-serve-notification-by-trustee-16061-7/).
+1. Serve the notification by trustee within 60 days of the death on every beneficiary and every heir, with the boldface warning (Probate Code § 16061.7). Done right, it gives each recipient 120 days to contest the trust, or 60 days from delivery of the trust terms inside that window if later (Probate Code § 16061.8). See our guide to [serving the notification by trustee](/library/how-to-serve-notification-by-trustee-16061-7/).
 2. Get a tax ID, open the trust account, and retitle every asset (Probate Code § 16009).
 3. Inventory everything with values and insure the real estate (Probate Code § 16006).
 4. Calendar the annual accounting (Probate Code § 16062) and write your first memo on what the trust holds and what you plan to do with each asset.
@@ -74,11 +74,11 @@ The duties of a trustee in California come with tools. Trustee responsibilities 
 
 ### Write down every decision and the reason
 
-Prudence is judged at the time, not by hindsight (Probate Code § 16051). A dated one-page memo on why you kept the rental or sold the stock is worth more than a good outcome. Good outcomes without a file look like luck.
+Prudence is judged at the time, not by hindsight (Probate Code § 16051). A dated one-page memo on why you kept the rental or sold the stock is worth more than a good outcome.
 
 ### A notice of proposed action before a sale or a big distribution
 
-Before you sell the Palo Alto house or make a large distribution, mail every current beneficiary a notice with the action, the reasons, and at least 45 days to object (Probate Code § 16502). No written objection in that window means no liability to any beneficiary for that action (Probate Code § 16503). It is not available for your own pay or your lawyer's fees (Probate Code § 16501).
+Before you sell the Palo Alto house or make a large distribution, mail a notice with the action, the reasons, and at least 45 days to object to every beneficiary who gets income now or would take principal if the trust ended today (Probate Code § 16502). No written objection in that window means no liability to any beneficiary for that action (Probate Code § 16503). It is not available for your own pay or your lawyer's fees (Probate Code § 16501).
 
 ### A petition for instructions when the siblings split
 
@@ -103,7 +103,7 @@ Many trusts say the trustee is not liable for good-faith mistakes. California ho
 
 ### Is there an official trustee duties checklist form in California?
 
-No. The duties sit in the Probate Code, starting at section 16000, and the court hands out no form. The checklist above is those statutes turned into steps.
+No. The duties sit in the Probate Code, starting at section 16000, and the court hands out no form.
 
 ### Do I have to hire a lawyer to be a trustee?
 

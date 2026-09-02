@@ -24,7 +24,7 @@ Around Silicon Valley most estates sit in living trusts, so the question that ma
 
 The Probate Code says "a trustee or beneficiary of a trust" may petition about the trust's internal affairs, including "the validity of a trust provision" (Probate Code § 17200). Read literally, that shuts out the child a late amendment cut out. In Barefoot v. Jennings the California Supreme Court held that someone removed by an amendment can challenge it as the product of incompetence, undue influence, or fraud.
 
-Heirs who were never named get in too. In Hamlin v. Jendayi the relatives who would have inherited with no trust at all were allowed to contest it. The trustee's own death notice must go to "each heir of the deceased settlor" (Probate Code § 16061.7), which makes no sense if heirs cannot contest.
+Heirs never named have a path too; the Supreme Court left the question open in Barefoot. The trustee's death notice must go to "each heir of the deceased settlor" (Probate Code § 16061.7), and the 120-day contest deadline runs against everyone served (Probate Code § 16061.8). A statute that tells heirs when to file assumes they can.
 
 Now the hard line. While the person who made the trust is alive and competent, the rights belong to that person, not to you (Probate Code § 15800). A beneficiary "lacks standing to challenge a trust" during that time, as the court put it in Drake v. Pinkham. Once she is no longer competent, the trustee owes you a copy of the trust and an accounting (Probate Code § 15800), and once she dies you can also sue the trustee for breaches committed while she was alive (Estate of Giraldin).
 
@@ -64,7 +64,7 @@ Fixing a drafting mistake is not a contest. If Dad wanted his sons to split the 
 
 2. **Serve notice.** Every trustee and beneficiary gets notice at least 30 days before the hearing (Probate Code § 17203). The other side files a written response. The first hearing is short; the judge sets a schedule and decides nothing.
 
-3. **Discovery.** Probate proceedings follow the civil discovery rules (Probate Code § 1000). The case gets built here: medical records, the drafting attorney's file, bank and phone records, and depositions of the caregiver and the notary. Typical: six to twelve months.
+3. **Discovery.** Probate proceedings follow the civil discovery rules (Probate Code § 1000). The case gets built here: medical records, the drafting attorney's file, bank and phone records, and depositions of the caregiver and the notary.
 
 4. **Settlement conference.** The Probate Division in San Jose runs an Early Settlement Conference Program: the parties sign a court form and a neutral from the court's roster sits everyone down (Probate Local Rule 3B). The rule says it is not a confidential mediation, so watch what you say in the room. Most contests I see settle here or soon after.
 

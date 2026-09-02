@@ -48,7 +48,7 @@ Two presumptions flip the burden onto the person who benefited:
 - **The common-law presumption**. Under Rice v. Clark, the burden shifts once you show three things. The beneficiary had a confidential relationship with the person who died, actively took part in procuring the will, and would benefit unduly from it.
 - **The statutory presumption**. A gift to the person who drafted the will, or to a care custodian of a dependent adult, is presumed to be the product of fraud or undue influence (Probate Code § 21380). A care custodian must disprove that by clear and convincing evidence; a drafter cannot rebut it at all (Probate Code § 21380). The escape hatch is a certificate of independent review from an independent lawyer who counseled the person alone (Probate Code § 21384).
 
-Estate of Winans shows how that plays out. A man of about 90 with a dementia diagnosis signed a new will a month before he died, leaving substantial property to the woman who ran his care home, despite a lawyer's certificate. The Court of Appeal found triable issues on the certificate, on undue influence, and on capacity, and sent the case back for trial.
+Read any certificate closely. The lawyer must be independent: no relationship with the beneficiary, and no trustee or executor role or payout under the document (Probate Code § 21370). The counseling must happen out of the presence of any heir or beneficiary and include a real look for fraud or undue influence (Probate Code § 21384). Skip those steps and the presumption stays.
 
 ## How to contest a will in California, step by step
 

@@ -22,10 +22,10 @@ One honest note. The judge in the Santa Clara County Probate Division will look 
 
 ## Probate Code 21380 does not reach a child, and here is who it does reach
 
-| Presumption                      | Who it reaches                                                                                                                                                            | How it is answered                                                                                                                                                                                          |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Statutory (Probate Code § 21380) | The drafter; a care custodian of a dependent adult, if the document was signed during the care or within 90 days; their close relatives, cohabitants, and employees | Off for relatives within the fourth degree (Probate Code § 21382) or with a certificate of independent review (Probate Code § 21384); otherwise rebuttable only by clear and convincing evidence |
-| Common law (Rice v. Clark)       | Anyone, including a child                                                                                                                                                 | Show an element is missing, or rebut it                                                                                                                                                  |
+| Presumption                      | Who it reaches                                                                                                                                                      | How it is answered                                                                                                                                                                                                               |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Statutory (Probate Code § 21380) | The drafter; a care custodian of a dependent adult, if the document was signed during the care or within 90 days; their close relatives, cohabitants, and employees | Off for relatives within the fourth degree (Probate Code § 21382) or with a certificate of independent review (Probate Code § 21384); otherwise rebuttable only by clear and convincing evidence, and conclusive for the drafter |
+| Common law (Rice v. Clark)       | Anyone, including a child                                                                                                                                           | Show an element is missing, or rebut it                                                                                                                                                                                          |
 
 A "care custodian" provides health or social services to a dependent adult (Probate Code § 21362). A longtime unpaid friend can fall outside it. A "dependent adult" is judged at the moment of signing: 65 or older and unable to meet basic needs, or having difficulty managing money or resisting fraud (Probate Code § 21366).
 
@@ -73,7 +73,7 @@ The accuser's side is in our article on [financial elder abuse of a parent](/lib
 
 Six sources:
 
-1. The drafting attorney's file and testimony: who called, who attended, what Mom said outside your presence. Estate of Winans shows the failure mode. The counseling "took no more than one to five minutes" with others in the room. The certifying lawyer was named executor, and summary judgment for the caregiver was reversed.
+1. The drafting attorney's file and testimony: who called, who attended, what Mom said outside your presence, and how long the lawyer spent with her alone. A five-minute meeting with a sibling in the room is the failure mode.
 2. A certificate of independent review, if one exists (Probate Code § 21384). An independent attorney counsels the parent "out of the presence of any heir or proposed beneficiary" and certifies the gift. It removes the statutory presumption, not the common-law one.
 3. Medical records near the signing date from Stanford, Kaiser, El Camino, Good Samaritan, or Valley Medical. A chart entry that week calling her alert and oriented beats any witness.
 4. Your parent's own words: emails, cards, voicemails.
@@ -123,7 +123,7 @@ Only if they prove financial elder abuse or a bad-faith taking (Probate Code § 
 
 ### What is a certificate of independent review, and does it protect me?
 
-It is a signed statement by an independent attorney who counseled your parent privately and found no fraud or undue influence (Probate Code § 21384). It removes the statutory presumption, not the common-law one, and a thin one can be attacked (Estate of Winans).
+It is a signed statement by an independent attorney who counseled your parent privately and found no fraud or undue influence (Probate Code § 21384). It removes the statutory presumption, not the common-law one, and one that fell short of the statute's terms can be attacked.
 
 ### Can I be sued for elder abuse if Mom was competent?
 

@@ -22,9 +22,9 @@ Here's the thing. Probate Code 16061.7 is an afternoon's work that decides wheth
 
 Three groups (Probate Code § 16061.7): each beneficiary of the trust, or of the part that became irrevocable; each heir of the settlor who died; and, for a charitable trust under its supervision, the Attorney General.
 
-Heir is the word that trips people. An heir is anyone who would inherit with no trust and no will at all (Probate Code § 44): for most Silicon Valley families the spouse and children, then parents, then siblings (Probate Code §§ 6401, 6402). The statute says "Each heir of the deceased settlor," so the daughter your father wrote out in 2021 gets the letter.
+An heir is anyone who would inherit with no trust and no will at all (Probate Code § 44): for most Silicon Valley families the spouse and children, then parents, then siblings (Probate Code §§ 6401, 6402). The statute says "Each heir of the deceased settlor," so the daughter your father wrote out in 2021 gets the letter.
 
-Skipping the disinherited child is the most common notice mistake I see. In Hamlin v. Jendayi the settlor's disinherited sisters had standing to contest the trust, and the court cited the duty to serve heirs as one reason. You may make "a good faith determination by any reasonable means" of who the heirs are (Probate Code § 16061.7); write down how you did it.
+Skipping the disinherited child is the most common notice mistake I see. The statute sends the 120-day warning to each heir, which assumes an heir can contest, and an heir never served has no clock running (Probate Code §§ 16061.7, 16061.8). You may make "a good faith determination by any reasonable means" of who the heirs are (Probate Code § 16061.7); write down how you did it.
 
 Two more rules. Since January 1, 2026, notice to someone who can represent and bind a beneficiary, such as a parent for a minor child or a conservator, "has the same effect as if notice were given directly to that represented person", absent a conflict of interest (Probate Code § 15804, rewritten by AB 565). And a trustee "is not liable to any person for serving or for not serving the notice" on extra people (Probate Code § 16061.7). When in doubt, serve.
 
@@ -66,9 +66,9 @@ Reading this on day 90? Send it today. Since 2023 the statute has said the clock
 
 What it does not fix is your exposure. A trustee who fails to serve a beneficiary "shall be responsible for all damages, attorney’s fees, and costs caused by the failure" unless the trustee made a reasonably diligent effort (Probate Code § 16061.9). The court will not ask whether you meant well. It will ask what you mailed, to whom, and when.
 
-Never serving is the worst case. Against a person never served, the 120-day rule has not started, and no published California appellate decision says what deadline applies instead; expect the other side to argue years, not days. In Hamlin the trustee did not even contest timeliness, apparently conceding that without the notice "the statute of limitations of section 16061.8 never began to run." The court did not decide the point.
+Never serving is the worst case. Section 16061.8 binds only "A person upon whom the notification by the trustee is served," so against a person never served the 120-day rule has not started, and no published California appellate decision says what deadline applies instead; expect the other side to argue years, not days.
 
-That is why the notice is a trustee's friend. Serve a clean notice with the trust enclosed on day 30, and four months later everyone you served is out of time (Probate Code § 16061.8); a late contest can even trigger a no-contest clause, as it did in Meiri v. Shamtoubi. A contest is brought when the petition is filed, not when it reaches you (Straley v. Gamble), so check the docket before you distribute.
+Serve a clean notice with the trust enclosed on day 30, and four months later everyone you served is out of time unless a defect in the notice stopped the clock (Probate Code § 16061.8); a late contest can even trigger a no-contest clause, as it did in Meiri v. Shamtoubi. A contest is brought when the petition is filed, not when it reaches you (Straley v. Gamble), so check the docket before you distribute.
 
 ## The mistakes that stop the clock, and the ones that do not
 
@@ -82,13 +82,13 @@ Now the second clock. A person who receives the trust terms during the 120 days 
 
 ## Key deadlines
 
-| Clock                                                        | Rule                                    | Authority                                 |
-| ------------------------------------------------------------ | --------------------------------------- | ----------------------------------------- |
-| 60 days after the death or the change of trustee             | Trustee serves the notice               | Probate Code § 16061.7                    |
-| 120 days from mailing                                        | Deadline to file a contest              | Probate Code § 16061.8                    |
-| 60 days from delivery of the trust terms inside the 120 days | Contest deadline, if later              | Probate Code § 16061.8                    |
-| While a contest window is open                               | Trustee may hold distributions          | Probate Code § 16061.9                    |
-| Never served                                                 | No 120-day clock; outer limit unsettled | Probate Code § 16061.8; Hamlin v. Jendayi |
+| Clock                                                        | Rule                                    | Authority              |
+| ------------------------------------------------------------ | --------------------------------------- | ---------------------- |
+| 60 days after the death or the change of trustee             | Trustee serves the notice               | Probate Code § 16061.7 |
+| 120 days from mailing                                        | Deadline to file a contest              | Probate Code § 16061.8 |
+| 60 days from delivery of the trust terms inside the 120 days | Contest deadline, if later              | Probate Code § 16061.8 |
+| While a contest window is open                               | Trustee may hold distributions          | Probate Code § 16061.9 |
+| Never served                                                 | No 120-day clock; outer limit unsettled | Probate Code § 16061.8 |
 
 The [deadline wizard](/how-long-do-i-have/) and [how long you have to contest](/library/how-long-do-i-have-to-contest-a-trust-or-will-in-california/) count the same dates from the beneficiary's side.
 

@@ -14,9 +14,9 @@ imageAlt: A kitchen table with a trust binder, a bank statement, and an unopened
 draft: true
 ---
 
-If a beneficiary is threatening to sue you as trustee, do these five things first: stop spending trust money on anything not routine, gather every record you have, answer any written request within 60 days, get your own lawyer, and send an accounting if you have not. Do them in that order. Do not fire back a letter, and do not pay a lawyer from the trust to fight your own corner until you know the rule on who pays (Probate Code § 15684).
+If a beneficiary is threatening to sue you as trustee, do these five things first: stop spending trust money on anything not routine, gather every record you have, answer any written request within 60 days, get your own lawyer, and send an accounting if you have not. Do not fire back a letter, and do not pay a lawyer from the trust to fight your own corner until you know the rule on who pays (Probate Code § 15684).
 
-Here's the thing. Most of the trustees I meet did not take anything. They said yes at a hospital bedside, never did this before, and made three mistakes that look terrible on paper: they went quiet, they let money mix, and they used the trust account as the family checkbook. A judge in the Santa Clara County Probate Division does not care that you meant well. The judge cares what your file shows.
+Here's the thing. Most of the trustees I meet did not take anything. They said yes at a hospital bedside, never did this before, and made three mistakes that look terrible on paper: they went quiet, they let money mix, and they used the trust account as the family checkbook. A judge in the Santa Clara County Probate Division does not care that you meant well, only what your file shows.
 
 ## A beneficiary is threatening to sue: what the judge will look at first
 
@@ -33,7 +33,7 @@ Trustee liability is personal. A court can order you to repay the trust's loss w
 
 ## The first seven days: stop, preserve, and answer in writing
 
-Stop the bleeding. No new distributions, no payments to yourself, no "loan" to a sibling, until you have advice. Routine bills, taxes, and insurance continue (Probate Code § 16243). If you have paid personal expenses from the trust, stop today and list every one; voluntary repayment beats a surcharge.
+No new distributions, no payments to yourself, no "loan" to a sibling, until you have advice. Routine bills, taxes, and insurance continue (Probate Code § 16243). If you have paid personal expenses from the trust, stop today and list every one; voluntary repayment beats a surcharge.
 
 Preserve everything: bank statements, the trust and every amendment, the deed, the emails, the texts. Civil discovery rules apply in probate court (Probate Code § 1000), and deleted texts are found.
 
@@ -55,11 +55,11 @@ So sign two engagement letters: trustee work, billed to the trust and listed in 
 
 ## Fix what can be fixed before anyone files
 
-A threat is a window: most of what a beneficiary wants can be given without a judge.
+A threat is a window: most of what a beneficiary wants needs no judge.
 
 Send the accounting. It must show receipts and disbursements, assets and liabilities, your compensation, and the agents you hired, plus two warnings the statute requires (Probate Code § 16063). One warning starts a three-year clock in your favor: a beneficiary who receives a written account that fairly discloses a problem has three years to sue over it (Probate Code § 16460). A misleading account buys nothing. See [how to prepare a trust accounting that holds up](/library/how-to-prepare-a-trust-accounting-california/).
 
-Use a notice of proposed action for the next big decision. Before selling the Palo Alto house or settling a claim, mail every current beneficiary a notice describing the action and the reasons, with at least 45 days to object (Probate Code § 16502). If no one objects in writing, you are not liable to any beneficiary for that action (Probate Code § 16503). It does not work for your own fees or your lawyer's (Probate Code § 16501).
+Use a notice of proposed action for the next big decision. Before selling the Palo Alto house or settling a claim, mail a notice describing the action and the reasons, with at least 45 days to object, to every beneficiary who gets income now or would take principal if the trust ended today (Probate Code § 16502). If no one objects in writing, you are not liable to any beneficiary for that action (Probate Code § 16503). It does not work for your own fees or your lawyer's (Probate Code § 16501).
 
 When the document is unclear, a petition for instructions (Probate Code § 17200) costs far less than a surcharge trial, and following the order is the best protection a trustee can have.
 

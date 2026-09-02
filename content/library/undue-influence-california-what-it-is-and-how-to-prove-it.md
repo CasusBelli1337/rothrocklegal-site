@@ -41,7 +41,7 @@ Section 15610.70 spells out the tactics. Read the list against what happened in 
 - **Affection, intimidation, or coercion.** Sudden devotion from a new friend, or threats to put a parent in a home.
 - **Haste and secrecy.** Property changes made in a hurry, "at inappropriate times and places," by someone with "claims of expertise" (same section). A new lawyer, a hospital-room signing, and nobody told the family until after the funeral.
 
-The classic undue influence trust amendment in Silicon Valley moves a Sunnyvale or Cupertino house to one person, weeks before death, through a lawyer the parent never used. Hamlin v. Jendayi (2024) shows the pattern. A college professor went into hospice at a former student's home two months before she died. The student held her power of attorney, controlled her food and care, and called a lawyer to draw up a trust naming the student sole beneficiary. The probate court found the professor vulnerable and completely dependent, voided the trust, and the Court of Appeal affirmed.
+The classic undue influence trust amendment in Silicon Valley moves a Sunnyvale or Cupertino house to one person, weeks before death, through a lawyer the parent never used. Run that pattern through the four factors. A parent in hospice, dependent on one helper for food and care, is vulnerable, and a helper who holds the power of attorney has apparent authority. Calling in a new lawyer and keeping the family out are tactics the statute names. A plan that hands everything to a newcomer is the inequitable result (Welfare and Institutions Code § 15610.70).
 
 ## The presumption of undue influence California law gives you
 
@@ -61,7 +61,7 @@ Once either presumption applies, the recipient must prove the document was not t
 
 An unequal estate plan, by itself. The statute says so: "Evidence of an inequitable result, without more, is not sufficient to prove undue influence" (Welfare and Institutions Code § 15610.70). A parent may leave more to the child who moved home and less to the one who calls at Christmas. The statutory presumption exempts relatives on purpose (Probate Code § 21382).
 
-Lack of capacity. That is a different claim with a different test. A parent can understand exactly what they are signing and still sign because someone overcame their will. In Hamlin the probate court found the professor did not lack capacity and still voided the trust. The two claims usually travel together; see our guide to [lack of testamentary capacity in California](/library/lack-of-testamentary-capacity-california/).
+Lack of capacity. That is a different claim with a different test. A parent can understand exactly what they are signing and still sign because someone overcame their will. The will statute lists undue influence as its own ground, apart from capacity (Probate Code § 6104). The two claims usually travel together; see our guide to [lack of testamentary capacity in California](/library/lack-of-testamentary-capacity-california/).
 
 ## How to prove undue influence in California: build the record
 
@@ -101,11 +101,11 @@ Yes. Spouses owe each other "the highest good faith and fair dealing" (Family Co
 
 ### Does a certificate of independent review end the case?
 
-No. A certificate is an independent lawyer's signed statement that they counseled your parent away from the beneficiary and found no fraud or undue influence. It only removes the statutory presumption (Probate Code § 21384); you can still prove undue influence the ordinary way, and the certificate itself can be attacked. In Estate of Winans the counseling took "no more than one to five minutes," others were in the room, and the lawyer was named executor, so the Court of Appeal found triable issues and reversed.
+No. A certificate is an independent lawyer's signed statement that they counseled your parent away from the beneficiary and found no fraud or undue influence. It only removes the statutory presumption (Probate Code § 21384); you can still prove undue influence the ordinary way, and the certificate itself can be attacked. The statute sets the terms: the lawyer must have no relationship with the beneficiary and no trustee or executor role or payout under the document (Probate Code § 21370), and the counseling must happen out of the presence of any heir or beneficiary (Probate Code § 21384). A meeting with the beneficiary in the room does not meet them.
 
 ### What if my parent seemed fine?
 
-They can be fine and still be a victim. Capacity asks whether your parent understood the document; undue influence asks whether the choice was really theirs. In Hamlin v. Jendayi the probate court found the professor did not lack capacity and still voided the trust. Vulnerability under the statute includes illness, isolation, emotional distress, and dependency; none requires dementia (Welfare and Institutions Code § 15610.70). The people who say a parent seemed fine are often the ones who were kept away.
+They can be fine and still be a victim. Capacity asks whether your parent understood the document; undue influence asks whether the choice was really theirs. Vulnerability under the statute includes illness, isolation, emotional distress, and dependency; none requires dementia (Welfare and Institutions Code § 15610.70). The people who say a parent seemed fine are often the ones who were kept away.
 
 ### How long do I have to bring an undue influence claim?
 

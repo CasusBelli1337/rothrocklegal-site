@@ -76,7 +76,7 @@ If you win, the costs are generally chargeable to the trust, because clearing th
 
 Paying your lawyer from the trust while the case is pending is the trap. The court decides case by case, and interim fee awards "will seldom be justified" where the trust is silent on them and the trustee's conduct is the issue (People ex rel. Harris v. Shine). Expect to justify every interim payment; it may be ordered repaid with interest, and your own compensation cut or denied (Probate Code § 16440; Probate Code § 16420(a)(7)). Our [attorney fees article](/library/can-a-trustee-use-trust-funds-to-pay-attorney-fees-california/) has the full table.
 
-It runs the other way too. A beneficiary who files in bad faith against the settlor's intent can be ordered to pay your fees (Probate Code § 15642(d)). A probate court can also charge the fees an unfounded, bad-faith proceeding caused against that beneficiary's share of the trust (Rudnick v. Rudnick). The charge reaches their share of the trust, not their own pocket (Pizarro v. Reynoso).
+It runs the other way too. A beneficiary who files in bad faith against the settlor's intent can be ordered to pay your fees (Probate Code § 15642(d)). A probate court can also charge the fees an unfounded, bad-faith proceeding caused against that beneficiary's share of the trust (Rudnick v. Rudnick). Under the court's equitable power that charge reaches their share of the trust, not their own pocket (Pizarro v. Reynoso); the statutes above can reach further.
 
 ## If you would rather resign
 

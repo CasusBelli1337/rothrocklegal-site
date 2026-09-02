@@ -27,7 +27,7 @@ The duty is one sentence: the trustee "has a duty to keep the beneficiaries of t
 | Request               | Who can make it                          | What you must give                                                            | Rule                             |
 | --------------------- | ---------------------------------------- | ----------------------------------------------------------------------------- | -------------------------------- |
 | The copy of the trust | Any beneficiary; after a death, any heir | The terms in effect at the death: instrument, amendments, signatures          | Probate Code §§ 16060.7, 16061.5 |
-| Information           | Any beneficiary, on reasonable request   | Administration information relevant to that beneficiary's share             | Probate Code § 16061             |
+| Information           | Any beneficiary, on reasonable request   | Administration information relevant to that beneficiary's share               | Probate Code § 16061             |
 | An account            | Beneficiaries owed a distribution now    | Six items, at least yearly, when the trust ends, and when the trustee changes | Probate Code §§ 16062, 16063     |
 
 An "heir" is anyone who would inherit under California law with no will or trust, including the child your parent wrote out. A disinherited child who asks gets the copy (Probate Code § 16061.5); your own notification by trustee promised it (Probate Code § 16061.7(g)(5)).
@@ -50,7 +50,7 @@ A trustee who never serves it "shall be responsible for all damages, attorney’
 
 The revocable years. While your parent was competent and could revoke the trust, "The duties of the trustee are owed to the person holding the power to revoke" (Probate Code § 15800). Nothing is owed "for the period when the trust may be revoked", or "If the beneficiary and the trustee are the same person" (Probate Code § 16069).
 
-Two cautions. If your parent was alive but incompetent, the duties shifted to the beneficiaries who would take, 60 days after the trustee learned of it (Probate Code § 15800(b)). Those sections changed in 2022 and 2023, so ask a lawyer which version applies. And after the settlor dies, the beneficiaries can sue over a trustee's breach of the duties owed to the settlor while alive (Estate of Giraldin), so keep the records.
+Two cautions. If your parent was alive but incompetent, the trustee owed the beneficiaries who would take a copy of the trust within 60 days of learning it, and accounts and information after that (Probate Code § 15800(b)). Those sections changed in 2022 and 2023, so ask a lawyer which version applies. And after the settlor dies, the beneficiaries can sue over a trustee's breach of the duties owed to the settlor while alive (Estate of Giraldin), so keep the records.
 
 Your lawyer's advice. "We conclude the trustee may assert the attorney-client privilege against the beneficiaries" (Wells Fargo Bank v. Superior Court). But a successor trustee inherits the privilege over administration advice (Moeller v. Superior Court). Advice about protecting yourself stays yours only if it came from "a separate lawyer" paid "out of its personal funds". [Pay that lawyer yourself](/library/can-a-trustee-use-trust-funds-to-pay-attorney-fees-california/).
 
@@ -68,7 +68,7 @@ That second statement works for you. A written report "that adequately discloses
 
 ## Stonewall and you get a Probate Code 17200 petition, and a court that reviews everything
 
-Day 61 in Silicon Valley: the demand came from the sibling in Seattle who has not seen a statement since the funeral. Their lawyer files a Probate Code 17200 petition in the Santa Clara County Superior Court's Probate Division at 191 N. First Street in San Jose. It asks the court to compel the copy, the information, and the account (Probate Code § 17200(b)(7)). Your silence is Exhibit A.
+Day 61 in Silicon Valley: the demand came from the sibling in Seattle who has not seen a statement since the funeral. Their lawyer files a Probate Code 17200 petition in the Santa Clara County Superior Court's Probate Division at 191 N. First Street in San Jose. It asks the court to compel the copy, the information, and the account (Probate Code § 17200(b)(7)).
 
 Then it grows. The court's powers include "Settling the accounts and passing upon the acts of the trustee, including the exercise of discretionary powers" (Probate Code § 17200(b)(5)). A trustee who "fails or declines to act" can be removed (Probate Code § 15642).
 
@@ -76,12 +76,12 @@ Fees follow bad faith both ways. A contest of your account "without reasonable c
 
 ## Key deadlines
 
-| Event                                              | Time                                                                                | Rule                       |
-| -------------------------------------------------- | ----------------------------------------------------------------------------------- | -------------------------- |
-| A settlor's death makes the trust irrevocable      | Serve the notification by trustee within 60 days                                    | Probate Code § 16061.7     |
-| The notification is served                         | 120 days to contest (or 60 days from delivery of the terms, if later)       | Probate Code § 16061.8     |
-| A written request for information or an account    | 60 days, if nothing went out in the prior six months                                 | Probate Code § 17200(b)(7) |
-| A beneficiary receives a report disclosing a claim | 3 years to sue on it                                                                | Probate Code § 16460       |
+| Event                                              | Time                                                                  | Rule                       |
+| -------------------------------------------------- | --------------------------------------------------------------------- | -------------------------- |
+| A settlor's death makes the trust irrevocable      | Serve the notification by trustee within 60 days                      | Probate Code § 16061.7     |
+| The notification is served                         | 120 days to contest (or 60 days from delivery of the terms, if later) | Probate Code § 16061.8     |
+| A written request for information or an account    | 60 days, if nothing went out in the prior six months                  | Probate Code § 17200(b)(7) |
+| A beneficiary receives a report disclosing a claim | 3 years to sue on it                                                  | Probate Code § 16460       |
 
 ## What to do next
 

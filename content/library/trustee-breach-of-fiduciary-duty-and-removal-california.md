@@ -16,7 +16,7 @@ draft: true
 
 How to remove a trustee in California comes down to one filing: a petition in the probate court under Probate Code § 17200. It asks the judge to remove the trustee, order them to repay what they took, and cut their fees. The court can do all three (Probate Code §§ 15642, 16420). It can also suspend the trustee's powers while the case is pending, so a sibling who is helping themselves does not keep the checkbook until trial.
 
-Here's the thing families miss. Being a trustee is not ownership. A trustee holds your parent's property for the people named in the trust, and the trustee fiduciary duty California law imposes has four parts: loyalty, prudence, impartiality, and information. Break one and the law calls it a breach of trust (Probate Code § 16400). The money claims run on a three-year clock (Probate Code § 16460), and it may already be ticking.
+Being a trustee is not ownership. A trustee holds your parent's property for the people named in the trust, and the trustee fiduciary duty California law imposes has four parts: loyalty, prudence, impartiality, and information. Break one and the law calls it a breach of trust (Probate Code § 16400). The money claims run on a three-year clock (Probate Code § 16460), and it may already be ticking.
 
 ## A trustee owes you four duties, and here is what breaking each one looks like
 
@@ -94,9 +94,9 @@ If the trust names a backup or a method for picking one, that controls. If not, 
 
 ## What to do next
 
-1. Write down dates, amounts, and who said what. Keep every letter, statement, and text from the trustee.
+1. Write down dates, amounts, and who said what. Keep every letter, statement, and text.
 2. Ask in writing, by mail and email, for a copy of the trust and a full accounting. If 60 days pass with nothing, and nothing came in the prior six months, the court can order both (Probate Code § 17200).
-3. Pull deeds from the county recorder, bank statements, and the trustee's emails.
+3. Pull deeds, bank statements, and the trustee's emails.
 4. Calendar the clocks: three years from any written report (Probate Code § 16460), one year from the trustee's death if the trustee died. The [deadline wizard](/how-long-do-i-have/) will give you a date. If money was taken from your parent while alive, it may also be [financial elder abuse](/library/financial-elder-abuse-of-a-parent-california/).
 5. Do not sign a receipt, release, or waiver until a lawyer has read it. A written waiver of accountings sticks until you withdraw it, and then only going forward (Probate Code § 16064).
 6. Call a trust litigation lawyer this week, not next quarter.
@@ -113,7 +113,7 @@ Yes. The court can remove a named trustee on a beneficiary's petition (Probate C
 
 ### Who pays the trustee's lawyer?
 
-Trustees commonly pay their lawyer from the trust while the case is pending; whether it comes back is decided at the end. The court can reduce or deny the trustee's compensation (Probate Code § 16420). A removed disqualified trustee bears all costs including attorney's fees, and a beneficiary who files in bad faith can be ordered to pay the trustee's fees (Probate Code § 15642).
+Trustees often pay their lawyer from the trust, but the court can order it repaid, and interim fees are seldom approved when the trustee's own conduct is the issue (People ex rel. Harris v. Shine). The court can reduce or deny the trustee's compensation (Probate Code § 16420). A removed disqualified trustee bears the costs and fees, and a beneficiary who files in bad faith can be ordered to pay the trustee's fees (Probate Code § 15642).
 
 ### Can the trustee be made to pay back money personally?
 
