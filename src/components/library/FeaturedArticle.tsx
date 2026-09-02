@@ -6,8 +6,14 @@ import { asset } from '@/config/site';
 import type { LibraryListItem } from '@/lib/library/index-item';
 import { CardMeta } from './LibraryCard';
 
+interface FeaturedArticleProps {
+  item: LibraryListItem;
+  /** Preload the image; off for a lens variant that is hidden by default. */
+  priority?: boolean;
+}
+
 /** The highlight card at the top of the library (LIBRARY-SPEC §3.2). */
-export function FeaturedArticle({ item }: { item: LibraryListItem }) {
+export function FeaturedArticle({ item, priority = true }: FeaturedArticleProps) {
   return (
     <Link
       href={`/library/${item.slug}/`}
@@ -18,7 +24,7 @@ export function FeaturedArticle({ item }: { item: LibraryListItem }) {
           src={asset(item.image)}
           alt=""
           fill
-          priority
+          priority={priority}
           sizes="(max-width: 1024px) 100vw, 720px"
           className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
         />

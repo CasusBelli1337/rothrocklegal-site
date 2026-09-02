@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { renderVariants, Slot } from '@/components/lens/Slot';
 import { FeaturedArticle } from '@/components/library/FeaturedArticle';
 import { LibraryClient } from '@/components/library/LibraryClient';
 import { WizardCard } from '@/components/library/WizardCard';
@@ -7,7 +8,13 @@ import { Container } from '@/components/ui/Container';
 import { CtaBand } from '@/components/ui/CtaBand';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { getArticles, getCategoriesWithCounts, getFeatured } from '@/lib/library/articles';
+import { lensConfig } from '@/config/lens';
+import {
+  getArticles,
+  getCategoriesWithCounts,
+  getFeatured,
+  type LibraryArticle,
+} from '@/lib/library/articles';
 import { toListItem } from '@/lib/library/index-item';
 import { pageMetadata } from '@/lib/seo/metadata';
 
@@ -17,6 +24,18 @@ export const metadata: Metadata = pageMetadata({
     'Plain-English answers about deadlines, trust and will contests, undue influence, trustees, and elder financial abuse from Rothrock Legal in San Jose.',
   path: '/library/',
 });
+
+/** The featured card per lens (docs/LENS.md §4g): the trustee anchor under the trustee lens, the deadlines anchor otherwise. */
+function FeaturedByLens({ featured }: { featured: LibraryArticle }) {
+  const trustee = getFeatured(lensConfig.featuredSlug.trustee) ?? featured;
+  const variants = renderVariants(
+    { neutral: featured, trustee, beneficiary: featured },
+    (article: LibraryArticle) => (
+      <FeaturedArticle item={toListItem(article)} priority={article === featured} />
+    ),
+  );
+  return <Slot name="library-featured" as="div" className="h-full" variants={variants} />;
+}
 
 export default function LibraryPage() {
   const items = getArticles().map(toListItem);
@@ -55,7 +74,7 @@ export default function LibraryPage() {
           <Reveal className="grid gap-6 lg:grid-cols-5">
             {featured && (
               <div className="lg:col-span-3">
-                <FeaturedArticle item={toListItem(featured)} />
+                <FeaturedByLens featured={featured} />
               </div>
             )}
             <div className={featured ? 'lg:col-span-2' : 'lg:col-span-5'}>

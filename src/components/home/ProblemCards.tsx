@@ -1,5 +1,7 @@
 import Link from 'next/link';
+import type { CSSProperties } from 'react';
 import { oddLastSpan } from '@/lib/grid';
+import { LENS_ORDERED_CLASS, lensOrderStyle } from '@/lib/lens/order';
 import { bindSectionSigns } from '@/lib/typography';
 import {
   ArrowRightIcon,
@@ -15,10 +17,13 @@ import {
   ShieldIcon,
   UsersIcon,
 } from '@/components/icons';
+import { Slot } from '@/components/lens/Slot';
 import { Card } from '@/components/ui/Card';
 import { Container } from '@/components/ui/Container';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
+import { lensConfig } from '@/config/lens';
+import { lensCopy } from '@/config/lens-copy';
 import {
   getPracticeArea,
   practiceHref,
@@ -40,7 +45,11 @@ const icons: Record<PracticeIcon, (p: { className?: string }) => React.ReactNode
   layers: LayersIcon,
 };
 
-/** Card order is fixed by HOMEPAGE-SPEC §3; the trustee card (the other side of the table) comes last. */
+/**
+ * Card order is fixed by HOMEPAGE-SPEC §3; the trustee card (the other side of
+ * the table) comes last in the HTML. Under the trustee lens CSS `order` moves
+ * it first (lensConfig.cardsFirst) without re-rendering.
+ */
 const ORDER = [
   'trust-contests',
   'trust-accounting-disputes',
@@ -53,12 +62,24 @@ const ORDER = [
   'for-trustees',
 ];
 
-export function ProblemCard({ area, className = '' }: { area: PracticeArea; className?: string }) {
+interface ProblemCardProps {
+  area: PracticeArea;
+  className?: string;
+  style?: CSSProperties;
+  lensEvent?: string;
+}
+
+export function ProblemCard({ area, className = '', style, lensEvent }: ProblemCardProps) {
   const card = area.card;
   if (!card) throw new Error(`Practice area "${area.slug}" has no homepage card`);
   const Icon = icons[card.icon];
   return (
-    <Card href={card.href ?? practiceHref(area)} className={`flex h-full flex-col ${className}`}>
+    <Card
+      href={card.href ?? practiceHref(area)}
+      className={`flex h-full flex-col ${className}`}
+      style={style}
+      lensEvent={lensEvent}
+    >
       <Icon className="h-6 w-6 text-brass-500" />
       <h3 className="mt-4 font-sans text-h4 text-ink">&ldquo;{card.headline}&rdquo;</h3>
       <p className="mt-2 flex-1 text-small text-ink-3">{bindSectionSigns(card.answer)}</p>
@@ -73,7 +94,6 @@ export function ProblemCard({ area, className = '' }: { area: PracticeArea; clas
 export function ProblemCards() {
   const areas = ORDER.map(getPracticeArea);
   if (areas.length !== 9) throw new Error('Homepage expects 9 problem cards');
-  const complex = getPracticeArea('complex-estates');
   return (
     <section className="py-16 lg:py-24">
       <Container>
@@ -89,18 +109,18 @@ export function ProblemCards() {
             <ProblemCard
               key={area.slug}
               area={area}
-              className={oddLastSpan(i, areas.length, 'xl')}
+              className={`${LENS_ORDERED_CLASS} ${oddLastSpan(i, areas.length, 'xl')}`}
+              style={lensOrderStyle(area.slug, ORDER, lensConfig.cardsFirst)}
+              lensEvent={`card:${area.slug}`}
             />
           ))}
         </Reveal>
         <p className="mt-8 text-small text-ink-3">
-          Multiple properties, an LLC, a family business?{' '}
-          <Link
-            href={practiceHref(complex)}
-            className="font-medium text-maroon-700 underline underline-offset-3"
-          >
-            We handle complex estates.
-          </Link>
+          <Slot
+            name="complex-line"
+            variants={lensCopy.complexLine}
+            linkClassName="font-medium text-maroon-700 underline underline-offset-3"
+          />
         </p>
         <p className="mt-2 text-small text-ink-3">
           Business or partnership dispute instead?{' '}

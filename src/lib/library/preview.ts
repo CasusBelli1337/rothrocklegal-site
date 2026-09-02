@@ -16,12 +16,17 @@ export function getLibraryItems(): LibraryListItem[] {
 export interface PreviewOptions {
   /** Only these categories (any of). */
   categories?: readonly LibraryCategory[];
+  /** Slugs moved to the front, in this order, when they are in the pool. */
+  pinned?: readonly string[];
 }
 
 /** Newest items outside Technology & the Law (LIBRARY-SPEC §8), optionally limited to categories. */
 export function getLibraryPreview(limit: number, options: PreviewOptions = {}): LibraryListItem[] {
-  return getLibraryItems()
+  const pool = getLibraryItems()
     .filter((item) => item.category !== TECH_CATEGORY)
-    .filter((item) => !options.categories || options.categories.includes(item.category))
-    .slice(0, limit);
+    .filter((item) => !options.categories || options.categories.includes(item.category));
+  const pinned = (options.pinned ?? [])
+    .map((slug) => pool.find((item) => item.slug === slug))
+    .filter((item): item is LibraryListItem => item !== undefined);
+  return [...pinned, ...pool.filter((item) => !pinned.includes(item))].slice(0, limit);
 }

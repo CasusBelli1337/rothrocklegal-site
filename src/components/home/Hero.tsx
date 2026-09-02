@@ -1,9 +1,11 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import { LensSwitchLink } from '@/components/lens/LensSwitchLink';
+import { renderVariants, Slot } from '@/components/lens/Slot';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Eyebrow';
+import { lensCopy, type LensSwitch } from '@/config/lens-copy';
 import { asset, consultCta, noteCta } from '@/config/site';
 
 const chips: {
@@ -32,7 +34,20 @@ const chips: {
   { label: <>Santa Clara County Superior Court &ndash; Probate Division</> },
 ];
 
-/** HOMEPAGE-SPEC §1: 7/5 split, photo first on mobile, chips scroll in one row. */
+const heroLink = 'font-medium text-white underline underline-offset-3 hover:text-white/90';
+const hatchLink =
+  'text-body font-medium text-white/75 underline underline-offset-3 transition-colors hover:text-white';
+
+/** The escape hatch (docs/LENS.md §4i): one small link, only under a framed lens, that flips it to the other side. */
+const switchVariants = renderVariants(lensCopy.heroSwitch, (link: LensSwitch | null) =>
+  link ? (
+    <LensSwitchLink to={link.to} href={link.href} className={hatchLink}>
+      {link.label}
+    </LensSwitchLink>
+  ) : null,
+);
+
+/** HOMEPAGE-SPEC §1: 7/5 split, photo first on mobile, chips scroll in one row. Title and sub-line are lens slots. */
 export function Hero() {
   return (
     <section className="band-maroon">
@@ -42,20 +57,11 @@ export function Hero() {
             Trust &amp; estate litigation &middot; San Jose &amp; the Bay Area
           </Eyebrow>
           <h1 className="mt-5 font-serif text-display text-white">
-            We handle trust and will disputes for <em className="em-word">families</em> in San Jose
-            and the Bay Area.
+            <Slot name="hero-title" variants={lensCopy.heroTitle} />
           </h1>
           <p className="mt-6 max-w-[38rem] text-lead text-white/80">
-            A sibling changed the trust. The trustee won&rsquo;t show the accounting. Someone got to
-            Dad before he died. We represent beneficiaries who were cut out and trustees who are
-            being accused. Deadlines can be as short as 120 days &ndash;{' '}
-            <Link
-              href="/how-long-do-i-have/"
-              className="font-medium text-white underline underline-offset-3 hover:text-white/90"
-            >
-              check yours before it runs
-            </Link>
-            .
+            <Slot name="hero-sub" variants={lensCopy.heroSub} linkClassName={heroLink} />{' '}
+            <Slot name="hero-switch" variants={switchVariants} />
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button variant="inverse" href={consultCta.href}>

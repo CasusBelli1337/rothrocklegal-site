@@ -229,11 +229,14 @@ export function getCategoriesWithCounts(): CategoryCount[] {
   }));
 }
 
-/** The pinned anchor article when present, else the newest non-tech article (published first). */
-export function getFeatured(): LibraryArticle | undefined {
+/** The preferred slug when present (the deadlines anchor by default), else the newest non-tech article (published first). */
+export function getFeatured(preferredSlug: string = FEATURED_SLUG): LibraryArticle | undefined {
   const articles = getArticles();
   const nonTech = articles.filter((a) => a.category !== TECH_CATEGORY);
   return (
-    articles.find((a) => a.slug === FEATURED_SLUG) ?? nonTech.find((a) => !a.draft) ?? nonTech[0]
+    articles.find((a) => a.slug === preferredSlug) ??
+    articles.find((a) => a.slug === FEATURED_SLUG) ??
+    nonTech.find((a) => !a.draft) ??
+    nonTech[0]
   );
 }

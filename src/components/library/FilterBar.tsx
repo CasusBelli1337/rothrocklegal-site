@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { CloseIcon } from '@/components/icons';
+import { useLens } from '@/lib/lens/useLens';
 import type { CategoryCount } from '@/lib/library/articles';
 
 interface FilterBarProps {
@@ -60,6 +61,12 @@ function CategoryChips({
   onCategory,
 }: Pick<FilterBarProps, 'categories' | 'category' | 'onCategory'>) {
   const rowRef = useRef<HTMLDivElement>(null);
+  // A category chip is a small lens signal (docs/LENS.md); the search stays exactly as it was.
+  const { record } = useLens();
+  const pick = (slug: string) => {
+    record(`chip:${slug}`);
+    onCategory(slug);
+  };
 
   // On phones the chips scroll sideways; a deep link (?category=...) must show its chip.
   // Horizontal scroll only, so the page itself never jumps on load.
@@ -88,7 +95,7 @@ function CategoryChips({
         {categories
           .filter((c) => c.count > 0)
           .map((c) => (
-            <Chip key={c.slug} active={category === c.slug} onClick={() => onCategory(c.slug)}>
+            <Chip key={c.slug} active={category === c.slug} onClick={() => pick(c.slug)}>
               {c.category}
             </Chip>
           ))}

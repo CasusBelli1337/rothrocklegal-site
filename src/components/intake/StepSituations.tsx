@@ -1,8 +1,12 @@
 'use client';
 
+import { useEffect } from 'react';
 import { CheckIcon } from '@/components/icons';
+import { lensConfig } from '@/config/lens';
 import { SITUATIONS, type Relationship, type SituationKey } from '@/lib/intake/contract';
 import { RELATIONSHIP_OPTIONS } from '@/lib/intake/copy';
+import { claimSessionFlag } from '@/lib/lens/store';
+import { useLens } from '@/lib/lens/useLens';
 import { Field, SelectInput } from './FormFields';
 import { StepFrame } from './StepFrame';
 import type { StepProps } from './step-props';
@@ -40,15 +44,26 @@ function SituationCard({
   );
 }
 
-/** Step 2: the nine situations as multi-select cards, plus the relationship. */
+/** Step 2: the situations as multi-select cards, plus the relationship. Both feed the lens (docs/LENS.md §2). */
 export function StepSituations({ intake }: StepProps) {
   const { situations, relationship } = intake.state.answers;
-  const toggle = (key: SituationKey) =>
-    intake.patchAnswers({
-      situations: situations.includes(key)
-        ? situations.filter((k) => k !== key)
-        : [...situations, key],
+  const { lens, record } = useLens();
+  const { patchAnswers } = intake;
+  const preselect = lensConfig.intakePreselect[lens];
+
+  // A trustee-lens visitor finds their situation already ticked (once per tab session); it stays editable.
+  useEffect(() => {
+    if (!preselect || situations.length > 0) return;
+    if (claimSessionFlag(lensConfig.seededKey)) patchAnswers({ situations: [...preselect] });
+  }, [preselect, situations.length, patchAnswers]);
+
+  const toggle = (key: SituationKey) => {
+    const adding = !situations.includes(key);
+    if (adding) record(`intake:situation:${key}`);
+    patchAnswers({
+      situations: adding ? [...situations, key] : situations.filter((k) => k !== key),
     });
+  };
 
   return (
     <StepFrame intake={intake}>
@@ -71,7 +86,10 @@ export function StepSituations({ intake }: StepProps) {
           <SelectInput<Relationship>
             id="relationship"
             value={relationship ?? ''}
-            onChange={(value) => intake.patchAnswers({ relationship: value || undefined })}
+            onChange={(value) => {
+              if (value) record(`wizard:relationship:${value}`);
+              patchAnswers({ relationship: value || undefined });
+            }}
             options={RELATIONSHIP_OPTIONS}
           />
         </Field>
