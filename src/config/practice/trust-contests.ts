@@ -5,9 +5,9 @@ export const trustContests: PracticeArea = {
   parent: "trust-litigation",
   title: "Trust contests",
   headline: "Someone changed the trust, and it doesn’t add up.",
-  seoTitle: "Trust Contest Attorney in San Jose",
+  seoTitle: "Trust Contest Lawyer in San Jose & Santa Clara County",
   description:
-    "How to contest a trust in California: the grounds, the 120-day deadline after the trustee's notice, and how we handle trust contests in San Jose.",
+    "Trust contest lawyer in San Jose. The grounds to contest a California trust, the 120-day deadline after the trustee's notice, and what a contest takes.",
   summary:
     "You can contest a California trust if it was changed through undue influence, fraud, forgery, " +
     "or by someone who lacked capacity. The deadline is usually 120 days from the trustee’s " +

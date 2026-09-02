@@ -8,7 +8,7 @@ author: arthur-rothrock
 category: For Trustees
 tags: trust accounting, trustee accounting, probate code 16062, trustee, San Jose
 primaryKeyword: trust accounting requirements
-secondaryKeywords: trustee accounting, probate code 16062, probate code 16063, probate code 1061, trust accounting california
+secondaryKeywords: trustee accounting, probate code 16062, probate code 16063, probate code 1061, trust accounting california, trust accounting format
 image: /images/library/how-to-prepare-a-trust-accounting-california.webp
 imageAlt: A trustee's desk with a bound accounting, a stack of bank statements, a calculator, and a printed summary page with matching totals
 draft: true
@@ -43,7 +43,7 @@ Every account "furnished pursuant to Section 16062" must contain six items (Prob
 
 Item 4 means your sister's husband who manages the Sunnyvale rental gets named, with his fee. Leaving him out makes the account look like it is hiding something. And "All accounts filed to be approved by a court shall be presented in the manner provided in" the Probate Code's chapter on accounts (Probate Code § 16063), which is the court format.
 
-## The court format: a summary that balances, plus schedules
+## The trust accounting format the court requires: a summary that balances, plus schedules
 
 "This chapter governs all accounts to be filed with the court." (Probate Code § 1060.) You may never file, but it is the shape a judge expects.
 

@@ -5,7 +5,7 @@ export const forTrustees: PracticeArea = {
   parent: 'trust-litigation',
   title: 'Representing trustees',
   headline: "You're the trustee, and now you're the one being accused.",
-  seoTitle: 'Trustee Defense Attorney in San Jose',
+  seoTitle: 'Trustee Attorney in San Jose – Defense for Family Trustees',
   description:
     'A beneficiary wants an accounting, your removal, or your money. We defend family-member trustees in Santa Clara County. In good faith, the trust can pay.',
   summary:

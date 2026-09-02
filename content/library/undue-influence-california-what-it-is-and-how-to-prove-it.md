@@ -8,7 +8,7 @@ author: arthur-rothrock
 category: Undue Influence & Capacity
 tags: undue influence, trust contest, will contest, Probate Code 21380, elder financial abuse, San Jose
 primaryKeyword: undue influence California
-secondaryKeywords: what is undue influence, presumption of undue influence California, how to prove undue influence in California, burden of proof for undue influence in California, undue influence trust amendment
+secondaryKeywords: what is undue influence, presumption of undue influence California, how to prove undue influence, burden of proof for undue influence in California, undue influence trust amendment
 image: /images/library/undue-influence-california-what-it-is-and-how-to-prove-it.webp
 imageAlt: An elderly woman's hand signing a document at a kitchen table while a younger hand steadies the pen
 draft: true

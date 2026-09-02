@@ -8,13 +8,13 @@ author: arthur-rothrock
 category: Probate Process
 tags: Santa Clara County, probate court, San Jose, trust litigation, timeline, cost
 primaryKeyword: Santa Clara County probate court
-secondaryKeywords: trust litigation Santa Clara County, probate court San Jose, how long does trust litigation take, how much does it cost to contest a trust, trust litigation attorney San Jose
+secondaryKeywords: trust litigation Santa Clara County, probate court San Jose, how long does trust litigation take, how much does it cost to contest a trust, Santa Clara probate court
 image: /images/library/trust-and-estate-litigation-in-santa-clara-county.webp
 imageAlt: The Downtown Superior Court building at 191 North First Street in San Jose, where the Probate Division hears trust and estate cases
 draft: true
 ---
 
-Trust and estate fights from San Jose, Sunnyvale, Cupertino, and the rest of Silicon Valley belong in the Santa Clara County probate court. That is the Probate Division of the Santa Clara County Superior Court, at 191 N. First Street in San Jose. It hears [trust contests](/library/how-to-contest-a-trust-in-california/), [will contests](/library/how-to-contest-a-will-in-california/), trustee removals, accounting disputes, and petitions to get back property taken from a trust or estate. A judge decides, not a jury.
+Trust and estate fights from San Jose, Sunnyvale, Cupertino, and the rest of Silicon Valley belong in the Santa Clara County probate court. That is the Probate Division of the Santa Clara County Superior Court (most people just say the Santa Clara probate court), at 191 N. First Street in San Jose. It hears [trust contests](/library/how-to-contest-a-trust-in-california/), [will contests](/library/how-to-contest-a-will-in-california/), trustee removals, accounting disputes, and petitions to get back property taken from a trust or estate. A judge decides, not a jury.
 
 How long, and how much? In my experience a contested case that settles runs six to twelve months. One that goes to trial typically takes twelve to twenty-four months, and cost follows the same curve. Those are typical ranges, not promises.
 

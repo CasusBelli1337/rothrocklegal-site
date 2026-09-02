@@ -8,7 +8,7 @@ export const complexEstates: PracticeArea = {
     'Multiple properties, an LLC, a family business, five siblings, and a trust that says one thing while the deeds say another.',
   seoTitle: 'Complex & High-Value Estate Litigation Attorney in San Jose',
   description:
-    'Multi-property estates, LLCs and family businesses held in trust, millions at issue. Complex trust and estate litigation in San Jose and on the Peninsula.',
+    'Several properties, an LLC, a family business in trust, millions at issue. Complex trust and estate litigation in San Jose, Palo Alto, and the Peninsula.',
   summary:
     'A complex estate case is one where the assets, the entities, or the family make the usual ' +
     'playbook fail: several properties, a business or LLC held in trust, siblings on both sides, ' +

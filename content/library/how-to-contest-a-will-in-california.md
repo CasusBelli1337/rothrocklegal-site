@@ -8,7 +8,7 @@ author: arthur-rothrock
 category: Will Contests
 tags: will contest, contest a will, probate, undue influence, San Jose
 primaryKeyword: how to contest a will in California
-secondaryKeywords: contesting a will in California, grounds to contest a will in California, contest a will after probate, who can contest a will in California, will contest lawyer
+secondaryKeywords: contesting a will in California, grounds to contest a will in California, contest a will after probate, who can contest a will in California, evidence needed to contest a will
 image: /images/library/how-to-contest-a-will-in-california.webp
 imageAlt: A signed will and a probate court notice of hearing on a kitchen table beside a pair of reading glasses
 draft: true
@@ -39,7 +39,7 @@ A will is not invalid because it is unfair. A parent may leave everything to one
 4. **Revocation**. A later will revokes an earlier one, expressly or by inconsistency; so does destroying a will with intent to revoke it (Probate Code § 6120). If a newer will is offered against an older one, the court decides the newer will first (Probate Code § 8252).
 5. **Forgery**. The signature is not your parent's. Forgery is first on the Probate Code's list of direct-contest grounds (Probate Code § 21310).
 
-## The burden is on you, and this is how contestants carry it
+## The evidence needed to contest a will: the burden is on you
 
 At trial, the person offering the will has to prove only that it was properly signed and witnessed. You carry the burden on everything else: capacity, undue influence, fraud, duress, mistake, revocation (Probate Code § 8252). Undue influence must be shown by clear and convincing evidence (Doolittle v. Exchange Bank). That is the part of how to contest a will in California that people skip, and it is why contests are won on documents rather than suspicion.
 

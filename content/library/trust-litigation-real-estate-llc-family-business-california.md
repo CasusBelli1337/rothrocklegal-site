@@ -1,6 +1,6 @@
 ---
 title: When the Trust Owns Real Estate, an LLC, and the Family Business
-description: When a trust owns LLC interests, houses, and a business, the case runs on three tracks: what is in the trust, what it is worth, and who controls it.
+description: When a California trust owns LLC interests, houses, and a business, the fight runs on three tracks: what is in the trust, its value, and who controls it.
 excerpt: A trust that holds a Palo Alto house, a rental, an LLC, and Dad's company cannot be split with arithmetic. Here is how the title fight (the Heggstad petition), the value fight, and the control fight actually work, and what the Santa Clara County probate court will and will not do.
 date: 2026-09-01
 updated: 2026-09-01
@@ -16,13 +16,13 @@ draft: true
 
 When a trust owns LLC interests, houses, and an operating business, the litigation runs on three tracks at once. Track one is title: what is in the trust (the Heggstad petition, Probate Code § 850). Track two is value: appraisals and the business valuation. Track three is control: who runs the property and the company while the case is pending, and that is where most of the cost sits.
 
-Here's the thing. Cash can be split with arithmetic. A Palo Alto house, a Sunnyvale rental, an LLC that owns a building in Mountain View, and Dad's stake in a Los Gatos company cannot. Somebody has to decide what to sell, what to keep, and who signs the leases. A sibling will disagree with every call.
+Cash can be split with arithmetic. A Palo Alto house, a Sunnyvale rental, an LLC that owns a building in Mountain View, and Dad's stake in a Los Gatos company cannot. Somebody has to decide what to sell, what to keep, and who signs the leases. A sibling will disagree with every call.
 
 ## Is it even in the trust? The Heggstad petition and Probate Code § 850
 
 A trust controls only what was put into it, and often the biggest asset never was. The Menlo Park house is still deeded to Mom and Dad as joint tenants.
 
-The fix is a petition asking the probate court to confirm that the property belongs to the trust. Lawyers call it a Heggstad petition or a Probate Code 850 petition. In Estate of Heggstad, a father's trust listed a property on its schedule of assets, but he never deeded it over. His written declaration that he held it as trustee was enough; there is "no requirement that the settlor/trustee execute a separate writing conveying the property to the trust."
+The fix is a petition asking the probate court to confirm that the property belongs to the trust. Lawyers call it a [Heggstad petition](/library/what-is-a-heggstad-petition-california/) or a Probate Code 850 petition. In Estate of Heggstad, a father's trust listed a property on its schedule of assets, but he never deeded it over. His written declaration that he held it as trustee was enough; there is "no requirement that the settlor/trustee execute a separate writing conveying the property to the trust."
 
 The Heggstad trustee used a petition for instructions (Probate Code § 17200). Today the vehicle is Probate Code § 850. Notice is served at least 30 days before the hearing, and the court cannot shorten it (Probate Code § 851).
 
@@ -52,7 +52,7 @@ When members deadlock, the exit is a civil suit for judicial dissolution where m
 
 A trustee may continue a business in the trust (Probate Code § 16222). But the same section allows it "only as authorized by the trust instrument or by the court" and, otherwise, "for a reasonable time pending a court hearing on the matter or pending a sale" of the business. Running Dad's company for three years under a silent trust, with no court order, is a breach even if the company did well.
 
-In a family business inheritance dispute, the trustee-sibling who also draws a salary from the company is the flashpoint. A trustee may not "use or deal with trust property for the trustee’s own profit" (Probate Code § 16004). A salary the trustee sets for the trustee looks exactly like that unless the trust or the court approved it, so disclose it, keep it at market, and get it approved in writing. Threatened with a lawsuit? See [what to do in the first week](/library/youre-the-trustee-and-a-beneficiary-is-threatening-to-sue/).
+In a family business inheritance dispute, the trustee-sibling who also draws a salary from the company is the flashpoint. A trustee may not "use or deal with trust property for the trustee’s own profit" (Probate Code § 16004). A salary the trustee sets for the trustee looks exactly like that unless the trust or the court approved it, so disclose it, keep it at market, and get it approved in writing. Threatened with a lawsuit? Get your own lawyer, and learn who pays before you bill the trust.
 
 If the trustee is the problem, the court can hand the property to a receiver or temporary trustee (Probate Code §§ 16420, 17206). It can suspend the trustee's powers during a removal case if the property "may suffer loss or injury" (Probate Code § 15642).
 
@@ -64,7 +64,7 @@ Which date governs, death or distribution? A Peninsula house can move by seven f
 
 Date-of-death value also sets the income-tax basis of inherited property (26 U.S.C. § 1014); the details belong to the trust's CPA.
 
-## Sibling co-trustees, deadlock, and how these cases actually end
+## Sibling co-trustees, deadlock, and how these cases end
 
 Parents in Atherton and Woodside love naming all the children co-trustees. Unless the document says otherwise, co-trustees can act only by "unanimous action" (Probate Code § 15620).
 

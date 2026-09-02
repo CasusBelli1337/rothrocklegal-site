@@ -8,7 +8,7 @@ author: arthur-rothrock
 category: Trust Contests
 tags: trust contest, undue influence, lack of capacity, no-contest clause, San Jose
 primaryKeyword: how to contest a trust in California
-secondaryKeywords: contesting a trust in California, who can contest a trust in California, grounds to contest a trust, can you contest a living trust, trust contest attorney San Jose
+secondaryKeywords: contesting a trust in California, who can contest a trust in California, grounds for contesting a trust, can you contest a living trust, can you contest a trust
 image: /images/library/how-to-contest-a-trust-in-california.webp
 imageAlt: A trust amendment lying open on a kitchen table beside a pen and a pair of reading glasses
 draft: true
@@ -16,7 +16,7 @@ draft: true
 
 Here is how to contest a trust in California. After the person who made it dies, you file a petition in probate court asking a judge to throw out the trust or the amendment, on one of five grounds, inside 120 days of the trustee's formal notice (Probate Code §§ 17200, 16061.8). The five grounds are lack of capacity, undue influence, fraud, forgery or improper signing, and revocation.
 
-Two things people get wrong. "Can you contest a living trust" is usually asked about a parent who is still alive, and the answer there is no, not while the parent is alive and competent. And a contest is a lawsuit with a fuse on it. The deadline does not care how strong your case is.
+Two things people get wrong. "Can you contest a trust" or "can you contest a living trust" is usually asked about a parent who is still alive, and the answer there is no, not while the parent is alive and competent. And a contest is a lawsuit with a fuse on it. The deadline does not care how strong your case is.
 
 Around Silicon Valley most estates sit in living trusts, so the question that matters is how to contest a trust in California, not a will.
 
@@ -28,7 +28,7 @@ Heirs never named have a path too; the Supreme Court left the question open in B
 
 Now the hard line. While the person who made the trust is alive and competent, the rights belong to that person, not to you (Probate Code § 15800). A beneficiary "lacks standing to challenge a trust" during that time, as the court put it in Drake v. Pinkham. Once she is no longer competent, the trustee owes you a copy of the trust and an accounting (Probate Code § 15800), and once she dies you can also sue the trustee for breaches committed while she was alive (Estate of Giraldin).
 
-## The five grounds to contest a trust
+## The five grounds for contesting a trust
 
 The no-contest statute lists what a "direct contest" can rest on: forgery, lack of due execution, lack of capacity, "menace, duress, fraud, or undue influence," revocation, and disqualification of a caregiver or drafter (Probate Code § 21310). The last one lives inside undue influence below.
 
@@ -82,7 +82,7 @@ It depends on how far the case goes, and nobody can quote you a number on the fi
 
 The other side may not be paying at all. When the trust directs the trustee to defend the estate plan, a court can let the trustee spend trust money on lawyers while your contest is pending (Doolittle v. Exchange Bank). Where the fight is really between two sets of beneficiaries and nobody attacks the trust itself, the same opinion says the trustee must stay neutral.
 
-Search for "trust contest attorney San Jose" and you get a page of ads. Ask whoever you call how many trust contests they have taken through trial.
+Ask whoever you call how many trust contests they have taken through trial.
 
 ## Key deadlines
 

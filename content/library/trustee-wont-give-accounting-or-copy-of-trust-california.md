@@ -8,7 +8,7 @@ author: arthur-rothrock
 category: Trustees & Fiduciaries
 tags: trust accounting, copy of trust, trustee duties, 16061.7 notice, San Jose
 primaryKeyword: trust accounting in California
-secondaryKeywords: how to get a copy of a trust in California, trustee refuses to provide accounting, beneficiary rights to trust accounting, Probate Code 16061.7 notice, Probate Code 17200 petition
+secondaryKeywords: how to get a copy of a trust, trustee refuses to give accounting, beneficiary rights to trust accounting, Probate Code 16061.7 notice, Probate Code 17200 petition
 image: /images/library/trustee-wont-give-accounting-or-copy-of-trust-california.webp
 imageAlt: A sealed envelope labeled Trust on a kitchen table next to a dated, signed letter asking the trustee for an accounting
 draft: true
@@ -58,7 +58,7 @@ Send it to the trustee's address on the notice and to the trustee's lawyer, if o
 
 ## What the probate court in San Jose can do
 
-Trust disputes for Santa Clara County are heard by the Superior Court's Probate Division at 191 N. First Street in San Jose. The tool is a Probate Code 17200 petition, which covers "the internal affairs of the trust" (Probate Code § 17200(a)). When a trustee refuses to provide accounting records, the petition asks for some or all of these:
+Trust disputes for Santa Clara County are heard by the Superior Court's Probate Division at 191 N. First Street in San Jose. The tool is a Probate Code 17200 petition, which covers "the internal affairs of the trust" (Probate Code § 17200(a)). When a trustee refuses to give accounting records, the petition asks for some or all of these:
 
 1. An order compelling a copy of the trust (Probate Code § 17200(b)(7)(A)).
 2. An order compelling the information or accounting you requested (Probate Code § 17200(b)(7)(B), (C)).

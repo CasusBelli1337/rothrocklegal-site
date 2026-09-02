@@ -6,9 +6,9 @@ export const trustLitigation: PracticeArea = {
   title: "Trust & Estate Litigation",
   headline:
     "When a trust or will doesn’t look right, we find out what happened.",
-  seoTitle: "Trust & Estate Litigation Lawyers – San Jose & Santa Clara County",
+  seoTitle: "Trust Litigation Attorneys – San Jose & Santa Clara County",
   description:
-    "Trust contests, will contests, undue influence, trustee breach, accountings, and elder financial abuse for families in San Jose and the Bay Area.",
+    "Trust litigation attorneys in San Jose and Santa Clara County: trust and will contests, undue influence, trustee breach, and elder financial abuse.",
   summary:
     "Trust and estate litigation is the court process for fixing what went wrong with a trust, a " +
     "will, or the person running it. Most of these cases turn on three questions: what changed, " +

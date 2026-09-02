@@ -1,6 +1,6 @@
 ---
 title: Defending Against Undue Influence or Elder Abuse Accusations
-description: Defending against undue influence or elder abuse claims as a caregiver child: the Probate Code presumption skips relatives, and the accuser must prove it.
+description: Defending against undue influence or elder abuse claims as a caregiver child in California: the presumption skips relatives, and accusers must prove it.
 excerpt: Your siblings say the care you gave Mom was really pressure. Here is what they have to prove, why the statutory presumption does not reach a child, the one presumption that can, and the file that answers it.
 date: 2026-09-01
 updated: 2026-09-01
@@ -8,7 +8,7 @@ author: arthur-rothrock
 category: For Trustees
 tags: undue influence, elder abuse, caregiver child, trustee defense, San Jose
 primaryKeyword: defending against undue influence
-secondaryKeywords: undue influence california, what is undue influence, probate code 21380, financial elder abuse defense, caregiver child accused of undue influence
+secondaryKeywords: accused of undue influence, what is undue influence, probate code 21380, financial elder abuse defense, caregiver child accused of undue influence
 image: /images/library/accused-of-undue-influence-or-elder-abuse-family-trustee-defense.webp
 imageAlt: An adult daughter at a kitchen table with a pill organizer, a care calendar, and a letter from her brother's lawyer
 draft: true

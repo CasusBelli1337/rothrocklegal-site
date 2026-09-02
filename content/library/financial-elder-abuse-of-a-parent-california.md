@@ -8,7 +8,7 @@ author: arthur-rothrock
 category: Elder Financial Abuse
 tags: financial elder abuse, undue influence, double damages, power of attorney, San Jose
 primaryKeyword: elder financial abuse California
-secondaryKeywords: financial elder abuse attorney, Welfare and Institutions Code 15610.30, damages for financial elder abuse California, financial elder abuse statute of limitations California, elder abuse attorney San Jose
+secondaryKeywords: elder financial abuse attorney, Welfare and Institutions Code 15610.30, damages for financial elder abuse California, financial elder abuse statute of limitations California, elder abuse attorney San Jose
 image: /images/library/financial-elder-abuse-of-a-parent-california.webp
 imageAlt: An elderly woman's checkbook and a signed power of attorney form on a kitchen table beside a stack of bank statements
 draft: true
@@ -84,7 +84,7 @@ Theft, embezzlement, forgery, or fraud against a person 65 or older is also a cr
 3. Save the messages. Haste, secrecy, and "don't tell your sister" are evidence.
 4. Get the medical records. Your parent's condition at each signature is the heart of the case.
 5. If a trust is involved, demand an accounting in writing. If the abuser is the trustee, see [removing a trustee for breach of fiduciary duty](/library/trustee-breach-of-fiduciary-duty-and-removal-california/).
-6. Call a financial elder abuse attorney this week, especially if the abuser has died or is ill.
+6. Call an elder financial abuse attorney this week, especially if the abuser has died or is ill.
 
 ## Frequently asked questions
 

@@ -8,7 +8,7 @@ author: arthur-rothrock
 category: Undue Influence & Capacity
 tags: testamentary capacity, lack of capacity, dementia, trust contest, will contest, San Jose
 primaryKeyword: testamentary capacity in California
-secondaryKeywords: lack of testamentary capacity, capacity to make a trust in California, Probate Code 6100.5, dementia and signing a will, Probate Code 811
+secondaryKeywords: lack of testamentary capacity, capacity to make a trust in California, Probate Code 6100.5, dementia and signing a will, Probate Code 811, testamentary capacity
 image: /images/library/lack-of-testamentary-capacity-california.webp
 imageAlt: A signature line on a trust amendment beside a hospital wristband and a stack of medical records
 draft: true

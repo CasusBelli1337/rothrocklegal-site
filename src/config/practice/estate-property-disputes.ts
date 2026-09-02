@@ -5,9 +5,9 @@ export const estatePropertyDisputes: PracticeArea = {
   parent: 'trust-litigation',
   title: 'Property disputes (§ 850)',
   headline: 'Assets that were supposed to be in the trust are gone.',
-  seoTitle: 'Probate Code § 850 Petition Attorney in San Jose',
+  seoTitle: 'Probate Code 850 Petition Attorney in San Jose',
   description:
-    'A house retitled, accounts drained, property that should be in the trust or estate. Probate Code § 850 petitions to recover it, in San Jose.',
+    'A house retitled, accounts drained, trust property gone. Probate Code 850 petitions to get it back, and section 859 double damages, in San Jose.',
   summary:
     'When property that belongs to a trust or estate has ended up in someone else’s name, a ' +
     'petition under Probate Code § 850 asks the probate court to decide who owns it and to order ' +

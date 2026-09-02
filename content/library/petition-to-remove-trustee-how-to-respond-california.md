@@ -8,7 +8,7 @@ author: arthur-rothrock
 category: For Trustees
 tags: trustee removal, petition to remove trustee, trustee defense, Probate Code 15642, San Jose
 primaryKeyword: trustee removal
-secondaryKeywords: petition to remove trustee california, response to petition to remove trustee, remove trustee, Probate Code 15642, trustee defense attorney
+secondaryKeywords: petition to remove trustee california, response to petition to remove trustee, remove trustee, Probate Code 15642, trustee defense attorney, trustee removal petition
 image: /images/library/petition-to-remove-trustee-how-to-respond-california.webp
 imageAlt: A served court petition and a notice of hearing on a kitchen table next to a trust binder and a wall calendar with one date circled
 draft: true

@@ -5,9 +5,9 @@ export const trustAccountingDisputes: PracticeArea = {
   parent: "trust-litigation",
   title: "Accountings & information",
   headline: "The trustee won’t show us the numbers.",
-  seoTitle: "Trust Accounting Dispute Attorney in San Jose",
+  seoTitle: "Trust Accounting Lawyer for Beneficiaries in San Jose",
   description:
-    "Beneficiaries have a right to information and a yearly accounting. When a trustee stalls, the court can order one. Trust accounting disputes in San Jose.",
+    "When a trustee refuses to give an accounting, the court can order one. Trust accounting disputes for beneficiaries in San Jose and Santa Clara County.",
   summary:
     "A California trustee must keep beneficiaries reasonably informed, answer reasonable requests " +
     "for information, and account at least once a year (Probate Code §§ 16060–16062). If the " +

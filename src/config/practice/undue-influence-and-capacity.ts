@@ -5,9 +5,9 @@ export const undueInfluenceAndCapacity: PracticeArea = {
   parent: "trust-litigation",
   title: "Undue influence & capacity",
   headline: "Someone got to them when they were vulnerable.",
-  seoTitle: "Undue Influence & Capacity Attorney in San Jose",
+  seoTitle: "Undue Influence Attorney in San Jose & Santa Clara County",
   description:
-    "A new will or trust signed when a parent could not remember names, or after a caregiver moved in. Undue influence and capacity claims in San Jose.",
+    "Undue influence and lack of capacity claims in San Jose. A new will or trust signed when a parent could not remember names, or after a caregiver moved in.",
   summary:
     "California voids a will, trust, or gift that was the product of undue influence, meaning " +
     "excessive persuasion that overcame the person’s free will (Welfare and Institutions Code " +

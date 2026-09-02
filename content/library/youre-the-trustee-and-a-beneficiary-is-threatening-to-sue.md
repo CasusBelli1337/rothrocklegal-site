@@ -1,6 +1,6 @@
 ---
 title: You're the Trustee and a Beneficiary Is Threatening to Sue
-description: A beneficiary is threatening to sue you as trustee? Do these five things first, in this order, before you spend a dollar of trust money on a fight.
+description: A beneficiary is threatening to sue you as a California trustee? Do these five things first, before you spend a dollar of trust money on a fight.
 excerpt: Most family trustees who get sued did nothing dishonest. They went quiet, mixed money, or paid a lawyer from the trust for a fight that was really their own. Here is what to do in the first week, what the court will look at, and who pays.
 date: 2026-09-01
 updated: 2026-09-01

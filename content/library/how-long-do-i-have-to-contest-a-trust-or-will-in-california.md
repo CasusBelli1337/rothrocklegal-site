@@ -8,7 +8,7 @@ author: arthur-rothrock
 category: Deadlines
 tags: trust contest, will contest, statute of limitations, 120-day notice, San Jose
 primaryKeyword: how long do you have to contest a trust in California
-secondaryKeywords: statute of limitations to contest a trust in California, how long to contest a will in California, 120-day trust contest deadline, 16061.7 notice, time limit to contest a trust in California
+secondaryKeywords: statute of limitations to contest a trust in California, how long do you have to contest a will, how long do you have to contest a trust, 120-day trust contest deadline, 16061.7 notice, time limit to contest a trust in California
 image: /images/library/how-long-do-i-have-to-contest-a-trust-or-will-in-california.webp
 imageAlt: A wall calendar with a date circled in red beside a trustee's notification letter
 draft: true
@@ -18,7 +18,7 @@ How long do you have to contest a trust in California? The short answer is 120 d
 
 Here's the thing most people miss. Those two short fuses are not the only ones. Claims against a person who has died carry a one-year limit, claims against a trustee run three years from an accounting, and financial elder abuse runs four years from discovery. More than one clock can be running at once.
 
-If you want a date instead of a reading assignment, the [deadline wizard](/how-long-do-i-have/) asks a few questions and gives you one. Then call a lawyer, because every one of these rules has an exception that turns on facts.
+If you want a date, the [deadline wizard](/how-long-do-i-have/) asks a few questions and gives you one. Then call a lawyer, because every one of these rules has an exception that turns on facts.
 
 ## The 120-day trust contest deadline starts when the notice is mailed
 
@@ -46,9 +46,9 @@ No published California appellate decision I could find says which of those gove
 
 One more trap. If the letter did not carry the warning in bold, the court in Harustak v. Wilkins held the 120 days never started. A notice that only left out a minor line, where you already had the trust, still counted (Germino v. Hillyer). Bring the letter to your first meeting.
 
-## Wills: object before probate, or within 120 days after
+## How long do you have to contest a will? Object before probate, or within 120 days after
 
-If a parent died with a will and no trust, the estate goes through probate. In this county that means the Santa Clara County Superior Court, Probate Division, at 191 N. First Street in San Jose. How long to contest a will in California turns on whether the will has been admitted yet:
+If a parent died with a will and no trust, the estate goes through probate. In this county that means the Santa Clara County Superior Court, Probate Division, at 191 N. First Street in San Jose. The answer turns on whether the will has been admitted yet:
 
 - Before admission, file a written objection; a summons issues and the other side has 30 days to respond (Probate Code § 8250). Be on file before the court admits the will.
 - After admission, you have 120 days from the order to petition to revoke probate (Probate Code § 8270). A minor, or an adult who was incompetent with no guardian or conservator at the time, can petition any time before final distribution.
