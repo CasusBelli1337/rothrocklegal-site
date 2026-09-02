@@ -2,11 +2,11 @@ import Image from 'next/image';
 import { hasHeadshot } from '@/components/layout/TeamCard';
 import { Badge } from '@/components/ui/Badge';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
-import { Button, PhoneButton } from '@/components/ui/Button';
+import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { InitialAvatar } from '@/components/ui/InitialAvatar';
-import { asset } from '@/config/site';
+import { asset, consultCta, noteCta } from '@/config/site';
 import { hasPlaceholders, type TeamMember } from '@/config/team';
 import type { Crumb } from '@/types/content';
 
@@ -65,10 +65,12 @@ export function ProfileHero({ member }: { member: TeamMember }) {
               </Badge>
             )}
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button variant="inverse" tone="dark" href="/contact/">
-                Tell us what happened
+              <Button variant="inverse" tone="dark" href={consultCta.href}>
+                {consultCta.label}
               </Button>
-              <PhoneButton tone="dark" />
+              <Button variant="secondary" tone="dark" href={noteCta.href}>
+                {noteCta.label}
+              </Button>
             </div>
           </div>
         </div>

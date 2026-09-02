@@ -1,9 +1,10 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Badge } from '@/components/ui/Badge';
-import { Button, PhoneButton } from '@/components/ui/Button';
+import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Eyebrow';
-import { asset } from '@/config/site';
+import { asset, consultCta, noteCta } from '@/config/site';
 
 const chips: {
   label: React.ReactNode;
@@ -46,14 +47,22 @@ export function Hero() {
           </h1>
           <p className="mt-6 max-w-[38rem] text-lead text-white/80">
             A sibling changed the trust. The trustee won&rsquo;t show the accounting. Someone got to
-            Dad before he died. Deadlines can be as short as 120 days &ndash; call before yours
-            runs.
+            Dad before he died. Deadlines can be as short as 120 days &ndash;{' '}
+            <Link
+              href="/how-long-do-i-have/"
+              className="font-medium text-white underline underline-offset-3 hover:text-white/90"
+            >
+              check yours before it runs
+            </Link>
+            .
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button variant="inverse" href="/contact/">
-              Tell us what happened
+            <Button variant="inverse" href={consultCta.href}>
+              {consultCta.label}
             </Button>
-            <PhoneButton tone="dark" />
+            <Button variant="secondary" tone="dark" href={noteCta.href}>
+              {noteCta.label}
+            </Button>
           </div>
           <ul
             aria-label="Recognitions"

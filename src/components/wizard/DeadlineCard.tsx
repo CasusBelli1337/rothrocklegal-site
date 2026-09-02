@@ -96,7 +96,7 @@ export function DeadlineCard({ result, index }: { result: DeadlineResult; index:
       {result.status === 'passed' && (
         <p className="wizard-alert mt-4 text-small text-ink">
           This date has passed. That does not always end the matter: some exceptions exist, for
-          example if a notice was defective or never properly served. Talk to a lawyer right away.
+          example if a notice was defective or never properly served. Request a consult right away.
         </p>
       )}
       <CardDetails result={result} />

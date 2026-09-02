@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useRef } from "react";
-import { ChevronDownIcon, CloseIcon } from "@/components/icons";
-import { Button, PhoneButton } from "@/components/ui/Button";
-import { asset, contactCta, nav, site, type NavItem } from "@/config/site";
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useRef } from 'react';
+import { ChevronDownIcon, CloseIcon } from '@/components/icons';
+import { Button } from '@/components/ui/Button';
+import { asset, consultCta, nav, noteCta, site, type NavItem } from '@/config/site';
 
 interface MobileMenuProps {
   open: boolean;
@@ -23,17 +23,9 @@ function MenuGroup({ item, onClose }: { item: NavItem; onClose: () => void }) {
       <ul className="pb-3">
         {item.children?.map((child) => (
           <li key={child.href}>
-            <Link
-              href={child.href}
-              onClick={onClose}
-              className="block rounded-md py-2.5 pl-3"
-            >
-              <span className="block text-[15px] font-medium text-ink">
-                {child.label}
-              </span>
-              <span className="block text-small text-ink-3">
-                {child.sublabel}
-              </span>
+            <Link href={child.href} onClick={onClose} className="block rounded-md py-2.5 pl-3">
+              <span className="block text-[15px] font-medium text-ink">{child.label}</span>
+              <span className="block text-small text-ink-3">{child.sublabel}</span>
             </Link>
           </li>
         ))}
@@ -51,7 +43,7 @@ function MenuGroup({ item, onClose }: { item: NavItem; onClose: () => void }) {
   );
 }
 
-/** Full-height sheet from the right; phone + CTA pinned at the bottom (DESIGN-BRIEF §5). */
+/** Full-height sheet from the right; consult + note buttons pinned at the bottom (DESIGN-BRIEF §5). */
 export function MobileMenu({ open, onClose, pathname }: MobileMenuProps) {
   const closeRef = useRef<HTMLButtonElement>(null);
   const lastPath = useRef(pathname);
@@ -66,15 +58,15 @@ export function MobileMenu({ open, onClose, pathname }: MobileMenuProps) {
   useEffect(() => {
     if (!open) return;
     const previous = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
     closeRef.current?.focus();
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
+      if (event.key === 'Escape') onClose();
     };
-    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener('keydown', onKeyDown);
     return () => {
       document.body.style.overflow = previous;
-      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener('keydown', onKeyDown);
     };
   }, [open, onClose]);
 
@@ -97,7 +89,7 @@ export function MobileMenu({ open, onClose, pathname }: MobileMenuProps) {
       <div className="absolute inset-y-0 right-0 flex w-[min(100%,22rem)] animate-sheet-in flex-col bg-paper shadow-xl">
         <div className="flex h-[60px] items-center justify-between border-b border-line px-5">
           <Image
-            src={asset("/images/logo.webp")}
+            src={asset('/images/logo.webp')}
             alt={site.name}
             width={48}
             height={35}
@@ -130,8 +122,10 @@ export function MobileMenu({ open, onClose, pathname }: MobileMenuProps) {
           )}
         </nav>
         <div className="grid gap-3 border-t border-line p-5">
-          <PhoneButton />
-          <Button href={contactCta.href}>{contactCta.label}</Button>
+          <Button href={consultCta.href}>{consultCta.label}</Button>
+          <Button variant="secondary" href={noteCta.href}>
+            {noteCta.label}
+          </Button>
         </div>
       </div>
     </div>

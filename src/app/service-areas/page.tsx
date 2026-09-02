@@ -32,7 +32,7 @@ const groups: { county: City['county']; title: string; intro: string }[] = [
     title: 'Fremont and the East Bay go to Alameda County Superior Court.',
     intro:
       'Fremont, Newark, and Union City sit in Alameda County, so their probate cases are heard in ' +
-      'Oakland. We appear there regularly and meet East Bay clients by video or by appointment.',
+      'Oakland. We appear there regularly and meet East Bay clients by video.',
   },
 ];
 
@@ -58,7 +58,7 @@ export default function ServiceAreasPage() {
               San Jose first. The whole Bay Area when the case calls for it.
             </h1>
             <p className="mt-6 text-lead text-ink-2">
-              We meet by appointment in San Jose and by video anywhere in California. Most of our
+              We meet by video anywhere in California and appear in person in court. Most of our
               cases are in Santa Clara County Superior Court &ndash; Probate Division, and we
               regularly appear in San Mateo, Alameda, and San Francisco Superior Courts.{' '}
               {site.office.appointments}
@@ -115,7 +115,7 @@ export default function ServiceAreasPage() {
             id="peninsula"
             eyebrow="The Peninsula and San Francisco"
             title="San Mateo County and San Francisco cases are filed in Redwood City and San Francisco."
-            lead="Families in Menlo Park, Redwood City, San Mateo, Burlingame, and San Francisco bring trust and estate disputes to the San Mateo County and San Francisco Superior Courts. We appear in both, and the first conversation works the same way wherever you are: by phone or video, about dates first."
+            lead="Families in Menlo Park, Redwood City, San Mateo, Burlingame, and San Francisco bring trust and estate disputes to the San Mateo County and San Francisco Superior Courts. We appear in both, and the first conversation works the same way wherever you are: by video, about dates first."
           />
         </Container>
       </section>

@@ -10,10 +10,10 @@ import { site } from '@/config/site';
 import { webPage } from '@/lib/seo/jsonld';
 import { pageMetadata } from '@/lib/seo/metadata';
 
-const TITLE = 'Contact Rothrock Legal – Talk to a Trust Litigation Lawyer in San Jose';
+const TITLE = 'Contact Rothrock Legal – Request a Consult in San Jose';
 const DESCRIPTION =
-  `Call ${site.phone} or send a few sentences about what happened. We read it, check the ` +
-  `deadlines, and get back to you ${site.replyPromise}.`;
+  'Request a consult or send a few sentences about what happened. We read it, run a conflict ' +
+  'check, and strive to respond within one business day.';
 const PATH = '/contact/';
 
 export const metadata = pageMetadata({
@@ -31,7 +31,7 @@ export default function ContactPage() {
           <Breadcrumbs trail={[{ label: 'Home', href: '/' }, { label: 'Contact' }]} />
         </Container>
       </div>
-      <ContactBand headingLevel="h1" id="contact-form" />
+      <ContactBand headingLevel="h1" id="contact-form" showPhone />
       <section className="grid-hairline bg-sand py-16 lg:py-20">
         <Container className="grid gap-10 lg:grid-cols-12 lg:gap-12">
           <Reveal className="lg:col-span-7">

@@ -13,7 +13,7 @@ const split: readonly { title: string; body: string }[] = [
   },
   {
     title: 'What it means for your bill',
-    body: 'Weeks saved at the start of a case, when the deadlines are shortest. Fewer hours billed for reading and typing. More of the budget on the work that moves the case.',
+    body: 'Weeks saved at the start of a case, when the deadlines are shortest. Fewer hours billed for reading and typing. Associate rates for the document work. More of the budget on the work that moves the case.',
   },
 ];
 
@@ -43,9 +43,16 @@ export function HowWeWork() {
               the office.
             </p>
             <p>
-              What that means for you: we can prepare a trust contest faster and for less than a
-              firm that bills someone to type, and the hours you pay for go to strategy, evidence,
+              Other firms sell what they call &ldquo;traditional&rdquo; legal services. We think
+              traditional means slower and more expensive than it has to be. Here the associates
+              handle the document work at lower rates, the same AI platform Legion builds for
+              litigators does the reading and the first drafts, and a lawyer makes every judgment
+              call. Fewer hours on your bill, and the hours you do pay for go to strategy, evidence,
               and the courtroom.
+            </p>
+            <p>
+              We are also fully remote. We meet by video. No office visits, no parking, no waiting
+              rooms.
             </p>
           </div>
         </Reveal>

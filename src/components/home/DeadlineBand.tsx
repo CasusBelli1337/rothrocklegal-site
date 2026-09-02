@@ -3,7 +3,7 @@ import { ArrowRightIcon } from '@/components/icons';
 import { Container } from '@/components/ui/Container';
 import { DeadlineCallout } from '@/components/ui/DeadlineCallout';
 import { Reveal } from '@/components/ui/Reveal';
-import { site } from '@/config/site';
+import { noteCta } from '@/config/site';
 
 /** HOMEPAGE-SPEC §2: the wizard callout on sand, 8 + 4 columns. */
 export function DeadlineBand() {
@@ -20,13 +20,13 @@ export function DeadlineBand() {
             }
             secondary={
               <>
-                Or call{' '}
-                <a
-                  href={site.phoneHref}
+                Or{' '}
+                <Link
+                  href={noteCta.href}
                   className="font-semibold text-maroon-700 underline underline-offset-3"
                 >
-                  {site.phone}
-                </a>
+                  send us a note
+                </Link>
               </>
             }
             finePrint={

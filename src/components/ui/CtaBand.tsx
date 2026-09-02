@@ -1,4 +1,5 @@
-import { Button, PhoneButton } from './Button';
+import { consultCta, noteCta, site } from '@/config/site';
+import { Button } from './Button';
 import { Container } from './Container';
 
 interface CtaBandProps {
@@ -8,11 +9,15 @@ interface CtaBandProps {
   id?: string;
 }
 
-/** Maroon gradient band: white h2, one lead line, inverse button + phone (DESIGN-BRIEF §6). */
+/** Maroon gradient band: white h2, one lead line, consult button + note button (DESIGN-BRIEF §6). */
 export function CtaBand({
-  title = 'Tell us what happened.',
-  lead = <>A few sentences is enough. We&rsquo;ll read it, check the clock, and call you back.</>,
-  primary = { label: 'Tell us what happened', href: '/contact/' },
+  title = 'Start with a consult request.',
+  lead = (
+    <>
+      Tell us what happened, in writing or by voice, and upload what you have. {site.replyPromise}
+    </>
+  ),
+  primary = consultCta,
   id,
 }: CtaBandProps) {
   return (
@@ -26,7 +31,9 @@ export function CtaBand({
           <Button variant="inverse" tone="dark" href={primary.href}>
             {primary.label}
           </Button>
-          <PhoneButton tone="dark" />
+          <Button variant="secondary" tone="dark" href={noteCta.href}>
+            {noteCta.label}
+          </Button>
         </div>
       </Container>
     </section>

@@ -14,8 +14,8 @@ export const site = {
   defaultTitle: 'Trust & Estate Litigation Attorneys in San Jose | Rothrock Legal',
   tagline:
     'Trust and estate litigation for families in San Jose, Santa Clara County, and the San Francisco Bay Area.',
+  /** Shown as text only (footer, /contact/), never as a tel: button: Arthur does not field calls. */
   phone: '(408) 420-7034',
-  phoneHref: 'tel:+14084207034',
   phoneE164: '+1-408-420-7034',
   email: 'arothrock@rothrocklegal.com',
   /** Contact-form CCs so a submission is never missed by a single inbox. */
@@ -26,17 +26,22 @@ export const site = {
     region: 'CA',
     regionName: 'California',
     country: 'US',
-    appointments: 'By appointment and by video. San Jose, California.',
+    appointments:
+      'We meet by video. No office visits, no parking, no waiting rooms. San Jose, California.',
   },
-  hours: 'Mon–Fri, 9–5. Leave a message any time.',
+  hours: 'Mon–Fri, 9–5. Send a consult request any time.',
   /** Attorney responsible for the site (Rule 7.2(c); Bus. & Prof. Code § 6157.2(b)). */
   responsibleAttorney: 'Arthur E. Rothrock',
-  /**
-   * Reply-time promise, completing "we get back to you ...". Arthur's call:
-   * the spec's draft was "the same business day"; this is the safe wording
-   * until he confirms (HOMEPAGE-SPEC §5, §10).
-   */
-  replyPromise: 'within one business day',
+  /** The reply-time promise, one full sentence, used verbatim everywhere (Arthur, 2026-09-01). */
+  replyPromise: 'We strive to respond within one business day.',
+  /** Sits beside the phone number, which is text and never a button: Arthur does not field calls. */
+  consultLine: 'The fastest way to reach us is a consult request. We read every one.',
+  /** "What happens next" after a consult request or a note (/contact/, thank-you page). */
+  nextSteps: [
+    'We read it.',
+    'We run a conflict check.',
+    'We strive to reply by email within one business day.',
+  ],
   /**
    * Show `draft: true` articles (chip "Draft – pending attorney review",
    * noindex) in the library index, homepage preview, related reading, and
@@ -119,8 +124,15 @@ export const nav: readonly NavItem[] = [
   { label: 'About', href: '/about/' },
 ] as const;
 
-export const contactCta: NavItem = {
-  label: 'Talk to a lawyer',
+/** The primary action on every page: the consult request (Arthur does not field calls). */
+export const consultCta: NavItem = {
+  label: 'Request a consult',
+  href: '/request-a-consult/',
+};
+
+/** The secondary action: the short contact form. */
+export const noteCta: NavItem = {
+  label: 'Send us a note',
   href: '/contact/',
 };
 
@@ -142,7 +154,12 @@ export const legalLinks: readonly NavItem[] = [
 
 export const social = {
   linkedin: 'https://www.linkedin.com/in/rothrocka/',
-  /** Firm-level profiles for LegalService `sameAs` (ARTHUR-DOSSIER.md §15). */
+  /**
+   * Firm-level profiles for LegalService `sameAs` (ARTHUR-DOSSIER.md §15).
+   * Arthur's personal LinkedIn stands in for the firm until a LinkedIn Company
+   * Page, the Google Business Profile, Avvo, Justia, and State Bar firm URLs
+   * exist; add those here when they do, never before (local-SEO memo, 2026-09-01).
+   */
   firmProfiles: [
     'https://www.linkedin.com/in/rothrocka/',
     'https://profiles.superlawyers.com/california/san-jose/lawfirm/rothrock-legal/3a179706-d225-41e9-aa54-4d24707b0788.html',

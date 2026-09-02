@@ -1,5 +1,6 @@
-import { Button, PhoneButton } from '@/components/ui/Button';
+import { Button } from '@/components/ui/Button';
 import { Eyebrow } from '@/components/ui/Eyebrow';
+import { consultCta } from '@/config/site';
 
 interface WizardCardProps {
   title?: string;
@@ -33,7 +34,9 @@ export function WizardCard({
         <Button variant="inverse" tone="dark" href="/how-long-do-i-have/">
           Check my deadline
         </Button>
-        <PhoneButton tone="dark" />
+        <Button variant="secondary" tone="dark" href={consultCta.href}>
+          {consultCta.label}
+        </Button>
       </div>
     </div>
   );

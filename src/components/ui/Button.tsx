@@ -1,17 +1,15 @@
-import Link from "next/link";
-import { PhoneIcon } from "@/components/icons";
-import { site } from "@/config/site";
+import Link from 'next/link';
 
-export type ButtonVariant = "primary" | "secondary" | "ghost" | "inverse";
+export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'inverse';
 
 export interface ButtonProps {
   children: React.ReactNode;
   variant?: ButtonVariant;
-  size?: "md" | "sm";
+  size?: 'md' | 'sm';
   /** 'dark' = the button sits on a maroon background. */
-  tone?: "light" | "dark";
+  tone?: 'light' | 'dark';
   href?: string;
-  type?: "button" | "submit";
+  type?: 'button' | 'submit';
   disabled?: boolean;
   /** Spinner replaces the label; width stays locked. */
   loading?: boolean;
@@ -21,58 +19,55 @@ export interface ButtonProps {
 }
 
 const base =
-  "relative inline-flex items-center justify-center gap-2 rounded-md font-sans font-semibold whitespace-nowrap " +
-  "transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-maroon-500 " +
-  "disabled:cursor-not-allowed disabled:opacity-50";
+  'relative inline-flex items-center justify-center gap-2 rounded-md font-sans font-semibold whitespace-nowrap ' +
+  'transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-maroon-500 ' +
+  'disabled:cursor-not-allowed disabled:opacity-50';
 
-const sizes = { md: "h-12 px-6 text-[15px]", sm: "h-11 px-5 text-[15px]" };
+const sizes = { md: 'h-12 px-6 text-[15px]', sm: 'h-11 px-5 text-[15px]' };
 
-const variants: Record<ButtonVariant, Record<"light" | "dark", string>> = {
+const variants: Record<ButtonVariant, Record<'light' | 'dark', string>> = {
   primary: {
-    light: "bg-maroon-700 text-white hover:bg-maroon-800 active:bg-maroon-900",
-    dark: "bg-maroon-700 text-white hover:bg-maroon-800 active:bg-maroon-900",
+    light: 'bg-maroon-700 text-white hover:bg-maroon-800 active:bg-maroon-900',
+    dark: 'bg-maroon-700 text-white hover:bg-maroon-800 active:bg-maroon-900',
   },
   secondary: {
-    light: "border border-ink text-ink hover:bg-sand",
-    dark: "border border-white text-white hover:bg-white/10",
+    light: 'border border-ink text-ink hover:bg-sand',
+    dark: 'border border-white text-white hover:bg-white/10',
   },
   ghost: {
-    light: "text-maroon-700 hover:bg-maroon-50",
-    dark: "text-white hover:bg-white/10",
+    light: 'text-maroon-700 hover:bg-maroon-50',
+    dark: 'text-white hover:bg-white/10',
   },
   inverse: {
-    light: "bg-white text-maroon-700 hover:bg-maroon-50",
-    dark: "bg-white text-maroon-700 hover:bg-maroon-50",
+    light: 'bg-white text-maroon-700 hover:bg-maroon-50',
+    dark: 'bg-white text-maroon-700 hover:bg-maroon-50',
   },
 };
 
 function Spinner() {
   return (
-    <span
-      className="absolute inset-0 grid place-items-center"
-      aria-hidden="true"
-    >
+    <span className="absolute inset-0 grid place-items-center" aria-hidden="true">
       <span className="h-5 w-5 animate-spin rounded-full border-2 border-current border-t-transparent" />
     </span>
   );
 }
 
 export function buttonClass(
-  variant: ButtonVariant = "primary",
-  size: "md" | "sm" = "md",
-  tone: "light" | "dark" = "light",
-  className = "",
+  variant: ButtonVariant = 'primary',
+  size: 'md' | 'sm' = 'md',
+  tone: 'light' | 'dark' = 'light',
+  className = '',
 ): string {
   return `${base} ${sizes[size]} ${variants[variant][tone]} ${className}`;
 }
 
 export function Button({
   children,
-  variant = "primary",
-  size = "md",
-  tone = "light",
+  variant = 'primary',
+  size = 'md',
+  tone = 'light',
   href,
-  type = "button",
+  type = 'button',
   disabled,
   loading,
   onClick,
@@ -104,28 +99,8 @@ export function Button({
       aria-label={ariaLabel}
       onClick={onClick}
     >
-      <span className={loading ? "invisible" : undefined}>{children}</span>
+      <span className={loading ? 'invisible' : undefined}>{children}</span>
       {loading && <Spinner />}
     </button>
-  );
-}
-
-/** Secondary button whose label is always the firm phone number (DESIGN-BRIEF §6). */
-export function PhoneButton({
-  tone = "light",
-  size = "md",
-  className,
-}: Pick<ButtonProps, "tone" | "size" | "className">) {
-  return (
-    <Button
-      variant="secondary"
-      tone={tone}
-      size={size}
-      href={site.phoneHref}
-      className={className}
-    >
-      <PhoneIcon className="h-4 w-4" />
-      {site.phone}
-    </Button>
   );
 }

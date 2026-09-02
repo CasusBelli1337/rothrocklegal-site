@@ -1,10 +1,10 @@
-import Link from "next/link";
-import { ArrowRightIcon } from "@/components/icons";
-import { Container } from "@/components/ui/Container";
-import { FaqAccordion } from "@/components/ui/FaqAccordion";
-import { Reveal } from "@/components/ui/Reveal";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { homeFaq } from "@/config/faq";
+import Link from 'next/link';
+import { ArrowRightIcon } from '@/components/icons';
+import { Container } from '@/components/ui/Container';
+import { FaqAccordion } from '@/components/ui/FaqAccordion';
+import { Reveal } from '@/components/ui/Reveal';
+import { SectionHeading } from '@/components/ui/SectionHeading';
+import { homeFaq } from '@/config/faq';
 
 /** HOMEPAGE-SPEC §8: five questions, centered heading, FAQPage JSON-LD. */
 export function HomeFaq() {
@@ -12,10 +12,7 @@ export function HomeFaq() {
     <section className="grid-hairline bg-sand py-16 lg:py-24">
       <Container className="max-w-[52rem]">
         <Reveal>
-          <SectionHeading
-            align="center"
-            title="Questions people ask before they call."
-          />
+          <SectionHeading align="center" title="Questions people ask before they reach out." />
         </Reveal>
         <Reveal className="mt-10">
           <FaqAccordion items={homeFaq} />
