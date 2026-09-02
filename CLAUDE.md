@@ -17,6 +17,19 @@ commits and pushes to `main`. See `docs/EDITING.md`.
 
 AGENTS.md is a relative symlink to this file and must stay one.
 
+### Editing notes: the preview lens switcher
+
+The editor preview shows a "Lens" pill bottom-right (Neutral / Beneficiary /
+Trustee / Reset). It exists only there: `next.config.mjs` sets
+`NEXT_PUBLIC_PREVIEW_TOOLS=1` under `EDITOR_PREVIEW=1`, and
+`src/app/layout.tsx` imports `components/lens/PreviewLensSwitch` only when that
+flag is set, so a production export has no trace of it (`check-lens.mjs`
+asserts this). A lens button writes the score directly to the `rl-lens`
+store (0 / −3 / +3, the same call the site's own escape-hatch links use), which
+re-stamps `html[data-lens]` without a reload; Reset clears the score and the
+tab's landing flag. Use it to review every framing of the homepage, `/library/`,
+and the consult flow; visitors never see it. Details: `docs/LENS.md`.
+
 ## Commands
 
 - `npm run dev` is only ever run by the editor container. Never start it by
@@ -29,7 +42,10 @@ AGENTS.md is a relative symlink to this file and must stay one.
   articles into `content/library/`.
 - `node scripts/make-covers.mjs [--force]` generates missing library covers.
 
-Full check before a commit: lint, typecheck, test, build, check-links, check-seo.
+- `node scripts/check-lens.mjs` verifies the lens export (every copy slot
+  carries all three framings, boot script in `<head>`, no preview-tool trace).
+
+Full check before a commit: lint, typecheck, test, build, check-links, check-seo, check-lens.
 
 ## Architecture (config over code)
 
@@ -61,6 +77,11 @@ Components read config; they never hardcode firm facts, URLs, or copy lists.
   are the rule table, `compute.ts` runs the clocks and the CCP § 12a roll,
   `holidays.ts` holds the 2026 and 2027 court holidays, `RULES.md` is the
   statute-by-statute verification record. Re-verify every January.
+- `src/lib/lens/*` + `src/config/lens.ts` (rules) + `src/config/lens-copy.ts`
+  (copy): the lens, a browser-only trustee/beneficiary framing inferred from
+  the landing path and clicks (`docs/LENS.md`). Copy variants render through
+  `components/lens/Slot` with `data-for`; `html[data-lens]` picks one; URLs
+  never change and nothing is sent anywhere.
 - `src/lib/seo/jsonld.ts` (typed builders: LegalService, WebSite, Person,
   ProfilePage, Article/BlogPosting, FAQPage, BreadcrumbList, WebPage) and
   `metadata.ts` (`pageMetadata()`: title, description, canonical, OG, Twitter).

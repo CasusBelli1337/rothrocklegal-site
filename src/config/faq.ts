@@ -1,7 +1,38 @@
 import { site } from '@/config/site';
 import type { FaqItem } from '@/types/content';
 
-/** Homepage FAQ (HOMEPAGE-SPEC §8). The fee answer is Arthur's wording (2026-09-01); the model is not final. */
+/**
+ * The two trustee-side questions (docs/LENS.md §4f). Answers stay conditional
+ * and cite the statute (TRUSTEE-RULES.md §2–§3); nothing promises an outcome.
+ */
+export const trusteeFeesFaq: FaqItem = {
+  question: 'Can the trust pay for my lawyer?',
+  answer:
+    'Often, if you are defending the trust or your administration of it in good faith. A trustee ' +
+    'may hire a lawyer (Probate Code section 16247) and is repaid from the trust for expenses ' +
+    'properly incurred in administering it (Probate Code section 15684). The trust does not pay ' +
+    'for your side of a fight over who gets what, and fees already paid can be charged back to ' +
+    'you if the court finds a breach. We tell you where that line runs before the first invoice ' +
+    'goes to the trust.',
+};
+
+export const trusteeAccountingFaq: FaqItem = {
+  question: 'A beneficiary demanded an accounting. How long do I have?',
+  answer:
+    'Sixty days is the number to work from. A beneficiary who asks in writing can go to court to ' +
+    'compel an accounting once 60 days pass without one, if none was given in the six months ' +
+    'before the request (Probate Code section 17200(b)(7)). A written request for information ' +
+    'gets the same 60-day treatment (Probate Code sections 16061 and 17200(b)(7)), and ' +
+    'beneficiaries entitled to distributions are owed an accounting at least once a year ' +
+    '(Probate Code section 16062). Some trusts change these rules, so send us the trust and the ' +
+    'request before you answer.',
+};
+
+/**
+ * Homepage FAQ (HOMEPAGE-SPEC §8) plus the two trustee questions last; the
+ * trustee lens moves those two first. The fee answer is Arthur's wording
+ * (2026-09-01); the model is not final.
+ */
 export const homeFaq: readonly FaqItem[] = [
   {
     question: 'What does it cost to contest a trust or will?',
@@ -35,6 +66,8 @@ export const homeFaq: readonly FaqItem[] = [
       'Santa Clara County Superior Court – Probate Division in San Jose most often, plus San ' +
       'Mateo, Alameda, and San Francisco Superior Courts. By video anywhere in California.',
   },
+  trusteeFeesFaq,
+  trusteeAccountingFaq,
 ];
 
 export interface FaqGroup {
@@ -117,6 +150,10 @@ export const faqGroups: readonly FaqGroup[] = [
           'Court appearances happen in the courtroom; everything else happens on your screen.',
       },
     ],
+  },
+  {
+    title: 'For trustees',
+    items: [trusteeFeesFaq, trusteeAccountingFaq],
   },
   {
     title: 'Courts and where we practice',

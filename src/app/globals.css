@@ -222,6 +222,26 @@
   transition-delay: 300ms;
 }
 
+/*
+ * Lens (docs/LENS.md). Copy variants carry data-for="neutral|trustee|beneficiary"
+ * (space-separated when shared); the inline head script stamps html[data-lens]
+ * before first paint. No attribute, or "neutral", shows the neutral copy, so
+ * crawlers, no-JS readers, and first-time visitors see the plain site.
+ */
+html:not([data-lens]) [data-for]:not([data-for~='neutral']),
+html[data-lens='neutral'] [data-for]:not([data-for~='neutral']),
+html[data-lens='trustee'] [data-for]:not([data-for~='trustee']),
+html[data-lens='beneficiary'] [data-for]:not([data-for~='beneficiary']) {
+  display: none;
+}
+/* Per-lens ordering (problem cards, home FAQ) from inline custom properties; neutral keeps DOM order. */
+html[data-lens='trustee'] .lens-ordered {
+  order: var(--lens-order-trustee, 0);
+}
+html[data-lens='beneficiary'] .lens-ordered {
+  order: var(--lens-order-beneficiary, 0);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

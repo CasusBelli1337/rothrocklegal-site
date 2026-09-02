@@ -2,11 +2,13 @@ import { Button } from './Button';
 import { Eyebrow } from './Eyebrow';
 
 interface DeadlineCalloutProps {
-  eyebrow?: string;
+  eyebrow?: React.ReactNode;
   title: React.ReactNode;
   body: React.ReactNode;
   headingLevel?: 'h2' | 'h3';
   cta?: { label: string; href: string };
+  /** Replaces the `cta` button outright (the homepage renders one button per lens). */
+  action?: React.ReactNode;
   /** Rendered beside the button, e.g. "Or send us a note". */
   secondary?: React.ReactNode;
   finePrint?: React.ReactNode;
@@ -20,6 +22,7 @@ export function DeadlineCallout({
   body,
   headingLevel: Tag = 'h3',
   cta = { label: 'Check my deadline', href: '/how-long-do-i-have/' },
+  action,
   secondary,
   finePrint,
   className = '',
@@ -33,7 +36,7 @@ export function DeadlineCallout({
       <Tag className={`${eyebrow ? 'mt-3' : ''} font-serif ${size} text-ink`}>{title}</Tag>
       <div className="mt-4 max-w-[62ch] text-body-lg text-ink-2">{body}</div>
       <div className="mt-6 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-        <Button href={cta.href}>{cta.label}</Button>
+        {action ?? <Button href={cta.href}>{cta.label}</Button>}
         {secondary && <div className="text-body text-ink-2">{secondary}</div>}
       </div>
       {finePrint && <p className="mt-5 text-small text-ink-3">{finePrint}</p>}

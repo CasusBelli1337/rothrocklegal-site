@@ -1,33 +1,34 @@
 import Link from 'next/link';
 import { ArrowRightIcon } from '@/components/icons';
+import { renderVariants, Slot } from '@/components/lens/Slot';
+import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { DeadlineCallout } from '@/components/ui/DeadlineCallout';
 import { Reveal } from '@/components/ui/Reveal';
-import { noteCta } from '@/config/site';
+import { lensCopy, type LensLink } from '@/config/lens-copy';
 
-/** HOMEPAGE-SPEC §2: the wizard callout on sand, 8 + 4 columns. */
+const ctaVariants = renderVariants(lensCopy.deadlineCta, (link: LensLink) => (
+  <Button href={link.href}>{link.label}</Button>
+));
+
+/** HOMEPAGE-SPEC §2: the wizard callout on sand, 8 + 4 columns. Copy and the button are lens slots. */
 export function DeadlineBand() {
   return (
     <section className="grid-hairline bg-sand py-16 lg:py-24">
       <Container className="grid gap-8 lg:grid-cols-12 lg:gap-10">
         <Reveal className="lg:col-span-8">
           <DeadlineCallout
-            eyebrow="Am I too late?"
+            eyebrow={<Slot name="deadline-eyebrow" variants={lensCopy.deadlineEyebrow} />}
             headingLevel="h2"
-            title="Most trust contests run on a 120-day clock. Some have less."
-            body={
-              "Once a trustee mails the notice required by Probate Code § 16061.7, you usually have 120 days to contest the trust. Will contests, elder abuse claims, and accounting disputes each have their own clock. Answer four questions and we'll tell you which deadlines probably apply to you."
-            }
+            title={<Slot name="deadline-title" variants={lensCopy.deadlineTitle} />}
+            body={<Slot name="deadline-body" variants={lensCopy.deadlineBody} />}
+            action={<Slot name="deadline-cta" variants={ctaVariants} className="contents" />}
             secondary={
-              <>
-                Or{' '}
-                <Link
-                  href={noteCta.href}
-                  className="font-semibold text-maroon-700 underline underline-offset-3"
-                >
-                  send us a note
-                </Link>
-              </>
+              <Slot
+                name="deadline-secondary"
+                variants={lensCopy.deadlineSecondary}
+                linkClassName="font-semibold text-maroon-700 underline underline-offset-3"
+              />
             }
             finePrint={
               <>

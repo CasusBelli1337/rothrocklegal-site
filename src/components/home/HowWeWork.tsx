@@ -1,15 +1,17 @@
 import Link from 'next/link';
 import { CASE_BLOCK_ID } from '@/components/about/WeDontScareEasily';
 import { ArrowRightIcon } from '@/components/icons';
+import { Slot } from '@/components/lens/Slot';
 import { Container } from '@/components/ui/Container';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { site } from '@/config/site';
+import { lensCopy } from '@/config/lens-copy';
 
-const steps = [
+/** Step 1 is a lens slot: a trustee is asked what was demanded of them, not what happened to them. */
+const steps: { title: string; body: React.ReactNode }[] = [
   {
     title: 'You request a consult online.',
-    body: `Tell us what happened, in writing or by voice, and upload what you have. We run a conflict check. ${site.replyPromise}`,
+    body: <Slot name="how-step-1" variants={lensCopy.howStep1} />,
   },
   {
     title: 'We check the clock and the documents.',
@@ -53,11 +55,10 @@ export function WhyFasterPanel() {
     <div className="rounded-xl border border-line bg-white p-6 lg:p-8">
       <h3 className="font-serif text-h3 text-ink">Why our cases move faster</h3>
       <p className="mt-3 text-body text-ink-2">
-        Arthur is the co-founder and CEO of Legion, an AI litigation platform, and this firm runs on
-        the same AI platform Legion builds for litigators. The software reads thousands of pages of
-        bank records and medical files in days instead of months and writes the first drafts, so
-        fewer hours land on your bill and the work moves faster. Lawyers still make every judgment
-        call.
+        <Slot name="why-faster-lead" variants={lensCopy.whyFasterLead} /> The software reads
+        thousands of pages of bank records and medical files in days instead of months and writes
+        the first drafts, so fewer hours land on your bill and the work moves faster. Lawyers still
+        make every judgment call.
       </p>
       <p className="mt-3 text-body text-ink-2">
         We are fully remote. We meet by video. No office visits, no parking, no waiting rooms.
