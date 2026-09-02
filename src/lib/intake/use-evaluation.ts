@@ -37,7 +37,8 @@ export function stageIndex(phase: EvaluationPhase): number | null {
 }
 
 export const POLL_INTERVAL_MS = 3000;
-export const POLL_TIMEOUT_MS = 180_000;
+// Measured evaluate latency is 95–200 s (Opus 5 reading every upload); allow headroom.
+export const POLL_TIMEOUT_MS = 360_000;
 const CHECKING_AFTER_MS = 30_000;
 
 const sleep = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
