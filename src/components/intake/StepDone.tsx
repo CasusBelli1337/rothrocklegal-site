@@ -22,7 +22,7 @@ export function StepDone({ intake }: StepProps) {
           ? `A confirmation is on its way to ${answers.contact.email}.`
           : 'A confirmation email is on its way.'}
       </p>
-      {result?.nextSteps && <p className="mt-4 text-body text-ink-2">{result.nextSteps}</p>}
+      {/* The API's nextSteps repeats the reply promise and caveat; the site's copy is canonical. */}
       <p className="mt-4 text-body text-ink-2">{CONFLICT_CAVEAT}</p>
       <p className="mt-4 text-small text-ink-3">
         Keep the reference number in case you need to write to us about this request. Until both

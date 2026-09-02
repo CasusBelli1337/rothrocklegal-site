@@ -83,7 +83,8 @@ function Stages({ phase }: { phase: EvaluationPhase }) {
         })}
       </ol>
       <p className="mt-6 text-small text-ink-3">
-        This usually takes one to two minutes. Please keep this page open.
+        This usually takes two to five minutes while we read everything you sent. Please keep this
+        page open.
       </p>
     </div>
   );
