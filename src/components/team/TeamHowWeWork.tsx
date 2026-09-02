@@ -2,14 +2,19 @@ import { Container } from '@/components/ui/Container';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 
+/** Who does what (Arthur, 2026-09-01). No promises, just the division of labor. */
 const roles: readonly { who: string; what: string }[] = [
   {
     who: 'Arthur',
-    what: 'Sets the strategy on every case. Takes the depositions, argues the hearings, tries the case.',
+    what: 'Sets the strategy and the big picture on every case. Decides what gets filed, what gets argued, and when to try it.',
   },
   {
-    who: 'The team',
-    what: 'Runs discovery, goes through the records, and drafts the pleadings and motions.',
+    who: 'Jonathan',
+    what: 'Takes the depositions and argues the hearings.',
+  },
+  {
+    who: 'Gerry and Max',
+    what: 'The associates. They execute the plan: the records, the discovery, the drafting, at lower rates.',
   },
   {
     who: "The firm's AI tools",
@@ -17,7 +22,7 @@ const roles: readonly { who: string; what: string }[] = [
   },
 ];
 
-/** "How we work as a team" for /attorneys/ (sand band). No promises, just who does what. */
+/** "How we work as a team" for /attorneys/ (sand band). */
 export function TeamHowWeWork() {
   return (
     <section className="grid-hairline bg-sand py-16 lg:py-20">
@@ -25,22 +30,18 @@ export function TeamHowWeWork() {
         <Reveal className="lg:col-span-6">
           <SectionHeading
             eyebrow="How we work as a team"
-            title="One trial lawyer sets the strategy. The whole office does the digging."
+            title="Senior judgment where it matters. Associate rates for the heavy lifting."
           />
           <div className="mt-6 space-y-4 text-body-lg text-ink-2">
             <p>
-              Arthur tries the cases and decides how each one gets run. The rest of the team runs
-              discovery, reads the records, and drafts, using the firm&rsquo;s AI tools with Arthur
-              reviewing the work before it goes out.
-            </p>
-            <p>
               That split is on purpose. A trust contest can turn on one line in a bank statement or
               one entry in a medical chart, and finding it means reading everything. Software reads
-              faster than people. People decide what it means.
+              faster than people. People decide what it means. And the decisions that shape the case
+              come from the lawyers who have to stand behind them in court.
             </p>
             <p>
-              The people you meet on the first call are the people who work the case. Nobody hands
-              you off.
+              The people you meet in the first conversation are the people who work the case. Nobody
+              hands you off.
             </p>
           </div>
         </Reveal>

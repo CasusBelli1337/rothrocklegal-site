@@ -1,25 +1,25 @@
-import type { Metadata } from "next";
-import { Instrument_Sans, Newsreader } from "next/font/google";
-import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header";
-import { MobileCallBar } from "@/components/layout/MobileCallBar";
-import { JsonLd } from "@/components/seo/JsonLd";
-import { site } from "@/config/site";
-import { siteGraph } from "@/lib/seo/jsonld";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { Instrument_Sans, Newsreader } from 'next/font/google';
+import { Footer } from '@/components/layout/Footer';
+import { Header } from '@/components/layout/Header';
+import { MobileConsultBar } from '@/components/layout/MobileConsultBar';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { site } from '@/config/site';
+import { siteGraph } from '@/lib/seo/jsonld';
+import './globals.css';
 
 const newsreader = Newsreader({
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-  axes: ["opsz"],
-  display: "swap",
-  variable: "--font-newsreader",
+  subsets: ['latin'],
+  style: ['normal', 'italic'],
+  axes: ['opsz'],
+  display: 'swap',
+  variable: '--font-newsreader',
 });
 
 const instrumentSans = Instrument_Sans({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-instrument-sans",
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-instrument-sans',
 });
 
 export const metadata: Metadata = {
@@ -31,29 +31,20 @@ export const metadata: Metadata = {
   description: site.description,
   openGraph: {
     siteName: site.name,
-    type: "website",
-    locale: "en_US",
+    type: 'website',
+    locale: 'en_US',
     images: [{ url: site.ogImage, width: 1200, height: 630, alt: site.name }],
   },
-  twitter: { card: "summary_large_image" },
+  twitter: { card: 'summary_large_image' },
   robots: { index: true, follow: true },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${newsreader.variable} ${instrumentSans.variable}`}
-    >
+    <html lang="en" className={`${newsreader.variable} ${instrumentSans.variable}`}>
       <body className="min-h-screen flex flex-col">
         <noscript>
-          <style>
-            {"[data-reveal],[data-reveal-stagger]>*{opacity:1;transform:none}"}
-          </style>
+          <style>{'[data-reveal],[data-reveal-stagger]>*{opacity:1;transform:none}'}</style>
         </noscript>
         <a href="#main" className="skip-link">
           Skip to content
@@ -63,7 +54,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <MobileCallBar />
+        <MobileConsultBar />
         <JsonLd data={siteGraph()} />
       </body>
     </html>

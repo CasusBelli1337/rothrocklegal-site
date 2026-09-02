@@ -17,7 +17,7 @@ export function RelatedReading({ area }: { area: PracticeArea }) {
           <SectionHeading
             id="related-reading"
             eyebrow="Related reading"
-            title="Read more before you call."
+            title="Read more before you reach out."
           />
           <Button variant="secondary" href="/library/" className="shrink-0">
             Browse the library

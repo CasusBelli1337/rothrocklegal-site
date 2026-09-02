@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
-import { Button, PhoneButton } from '@/components/ui/Button';
+import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { practiceHub, type PracticeArea } from '@/config/practice-areas';
+import { consultCta, noteCta } from '@/config/site';
 import { getTeamMember, teamHref } from '@/config/team';
 import { formatDate } from '@/lib/format-date';
 import { bindSectionSigns, keepCompounds } from '@/lib/typography';
@@ -39,8 +40,10 @@ export function PracticeHero({ area }: { area: PracticeArea }) {
             &middot; Updated {formatDate(area.updatedAt)}
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button href="/contact/">Tell us what happened</Button>
-            <PhoneButton />
+            <Button href={consultCta.href}>{consultCta.label}</Button>
+            <Button variant="secondary" href={noteCta.href}>
+              {noteCta.label}
+            </Button>
           </div>
         </div>
       </Container>

@@ -26,11 +26,11 @@ export default function FaqPage() {
           <div className="mt-8 max-w-[52rem]">
             <Eyebrow rule>Questions</Eyebrow>
             <h1 className="mt-4 font-serif text-h1 text-ink">
-              The questions people ask before they call.
+              The questions people ask before they reach out.
             </h1>
             <p className="mt-6 text-lead text-ink-2">
               Costs, deadlines, what the process looks like, and where we appear. If yours is not
-              here, call {site.phone} and ask it.
+              here, ask it in your consult request.
             </p>
           </div>
         </Container>
@@ -52,7 +52,10 @@ export default function FaqPage() {
       <CtaBand
         title="Still have a question?"
         lead={
-          <>Ask it. The first conversation is about your dates and your documents, not a pitch.</>
+          <>
+            Ask it in your consult request. The first conversation is about your dates and your
+            documents, not a pitch.
+          </>
         }
       />
       <JsonLd data={faqPage(allFaqItems)} />

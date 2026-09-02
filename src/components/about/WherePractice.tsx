@@ -15,7 +15,7 @@ export function WherePractice() {
           <SectionHeading
             eyebrow="Service area"
             title="San Jose first. The whole Bay Area when the case calls for it."
-            lead="We meet by appointment in San Jose and by video anywhere in California."
+            lead="We meet by video anywhere in California and appear in person in the courtrooms below."
           />
         </Reveal>
         <Reveal stagger className="mt-10 grid gap-8 md:grid-cols-2 lg:gap-16">

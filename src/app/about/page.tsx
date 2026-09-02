@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ClientWords } from '@/components/about/ClientWords';
 import { HowWeWork } from '@/components/about/HowWeWork';
 import { RecognitionSection } from '@/components/about/RecognitionSection';
+import { WeDontScareEasily } from '@/components/about/WeDontScareEasily';
 import { WhatWeDo } from '@/components/about/WhatWeDo';
 import { WherePractice } from '@/components/about/WherePractice';
 import { JsonLd } from '@/components/seo/JsonLd';
@@ -67,6 +68,20 @@ function WhoWeAre() {
             Meet the team <span aria-hidden="true">&rarr;</span>
           </Link>
         </Reveal>
+        <Reveal className="mt-6 max-w-[64ch] space-y-4 text-body-lg text-ink-2">
+          <p>
+            Here&rsquo;s how the work gets divided. Arthur sets the strategy and keeps the big
+            picture on every case. Jonathan Joannides, a former Marine Corps infantry captain who
+            practiced at Wilson Sonsini and Fenwick &amp; West and now serves as President of the
+            Honorable William A. Ingram American Inn of Court, takes the depositions and argues the
+            hearings. Gerry Lin and Max Discher, our associates, execute the plan: the records, the
+            discovery, the drafting.
+          </p>
+          <p>
+            The point is simple. Senior judgment where it counts, a courtroom presence the judges
+            know, and associate rates for the heavy lifting.
+          </p>
+        </Reveal>
         <div className="mt-10">
           <TeamGrid />
         </div>
@@ -82,6 +97,7 @@ export default function AboutPage() {
       <WhatWeDo />
       <HowWeWork />
       <WhoWeAre />
+      <WeDontScareEasily />
       <RecognitionSection />
       <WherePractice />
       <ClientWords />

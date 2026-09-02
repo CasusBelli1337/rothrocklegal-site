@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { MailIcon, PhoneIcon } from '@/components/icons';
+import { ArrowRightIcon, MailIcon } from '@/components/icons';
 import { getPracticeArea, practiceHref } from '@/config/practice-areas';
-import { site } from '@/config/site';
+import { consultCta, site } from '@/config/site';
 import type { TeamMember } from '@/config/team';
 
 function Block({ title, children }: { title: string; children: React.ReactNode }) {
@@ -86,10 +86,10 @@ function Contact({ member }: { member: TeamMember }) {
     <Block title="Get in touch">
       <ul className="space-y-2">
         <li>
-          <a href={site.phoneHref} className={rowClass}>
-            <PhoneIcon className="h-4 w-4 text-brass-500" />
-            {site.phone}
-          </a>
+          <Link href={consultCta.href} className={rowClass}>
+            <ArrowRightIcon className="h-4 w-4 text-brass-500" />
+            {consultCta.label}
+          </Link>
         </li>
         {member.email && (
           <li>
@@ -100,7 +100,8 @@ function Contact({ member }: { member: TeamMember }) {
           </li>
         )}
       </ul>
-      <p className="mt-3 text-meta text-ink-3">{site.office.appointments}</p>
+      <p className="mt-3 text-meta text-ink-3">{site.consultLine}</p>
+      <p className="mt-1 text-meta text-ink-3">{site.office.appointments}</p>
     </Block>
   );
 }

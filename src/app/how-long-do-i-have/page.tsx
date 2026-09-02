@@ -126,7 +126,12 @@ export default function HowLongDoIHavePage() {
       <HowItWorks />
       <CtaBand
         title="Not sure which clock is yours?"
-        lead={<>Call {site.phone} and we&rsquo;ll work it out with you in one conversation.</>}
+        lead={
+          <>
+            Put your dates in a consult request and we&rsquo;ll work it out with you in one
+            conversation.
+          </>
+        }
       />
       <JsonLd
         data={webPage({

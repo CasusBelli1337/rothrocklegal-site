@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { PhoneIcon } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
 import {
   practiceHub,
@@ -7,7 +6,7 @@ import {
   practiceHref,
   type PracticeArea,
 } from '@/config/practice-areas';
-import { site } from '@/config/site';
+import { consultCta } from '@/config/site';
 import type { PracticeSection } from '@/lib/practice';
 import { bindSectionSigns } from '@/lib/typography';
 
@@ -20,7 +19,7 @@ function SideHeading({ children }: { children: React.ReactNode }) {
   return <h2 className="eyebrow font-sans">{children}</h2>;
 }
 
-/** Sticky aside: on this page, the statutes, other practice pages, and the phone. */
+/** Sticky aside: on this page, the statutes, the deadline card with a consult link, and other practice pages. */
 export function PracticeSidebar({ area, sections }: PracticeSidebarProps) {
   const others = practicePages.filter((p) => p.slug !== area.slug);
   return (
@@ -66,13 +65,12 @@ export function PracticeSidebar({ area, sections }: PracticeSidebarProps) {
         <Button variant="inverse" size="sm" href="/how-long-do-i-have/" className="mt-4 w-full">
           Check my deadline
         </Button>
-        <a
-          href={site.phoneHref}
-          className="mt-3 inline-flex items-center gap-2 text-small font-semibold text-white"
+        <Link
+          href={consultCta.href}
+          className="mt-3 inline-flex items-center gap-2 text-small font-semibold text-white underline underline-offset-3"
         >
-          <PhoneIcon className="h-4 w-4" />
-          {site.phone}
-        </a>
+          {consultCta.label}
+        </Link>
       </div>
 
       <nav aria-labelledby="other-practice">

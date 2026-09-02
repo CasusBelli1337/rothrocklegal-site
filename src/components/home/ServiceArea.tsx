@@ -1,11 +1,11 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/Button";
-import { Container } from "@/components/ui/Container";
-import { Reveal } from "@/components/ui/Reveal";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { cities } from "@/config/service-areas";
+import Link from 'next/link';
+import { Button } from '@/components/ui/Button';
+import { Container } from '@/components/ui/Container';
+import { Reveal } from '@/components/ui/Reveal';
+import { SectionHeading } from '@/components/ui/SectionHeading';
+import { cities } from '@/config/service-areas';
 
-const regions = ["the Peninsula", "the East Bay"];
+const regions = ['the Peninsula', 'the East Bay'];
 
 /** HOMEPAGE-SPEC §9: two columns, no map. */
 export function ServiceArea() {
@@ -18,11 +18,10 @@ export function ServiceArea() {
             title="San Jose first. The whole Bay Area when the case calls for it."
           />
           <p className="mt-6 max-w-[62ch] text-body-lg text-ink-2">
-            We meet by appointment in San Jose and by video anywhere in
-            California. Most of our cases are in Santa Clara County Superior
-            Court &ndash; Probate Division at 191 N. First Street, and we
-            regularly appear in San Mateo, Alameda, and San Francisco Superior
-            Courts.
+            We meet by video anywhere in California and show up in person where it counts: the
+            courtroom. Most of our cases are in Santa Clara County Superior Court &ndash; Probate
+            Division at 191 N. First Street, and we regularly appear in San Mateo, Alameda, and San
+            Francisco Superior Courts.
           </p>
           <div className="mt-8">
             <Button variant="secondary" href="/service-areas/">

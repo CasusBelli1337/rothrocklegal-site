@@ -1,9 +1,10 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useMemo, useRef } from 'react';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { Button } from '@/components/ui/Button';
-import { site } from '@/config/site';
+import { consultCta, site } from '@/config/site';
 import { computeDeadlines, hasUrgentOrPassed } from '@/lib/deadlines/compute';
 import { buildSummary } from '@/lib/deadlines/summary';
 import type { DeadlineResult, WizardAnswers } from '@/lib/deadlines/types';
@@ -18,13 +19,13 @@ interface WizardResultsProps {
   onStartOver(): void;
 }
 
-function CallNow() {
+function ActNow() {
   return (
     <div className="wizard-alert mt-4 flex flex-wrap items-center justify-between gap-4">
       <p className="text-body font-semibold text-ink">
         At least one deadline is close or has already passed. Don&rsquo;t wait.
       </p>
-      <Button href={site.phoneHref}>Call {site.phone} today</Button>
+      <Button href={consultCta.href}>{consultCta.label}</Button>
     </div>
   );
 }
@@ -63,7 +64,14 @@ function NextStep({ summary }: { summary: string }) {
       <h2 className="mt-3 font-serif text-h2 text-ink">Send us this summary</h2>
       <p className="mt-3 mb-8 max-w-[60ch] text-body text-ink-2">
         Your answers and the estimated dates are already filled in below. Add your name and how to
-        reach you, and we will get back to you. Or call {site.phone}.
+        reach you, and send it. {site.replyPromise} Rather say it out loud or upload documents?{' '}
+        <Link
+          href={consultCta.href}
+          className="font-semibold text-maroon-700 underline underline-offset-3"
+        >
+          Request a consult instead
+        </Link>
+        .
       </p>
       <ContactForm initialMessage={summary} />
     </div>
@@ -101,7 +109,7 @@ export function WizardResults({
         <strong>These are estimates from what you told us.</strong> Deadlines depend on facts we
         haven&rsquo;t seen. Contact us before relying on any date.
       </p>
-      {hasUrgentOrPassed(results) && <CallNow />}
+      {hasUrgentOrPassed(results) && <ActNow />}
       <ResultsList results={results} />
       <div className="mt-6 flex flex-wrap gap-3">
         <Button variant="secondary" onClick={onEdit}>

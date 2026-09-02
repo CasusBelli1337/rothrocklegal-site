@@ -4,10 +4,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { MenuIcon, PhoneIcon } from '@/components/icons';
+import { MenuIcon } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
-import { asset, contactCta, nav, site } from '@/config/site';
+import { asset, consultCta, nav, site } from '@/config/site';
 import { MobileMenu } from './MobileMenu';
 import { isActive, navLinkClass } from './nav-link';
 import { NavDropdown } from './NavDropdown';
@@ -26,7 +26,7 @@ export function Header() {
 
   return (
     <header
-      // Above the z-40 call bar so the mobile sheet (rendered inside this stacking context) covers it.
+      // Above the z-40 consult bar so the mobile sheet (rendered inside this stacking context) covers it.
       className={`sticky top-0 z-50 border-b border-line transition-colors duration-150 ${
         scrolled ? 'bg-paper/90 backdrop-blur' : 'bg-paper'
       }`}
@@ -60,27 +60,13 @@ export function Header() {
           )}
         </nav>
 
-        <div className="hidden items-center gap-5 lg:flex">
-          <a
-            href={site.phoneHref}
-            className="inline-flex h-10 items-center gap-2 text-[15px] font-medium text-ink transition-colors hover:text-maroon-700"
-          >
-            <PhoneIcon className="h-4 w-4" />
-            {site.phone}
-          </a>
-          <Button href={contactCta.href} size="sm">
-            {contactCta.label}
+        <div className="hidden items-center lg:flex">
+          <Button href={consultCta.href} size="sm">
+            {consultCta.label}
           </Button>
         </div>
 
-        <div className="flex items-center gap-1 lg:hidden">
-          <a
-            href={site.phoneHref}
-            aria-label={`Call ${site.phone}`}
-            className="grid h-11 w-11 place-items-center rounded-md text-ink"
-          >
-            <PhoneIcon className="h-5 w-5" />
-          </a>
+        <div className="flex items-center lg:hidden">
           <button
             type="button"
             aria-expanded={menuOpen}

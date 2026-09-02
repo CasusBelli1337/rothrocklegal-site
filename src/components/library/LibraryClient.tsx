@@ -1,6 +1,7 @@
 'use client';
 
-import { Button, PhoneButton } from '@/components/ui/Button';
+import { Button } from '@/components/ui/Button';
+import { consultCta, noteCta } from '@/config/site';
 import type { CategoryCount } from '@/lib/library/articles';
 import type { LibraryListItem } from '@/lib/library/index-item';
 import { FilterBar } from './FilterBar';
@@ -30,11 +31,13 @@ function EmptyState() {
     <div className="rounded-xl border border-dashed border-line-strong bg-white p-8 text-center">
       <p className="font-serif text-h3 text-ink">Nothing matches that yet.</p>
       <p className="mx-auto mt-2 max-w-[44ch] text-body text-ink-2">
-        Try a shorter word, or call us &ndash; the answer is a phone call away.
+        Try a shorter word, or ask us directly.
       </p>
       <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
-        <Button href="/contact/">Tell us what happened</Button>
-        <PhoneButton />
+        <Button href={consultCta.href}>{consultCta.label}</Button>
+        <Button variant="secondary" href={noteCta.href}>
+          {noteCta.label}
+        </Button>
       </div>
     </div>
   );

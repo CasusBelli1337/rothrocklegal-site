@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Button, PhoneButton } from '@/components/ui/Button';
+import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { practiceHub, practiceHref } from '@/config/practice-areas';
+import { noteCta } from '@/config/site';
 
 export const metadata: Metadata = {
   title: 'Page not found',
   description:
-    'That page may have moved when the site was rebuilt. Try the practice areas, the deadline wizard, or call Rothrock Legal.',
+    'That page may have moved when the site was rebuilt. Try the practice areas, the deadline wizard, or send Rothrock Legal a note.',
   robots: { index: false, follow: true },
 };
 
@@ -24,8 +25,8 @@ export default function NotFound() {
       <p className="eyebrow">Page not found</p>
       <h1 className="mt-3 font-serif text-h1 text-ink">We can&rsquo;t find that page.</h1>
       <p className="mt-5 text-lead text-ink-2">
-        It may have moved when the site was rebuilt. Try one of these, or call us and we&rsquo;ll
-        point you to the right place.
+        It may have moved when the site was rebuilt. Try one of these, or send us a note and
+        we&rsquo;ll point you to the right place.
       </p>
       <ul className="mt-8 grid gap-2 sm:grid-cols-2">
         {links.map((link) => (
@@ -41,7 +42,9 @@ export default function NotFound() {
       </ul>
       <div className="mt-10 flex flex-col gap-3 sm:flex-row">
         <Button href="/">Back to the homepage</Button>
-        <PhoneButton />
+        <Button variant="secondary" href={noteCta.href}>
+          {noteCta.label}
+        </Button>
       </div>
     </Container>
   );

@@ -1,23 +1,16 @@
-import Image from "next/image";
-import Link from "next/link";
-import { LinkedInIcon } from "@/components/icons";
-import { Container } from "@/components/ui/Container";
-import { practiceHref, practicePages } from "@/config/practice-areas";
-import { courts } from "@/config/service-areas";
-import {
-  asset,
-  footerResources,
-  legalLinks,
-  site,
-  social,
-} from "@/config/site";
+import Image from 'next/image';
+import Link from 'next/link';
+import { LinkedInIcon } from '@/components/icons';
+import { Container } from '@/components/ui/Container';
+import { practiceHref, practicePages } from '@/config/practice-areas';
+import { courts } from '@/config/service-areas';
+import { asset, consultCta, footerResources, legalLinks, site, social } from '@/config/site';
 
 function ColumnHeading({ children }: { children: React.ReactNode }) {
   return <h2 className="eyebrow font-sans text-white/60">{children}</h2>;
 }
 
-const linkClass =
-  "text-[15px] text-white/80 transition-colors hover:text-white";
+const linkClass = 'text-[15px] text-white/80 transition-colors hover:text-white';
 
 /** Four columns + compliance bar (IA.md §3, SEO-SPEC §12 #6). */
 export function Footer() {
@@ -26,7 +19,7 @@ export function Footer() {
       <Container className="grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_0.9fr_1.2fr] lg:py-20">
         <div>
           <Image
-            src={asset("/images/logo-white.png")}
+            src={asset('/images/logo-white.png')}
             alt={site.name}
             width={190}
             height={105}
@@ -35,15 +28,17 @@ export function Footer() {
           <p className="mt-5 max-w-[32ch] text-[15px] leading-relaxed text-white/80">
             {site.tagline}
           </p>
-          <p className="mt-5 text-[15px]">
-            <a
-              href={site.phoneHref}
-              className="font-semibold text-white hover:underline"
+          <p className="mt-5 text-[15px] font-semibold text-white">{site.phone}</p>
+          <p className="mt-1 max-w-[32ch] text-small text-white/70">{site.consultLine}</p>
+          <p className="mt-2 text-[15px]">
+            <Link
+              href={consultCta.href}
+              className="font-semibold text-white underline underline-offset-3 hover:text-white/90"
             >
-              {site.phone}
-            </a>
+              {consultCta.label} <span aria-hidden="true">&rarr;</span>
+            </Link>
           </p>
-          <p className="mt-1 text-[15px]">
+          <p className="mt-3 text-[15px]">
             <a
               href={`mailto:${site.email}`}
               className="text-white/80 underline-offset-3 hover:text-white hover:underline"
@@ -51,9 +46,7 @@ export function Footer() {
               {site.email}
             </a>
           </p>
-          <p className="mt-4 text-small text-white/70">
-            {site.office.appointments}
-          </p>
+          <p className="mt-4 text-small text-white/70">{site.office.appointments}</p>
           <a
             href={social.linkedin}
             target="_blank"
@@ -98,9 +91,7 @@ export function Footer() {
               <li key={court.name}>
                 {court.name}
                 {court.address && (
-                  <span className="block text-small text-white/60">
-                    {court.address}
-                  </span>
+                  <span className="block text-small text-white/60">{court.address}</span>
                 )}
               </li>
             ))}
@@ -112,9 +103,8 @@ export function Footer() {
       <div className="border-t border-white/15">
         <Container className="flex flex-col gap-3 py-6 text-small text-white/65">
           <p>
-            &copy; {site.copyrightYear} {site.name} &middot;{" "}
-            {site.responsibleAttorney}, attorney responsible for this site
-            &middot; {site.office.city}, {site.office.regionName} &middot;
+            &copy; {site.copyrightYear} {site.name} &middot; {site.responsibleAttorney}, attorney
+            responsible for this site &middot; {site.office.city}, {site.office.regionName} &middot;
             Attorney advertising
           </p>
           <p className="flex flex-wrap gap-x-4 gap-y-1">
@@ -129,8 +119,7 @@ export function Footer() {
             ))}
           </p>
           <p>
-            {site.resultsDisclaimer} Super Lawyers is a registered trademark of
-            Thomson Reuters.
+            {site.resultsDisclaimer} Super Lawyers is a registered trademark of Thomson Reuters.
           </p>
         </Container>
       </div>

@@ -1,39 +1,34 @@
-import { ContactForm } from "@/components/forms/ContactForm";
-import { CheckIcon, MailIcon, PhoneIcon } from "@/components/icons";
-import { Container } from "@/components/ui/Container";
-import { site } from "@/config/site";
+import { ContactForm } from '@/components/forms/ContactForm';
+import { CheckIcon, MailIcon, PhoneIcon } from '@/components/icons';
+import { Button } from '@/components/ui/Button';
+import { Container } from '@/components/ui/Container';
+import { consultCta, site } from '@/config/site';
 
 interface ContactBandProps {
   /** h1 on /contact/, h2 on the homepage. */
-  headingLevel?: "h1" | "h2";
+  headingLevel?: 'h1' | 'h2';
   initialMessage?: string;
   id?: string;
+  /** The phone number, as text and never a button: only /contact/ and the footer show it. */
+  showPhone?: boolean;
 }
 
-const next = [
-  "We read it.",
-  "We call you.",
-  "We tell you the deadlines that matter.",
-];
-
-/** HOMEPAGE-SPEC §10: form + phone column; shared with /contact/. */
+/** HOMEPAGE-SPEC §10: the short form, with the consult request as the primary path beside it; shared with /contact/. */
 export function ContactBand({
-  headingLevel: Tag = "h2",
+  headingLevel: Tag = 'h2',
   initialMessage,
-  id = "contact",
+  id = 'contact',
+  showPhone = false,
 }: ContactBandProps) {
   return (
     <section id={id} className="bg-white py-16 lg:py-24">
       <Container className="grid gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-7">
-          <Tag
-            className={`font-serif ${Tag === "h1" ? "text-h1" : "text-h2"} text-ink`}
-          >
-            Tell us what happened.
+          <Tag className={`font-serif ${Tag === 'h1' ? 'text-h1' : 'text-h2'} text-ink`}>
+            Send us a note.
           </Tag>
           <p className="mt-4 max-w-[52ch] text-lead text-ink-2">
-            A few sentences is enough. We&rsquo;ll read it and get back to you{" "}
-            {site.replyPromise}.
+            A few sentences is enough. {site.replyPromise}
           </p>
           <div className="mt-8">
             <ContactForm initialMessage={initialMessage} />
@@ -41,16 +36,22 @@ export function ContactBand({
         </div>
         <aside
           className="lg:col-span-5 lg:pt-3"
-          aria-label="Phone, email, and what happens next"
+          aria-label="Consult request, email, and what happens next"
         >
-          <a
-            href={site.phoneHref}
-            className="inline-flex items-center gap-3 font-serif text-stat text-ink tabular hover:text-maroon-700"
-          >
-            <PhoneIcon className="h-7 w-7 text-brass-500" />
-            {site.phone}
-          </a>
-          <p className="mt-4">
+          <h3 className="font-serif text-h3 text-ink">Rather say it, or send documents?</h3>
+          <p className="mt-2 max-w-[44ch] text-body text-ink-2">
+            {site.consultLine} Write it or record it, and upload what you have.
+          </p>
+          <Button href={consultCta.href} className="mt-4">
+            {consultCta.label}
+          </Button>
+          {showPhone && (
+            <p className="mt-8 inline-flex items-center gap-3 font-serif text-stat text-ink tabular">
+              <PhoneIcon className="h-7 w-7 text-brass-500" />
+              {site.phone}
+            </p>
+          )}
+          <p className={showPhone ? 'mt-4' : 'mt-8'}>
             <a
               href={`mailto:${site.email}`}
               className="inline-flex items-center gap-2 text-body text-ink-2 underline-offset-3 hover:text-maroon-700 hover:underline"
@@ -60,18 +61,11 @@ export function ContactBand({
             </a>
           </p>
           <p className="mt-3 text-body text-ink-2">{site.hours}</p>
-          <p className="mt-1 text-body text-ink-2">
-            {site.office.appointments}
-          </p>
-          <h3 className="mt-10 font-sans text-h4 text-ink">
-            What happens next
-          </h3>
+          <p className="mt-1 text-body text-ink-2">{site.office.appointments}</p>
+          <h3 className="mt-10 font-sans text-h4 text-ink">What happens next</h3>
           <ol className="mt-4 space-y-3">
-            {next.map((step) => (
-              <li
-                key={step}
-                className="flex items-center gap-3 text-body text-ink-2"
-              >
+            {site.nextSteps.map((step) => (
+              <li key={step} className="flex items-center gap-3 text-body text-ink-2">
                 <CheckIcon className="h-5 w-5 shrink-0 text-brass-500" />
                 {step}
               </li>
