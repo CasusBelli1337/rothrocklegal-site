@@ -108,14 +108,23 @@ ACCOUNTS-2026-09-02.txt` (copy in OneDrive `#RothrockLegal/Website/`).
   Business Profile and a web search shows no Legion knowledge panel, so no
   conflicting listing was found.
 
-## Next project: the Rothrock Legal lawyer portal (BUILD STARTED 2026-09-02)
+## The Rothrock Legal lawyer portal (PHASE 1 BUILT 2026-09-02)
 
-Spec APPROVED with Arthur's decisions (light palette, `RLM-YYYY-NNN`,
+Spec approved with Arthur's decisions (light palette, `RLM-YYYY-NNN`,
 current tailnet, firm-owned Postgres 17 holding `portal` + `intake`):
 `~/projects/rothrock-legal/portal/PORTAL-SPEC.md` + `PORTAL-WORKFLOW.md`.
-Repo `~/projects/rothrocklegal-portal` (GitHub `CasusBelli1337/rothrocklegal-portal`,
-private). Its own `CLAUDE.md`/`docs/HANDOFF.md` are the entry points for
-sessions opened there; this file only records that it exists.
+Repo `~/projects/rothrocklegal-portal`, GitHub `CasusBelli1337/rothrocklegal-portal`
+(private, CI green). Its `CLAUDE.md` and `docs/HANDOFF.md` are the entry
+points for sessions opened there. Built and verified live on 2026-09-02:
+login with forced password change, intakes (read-through on the moved intake
+schema), suggestions that never group on their own, potential clients with
+parties, notes, activity, OneDrive folders, matters with the five subfolders
+and intake document copies, nightly backup with a passed restore drill,
+folder reconcile, jobs screen. Stack: `docker compose up -d` in the repo,
+UI at http://127.0.0.1:9090 (tailnet exposure pending one sudo step by
+Arthur, see the portal handoff). The intake database now lives in
+`rothrock-postgres` (127.0.0.1:5434); the old copy on `legion-postgres` may
+be dropped after 2026-10-02.
 
 ## TODO (in order)
 
@@ -135,7 +144,7 @@ sessions opened there; this file only records that it exists.
 6. DMARC step-up to `p=quarantine` after ~2–3 weeks of clean reports
    (fixed 2026-09-01; reports arrive at arothrock@). Note the DMARC record
    now lives on Cloudflare once the nameservers switch.
-7. Portal phase 1 build (see the portal repo's handoff).
+7. Portal: Arthur's first 15 minutes (portal handoff), tailnet invites for JJ, Gerry, Max, confirm Max's email; phase 2 items per the spec.
 
 ## Where things are
 
