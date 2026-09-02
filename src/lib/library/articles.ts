@@ -219,7 +219,7 @@ export interface CategoryCount {
   count: number;
 }
 
-/** All nine categories in CONTRACTS order with how many articles each holds (zero included). */
+/** Every category in LIBRARY_CATEGORIES order with how many articles each holds (zero included). */
 export function getCategoriesWithCounts(): CategoryCount[] {
   const articles = getArticles();
   return LIBRARY_CATEGORIES.map((category) => ({

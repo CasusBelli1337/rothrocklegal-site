@@ -1,8 +1,10 @@
 import type { FaqItem, LibraryCategory } from "@/types/content";
 import { breachOfFiduciaryDuty } from "./practice/breach-of-fiduciary-duty";
 import { businessDisputes } from "./practice/business-disputes";
+import { complexEstates } from "./practice/complex-estates";
 import { estatePropertyDisputes } from "./practice/estate-property-disputes";
 import { financialElderAbuse } from "./practice/financial-elder-abuse";
+import { forTrustees } from "./practice/for-trustees";
 import { trustAccountingDisputes } from "./practice/trust-accounting-disputes";
 import { trustContests } from "./practice/trust-contests";
 import { trustLitigation } from "./practice/trust-litigation";
@@ -19,7 +21,9 @@ export type PracticeIcon =
   | "file-x"
   | "box"
   | "users"
-  | "briefcase";
+  | "briefcase"
+  | "shield"
+  | "layers";
 
 export interface Statute {
   /** e.g. 'Probate Code § 16061.8' */
@@ -40,7 +44,7 @@ export interface PracticeArea {
   description: string;
   /** Answer-first intro: 40–60 words, names the statute or deadline. */
   summary: string;
-  /** Homepage problem card (HOMEPAGE-SPEC §3). `href` overrides the page link. */
+  /** Homepage problem card (HOMEPAGE-SPEC §3) and the italic line on the About grid. `href` overrides the page link. */
   card?: {
     headline: string;
     answer: string;
@@ -60,7 +64,7 @@ export interface PracticeArea {
   updatedAt: string;
 }
 
-/** Nav / footer order (IA.md §2): hub first, then the eight pages, business last. */
+/** Nav / footer order (IA.md §2): hub first, then the nine pages, business last. */
 export const practiceAreas: readonly PracticeArea[] = [
   trustLitigation,
   trustContests,
@@ -70,12 +74,14 @@ export const practiceAreas: readonly PracticeArea[] = [
   trustAccountingDisputes,
   estatePropertyDisputes,
   financialElderAbuse,
+  forTrustees,
+  complexEstates,
   businessDisputes,
 ];
 
 export const practiceHub = trustLitigation;
 
-/** The eight spoke pages plus business, in nav order (no hub). */
+/** The nine spoke pages plus business, in nav order (no hub). */
 export const practicePages: readonly PracticeArea[] = practiceAreas.filter(
   (a) => !a.hub,
 );
@@ -95,6 +101,6 @@ export function practiceHref(area: Pick<PracticeArea, "slug">): string {
   return `/${area.slug}/`;
 }
 
-if (practiceAreas.length !== 9) {
-  throw new Error(`Expected 9 practice areas, found ${practiceAreas.length}`);
+if (practiceAreas.length !== 11) {
+  throw new Error(`Expected 11 practice areas, found ${practiceAreas.length}`);
 }

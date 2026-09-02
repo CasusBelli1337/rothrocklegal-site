@@ -37,11 +37,12 @@ Components read config; they never hardcode firm facts, URLs, or copy lists.
 
 - `src/config/site.ts`: firm details, nav, footer links, palette mirror,
   canonical host, `asset()` (prefixes the basePath for string image srcs).
-- `src/config/practice-areas.ts` + `practice/<slug>.ts`: the nine practice
-  areas (hub `trust-litigation`, seven trust and estate pages, `business-disputes`
-  marked `secondary`). Each carries headline, meta, summary, deadline, statutes,
-  FAQ, related library categories. Body prose lives in `content/practice/<slug>.md`
-  as `## ` sections, rendered by `src/lib/practice.ts`. Count-checked at 9.
+- `src/config/practice-areas.ts` + `practice/<slug>.ts`: the eleven practice
+  areas (hub `trust-litigation`, seven trust and estate pages, `for-trustees`,
+  `complex-estates`, `business-disputes` marked `secondary`). Each carries
+  headline, meta, summary, deadline, statutes, FAQ, related library categories.
+  Body prose lives in `content/practice/<slug>.md` as `## ` sections, rendered
+  by `src/lib/practice.ts`. Count-checked at 11.
 - `src/config/team.ts` + `team/<slug>.ts` (`member.ts` is the type): the four
   attorneys. Any field containing `[CONFIRM]` makes the profile render a draft
   chip and `noindex`. Count-checked at 4.

@@ -25,7 +25,17 @@ const groups: { county: City['county']; title: string; intro: string }[] = [
     intro:
       'Every trust and estate dispute in the county, from Palo Alto to Morgan Hill, is filed in the ' +
       'Probate Division of Santa Clara County Superior Court at 191 N. First Street. That is our home ' +
-      'court, and it is where most of our cases are.',
+      'court, and it is where most of our cases are, including the complex estates from Palo Alto, ' +
+      'Los Altos, Los Altos Hills, Saratoga, and Los Gatos.',
+  },
+  {
+    county: 'San Mateo County',
+    title: 'Peninsula cases are heard in Redwood City.',
+    intro:
+      'Atherton, Menlo Park, Woodside, Portola Valley, Hillsborough, and Burlingame are in San Mateo ' +
+      'County, so their trust and estate disputes go to San Mateo County Superior Court in Redwood ' +
+      'City. Many of the complex estates we handle, with several properties, an LLC, or a family ' +
+      'business held in trust, come from these communities.',
   },
   {
     county: 'Alameda County',
@@ -109,13 +119,13 @@ export default function ServiceAreasPage() {
         </section>
       ))}
 
-      <section className="bg-white py-16 lg:py-20" aria-labelledby="peninsula">
+      <section className="bg-white py-16 lg:py-20" aria-labelledby="san-francisco">
         <Container className="max-w-[52rem]">
           <SectionHeading
-            id="peninsula"
-            eyebrow="The Peninsula and San Francisco"
-            title="San Mateo County and San Francisco cases are filed in Redwood City and San Francisco."
-            lead="Families in Menlo Park, Redwood City, San Mateo, Burlingame, and San Francisco bring trust and estate disputes to the San Mateo County and San Francisco Superior Courts. We appear in both, and the first conversation works the same way wherever you are: by video, about dates first."
+            id="san-francisco"
+            eyebrow="San Francisco and the rest of the Peninsula"
+            title="San Francisco cases are filed in San Francisco Superior Court."
+            lead="Families in San Francisco, and in Peninsula cities not listed above such as Redwood City and San Mateo, bring trust and estate disputes to the San Francisco and San Mateo County Superior Courts. We appear in both, and the first conversation works the same way wherever you are: by video, about dates first."
           />
         </Container>
       </section>

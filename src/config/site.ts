@@ -112,6 +112,16 @@ export const nav: readonly NavItem[] = [
         sublabel: "Someone is draining an elder's money",
       },
       {
+        label: 'Representing trustees',
+        href: '/for-trustees/',
+        sublabel: "You're the trustee and a beneficiary is coming after you",
+      },
+      {
+        label: 'Complex & high-value estates',
+        href: '/complex-estates/',
+        sublabel: 'Multiple properties, an LLC, a family business',
+      },
+      {
         label: 'Business & partnership disputes',
         href: '/business-disputes/',
         sublabel: 'A partner or co-owner broke the deal',

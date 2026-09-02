@@ -33,6 +33,8 @@ const GRADIENTS = {
   "Trustees & Fiduciaries": ["#6E0F48", "#2B0119"],
   "Elder Financial Abuse": ["#5A0A3C", "#1E0111"],
   "Probate Process": ["#4A0A33", "#2B0119"],
+  "For Trustees": ["#620C42", "#22010F"],
+  "Complex Estates": ["#4E0630", "#1E0111"],
   "Business Disputes": ["#560E3E", "#1A010B"],
   "Technology & the Law": ["#3F0226", "#140108"],
 };

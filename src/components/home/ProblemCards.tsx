@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { oddLastSpan } from '@/lib/grid';
 import { bindSectionSigns } from '@/lib/typography';
 import {
   ArrowRightIcon,
@@ -7,9 +8,11 @@ import {
   CoinsIcon,
   FileXIcon,
   HomeIcon,
+  LayersIcon,
   LedgerIcon,
   PenIcon,
   PulseIcon,
+  ShieldIcon,
   UsersIcon,
 } from '@/components/icons';
 import { Card } from '@/components/ui/Card';
@@ -33,9 +36,11 @@ const icons: Record<PracticeIcon, (p: { className?: string }) => React.ReactNode
   box: BoxIcon,
   users: UsersIcon,
   briefcase: BriefcaseIcon,
+  shield: ShieldIcon,
+  layers: LayersIcon,
 };
 
-/** Card order is fixed by HOMEPAGE-SPEC §3. */
+/** Card order is fixed by HOMEPAGE-SPEC §3; the trustee card (the other side of the table) comes last. */
 const ORDER = [
   'trust-contests',
   'trust-accounting-disputes',
@@ -45,14 +50,15 @@ const ORDER = [
   'will-contests',
   'estate-property-disputes',
   'trust-litigation',
+  'for-trustees',
 ];
 
-export function ProblemCard({ area }: { area: PracticeArea }) {
+export function ProblemCard({ area, className = '' }: { area: PracticeArea; className?: string }) {
   const card = area.card;
   if (!card) throw new Error(`Practice area "${area.slug}" has no homepage card`);
   const Icon = icons[card.icon];
   return (
-    <Card href={card.href ?? practiceHref(area)} className="flex h-full flex-col">
+    <Card href={card.href ?? practiceHref(area)} className={`flex h-full flex-col ${className}`}>
       <Icon className="h-6 w-6 text-brass-500" />
       <h3 className="mt-4 font-sans text-h4 text-ink">&ldquo;{card.headline}&rdquo;</h3>
       <p className="mt-2 flex-1 text-small text-ink-3">{bindSectionSigns(card.answer)}</p>
@@ -66,7 +72,8 @@ export function ProblemCard({ area }: { area: PracticeArea }) {
 
 export function ProblemCards() {
   const areas = ORDER.map(getPracticeArea);
-  if (areas.length !== 8) throw new Error('Homepage expects 8 problem cards');
+  if (areas.length !== 9) throw new Error('Homepage expects 9 problem cards');
+  const complex = getPracticeArea('complex-estates');
   return (
     <section className="py-16 lg:py-24">
       <Container>
@@ -77,12 +84,25 @@ export function ProblemCards() {
             lead="Pick the sentence that sounds like yours. Each page explains what the law says, what you can do, and how fast you need to move."
           />
         </Reveal>
-        <Reveal stagger className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-          {areas.map((area) => (
-            <ProblemCard key={area.slug} area={area} />
+        <Reveal stagger className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+          {areas.map((area, i) => (
+            <ProblemCard
+              key={area.slug}
+              area={area}
+              className={oddLastSpan(i, areas.length, 'xl')}
+            />
           ))}
         </Reveal>
         <p className="mt-8 text-small text-ink-3">
+          Multiple properties, an LLC, a family business?{' '}
+          <Link
+            href={practiceHref(complex)}
+            className="font-medium text-maroon-700 underline underline-offset-3"
+          >
+            We handle complex estates.
+          </Link>
+        </p>
+        <p className="mt-2 text-small text-ink-3">
           Business or partnership dispute instead?{' '}
           <Link
             href="/business-disputes/"
