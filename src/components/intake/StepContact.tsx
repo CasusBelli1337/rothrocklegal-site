@@ -22,7 +22,7 @@ function LookupCard({ email, onDismiss }: { email: string; onDismiss(): void }) 
   return (
     <div role="status" aria-live="polite" className="wizard-banner mt-4">
       <p className="text-body text-ink">
-        {LOOKUP_CARD.before} <strong className="break-all">{email}</strong> {LOOKUP_CARD.after}
+        {LOOKUP_CARD.before} <strong className="break-words">{email}</strong> {LOOKUP_CARD.after}
       </p>
       <p className="mt-2 text-small text-ink-3">{LOOKUP_CARD.spam}</p>
       <button

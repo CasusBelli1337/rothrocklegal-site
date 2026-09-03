@@ -39,7 +39,7 @@ function DropZone({
         dragging ? 'border-maroon-500 bg-maroon-50' : 'border-line-strong bg-paper'
       }`}
     >
-      <p className="text-small text-ink-2">Drag files here, or</p>
+      <p className="hidden text-small text-ink-2 [@media(pointer:fine)]:block">Drag files here, or</p>
       <label
         htmlFor={inputId}
         className={`${buttonClass('secondary', 'sm')} cursor-pointer has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-maroon-500`}

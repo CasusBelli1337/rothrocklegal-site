@@ -86,7 +86,7 @@ export function MicHelp({ mic, browser }: MicHelpProps) {
         <HelpCard title={MIC_NO_DEVICE.title} onRetry={mic.retry}>
           <p>{MIC_NO_DEVICE.body}</p>
           <p>
-            {MIC_NO_DEVICE.urlLabel} <strong className="break-all">{CONSULT_PAGE_SHORT_URL}</strong>
+            {MIC_NO_DEVICE.urlLabel} <strong className="break-words">{CONSULT_PAGE_SHORT_URL}</strong>
           </p>
         </HelpCard>
       );
