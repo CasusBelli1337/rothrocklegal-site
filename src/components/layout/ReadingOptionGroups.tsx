@@ -12,7 +12,7 @@ interface GroupProps {
 }
 
 const chipClass =
-  'inline-flex h-11 cursor-pointer items-center justify-center rounded-md border border-line-strong bg-white px-4 ' +
+  'relative inline-flex h-11 cursor-pointer items-center justify-center rounded-md border border-line-strong bg-white px-4 ' +
   'text-body font-medium text-ink transition-colors duration-150 hover:border-maroon-700 ' +
   'has-[:checked]:border-maroon-700 has-[:checked]:bg-maroon-700 has-[:checked]:text-white ' +
   'has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-maroon-500';
@@ -35,7 +35,8 @@ function ReadingOptionGroup({ option, value, onChoose }: GroupProps) {
               value={choice.value}
               checked={value === choice.value}
               onChange={() => onChoose(option.key, choice.value)}
-              className="sr-only"
+              // The radio itself fills the chip (44px tall), so the whole chip is the real target.
+              className="absolute inset-0 m-0 h-full w-full cursor-pointer opacity-0"
             />
             {choice.label}
           </label>

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { ReadingOptionGroups } from './ReadingOptionGroups';
@@ -30,13 +30,10 @@ function TextSizeIcon({ className = 'h-5 w-5' }: { className?: string }) {
 interface ButtonProps {
   open: boolean;
   onToggle: () => void;
-  /** 'compact' on phones: same label, tighter padding. */
-  size?: 'compact' | 'full';
 }
 
-/** The header control: text label plus icon, 44px tall, toggles the bar below the header. */
-export function ReadingOptionsButton({ open, onToggle, size = 'full' }: ButtonProps) {
-  const pad = size === 'compact' ? 'px-2' : 'px-3';
+/** The control: text label plus icon, 44px tall, toggles the bar below it. */
+function ReadingOptionsButton({ open, onToggle }: ButtonProps) {
   return (
     <button
       type="button"
@@ -44,7 +41,7 @@ export function ReadingOptionsButton({ open, onToggle, size = 'full' }: ButtonPr
       aria-controls={READING_OPTIONS_ID}
       onClick={onToggle}
       data-reading-options-button
-      className={`inline-flex h-11 items-center gap-1.5 rounded-md ${pad} text-ui font-medium text-ink-2 transition-colors duration-150 hover:bg-sand hover:text-ink ${open ? 'bg-sand text-ink' : ''}`}
+      className={`inline-flex h-11 items-center gap-1.5 rounded-md px-3 text-ui font-medium text-ink-2 transition-colors duration-150 hover:bg-paper hover:text-ink ${open ? 'bg-paper text-ink' : ''}`}
     >
       <TextSizeIcon />
       Reading options
@@ -58,11 +55,11 @@ interface BarProps {
 }
 
 /**
- * The inline bar under the header row. It is in the document flow, so it
- * pushes the page down and never covers anything. Escape closes it and puts
- * focus back on the button that opened it.
+ * The inline bar under the strip. It is in the document flow, so it pushes
+ * the page down and never covers anything. Escape closes it and puts focus
+ * back on the button that opened it.
  */
-export function ReadingOptionsBar({ open, onClose }: BarProps) {
+function ReadingOptionsBar({ open, onClose }: BarProps) {
   const headingRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
@@ -118,6 +115,24 @@ export function ReadingOptionsBar({ open, onClose }: BarProps) {
           </Link>
         </p>
       </Container>
+    </div>
+  );
+}
+
+/**
+ * The slim strip above the header on every page: the one control, right-aligned,
+ * and the bar it opens. Not sticky on purpose: a reader sets this once, and
+ * the sticky nav row keeps its room for the logo, the menu, and the consult button.
+ */
+export function ReadingOptionsStrip() {
+  const [open, setOpen] = useState(false);
+  const close = useCallback(() => setOpen(false), []);
+  return (
+    <div className="border-b border-line bg-sand">
+      <Container className="flex h-11 items-center justify-end">
+        <ReadingOptionsButton open={open} onToggle={() => setOpen((value) => !value)} />
+      </Container>
+      <ReadingOptionsBar open={open} onClose={close} />
     </div>
   );
 }

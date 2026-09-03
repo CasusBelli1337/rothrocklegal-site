@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MenuIcon } from '@/components/icons';
 import { BrandLogo } from '@/components/ui/BrandLogo';
 import { Button } from '@/components/ui/Button';
@@ -11,14 +11,12 @@ import { consultCta, nav, site } from '@/config/site';
 import { MobileMenu } from './MobileMenu';
 import { isActive, navLinkClass } from './nav-link';
 import { NavDropdown } from './NavDropdown';
-import { ReadingOptionsBar, ReadingOptionsButton } from './ReadingOptions';
+import { ReadingOptionsStrip } from './ReadingOptions';
 
 export function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [readingOpen, setReadingOpen] = useState(false);
-  const closeReading = useCallback(() => setReadingOpen(false), []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -28,12 +26,15 @@ export function Header() {
   }, []);
 
   return (
-    <header
-      // Above the z-40 consult bar so the mobile sheet (rendered inside this stacking context) covers it.
-      className={`sticky top-0 z-50 border-b border-line transition-colors duration-150 ${
-        scrolled ? 'bg-paper/90 backdrop-blur' : 'bg-paper'
-      }`}
-    >
+    <>
+      {/* Not sticky: a set-once control at the top of the page, so the nav row keeps its room. */}
+      <ReadingOptionsStrip />
+      <header
+        // Above the z-40 consult bar so the mobile sheet (rendered inside this stacking context) covers it.
+        className={`sticky top-0 z-50 border-b border-line transition-colors duration-150 ${
+          scrolled ? 'bg-paper/90 backdrop-blur' : 'bg-paper'
+        }`}
+      >
       <Container className="flex h-[60px] items-center justify-between gap-6 lg:h-[72px]">
         <Link
           href="/"
@@ -66,19 +67,13 @@ export function Header() {
           )}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
-          <ReadingOptionsButton open={readingOpen} onToggle={() => setReadingOpen((v) => !v)} />
+        <div className="hidden items-center lg:flex">
           <Button href={consultCta.href} size="sm">
             {consultCta.label}
           </Button>
         </div>
 
-        <div className="flex items-center gap-1 lg:hidden">
-          <ReadingOptionsButton
-            open={readingOpen}
-            onToggle={() => setReadingOpen((v) => !v)}
-            size="compact"
-          />
+        <div className="flex items-center lg:hidden">
           <button
             type="button"
             aria-expanded={menuOpen}
@@ -92,10 +87,8 @@ export function Header() {
         </div>
       </Container>
 
-      {/* In the flow under the row: opening it pushes the page down instead of covering it. */}
-      <ReadingOptionsBar open={readingOpen} onClose={closeReading} />
-
       <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} pathname={pathname} />
-    </header>
+      </header>
+    </>
   );
 }

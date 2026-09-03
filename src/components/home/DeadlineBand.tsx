@@ -60,7 +60,7 @@ export function DeadlineBand() {
               <Slot
                 name="deadline-secondary"
                 variants={lensCopy.deadlineSecondary}
-                linkClassName="font-semibold text-maroon-700 underline underline-offset-3"
+                linkClassName="tap-link font-semibold text-maroon-700 underline underline-offset-3"
               />
             }
             finePrint={
