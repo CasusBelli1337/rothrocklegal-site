@@ -79,14 +79,18 @@ back to the email form; clear article drafts Arthur has read
   `/api/intake/*` at `https://intake.rothrocklegal.com` (admin routes 404 at
   the edge). `deploy.yml` already builds with
   `NEXT_PUBLIC_INTAKE_API=https://intake.rothrocklegal.com`.
-- STILL PENDING (one step, timed): DNSSEC was disabled at Spaceship on
-  2026-09-02 about 1:25 PM PT; the registry DS record had a 24-hour TTL.
-  On or after 2026-09-03 1:30 PM PT, change the nameservers at Spaceship to
-  `kami.ns.cloudflare.com` and `rocco.ns.cloudflare.com`, verify
-  `https://intake.rothrocklegal.com/api/intake/health` and that
-  www.rothrocklegal.com and email still work, then re-enable DNSSEC on
-  Cloudflare and paste its DS record into Spaceship. Until then the live
-  consult page keeps the email fallback.
+- NAMESERVERS SWITCHED 2026-09-02 about 6:45 PM PT (Arthur asked to go
+  early; Spaceship had already stopped signing, so the DNSSEC wait added
+  nothing). Cloudflare zone ACTIVE; site 200, apex 301, MX/SPF/DKIM/DMARC
+  identical; `https://intake.rothrocklegal.com/api/intake/health` answers
+  through the tunnel; admin routes 404 at the edge. DNSSEC re-enabled on
+  Cloudflare (key tag 2371, algorithm 13) and its DS record registered at
+  Spaceship (corrected once from algorithm 8 to 13 within a minute).
+  Spaceship's old servers still serve the old records, so resolvers holding
+  the old delegation keep the site and email working; they only lack the
+  new names (intake, portal) until they refresh (usually under an hour,
+  worst case 48 h). The redesign is still NOT merged to `main`; that is
+  Arthur's go-live call, separate from DNS.
 - SMTP DONE 2026-09-02: Google Workspace app password on arothrock@ via the
   git-ignored `data/keys/intake-smtp.conf`; real test send succeeded.
   Notifications from the September 1 test intakes stay "pending" (there is
@@ -136,13 +140,14 @@ Google identity provider (OAuth client in Google Cloud project
 `portal.rothrocklegal.com -> rothrocklegal-portal-caddy-1:80`, proxied
 CNAME `portal`, the site footer link "Attorney Portal" (commit db42b7a on
 `redesign`), and the portal code that trusts the Access identity (see the
-portal handoff). NOT possible until the zone is active: creating the Access
-application ("domain does not belong to zone" while pending). After the
-nameserver switch: `CF_ACCESS_TOKEN_FILE=<token file> node
-scripts/cloudflare-access-app.mjs` in the portal repo, put the printed
-`ACCESS_TEAM_DOMAIN` and `ACCESS_AUD` in the portal's env, `docker compose up
--d portal-api`, open https://portal.rothrocklegal.com from any browser: Google
-sign-in, then the dashboard without a portal password.
+portal handoff). DONE after the switch: Access application "Rothrock Legal portal" (policy:
+allow emails ending in @rothrocklegal.com, session 24 h), `ACCESS_TEAM_DOMAIN`
+and `ACCESS_AUD` set in the portal env, API restarted with Access on,
+Tailscale Serve turned off. Verified through Cloudflare by IP: HTTPS good and
+an unauthenticated request is redirected to the Access sign-in. Still owed:
+one real Google sign-in from a browser whose resolver already sees the new
+delegation (the rig's Windows resolver still cached the old one at 7:10 PM),
+then Arthur opens https://portal.rothrocklegal.com or the footer link.
 
 ## TODO (in order)
 
@@ -154,15 +159,15 @@ sign-in, then the dashboard without a portal password.
    Arthur reviews the articles closely next.
 3. Google Business Profile: created; Arthur's video verification, then
    step 6 (above).
-4. Intake ingress: nameserver switch on 2026-09-03 (above), then merge
-   `redesign` to `main`.
+4. DONE 2026-09-02: nameserver switch, DNSSEC on Cloudflare, Access app.
+   Remaining: Arthur's go-live decision (merge `redesign` to `main`).
 5. Clear article drafts as Arthur reads them; the review reports
    (`ARTICLE-REVIEW.md`, `ARTICLE-REVIEW-TRUSTEE.md`, `PRACTICAL-LAW-CHECK.md`,
    `westlaw-check/WESTLAW-KEYCITE.md`) list the per-article judgment calls.
 6. DMARC step-up to `p=quarantine` after ~2–3 weeks of clean reports
    (fixed 2026-09-01; reports arrive at arothrock@). Note the DMARC record
    now lives on Cloudflare once the nameservers switch.
-7. Portal: after the nameserver switch, create the Access application (above), verify Google sign-in, turn Tailscale Serve off; confirm Max's email; Arthur's first 15 minutes (portal handoff); phase 2 per the spec.
+7. Portal: first real Google sign-in check; confirm Max's email; Arthur's first 15 minutes (portal handoff); phase 2 per the spec.
 
 ## Where things are
 
