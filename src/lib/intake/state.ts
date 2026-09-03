@@ -118,6 +118,10 @@ export function isAnswered(module: FollowUpModule, answer: FollowUpAnswer | unde
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+export function isValidEmail(email: string): boolean {
+  return EMAIL.test(email.trim());
+}
+
 type Validator = (state: IntakeState) => string | null;
 
 /** Plain-English problems, one per step; null means the step may advance. */
@@ -125,7 +129,7 @@ const VALIDATORS: Partial<Record<StepId, Validator>> = {
   start: (s) => (s.acks.every(Boolean) ? null : 'Please tick all three boxes to continue.'),
   contact: (s) => {
     if (!s.answers.contact.fullName.trim()) return 'Please enter your name.';
-    if (!EMAIL.test(s.answers.contact.email.trim()))
+    if (!isValidEmail(s.answers.contact.email))
       return 'Please enter an email address we can reply to.';
     return null;
   },

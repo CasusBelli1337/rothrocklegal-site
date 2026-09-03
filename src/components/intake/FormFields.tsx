@@ -45,6 +45,7 @@ interface TextInputProps {
   id: string;
   value: string;
   onChange(value: string): void;
+  onBlur?(): void;
   type?: 'text' | 'email' | 'tel' | 'date';
   autoComplete?: string;
   placeholder?: string;
@@ -58,6 +59,7 @@ export function TextInput({
   id,
   value,
   onChange,
+  onBlur,
   type = 'text',
   autoComplete,
   placeholder,
@@ -73,6 +75,7 @@ export function TextInput({
       type={type}
       value={value}
       onChange={(event) => onChange(event.target.value)}
+      onBlur={onBlur}
       autoComplete={autoComplete}
       placeholder={placeholder}
       aria-describedby={describedBy}

@@ -55,6 +55,22 @@ export const AFTER_YOU_SEND: readonly { title: string; body: string }[] = [
   },
 ];
 
+/** Under the email field when that address already has an unfinished request. */
+export const LOOKUP_CARD = {
+  before: 'It looks like you started a request with this email before. We just sent a link to',
+  after: 'so you can pick up where you left off. If you would rather start fresh, just keep going.',
+  spam: 'If the email does not arrive in a minute or two, check your spam or junk folder.',
+  startFresh: 'Start fresh',
+} as const;
+
+/** Above the steps when the page opened from an emailed continue link. */
+export const RESUME_COPY = {
+  loading: 'One moment. We are finding your earlier request…',
+  restored:
+    'Welcome back. We picked up where you left off. Everything you entered before is still here.',
+  failed: 'That link has expired or was already used. You can start a new request below.',
+} as const;
+
 export const STORY_CHIPS = [
   'When did they pass?',
   'Did you get a letter from the trustee?',

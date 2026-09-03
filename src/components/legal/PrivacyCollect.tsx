@@ -49,8 +49,14 @@ export function PrivacyCollect() {
         </li>
         <li>
           <strong>Your story:</strong> what happened, in your own words. You can type it, or press
-          the microphone button and say it. If you use the microphone, the words appear as text and,
-          where your browser supports it, we also receive the audio recording you made.
+          the microphone button and say it. If you use the microphone, the words appear as text, we
+          keep a copy of the words exactly as your browser heard them, and, where your browser
+          supports it, we also receive the audio recording you made.
+        </li>
+        <li>
+          <strong>Coming back later:</strong> if you type an email address that already has an
+          unfinished request, we email that address a link to continue it. We never open an earlier
+          request from a typed email alone, and each link works once.
         </li>
         <li>
           <strong>Key dates:</strong> when the person passed away, when you received a notice or a

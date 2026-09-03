@@ -1,9 +1,13 @@
 'use client';
 
-import { COUNTIES } from '@/lib/intake/copy';
+import { useState } from 'react';
+import { COUNTIES, LOOKUP_CARD } from '@/lib/intake/copy';
+import { normalizeEmail } from '@/lib/intake/resume';
+import { validateStep } from '@/lib/intake/state';
+import { useLookup } from '@/lib/intake/use-lookup';
 import { ChoiceCards } from './ChoiceCards';
 import { Field, SelectInput, TextInput } from './FormFields';
-import { StepFrame } from './StepFrame';
+import { StepFrame, StepNav } from './StepFrame';
 import type { StepProps } from './step-props';
 
 const COUNTY_OPTIONS = COUNTIES.map((county) => ({ value: county, label: county }));
@@ -13,13 +17,53 @@ const REPLY_OPTIONS = [
   { value: 'phone', label: 'Phone call' },
 ] as const;
 
-/** Step 1: name, email, phone, city and county, reply preference. */
+/** "You started a request with this email before": the link is already on its way. */
+function LookupCard({ email, onDismiss }: { email: string; onDismiss(): void }) {
+  return (
+    <div role="status" aria-live="polite" className="wizard-banner mt-4">
+      <p className="text-body text-ink">
+        {LOOKUP_CARD.before} <strong className="break-all">{email}</strong> {LOOKUP_CARD.after}
+      </p>
+      <p className="mt-2 text-small text-ink-3">{LOOKUP_CARD.spam}</p>
+      <button
+        type="button"
+        onClick={onDismiss}
+        className="mt-4 inline-flex h-11 items-center rounded-md border border-ink bg-white px-5 text-body font-semibold text-ink transition-colors hover:bg-sand"
+      >
+        {LOOKUP_CARD.startFresh}
+      </button>
+    </div>
+  );
+}
+
+/** Step 1: name, email (with the "started before" check), phone, city and county, reply preference. */
 export function StepContact({ intake }: StepProps) {
   const { contact } = intake.state.answers;
   const set = (patch: Partial<typeof contact>) => intake.patchAnswers({ contact: patch });
+  const lookup = useLookup(intake.state.session);
+  const [waiting, setWaiting] = useState(false);
+  const showCard = lookup.phase === 'found' && lookup.email === normalizeEmail(contact.email);
+
+  // Continue waits for the lookup once per address, so the card is seen before the screen changes.
+  const submit = async () => {
+    const problem = validateStep('contact', intake.state);
+    if (problem) {
+      intake.setError(problem);
+      return;
+    }
+    setWaiting(true);
+    const pause = await lookup.check(contact.email);
+    setWaiting(false);
+    if (pause) return;
+    void intake.next();
+  };
 
   return (
-    <StepFrame intake={intake}>
+    <StepFrame
+      intake={intake}
+      onSubmit={() => void submit()}
+      footer={<StepNav intake={intake} busy={waiting || intake.busy} />}
+    >
       <div className="grid gap-5 sm:grid-cols-2">
         <Field id="contact-name" label="Your full name">
           <TextInput
@@ -29,15 +73,24 @@ export function StepContact({ intake }: StepProps) {
             autoComplete="name"
           />
         </Field>
-        <Field id="contact-email" label="Email">
+        <Field
+          id="contact-email"
+          label="Email"
+          hint="We reply here. It is also how you can come back to this request from another device."
+        >
           <TextInput
             id="contact-email"
             type="email"
             value={contact.email}
             onChange={(email) => set({ email })}
+            onBlur={() => void lookup.check(contact.email)}
             autoComplete="email"
+            describedBy="contact-email-hint"
           />
         </Field>
+      </div>
+      {showCard && <LookupCard email={contact.email.trim()} onDismiss={lookup.dismiss} />}
+      <div className="mt-5 grid gap-5 sm:grid-cols-2">
         <Field id="contact-phone" label="Phone" optional>
           <TextInput
             id="contact-phone"

@@ -37,6 +37,8 @@ export interface IntakeController {
   back(): void;
   goTo(step: StepId): void;
   startOver(): void;
+  /** Replaces the whole flow (an emailed link brought back an earlier request). */
+  restore(next: IntakeState): void;
   addFile(file: IntakeFile): void;
   removeFile(fileId: string): void;
   setFollowUpAnswer(id: string, answer: FollowUpAnswer): void;
@@ -112,6 +114,14 @@ export function useIntake(): IntakeController {
     [update],
   );
 
+  const restore = useCallback(
+    (next: IntakeState) => {
+      setNavigated(true);
+      update(() => next);
+    },
+    [update],
+  );
+
   const patchAnswers = useCallback(
     (patch: AnswersPatch) => update((s) => ({ ...s, answers: mergeAnswers(s.answers, patch) })),
     [update],
@@ -154,6 +164,7 @@ export function useIntake(): IntakeController {
     setError,
     next,
     goTo,
+    restore,
     back: () => goTo(prevStep(state.step)),
     startOver() {
       clearState();

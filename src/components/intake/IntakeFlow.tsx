@@ -6,10 +6,12 @@ import type { IntakeFile } from '@/lib/intake/contract';
 import { VOICE_NOTE_SLOT } from '@/lib/intake/document-slots';
 import { NUMBERED_STEP_COUNT, stepNumber, type StepId } from '@/lib/intake/state';
 import { useIntake } from '@/lib/intake/use-intake';
+import { useResume } from '@/lib/intake/use-resume';
 import { useUploads } from '@/lib/intake/use-uploads';
 import '@/components/wizard/wizard.css';
 import { Fallback } from './Fallback';
 import { ProgressBar } from './ProgressBar';
+import { ResumeNotice } from './ResumeNotice';
 import { StepContact } from './StepContact';
 import { StepDocuments } from './StepDocuments';
 import { StepDone } from './StepDone';
@@ -57,6 +59,7 @@ function useApiStatus(): ApiStatus {
 export function IntakeFlow() {
   const intake = useIntake();
   const status = useApiStatus();
+  const resume = useResume(intake);
   const { addFile, patchAnswers, removeFile } = intake;
 
   const onUploaded = useCallback(
@@ -78,6 +81,7 @@ export function IntakeFlow() {
   const number = stepNumber(step);
   return (
     <div className="wizard rounded-xl border border-line bg-white p-6 sm:p-10">
+      <ResumeNotice resume={resume} />
       {number !== null && (
         <div className="mb-8">
           <ProgressBar step={number} total={NUMBERED_STEP_COUNT} />

@@ -5,7 +5,9 @@ import {
   deleteFile,
   errorMessage,
   getEvaluation,
+  lookupEmail,
   ping,
+  resumeIntake,
   saveAnswers,
   saveFollowUp,
   startEvaluation,
@@ -176,6 +178,60 @@ class FakeXhr {
     this.upload.listeners.progress?.({ lengthComputable: true, loaded, total });
   }
 }
+
+describe('lookupEmail', () => {
+  it('is true only for a found:true body and sends the current session token', async () => {
+    const spy = mockFetch(async () => json({ found: true }));
+    await expect(lookupEmail('jane@example.com', session)).resolves.toBe(true);
+    const [url, init] = spy.mock.calls[0];
+    expect(url).toBe('/api/intake/lookup');
+    expect(init?.method).toBe('POST');
+    expect(JSON.parse(String(init?.body))).toEqual({ email: 'jane@example.com' });
+    expect((init?.headers as Record<string, string>).Authorization).toBe('Bearer secret-token');
+  });
+
+  it('works without a session and is false for found:false', async () => {
+    const spy = mockFetch(async () => json({ found: false }));
+    await expect(lookupEmail('jane@example.com')).resolves.toBe(false);
+    expect((spy.mock.calls[0][1]?.headers as Record<string, string>).Authorization).toBeUndefined();
+  });
+
+  it('never blocks the flow: 404, garbage, network failure and timeout are all false', async () => {
+    mockFetch(async () => json({ error: 'Not found', code: 'not-found' }, 404));
+    await expect(lookupEmail('jane@example.com')).resolves.toBe(false);
+    mockFetch(async () => new Response('<html>edge</html>', { status: 200 }));
+    await expect(lookupEmail('jane@example.com')).resolves.toBe(false);
+    mockFetch(async () => {
+      throw new TypeError('Failed to fetch');
+    });
+    await expect(lookupEmail('jane@example.com')).resolves.toBe(false);
+    mockFetch(
+      (_url, init) =>
+        new Promise<Response>((_resolve, reject) => {
+          init?.signal?.addEventListener('abort', () => reject(new DOMException('x', 'AbortError')));
+        }),
+    );
+    await expect(lookupEmail('jane@example.com', null, 10)).resolves.toBe(false);
+  });
+});
+
+describe('resumeIntake', () => {
+  it('posts the token and returns the earlier request', async () => {
+    const body = { session: { ...session, status: 'draft', reference: 'RL-1' }, answers: {}, files: [] };
+    const spy = mockFetch(async () => json(body));
+    await expect(resumeIntake('tok')).resolves.toEqual(body);
+    const [url, init] = spy.mock.calls[0];
+    expect(url).toBe('/api/intake/resume');
+    expect(init?.method).toBe('POST');
+    expect(JSON.parse(String(init?.body))).toEqual({ token: 'tok' });
+    expect((init?.headers as Record<string, string>).Authorization).toBeUndefined();
+  });
+
+  it('rejects with the server message when the link is spent', async () => {
+    mockFetch(async () => json({ error: 'That link has expired.', code: 'not-found' }, 404));
+    await expect(resumeIntake('old')).rejects.toMatchObject({ code: 'not-found', status: 404 });
+  });
+});
 
 describe('uploadFile', () => {
   const file = new File(['hello'], 'trust.pdf', { type: 'application/pdf' });

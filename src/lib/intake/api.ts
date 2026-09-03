@@ -6,6 +6,8 @@ import type {
   IntakeAnswers,
   IntakeFile,
   IntakeSession,
+  LookupResponse,
+  ResumeResponse,
   SaveAnswersResponse,
   SubmitResponse,
   UploadFileResponse,
@@ -18,7 +20,10 @@ import type {
 export const INTAKE_API_BASE: string = process.env.NEXT_PUBLIC_INTAKE_API ?? '';
 
 export const HEALTH_PATH = '/api/intake/health';
+export const LOOKUP_PATH = '/api/intake/lookup';
+export const RESUME_PATH = '/api/intake/resume';
 export const PING_TIMEOUT_MS = 4000;
+export const LOOKUP_TIMEOUT_MS = 4000;
 
 export type ApiErrorCode = ApiErrorShape['code'] | 'network' | 'timeout';
 
@@ -99,6 +104,42 @@ export async function ping(timeoutMs = PING_TIMEOUT_MS): Promise<boolean> {
   } finally {
     clearTimeout(timer);
   }
+}
+
+/**
+ * "Continue by email": true when an unfinished request exists for the address
+ * (the server then emails that address a link). Every failure, including a
+ * server without this endpoint, a lost connection, or a slow answer, is
+ * false, so the contact step never blocks on it. The current session's token
+ * goes along when there is one so the server can leave out this very request.
+ */
+export async function lookupEmail(
+  email: string,
+  session?: Session | null,
+  timeoutMs = LOOKUP_TIMEOUT_MS,
+): Promise<boolean> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const body = await request<LookupResponse | undefined>(
+      LOOKUP_PATH,
+      { method: 'POST', body: JSON.stringify({ email }), signal: controller.signal },
+      session ?? undefined,
+    );
+    return body?.found === true;
+  } catch {
+    return false;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+/** Exchanges the token from an emailed link for the earlier request. Throws ApiError when it is spent or expired. */
+export function resumeIntake(token: string): Promise<ResumeResponse> {
+  return request<ResumeResponse>(RESUME_PATH, {
+    method: 'POST',
+    body: JSON.stringify({ token }),
+  });
 }
 
 export function createIntake(): Promise<CreateIntakeResponse> {
