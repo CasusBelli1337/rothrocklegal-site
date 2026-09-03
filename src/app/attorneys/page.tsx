@@ -38,20 +38,7 @@ export default function AttorneysPage() {
       </section>
       <section className="py-16 lg:py-20">
         <Container>
-          <div className="max-w-[64ch] text-body-lg text-ink-2">
-            <p>
-              Four lawyers, one plan per case. Arthur sets the strategy and the big picture.
-              Jonathan handles the depositions and the hearings: a former Marine Corps infantry
-              captain who practiced at Wilson Sonsini and Fenwick &amp; West and is now President of
-              the Honorable William A. Ingram American Inn of Court. Gerry and Max are the
-              associates who execute the plan: the records, the discovery, the drafting. You get
-              senior judgment where it matters, a courtroom presence judges know, and lower rates
-              for the heavy lifting.
-            </p>
-          </div>
-          <div className="mt-10">
-            <TeamGrid headingLevel="h2" />
-          </div>
+          <TeamGrid headingLevel="h2" />
         </Container>
       </section>
       <TeamHowWeWork />

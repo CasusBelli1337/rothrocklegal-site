@@ -9,6 +9,13 @@ export interface TeamBadge {
   alt: string;
   width: number;
   height: number;
+  /**
+   * Which of a credential's listings this badge is for, when one credential
+   * carries several (Best Lawyers lists two practice areas). The recognition
+   * tiles show one badge per tile and print this in place of the credential's
+   * `detail`.
+   */
+  detail?: string;
 }
 
 /** An award or list recognition, named exactly as conferred. Feeds Person `award[]`. */
@@ -27,6 +34,8 @@ export interface TeamRole {
   role: string;
   organization: string;
   years?: string;
+  /** Official art for the recognition tiles; a role without one is listed in the sidebar only. */
+  badge?: TeamBadge;
 }
 
 export interface TeamEducation {
@@ -62,6 +71,8 @@ export interface TeamPodcast {
   /** Plain description, e.g. 'a podcast about building and running a litigation practice'. */
   description: string;
   url?: string;
+  /** Cover art for the recognition tiles. */
+  badge?: TeamBadge;
 }
 
 export interface TeamMember {
@@ -95,6 +106,11 @@ export interface TeamMember {
   leadership: readonly TeamRole[];
   education: readonly TeamEducation[];
   memberships: readonly string[];
+  /**
+   * Official art for the recognition tiles, keyed by the exact string in
+   * `memberships`. A key with no matching membership fails the build.
+   */
+  membershipBadges?: Readonly<Record<string, TeamBadge>>;
   podcast?: TeamPodcast;
   appearances: readonly TeamAppearance[];
   /** State Bar licensee profile first, then LinkedIn (SEO-SPEC §3c). */

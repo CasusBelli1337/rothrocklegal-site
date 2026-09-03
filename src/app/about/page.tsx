@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { AiPractice } from '@/components/about/AiPractice';
 import { ClientWords } from '@/components/about/ClientWords';
-import { HowWeWork } from '@/components/about/HowWeWork';
 import { RecognitionSection } from '@/components/about/RecognitionSection';
 import { WhatWeDo } from '@/components/about/WhatWeDo';
 import { WherePractice } from '@/components/about/WherePractice';
@@ -20,7 +20,7 @@ const PATH = '/about/';
 const TITLE = 'About Rothrock Legal – How We Work';
 const DESCRIPTION =
   'San Jose trust and estate litigators: trust and will contests, trustee disputes, elder ' +
-  'financial abuse. AI reads the records; lawyers make every call.';
+  'financial abuse. An AI-enabled practice; lawyers make every call.';
 
 export const metadata: Metadata = pageMetadata({
   title: TITLE,
@@ -93,7 +93,7 @@ export default function AboutPage() {
     <>
       <Hero />
       <WhatWeDo />
-      <HowWeWork />
+      <AiPractice />
       <WhoWeAre />
       <RecognitionSection />
       <WherePractice />

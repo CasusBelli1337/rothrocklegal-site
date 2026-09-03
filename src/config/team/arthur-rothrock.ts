@@ -85,12 +85,14 @@ export const arthurRothrock: TeamMember = {
           alt: 'Best Lawyers Ones to Watch 2027 badge, Litigation – Trusts and Estates, Arthur E. Rothrock',
           width: 171,
           height: 200,
+          detail: 'Litigation – Trusts and Estates',
         },
         {
           src: '/images/badges/best-lawyers-ones-to-watch-2027-commercial.webp',
           alt: 'Best Lawyers Ones to Watch 2027 badge, Commercial Litigation, Arthur E. Rothrock',
           width: 171,
           height: 200,
+          detail: 'Commercial Litigation',
         },
       ],
     },
@@ -101,6 +103,12 @@ export const arthurRothrock: TeamMember = {
       organization:
         'American Bar Association Artificial Intelligence and Robotics National Institute',
       years: '2026–present',
+      badge: {
+        src: '/images/badges/aba.webp',
+        alt: 'American Bar Association logo',
+        width: 200,
+        height: 82,
+      },
     },
     {
       role: 'Planning Committee Member',
@@ -126,11 +134,25 @@ export const arthurRothrock: TeamMember = {
     'Honorable William A. Ingram American Inn of Court',
     'Santa Clara County Bar Association',
   ],
+  membershipBadges: {
+    'Honorable William A. Ingram American Inn of Court': {
+      src: '/images/badges/american-inns-of-court.webp',
+      alt: 'American Inns of Court emblem',
+      width: 200,
+      height: 200,
+    },
+  },
   podcast: {
     name: "The Litigator's Path",
     role: 'Host',
     description: 'a podcast about building and running a litigation practice',
     url: 'https://legion.law/podcasts',
+    badge: {
+      src: '/images/badges/litigators-path.webp',
+      alt: "The Litigator's Path podcast cover",
+      width: 200,
+      height: 200,
+    },
   },
   appearances: arthurAppearances,
   sameAs: [

@@ -44,7 +44,11 @@ function Recognition({ member }: { member: TeamMember }) {
   return (
     <section className="bg-sand py-14 lg:py-16" aria-labelledby="recognition">
       <Container>
-        <SectionHeading id="recognition" eyebrow="Awards and lists" title="Recognition" />
+        <SectionHeading
+          id="recognition"
+          eyebrow="Recognition"
+          title="Awards, roles, and the podcast."
+        />
         <div className="mt-8">
           <RecognitionStrip member={member} />
         </div>

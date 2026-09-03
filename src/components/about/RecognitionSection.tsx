@@ -1,11 +1,10 @@
+import Link from 'next/link';
 import { RecognitionStrip } from '@/components/team/RecognitionStrip';
 import { Container } from '@/components/ui/Container';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { firstName, recognizedMembers, teamHref } from '@/config/team';
+import { recognizedMembers, teamHref } from '@/config/team';
 
-const linkClass = 'tap-link text-maroon-700 underline underline-offset-3 hover:text-maroon-600';
-
-/** Badges + exact award names, then the ABA office and the podcast, all from team config. */
+/** One tile grid per recognized member: awards, offices, memberships, the podcast, all from team config. */
 export function RecognitionSection() {
   const members = recognizedMembers();
   if (members.length === 0) return null;
@@ -13,47 +12,25 @@ export function RecognitionSection() {
     <section className="bg-sand py-16 lg:py-20">
       <Container>
         <SectionHeading eyebrow="Credentials" title="Recognition, on the record." />
-        <div className="mt-10 space-y-8">
-          {members.map((member) => {
-            const office = member.leadership[0];
-            return (
-              <div key={member.slug}>
-                <RecognitionStrip member={member} />
-                <div className="mt-6 max-w-[64ch] space-y-3 text-body-lg text-ink-2">
-                  {office && (
-                    <p>
-                      <a href={teamHref(member)} className={linkClass}>
-                        {firstName(member)}
-                      </a>{' '}
-                      is {office.role} of the {office.organization}, presented by the ABA&rsquo;s
-                      Science &amp; Technology Law Section and hosted at Santa Clara University
-                      School of Law.
-                    </p>
-                  )}
-                  {member.podcast && (
-                    <p>
-                      He hosts{' '}
-                      <em>
-                        {member.podcast.url ? (
-                          <a
-                            href={member.podcast.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={linkClass}
-                          >
-                            {member.podcast.name}
-                          </a>
-                        ) : (
-                          member.podcast.name
-                        )}
-                      </em>
-                      , {member.podcast.description}.
-                    </p>
-                  )}
-                </div>
+        <div className="mt-10 space-y-12">
+          {members.map((member) => (
+            <div key={member.slug}>
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <h3 className="font-sans text-h4 text-ink">
+                  <Link
+                    href={teamHref(member)}
+                    className="tap-link underline-offset-3 hover:text-maroon-700 hover:underline"
+                  >
+                    {member.name}
+                  </Link>
+                </h3>
+                <p className="text-small text-ink-3">{member.title}</p>
               </div>
-            );
-          })}
+              <div className="mt-4">
+                <RecognitionStrip member={member} />
+              </div>
+            </div>
+          ))}
         </div>
       </Container>
     </section>
