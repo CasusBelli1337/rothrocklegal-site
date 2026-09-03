@@ -65,7 +65,7 @@ export function LibraryClient({ items, categories }: LibraryClientProps) {
           <button
             type="button"
             onClick={search.clear}
-            className="text-small font-medium text-maroon-700 transition-colors hover:text-maroon-600 hover:underline"
+            className="tap-link text-small font-medium text-maroon-700 transition-colors hover:text-maroon-600 hover:underline"
           >
             Clear filters
           </button>
@@ -83,7 +83,7 @@ export function LibraryClient({ items, categories }: LibraryClientProps) {
                   terms={search.searching ? search.terms : []}
                   snippet={snippet}
                   bodyHits={bodyHits}
-                  priority={i < 3}
+                  priority={i === 0}
                 />
               </li>
             ))}

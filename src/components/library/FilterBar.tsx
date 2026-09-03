@@ -133,7 +133,7 @@ function SearchInput({
           type="button"
           onClick={() => onQuery('')}
           aria-label="Clear search"
-          className="absolute top-1/2 right-2 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full text-ink-3 transition-colors hover:bg-sand hover:text-ink"
+          className="absolute top-1/2 right-1 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full text-ink-3 transition-colors hover:bg-sand hover:text-ink"
         >
           <CloseIcon className="h-4 w-4" />
         </button>

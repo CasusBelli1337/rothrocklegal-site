@@ -48,7 +48,7 @@ function SkipControls({
     <button
       type="button"
       onClick={() => onChange(skipped ? undefined : null)}
-      className="shrink-0 text-small text-ink-3 underline underline-offset-3 hover:text-maroon-700"
+      className="tap-link shrink-0 text-small text-ink-3 underline underline-offset-3 hover:text-maroon-700"
     >
       {skipped ? 'Answer it' : 'Skip for now'}
     </button>

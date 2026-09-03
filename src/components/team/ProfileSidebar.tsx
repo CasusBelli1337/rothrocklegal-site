@@ -57,7 +57,7 @@ function MembershipsAndLeadership({ member }: { member: TeamMember }) {
 }
 
 const chipClass =
-  'inline-flex items-center rounded-full border border-line bg-white px-3 py-1.5 text-small text-ink ' +
+  'inline-flex min-h-11 items-center rounded-full border border-line bg-white px-4 text-small text-ink ' +
   'transition-colors hover:border-maroon-200 hover:text-maroon-700';
 
 function PracticeChips({ member }: { member: TeamMember }) {
@@ -81,10 +81,10 @@ function PracticeChips({ member }: { member: TeamMember }) {
 
 function Contact({ member }: { member: TeamMember }) {
   const rowClass =
-    'inline-flex items-center gap-2 text-small text-ink underline-offset-3 hover:text-maroon-700 hover:underline';
+    'tap-row gap-2 text-small text-ink underline-offset-3 hover:text-maroon-700 hover:underline';
   return (
     <Block title="Get in touch">
-      <ul className="space-y-2">
+      <ul className="lg:space-y-2">
         <li>
           <Link href={consultCta.href} className={rowClass}>
             <ArrowRightIcon className="h-4 w-4 text-brass-500" />

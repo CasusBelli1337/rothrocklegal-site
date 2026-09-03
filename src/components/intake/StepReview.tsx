@@ -38,7 +38,7 @@ function Summary({ state, onEdit }: { state: IntakeState; onEdit(step: StepId): 
             <button
               type="button"
               onClick={() => onEdit(row.step)}
-              className="text-small font-medium text-maroon-700 underline underline-offset-3 hover:text-maroon-600"
+              className="tap-link text-small font-medium text-maroon-700 underline underline-offset-3 hover:text-maroon-600"
               aria-label={`Edit ${row.label}`}
             >
               Edit

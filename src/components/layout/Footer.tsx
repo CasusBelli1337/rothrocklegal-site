@@ -10,7 +10,7 @@ function ColumnHeading({ children }: { children: React.ReactNode }) {
   return <h2 className="eyebrow font-sans text-white/60">{children}</h2>;
 }
 
-const linkClass = 'text-[15px] text-white/80 transition-colors hover:text-white';
+const linkClass = 'tap-row text-[15px] text-white/80 transition-colors hover:text-white';
 
 /** Four columns + compliance bar (IA.md §3, SEO-SPEC §12 #6). */
 export function Footer() {
@@ -27,7 +27,7 @@ export function Footer() {
           <p className="mt-2 text-[15px]">
             <Link
               href={consultCta.href}
-              className="font-semibold text-white underline underline-offset-3 hover:text-white/90"
+              className="tap-row gap-1.5 font-semibold text-white underline underline-offset-3 hover:text-white/90"
             >
               {consultCta.label} <span aria-hidden="true">&rarr;</span>
             </Link>
@@ -35,7 +35,7 @@ export function Footer() {
           <p className="mt-3 text-[15px]">
             <a
               href={`mailto:${site.email}`}
-              className="text-white/80 underline-offset-3 hover:text-white hover:underline"
+              className="tap-row text-white/80 underline decoration-white/40 underline-offset-3 hover:text-white hover:decoration-white"
             >
               {site.email}
             </a>
@@ -46,7 +46,7 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Arthur Rothrock on LinkedIn"
-            className="mt-5 inline-flex h-10 w-10 items-center justify-center rounded-md border border-white/20 text-white/80 transition-colors hover:border-white/50 hover:text-white"
+            className="mt-5 inline-flex h-11 w-11 items-center justify-center rounded-md border border-white/20 text-white/80 transition-colors hover:border-white/50 hover:text-white"
           >
             <LinkedInIcon className="h-5 w-5" />
           </a>
@@ -54,7 +54,7 @@ export function Footer() {
 
         <nav aria-label="Practice areas">
           <ColumnHeading>Practice areas</ColumnHeading>
-          <ul className="mt-5 space-y-2.5">
+          <ul className="mt-4 lg:mt-5 lg:space-y-2.5">
             {practicePages.map((area) => (
               <li key={area.slug}>
                 <Link href={practiceHref(area)} className={linkClass}>
@@ -67,7 +67,7 @@ export function Footer() {
 
         <nav aria-label="Resources">
           <ColumnHeading>Resources</ColumnHeading>
-          <ul className="mt-5 space-y-2.5">
+          <ul className="mt-4 lg:mt-5 lg:space-y-2.5">
             {footerResources.map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className={linkClass}>
@@ -106,7 +106,7 @@ export function Footer() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="underline underline-offset-3 hover:text-white"
+                className="tap-row underline underline-offset-3 hover:text-white"
               >
                 {item.label}
               </Link>

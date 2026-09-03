@@ -23,7 +23,7 @@ export function Breadcrumbs({
   const current = tone === 'light' ? 'text-white' : 'text-ink';
   const hover = tone === 'light' ? 'hover:text-white' : 'hover:text-maroon-700';
   return (
-    <nav aria-label="Breadcrumb" className={`text-meta ${muted} ${className}`}>
+    <nav aria-label="Breadcrumb" className={`text-small ${muted} ${className}`}>
       <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
         {trail.map((crumb, i) => {
           const last = i === trail.length - 1;
@@ -38,7 +38,7 @@ export function Breadcrumbs({
                   {crumb.label}
                 </span>
               ) : (
-                <Link href={crumb.href} className={`${hover} transition-colors`}>
+                <Link href={crumb.href} className={`tap-link ${hover} transition-colors`}>
                   {crumb.label}
                 </Link>
               )}

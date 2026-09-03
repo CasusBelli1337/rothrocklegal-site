@@ -41,6 +41,9 @@ and the consult flow; visitors never see it. Details: `docs/LENS.md`.
 - `node scripts/import-articles.mjs [dir]` validates and copies writers'
   articles into `content/library/`.
 - `node scripts/make-covers.mjs [--force]` generates missing library covers.
+- `node scripts/make-image-variants.mjs [--force]` generates the width crops
+  that `<picture>` elements reference (the hero). Run after changing a source
+  image; `next/image` is unoptimized here, so `sizes` alone does nothing.
 
 - `node scripts/check-lens.mjs` verifies the lens export (every copy slot
   carries all three framings, boot script in `<head>`, no preview-tool trace).
@@ -163,6 +166,22 @@ image (/images/...), imageAlt, draft (true|false), oldSlug (legacy posts only)
 - Every page ends in the footer compliance line: attorney responsible for the
   site, city, "Attorney advertising" (Rule 7.2(c); Bus. & Prof. Code
   § 6157.2(b)). Articles, practice pages, and the wizard carry the disclaimer.
+
+## Mobile rules (docs/MOBILE.md)
+
+- Every control is at least 44px tall on touch screens: links in stacked lists
+  take `tap-row`, standalone text links and text buttons take `tap-link`,
+  buttons are `h-11`/`h-12`. Inline links inside a sentence are exempt.
+- Form controls are 16px or larger (iOS zooms on focus below that). Body copy
+  is 16px+; `text-small` is 15px on phones by design.
+- Nothing depends on hover: a link among plain text is underlined at rest.
+- Content is never hidden until JavaScript runs (`Reveal` arms only what is
+  still below the viewport after hydration).
+- Images: `<picture>` + `scripts/make-image-variants.mjs` for anything large
+  or art-directed; `next/image` emits no `srcset` on this export.
+- The italic serif is `font-serif-italic` + `italic` (separate, non-preloaded
+  family). Fonts are the biggest lever on mobile LCP; do not add axes or faces
+  without re-running the Lighthouse check in docs/MOBILE.md.
 
 ## Gotchas
 

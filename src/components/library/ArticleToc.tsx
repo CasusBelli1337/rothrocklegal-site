@@ -37,7 +37,7 @@ function useActiveHeading(ids: readonly string[]): string | null {
 
 function TocList({ entries, active }: { entries: readonly TocEntry[]; active: string | null }) {
   return (
-    <ol className="space-y-1">
+    <ol className="lg:space-y-1">
       {entries.map((entry) => {
         const on = entry.id === active;
         const tone = on
@@ -48,7 +48,7 @@ function TocList({ entries, active }: { entries: readonly TocEntry[]; active: st
             <a
               href={`#${entry.id}`}
               aria-current={on ? 'location' : undefined}
-              className={`block border-l-2 py-1.5 pl-4 text-small transition-colors duration-150 ${tone}`}
+              className={`tap-row border-l-2 py-1.5 pl-4 text-small transition-colors duration-150 ${tone}`}
             >
               {entry.text}
             </a>

@@ -32,7 +32,11 @@ export function Header() {
       }`}
     >
       <Container className="flex h-[60px] items-center justify-between gap-6 lg:h-[72px]">
-        <Link href="/" aria-label={`${site.name} home`} className="shrink-0 rounded-md">
+        <Link
+          href="/"
+          aria-label={`${site.name} home`}
+          className="flex min-h-11 shrink-0 items-center rounded-md"
+        >
           <BrandLogo
             lockup="horizontal"
             tone="maroon"

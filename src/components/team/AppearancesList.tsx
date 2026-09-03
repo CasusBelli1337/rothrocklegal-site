@@ -7,7 +7,7 @@ const KIND_LABELS: Record<AppearanceKind, string> = {
   podcast: 'Podcast',
 };
 
-const linkClass = 'underline underline-offset-3 transition-colors hover:text-maroon-700';
+const linkClass = 'tap-link underline underline-offset-3 transition-colors hover:text-maroon-700';
 
 function PodcastLine({ member }: { member: TeamMember }) {
   const podcast = member.podcast;

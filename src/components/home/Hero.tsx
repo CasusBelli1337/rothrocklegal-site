@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { LensSwitchLink } from '@/components/lens/LensSwitchLink';
 import { renderVariants, Slot } from '@/components/lens/Slot';
 import { Badge } from '@/components/ui/Badge';
@@ -33,6 +32,10 @@ const chips: {
   { label: 'Vice Chair, ABA AI & Robotics National Institute' },
   { label: <>Santa Clara County Superior Court &ndash; Probate Division</> },
 ];
+
+/** Crops from scripts/make-image-variants.mjs: 3:2 for the phone layout, 4:5 from lg. */
+const heroImage = (crop: 'wide' | 'tall', width: number) =>
+  asset(`/images/arthur-hero-${crop}-${width}.webp`);
 
 const heroLink = 'font-medium text-white underline underline-offset-3 hover:text-white/90';
 const hatchLink =
@@ -88,14 +91,25 @@ export function Hero() {
         </div>
         <div className="order-1 lg:order-2 lg:col-span-5">
           <div className="relative aspect-[3/2] overflow-hidden rounded-2xl lg:aspect-[4/5]">
-            <Image
-              src={asset('/images/arthur-hero.webp')}
-              alt="Arthur E. Rothrock, founder of Rothrock Legal"
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 480px"
-              className="object-cover object-top"
-            />
+            {/* The LCP element on phones: sized to the slot and fetched first (web.dev "Optimize LCP"). */}
+            <picture>
+              <source
+                media="(min-width: 1024px)"
+                srcSet={`${heroImage('tall', 480)} 480w, ${heroImage('tall', 960)} 960w`}
+                sizes="(min-width: 1280px) 480px, 40vw"
+              />
+              <img
+                src={heroImage('wide', 1024)}
+                srcSet={`${heroImage('wide', 768)} 768w, ${heroImage('wide', 1024)} 1024w, ${heroImage('wide', 1280)} 1280w`}
+                sizes="100vw"
+                alt="Arthur E. Rothrock, founder of Rothrock Legal"
+                width={1024}
+                height={683}
+                fetchPriority="high"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover object-top"
+              />
+            </picture>
           </div>
         </div>
       </Container>

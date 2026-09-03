@@ -22,7 +22,7 @@ export function Badge({ children, tone = 'brass', image, wrap, className = '' }:
   const flow = wrap ? 'leading-snug' : 'leading-none whitespace-nowrap';
   return (
     <span
-      className={`inline-flex shrink-0 items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold ${flow} ${tones[tone]} ${className}`}
+      className={`inline-flex shrink-0 items-center gap-2 rounded-full px-3 py-1.5 text-[13px] font-semibold ${flow} ${tones[tone]} ${className}`}
     >
       {image && (
         <Image

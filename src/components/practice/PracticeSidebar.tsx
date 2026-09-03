@@ -67,7 +67,7 @@ export function PracticeSidebar({ area, sections }: PracticeSidebarProps) {
         </Button>
         <Link
           href={consultCta.href}
-          className="mt-3 inline-flex items-center gap-2 text-small font-semibold text-white underline underline-offset-3"
+          className="tap-link mt-3 inline-flex items-center gap-2 text-small font-semibold text-white underline underline-offset-3"
         >
           {consultCta.label}
         </Link>
@@ -75,12 +75,12 @@ export function PracticeSidebar({ area, sections }: PracticeSidebarProps) {
 
       <nav aria-labelledby="other-practice">
         <SideHeading>{area.hub ? 'Practice pages' : 'Other situations we handle'}</SideHeading>
-        <ul className="mt-4 space-y-2">
+        <ul className="mt-4 lg:space-y-2">
           {!area.hub && (
             <li>
               <Link
                 href={practiceHref(practiceHub)}
-                className="text-small font-medium text-maroon-700 hover:text-maroon-600"
+                className="tap-row text-small font-medium text-maroon-700 hover:text-maroon-600"
               >
                 All trust &amp; estate litigation
               </Link>
@@ -88,7 +88,10 @@ export function PracticeSidebar({ area, sections }: PracticeSidebarProps) {
           )}
           {others.map((p) => (
             <li key={p.slug}>
-              <Link href={practiceHref(p)} className="text-small text-ink-2 hover:text-maroon-700">
+              <Link
+                href={practiceHref(p)}
+                className="tap-row text-small text-ink-2 hover:text-maroon-700"
+              >
                 {p.title}
               </Link>
             </li>

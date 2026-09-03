@@ -9,7 +9,7 @@ import { CheckboxRow } from './FormFields';
 import { WhyWeAsk } from './WhyWeAsk';
 
 const linkButton =
-  'text-small font-medium text-maroon-700 underline underline-offset-3 hover:text-maroon-600';
+  'tap-link text-small font-medium text-maroon-700 underline underline-offset-3 hover:text-maroon-600';
 
 function DropZone({
   slot,

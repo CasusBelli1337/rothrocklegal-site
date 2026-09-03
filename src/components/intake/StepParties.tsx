@@ -34,6 +34,8 @@ function PartyRow({
           id={nameId}
           value={party.name}
           onChange={(name) => onChange({ ...party, name })}
+          // Otherwise the phone offers to fill in the visitor's own name for the person who died.
+          autoComplete="off"
         />
       </Field>
       <Field id={roleId} label="Who are they?">

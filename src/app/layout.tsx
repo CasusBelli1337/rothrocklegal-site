@@ -1,23 +1,34 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import dynamic from 'next/dynamic';
 import { Instrument_Sans, Newsreader } from 'next/font/google';
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
 import { MobileConsultBar } from '@/components/layout/MobileConsultBar';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { site } from '@/config/site';
+import { palette, site } from '@/config/site';
 import { articleLensWeights } from '@/lib/lens/article-weights';
 import { lensBootScript } from '@/lib/lens/boot';
 import { LensTracker } from '@/lib/lens/LensTracker';
 import { siteGraph } from '@/lib/seo/jsonld';
 import './globals.css';
 
+// Weight axis only: the optical-size axis doubled each serif file (129 KB + 144 KB),
+// which on a slow phone connection held back the hero image and the first text
+// paint in the web font (mobile LCP, docs/MOBILE.md). The italic face is its own
+// family and is not preloaded: quotes and the em-word fetch it when they render.
 const newsreader = Newsreader({
   subsets: ['latin'],
-  style: ['normal', 'italic'],
-  axes: ['opsz'],
+  style: ['normal'],
   display: 'swap',
   variable: '--font-newsreader',
+});
+
+const newsreaderItalic = Newsreader({
+  subsets: ['latin'],
+  style: ['italic'],
+  display: 'swap',
+  preload: false,
+  variable: '--font-newsreader-italic',
 });
 
 const instrumentSans = Instrument_Sans({
@@ -51,6 +62,14 @@ export const metadata: Metadata = {
   },
   twitter: { card: 'summary_large_image' },
   robots: { index: true, follow: true },
+  // The phone number is shown as text on purpose (Arthur does not field calls);
+  // without this, iOS Safari turns it into a blue tel: link anyway.
+  formatDetection: { telephone: false },
+};
+
+/** Colors the browser chrome maroon around the site on phones. */
+export const viewport: Viewport = {
+  themeColor: palette.maroon900,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -58,16 +77,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     // The lens boot script stamps html[data-lens] before hydration (docs/LENS.md §3).
     <html
       lang="en"
-      className={`${newsreader.variable} ${instrumentSans.variable}`}
+      className={`${newsreader.variable} ${newsreaderItalic.variable} ${instrumentSans.variable}`}
       suppressHydrationWarning
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: lensBootScript() }} />
       </head>
-      <body className="min-h-screen flex flex-col">
-        <noscript>
-          <style>{'[data-reveal],[data-reveal-stagger]>*{opacity:1;transform:none}'}</style>
-        </noscript>
+      {/* dvh, not vh: mobile browser toolbars shrink the visible viewport. */}
+      <body className="min-h-dvh flex flex-col">
         <a href="#main" className="skip-link">
           Skip to content
         </a>

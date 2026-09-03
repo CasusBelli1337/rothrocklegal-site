@@ -33,7 +33,7 @@ export function PracticeHero({ area }: { area: PracticeArea }) {
             By{' '}
             <Link
               href={teamHref(author)}
-              className="text-ink underline underline-offset-3 hover:text-maroon-700"
+              className="tap-link text-ink underline underline-offset-3 hover:text-maroon-700"
             >
               {author.name}
             </Link>{' '}

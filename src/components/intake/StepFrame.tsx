@@ -45,7 +45,7 @@ export function StepNav({ intake, continueLabel = 'Continue', busy }: StepNavPro
         <button
           type="button"
           onClick={startOver}
-          className="ml-auto text-small text-ink-3 underline underline-offset-3 hover:text-maroon-700"
+          className="tap-link ml-auto text-small text-ink-3 underline underline-offset-3 hover:text-maroon-700"
         >
           Start over
         </button>

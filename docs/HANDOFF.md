@@ -13,7 +13,7 @@ repo holds the editor module and the intake module.
   Wix-faithful rebuild. Preview: Armory → Rothrock Website Editor
   (`http://localhost:9080/tools/website-editor-rothrock/`; raw preview
   `http://localhost:9080/_preview/`). Never `next build` in this checkout.
-- Gates on `redesign`: lint, typecheck, 199 Vitest tests, static export
+- Gates on `redesign`: lint, typecheck, 205 Vitest tests, static export
   (94 HTML), `check-links` (34 stubs one hop, 0 broken), `check-seo`,
   `check-lens` (15 slot groups, no preview-tool traces), axe 0 violations.
 - What the site is: T&E litigation firm site for beneficiaries AND trustees,
@@ -24,6 +24,22 @@ repo holds the editor module and the intake module.
   (trustee/beneficiary framing, `docs/LENS.md`, preview switcher pill), the
   Legion v. United States block on About (Legion sued with outside counsel;
   never imply Rothrock Legal litigated it).
+
+## Mobile pass (2026-09-02, branch `redesign-mobile` merged into `redesign`)
+
+Researched current mobile best practices (checklist with sources in
+`~/projects/rothrock-legal/qa/mobile/mobile-best-practices.md`), audited every
+page at 320 to 430 px with Playwright and Lighthouse mobile, and fixed what
+fell short: fonts (Newsreader without the opsz axis, italic on demand: 302 KB
+to 88 KB preloaded), a `<picture>` hero with phone crops, the reveal motion no
+longer gated on hydration, the consult page's CLS, 44 px tap targets
+(`tap-row` / `tap-link` utilities), smaller headline floors on phones, menu
+sheet scroll lock and focus trap, safe-area insets, the consult bar hiding
+while typing, `theme-color` and `format-detection`. Lighthouse mobile went
+from 75 to 82 to 92 to 98; LCP from 5 to 8 s to 2.4 to 3.3 s; CLS 0 on every
+audited page. Details, before/after table, and how to re-run the audit:
+`docs/MOBILE.md`. QA evidence (scripts, results, 390 px screenshots):
+`~/projects/rothrock-legal/qa/mobile/`.
 
 ## Arthur's standing decisions (do not re-ask)
 

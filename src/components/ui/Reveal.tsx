@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 
 interface RevealProps {
   children: React.ReactNode;
@@ -12,8 +12,11 @@ interface RevealProps {
 
 /**
  * Reveals once when scrolled into view: opacity 0→1 + 12px rise, 400ms.
- * Motion lives in globals.css; reduced-motion users and no-JS readers see
- * everything immediately (DESIGN-BRIEF §8).
+ * Motion lives in globals.css. Content renders visible and is hidden (armed)
+ * only after hydration, and only if it is still below the viewport, so a slow
+ * phone never scrolls into blank sections and the reveal never delays LCP.
+ * Reduced-motion users and no-JS readers see everything immediately
+ * (DESIGN-BRIEF §8).
  */
 export function Reveal({ children, className, stagger, id }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -21,18 +24,18 @@ export function Reveal({ children, className, stagger, id }: RevealProps) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (!("IntersectionObserver" in window)) {
-      el.classList.add("is-visible");
-      return;
-    }
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const inView = el.getBoundingClientRect().top < window.innerHeight;
+    if (reduceMotion || inView || !('IntersectionObserver' in window)) return;
+    el.classList.add('is-armed');
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries.some((entry) => entry.isIntersecting)) {
-          el.classList.add("is-visible");
+          el.classList.add('is-visible');
           observer.disconnect();
         }
       },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.05 },
+      { rootMargin: '0px 0px -8% 0px', threshold: 0.05 },
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -43,8 +46,8 @@ export function Reveal({ children, className, stagger, id }: RevealProps) {
       ref={ref}
       id={id}
       className={className}
-      data-reveal={stagger ? undefined : ""}
-      data-reveal-stagger={stagger ? "" : undefined}
+      data-reveal={stagger ? undefined : ''}
+      data-reveal-stagger={stagger ? '' : undefined}
     >
       {children}
     </div>

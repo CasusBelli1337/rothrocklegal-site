@@ -63,7 +63,7 @@ function WhoWeAre() {
           />
           <Link
             href="/attorneys/"
-            className="shrink-0 text-small font-medium text-maroon-700 underline-offset-3 hover:underline"
+            className="tap-link shrink-0 text-small font-medium text-maroon-700 underline-offset-3 hover:underline"
           >
             Meet the team <span aria-hidden="true">&rarr;</span>
           </Link>

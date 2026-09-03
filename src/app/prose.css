@@ -91,7 +91,7 @@
 .prose-article blockquote {
   border-left: 3px solid var(--color-maroon-700);
   padding-left: 1.25rem;
-  font-family: var(--font-serif);
+  font-family: var(--font-serif-italic);
   font-style: italic;
   font-size: 1.25rem;
   color: var(--color-ink);

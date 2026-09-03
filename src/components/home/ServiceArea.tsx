@@ -31,12 +31,13 @@ export function ServiceArea() {
         </Reveal>
         <Reveal className="lg:col-span-5 lg:pt-8">
           <h3 className="eyebrow">Families we serve come from</h3>
-          <ul className="mt-4 grid grid-cols-2 gap-x-6 gap-y-2 text-body text-ink-2">
+          <ul className="mt-4 grid grid-cols-2 gap-x-6 text-body text-ink-2 lg:gap-y-2">
             {cities.map((city) => (
               <li key={city.slug}>
                 <Link
                   href={`/service-areas/#${city.slug}`}
-                  className="underline-offset-3 hover:text-maroon-700 hover:underline"
+                  // Underlined at rest: on a phone nothing else tells a city link apart from the plain region names beside it.
+                  className="tap-row underline decoration-line-strong underline-offset-3 hover:text-maroon-700 hover:decoration-current"
                 >
                   {city.name}
                 </Link>

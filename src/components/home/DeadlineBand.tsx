@@ -48,7 +48,7 @@ export function DeadlineBand() {
           </p>
           <Link
             href="/library/?category=deadlines"
-            className="mt-4 inline-flex items-center gap-2 text-[15px] font-semibold text-maroon-700 hover:text-maroon-600"
+            className="tap-link mt-4 inline-flex items-center gap-2 text-[15px] font-semibold text-maroon-700 hover:text-maroon-600"
           >
             Read about the 120-day rule
             <ArrowRightIcon className="h-4 w-4" />

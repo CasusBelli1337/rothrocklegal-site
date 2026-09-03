@@ -72,7 +72,7 @@ export function WhyFasterPanel() {
       </p>
       <Link
         href={`/about/#${CASE_BLOCK_ID}`}
-        className="mt-4 inline-flex items-center gap-2 text-[15px] font-semibold text-maroon-700 hover:text-maroon-600"
+        className="tap-link mt-4 inline-flex items-center gap-2 text-[15px] font-semibold text-maroon-700 hover:text-maroon-600"
       >
         Why that matters to your case
         <ArrowRightIcon className="h-4 w-4" />

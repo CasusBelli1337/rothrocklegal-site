@@ -23,7 +23,7 @@ function WizardNav({ wizard }: { wizard: WizardController }) {
         <button
           type="button"
           onClick={wizard.startOver}
-          className="ml-auto text-small text-ink-3 underline underline-offset-3 hover:text-maroon-700"
+          className="tap-link ml-auto text-small text-ink-3 underline underline-offset-3 hover:text-maroon-700"
         >
           Start over
         </button>

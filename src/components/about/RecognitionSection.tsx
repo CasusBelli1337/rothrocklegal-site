@@ -4,7 +4,7 @@ import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { firstName, recognizedMembers, teamHref } from '@/config/team';
 
-const linkClass = 'text-maroon-700 underline underline-offset-3 hover:text-maroon-600';
+const linkClass = 'tap-link text-maroon-700 underline underline-offset-3 hover:text-maroon-600';
 
 /** Badges + exact award names, then the ABA office and the podcast, all from team config. */
 export function RecognitionSection() {

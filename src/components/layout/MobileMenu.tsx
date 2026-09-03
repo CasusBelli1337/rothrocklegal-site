@@ -33,7 +33,7 @@ function MenuGroup({ item, onClose }: { item: NavItem; onClose: () => void }) {
           <Link
             href={item.href}
             onClick={onClose}
-            className="block py-2.5 pl-3 text-[15px] font-semibold text-maroon-700"
+            className="block py-3 pl-3 text-[15px] font-semibold text-maroon-700"
           >
             All practice areas
           </Link>
@@ -43,8 +43,28 @@ function MenuGroup({ item, onClose }: { item: NavItem; onClose: () => void }) {
   );
 }
 
+/** Keeps Tab inside the dialog: an aria-modal sheet must not let focus wander into the page behind it. */
+function trapFocus(event: KeyboardEvent, dialog: HTMLElement | null) {
+  if (!dialog) return;
+  const items = Array.from(dialog.querySelectorAll<HTMLElement>('a[href], button, summary')).filter(
+    (el) => el.offsetParent !== null,
+  );
+  if (items.length === 0) return;
+  const first = items[0];
+  const last = items[items.length - 1];
+  const active = document.activeElement;
+  if (event.shiftKey && (active === first || !dialog.contains(active))) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && active === last) {
+    event.preventDefault();
+    first.focus();
+  }
+}
+
 /** Full-height sheet from the right; consult + note buttons pinned at the bottom (DESIGN-BRIEF §5). */
 export function MobileMenu({ open, onClose, pathname }: MobileMenuProps) {
+  const dialogRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const lastPath = useRef(pathname);
 
@@ -57,15 +77,20 @@ export function MobileMenu({ open, onClose, pathname }: MobileMenuProps) {
 
   useEffect(() => {
     if (!open) return;
-    const previous = document.body.style.overflow;
+    // Lock both roots: iOS Safari keeps scrolling the page when only <body> is hidden.
+    const root = document.documentElement;
+    const previous = { html: root.style.overflow, body: document.body.style.overflow };
+    root.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
     closeRef.current?.focus();
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') onClose();
+      if (event.key === 'Tab') trapFocus(event, dialogRef.current);
     };
     document.addEventListener('keydown', onKeyDown);
     return () => {
-      document.body.style.overflow = previous;
+      root.style.overflow = previous.html;
+      document.body.style.overflow = previous.body;
       document.removeEventListener('keydown', onKeyDown);
     };
   }, [open, onClose]);
@@ -75,6 +100,7 @@ export function MobileMenu({ open, onClose, pathname }: MobileMenuProps) {
   return (
     <div
       id="mobile-menu"
+      ref={dialogRef}
       className="fixed inset-0 z-50 lg:hidden"
       role="dialog"
       aria-modal="true"
@@ -84,7 +110,7 @@ export function MobileMenu({ open, onClose, pathname }: MobileMenuProps) {
         type="button"
         aria-label="Close menu"
         onClick={onClose}
-        className="absolute inset-0 animate-fade-in bg-maroon-950/50"
+        className="absolute inset-0 animate-fade-in bg-maroon-950/50 touch-none"
       />
       <div className="absolute inset-y-0 right-0 flex w-[min(100%,22rem)] animate-sheet-in flex-col bg-paper shadow-xl">
         <div className="flex h-[60px] items-center justify-between border-b border-line px-5">
@@ -105,7 +131,7 @@ export function MobileMenu({ open, onClose, pathname }: MobileMenuProps) {
             <CloseIcon className="h-6 w-6" />
           </button>
         </div>
-        <nav aria-label="Mobile" className="flex-1 overflow-y-auto px-5">
+        <nav aria-label="Mobile" className="flex-1 overflow-y-auto overscroll-contain px-5">
           {nav.map((item) =>
             item.children ? (
               <MenuGroup key={item.href} item={item} onClose={onClose} />
@@ -121,7 +147,7 @@ export function MobileMenu({ open, onClose, pathname }: MobileMenuProps) {
             ),
           )}
         </nav>
-        <div className="grid gap-3 border-t border-line p-5">
+        <div className="grid gap-3 border-t border-line p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))]">
           <Button href={consultCta.href}>{consultCta.label}</Button>
           <Button variant="secondary" href={noteCta.href}>
             {noteCta.label}

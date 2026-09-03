@@ -43,7 +43,7 @@ export function AuthorBox({ member }: { member: TeamMember }) {
         <p className="mt-3 text-small text-ink-2">{member.summary}</p>
         <Link
           href={teamHref(member)}
-          className="mt-3 inline-block text-small font-medium text-maroon-700 transition-colors hover:text-maroon-600"
+          className="tap-link mt-3 inline-block text-small font-medium text-maroon-700 transition-colors hover:text-maroon-600"
         >
           Read bio <span aria-hidden="true">&rarr;</span>
         </Link>

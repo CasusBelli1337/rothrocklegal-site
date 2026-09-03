@@ -15,6 +15,9 @@ function focusables(root: HTMLElement | null): HTMLElement[] {
   return root ? Array.from(root.querySelectorAll<HTMLElement>('a[href]')) : [];
 }
 
+/** A touch tablet in landscape shows this desktop nav too; there, only a tap should open the panel. */
+const canHover = () => window.matchMedia('(hover: hover)').matches;
+
 /**
  * Desktop "Trust & Estate Litigation" panel: opens on hover and click/Enter,
  * closes on Esc and outside click, arrow keys move focus (DESIGN-BRIEF §5).
@@ -82,10 +85,12 @@ export function NavDropdown({ item, active }: NavDropdownProps) {
       ref={rootRef}
       className="relative"
       onMouseEnter={() => {
+        if (!canHover()) return;
         hovering.current = true;
         setOpen(true);
       }}
       onMouseLeave={() => {
+        if (!canHover()) return;
         hovering.current = false;
         setOpen(false);
       }}

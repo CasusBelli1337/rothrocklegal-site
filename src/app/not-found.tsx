@@ -28,12 +28,12 @@ export default function NotFound() {
         It may have moved when the site was rebuilt. Try one of these, or send us a note and
         we&rsquo;ll point you to the right place.
       </p>
-      <ul className="mt-8 grid gap-2 sm:grid-cols-2">
+      <ul className="mt-8 grid sm:grid-cols-2 sm:gap-x-6 lg:gap-y-2">
         {links.map((link) => (
           <li key={link.href}>
             <Link
               href={link.href}
-              className="text-[15px] font-medium text-maroon-700 underline underline-offset-3 hover:text-maroon-600"
+              className="tap-row text-[15px] font-medium text-maroon-700 underline underline-offset-3 hover:text-maroon-600"
             >
               {link.label}
             </Link>

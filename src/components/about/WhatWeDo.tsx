@@ -57,7 +57,7 @@ export function WhatWeDo() {
                 {area.title}
               </h3>
               {area.card && (
-                <p className="mt-2 font-serif text-body text-ink-2 italic">
+                <p className="mt-2 font-serif-italic text-body text-ink-2 italic">
                   &ldquo;{area.card.headline}&rdquo;
                 </p>
               )}
@@ -72,7 +72,7 @@ export function WhatWeDo() {
             We also take{' '}
             <a
               href={practiceHref(area)}
-              className="text-maroon-700 underline underline-offset-3 hover:text-maroon-600"
+              className="tap-link text-maroon-700 underline underline-offset-3 hover:text-maroon-600"
             >
               business and partnership disputes
             </a>{' '}

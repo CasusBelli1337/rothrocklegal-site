@@ -44,7 +44,7 @@ export function WherePractice() {
             </p>
             <Link
               href="/service-areas/"
-              className="mt-5 inline-block text-small font-medium text-maroon-700 underline-offset-3 hover:underline"
+              className="tap-link mt-5 inline-block text-small font-medium text-maroon-700 underline-offset-3 hover:underline"
             >
               Where we practice <span aria-hidden="true">&rarr;</span>
             </Link>

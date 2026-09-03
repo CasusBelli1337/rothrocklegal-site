@@ -53,23 +53,7 @@ function useApiStatus(): ApiStatus {
   return status;
 }
 
-function Checking() {
-  return (
-    <div
-      role="status"
-      aria-busy="true"
-      className="flex items-center gap-3 rounded-xl border border-line bg-white p-6 text-body text-ink-2 sm:p-10"
-    >
-      <span
-        aria-hidden="true"
-        className="h-5 w-5 animate-spin rounded-full border-2 border-maroon-700 border-t-transparent"
-      />
-      Checking our connection…
-    </div>
-  );
-}
-
-/** The "Request a consult" flow: API check, then one screen per step with progress and autosave. */
+/** The "Request a consult" flow: one screen per step with progress and autosave; an API check runs alongside. */
 export function IntakeFlow() {
   const intake = useIntake();
   const status = useApiStatus();
@@ -84,7 +68,9 @@ export function IntakeFlow() {
   );
   const uploads = useUploads(intake.state.session, intake.state.files, onUploaded, removeFile);
 
-  if (status === 'checking' || !intake.hydrated) return <Checking />;
+  // The first screen needs no server, so it renders at once (also in the static HTML). A short
+  // placeholder that later grew into the form pushed everything below it down (CLS 0.17 on phones).
+  // Only an offline answer swaps in the fallback; a saved session restores its step after hydration.
   if (status === 'offline') return <Fallback />;
 
   const { step } = intake.state;

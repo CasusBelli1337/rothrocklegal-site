@@ -11,7 +11,7 @@ function TestimonialCard({ t }: { t: Testimonial }) {
   return (
     <figure className="flex flex-col rounded-xl border border-line bg-white p-6">
       <QuoteIcon className="h-6 w-6 text-brass-500" />
-      <blockquote className="mt-4 flex-1 font-serif text-lead text-ink italic">
+      <blockquote className="mt-4 flex-1 font-serif-italic text-lead text-ink italic">
         {t.quote}
       </blockquote>
       <figcaption className="mt-6 flex items-center gap-3">

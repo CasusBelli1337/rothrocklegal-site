@@ -51,7 +51,7 @@ export function ProfileHero({ member }: { member: TeamMember }) {
             </Eyebrow>
             <h1 className="mt-4 font-serif text-h1 text-white">{member.name}</h1>
             {member.heroLine && (
-              <p className="mt-4 max-w-[34ch] font-serif text-lead text-white/85 italic">
+              <p className="mt-4 max-w-[34ch] font-serif-italic text-lead text-white/85 italic">
                 {member.heroLine}
               </p>
             )}

@@ -11,7 +11,7 @@ import { MicButton } from './MicButton';
 import { StepFrame } from './StepFrame';
 import type { StepProps } from './step-props';
 
-const link = 'underline underline-offset-3 hover:text-maroon-700';
+const link = 'tap-link underline underline-offset-3 hover:text-maroon-700';
 
 function appendText(story: string, text: string): string {
   const trimmed = story.replace(/\s+$/, '');
@@ -150,7 +150,7 @@ export function StepStory({ intake, uploads }: StepProps) {
               key={chip}
               type="button"
               onClick={() => addChip(chip)}
-              className="rounded-full border border-line-strong bg-white px-3 py-1.5 text-small text-ink transition-colors hover:border-maroon-500 hover:bg-maroon-50"
+              className="min-h-11 rounded-full border border-line-strong bg-white px-4 text-small text-ink transition-colors hover:border-maroon-500 hover:bg-maroon-50"
             >
               {chip}
             </button>

@@ -1,31 +1,22 @@
-import fs from "node:fs";
-import path from "node:path";
-import Image from "next/image";
-import Link from "next/link";
-import { InitialAvatar } from "@/components/ui/InitialAvatar";
-import { asset } from "@/config/site";
-import { teamHref, type TeamMember } from "@/config/team";
+import fs from 'node:fs';
+import path from 'node:path';
+import Link from 'next/link';
+import { InitialAvatar } from '@/components/ui/InitialAvatar';
+import { asset } from '@/config/site';
+import { teamHref, type TeamMember } from '@/config/team';
 
 /** Build-time check so a missing headshot renders the initials panel, never a broken image. */
 export function hasHeadshot(member: TeamMember): boolean {
-  return fs.existsSync(path.join(process.cwd(), "public", member.image.large));
+  return fs.existsSync(path.join(process.cwd(), 'public', member.image.large));
 }
 
 interface TeamCardProps {
   member: TeamMember;
-  /** 'sm' uses the 400px headshot (mobile 2-up grids). */
-  size?: "md" | "sm";
-  headingLevel?: "h2" | "h3";
+  headingLevel?: 'h2' | 'h3';
 }
 
 /** 4:5 photo, name, title, one-line focus, "Read bio" (DESIGN-BRIEF §6). */
-export function TeamCard({
-  member,
-  size = "md",
-  headingLevel: Tag = "h3",
-}: TeamCardProps) {
-  const src = size === "sm" ? member.image.small : member.image.large;
-  const px = size === "sm" ? 400 : 800;
+export function TeamCard({ member, headingLevel: Tag = 'h3' }: TeamCardProps) {
   return (
     <Link
       href={teamHref(member)}
@@ -33,18 +24,20 @@ export function TeamCard({
     >
       <div className="aspect-[4/5] overflow-hidden rounded-xl bg-maroon-100">
         {hasHeadshot(member) ? (
-          <Image
-            src={asset(src)}
-            alt={member.image.alt}
-            width={px}
-            height={px}
-            sizes={
-              size === "sm"
-                ? "(max-width: 640px) 50vw, 300px"
-                : "(max-width: 768px) 50vw, 300px"
-            }
-            className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
-          />
+          // Both headshot files in one srcset: a phone's 2-up grid takes the 400px one, desktop the 800px one.
+          <picture>
+            <img
+              src={asset(member.image.large)}
+              srcSet={`${asset(member.image.small)} 400w, ${asset(member.image.large)} 800w`}
+              sizes="(max-width: 768px) 50vw, 300px"
+              alt={member.image.alt}
+              width={800}
+              height={800}
+              loading="lazy"
+              decoding="async"
+              className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
+            />
+          </picture>
         ) : (
           <InitialAvatar name={member.name} className="h-full w-full" />
         )}

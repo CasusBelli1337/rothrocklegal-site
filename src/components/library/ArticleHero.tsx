@@ -29,7 +29,10 @@ function Dot({ className = '' }: { className?: string }) {
 function ArticleMeta({ article, author }: { article: LibraryArticle; author: TeamMember }) {
   return (
     <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-3 text-small text-white/80">
-      <Link href={teamHref(author)} className="flex items-center gap-3 text-white hover:underline">
+      <Link
+        href={teamHref(author)}
+        className="tap-link flex items-center gap-3 text-white underline decoration-white/40 underline-offset-3 hover:decoration-white"
+      >
         {hasHeadshot(author) ? (
           <Image
             src={asset(author.image.small)}
@@ -85,7 +88,7 @@ export function ArticleHero({ article, author }: { article: LibraryArticle; auth
             <Eyebrow tone="light" rule>
               <Link
                 href={`/library/?category=${article.categorySlug}`}
-                className="transition-colors hover:text-white"
+                className="tap-link transition-colors hover:text-white"
               >
                 {article.category}
               </Link>
@@ -102,15 +105,18 @@ export function ArticleHero({ article, author }: { article: LibraryArticle; auth
           </div>
           <div className="hidden lg:col-span-5 lg:block">
             <div className="aspect-[16/9] overflow-hidden rounded-2xl ring-1 ring-white/15">
-              <Image
-                src={asset(article.image)}
-                alt={article.imageAlt}
-                width={1200}
-                height={675}
-                priority
-                sizes="(min-width: 1024px) 480px, 100vw"
-                className="h-full w-full object-cover"
-              />
+              {/* Requested only where it is shown: the media query keeps phones from downloading a hidden cover. */}
+              <picture>
+                <source media="(min-width: 1024px)" srcSet={asset(article.image)} />
+                <img
+                  alt={article.imageAlt}
+                  width={1200}
+                  height={675}
+                  fetchPriority="high"
+                  decoding="async"
+                  className="h-full w-full object-cover"
+                />
+              </picture>
             </div>
           </div>
         </div>
