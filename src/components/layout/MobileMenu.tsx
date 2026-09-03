@@ -6,6 +6,7 @@ import { useEffect, useRef } from 'react';
 import { ChevronDownIcon, CloseIcon } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
 import { asset, consultCta, nav, secondaryCta, site, type NavItem } from '@/config/site';
+import { mobileMenuClass } from './nav-link';
 
 interface MobileMenuProps {
   open: boolean;
@@ -101,7 +102,7 @@ export function MobileMenu({ open, onClose, pathname }: MobileMenuProps) {
     <div
       id="mobile-menu"
       ref={dialogRef}
-      className="fixed inset-0 z-50 xl:hidden"
+      className={mobileMenuClass}
       role="dialog"
       aria-modal="true"
       aria-label="Menu"

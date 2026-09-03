@@ -26,7 +26,7 @@ function build(): string {
     `> Trust and estate litigation firm in San Jose, California, serving Santa Clara County and the`,
     `> San Francisco Bay Area. Trust contests, will contests, undue influence and capacity, trustee`,
     `> breach of fiduciary duty, trust accountings, Probate Code § 850 petitions, financial elder`,
-    `> abuse, the defense of trustees, and complex, high-value estates. Phone ${site.phone}.`,
+    `> abuse, the defense of trustees, and complex, high-value estates. Email ${site.email}.`,
     '',
     '## Practice areas',
     `- [${practiceHub.title}](${url(practiceHref(practiceHub))}): overview and common situations`,

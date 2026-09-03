@@ -14,7 +14,7 @@ interface GroupProps {
 const chipClass =
   'relative inline-flex h-11 cursor-pointer items-center justify-center border border-line-strong bg-white px-4 ' +
   'text-body font-medium text-ink transition-colors duration-150 hover:border-maroon-700 ' +
-  'has-[:checked]:border-maroon-700 has-[:checked]:bg-maroon-700 has-[:checked]:text-white ' +
+  'has-[:checked]:border-maroon-900 has-[:checked]:bg-maroon-900 has-[:checked]:text-white ' +
   'has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-maroon-500';
 
 /** One option: a labelled group of real radios drawn as chips, so the choice is obvious and keyboard-operable. */

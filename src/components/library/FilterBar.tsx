@@ -41,7 +41,7 @@ function Chip({
   children: React.ReactNode;
 }) {
   const tone = active
-    ? 'border-maroon-700 bg-maroon-700 text-white'
+    ? 'border-maroon-900 bg-maroon-900 text-white'
     : 'border-line-strong bg-white text-ink-2 hover:border-maroon-700 hover:text-maroon-700';
   return (
     <button

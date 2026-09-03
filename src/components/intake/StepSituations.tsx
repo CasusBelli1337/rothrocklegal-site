@@ -34,7 +34,7 @@ function SituationCard({
       <span
         aria-hidden="true"
         className={`grid h-6 w-6 shrink-0 place-items-center border ${
-          pressed ? 'border-maroon-700 bg-maroon-700 text-white' : 'border-line-strong'
+          pressed ? 'border-maroon-900 bg-maroon-900 text-white' : 'border-line-strong'
         }`}
       >
         {pressed && <CheckIcon className="h-4 w-4" />}

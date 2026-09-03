@@ -14,9 +14,6 @@ export const site = {
   defaultTitle: 'Trust & Estate Litigation Attorneys in San Jose | Rothrock Legal',
   tagline:
     'Trust and estate litigation for families in San Jose, Santa Clara County, and the San Francisco Bay Area.',
-  /** Shown as text only (footer, /contact/), never as a tel: button: Arthur does not field calls. */
-  phone: '(408) 420-7034',
-  phoneE164: '+1-408-420-7034',
   email: 'arothrock@rothrocklegal.com',
   /** Office facts shown on the page and mirrored in JSON-LD (SEO-SPEC §3a). No street address. */
   office: {
@@ -32,7 +29,7 @@ export const site = {
   responsibleAttorney: 'Arthur E. Rothrock',
   /** The reply-time promise, one full sentence, used verbatim everywhere (Arthur, 2026-09-01). */
   replyPromise: 'We strive to respond within one business day.',
-  /** Sits beside the phone number, which is text and never a button: Arthur does not field calls. */
+  /** There is no phone number on the site (Arthur does not field calls); the consult request is the way in. */
   consultLine: 'The fastest way to reach us is a consult request. We read every one.',
   /** "What happens next" after a consult request (the homepage band and /contact/). */
   nextSteps: [
@@ -57,7 +54,7 @@ export const site = {
   ogImage: '/images/og/site.png',
   copyrightYear: 2026,
   /** Bumped only for substantive edits to static pages (sitemap lastModified). */
-  lastUpdated: '2026-09-01',
+  lastUpdated: '2026-09-03',
 } as const;
 
 export interface NavItem {

@@ -30,7 +30,7 @@ export default function ContactPage() {
           <Breadcrumbs trail={[{ label: 'Home', href: '/' }, { label: 'Contact' }]} />
         </Container>
       </div>
-      <ContactBand headingLevel="h1" id="consult" showPhone />
+      <ContactBand headingLevel="h1" id="consult" />
       <section className="grid-hairline bg-sand py-16 lg:py-20">
         <Container className="grid gap-10 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-7">

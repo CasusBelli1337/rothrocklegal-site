@@ -1,4 +1,4 @@
-import { CheckIcon, MailIcon, PhoneIcon } from '@/components/icons';
+import { CheckIcon, MailIcon } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { consultCta, site } from '@/config/site';
@@ -7,20 +7,15 @@ interface ContactBandProps {
   /** h1 on /contact/, h2 on the homepage. */
   headingLevel?: 'h1' | 'h2';
   id?: string;
-  /** The phone number, as text and never a button: only /contact/ and the footer show it. */
-  showPhone?: boolean;
 }
 
 /**
  * The consult band, shared by the homepage bottom and /contact/: the consult
  * request is the one way in (the short "Tell us your story" form retired
- * 2026-09-03 at Arthur's request), with email, hours, and what happens next beside it.
+ * 2026-09-03 and the phone number removed the same day, both at Arthur's
+ * request), with email, hours, and what happens next beside it.
  */
-export function ContactBand({
-  headingLevel: Tag = 'h2',
-  id = 'contact',
-  showPhone = false,
-}: ContactBandProps) {
+export function ContactBand({ headingLevel: Tag = 'h2', id = 'contact' }: ContactBandProps) {
   // Keeps the outline in order: the aside heading sits one level under the band's heading.
   const Sub = Tag === 'h1' ? 'h2' : 'h3';
   return (
@@ -38,13 +33,7 @@ export function ContactBand({
           </Button>
         </div>
         <aside className="lg:col-span-5 lg:pt-3" aria-label="Email, hours, and what happens next">
-          {showPhone && (
-            <p className="inline-flex items-center gap-3 font-serif text-h2 text-ink tabular sm:text-stat">
-              <PhoneIcon className="h-7 w-7 text-brass-500" />
-              {site.phone}
-            </p>
-          )}
-          <p className={showPhone ? 'mt-4' : undefined}>
+          <p>
             <a
               href={`mailto:${site.email}`}
               className="tap-link inline-flex items-center gap-2 text-body text-ink-2 underline decoration-line-strong underline-offset-3 hover:text-maroon-700 hover:decoration-current"

@@ -24,8 +24,7 @@ export function Footer() {
         <div>
           <BrandLogo lockup="full" tone="white" className="h-24 w-auto" />
           <p className="mt-5 max-w-[32ch] text-ui leading-relaxed text-white/80">{site.tagline}</p>
-          <p className="mt-5 text-ui font-semibold text-white">{site.phone}</p>
-          <p className="mt-1 max-w-[32ch] text-small text-white/70">{site.consultLine}</p>
+          <p className="mt-5 max-w-[32ch] text-small text-white/70">{site.consultLine}</p>
           <p className="mt-2 text-ui">
             <Link
               href={consultCta.href}

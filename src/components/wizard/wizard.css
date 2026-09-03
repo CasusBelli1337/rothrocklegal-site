@@ -42,7 +42,7 @@
 }
 .wizard-progress-bar {
   height: 100%;
-  background: var(--color-maroon-700);
+  background: var(--color-maroon-900);
   transition: width 320ms var(--ease-out-soft);
 }
 
@@ -53,7 +53,7 @@
   gap: 0.75rem;
   align-items: flex-start;
   border: 1px solid var(--color-line-strong);
-  background: #ffffff;
+  background: var(--color-white);
   padding: 0.9rem 1rem;
   cursor: pointer;
   transition:
@@ -74,7 +74,7 @@
 }
 .wizard-choice input {
   margin-top: 0.2rem;
-  accent-color: var(--color-maroon-700);
+  accent-color: var(--color-maroon-900);
   width: 1.1rem;
   height: 1.1rem;
   flex: none;
@@ -85,7 +85,7 @@
   width: 100%;
   max-width: 18rem;
   border: 1px solid var(--color-line-strong);
-  background: #ffffff;
+  background: var(--color-white);
   padding: 0 0.75rem;
   font-size: 1rem;
   color: var(--color-ink);
@@ -101,7 +101,7 @@
 .wizard-result {
   border: 1px solid var(--color-line);
   border-left-width: 4px;
-  background: #ffffff;
+  background: var(--color-white);
   padding: 1.25rem 1.5rem;
 }
 .wizard-result.status-open {
@@ -124,7 +124,7 @@
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #ffffff;
+  color: var(--color-white);
 }
 .status-open .wizard-pill {
   background: var(--wizard-open);
@@ -142,11 +142,11 @@
 .wizard-banner {
   border: 1px solid var(--color-line);
   border-top: 4px solid var(--color-brass-400);
-  background: #ffffff;
+  background: var(--color-white);
   padding: 1rem 1.25rem;
 }
 .wizard-alert {
   border: 1px solid var(--color-error);
-  background: #ffffff;
+  background: var(--color-white);
   padding: 1rem 1.25rem;
 }

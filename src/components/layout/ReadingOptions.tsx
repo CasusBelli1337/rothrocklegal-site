@@ -3,7 +3,8 @@
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/Button';
-import { headerColumnClass, navButtonClass } from './nav-link';
+import { Container } from '@/components/ui/Container';
+import { navIconButtonClass } from './nav-link';
 import { ReadingOptionGroups } from './ReadingOptionGroups';
 
 export const READING_OPTIONS_ID = 'reading-options';
@@ -32,35 +33,24 @@ interface ButtonProps {
   onToggle: () => void;
 }
 
-/** Both buttons carry this marker so the bar can hand focus back to whichever one is on screen. */
-const buttonAttrs = (open: boolean) => ({
-  type: 'button' as const,
-  'aria-expanded': open,
-  'aria-controls': READING_OPTIONS_ID,
-  'data-reading-options-button': true,
-});
-
-/** Desktop: the last item in the main nav, icon plus label, styled like the links around it. */
-export function ReadingOptionsNavButton({ open, onToggle }: ButtonProps) {
-  return (
-    <button {...buttonAttrs(open)} onClick={onToggle} className={navButtonClass(open)}>
-      {/* The row is tight between 1280 and 1439px; the icon joins the label once there is room. */}
-      <TextSizeIcon className="hidden h-5 w-5 min-[90rem]:block" />
-      Reading options
-    </button>
-  );
-}
-
-/** Phones and tablets: a 44px icon button beside the menu button. */
-export function ReadingOptionsIconButton({ open, onToggle }: ButtonProps) {
+/**
+ * The one control, last in the desktop nav and beside the menu button below xl:
+ * a 44px AA icon with no visible label (Arthur, 2026-09-03: the label crowded
+ * the row). The name is in aria-label and title; the bar under it carries the
+ * visible heading. Both instances carry the data marker so the bar can hand
+ * focus back to whichever one is on screen.
+ */
+export function ReadingOptionsButton({ open, onToggle }: ButtonProps) {
   return (
     <button
-      {...buttonAttrs(open)}
+      type="button"
       aria-label="Reading options"
+      title="Reading options"
+      aria-expanded={open}
+      aria-controls={READING_OPTIONS_ID}
+      data-reading-options-button
       onClick={onToggle}
-      className={`grid h-11 w-11 place-items-center text-ink transition-colors duration-150 ${
-        open ? 'bg-sand' : ''
-      }`}
+      className={navIconButtonClass(open)}
     >
       <TextSizeIcon className="h-6 w-6" />
     </button>
@@ -112,7 +102,7 @@ export function ReadingOptionsBar({ open, onClose }: BarProps) {
       // Capped to the room under the nav row so a tall phone layout still reaches Done.
       className="max-h-[calc(100dvh-60px)] overflow-y-auto border-t border-line bg-paper xl:max-h-[calc(100dvh-72px)]"
     >
-      <div className={`${headerColumnClass} py-5`}>
+      <Container className="py-5">
         <p
           id={`${READING_OPTIONS_ID}-heading`}
           ref={headingRef}
@@ -142,7 +132,7 @@ export function ReadingOptionsBar({ open, onClose }: BarProps) {
             More about accessibility on this site
           </Link>
         </p>
-      </div>
+      </Container>
     </div>
   );
 }

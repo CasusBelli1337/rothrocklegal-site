@@ -6,29 +6,28 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { MenuIcon } from '@/components/icons';
 import { BrandLogo } from '@/components/ui/BrandLogo';
 import { Button } from '@/components/ui/Button';
+import { Container } from '@/components/ui/Container';
 import { consultCta, nav, site } from '@/config/site';
 import { MobileMenu } from './MobileMenu';
-import { headerColumnClass, isActive, navLinkClass } from './nav-link';
-import { NavDropdown } from './NavDropdown';
 import {
-  ReadingOptionsBar,
-  ReadingOptionsIconButton,
-  ReadingOptionsNavButton,
-} from './ReadingOptions';
+  compactControlsClass,
+  consultSlotClass,
+  desktopNavClass,
+  isActive,
+  navLinkClass,
+} from './nav-link';
+import { NavDropdown } from './NavDropdown';
+import { ReadingOptionsBar, ReadingOptionsButton } from './ReadingOptions';
 
 interface ReadingProps {
   readingOpen: boolean;
   onToggleReading: () => void;
 }
 
-/**
- * The five nav items, then Reading options. The full row needs about 1,300px at
- * this type size, so it starts at xl and runs tight until 1440px (min-[90rem]):
- * closer items and no icon on Reading options until then.
- */
+/** The five nav items, then the Reading options icon; `desktopNavClass` says where the row appears. */
 function MainNav({ pathname, readingOpen, onToggleReading }: ReadingProps & { pathname: string }) {
   return (
-    <nav aria-label="Main" className="hidden items-center gap-4 xl:flex min-[90rem]:gap-6">
+    <nav aria-label="Main" className={desktopNavClass}>
       {nav.map((item) =>
         item.children ? (
           <NavDropdown key={item.href} item={item} active={isActive(pathname, item)} />
@@ -43,12 +42,12 @@ function MainNav({ pathname, readingOpen, onToggleReading }: ReadingProps & { pa
           </Link>
         ),
       )}
-      <ReadingOptionsNavButton open={readingOpen} onToggle={onToggleReading} />
+      <ReadingOptionsButton open={readingOpen} onToggle={onToggleReading} />
     </nav>
   );
 }
 
-/** Below xl: the Reading options icon and the menu button, 44px each. */
+/** The compact row's controls: the Reading options icon and the menu button, 44px each. */
 function CompactControls({
   readingOpen,
   onToggleReading,
@@ -56,8 +55,8 @@ function CompactControls({
   onOpenMenu,
 }: ReadingProps & { menuOpen: boolean; onOpenMenu: () => void }) {
   return (
-    <div className="flex items-center gap-1 xl:hidden">
-      <ReadingOptionsIconButton open={readingOpen} onToggle={onToggleReading} />
+    <div className={compactControlsClass}>
+      <ReadingOptionsButton open={readingOpen} onToggle={onToggleReading} />
       <button
         type="button"
         aria-expanded={menuOpen}
@@ -103,9 +102,7 @@ export function Header() {
         scrolled ? 'bg-paper/90 backdrop-blur' : 'bg-paper'
       }`}
     >
-      <div
-        className={`${headerColumnClass} flex h-[60px] items-center justify-between gap-6 xl:h-[72px]`}
-      >
+      <Container className="flex h-[60px] items-center justify-between gap-6 xl:h-[72px]">
         <Link
           href="/"
           aria-label={`${site.name} home`}
@@ -116,14 +113,14 @@ export function Header() {
             tone="maroon"
             alt=""
             priority
-            className="h-9 w-auto xl:h-10 min-[90rem]:h-11"
+            className="h-9 w-auto xl:h-10"
           />
         </Link>
 
         <MainNav pathname={pathname} readingOpen={readingOpen} onToggleReading={toggleReading} />
 
         {/* From lg the compact row carries the consult button (MobileConsultBar hands off there). */}
-        <div className="hidden items-center lg:ml-auto lg:flex xl:ml-0">
+        <div className={consultSlotClass}>
           <Button href={consultCta.href} size="sm">
             {consultCta.label}
           </Button>
@@ -135,7 +132,7 @@ export function Header() {
           menuOpen={menuOpen}
           onOpenMenu={() => setMenuOpen(true)}
         />
-      </div>
+      </Container>
 
       {/* In normal flow under the nav row: it pushes the page down and covers nothing. */}
       <ReadingOptionsBar open={readingOpen} onClose={closeReading} />

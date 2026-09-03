@@ -57,7 +57,7 @@ export function PracticeSidebar({ area, sections }: PracticeSidebarProps) {
         </dl>
       </div>
 
-      <div className="bg-maroon-700 p-5 text-white">
+      <div className="band-maroon p-5">
         <p className="font-serif text-h3">Worried about a deadline?</p>
         <p className="mt-2 text-small text-white/80">
           Two minutes of questions tell you which clocks are running.

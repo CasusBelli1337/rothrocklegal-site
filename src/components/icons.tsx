@@ -32,14 +32,6 @@ export function QuoteIcon(p: IconProps) {
   );
 }
 
-export function PhoneIcon(p: IconProps) {
-  return (
-    <Svg {...p}>
-      <path d="M4 5c0 8 7 15 15 15l2-4-4.5-2-2 2c-2.5-1-5.5-4-6.5-6.5l2-2L8 3 4 5z" />
-    </Svg>
-  );
-}
-
 export function MailIcon(p: IconProps) {
   return (
     <Svg {...p}>

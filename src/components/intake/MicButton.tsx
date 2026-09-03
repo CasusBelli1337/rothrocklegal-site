@@ -27,7 +27,7 @@ function MicIcon({ className = 'h-5 w-5' }: { className?: string }) {
 const IDLE_BUTTON =
   'inline-flex h-12 items-center gap-2 border border-ink px-5 text-body font-semibold text-ink transition-colors hover:bg-sand';
 const STOP_BUTTON =
-  'inline-flex h-14 w-full items-center justify-center gap-2 bg-maroon-700 px-8 text-lead font-semibold text-white transition-colors hover:bg-maroon-800 sm:w-auto';
+  'inline-flex h-14 w-full items-center justify-center gap-2 bg-maroon-900 px-8 text-lead font-semibold text-white transition-colors hover:bg-maroon-950 sm:w-auto';
 
 function StatusLine({ phase, transcript, notice }: MicStatusProps) {
   return (

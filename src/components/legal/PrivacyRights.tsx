@@ -69,7 +69,7 @@ export function PrivacyRights() {
       <p>
         Questions about privacy, or a request under this policy, go to{' '}
         <a href={`mailto:${site.email}`}>{site.email}</a>. You can also write to {site.name},{' '}
-        {site.office.city}, {site.office.regionName}, or call {site.phone}.
+        {site.office.city}, {site.office.regionName}.
       </p>
     </>
   );

@@ -188,7 +188,7 @@ export function CheckboxRow({
         type="checkbox"
         checked={checked}
         onChange={(event) => onChange(event.target.checked)}
-        className="mt-1 h-5 w-5 shrink-0 accent-maroon-700"
+        className="mt-1 h-5 w-5 shrink-0 accent-maroon-900"
       />
       <span>{children}</span>
     </label>

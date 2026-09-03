@@ -63,8 +63,8 @@ export const metadata: Metadata = {
   },
   twitter: { card: 'summary_large_image' },
   robots: { index: true, follow: true },
-  // The phone number is shown as text on purpose (Arthur does not field calls);
-  // without this, iOS Safari turns it into a blue tel: link anyway.
+  // No phone number is shown anywhere (Arthur does not field calls). Kept so iOS
+  // Safari never turns a run of digits, such as a case number, into a tel: link.
   formatDetection: { telephone: false },
 };
 

@@ -7,19 +7,27 @@ records the one feature a visitor can see: the reading options, added
 
 ## Reading options
 
-The "Reading options" control lives in the header's menu bar on every page.
-From `xl` (1280px) it is the last item of the main nav, after "About", styled
-like the links around it (the AA icon joins the label from 1440px, where the
-row has room). Below `xl` it is a 44px icon-only button, `aria-label="Reading
-options"`, immediately left of the menu button; the consult button stays in the
-row from `lg`, where `MobileConsultBar` hands off. Both buttons toggle the same
-bar, which renders inside the sticky `<header>` directly under the nav row, in
-normal flow, so it pushes the page down and never covers anything (UI rule:
-never cover the workspace). Escape and Done close it and return focus to the
-button that is on screen; moving to another page closes it. The header row and
-the bar share `headerColumnClass` (85rem), wider than the 75rem page column,
-because the full nav needs about 1,300px at this type size. The bar holds four
-choices, each a `<fieldset>` of real radios drawn as chips:
+The "Reading options" control is one 44px AA icon button on every page
+(`ReadingOptionsButton` in `src/components/layout/ReadingOptions.tsx`). It has
+no visible label since 2026-09-03 (Arthur: the label crowded the nav row); the
+name is in `aria-label` and `title`, and the bar it opens carries the visible
+heading. From `xl` (1280px) it is the last item of the main nav, after "About",
+drawn like the links around it: ink-2 at rest, ink on hover, ink plus the brass
+hairline while the bar is open. Below `xl` it sits immediately left of the menu
+button; the consult button stays in the row from `lg`, where `MobileConsultBar`
+hands off. The header row and the bar use the page `Container` (75rem) like
+everything else: at normal text the row needs about 1,100px and fits from `xl`
+with the nav at `gap-4`. With a text-size choice active (`html[data-text-size]`)
+the row needs up to about 1,370px, so the main nav starts at `2xl` (1536px)
+instead and the compact row runs that far; the four class strings that encode
+this (`desktopNavClass`, `compactControlsClass`, `consultSlotClass`,
+`mobileMenuClass`) live in `nav-link.ts`, written out in full so Tailwind's
+scanner sees them. The button toggles one bar, which renders inside the sticky
+`<header>` directly under the nav row, in normal flow, so it pushes the page
+down and never covers anything (UI rule: never cover the workspace). Escape and
+Done close it and return focus to the button that is on screen; moving to
+another page closes it. The bar holds four choices, each a `<fieldset>` of real
+radios drawn as chips:
 
 | Option    | Values                  | What it does                                                                                                  |
 | --------- | ----------------------- | ------------------------------------------------------------------------------------------------------------- |
@@ -59,8 +67,9 @@ true. There is no cookie banner because nothing is a cookie (Arthur,
 
 Body copy (`text-body`) is 17px from `lg` up and 16px on phones. UI text (nav,
 buttons, footer links) uses the `text-ui` token (0.9375rem) rather than a pixel
-size, so the text-size option scales it; `text-[Npx]` is not used outside the
-intake components.
+size, so the text-size option scales it; `text-[Npx]` is not used anywhere in
+`src` (the main nav was the last holdout, moved to `text-ui` on 2026-09-03,
+which is why the nav breakpoint follows the text-size choice).
 
 ## Tests and gates
 

@@ -20,7 +20,7 @@ export function WizardCard({
   className = '',
 }: WizardCardProps) {
   return (
-    <div className={`flex h-full flex-col bg-maroon-700 p-6 text-white lg:p-8 ${className}`}>
+    <div className={`band-maroon flex h-full flex-col p-6 lg:p-8 ${className}`}>
       <Eyebrow tone="light" rule>
         Deadlines
       </Eyebrow>

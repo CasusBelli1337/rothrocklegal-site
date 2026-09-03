@@ -67,10 +67,9 @@ export default function AccessibilityPage() {
 
       <h2>Reading options</h2>
       <p>
-        The &ldquo;Reading options&rdquo; button in the menu bar at the top of every page (on a
-        phone, the AA icon next to the menu button) opens four settings. You can also set them here.
-        They are saved on this device only, in your browser, and you can set them back to normal at
-        any time.
+        The AA button in the menu bar at the top of every page (it is named &ldquo;Reading
+        options&rdquo; for screen readers) opens four settings. You can also set them here. They are
+        saved on this device only, in your browser, and you can set them back to normal at any time.
       </p>
       <ul>
         {a11yOptions.map((option) => (
@@ -101,10 +100,9 @@ export default function AccessibilityPage() {
       <h2>Tell us about a barrier</h2>
       <p>
         If any part of this site is hard for you to use, please tell us. Email{' '}
-        <a href={`mailto:${site.email}`}>{site.email}</a> or leave a message at {site.phone}. It
-        helps to say which page you were on and what happened. {site.replyPromise} Reporting a
-        barrier does not make you a client and does not put anything on the record about your legal
-        matter.
+        <a href={`mailto:${site.email}`}>{site.email}</a>. It helps to say which page you were on
+        and what happened. {site.replyPromise} Reporting a barrier does not make you a client and
+        does not put anything on the record about your legal matter.
       </p>
 
       <h2>Where we stand</h2>

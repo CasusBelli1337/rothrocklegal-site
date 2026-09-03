@@ -19,8 +19,8 @@ repo holds the editor module and the intake module.
   traces), axe 0 violations, Lighthouse mobile a11y 100.
 - What the site is: T&E litigation firm site for beneficiaries AND trustees,
   11 practice pages, 4 attorney profiles (order Arthur, JJ, Gerry, Max;
-  titles verified), the deadline wizard, the library (31 articles: 21 new
-  drafts + 9 legacy + glossary), the consult-request intake flow, privacy
+  titles verified), the deadline wizard, the library (22 articles: 21
+  drafts + the glossary; the nine legacy posts were retired 2026-09-03), the consult-request intake flow, privacy
   policy + disclaimer (cleared by Arthur 2026-09-02), the lens
   (trustee/beneficiary framing, `docs/LENS.md`, preview switcher pill). The
   Legion v. United States block on About, and the homepage pointer to it, were
@@ -55,8 +55,8 @@ the live site are unchanged. Preview: `http://localhost:9080/_preview/`.
   footer, FAQ answer, homepage, /service-areas/); sentence prose that describes
   the division stays.
 - **The contact form is gone.** The consult request is the only way in.
-  `ContactBand` is now the consult band (heading, lead, button; email, phone
-  on /contact/ only, hours, what happens next). `/contact/` keeps the details
+  `ContactBand` is now the consult band (heading, lead, button; email, hours,
+  what happens next; the phone number left the site later that day). `/contact/` keeps the details
   and the steps. The wizard's results end in "Bring these dates to a consult
   request" with one button. Deleted: `ContactForm.tsx`, `submit-form.ts`,
   `/contact/thank-you/`, `NEXT_PUBLIC_FORM_ENDPOINT`, `site.formCc`,
@@ -105,13 +105,10 @@ unchanged. Preview: `http://localhost:9080/_preview/`.
 - **Header.** The sand "Reading options" strip is gone. The control is the last
   item of the main nav after "About" (a button), and below `xl` a 44px AA icon
   button beside the menu button. Both open the same inline bar under the nav
-  row, inside the sticky header, in flow. Because the full nav needs about
-  1,300px, the header row uses an 85rem column (`headerColumnClass`, wider than
-  the 75rem page column, so the logo and consult button sit up to 80px outside
-  the content edge on wide screens), the desktop nav starts at `xl` (1280)
-  rather than `lg`, and 1024 to 1279 gets the compact row (logo, consult
-  button, AA icon, menu). Arthur has not yet seen this trade; revisit if he
-  dislikes the wider header.
+  row, inside the sticky header, in flow. The desktop nav starts at `xl`
+  (1280); 1024 to 1279 gets the compact row (logo, consult button, AA icon,
+  menu). (Later that day the label went and the control became the AA icon
+  alone, so the 85rem header column was reverted to the normal `Container`.)
 - **Hero chips.** The Santa Clara County chip is gone. Vice Chair chip carries
   the ABA mark; new "Member, Honorable William A. Ingram American Inn of Court"
   chip with the Inn's seal; new "Host, The Litigator's Path podcast" chip

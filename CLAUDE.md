@@ -67,7 +67,10 @@ Components read config; they never hardcode firm facts, URLs, or copy lists.
   by `src/lib/practice.ts`. Count-checked at 11.
 - `src/config/team.ts` + `team/<slug>.ts` (`member.ts` is the type): the four
   attorneys. Any field containing `[CONFIRM]` makes the profile render a draft
-  chip and `noindex`. Count-checked at 4.
+  chip and `noindex`. Count-checked at 4. Badge art on a role, a membership
+  (`membershipBadges`, keyed by the exact membership string), or the podcast
+  turns it into a recognition tile (`team/recognition-tiles.ts`); items
+  without art stay in the sidebar lists.
 - `src/config/service-areas.ts` (courts, counties, cities), `redirects.ts`
   (every retired URL), `testimonials.ts`, `faq.ts`.
 - `src/lib/library/articles.ts`: loader over `content/library/*.md`. Validates
@@ -112,14 +115,14 @@ Components read config; they never hardcode firm facts, URLs, or copy lists.
 title, description (meta, aim for 155 chars), excerpt (cards),
 date, updated (optional, defaults to date), author (team slug),
 category, tags (comma list), primaryKeyword, secondaryKeywords (optional),
-image (/images/...), imageAlt, draft (true|false), oldSlug (legacy posts only)
+image (/images/...), imageAlt, draft (true|false)
 ```
 
 - `category` is one of the nine in `src/types/content.ts` `LIBRARY_CATEGORIES`:
   Deadlines, Trust Contests, Will Contests, Undue Influence & Capacity,
   Trustees & Fiduciaries, Elder Financial Abuse, Probate Process, Business
-  Disputes, Technology & the Law. The last one holds the nine pre-redesign
-  posts and the AI glossary; it is never featured or previewed.
+  Disputes, Technology & the Law. The last one holds the AI glossary alone (the nine
+  pre-redesign posts were retired on 2026-09-03); it is never featured or previewed.
 - Body: `##` and `###` only (the title is the H1). A
   `## Frequently asked questions` section of `### Question?` + one paragraph
   becomes the FAQ accordion and FAQPage JSON-LD. End with
@@ -132,8 +135,11 @@ image (/images/...), imageAlt, draft (true|false), oldSlug (legacy posts only)
 - Adding an article: write it to the redesign articles folder, run
   `node scripts/import-articles.mjs` (schema, banned words, em dashes, FAQ and
   CTA sections, description ≤ 155), then `node scripts/make-covers.mjs` to
-  generate `public/images/library/<slug>.webp` (1200×675, maroon gradient by
-  category, title in Newsreader, also the article's OG image), then build.
+  generate `public/images/library/<slug>.webp` (1200×675, deep maroon gradient by
+  category, maroon-800 to maroon-950 so it matches `band-maroon`, title in Newsreader, also the article's OG image), then build.
+- Dates span 2022 to 2026 by design (Arthur, 2026-09-03). A new article's `date`
+  must not precede the newest law, case, or fact it cites; set `updated` only
+  when an older article was revised for a later change.
 - Practice page prose: `content/practice/<slug>.md`, at least three `## `
   sections; headings become sidebar anchors.
 
@@ -166,23 +172,22 @@ image (/images/...), imageAlt, draft (true|false), oldSlug (legacy posts only)
 - Generated: `/sitemap.xml`, `/robots.txt` (AI crawlers allowed explicitly),
   `/llms.txt`, `/library/index.json`, `/404.html`.
 - Redirect stubs: every key in `src/config/redirects.ts` (old Wix paths,
-  retired app pages, `/post/<slug>/` and `/post/<oldSlug>/`) exports through
+  retired app pages, every old `/post/<slug>/`, all landing on `/library/`) exports through
   `src/app/[...legacy]/` as a meta-refresh page with a canonical to the target
   and `noindex`. Moving a page means adding its old URL there.
 
 ## Reading options and the boot scripts (docs/ACCESSIBILITY.md)
 
-- "Reading options" sits in the header's menu bar: from `xl` the last item of
-  the main nav after "About" (a `<button>`, never a link), below `xl` a 44px
-  icon-only button left of the menu button. Both open the same inline bar
-  under the nav row, inside the sticky header and in normal flow (never an
-  overlay), with four groups of radio chips: text size (normal / large /
-  larger), contrast (normal / high), motion (full / reduced), spacing (normal /
-  wider). "Back to normal" clears everything. The same controls render inline
-  on `/accessibility/`. The full nav needs about 1,300px, so the header row
-  uses `headerColumnClass` (85rem, wider than `Container`), the desktop nav
-  starts at `xl` rather than `lg`, and the consult button joins the compact
-  row from `lg`.
+- "Reading options" is one 44px AA icon button (`aria-label` "Reading options",
+  `ReadingOptionsButton`): the last item of the desktop nav from `xl`, and beside
+  the menu button below that. It opens an inline bar under the nav row, inside
+  the sticky header and in normal flow (never an overlay), with four groups of
+  radio chips: text size (normal / large / larger), contrast (normal / high),
+  motion (full / reduced), spacing (normal / wider). "Back to normal" clears
+  everything. The same controls render inline on `/accessibility/`. The header
+  row is the normal `Container`; the desktop nav starts at `xl`, and while a
+  text-size choice is active (`html[data-text-size]`) it starts at `2xl` so the
+  larger labels never wrap (Arthur, 2026-09-03: icon only, no label).
 - A choice stamps `html[data-text-size|data-contrast|data-motion|data-spacing]`
   and is stored in localStorage `rl-a11y`; the CSS for all four lives in
   `src/app/globals.css`. Text size changes the root font size (100 / 112.5 /
@@ -211,6 +216,10 @@ image (/images/...), imageAlt, draft (true|false), oldSlug (legacy posts only)
   The homepage deadline tile is square-cornered and held by brass photo-album
   mounts (`components/ui/PhotoCorners`), the frame Arthur chose on 2026-09-03.
   Text selection uses `--color-highlight` (maroon-700 at 18% alpha).
+- `maroon-700` is for text, links, and thin borders only. Any filled surface is
+  `maroon-900` (hover `maroon-950`), or `band-maroon` for a block; buttons are
+  `maroon-900` (Arthur, 2026-09-03: the lighter fill read red). Guard:
+  `grep -rn "bg-maroon-700\|bg-maroon-600\|bg-maroon-500" src` prints nothing.
 - Colors go through tokens only, never hex in a component. Guard:
   `grep -rnE "maroon-(50|100|200)\b" src` must print nothing (the plain string
   `maroon-50` also matches the live `maroon-500`, so use the word boundary).
@@ -259,8 +268,16 @@ image (/images/...), imageAlt, draft (true|false), oldSlug (legacy posts only)
   dossier verified it; otherwise the site says nothing.
 - No street address, ever. The office is "San Jose, California" by appointment
   and video; only the probate courthouse has an address on the site.
+- No phone number anywhere (Arthur does not field calls, 2026-09-03). `site` has
+  no phone field; `formatDetection.telephone: false` stays so iOS never links
+  digits.
 - Legion appears only as Arthur's credential ("co-founder and CEO of Legion,
   an AI litigation platform"). Never sell it, never address other lawyers.
+  One exception (Arthur, 2026-09-03): the About page's "An AI-enabled
+  practice" section (`components/about/AiPractice.tsx`) shows the Legion mark
+  (`public/images/partners/legion-logo.svg`) and describes the platform as
+  what the firm uses on the family's case. Still never a pitch, and never
+  "reads every page" or "reviews every document".
 - Every page ends in the footer compliance line: attorney responsible for the
   site, city, "Attorney advertising" (Rule 7.2(c); Bus. & Prof. Code
   § 6157.2(b)). Articles, practice pages, and the wizard carry the disclaimer.
@@ -283,6 +300,10 @@ image (/images/...), imageAlt, draft (true|false), oldSlug (legacy posts only)
 
 ## Gotchas
 
+- The article loader caches at module level and the markdown sits outside the
+  module graph: after editing `content/library/*.md`, the editor preview keeps
+  serving the old frontmatter until `src/lib/library/articles.ts` is touched
+  (mtime only, no content change).
 - Never run `next build` in `~/projects/rothrocklegal-site` (the editor's
   checkout). Build in a git worktree: `git worktree add
 ~/projects/rothrocklegal-site-wt/<name> -b <branch> <base>`.
@@ -292,9 +313,9 @@ image (/images/...), imageAlt, draft (true|false), oldSlug (legacy posts only)
   TypeScript, sharp). A production-only install blanks the preview.
 - AGENTS.md must stay a symlink to CLAUDE.md (the editor copies symlinks
   verbatim on deploy; a real file would drift).
-- Meta descriptions are capped at build: `pageMetadata()` and the library
-  loader throw above 160 chars, `check-seo.mjs` fails a page above 160, and
-  `import-articles.mjs` rejects an article above 155.
+- Meta descriptions are capped at build by `src/config/seo-limits.json`
+  (`descriptionMax` 155): `pageMetadata()`, the library loader, `check-seo.mjs`,
+  and `import-articles.mjs` all fail above it.
 - `[CONFIRM]` strings are dropped from JSON-LD by design (`verified()` in
   `jsonld.ts`), but they still render on the page inside a draft chip. Clear
   them in config; do not delete the filter.

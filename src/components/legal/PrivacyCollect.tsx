@@ -1,4 +1,3 @@
-import { site } from '@/config/site';
 import { legal } from './legal-constants';
 
 /** Privacy policy, part 1: every category of information the site collects and where each one goes. */
@@ -130,7 +129,6 @@ export function PrivacyCollect() {
           requests at once. It does not store your IP address with your request.
         </li>
       </ul>
-      <p>If you contact us by phone at {site.phone}, we collect what you tell us the same way.</p>
     </>
   );
 }

@@ -53,7 +53,7 @@ export function MobileConsultBar() {
       >
         <Link
           href={consultCta.href}
-          className="flex h-14 items-center justify-center bg-maroon-700 text-ui font-semibold text-white"
+          className="flex h-14 items-center justify-center bg-maroon-900 text-ui font-semibold text-white"
         >
           {consultCta.label}
         </Link>

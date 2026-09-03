@@ -37,7 +37,7 @@ export default function DisclaimerPage() {
         Professional Conduct and the State Bar Act (Business and Professions Code sections 6157 to
         6159.2). {site.responsibleAttorney} is the attorney responsible for its content. The firm is{' '}
         {site.name}, located in {site.office.city}, {site.office.regionName}. Reaching us:{' '}
-        <a href={`mailto:${site.email}`}>{site.email}</a> or {site.phone}.
+        <a href={`mailto:${site.email}`}>{site.email}</a>.
       </p>
 
       <h2>General information, not legal advice</h2>
