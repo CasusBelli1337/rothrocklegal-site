@@ -3,11 +3,11 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { consultCta, noteCta } from '@/config/site';
+import { consultCta } from '@/config/site';
 import { PUBLIC_LINK_PATHS } from '@/lib/public/paths';
 
 /** Pages that carry their own primary action (or a signature block); the bar would only cover their form. */
-const HIDDEN_ON = [noteCta.href, consultCta.href, ...PUBLIC_LINK_PATHS].map((href) =>
+const HIDDEN_ON = ['/contact/', consultCta.href, ...PUBLIC_LINK_PATHS].map((href) =>
   href.replace(/\/$/, ''),
 );
 

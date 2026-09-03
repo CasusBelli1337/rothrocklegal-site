@@ -19,7 +19,7 @@ const linkClass = 'tap-row text-ui text-white/80 transition-colors hover:text-wh
  */
 export function Footer() {
   return (
-    <footer className="bg-maroon-950 text-white">
+    <footer className="band-maroon-deep">
       <Container className="grid gap-12 py-14 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_0.9fr_1.2fr] lg:py-16">
         <div>
           <BrandLogo lockup="full" tone="white" className="h-24 w-auto" />

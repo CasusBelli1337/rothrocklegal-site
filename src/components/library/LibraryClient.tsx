@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/Button';
-import { consultCta, noteCta } from '@/config/site';
+import { consultCta, secondaryCta } from '@/config/site';
 import type { CategoryCount } from '@/lib/library/articles';
 import type { LibraryListItem } from '@/lib/library/index-item';
 import { FilterBar } from './FilterBar';
@@ -35,8 +35,8 @@ function EmptyState() {
       </p>
       <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
         <Button href={consultCta.href}>{consultCta.label}</Button>
-        <Button variant="secondary" href={noteCta.href}>
-          {noteCta.label}
+        <Button variant="secondary" href={secondaryCta.href}>
+          {secondaryCta.label}
         </Button>
       </div>
     </div>

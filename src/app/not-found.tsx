@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { practiceHub, practiceHref } from '@/config/practice-areas';
-import { noteCta } from '@/config/site';
+import { secondaryCta } from '@/config/site';
 
 export const metadata: Metadata = {
   title: 'Page not found',
@@ -42,8 +42,8 @@ export default function NotFound() {
       </ul>
       <div className="mt-10 flex flex-col gap-3 sm:flex-row">
         <Button href="/">Back to the homepage</Button>
-        <Button variant="secondary" href={noteCta.href}>
-          {noteCta.label}
+        <Button variant="secondary" href={secondaryCta.href}>
+          {secondaryCta.label}
         </Button>
       </div>
     </Container>

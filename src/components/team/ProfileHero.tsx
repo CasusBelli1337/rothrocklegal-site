@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { InitialAvatar } from '@/components/ui/InitialAvatar';
-import { asset, consultCta, noteCta } from '@/config/site';
+import { asset, consultCta, secondaryCta } from '@/config/site';
 import { hasPlaceholders, type TeamMember } from '@/config/team';
 import type { Crumb } from '@/types/content';
 
@@ -68,8 +68,8 @@ export function ProfileHero({ member }: { member: TeamMember }) {
               <Button variant="inverse" tone="dark" href={consultCta.href}>
                 {consultCta.label}
               </Button>
-              <Button variant="secondary" tone="dark" href={noteCta.href}>
-                {noteCta.label}
+              <Button variant="secondary" tone="dark" href={secondaryCta.href}>
+                {secondaryCta.label}
               </Button>
             </div>
           </div>

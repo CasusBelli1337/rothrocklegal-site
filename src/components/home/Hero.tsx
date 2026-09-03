@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { lensCopy, type LensSwitch } from '@/config/lens-copy';
-import { asset, consultCta, noteCta } from '@/config/site';
+import { asset, consultCta, secondaryCta } from '@/config/site';
 import { arthurRothrock } from '@/config/team/arthur-rothrock';
 
 const podcast = arthurRothrock.podcast;
@@ -94,8 +94,8 @@ export function Hero() {
             <Button variant="inverse" href={consultCta.href}>
               {consultCta.label}
             </Button>
-            <Button variant="secondary" tone="dark" href={noteCta.href}>
-              {noteCta.label}
+            <Button variant="secondary" tone="dark" href={secondaryCta.href}>
+              {secondaryCta.label}
             </Button>
           </div>
           <ul

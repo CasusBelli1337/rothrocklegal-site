@@ -187,6 +187,16 @@
   color: #ffffff;
 }
 
+/* The footer's variant: darkest at the top, where it meets the CTA band's dark bottom edge, so the
+   two read as one block; the glow sits low and to the right (Arthur, 2026-09-03: keep the gradient). */
+@utility band-maroon-deep {
+  background-color: var(--color-maroon-950);
+  background-image:
+    radial-gradient(40rem 22rem at 90% 100%, rgb(255 255 255 / 0.06), transparent 70%),
+    linear-gradient(180deg, var(--color-maroon-950), var(--color-maroon-900));
+  color: #ffffff;
+}
+
 /* Faint hairline grid for `sand` sections (DESIGN-BRIEF §7). */
 @utility grid-hairline {
   background-image:

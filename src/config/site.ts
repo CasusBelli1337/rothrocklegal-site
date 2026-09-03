@@ -140,10 +140,10 @@ export const consultCta: NavItem = {
   href: '/request-a-consult/',
 };
 
-/** The secondary action: the short contact form. */
-export const noteCta: NavItem = {
-  label: 'Tell us your story',
-  href: '/contact/',
+/** The secondary action beside the consult button: the deadline wizard (the contact form retired 2026-09-03). */
+export const secondaryCta: NavItem = {
+  label: 'Check my deadline',
+  href: '/how-long-do-i-have/',
 };
 
 /** Footer "Resources" column (IA.md §3). Practice links come from practice-areas.ts. */

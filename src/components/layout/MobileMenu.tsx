@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import { ChevronDownIcon, CloseIcon } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
-import { asset, consultCta, nav, noteCta, site, type NavItem } from '@/config/site';
+import { asset, consultCta, nav, secondaryCta, site, type NavItem } from '@/config/site';
 
 interface MobileMenuProps {
   open: boolean;
@@ -149,8 +149,8 @@ export function MobileMenu({ open, onClose, pathname }: MobileMenuProps) {
         </nav>
         <div className="grid gap-3 border-t border-line p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))]">
           <Button href={consultCta.href}>{consultCta.label}</Button>
-          <Button variant="secondary" href={noteCta.href}>
-            {noteCta.label}
+          <Button variant="secondary" href={secondaryCta.href}>
+            {secondaryCta.label}
           </Button>
         </div>
       </div>

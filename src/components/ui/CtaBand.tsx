@@ -1,4 +1,4 @@
-import { consultCta, noteCta, site } from '@/config/site';
+import { consultCta, secondaryCta, site } from '@/config/site';
 import { Button } from './Button';
 import { Container } from './Container';
 
@@ -25,7 +25,7 @@ export function CtaBand({
   id,
 }: CtaBandProps) {
   return (
-    <section id={id} className="border-b border-white/15 bg-maroon-950 py-14 text-white lg:py-16">
+    <section id={id} className="band-maroon border-b border-white/15 py-14 lg:py-16">
       <Container className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-[40rem]">
           <h2 className="font-serif text-h2 text-white">{title}</h2>
@@ -35,8 +35,8 @@ export function CtaBand({
           <Button variant="inverse" tone="dark" href={primary.href}>
             {primary.label}
           </Button>
-          <Button variant="secondary" tone="dark" href={noteCta.href}>
-            {noteCta.label}
+          <Button variant="secondary" tone="dark" href={secondaryCta.href}>
+            {secondaryCta.label}
           </Button>
         </div>
       </Container>
