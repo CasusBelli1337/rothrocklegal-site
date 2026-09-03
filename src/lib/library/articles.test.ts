@@ -15,7 +15,7 @@ describe('library loader', () => {
   const articles = getArticles();
 
   it('loads every article newest first with the schema fields filled', () => {
-    expect(articles.length).toBeGreaterThanOrEqual(19);
+    expect(articles.length).toBeGreaterThanOrEqual(20);
     for (let i = 1; i < articles.length; i += 1) {
       expect(articles[i - 1].date >= articles[i].date).toBe(true);
     }
@@ -29,6 +29,13 @@ describe('library loader', () => {
     }
   });
 
+  it('spreads publish dates across 2022 to 2026 and never updates before publishing', () => {
+    const years = new Set(articles.map((a) => a.date.slice(0, 4)));
+    expect([...years].sort()).toEqual(['2022', '2023', '2024', '2025', '2026']);
+    expect(articles[0].slug).toBe(FEATURED_SLUG);
+    for (const a of articles) expect(a.updated >= a.date).toBe(true);
+  });
+
   it('sorts Technology & the Law after other articles published the same day', () => {
     for (let i = 1; i < articles.length; i += 1) {
       const [prev, next] = [articles[i - 1], articles[i]];
@@ -38,10 +45,9 @@ describe('library loader', () => {
     }
   });
 
-  it('keeps the nine legacy posts with their old Wix slugs', () => {
-    const legacy = articles.filter((a) => a.oldSlug);
-    expect(legacy).toHaveLength(9);
-    expect(legacy.every((a) => a.category === TECH_CATEGORY)).toBe(true);
+  it('retired the nine legacy posts: no old Wix slugs, the glossary alone in Technology & the Law', () => {
+    const tech = articles.filter((a) => a.category === TECH_CATEGORY);
+    expect(tech.map((a) => a.slug)).toEqual(['ai-glossary']);
   });
 
   it('splits the anchor article into body, FAQ, and outro', () => {
@@ -66,14 +72,13 @@ describe('library loader', () => {
     expect(getFeatured()?.slug).toBe(FEATURED_SLUG);
   });
 
-  it('relates trust articles to trust articles and tech posts to tech posts', () => {
+  it('relates trust articles to trust articles and leaves the lone tech post unrelated', () => {
     const anchor = getArticle(FEATURED_SLUG);
     const related = getRelated(anchor, 3);
     expect(related).toHaveLength(3);
     expect(related.every((a) => a.category !== TECH_CATEGORY && a.slug !== anchor.slug)).toBe(true);
-    const tech = getArticle('what-is-ai');
-    const techRelated = getRelated(tech, 3);
-    expect(techRelated.every((a) => a.category === TECH_CATEGORY)).toBe(true);
+    // Technology & the Law only relates to itself, and the glossary is its only member.
+    expect(getRelated(getArticle('ai-glossary'), 3)).toHaveLength(0);
   });
 
   it('counts every category, zero included, in LIBRARY_CATEGORIES order', () => {
@@ -81,7 +86,7 @@ describe('library loader', () => {
     expect(counts).toHaveLength(11);
     expect(counts[0].category).toBe('Deadlines');
     expect(counts.reduce((n, c) => n + c.count, 0)).toBe(articles.length);
-    expect(counts.find((c) => c.category === TECH_CATEGORY)?.count).toBe(10);
+    expect(counts.find((c) => c.category === TECH_CATEGORY)?.count).toBe(1);
     // The practice-page categories exist before any article is filed under them.
     expect(counts.find((c) => c.category === 'For Trustees')?.slug).toBe('for-trustees');
     expect(counts.find((c) => c.category === 'Complex Estates')?.slug).toBe('complex-estates');

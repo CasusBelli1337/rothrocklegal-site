@@ -2,8 +2,8 @@
 title: Santa Clara County Probate Court: How Trust Litigation Works
 description: The Santa Clara County probate court sits at 191 N. First Street in San Jose. What it hears, how long a trust or will contest takes, and what it costs.
 excerpt: Where trust and estate disputes are heard in Santa Clara County, the six phases of a contested case, typical timelines, how the money works, and what to bring to a first meeting.
-date: 2026-09-01
-updated: 2026-09-01
+date: 2022-09-20
+updated: 2026-08-25
 author: arthur-rothrock
 category: Probate Process
 tags: Santa Clara County, probate court, San Jose, trust litigation, timeline, cost

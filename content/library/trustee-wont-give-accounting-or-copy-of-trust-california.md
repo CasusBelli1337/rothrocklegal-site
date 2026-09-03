@@ -2,8 +2,7 @@
 title: California Trustee Won't Give You an Accounting or the Trust?
 description: A trust accounting in California is owed at least yearly, and a copy of the trust on request. If the trustee stalls 60 days, the court can order both.
 excerpt: After a parent dies you are owed the trustee's notice within 60 days, a full copy of the trust on request, and an accounting at least once a year. What each must contain, how to demand it, and what the San Jose probate court does when the trustee stalls.
-date: 2026-09-01
-updated: 2026-09-01
+date: 2024-03-19
 author: arthur-rothrock
 category: Trustees & Fiduciaries
 tags: trust accounting, copy of trust, trustee duties, 16061.7 notice, San Jose

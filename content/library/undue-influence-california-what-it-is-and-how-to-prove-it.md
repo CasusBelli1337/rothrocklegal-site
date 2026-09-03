@@ -2,8 +2,7 @@
 title: Undue Influence in California: What It Is and How You Prove It
 description: Undue influence California law: excessive persuasion that overcomes free will and produces an unfair result. The four factors, the presumptions, the proof.
 excerpt: California defines undue influence as excessive persuasion that overcomes a person's free will and produces an unfair result. The four factors, the red flags, the two presumptions that shift the burden, and how a contest is actually proven in Santa Clara County.
-date: 2026-09-01
-updated: 2026-09-01
+date: 2022-11-08
 author: arthur-rothrock
 category: Undue Influence & Capacity
 tags: undue influence, trust contest, will contest, Probate Code 21380, elder financial abuse, San Jose

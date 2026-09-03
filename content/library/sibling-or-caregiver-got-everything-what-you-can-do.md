@@ -2,8 +2,7 @@
 title: What to Do If a Sibling or Caregiver Steals Your Inheritance
 description: What to do if a sibling steals your inheritance in California: a caregiver's gift is presumed undue influence (Probate Code 21380). A sibling's is not.
 excerpt: California presumes a caregiver's inheritance was undue influence and makes the caregiver disprove it. A sibling's gift is presumed nothing, but the same red flags win those cases, and this guide covers what you can ask the court for and how long you have.
-date: 2026-09-01
-updated: 2026-09-01
+date: 2024-08-13
 author: arthur-rothrock
 category: Undue Influence & Capacity
 tags: undue influence, caregiver, sibling dispute, Probate Code 21380, San Jose

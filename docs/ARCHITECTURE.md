@@ -82,7 +82,7 @@ Notes on the pipeline:
   Verification files (`*-VERIFICATION.md`) are skipped, never imported.
 - `make-covers.mjs` is idempotent: it only generates covers that are missing
   (`--force` regenerates), only for articles whose `image` is under
-  `/images/library/`. The legacy posts keep their own images.
+  `/images/library/`.
 - `draft: true` articles are built and linked, but tagged, `noindex`, and left
   out of `sitemap.xml` and `llms.txt`. `LIBRARY_HIDE_DRAFTS=1` removes them
   from a build entirely.

@@ -2,8 +2,7 @@
 title: Multi-Million Trust Disputes Among Siblings in the Bay Area
 description: A multi-million trust dispute among siblings is three fights in one. How it unfolds in Bay Area probate courts, who pays, and why most end in mediation.
 excerpt: Four siblings, a Palo Alto house, a company, and a late amendment. How a multi-million trust fight unfolds, what it costs, why the trust should not pay for anyone's side, and how mediation ends most of them.
-date: 2026-09-01
-updated: 2026-09-01
+date: 2025-10-07
 author: arthur-rothrock
 category: Complex Estates
 tags: trust dispute, siblings, co-trustees, estate mediation, Bay Area, Santa Clara County

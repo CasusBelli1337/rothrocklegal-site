@@ -2,8 +2,7 @@
 title: How to Respond to a Trustee Removal Petition in California
 description: Served with a trustee removal petition in California? The court needs a ground under Probate Code 15642, not an angry beneficiary. Here is the defense.
 excerpt: A removal petition is a lawsuit inside the trust. The court removes a trustee for a breach, unfitness, failure to act, or other good cause, not because a beneficiary is angry. Here is what the first hearing decides, what to file in the first 30 days, and how a family trustee who acted in good faith keeps the job or leaves on their own terms.
-date: 2026-09-01
-updated: 2026-09-01
+date: 2023-07-18
 author: arthur-rothrock
 category: For Trustees
 tags: trustee removal, petition to remove trustee, trustee defense, Probate Code 15642, San Jose

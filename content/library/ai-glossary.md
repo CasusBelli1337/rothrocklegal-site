@@ -2,8 +2,7 @@
 title: AI Glossary for Lawyers and Clients
 description: Plain-English definitions of the AI terms you will meet in legal work, from algorithms and hallucinations to large language models and vector databases.
 excerpt: The AI vocabulary you keep running into, defined in a sentence or two each. Use your browser's find command to jump to a term.
-date: 2026-09-01
-updated: 2026-09-01
+date: 2023-10-10
 author: arthur-rothrock
 category: Technology & the Law
 tags: AI, glossary, terminology

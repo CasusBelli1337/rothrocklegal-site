@@ -2,8 +2,7 @@
 title: Elder Financial Abuse in California: What Families Can Do
 description: Elder financial abuse California law: property can come back, the abuser can owe your attorney's fees and double damages. Four years from discovery.
 excerpt: If a caregiver, sibling, spouse, or "friend" took your parent's money or property, California gives the family a civil claim with mandatory attorney's fees and often double damages. Four years from discovery to file, one year if the abuser has died.
-date: 2026-09-01
-updated: 2026-09-01
+date: 2025-01-14
 author: arthur-rothrock
 category: Elder Financial Abuse
 tags: financial elder abuse, undue influence, double damages, power of attorney, San Jose

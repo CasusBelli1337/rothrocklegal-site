@@ -2,8 +2,7 @@
 title: Can a Trustee Use Trust Funds to Pay Attorney Fees in California?
 description: Yes, for trust work, and the court can order it repaid. When trustee attorney fees come from the trust, when they come from you, and what to document.
 excerpt: A family trustee can hire a lawyer and pay from the trust for trust work. Not for a fight over your own share, and not for defending a breach you committed. Here is the rule, the table, and the paperwork the judge will want to see.
-date: 2026-09-01
-updated: 2026-09-01
+date: 2025-06-10
 author: arthur-rothrock
 category: For Trustees
 tags: trustee, attorney fees, trust litigation, trustee reimbursement, San Jose

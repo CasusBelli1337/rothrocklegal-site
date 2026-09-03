@@ -44,8 +44,6 @@ export interface LibraryArticle {
   image: string;
   imageAlt: string;
   draft: boolean;
-  /** Old Wix slug (the 9 legacy posts): drives the /post/<oldSlug>/ redirect stub. */
-  oldSlug?: string;
   /** Rendered HTML up to the FAQ heading (the whole body when there is no FAQ). */
   bodyHtml: string;
   /** Rendered HTML after the FAQ section: the CTA + disclaimer. Empty without a FAQ. */
@@ -157,7 +155,6 @@ function loadArticle(fileName: string): LibraryArticle {
     image,
     imageAlt: requireKey(meta, 'imageAlt', slug),
     draft: parseBool(meta.draft),
-    oldSlug: meta.oldSlug,
     ...splitAtFaq(html, faqHeading),
     faqHeading,
     toc,

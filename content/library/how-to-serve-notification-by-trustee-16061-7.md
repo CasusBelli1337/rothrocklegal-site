@@ -2,8 +2,7 @@
 title: How to Serve the Notification by Trustee (Probate Code 16061.7)
 description: Probate Code 16061.7 gives a trustee 60 days after a death to mail notice to every beneficiary and heir. Done right, it starts the 120-day contest clock.
 excerpt: The notification by trustee is a one-page letter with five required items and one boldface warning. Mail it within 60 days of the death and every person served has 120 days to contest the trust. Get the warning wrong and the clock never starts.
-date: 2026-09-01
-updated: 2026-09-01
+date: 2026-01-27
 author: arthur-rothrock
 category: For Trustees
 tags: notification by trustee, probate code 16061.7, trustee duties, 120-day notice, San Jose

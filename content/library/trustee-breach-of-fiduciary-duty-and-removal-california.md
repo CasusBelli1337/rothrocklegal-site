@@ -2,8 +2,7 @@
 title: How to Remove a Trustee in California: Breach of Fiduciary Duty
 description: How to remove a trustee in California: petition the probate court under Probate Code § 17200. It can remove the trustee, order repayment, and cut fees.
 excerpt: A trustee who self-deals, plays favorites, or stonewalls can be removed by the probate court and ordered to pay the trust back with interest. The four duties, the nine removal grounds, and the three-year clock on the money.
-date: 2026-09-01
-updated: 2026-09-01
+date: 2023-11-14
 author: arthur-rothrock
 category: Trustees & Fiduciaries
 tags: trustee removal, breach of fiduciary duty, trustee self-dealing, surcharge, San Jose

@@ -2,8 +2,8 @@
 title: When the Trust Owns Real Estate, an LLC, and the Family Business
 description: When a California trust owns LLC interests, houses, and a business, the fight runs on three tracks: what is in the trust, its value, and who controls it.
 excerpt: A trust that holds a Palo Alto house, a rental, an LLC, and Dad's company cannot be split with arithmetic. Here is how the title fight (the Heggstad petition), the value fight, and the control fight actually work, and what the Santa Clara County probate court will and will not do.
-date: 2026-09-01
-updated: 2026-09-01
+date: 2025-12-09
+updated: 2026-08-25
 author: arthur-rothrock
 category: Complex Estates
 tags: complex estates, Heggstad petition, LLC in a trust, partition, family business, San Jose

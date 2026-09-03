@@ -2,8 +2,7 @@
 title: Defending Against Undue Influence or Elder Abuse Accusations
 description: Defending against undue influence or elder abuse claims as a caregiver child in California: the presumption skips relatives, and accusers must prove it.
 excerpt: Your siblings say the care you gave Mom was really pressure. Here is what they have to prove, why the statutory presumption does not reach a child, the one presumption that can, and the file that answers it.
-date: 2026-09-01
-updated: 2026-09-01
+date: 2025-08-19
 author: arthur-rothrock
 category: For Trustees
 tags: undue influence, elder abuse, caregiver child, trustee defense, San Jose

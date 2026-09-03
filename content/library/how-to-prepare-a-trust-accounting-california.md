@@ -2,8 +2,7 @@
 title: California Trust Accounting Requirements That Hold Up in Court
 description: California trust accounting requirements in plain English: the six required items, the court format, and the three-year rule a good account starts.
 excerpt: A trust accounting is not a spreadsheet of bank statements. It is six required items, in a summary-and-schedules format if it ever reaches a judge, with two warnings that start a three-year clock in the trustee's favor. Here is how a family trustee builds one that holds up.
-date: 2026-09-01
-updated: 2026-09-01
+date: 2024-10-22
 author: arthur-rothrock
 category: For Trustees
 tags: trust accounting, trustee accounting, probate code 16062, trustee, San Jose

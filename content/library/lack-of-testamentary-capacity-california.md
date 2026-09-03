@@ -2,8 +2,7 @@
 title: Can You Prove Lack of Testamentary Capacity in California?
 description: Testamentary capacity in California is a low bar and you carry the burden. Dementia alone does not win; what the signer understood that day does.
 excerpt: A dementia diagnosis does not void a will or trust by itself. The question is what your parent understood at the moment of signing, which test applies to the document, and what the medical chart, the drafting lawyer's file, and the witnesses say about that day.
-date: 2026-09-01
-updated: 2026-09-01
+date: 2023-01-24
 author: arthur-rothrock
 category: Undue Influence & Capacity
 tags: testamentary capacity, lack of capacity, dementia, trust contest, will contest, San Jose

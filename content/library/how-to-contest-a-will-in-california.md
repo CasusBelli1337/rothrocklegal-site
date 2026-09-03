@@ -2,8 +2,7 @@
 title: How to Contest a Will in California: Grounds and Deadlines
 description: How to contest a will in California: object before the will is admitted to probate, or petition to revoke within 120 days after. Grounds, steps, costs.
 excerpt: Two windows to contest a will in California: object in writing before the court admits it, or petition to revoke within 120 days after. Who has standing, the five grounds that work, how the case runs at the probate court in San Jose, and what a no-contest clause really means.
-date: 2026-09-01
-updated: 2026-09-01
+date: 2023-04-11
 author: arthur-rothrock
 category: Will Contests
 tags: will contest, contest a will, probate, undue influence, San Jose

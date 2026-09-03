@@ -2,8 +2,7 @@
 title: California Trustee Duties Checklist: How to Stay Out of Court
 description: A California trustee owes loyalty, prudence, impartiality, and information. This trustee duties checklist turns each duty into steps you can do this month.
 excerpt: Most family trustees who get sued did nothing dishonest. They skipped a step nobody told them about. Here is every duty California puts on a trustee, the statute behind it, the steps that satisfy it, and the mistake first-time trustees make most.
-date: 2026-09-01
-updated: 2026-09-01
+date: 2026-05-12
 author: arthur-rothrock
 category: For Trustees
 tags: trustee duties, successor trustee, fiduciary duty, trust administration, San Jose

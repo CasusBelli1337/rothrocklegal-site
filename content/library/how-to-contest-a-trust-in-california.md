@@ -2,8 +2,8 @@
 title: How to Contest a Trust in California: Grounds and Steps
 description: How to contest a trust in California: a petition in probate court, within 120 days of the trustee's notice, on one of five grounds. Who can file and how.
 excerpt: Yes, a trust can be contested after the person who made it dies. Five grounds, one petition in probate court, and a 120-day fuse. Who can file, what each ground takes to prove, and what a contest looks like in San Jose.
-date: 2026-09-01
-updated: 2026-09-01
+date: 2024-05-07
+updated: 2025-04-15
 author: arthur-rothrock
 category: Trust Contests
 tags: trust contest, undue influence, lack of capacity, no-contest clause, San Jose

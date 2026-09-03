@@ -2,8 +2,7 @@
 title: How Long Do You Have to Contest a Trust or Will in California?
 description: How long do you have to contest a trust in California? Usually 120 days from the trustee's notice. Wills, one year, three years, four years, explained.
 excerpt: The 120-day trust deadline, the will deadlines, the one-year rule for claims against someone who died, and the clocks for trustees and elder abuse. What starts them, what stops them, and what to do this week.
-date: 2026-09-01
-updated: 2026-09-01
+date: 2026-08-27
 author: arthur-rothrock
 category: Deadlines
 tags: trust contest, will contest, statute of limitations, 120-day notice, San Jose
