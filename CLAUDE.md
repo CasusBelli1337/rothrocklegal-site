@@ -47,6 +47,9 @@ and the consult flow; visitors never see it. Details: `docs/LENS.md`.
 
 - `node scripts/check-lens.mjs` verifies the lens export (every copy slot
   carries all three framings, boot script in `<head>`, no preview-tool trace).
+- `npm run pdfjs:assets` copies pdf.js's worker, wasm decoders, and standard
+  fonts into `public/pdfjs/` (git-ignored; `npm run build` and `npm run dev` run
+  it first). The `/sign/` page renders the agreement with pdf.js.
 
 Full check before a commit: lint, typecheck, test, build, check-links, check-seo, check-lens.
 
@@ -150,6 +153,15 @@ image (/images/...), imageAlt, draft (true|false), oldSlug (legacy posts only)
   `/library/` (search + category chips, `?category=&q=` synced to the URL) +
   `/library/<slug>/`, `/faq/`, `/service-areas/`, `/contact/`,
   `/contact/thank-you/` (noindex), `/privacy-policy/`, `/disclaimer/`.
+- `/sign/?t=<token>` and `/schedule/?t=<token>`: the two pages a person reaches
+  only from an emailed link (the portal's engagement and scheduling builders send
+  them). Both are `noindex`, out of the sitemap, disallowed in robots.txt, exempt
+  from the orphan check, and hide the mobile consult bar. They call the portal's
+  public service through the intake pass-through, `NEXT_PUBLIC_INTAKE_API` +
+  `/api/intake/public/{sign,schedule}/<token>` (`src/lib/public/api.ts`; wire
+  shapes in `contract.ts`, every word in `copy.ts`, pure state machines in
+  `sign-state.ts` and `schedule-state.ts`). Any unknown, expired, or used token
+  is the same uniform 404 and the same "not valid or has expired" card.
 - Generated: `/sitemap.xml`, `/robots.txt` (AI crawlers allowed explicitly),
   `/llms.txt`, `/library/index.json`, `/404.html`.
 - Redirect stubs: every key in `src/config/redirects.ts` (old Wix paths,
