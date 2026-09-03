@@ -111,7 +111,12 @@ export const EVALUATION_STAGES = [
   'Reading what you sent…',
   'Checking for gaps…',
 ] as const;
-export const EVALUATION_WAIT = 'This usually takes about a minute. Please keep this page open.';
+/**
+ * Measured 2026-09-03 on the deployed module: 124 s at standard speed for a
+ * three-page PDF, a photo, and a voice note (Opus fast mode was not yet enabled
+ * for the key's organization). Rounded up; revisit once fast mode serves.
+ */
+export const EVALUATION_WAIT = 'This usually takes about 3 minutes. Please keep this page open.';
 
 export const FOLLOW_UP_COPY = {
   optional: '(optional)',
@@ -247,7 +252,7 @@ export const NEXT_UP: Record<StepId, string> = {
   documents: 'Next: a rough idea of what is at stake and how you would pay.',
   scope: 'Next: check everything before you send it.',
   review:
-    'Next: we read what you sent, which takes about a minute. Then we may ask a few optional questions.',
+    'Next: we read what you sent, which takes about 3 minutes. Then we may ask a few optional questions.',
   'follow-up': 'Next: your reference number, and what happens after that.',
   done: '',
 };
