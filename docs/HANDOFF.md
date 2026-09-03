@@ -27,6 +27,72 @@ repo holds the editor module and the intake module.
   removed by Arthur on 2026-09-02 (evening): show, don't tell. Arthur's Legion
   credential sentence stays.
 
+## Wave B (2026-09-03): the two emailed-link pages, and the Wave A review fixes
+
+Branch `program/wave-b-site` (commits d380a88, 27a2b7c, cb09eb7), fast-forwarded
+into `redesign` (this checkout) on 2026-09-03 at about 2:00 AM PT. Nothing is
+pushed and `main` is untouched; the live site is unchanged.
+
+### What changed on the site
+
+- **Two pages a person reaches only from an email.** `/sign/?t=<token>` shows
+  the engagement agreement as a PDF (pdf.js, painted page by page with
+  "Preparing page 2 of 3"), opens the signature block only once the last page
+  has been on screen (or the person presses "I have read it"), takes a typed or
+  a drawn signature with the electronic-signature consent, and says "Thank you.
+  We received your signature at 2:24 AM." `/schedule/?t=<token>` shows the open
+  consultation times in Pacific time (the device's zone under each one when it
+  differs), takes name, email, phone, and a note, books the time, and shows the
+  Google Meet link with "what to have ready". Both pages are `noindex`, out of
+  the sitemap, disallowed in robots.txt, and hidden from the mobile call bar.
+- **Where the pages talk to.** `NEXT_PUBLIC_INTAKE_API + /api/intake/public/*`,
+  which the Armory intake module passes through to the portal's public service
+  (`PUBLIC_UPSTREAM=http://portal-public:4300`). The routes are
+  `GET /sign/:token`, `GET /sign/:token/pdf`, `POST /sign/:token`,
+  `GET /schedule/:token`, `POST /schedule/:token/book` (`src/lib/public/api.ts`).
+  Verified live on 2026-09-03: two clients signed (typed at 390px, drawn at
+  1280px) and a consultation was booked and cancelled through the preview at
+  `http://localhost:9080/_preview/`, against the real portal.
+- **`npm run pdfjs:assets`** copies pdf.js's worker, wasm decoders, and fonts
+  into `public/pdfjs/` (git-ignored); `build` and `dev` run it first. The
+  editor checkout had it run by hand once after the fast-forward (the editor
+  container starts `next dev` directly).
+
+### The Wave A review's follow-ups, applied (decisions made for Arthur)
+
+1. **Privacy.** The contact step's card now says the same thing whether or not a
+   request exists under the typed address: "If we already have a request under
+   this email address, we just sent that inbox a link to continue it. If not,
+   just keep going." Its button reads "Keep going". Nothing on screen tells a
+   stranger whether a relative contacted the firm; only the inbox learns the
+   answer. (The intake module's lookup reply still carries `found: true|false`
+   in the network response; if that should be closed too, the change is in
+   `legion-intake`'s lookup route, not the site.)
+2. The microphone cards say a link is emailed ("type the same email address
+   there and we will email you a link that picks up where you left off"), and
+   the blocked-microphone card opens with "Here is how to turn the microphone
+   back on in Safari".
+3. The review step's minutes include the three-minute evaluation wait
+   (`STEP_MINUTES.review` is 4), so "about 5 minutes to go" no longer sits above
+   "takes about 3 minutes".
+4. The homepage line lifted from the complex-estates page says "the forensic
+   accountants and appraisers retained early" (no "experts").
+5. The fee line under "After you send" reads "We tell you what it would take
+   and what it would cost before any work starts." (no pitch).
+6. The phone route's address can break after "com/" (`<wbr>`).
+7. The text-field focus ring is maroon-700 (12.7:1 on white, was maroon-500 at
+   6.8:1) in `globals.css`, `wizard.css`, the intake and contact form fields,
+   and the library search box. Button and card focus outlines were left as
+   they were.
+
+### Gates (worktree, 2026-09-03)
+
+lint, typecheck, 37 test files / 327 tests, static export (105 pages),
+check-links (97 pages, 7,032 references, 0 broken, 0 orphans), check-seo,
+check-lens (258 files, no preview traces). The preview served `/sign/` and
+`/schedule/` after `npm install` and `npm run pdfjs:assets` in the editor
+checkout.
+
 ## Phase 2 and Phase 7 (2026-09-02/03): consult flow v2, reading options, show-not-tell
 
 Three builders worked overnight in parallel and an integrator merged them on
