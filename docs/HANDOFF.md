@@ -27,6 +27,83 @@ repo holds the editor module and the intake module.
   removed by Arthur on 2026-09-02 (evening): show, don't tell. Arthur's Legion
   credential sentence stays.
 
+## 2026-09-03 (late afternoon): phone gone, icon header, library reset, About page, the caregiver article
+
+Four commits on `redesign`: a569c0f (caregiver-marriage article + practice
+section), 410a848 (library: deep covers, nine placeholders retired, dates
+2022 to 2026), 1d58975 (About page "AI is in this firm's DNA", recognition
+tiles, attorneys page), d1b775f (no phone, AA icon alone, deep maroon on every
+filled surface; CLAUDE.md updated in the same commit), plus this docs commit.
+Nothing pushed; `main` and the live site are unchanged.
+
+### Arthur's notes, applied
+
+- **No phone number anywhere.** `site.phone`/`phoneE164` deleted with every
+  use (footer, contact band, legal pages, accessibility page, JSON-LD
+  `telephone`, llms.txt). `PhoneIcon` deleted. `formatDetection.telephone:
+  false` stays. The Google Business Profile still lists a number; that is
+  outside the site.
+- **Header.** The reading-options control is the 44px AA icon only
+  (`ReadingOptionsButton`, `aria-label` "Reading options"); the header row is
+  back on the normal `Container`, desktop nav from `xl` with `gap-4`, and while
+  a text-size choice is active the desktop nav starts at `2xl` so the larger
+  labels never wrap. Nav labels moved from `text-[15px]` to `text-ui`.
+- **Deep maroon on every fill.** `maroon-700` is now text, links, and thin
+  borders only: the practice sidebar "Worried about a deadline?" callout and
+  the library `WizardCard` use `band-maroon`; the mobile consult bar, filter
+  chips, reading-option chips, intake pressed states, mic button, and wizard
+  progress bar use `maroon-900`. Guard grep in CLAUDE.md Palette.
+- **Library.** Covers regenerated between maroon-800 and maroon-950 (they were
+  the "almost pink"; the hero band was already deep). The nine 2022 to 2024
+  Technology & the Law placeholders and their stock images are deleted; the AI
+  glossary stays as that category's only article; all old `/post/` URLs land
+  on `/library/`. Article dates now run from 2022-02-15 to 2026-08-27, each no
+  earlier than the newest law, case, or fact it cites (`articles.test.ts`
+  asserts the spread; table in the library agent's report is summarised in
+  the commit). Dev-server gotcha added to CLAUDE.md: touch `articles.ts` after
+  editing markdown or the preview keeps the old frontmatter.
+- **About page.** "How we work" became `AiPractice.tsx`: eyebrow "An
+  AI-enabled practice", h2 "AI is in this firm's DNA.", the Legion mark
+  (`public/images/partners/legion-logo.svg`, copied from the Branding folder's
+  `Logo.svg`, not recolored), two paragraphs, four points. Never "reads every
+  page". CLAUDE.md's Legion copy rule carries this one exception.
+- **Recognition.** One tile grid on the About page and the profile
+  (`team/recognition-tiles.ts`): Super Lawyers, both Best Lawyers badges, Vice
+  Chair ABA (aba.webp), Member Inn of Court (seal), Host of The Litigator's
+  Path (cover, linked). Badge fields are additive on `member.ts`
+  (`TeamRole.badge`, `TeamPodcast.badge`, `membershipBadges`). The attorneys
+  page lost the duplicated who-does-what paragraph. Profile eyebrow is now
+  "Recognition" / "Awards, roles, and the podcast."
+- **Caregiver-marriage article.** `content/library/caregiver-married-my-parent-
+  what-california-law-allows.md` (draft, 2026-08-11, Undue Influence &
+  Capacity) on AB 328 (Stats. 2019, ch. 10, effective 2020-01-01): Probate
+  Code §§ 21380(a)(4), 21382(a), 21611(d), plus the background (Fam. Code
+  §§ 2210(c), 2211(c), Prob. Code §§ 1900, 1901, 6401, 21610, 21362, 21366,
+  21384, 259, 859; Rice v. Clark; In re Marriage of Greenway). Every section
+  was read on leginfo by the writing agent and § 21611(d) re-checked by the
+  caller. **No 2024 to 2026 caregiver-marriage enactment exists** (AB 1134,
+  Stats. 2025, ch. 633, is a coerced-marriage nullity bill and does not touch
+  caregivers); Arthur should confirm the 2020 law is the change he meant. A
+  plain-English section and FAQ were added to the undue-influence practice
+  page; "needs an expert" there became "calls for medical testimony".
+
+### Left for Arthur
+
+- `legal.effectiveDate` (privacy policy, disclaimer) was not moved although
+  the form and phone sentences were removed from both pages.
+- `/accessibility/` still offers "a phone call instead of video" as an
+  accommodation (no number shown).
+- Draft intake sessions named "QA Screenshot" / "Timing Run (QA)" exist from
+  today's screenshots and timing; never submitted, no email sent; they purge
+  after 30 days or with `purge-qa-data.mjs`.
+- Arthur is about to test the intake flow himself.
+
+### Gates (integration worktree at d1b775f)
+
+lint, typecheck, 38 test files / 330 tests, static export, check-links (88
+pages, 6,351 references, 0 broken, 0 orphans), check-seo, check-lens (13 slot
+groups, boot scripts 199 + 239 bytes, no preview traces).
+
 ## 2026-09-03 (afternoon): Arthur's second-round notes, the form retires, the posture pass
 
 Three commits on `redesign`: db6c13d (secondary CTA becomes the wizard; footer
