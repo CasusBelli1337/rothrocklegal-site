@@ -101,8 +101,8 @@ Components read config; they never hardcode firm facts, URLs, or copy lists.
   ProfilePage, Article/BlogPosting, FAQPage, BreadcrumbList, WebPage) and
   `metadata.ts` (`pageMetadata()`: title, description, canonical, OG, Twitter).
 - `src/components/<domain>/`: `layout`, `home`, `practice`, `team`, `library`,
-  `wizard`, `forms`, `intake`, `about`, `legal`, `lens`, `seo`, `ui`. Client components only where there
-  is interaction (`LibraryClient`, `DeadlineWizard`, `ContactForm`, menus).
+  `wizard`, `intake`, `about`, `legal`, `lens`, `seo`, `ui`. Client components only where there
+  is interaction (`LibraryClient`, `DeadlineWizard`, the intake flow, menus).
 
 ## Content
 
@@ -150,10 +150,10 @@ image (/images/...), imageAlt, draft (true|false), oldSlug (legacy posts only)
   (`components/practice/PracticePage.tsx`), each route file is five lines.
 - `/attorneys/` + `/attorneys/<slug>/` for `arthur-rothrock`, `gerry-lin`,
   `jonathan-joannides`, `max-discher`.
-- `/about/`, `/how-long-do-i-have/` (the wizard, ends in the contact form),
+- `/about/`, `/how-long-do-i-have/` (the wizard, ends in a consult request panel),
   `/library/` (search + category chips, `?category=&q=` synced to the URL) +
   `/library/<slug>/`, `/faq/`, `/service-areas/`, `/contact/`,
-  `/contact/thank-you/` (noindex), `/privacy-policy/`, `/disclaimer/`.
+  `/privacy-policy/`, `/disclaimer/`.
 - `/sign/?t=<token>` and `/schedule/?t=<token>`: the two pages a person reaches
   only from an emailed link (the portal's engagement and scheduling builders send
   them). Both are `noindex`, out of the sitemap, disallowed in robots.txt, exempt
@@ -195,8 +195,8 @@ image (/images/...), imageAlt, draft (true|false), oldSlug (legacy posts only)
   asserts both are present, under the cap, and that the static `<html>` carries
   none of the attributes. Both have unit tests; edit the source, not the
   string.
-- The reduced-motion option mirrors `prefers-reduced-motion`; `Reveal.tsx`
-  honors it. The high-contrast palette lives beside the normal tokens in
+- The reduced-motion option mirrors `prefers-reduced-motion` (every transition
+  and animation goes to zero). The high-contrast palette lives beside the normal tokens in
   `globals.css`.
 
 ## Palette
@@ -273,8 +273,8 @@ image (/images/...), imageAlt, draft (true|false), oldSlug (legacy posts only)
 - Form controls are 16px or larger (iOS zooms on focus below that). Body copy
   is 16px+; `text-small` is 15px on phones by design.
 - Nothing depends on hover: a link among plain text is underlined at rest.
-- Content is never hidden until JavaScript runs (`Reveal` arms only what is
-  still below the viewport after hydration).
+- Content is never hidden until JavaScript runs. The scroll-in reveal animation
+  was removed on 2026-09-03 (Arthur); sections render static.
 - Images: `<picture>` + `scripts/make-image-variants.mjs` for anything large
   or art-directed; `next/image` emits no `srcset` on this export.
 - The italic serif is `font-serif-italic` + `italic` (separate, non-preloaded

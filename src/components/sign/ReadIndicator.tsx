@@ -37,7 +37,7 @@ export function ReadIndicator({ seen, total, readToEnd, onConfirm }: ReadIndicat
         <button
           type="button"
           onClick={onConfirm}
-          className="inline-flex h-12 shrink-0 items-center justify-center rounded-md border border-ink bg-white px-5 text-body font-semibold text-ink transition-colors hover:bg-sand"
+          className="inline-flex h-12 shrink-0 items-center justify-center border border-ink bg-white px-5 text-body font-semibold text-ink transition-colors hover:bg-sand"
         >
           {copy.confirm}
         </button>

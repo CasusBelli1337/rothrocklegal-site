@@ -26,7 +26,7 @@ function LookupCard({ onDismiss }: { onDismiss(): void }) {
       <button
         type="button"
         onClick={onDismiss}
-        className="mt-4 inline-flex h-11 items-center rounded-md border border-ink bg-white px-5 text-body font-semibold text-ink transition-colors hover:bg-sand"
+        className="mt-4 inline-flex h-11 items-center border border-ink bg-white px-5 text-body font-semibold text-ink transition-colors hover:bg-sand"
       >
         {LOOKUP_CARD.startFresh}
       </button>

@@ -25,7 +25,7 @@ function SituationCard({
       type="button"
       aria-pressed={pressed}
       onClick={onToggle}
-      className={`flex min-h-16 items-center gap-3 rounded-md border bg-white px-4 py-3 text-left text-body transition-colors ${
+      className={`flex min-h-16 items-center gap-3 border bg-white px-4 py-3 text-left text-body transition-colors ${
         pressed
           ? 'border-maroon-700 bg-sand text-ink shadow-[inset_0_0_0_1px_var(--color-maroon-700)]'
           : 'border-line-strong text-ink hover:border-maroon-500'
@@ -33,7 +33,7 @@ function SituationCard({
     >
       <span
         aria-hidden="true"
-        className={`grid h-6 w-6 shrink-0 place-items-center rounded-full border ${
+        className={`grid h-6 w-6 shrink-0 place-items-center border ${
           pressed ? 'border-maroon-700 bg-maroon-700 text-white' : 'border-line-strong'
         }`}
       >

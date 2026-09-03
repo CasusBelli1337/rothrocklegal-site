@@ -1,5 +1,4 @@
 import { Container } from '@/components/ui/Container';
-import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 
 /** Who does what (Arthur, 2026-09-01). No promises, just the division of labor. */
@@ -27,7 +26,7 @@ export function TeamHowWeWork() {
   return (
     <section className="grid-hairline bg-sand py-16 lg:py-20">
       <Container className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-        <Reveal className="lg:col-span-6">
+        <div className="lg:col-span-6">
           <SectionHeading
             eyebrow="How we work as a team"
             title="Senior judgment where it matters. Associate rates for the heavy lifting."
@@ -44,15 +43,15 @@ export function TeamHowWeWork() {
               hands you off.
             </p>
           </div>
-        </Reveal>
-        <Reveal stagger className="grid gap-4 self-center lg:col-span-6">
+        </div>
+        <div className="grid gap-4 self-center lg:col-span-6">
           {roles.map((role) => (
-            <div key={role.who} className="rounded-xl border border-line bg-white p-6">
+            <div key={role.who} className="border border-line bg-white p-6">
               <h3 className="font-sans text-h4 text-ink">{role.who}</h3>
               <p className="mt-2 text-body text-ink-2">{role.what}</p>
             </div>
           ))}
-        </Reveal>
+        </div>
       </Container>
     </section>
   );

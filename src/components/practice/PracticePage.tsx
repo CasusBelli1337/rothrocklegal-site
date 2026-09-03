@@ -3,7 +3,6 @@ import { Container } from '@/components/ui/Container';
 import { CtaBand } from '@/components/ui/CtaBand';
 import { DeadlineCallout } from '@/components/ui/DeadlineCallout';
 import { FaqAccordion } from '@/components/ui/FaqAccordion';
-import { Reveal } from '@/components/ui/Reveal';
 import { getPracticeArea, practiceHref } from '@/config/practice-areas';
 import { getPracticeBody } from '@/lib/practice';
 import { pageMetadata } from '@/lib/seo/metadata';
@@ -56,14 +55,14 @@ export function PracticePage({ slug }: { slug: string }) {
               />
             </section>
           ))}
-          <Reveal className="mt-14">
+          <div className="mt-14">
             <DeadlineCallout
               eyebrow="Am I too late?"
               title="How long do I have?"
               body={bindSectionSigns(area.deadline.body)}
               finePrint="General information, not legal advice. Confirm your dates with a lawyer."
             />
-          </Reveal>
+          </div>
           <section className="mt-16" aria-labelledby="practice-faq">
             <h2 id="practice-faq" className="font-serif text-h2 text-ink">
               Questions people ask about {area.title.toLowerCase()}

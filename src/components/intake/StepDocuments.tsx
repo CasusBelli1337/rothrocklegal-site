@@ -53,10 +53,7 @@ export function StepDocuments({ intake, uploads }: StepProps) {
         ))}
       </div>
       <p className="mt-6 text-small text-ink-3">{DOCUMENTS_COPY.nothingYet}</p>
-      <section
-        aria-labelledby="do-not-send"
-        className="mt-6 rounded-xl border border-line bg-paper p-5"
-      >
+      <section aria-labelledby="do-not-send" className="mt-6 border border-line bg-paper p-5">
         <h3 id="do-not-send" className="text-body font-semibold text-ink">
           {DOCUMENTS_COPY.doNotSendTitle}
         </h3>

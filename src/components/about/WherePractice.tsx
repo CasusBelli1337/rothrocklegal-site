@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
-import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { cities, citiesIn, courts, listNames, regions } from '@/config/service-areas';
 
@@ -13,14 +12,12 @@ export function WherePractice() {
   return (
     <section className="py-16 lg:py-20">
       <Container>
-        <Reveal>
-          <SectionHeading
-            eyebrow="Service area"
-            title="San Jose first. The whole Bay Area when the case calls for it."
-            lead="We meet by video anywhere in California and appear in person in the courtrooms below."
-          />
-        </Reveal>
-        <Reveal stagger className="mt-10 grid gap-8 md:grid-cols-2 lg:gap-16">
+        <SectionHeading
+          eyebrow="Service area"
+          title="San Jose first. The whole Bay Area when the case calls for it."
+          lead="We meet by video anywhere in California and appear in person in the courtrooms below."
+        />
+        <div className="mt-10 grid gap-8 md:grid-cols-2 lg:gap-16">
           <div>
             <h3 className="font-sans text-h4 text-ink">Courts we appear in</h3>
             <ul className="mt-4 space-y-3 text-body text-ink-2">
@@ -49,7 +46,7 @@ export function WherePractice() {
               Where we practice <span aria-hidden="true">&rarr;</span>
             </Link>
           </div>
-        </Reveal>
+        </div>
       </Container>
     </section>
   );

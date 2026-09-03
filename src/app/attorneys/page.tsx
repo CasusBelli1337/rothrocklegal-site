@@ -4,7 +4,6 @@ import { TeamHowWeWork } from '@/components/team/TeamHowWeWork';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { Container } from '@/components/ui/Container';
 import { CtaBand } from '@/components/ui/CtaBand';
-import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { pageMetadata } from '@/lib/seo/metadata';
 import type { Crumb } from '@/types/content';
@@ -39,7 +38,7 @@ export default function AttorneysPage() {
       </section>
       <section className="py-16 lg:py-20">
         <Container>
-          <Reveal className="max-w-[64ch] text-body-lg text-ink-2">
+          <div className="max-w-[64ch] text-body-lg text-ink-2">
             <p>
               Four lawyers, one plan per case. Arthur sets the strategy and the big picture.
               Jonathan handles the depositions and the hearings: a former Marine Corps infantry
@@ -49,7 +48,7 @@ export default function AttorneysPage() {
               senior judgment where it matters, a courtroom presence judges know, and lower rates
               for the heavy lifting.
             </p>
-          </Reveal>
+          </div>
           <div className="mt-10">
             <TeamGrid headingLevel="h2" />
           </div>

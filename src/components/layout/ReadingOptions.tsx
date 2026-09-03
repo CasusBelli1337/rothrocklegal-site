@@ -58,7 +58,7 @@ export function ReadingOptionsIconButton({ open, onToggle }: ButtonProps) {
       {...buttonAttrs(open)}
       aria-label="Reading options"
       onClick={onToggle}
-      className={`grid h-11 w-11 place-items-center rounded-md text-ink transition-colors duration-150 ${
+      className={`grid h-11 w-11 place-items-center text-ink transition-colors duration-150 ${
         open ? 'bg-sand' : ''
       }`}
     >

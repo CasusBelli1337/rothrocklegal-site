@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { Card } from '@/components/ui/Card';
 import { Container } from '@/components/ui/Container';
-import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { getPracticeArea, practiceHref, practicePages } from '@/config/practice-areas';
 import { oddLastSpan } from '@/lib/grid';
@@ -17,7 +16,7 @@ export function WhatWeDo() {
   return (
     <section className="py-16 lg:py-20">
       <Container>
-        <Reveal>
+        <div>
           <SectionHeading
             eyebrow="What we do"
             title="Trust and estate litigation. That's the practice."
@@ -45,8 +44,8 @@ export function WhatWeDo() {
             , with several properties, an LLC or a family business held in trust, and millions at
             issue, that is the kind of case this firm was built to run.
           </p>
-        </Reveal>
-        <Reveal stagger className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        </div>
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {primary.map((area, i) => (
             <Card
               key={area.slug}
@@ -66,7 +65,7 @@ export function WhatWeDo() {
               </p>
             </Card>
           ))}
-        </Reveal>
+        </div>
         {secondary.map((area) => (
           <p key={area.slug} className="mt-8 max-w-[64ch] text-body text-ink-2">
             We also take{' '}

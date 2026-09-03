@@ -13,9 +13,9 @@ export function isActive(pathname: string, item: NavItem): boolean {
  */
 export const headerColumnClass = 'mx-auto w-full max-w-[85rem] px-5 md:px-8';
 
-/** Shared by every desktop nav item: 15px medium type with a brass hairline drawn under it. */
+/** Shared by every desktop nav item: 15px semibold type with a brass hairline drawn under it. */
 const navItemBase =
-  'relative inline-flex h-10 items-center gap-1 text-[15px] font-medium transition-colors duration-150 ' +
+  'relative inline-flex h-10 items-center gap-1 text-[15px] font-semibold transition-colors duration-150 ' +
   'after:absolute after:inset-x-0 after:bottom-1 after:h-px after:origin-left after:bg-brass-400 ' +
   'after:transition-transform after:duration-150 hover:text-ink';
 

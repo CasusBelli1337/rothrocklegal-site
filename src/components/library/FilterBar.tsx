@@ -48,7 +48,7 @@ function Chip({
       type="button"
       aria-pressed={active}
       onClick={onClick}
-      className={`h-11 shrink-0 rounded-full border px-4 text-small font-medium whitespace-nowrap transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-maroon-500 ${tone}`}
+      className={`h-11 shrink-0 border px-4 text-small font-medium whitespace-nowrap transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-maroon-500 ${tone}`}
     >
       {children}
     </button>
@@ -126,14 +126,14 @@ function SearchInput({
         placeholder="Search: 120 days, undue influence, accounting&hellip;"
         autoComplete="off"
         aria-controls={resultsId}
-        className="h-12 w-full rounded-full border border-line-strong bg-white pr-12 pl-12 text-body text-ink placeholder:text-ellipsis placeholder:text-ink-4 focus:border-maroon-700 focus:ring-2 focus:ring-maroon-700/30 focus:outline-none [&::-webkit-search-cancel-button]:hidden"
+        className="h-12 w-full border border-line-strong bg-white pr-12 pl-12 text-body text-ink placeholder:text-ellipsis placeholder:text-ink-4 focus:border-maroon-700 focus:ring-2 focus:ring-maroon-700/30 focus:outline-none [&::-webkit-search-cancel-button]:hidden"
       />
       {query !== '' && (
         <button
           type="button"
           onClick={() => onQuery('')}
           aria-label="Clear search"
-          className="absolute top-1/2 right-1 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full text-ink-3 transition-colors hover:bg-sand hover:text-ink"
+          className="absolute top-1/2 right-1 grid h-11 w-11 -translate-y-1/2 place-items-center text-ink-3 transition-colors hover:bg-sand hover:text-ink"
         >
           <CloseIcon className="h-4 w-4" />
         </button>
@@ -152,7 +152,7 @@ export function FilterBar({
   onQuery,
 }: FilterBarProps) {
   return (
-    <div className="rounded-xl border border-line bg-white p-4 sm:p-5">
+    <div className="border border-line bg-white p-4 sm:p-5">
       <CategoryChips categories={categories} category={category} onCategory={onCategory} />
       <SearchInput query={query} resultsId={resultsId} onQuery={onQuery} />
     </div>

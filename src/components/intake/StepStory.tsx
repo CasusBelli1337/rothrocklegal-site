@@ -151,7 +151,7 @@ export function StepStory({ intake, uploads }: StepProps) {
               key={chip}
               type="button"
               onClick={() => addChip(chip)}
-              className="min-h-11 rounded-full border border-line-strong bg-white px-4 text-small text-ink transition-colors hover:border-maroon-500 hover:bg-sand"
+              className="min-h-11 border border-line-strong bg-white px-4 text-small text-ink transition-colors hover:border-maroon-500 hover:bg-sand"
             >
               {chip}
             </button>

@@ -35,11 +35,13 @@ function DropZone({
         setDragging(false);
         uploads.add(slot, Array.from(event.dataTransfer.files));
       }}
-      className={`mt-4 flex flex-col items-center justify-center gap-2 rounded-md border border-dashed px-4 py-6 text-center transition-colors ${
+      className={`mt-4 flex flex-col items-center justify-center gap-2 border border-dashed px-4 py-6 text-center transition-colors ${
         dragging ? 'border-maroon-500 bg-sand' : 'border-line-strong bg-paper'
       }`}
     >
-      <p className="hidden text-small text-ink-2 [@media(pointer:fine)]:block">Drag files here, or</p>
+      <p className="hidden text-small text-ink-2 [@media(pointer:fine)]:block">
+        Drag files here, or
+      </p>
       <label
         htmlFor={inputId}
         className={`${buttonClass('secondary', 'sm')} cursor-pointer has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-maroon-500`}
@@ -137,7 +139,7 @@ export function UploadSlot({
   const hidden = missing?.checked ?? false;
   const frame = headingHidden
     ? ''
-    : `rounded-xl border border-line p-4 sm:p-5 ${hidden ? 'bg-sand/60' : 'bg-white'}`;
+    : `border border-line p-4 sm:p-5 ${hidden ? 'bg-sand/60' : 'bg-white'}`;
   return (
     <section aria-label={label} className={frame}>
       <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-x-6">

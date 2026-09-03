@@ -1,21 +1,14 @@
 import Image from 'next/image';
 import { Container } from '@/components/ui/Container';
 import { InitialAvatar } from '@/components/ui/InitialAvatar';
-import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { asset } from '@/config/site';
 import { testimonialDisclaimer, testimonials, type Testimonial } from '@/config/testimonials';
 
 function TestimonialCard({ t }: { t: Testimonial }) {
   return (
-    <figure className="flex h-full flex-col rounded-xl border border-line bg-white p-6">
-      <span
-        aria-hidden="true"
-        className="font-serif-italic text-5xl italic leading-none text-brass-400"
-      >
-        &ldquo;
-      </span>
-      <blockquote className="mt-2 flex-1 font-serif-italic text-lead italic text-ink">
+    <figure className="flex h-full flex-col border border-line border-l-4 border-l-brass-400 bg-white p-6">
+      <blockquote className="flex-1 font-serif-italic text-lead italic text-ink">
         {t.quote}
       </blockquote>
       <figcaption className="mt-6 flex items-center gap-3">
@@ -25,10 +18,10 @@ function TestimonialCard({ t }: { t: Testimonial }) {
             alt=""
             width={48}
             height={48}
-            className="h-12 w-12 rounded-full object-cover"
+            className="h-12 w-12 object-cover"
           />
         ) : (
-          <InitialAvatar name={t.name} size="sm" className="h-12 w-12 rounded-full" />
+          <InitialAvatar name={t.name} size="sm" className="h-12 w-12" />
         )}
         <span>
           <span className="block text-small font-semibold text-ink">{t.name}</span>
@@ -48,17 +41,15 @@ export function WhatClientsSay() {
   return (
     <section className="py-16 lg:py-24">
       <Container>
-        <Reveal>
-          <SectionHeading
-            eyebrow="What clients say"
-            title="After the dust settles, this is what they tell us."
-          />
-        </Reveal>
-        <Reveal stagger className="mt-10 grid gap-5 md:grid-cols-3">
+        <SectionHeading
+          eyebrow="What clients say"
+          title="After the dust settles, this is what they tell us."
+        />
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
           {testimonials.map((t) => (
             <TestimonialCard key={t.name} t={t} />
           ))}
-        </Reveal>
+        </div>
         <p className="mt-6 max-w-[70ch] text-small text-ink-3">{testimonialDisclaimer}</p>
       </Container>
     </section>

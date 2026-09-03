@@ -19,7 +19,7 @@ export interface ButtonProps {
 }
 
 const base =
-  'relative inline-flex items-center justify-center gap-2 rounded-md font-sans font-semibold whitespace-nowrap ' +
+  'relative inline-flex items-center justify-center gap-2 font-sans font-semibold whitespace-nowrap ' +
   'transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-maroon-500 ' +
   'disabled:cursor-not-allowed disabled:opacity-50';
 
@@ -27,20 +27,20 @@ const sizes = { md: 'h-12 px-6 text-ui', sm: 'h-11 px-5 text-ui' };
 
 const variants: Record<ButtonVariant, Record<'light' | 'dark', string>> = {
   primary: {
-    light: 'bg-maroon-700 text-white hover:bg-maroon-800 active:bg-maroon-900',
-    dark: 'bg-maroon-700 text-white hover:bg-maroon-800 active:bg-maroon-900',
+    light: 'bg-maroon-900 text-white hover:bg-maroon-950 active:bg-maroon-950',
+    dark: 'bg-maroon-900 text-white hover:bg-maroon-950 active:bg-maroon-950',
   },
   secondary: {
-    light: 'border border-ink text-ink hover:bg-sand',
-    dark: 'border border-white text-white hover:bg-white/10',
+    light: 'border-2 border-ink text-ink hover:bg-sand',
+    dark: 'border-2 border-white text-white hover:bg-white/10',
   },
   ghost: {
-    light: 'text-maroon-700 hover:bg-sand',
+    light: 'text-maroon-900 hover:bg-sand',
     dark: 'text-white hover:bg-white/10',
   },
   inverse: {
-    light: 'bg-white text-maroon-700 hover:bg-sand',
-    dark: 'bg-white text-maroon-700 hover:bg-sand',
+    light: 'bg-white text-maroon-900 hover:bg-sand',
+    dark: 'bg-white text-maroon-900 hover:bg-sand',
   },
 };
 

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { SHARED_COPY } from '@/lib/public/copy';
 
-export const CARD_CLASS = 'rounded-xl border border-line bg-white p-5 sm:p-8';
+export const CARD_CLASS = 'border border-line bg-white p-5 sm:p-8';
 
 /** A spinner and one line while the link is checked or the agreement fetched. */
 export function LoadingCard({ text }: { text: string }) {
@@ -51,7 +51,10 @@ export function SmallPrint({ children }: { children?: React.ReactNode }) {
       {children && <p>{children}</p>}
       <p>
         {SHARED_COPY.questions}{' '}
-        <Link href="/disclaimer/" className="tap-link underline underline-offset-3 hover:text-maroon-700">
+        <Link
+          href="/disclaimer/"
+          className="tap-link underline underline-offset-3 hover:text-maroon-700"
+        >
           {SHARED_COPY.disclaimerLink}
         </Link>
       </p>

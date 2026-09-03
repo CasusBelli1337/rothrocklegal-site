@@ -28,7 +28,7 @@ function resultText(search: LibrarySearch, label: string | undefined): string {
 
 function EmptyState() {
   return (
-    <div className="rounded-xl border border-dashed border-line-strong bg-white p-8 text-center">
+    <div className="border border-dashed border-line-strong bg-white p-8 text-center">
       <p className="font-serif text-h3 text-ink">Nothing matches that yet.</p>
       <p className="mx-auto mt-2 max-w-[44ch] text-body text-ink-2">
         Try a shorter word, or ask us directly.

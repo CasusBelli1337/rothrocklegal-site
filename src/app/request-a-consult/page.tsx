@@ -3,7 +3,6 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Eyebrow';
-import { Reveal } from '@/components/ui/Reveal';
 import { site } from '@/config/site';
 import { AFTER_YOU_SEND } from '@/lib/intake/copy';
 import { webPage } from '@/lib/seo/jsonld';
@@ -27,18 +26,18 @@ function AfterYouSend() {
   return (
     <section aria-labelledby="after-you-send" className="bg-white py-16 lg:py-20">
       <Container className="max-w-[52rem]">
-        <Reveal>
+        <div>
           <Eyebrow rule>What to expect</Eyebrow>
           <h2 id="after-you-send" className="mt-3 font-serif text-h2 text-ink">
             What happens after you send this
           </h2>
-        </Reveal>
+        </div>
         <ol className="mt-8 space-y-6">
           {AFTER_YOU_SEND.map((step, i) => (
             <li key={step.title} className="flex gap-5">
               <span
                 aria-hidden="true"
-                className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-brass-400 font-serif text-lg text-brass-600 tabular"
+                className="grid h-10 w-10 shrink-0 place-items-center border border-brass-400 font-serif text-lg text-brass-600 tabular"
               >
                 {i + 1}
               </span>

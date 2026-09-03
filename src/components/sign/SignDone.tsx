@@ -7,11 +7,11 @@ import { formatTime } from '@/lib/public/time';
 export function SignDone({ result }: { result: SignSubmitResponse }) {
   const copy = SIGN_COPY.done;
   return (
-    <div className="wizard-enter rounded-xl border border-line bg-white p-5 sm:p-8">
+    <div className="wizard-enter border border-line bg-white p-5 sm:p-8">
       <div className="flex items-start gap-4">
         <span
           aria-hidden="true"
-          className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-success text-white"
+          className="grid h-10 w-10 shrink-0 place-items-center bg-success text-white"
         >
           <CheckIcon className="h-5 w-5" />
         </span>

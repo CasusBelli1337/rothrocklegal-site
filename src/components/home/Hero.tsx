@@ -74,68 +74,70 @@ const switchVariants = renderVariants(lensCopy.heroSwitch, (link: LensSwitch | n
   ) : null,
 );
 
-/** HOMEPAGE-SPEC §1: 7/5 split, photo first on mobile, chips scroll in one row. Title and sub-line are lens slots. */
+/** HOMEPAGE-SPEC §1: 7/5 split, photo first on mobile, chips in a full-width row under both columns (one scrolling row on phones). Title and sub-line are lens slots. */
 export function Hero() {
   return (
     <section className="band-maroon">
-      <Container className="grid gap-10 py-12 lg:grid-cols-12 lg:items-center lg:gap-12 lg:py-20">
-        <div className="order-2 min-w-0 lg:order-1 lg:col-span-7">
-          <Eyebrow tone="light" rule>
-            Trust &amp; estate litigation &middot; San Jose &amp; the Bay Area
-          </Eyebrow>
-          <h1 className="mt-5 font-serif text-display text-white">
-            <Slot name="hero-title" variants={lensCopy.heroTitle} />
-          </h1>
-          <p className="mt-6 max-w-[38rem] text-lead text-white/80">
-            <Slot name="hero-sub" variants={lensCopy.heroSub} linkClassName={heroLink} />{' '}
-            <Slot name="hero-switch" variants={switchVariants} />
-          </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button variant="inverse" href={consultCta.href}>
-              {consultCta.label}
-            </Button>
-            <Button variant="secondary" tone="dark" href={secondaryCta.href}>
-              {secondaryCta.label}
-            </Button>
+      <Container className="py-12 lg:py-20">
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-12">
+          <div className="order-2 min-w-0 lg:order-1 lg:col-span-7">
+            <Eyebrow tone="light" rule>
+              Trust &amp; estate litigation &middot; San Jose &amp; the Bay Area
+            </Eyebrow>
+            <h1 className="mt-5 font-serif text-display text-white">
+              <Slot name="hero-title" variants={lensCopy.heroTitle} />
+            </h1>
+            <p className="mt-6 max-w-[38rem] text-lead text-white/80">
+              <Slot name="hero-sub" variants={lensCopy.heroSub} linkClassName={heroLink} />{' '}
+              <Slot name="hero-switch" variants={switchVariants} />
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button variant="inverse" href={consultCta.href}>
+                {consultCta.label}
+              </Button>
+              <Button variant="secondary" tone="dark" href={secondaryCta.href}>
+                {secondaryCta.label}
+              </Button>
+            </div>
           </div>
-          <ul
-            aria-label="Recognitions"
-            // The row scrolls sideways on phones, so keyboard users need a way to reach it (WCAG 2.1.1).
-            tabIndex={0}
-            className="-mx-5 mt-10 flex max-w-[calc(100%+2.5rem)] gap-2 overflow-x-auto rounded-md px-5 pb-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/70 md:mx-0 md:max-w-full md:flex-wrap md:px-0"
-          >
-            {chips.map((chip, i) => (
-              <li key={i} className="shrink-0">
-                <Badge tone="dark" image={chip.image} href={chip.href}>
-                  {chip.label}
-                </Badge>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="order-1 lg:order-2 lg:col-span-5">
-          <div className="relative aspect-[3/2] overflow-hidden rounded-2xl lg:aspect-[4/5]">
-            {/* The LCP element on phones: sized to the slot and fetched first (web.dev "Optimize LCP"). */}
-            <picture>
-              <source
-                media="(min-width: 1024px)"
-                srcSet={`${heroImage('tall', 480)} 480w, ${heroImage('tall', 960)} 960w`}
-                sizes="(min-width: 1280px) 480px, 40vw"
-              />
-              <img
-                src={heroImage('wide', 1024)}
-                srcSet={`${heroImage('wide', 768)} 768w, ${heroImage('wide', 1024)} 1024w, ${heroImage('wide', 1280)} 1280w`}
-                sizes="100vw"
-                alt="Arthur E. Rothrock, founder of Rothrock Legal"
-                width={1024}
-                height={683}
-                fetchPriority="high"
-                decoding="async"
-                className="absolute inset-0 h-full w-full object-cover object-top"
-              />
-            </picture>
+          <div className="order-1 lg:order-2 lg:col-span-5">
+            <div className="relative aspect-[3/2] overflow-hidden outline outline-1 outline-offset-[12px] outline-brass-400 lg:aspect-[4/5]">
+              {/* The LCP element on phones: sized to the slot and fetched first (web.dev "Optimize LCP"). */}
+              <picture>
+                <source
+                  media="(min-width: 1024px)"
+                  srcSet={`${heroImage('tall', 480)} 480w, ${heroImage('tall', 960)} 960w`}
+                  sizes="(min-width: 1280px) 480px, 40vw"
+                />
+                <img
+                  src={heroImage('wide', 1024)}
+                  srcSet={`${heroImage('wide', 768)} 768w, ${heroImage('wide', 1024)} 1024w, ${heroImage('wide', 1280)} 1280w`}
+                  sizes="100vw"
+                  alt="Arthur E. Rothrock, founder of Rothrock Legal"
+                  width={1024}
+                  height={683}
+                  fetchPriority="high"
+                  decoding="async"
+                  className="absolute inset-0 h-full w-full object-cover object-top"
+                />
+              </picture>
+            </div>
           </div>
         </div>
+        <ul
+          aria-label="Recognitions"
+          // The row scrolls sideways on phones, so keyboard users need a way to reach it (WCAG 2.1.1).
+          tabIndex={0}
+          className="-mx-5 mt-10 flex max-w-[calc(100%+2.5rem)] gap-2 overflow-x-auto px-5 pb-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/70 md:mx-0 md:max-w-full md:flex-wrap md:px-0 lg:mt-12"
+        >
+          {chips.map((chip, i) => (
+            <li key={i} className="shrink-0">
+              <Badge tone="dark" image={chip.image} href={chip.href}>
+                {chip.label}
+              </Badge>
+            </li>
+          ))}
+        </ul>
       </Container>
     </section>
   );

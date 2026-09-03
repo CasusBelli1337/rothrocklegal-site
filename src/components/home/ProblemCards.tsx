@@ -18,7 +18,6 @@ import {
 } from '@/components/icons';
 import { Card } from '@/components/ui/Card';
 import { Container } from '@/components/ui/Container';
-import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { lensConfig } from '@/config/lens';
 import {
@@ -94,14 +93,12 @@ export function ProblemCards() {
   return (
     <section className="py-16 lg:py-24">
       <Container>
-        <Reveal>
-          <SectionHeading
-            eyebrow="Where to start"
-            title="What's going on in your family?"
-            lead="Pick the sentence that sounds like yours. Each page explains what the law says, what you can do, and how fast you need to move."
-          />
-        </Reveal>
-        <Reveal stagger className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+        <SectionHeading
+          eyebrow="Where to start"
+          title="What's going on in your family?"
+          lead="Pick the sentence that sounds like yours. Each page explains what the law says, what you can do, and how fast you need to move."
+        />
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
           {areas.map((area, i) => (
             <ProblemCard
               key={area.slug}
@@ -111,7 +108,7 @@ export function ProblemCards() {
               lensEvent={`card:${area.slug}`}
             />
           ))}
-        </Reveal>
+        </div>
       </Container>
     </section>
   );

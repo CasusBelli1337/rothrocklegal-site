@@ -23,7 +23,7 @@ function MenuGroup({ item, onClose }: { item: NavItem; onClose: () => void }) {
       <ul className="pb-3">
         {item.children?.map((child) => (
           <li key={child.href}>
-            <Link href={child.href} onClick={onClose} className="block rounded-md py-2.5 pl-3">
+            <Link href={child.href} onClick={onClose} className="block py-2.5 pl-3">
               <span className="block text-ui font-medium text-ink">{child.label}</span>
               <span className="block text-small text-ink-3">{child.sublabel}</span>
             </Link>
@@ -126,7 +126,7 @@ export function MobileMenu({ open, onClose, pathname }: MobileMenuProps) {
             type="button"
             aria-label="Close menu"
             onClick={onClose}
-            className="grid h-11 w-11 place-items-center rounded-md text-ink"
+            className="grid h-11 w-11 place-items-center text-ink"
           >
             <CloseIcon className="h-6 w-6" />
           </button>

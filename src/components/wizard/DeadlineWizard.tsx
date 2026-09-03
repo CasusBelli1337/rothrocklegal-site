@@ -40,7 +40,7 @@ function WizardForm({ wizard }: { wizard: WizardController }) {
       onSubmit={wizard.next}
       noValidate
       aria-labelledby="wizard-heading"
-      className="rounded-xl border border-line bg-white p-6 sm:p-10"
+      className="border border-line bg-white p-6 sm:p-10"
     >
       <h2 id="wizard-heading" className="sr-only">
         Deadline questions

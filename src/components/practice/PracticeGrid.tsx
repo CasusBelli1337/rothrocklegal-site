@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { ArrowRightIcon } from '@/components/icons';
 import { Card } from '@/components/ui/Card';
 import { Container } from '@/components/ui/Container';
-import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { practiceHref, practicePages, primaryPractices } from '@/config/practice-areas';
 import { oddLastSpan } from '@/lib/grid';
@@ -13,13 +12,8 @@ export function PracticeGrid() {
   return (
     <section className="grid-hairline bg-sand py-16 lg:py-20">
       <Container>
-        <Reveal>
-          <SectionHeading
-            eyebrow="What we handle"
-            title="Which of these sounds like your family?"
-          />
-        </Reveal>
-        <Reveal stagger className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <SectionHeading eyebrow="What we handle" title="Which of these sounds like your family?" />
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {primaryPractices.map((area, i) => (
             <Card
               key={area.slug}
@@ -34,7 +28,7 @@ export function PracticeGrid() {
               </p>
             </Card>
           ))}
-        </Reveal>
+        </div>
         {secondary.map((area) => (
           <p key={area.slug} className="mt-8 text-small text-ink-3">
             Business or partnership dispute instead?{' '}

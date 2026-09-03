@@ -16,7 +16,7 @@ export function Highlight({ text, terms, ranges }: HighlightProps) {
   found.forEach((range, i) => {
     if (cursor < range.start) parts.push(text.slice(cursor, range.start));
     parts.push(
-      <mark key={i} className="rounded-sm bg-brass-100 px-0.5 text-ink">
+      <mark key={i} className="bg-brass-100 px-0.5 text-ink">
         {text.slice(range.start, range.end)}
       </mark>,
     );

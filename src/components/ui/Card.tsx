@@ -6,7 +6,7 @@ interface CardProps {
   children: React.ReactNode;
   /** Whole card becomes one link. */
   href?: string;
-  /** Hover elevation + maroon border (problem cards, article cards). */
+  /** Hover hardens the hairline to ink (problem cards, article cards). */
   interactive?: boolean;
   className?: string;
   style?: CSSProperties;
@@ -15,10 +15,10 @@ interface CardProps {
   lensEvent?: string;
 }
 
-export const cardClass = 'rounded-xl border border-line bg-white p-6';
+export const cardClass = 'border border-line bg-white p-6';
 
 const interactiveClass =
-  'group transition-[box-shadow,border-color] duration-150 hover:border-line-strong hover:shadow-md ' +
+  'group transition-colors duration-150 hover:border-ink ' +
   'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-maroon-500';
 
 /** White card with a hairline; never a shadow at rest (DESIGN-BRIEF §4). */

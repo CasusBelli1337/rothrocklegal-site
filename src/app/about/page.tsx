@@ -10,7 +10,6 @@ import { TeamGrid } from '@/components/team/TeamGrid';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { Container } from '@/components/ui/Container';
 import { CtaBand } from '@/components/ui/CtaBand';
-import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { site } from '@/config/site';
 import { webPage } from '@/lib/seo/jsonld';
@@ -54,7 +53,7 @@ function WhoWeAre() {
   return (
     <section className="py-16 lg:py-20">
       <Container>
-        <Reveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <SectionHeading
             eyebrow="Who we are"
             title="Small on purpose."
@@ -66,8 +65,8 @@ function WhoWeAre() {
           >
             Meet the team <span aria-hidden="true">&rarr;</span>
           </Link>
-        </Reveal>
-        <Reveal className="mt-6 max-w-[64ch] space-y-4 text-body-lg text-ink-2">
+        </div>
+        <div className="mt-6 max-w-[64ch] space-y-4 text-body-lg text-ink-2">
           <p>
             Here&rsquo;s how the work gets divided. Arthur sets the strategy and keeps the big
             picture on every case. Jonathan Joannides, a former Marine Corps infantry captain who
@@ -80,7 +79,7 @@ function WhoWeAre() {
             The point is simple. Senior judgment where it counts, a courtroom presence the judges
             know, and associate rates for the heavy lifting.
           </p>
-        </Reveal>
+        </div>
         <div className="mt-10">
           <TeamGrid />
         </div>

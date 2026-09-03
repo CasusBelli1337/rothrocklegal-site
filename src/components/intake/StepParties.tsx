@@ -28,7 +28,7 @@ function PartyRow({
   const nameId = `party-${index}-name`;
   const roleId = `party-${index}-role`;
   return (
-    <li className="grid gap-4 rounded-xl border border-line bg-white p-4 sm:grid-cols-[1fr_1fr_auto] sm:items-end">
+    <li className="grid gap-4 border border-line bg-white p-4 sm:grid-cols-[1fr_1fr_auto] sm:items-end">
       <Field id={nameId} label={index === 0 ? 'Name' : `Name (person ${index + 1})`}>
         <TextInput
           id={nameId}

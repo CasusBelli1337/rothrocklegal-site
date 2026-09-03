@@ -118,13 +118,13 @@ export function NavDropdown({ item, active }: NavDropdownProps) {
         onKeyDown={onPanelKeyDown}
         className="absolute left-1/2 top-full z-50 w-[42rem] -translate-x-1/2 pt-2"
       >
-        <div className="grid grid-cols-2 gap-1 rounded-xl border border-line bg-white p-3 shadow-md">
+        <div className="grid grid-cols-2 gap-1 border border-line-strong bg-white p-3">
           {item.children?.map((child) => (
             <Link
               key={child.href}
               href={child.href}
               onClick={() => setOpen(false)}
-              className="rounded-md px-3 py-2.5 transition-colors hover:bg-sand focus-visible:bg-sand focus-visible:outline-none"
+              className="px-3 py-2.5 transition-colors hover:bg-sand focus-visible:bg-sand focus-visible:outline-none"
             >
               <span className="block text-ui font-medium text-ink">{child.label}</span>
               <span className="mt-0.5 block text-small text-ink-3">{child.sublabel}</span>

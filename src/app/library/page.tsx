@@ -6,7 +6,6 @@ import { WizardCard } from '@/components/library/WizardCard';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { Container } from '@/components/ui/Container';
 import { CtaBand } from '@/components/ui/CtaBand';
-import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { lensConfig } from '@/config/lens';
 import {
@@ -66,7 +65,7 @@ export default function LibraryPage() {
 
       <section className="bg-sand py-12 lg:py-16">
         <Container>
-          <Reveal className="grid gap-6 lg:grid-cols-5">
+          <div className="grid gap-6 lg:grid-cols-5">
             {featured && (
               <div className="lg:col-span-3">
                 <FeaturedByLens featured={featured} />
@@ -75,7 +74,7 @@ export default function LibraryPage() {
             <div className={featured ? 'lg:col-span-2' : 'lg:col-span-5'}>
               <WizardCard />
             </div>
-          </Reveal>
+          </div>
         </Container>
       </section>
 

@@ -12,7 +12,7 @@ interface BookedCardProps {
 export function BookedCard({ booked, haveReady }: BookedCardProps) {
   const copy = SCHEDULE_COPY.booked;
   return (
-    <div className="wizard-enter rounded-xl border border-line bg-white p-5 sm:p-8">
+    <div className="wizard-enter border border-line bg-white p-5 sm:p-8">
       {booked.meetLink ? (
         <Button href={booked.meetLink} className="public-primary w-full sm:w-auto">
           {copy.meet}

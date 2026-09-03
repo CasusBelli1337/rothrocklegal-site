@@ -8,7 +8,7 @@ export function RecognitionStrip({ member }: { member: TeamMember }) {
   const badges = member.credentials.flatMap((c) => c.badges ?? []);
   const superLawyers = member.credentials.some((c) => c.name.includes('Super Lawyers'));
   return (
-    <div className="rounded-xl border border-line bg-white p-6 md:p-8">
+    <div className="border border-line bg-white p-6 md:p-8">
       <div className="grid gap-8 md:grid-cols-[auto_1fr] md:items-center md:gap-12">
         {badges.length > 0 && (
           <ul className="flex flex-wrap items-center gap-5" aria-label="Award badges">

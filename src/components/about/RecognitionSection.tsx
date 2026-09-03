@@ -1,6 +1,5 @@
 import { RecognitionStrip } from '@/components/team/RecognitionStrip';
 import { Container } from '@/components/ui/Container';
-import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { firstName, recognizedMembers, teamHref } from '@/config/team';
 
@@ -13,14 +12,12 @@ export function RecognitionSection() {
   return (
     <section className="bg-sand py-16 lg:py-20">
       <Container>
-        <Reveal>
-          <SectionHeading eyebrow="Credentials" title="Recognition, on the record." />
-        </Reveal>
+        <SectionHeading eyebrow="Credentials" title="Recognition, on the record." />
         <div className="mt-10 space-y-8">
           {members.map((member) => {
             const office = member.leadership[0];
             return (
-              <Reveal key={member.slug}>
+              <div key={member.slug}>
                 <RecognitionStrip member={member} />
                 <div className="mt-6 max-w-[64ch] space-y-3 text-body-lg text-ink-2">
                   {office && (
@@ -54,7 +51,7 @@ export function RecognitionSection() {
                     </p>
                   )}
                 </div>
-              </Reveal>
+              </div>
             );
           })}
         </div>

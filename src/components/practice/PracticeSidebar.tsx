@@ -43,7 +43,7 @@ export function PracticeSidebar({ area, sections }: PracticeSidebarProps) {
         </ol>
       </nav>
 
-      <div className="rounded-xl border border-line bg-white p-5">
+      <div className="border border-line bg-white p-5">
         <SideHeading>The statutes, in one line each</SideHeading>
         <dl className="mt-4 space-y-3">
           {area.statutes.map((statute) => (
@@ -57,7 +57,7 @@ export function PracticeSidebar({ area, sections }: PracticeSidebarProps) {
         </dl>
       </div>
 
-      <div className="rounded-xl bg-maroon-700 p-5 text-white">
+      <div className="bg-maroon-700 p-5 text-white">
         <p className="font-serif text-h3">Worried about a deadline?</p>
         <p className="mt-2 text-small text-white/80">
           Two minutes of questions tell you which clocks are running.

@@ -13,7 +13,7 @@ export function StepDone({ intake }: StepProps) {
 
   return (
     <StepFrame intake={intake} footer={null}>
-      <div className="rounded-xl border border-line bg-paper p-5 sm:p-6">
+      <div className="border border-line bg-paper p-5 sm:p-6">
         <p className="eyebrow">Your reference number</p>
         <p className="mt-2 font-serif text-h1 text-ink tabular">{reference}</p>
         <p className="mt-3 text-body text-ink-2">

@@ -39,10 +39,10 @@ function ArticleMeta({ article, author }: { article: LibraryArticle; author: Tea
             alt=""
             width={40}
             height={40}
-            className="h-10 w-10 rounded-full object-cover object-top"
+            className="h-10 w-10 object-cover object-top"
           />
         ) : (
-          <InitialAvatar name={author.name} size="sm" className="h-10 w-10 rounded-full" />
+          <InitialAvatar name={author.name} size="sm" className="h-10 w-10" />
         )}
         <span>
           By <span className="font-semibold">{author.name}</span>
@@ -104,7 +104,7 @@ export function ArticleHero({ article, author }: { article: LibraryArticle; auth
             )}
           </div>
           <div className="hidden lg:col-span-5 lg:block">
-            <div className="aspect-[16/9] overflow-hidden rounded-2xl ring-1 ring-white/15">
+            <div className="aspect-[16/9] overflow-hidden ring-1 ring-white/15">
               {/* Requested only where it is shown: the media query keeps phones from downloading a hidden cover. */}
               <picture>
                 <source media="(min-width: 1024px)" srcSet={asset(article.image)} />

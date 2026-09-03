@@ -12,7 +12,7 @@ interface GroupProps {
 }
 
 const chipClass =
-  'relative inline-flex h-11 cursor-pointer items-center justify-center rounded-md border border-line-strong bg-white px-4 ' +
+  'relative inline-flex h-11 cursor-pointer items-center justify-center border border-line-strong bg-white px-4 ' +
   'text-body font-medium text-ink transition-colors duration-150 hover:border-maroon-700 ' +
   'has-[:checked]:border-maroon-700 has-[:checked]:bg-maroon-700 has-[:checked]:text-white ' +
   'has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-maroon-500';
@@ -56,7 +56,9 @@ interface ReadingOptionGroupsProps {
 export function ReadingOptionGroups({ actions, className = '' }: ReadingOptionGroupsProps) {
   const { prefs, choose, reset, changed } = useReadingPrefs();
   return (
-    <div className={`flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between ${className}`}>
+    <div
+      className={`flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between ${className}`}
+    >
       <div className="grid flex-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
         {a11yOptions.map((option) => (
           <ReadingOptionGroup

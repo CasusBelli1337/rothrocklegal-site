@@ -21,12 +21,12 @@ the bar share `headerColumnClass` (85rem), wider than the 75rem page column,
 because the full nav needs about 1,300px at this type size. The bar holds four
 choices, each a `<fieldset>` of real radios drawn as chips:
 
-| Option    | Values                    | What it does                                                              |
-| --------- | ------------------------- | ------------------------------------------------------------------------- |
-| Text size | Normal / Large / Larger   | Root font-size 100 / 112.5 / 125%. Everything is rem, so the page scales. |
-| Contrast  | Normal / High             | Ink to black, `line`/`line-strong` strengthened, maroon-600 and brass-600 text deepened (all ≥ 7:1 on paper). |
-| Motion    | Full / Reduced            | The same rules as `prefers-reduced-motion`: no reveal, no transitions.    |
-| Spacing   | Normal / Wider            | Taller line-heights on every text token, a little word spacing, bigger prose gaps. |
+| Option    | Values                  | What it does                                                                                                  |
+| --------- | ----------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Text size | Normal / Large / Larger | Root font-size 100 / 112.5 / 125%. Everything is rem, so the page scales.                                     |
+| Contrast  | Normal / High           | Ink to black, `line`/`line-strong` strengthened, maroon-600 and brass-600 text deepened (all ≥ 7:1 on paper). |
+| Motion    | Full / Reduced          | The same rules as `prefers-reduced-motion`: no reveal, no transitions.                                        |
+| Spacing   | Normal / Wider          | Taller line-heights on every text token, a little word spacing, bigger prose gaps.                            |
 
 How it works, in the order the browser sees it:
 
@@ -47,7 +47,8 @@ How it works, in the order the browser sees it:
    (removing the key when nothing is chosen), and notifies every mounted
    control. `useReadingPrefs` is the hook; `ReadingOptionGroups` renders the
    four fieldsets and is shared by the header bar and `/accessibility/`.
-5. `Reveal.tsx` treats `html[data-motion="reduced"]` like the OS setting.
+5. `html[data-motion="reduced"]` zeroes every transition and animation, like the
+   OS setting (the scroll-in reveal was removed on 2026-09-03).
 
 Nothing leaves the browser. The choices are functional storage, not tracking,
 and the privacy policy's "no analytics, no tracking cookies" statements stay

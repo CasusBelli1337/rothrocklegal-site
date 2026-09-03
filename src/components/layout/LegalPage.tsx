@@ -24,7 +24,7 @@ export function LegalPage({ eyebrow, title, description, path, children }: Legal
             <Eyebrow rule>{eyebrow}</Eyebrow>
             <h1 className="mt-4 font-serif text-h1 text-ink">{title}</h1>
             {site.legalPagesDraft && (
-              <p className="mt-6 rounded-xl border-t-4 border-brass-400 bg-brass-100 p-4 text-small font-medium text-maroon-950">
+              <p className="mt-6 border-t-4 border-brass-400 bg-brass-100 p-4 text-small font-medium text-maroon-950">
                 Draft &ndash; pending attorney review. This page was prepared as part of the website
                 redesign and has not yet been approved for publication.
               </p>

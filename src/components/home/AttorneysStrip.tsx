@@ -1,7 +1,6 @@
 import { TeamCard } from '@/components/layout/TeamCard';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
-import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { team } from '@/config/team';
 
@@ -11,7 +10,7 @@ export function AttorneysStrip() {
   return (
     <section className="bg-white py-16 lg:py-24">
       <Container>
-        <Reveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <SectionHeading
             eyebrow="The team"
             title="The lawyers who will actually work your case."
@@ -20,12 +19,12 @@ export function AttorneysStrip() {
           <Button variant="secondary" href="/attorneys/" className="shrink-0">
             Meet the team
           </Button>
-        </Reveal>
-        <Reveal stagger className="mt-10 grid grid-cols-2 gap-5 lg:grid-cols-4 lg:gap-8">
+        </div>
+        <div className="mt-10 grid grid-cols-2 gap-5 lg:grid-cols-4 lg:gap-8">
           {team.map((member) => (
             <TeamCard key={member.slug} member={member} />
           ))}
-        </Reveal>
+        </div>
       </Container>
     </section>
   );

@@ -17,14 +17,26 @@ import {
   type ScheduleEvent,
 } from '@/lib/public/schedule-state';
 import { groupSlotsByDay, upcomingSlots } from '@/lib/public/slots';
-import { browserTimeZone, durationMinutes, formatDayLong, formatTime, formatWhen, sameZone, zoneLabel } from '@/lib/public/time';
+import {
+  browserTimeZone,
+  durationMinutes,
+  formatDayLong,
+  formatTime,
+  formatWhen,
+  sameZone,
+  zoneLabel,
+} from '@/lib/public/time';
 import { useToken } from '@/lib/public/use-token';
 import { BookedCard } from './BookedCard';
 import { BookingForm } from './BookingForm';
 import { SlotPicker } from './SlotPicker';
 
 /** Fetches the invitation once the token is known, and again after "Try again". */
-function useInvite(token: string | null, loading: boolean, dispatch: React.Dispatch<ScheduleEvent>) {
+function useInvite(
+  token: string | null,
+  loading: boolean,
+  dispatch: React.Dispatch<ScheduleEvent>,
+) {
   useEffect(() => {
     if (!token || !loading) return;
     let alive = true;
@@ -32,7 +44,11 @@ function useInvite(token: string | null, loading: boolean, dispatch: React.Dispa
       .then((invite) => alive && dispatch({ type: 'loaded', invite }))
       .catch((error: unknown) => {
         if (!alive) return;
-        dispatch(isNotFound(error) ? { type: 'invalid' } : { type: 'load-failed', message: errorMessage(error) });
+        dispatch(
+          isNotFound(error)
+            ? { type: 'invalid' }
+            : { type: 'load-failed', message: errorMessage(error) },
+        );
       });
     return () => {
       alive = false;
@@ -54,7 +70,13 @@ async function bookingFailure(token: string, error: unknown): Promise<ScheduleEv
 }
 
 /** The lead under the h1 while times are on offer. */
-function ReadyLead({ invite, visitorZone }: { invite: ScheduleInvitePublic; visitorZone: string | null }) {
+function ReadyLead({
+  invite,
+  visitorZone,
+}: {
+  invite: ScheduleInvitePublic;
+  visitorZone: string | null;
+}) {
   const first = invite.slots[0];
   const minutes = first ? durationMinutes(first.start, first.end) : 45;
   return (
@@ -117,7 +139,9 @@ export function SchedulePage() {
   const groups = invite ? groupSlotsByDay(upcomingSlots(invite.slots), zone, visitorZone) : [];
   const booked = state.phase === 'booked' ? state.booked : null;
 
-  const title = booked ? SCHEDULE_COPY.booked.title(formatDayLong(booked.start, zone)) : SCHEDULE_COPY.title;
+  const title = booked
+    ? SCHEDULE_COPY.booked.title(formatDayLong(booked.start, zone))
+    : SCHEDULE_COPY.title;
   const eyebrow = booked ? SCHEDULE_COPY.booked.eyebrow : SCHEDULE_COPY.eyebrow;
   const lead = booked ? (
     <p>
@@ -134,7 +158,11 @@ export function SchedulePage() {
         <LoadingCard text={SCHEDULE_COPY.loading} />
       )}
       {state.phase === 'invalid' && (
-        <NoticeCard tone="alert" title={SCHEDULE_COPY.invalid.title} body={SCHEDULE_COPY.invalid.body} />
+        <NoticeCard
+          tone="alert"
+          title={SCHEDULE_COPY.invalid.title}
+          body={SCHEDULE_COPY.invalid.body}
+        />
       )}
       {state.phase === 'error' && (
         <NoticeCard
@@ -145,7 +173,7 @@ export function SchedulePage() {
         />
       )}
       {picking && invite && (
-        <div className="rounded-xl border border-line bg-white p-5 sm:p-8">
+        <div className="border border-line bg-white p-5 sm:p-8">
           {state.notice && (
             <p role="status" aria-live="polite" className="wizard-banner mb-6 text-body text-ink">
               {state.notice}
@@ -154,7 +182,11 @@ export function SchedulePage() {
           {groups.length === 0 ? (
             <p className="text-body text-ink">{SCHEDULE_COPY.noSlots}</p>
           ) : (
-            <SlotPicker groups={groups} selected={state.selected} onSelect={(start) => dispatch({ type: 'select', start })} />
+            <SlotPicker
+              groups={groups}
+              selected={state.selected}
+              onSelect={(start) => dispatch({ type: 'select', start })}
+            />
           )}
         </div>
       )}
@@ -166,7 +198,9 @@ export function SchedulePage() {
             setForm((current) => ({ ...current, ...patch }));
           }}
           pickedLabel={`${formatWhen(state.selected, zone)}${
-            visitorZone ? ` (${formatTime(state.selected, visitorZone)} ${SCHEDULE_COPY.yourTime})` : ''
+            visitorZone
+              ? ` (${formatTime(state.selected, visitorZone)} ${SCHEDULE_COPY.yourTime})`
+              : ''
           }`}
           onChangeSlot={() => dispatch({ type: 'clear-selection' })}
           busy={state.phase === 'booking'}

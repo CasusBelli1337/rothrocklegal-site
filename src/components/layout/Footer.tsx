@@ -48,7 +48,7 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Arthur Rothrock on LinkedIn"
-            className="mt-5 inline-flex h-11 w-11 items-center justify-center rounded-md border border-white/20 text-white/80 transition-colors hover:border-white/50 hover:text-white"
+            className="mt-5 inline-flex h-11 w-11 items-center justify-center border border-white/20 text-white/80 transition-colors hover:border-white/50 hover:text-white"
           >
             <LinkedInIcon className="h-5 w-5" />
           </a>

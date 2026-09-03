@@ -80,7 +80,7 @@ export function ArticleToc({ entries, variant }: ArticleTocProps) {
     );
   }
   return (
-    <details className="group rounded-xl border border-line bg-white lg:hidden">
+    <details className="group border border-line bg-white lg:hidden">
       <summary className="flex cursor-pointer items-center justify-between px-5 py-4 font-sans text-h4 text-ink">
         On this page
         <ChevronDownIcon className="h-5 w-5 text-brass-500 transition-transform duration-300 group-open:rotate-180" />

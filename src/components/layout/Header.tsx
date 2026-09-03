@@ -64,7 +64,7 @@ function CompactControls({
         aria-controls="mobile-menu"
         aria-label="Open menu"
         onClick={onOpenMenu}
-        className="grid h-11 w-11 place-items-center rounded-md text-ink"
+        className="grid h-11 w-11 place-items-center text-ink"
       >
         <MenuIcon className="h-6 w-6" />
       </button>
@@ -109,7 +109,7 @@ export function Header() {
         <Link
           href="/"
           aria-label={`${site.name} home`}
-          className="flex min-h-11 shrink-0 items-center rounded-md"
+          className="flex min-h-11 shrink-0 items-center"
         >
           <BrandLogo
             lockup="horizontal"

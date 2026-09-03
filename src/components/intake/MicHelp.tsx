@@ -22,7 +22,7 @@ interface HelpCardProps {
 /** A calm card in place of the microphone button: what happened, what to do, and that typing is fine. */
 function HelpCard({ title, children, onRetry }: HelpCardProps) {
   return (
-    <div role="status" className="rounded-xl border border-brass-400 bg-paper p-5 sm:p-6">
+    <div role="status" className="border border-brass-400 bg-paper p-5 sm:p-6">
       <p className="text-body font-semibold text-ink">{title}</p>
       <div className="mt-2 space-y-3 text-body text-ink-2">{children}</div>
       <div className="mt-5 flex flex-wrap items-center gap-4">
@@ -61,7 +61,7 @@ function DeniedCard({ browser, onRetry }: { browser: BrowserInfo; onRetry(): voi
           <li key={step} className="flex gap-3">
             <span
               aria-hidden="true"
-              className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-brass-400 font-serif text-small text-brass-600 tabular"
+              className="grid h-7 w-7 shrink-0 place-items-center border border-brass-400 font-serif text-small text-brass-600 tabular"
             >
               {i + 1}
             </span>
@@ -99,7 +99,8 @@ export function MicHelp({ mic, browser }: MicHelpProps) {
         <HelpCard title={MIC_NO_DEVICE.title} onRetry={mic.retry}>
           <p>{MIC_NO_DEVICE.body}</p>
           <p>
-            {MIC_NO_DEVICE.urlLabel} <strong className="break-words">{wrappableUrl(CONSULT_PAGE_SHORT_URL)}</strong>
+            {MIC_NO_DEVICE.urlLabel}{' '}
+            <strong className="break-words">{wrappableUrl(CONSULT_PAGE_SHORT_URL)}</strong>
           </p>
         </HelpCard>
       );

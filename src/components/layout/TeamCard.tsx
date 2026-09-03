@@ -15,14 +15,14 @@ interface TeamCardProps {
   headingLevel?: 'h2' | 'h3';
 }
 
-/** 4:5 photo, name, title, one-line focus, "Read bio" (DESIGN-BRIEF §6). */
+/** 4:5 photo in an offset brass outline, name, title, one-line focus, "Read bio" (DESIGN-BRIEF §6). */
 export function TeamCard({ member, headingLevel: Tag = 'h3' }: TeamCardProps) {
   return (
     <Link
       href={teamHref(member)}
-      className="group block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-maroon-500 rounded-xl"
+      className="group block focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-maroon-500"
     >
-      <div className="aspect-[4/5] overflow-hidden rounded-xl bg-sand">
+      <div className="aspect-[4/5] overflow-hidden bg-sand outline outline-1 outline-offset-[6px] outline-brass-400">
         {hasHeadshot(member) ? (
           // Both headshot files in one srcset: a phone's 2-up grid takes the 400px one, desktop the 800px one.
           <picture>
@@ -35,7 +35,7 @@ export function TeamCard({ member, headingLevel: Tag = 'h3' }: TeamCardProps) {
               height={800}
               loading="lazy"
               decoding="async"
-              className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
+              className="h-full w-full object-cover object-top"
             />
           </picture>
         ) : (

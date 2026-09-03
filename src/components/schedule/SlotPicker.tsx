@@ -13,13 +13,21 @@ interface SlotPickerProps {
   onSelect(start: string): void;
 }
 
-function SlotButton({ slot, selected, onSelect }: { slot: SlotView; selected: boolean; onSelect(): void }) {
+function SlotButton({
+  slot,
+  selected,
+  onSelect,
+}: {
+  slot: SlotView;
+  selected: boolean;
+  onSelect(): void;
+}) {
   return (
     <button
       type="button"
       aria-pressed={selected}
       onClick={onSelect}
-      className={`flex min-h-12 flex-col items-center justify-center rounded-md border px-3 py-2 text-body font-medium tabular transition-colors ${
+      className={`flex min-h-12 flex-col items-center justify-center border px-3 py-2 text-body font-medium tabular transition-colors ${
         selected
           ? 'border-maroon-700 bg-sand text-ink ring-1 ring-maroon-700'
           : 'border-line-strong bg-white text-ink hover:border-maroon-500'

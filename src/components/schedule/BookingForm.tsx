@@ -17,7 +17,15 @@ interface BookingFormProps {
 }
 
 /** The short form under the chosen time: name, email, phone, a note, and "Book this time". */
-export function BookingForm({ form, onChange, pickedLabel, onChangeSlot, busy, error, onSubmit }: BookingFormProps) {
+export function BookingForm({
+  form,
+  onChange,
+  pickedLabel,
+  onChangeSlot,
+  busy,
+  error,
+  onSubmit,
+}: BookingFormProps) {
   const copy = SCHEDULE_COPY.form;
   return (
     <form
@@ -27,7 +35,7 @@ export function BookingForm({ form, onChange, pickedLabel, onChangeSlot, busy, e
         event.preventDefault();
         onSubmit();
       }}
-      className="wizard-enter mt-8 rounded-xl border border-line bg-white p-5 sm:p-8"
+      className="wizard-enter mt-8 border border-line bg-white p-5 sm:p-8"
     >
       <div className="wizard-banner flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-body text-ink">{SCHEDULE_COPY.picked(pickedLabel)}</p>
@@ -82,7 +90,11 @@ export function BookingForm({ form, onChange, pickedLabel, onChangeSlot, busy, e
           </Field>
         </div>
       </fieldset>
-      <p role="alert" aria-live="assertive" className="mt-5 min-h-6 text-small font-semibold text-error">
+      <p
+        role="alert"
+        aria-live="assertive"
+        className="mt-5 min-h-6 text-small font-semibold text-error"
+      >
         {error}
       </p>
       <Button type="submit" loading={busy} className="public-primary w-full sm:w-auto">

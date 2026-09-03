@@ -29,7 +29,7 @@ export function StepStart({ intake }: StepProps) {
           <li key={line} className="flex gap-4">
             <span
               aria-hidden="true"
-              className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-brass-400 font-serif text-base text-brass-600 tabular"
+              className="grid h-8 w-8 shrink-0 place-items-center border border-brass-400 font-serif text-base text-brass-600 tabular"
             >
               {i + 1}
             </span>

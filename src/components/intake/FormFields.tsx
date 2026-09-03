@@ -1,7 +1,7 @@
 /** Shared form primitives for the intake steps (DESIGN-BRIEF §6 "Form field"). */
 
 export const inputClass =
-  'h-12 w-full rounded-md border border-line-strong bg-white px-3 text-body text-ink placeholder:text-ink-4 ' +
+  'h-12 w-full border border-line-strong bg-white px-3 text-body text-ink placeholder:text-ink-4 ' +
   'focus:border-maroon-700 focus:outline-none focus:ring-2 focus:ring-maroon-700/30 disabled:bg-sand disabled:text-ink-3';
 
 export const labelClass = 'block text-small font-medium text-ink';
@@ -176,7 +176,7 @@ export function CheckboxRow({
   className = '',
 }: CheckboxRowProps) {
   const frame = card
-    ? `flex cursor-pointer gap-3 rounded-md border bg-white p-4 transition-colors ${checked ? 'border-maroon-700 bg-sand' : 'border-line-strong hover:border-maroon-500'}`
+    ? `flex cursor-pointer gap-3 border bg-white p-4 transition-colors ${checked ? 'border-maroon-700 bg-sand' : 'border-line-strong hover:border-maroon-500'}`
     : 'inline-flex cursor-pointer items-center gap-2 py-2';
   return (
     <label

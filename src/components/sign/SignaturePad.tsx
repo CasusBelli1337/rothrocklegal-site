@@ -85,7 +85,7 @@ export function SignaturePad({ onChange, disabled }: SignaturePadProps) {
           type="button"
           onClick={clear}
           disabled={!hasInk || disabled}
-          className="inline-flex h-11 items-center rounded-md border border-ink bg-white px-4 text-small font-semibold text-ink transition-colors hover:bg-sand disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex h-11 items-center border border-ink bg-white px-4 text-small font-semibold text-ink transition-colors hover:bg-sand disabled:cursor-not-allowed disabled:opacity-50"
         >
           {SIGN_COPY.signature.clear}
         </button>

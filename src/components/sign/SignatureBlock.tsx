@@ -41,7 +41,7 @@ function MethodToggle({
               type="button"
               aria-pressed={selected}
               onClick={() => onChange(method.value)}
-              className={`min-h-12 rounded-md border px-3 py-2 text-body font-medium leading-tight transition-colors ${
+              className={`min-h-12 border px-3 py-2 text-body font-medium leading-tight transition-colors ${
                 selected
                   ? 'border-maroon-700 bg-sand text-ink ring-1 ring-maroon-700'
                   : 'border-line-strong bg-white text-ink-2 hover:border-maroon-500'
@@ -62,7 +62,7 @@ function TypedPreview({ name }: { name: string }) {
     <div
       role="img"
       aria-label={`${SIGN_COPY.signature.previewLabel}: ${name.trim() || SIGN_COPY.signature.nameLabel}`}
-      className="flex min-h-28 items-center rounded-md border border-line bg-paper px-5 py-4"
+      className="flex min-h-28 items-center border border-line bg-paper px-5 py-4"
     >
       <span aria-hidden="true" className={`sign-typed-preview ${signatureFont.className}`}>
         {name.trim() || ' '}
@@ -72,7 +72,14 @@ function TypedPreview({ name }: { name: string }) {
 }
 
 /** Consent, name, the typed or drawn signature, and the one button that signs. */
-export function SignatureBlock({ input, onChange, readToEnd, busy, error, onSubmit }: SignatureBlockProps) {
+export function SignatureBlock({
+  input,
+  onChange,
+  readToEnd,
+  busy,
+  error,
+  onSubmit,
+}: SignatureBlockProps) {
   const copy = SIGN_COPY.signature;
   return (
     <form
@@ -82,7 +89,7 @@ export function SignatureBlock({ input, onChange, readToEnd, busy, error, onSubm
         event.preventDefault();
         onSubmit();
       }}
-      className="mt-8 rounded-xl border border-line bg-white p-5 sm:p-8"
+      className="mt-8 border border-line bg-white p-5 sm:p-8"
     >
       <h2 id="sign-block-heading" className="font-serif text-h3 text-ink md:text-h2">
         {copy.heading}
@@ -103,7 +110,10 @@ export function SignatureBlock({ input, onChange, readToEnd, busy, error, onSubm
         {input.kind === 'typed' ? (
           <TypedPreview name={input.typedName} />
         ) : (
-          <SignaturePad onChange={(drawnImage) => onChange({ drawnImage })} disabled={!readToEnd || busy} />
+          <SignaturePad
+            onChange={(drawnImage) => onChange({ drawnImage })}
+            disabled={!readToEnd || busy}
+          />
         )}
         <CheckboxRow
           id="sign-consent"
@@ -114,10 +124,19 @@ export function SignatureBlock({ input, onChange, readToEnd, busy, error, onSubm
           {copy.consent}
         </CheckboxRow>
       </fieldset>
-      <p role="alert" aria-live="assertive" className="mt-5 min-h-6 text-small font-semibold text-error">
+      <p
+        role="alert"
+        aria-live="assertive"
+        className="mt-5 min-h-6 text-small font-semibold text-error"
+      >
         {error}
       </p>
-      <Button type="submit" loading={busy} disabled={!readToEnd} className="public-primary w-full sm:w-auto">
+      <Button
+        type="submit"
+        loading={busy}
+        disabled={!readToEnd}
+        className="public-primary w-full sm:w-auto"
+      >
         {copy.button}
       </Button>
       <p className="mt-3 text-small text-ink-3">{copy.notFinal}</p>
