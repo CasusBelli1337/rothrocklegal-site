@@ -85,11 +85,20 @@ Components read config; they never hardcode firm facts, URLs, or copy lists.
   the landing path and clicks (`docs/LENS.md`). Copy variants render through
   `components/lens/Slot` with `data-for`; `html[data-lens]` picks one; URLs
   never change and nothing is sent anywhere.
+- `src/lib/a11y/*` + `src/config/a11y.ts`: the reading options (text size,
+  contrast, motion, spacing). `store.ts` owns localStorage `rl-a11y` and the
+  `html[data-*]` attributes, `boot.ts` is the head script, `useReadingPrefs.ts`
+  the hook. Rendered by `components/layout/ReadingOptions.tsx` (`docs/ACCESSIBILITY.md`).
+- `src/lib/intake/*` + `src/components/intake/*`: the consult flow.
+  `contract.ts` is the shared API contract (#seam:rothrock-intake-contract),
+  `api.ts` the fetch layer, `copy.ts` every string, `state.ts` the reducer,
+  `mic-help.ts` + `browser.ts` the microphone pre-flight, `resume.ts` continue
+  by email. See "Consult flow (intake v2)" below.
 - `src/lib/seo/jsonld.ts` (typed builders: LegalService, WebSite, Person,
   ProfilePage, Article/BlogPosting, FAQPage, BreadcrumbList, WebPage) and
   `metadata.ts` (`pageMetadata()`: title, description, canonical, OG, Twitter).
 - `src/components/<domain>/`: `layout`, `home`, `practice`, `team`, `library`,
-  `wizard`, `forms`, `about`, `seo`, `ui`. Client components only where there
+  `wizard`, `forms`, `intake`, `about`, `legal`, `lens`, `seo`, `ui`. Client components only where there
   is interaction (`LibraryClient`, `DeadlineWizard`, `ContactForm`, menus).
 
 ## Content
@@ -148,6 +157,73 @@ image (/images/...), imageAlt, draft (true|false), oldSlug (legacy posts only)
   `src/app/[...legacy]/` as a meta-refresh page with a canonical to the target
   and `noindex`. Moving a page means adding its old URL there.
 
+## Reading options and the boot scripts (docs/ACCESSIBILITY.md)
+
+- A sand strip above the header holds one 44px button, "Reading options". It
+  opens an inline bar (never an overlay) with four groups of radio chips: text
+  size (normal / large / larger), contrast (normal / high), motion (full /
+  reduced), spacing (normal / wider). "Back to normal" clears everything. The
+  same controls render inline on `/accessibility/`.
+- A choice stamps `html[data-text-size|data-contrast|data-motion|data-spacing]`
+  and is stored in localStorage `rl-a11y`; the CSS for all four lives in
+  `src/app/globals.css`. Text size changes the root font size (100 / 112.5 /
+  125%), so every rem-based token scales; never reintroduce pixel text sizes
+  (`text-[15px]` became the `text-ui` token for this reason).
+- Two tiny inline scripts sit in `<head>` (`src/app/layout.tsx`) and run before
+  paint so a stored choice is in place with no flash: the lens boot script
+  (`src/lib/lens/boot.ts`, ~199 bytes) and the reading-options boot script
+  (`src/lib/a11y/boot.ts`, ~239 bytes, hard cap 400). `scripts/check-lens.mjs`
+  asserts both are present, under the cap, and that the static `<html>` carries
+  none of the attributes. Both have unit tests; edit the source, not the
+  string.
+- The reduced-motion option mirrors `prefers-reduced-motion`; `Reveal.tsx`
+  honors it. The high-contrast palette lives beside the normal tokens in
+  `globals.css`.
+
+## Palette
+
+- One strong color: maroon `#66043D` (`maroon-700`) with `maroon-950` for
+  bands, `maroon-500/600` for focus rings and hover text, brass for eyebrows
+  and rules, sand and paper for surfaces. The pink tints (`maroon-50`,
+  `maroon-100`, `maroon-200`) were retired on 2026-09-02 at Arthur's request
+  and no longer exist in `@theme`; a selected or hovered surface is `bg-sand`,
+  a hover border is `border-line-strong`, and a callout is white with a
+  hairline and a brass top rule (`DeadlineCallout`, the follow-up info card).
+  Text selection uses `--color-highlight` (maroon-700 at 18% alpha).
+- Colors go through tokens only, never hex in a component. Guard:
+  `grep -rnE "maroon-(50|100|200)\b" src` must print nothing (the plain string
+  `maroon-50` also matches the live `maroon-500`, so use the word boundary).
+  `src/config/site.ts` mirrors the palette for JSON-LD and the editor.
+
+## Consult flow (intake v2)
+
+- `/request-a-consult/` talks to the intake API at the same origin
+  (`NEXT_PUBLIC_INTAKE_API` empty; production is proxied by Cloudflare to the
+  Armory `legion-intake` module; the editor preview reaches it through the
+  Armory Caddy at `localhost:9080/api/intake/*`). `INTAKE_API_VERSION` is 2.
+- Endpoints the site calls: `POST /api/intake` (new session),
+  `PUT /:id/answers`, `POST /:id/files` (multipart `slot` + `file`; `voice-note`
+  is the microphone recording, transcribed server-side), `POST /:id/evaluate`
+  then `GET /:id/evaluation` every 3 s until `follow-up`, `PUT /:id/follow-up`,
+  `POST /:id/submit`. Phase 2 added `POST /api/intake/lookup` `{ email }` ->
+  `{ found }` (the site sends its session bearer so its own draft is excluded;
+  the server emails a one-use 24 h link, the site never sees the token),
+  `POST /api/intake/resume` `{ token }` -> `{ session, answers, files, step }`
+  (read from `?resume=` after hydration, then stripped with `replaceState`), and
+  `POST /:id/resume-link` -> `{ sent: true }`.
+- Answers carry `spokenText` (what the browser heard, verbatim) beside `story`.
+  The evaluation takes about two minutes today at standard speed (measured
+  124 s on 2026-09-03); `copy.ts` says "about 3 minutes". Re-measure and
+  shorten it once Opus fast mode is enabled for the key's organization.
+- Copy lives in `src/lib/intake/copy.ts` and `copy-mic.ts` only; `copy.test.ts`
+  enforces the voice guide (no banned words, no em dash, no outcome promises,
+  a "Next:" line under every Continue). The flow reads at 18px body text via
+  `components/intake/intake.css`.
+- The contract file is copied verbatim into the module
+  (`legion-armory/modules/legion-intake/src/shared/contract.ts`) and the spec
+  folder (`~/projects/rothrock-legal/redesign/INTAKE-CONTRACT.ts`); change all
+  three together and `diff -q` them.
+
 ## Copy rules
 
 - Audience: an adult child, sibling, or beneficiary who is not a lawyer.
@@ -204,6 +280,6 @@ image (/images/...), imageAlt, draft (true|false), oldSlug (legacy posts only)
   placeholders that render visibly until Arthur confirms them.
 - `check-links.mjs` requires 30+ HTML files in `out/`; an empty or partial
   export fails loudly on purpose. So does an empty library index.
-- Two of the four headshots (`gerry-lin`, `max-discher`) do not exist yet;
-  `TeamCard`/`ProfileHero` fall back to initials until the WebP files land at
-  `public/images/team/<slug>-800.webp` and `-400.webp`.
+- All four headshots exist at `public/images/team/<slug>-800.webp` and
+  `-400.webp`; `TeamCard`/`ProfileHero` still fall back to `InitialAvatar` if
+  one is ever missing.

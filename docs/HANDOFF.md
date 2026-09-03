@@ -13,9 +13,10 @@ repo holds the editor module and the intake module.
   Wix-faithful rebuild. Preview: Armory → Rothrock Website Editor
   (`http://localhost:9080/tools/website-editor-rothrock/`; raw preview
   `http://localhost:9080/_preview/`). Never `next build` in this checkout.
-- Gates on `redesign`: lint, typecheck, 205 Vitest tests, static export
-  (94 HTML), `check-links` (34 stubs one hop, 0 broken), `check-seo`,
-  `check-lens` (15 slot groups, no preview-tool traces), axe 0 violations.
+- Gates on `redesign` (after Wave A, 2026-09-03): lint, typecheck, 262 Vitest
+  tests, static export (95 HTML), `check-links` (34 stubs one hop, 0 broken),
+  `check-seo`, `check-lens` (15 slot groups, two boot scripts, no preview-tool
+  traces), axe 0 violations, Lighthouse mobile a11y 100.
 - What the site is: T&E litigation firm site for beneficiaries AND trustees,
   11 practice pages, 4 attorney profiles (order Arthur, JJ, Gerry, Max;
   titles verified), the deadline wizard, the library (31 articles: 21 new
@@ -25,6 +26,112 @@ repo holds the editor module and the intake module.
   Legion v. United States block on About, and the homepage pointer to it, were
   removed by Arthur on 2026-09-02 (evening): show, don't tell. Arthur's Legion
   credential sentence stays.
+
+## Phase 2 and Phase 7 (2026-09-02/03): consult flow v2, reading options, show-not-tell
+
+Three builders worked overnight in parallel and an integrator merged them on
+`program/wave-a`, which `redesign` now points at (commits 1dcc8c2 merge,
+20bc2f8 palette, 15a4b31 wait copy, plus this doc commit). Nothing is pushed
+and `main` is untouched; the live site is unchanged.
+
+### What changed on the site
+
+- **The consult request holds your hand.** Every screen says what comes next
+  ("Next: what is going on, in a few taps."), the progress line counts minutes
+  ("Step 3 of 8 · about 6 minutes to go"), the Continue button is tall and
+  full-width on phones, Back is a text button, and the whole flow reads at 18px.
+  Follow-up questions are all optional and say so.
+- **The microphone never disappears.** Before asking, the page checks whether a
+  microphone exists and whether the browser has blocked it. If blocked, a card
+  shows numbered steps for that browser (Chrome, Edge, Safari on Mac, Firefox,
+  Safari on iPhone or iPad, Chrome on Android, Samsung Internet) and a Try again
+  button. If there is no microphone at all, the card offers the phone route with
+  the site address. Recordings go to the server as a `voice-note` file and are
+  transcribed there (see the transcriber below); what the browser heard is also
+  kept verbatim as `spokenText`.
+- **Continue by email.** When someone types an email that already has an
+  unfinished request, a card says so and offers "Start fresh". The server emails
+  a one-use link (24 hours) to that address; opening it shows "Welcome back" and
+  lands on the first unfinished screen. A typed email alone never opens
+  anything. Confirmed live: lookup answered `found: true` and the link email was
+  recorded as sent.
+- **Reading options.** A slim strip above the header with one button opens an
+  inline bar: text size, contrast, motion, spacing. Choices persist (localStorage
+  `rl-a11y`) and are restored before the page paints. `/accessibility/` carries
+  the statement and the same controls; the footer links to it.
+- **Show, not tell on the homepage.** A proof strip under the hero (six facts
+  from Arthur's config), a one-line proof under each attorney on the team strip,
+  "Results" renamed "What clients say", a "The cases we take" block lifted from
+  the complex-estates page, and the four headshots as small circles on the
+  corners of the deadline card (desktop only, a placeholder until real
+  photography exists).
+- **Palette.** The pink tints (maroon-50/100/200) are gone everywhere, intake
+  included. #66043D stays the one strong color; selected and hovered surfaces
+  are sand; callouts are white with a brass rule.
+- **Hours** read "Mon to Fri, by appointment. Send a consult request any time."
+  The **privacy policy** now names public-records checks, Google Meet and
+  Calendar, the firm's signing page, Legion for client files after engagement,
+  and the continue-by-email link; effective date September 2, 2026.
+
+### What changed in the intake module (Armory, branch `program/phase2-intake-module`, deployed)
+
+- Opus 5 **fast mode** is requested for every evaluation and falls back to
+  standard speed on a 429. Today the key's Anthropic organization has a fast
+  mode allowance of zero, so every run falls back. **Arthur: enable fast mode
+  for that organization in the Anthropic Console**; nothing else needs to
+  change, and `evaluation.attempts[].speed` will read `fast` afterwards.
+- A **second evaluation pass** runs after submit when follow-up answers or new
+  files arrived; the team email goes out after the final pass. Pass 1 is kept
+  under `evaluation.previousPasses`.
+- A **transcriber** container (faster-whisper small.en on the GPU) turns voice
+  notes into text within seconds; the transcript is in the admin view, the
+  evaluation input, and the OneDrive mirror.
+- HEIC photos become JPEG on upload. `POST /lookup`, `POST /resume`,
+  `POST /:id/resume-link` exist with rate limits (10 lookups per hour per IP,
+  3 links per address per day). Details: `legion-armory/modules/legion-intake/README.md`.
+
+### Measured on the deployed module (RL-2026-000018, 2026-09-03 06:04 UTC)
+
+A real three-page PDF, a PNG, and a 6-second voice note, through the Armory
+Caddy origin: transcript filled in 3 s; **pass 1 took 124 s** (standard speed,
+6,481 tokens in, 9,587 out); **pass 2 took 120 s**; lookup `found: true` with
+the resume-link email recorded as sent; submit returned the reference at once;
+the team email was recorded 74 ms after pass 2 finished. The site's wait copy
+now says "This usually takes about 3 minutes" (rounded up from 124 s). The
+three of you received one QA email for RL-2026-000018 titled "QA Wave A
+(integration test, ignore)"; RL-2026-000016 and 000017 are also synthetic.
+
+### How to see it
+
+Editor preview `http://localhost:9080/_preview/` (homepage, `/accessibility/`,
+`/request-a-consult/`). Try the reading options, then reload. On the consult
+page, type an email, tab away, and watch for the started-before card (only when
+that email has an open request on the deployed module). Admin queue:
+`http://localhost:9080/tools/intake/`. Screenshots: this session's scratchpad
+`wave-a-qa-*.png` and `wave-a-site-*.png`.
+
+### What Arthur should look at
+
+1. The proof strip and the team proof lines: each restates a bio fact, but the
+   wording is the builder's. Edit in `src/config/proof-points.ts` and
+   `src/config/team/<slug>.ts` (`proofLine`).
+2. The corner photos on the deadline card (placeholder interpretation).
+3. The high-contrast palette values and the reading-options strip position
+   (above the header, not in the nav row, because the row was full).
+4. Enable Opus fast mode in the Console, then re-measure and shorten the wait
+   copy in `src/lib/intake/copy.ts`.
+5. The privacy policy additions naming Google and Legion.
+
+### Not done
+
+- No real-device microphone pass (iPhone Safari, Android Chrome); the browser
+  steps were written from the current layouts and simulated in Chromium.
+- Fast mode is not serving until the Console change above.
+- The mobile menu has no Reading options entry (the strip scrolls away; by
+  design, revisit if Arthur wants it reachable mid-page).
+- Admin UI additions (pass notices, transcript section) were verified through
+  the admin JSON, not screenshotted.
+- Nothing pushed; `redesign` to `main` remains Arthur's call.
 
 ## Mobile pass (2026-09-02, branch `redesign-mobile` merged into `redesign`)
 
