@@ -126,7 +126,7 @@ function SearchInput({
         placeholder="Search: 120 days, undue influence, accounting&hellip;"
         autoComplete="off"
         aria-controls={resultsId}
-        className="h-12 w-full rounded-full border border-line-strong bg-white pr-12 pl-12 text-body text-ink placeholder:text-ellipsis placeholder:text-ink-4 focus:border-maroon-500 focus:ring-2 focus:ring-maroon-500/30 focus:outline-none [&::-webkit-search-cancel-button]:hidden"
+        className="h-12 w-full rounded-full border border-line-strong bg-white pr-12 pl-12 text-body text-ink placeholder:text-ellipsis placeholder:text-ink-4 focus:border-maroon-700 focus:ring-2 focus:ring-maroon-700/30 focus:outline-none [&::-webkit-search-cancel-button]:hidden"
       />
       {query !== '' && (
         <button

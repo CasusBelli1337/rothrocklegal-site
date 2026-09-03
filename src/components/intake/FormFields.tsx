@@ -2,7 +2,7 @@
 
 export const inputClass =
   'h-12 w-full rounded-md border border-line-strong bg-white px-3 text-body text-ink placeholder:text-ink-4 ' +
-  'focus:border-maroon-500 focus:outline-none focus:ring-2 focus:ring-maroon-500/30 disabled:bg-sand disabled:text-ink-3';
+  'focus:border-maroon-700 focus:outline-none focus:ring-2 focus:ring-maroon-700/30 disabled:bg-sand disabled:text-ink-3';
 
 export const labelClass = 'block text-small font-medium text-ink';
 
@@ -181,7 +181,7 @@ export function CheckboxRow({
   return (
     <label
       htmlFor={id}
-      className={`${frame} ${className} text-body text-ink has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-maroon-500`}
+      className={`${frame} ${className} text-body text-ink has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-maroon-700`}
     >
       <input
         id={id}

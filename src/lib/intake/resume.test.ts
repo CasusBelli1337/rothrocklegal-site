@@ -144,14 +144,14 @@ describe('lookupReducer', () => {
   const run = (...events: LookupEvent[]) => events.reduce(lookupReducer, LOOKUP_IDLE);
   const jane = 'jane@example.com';
 
-  it('checks once per address and shows the card on a match', () => {
+  it('checks once per address and shows the same card whatever the server answered', () => {
     expect(run({ type: 'check', email: jane })).toEqual({ phase: 'checking', email: jane });
     expect(
       run({ type: 'check', email: jane }, { type: 'result', email: jane, found: true }),
-    ).toEqual({ phase: 'found', email: jane });
+    ).toEqual({ phase: 'answered', email: jane });
     expect(
       run({ type: 'check', email: jane }, { type: 'result', email: jane, found: false }),
-    ).toEqual({ phase: 'clear', email: jane });
+    ).toEqual({ phase: 'answered', email: jane });
   });
 
   it('does not re-check an address it already answered', () => {

@@ -8,8 +8,10 @@ import { isValidEmail } from './state';
 export interface LookupController extends LookupState {
   /**
    * Asks the server about the address (once per address). Resolves true only
-   * when the "started before" card has just appeared, so the caller pauses
-   * long enough for the person to read it; every later call resolves false.
+   * when the card has just appeared, so the caller pauses long enough for the
+   * person to read it; every later call resolves false. The card and the pause
+   * are the same whatever the server answered, so nothing on screen tells a
+   * stranger whether the address has a request.
    */
   check(rawEmail: string): Promise<boolean>;
   dismiss(): void;
@@ -38,7 +40,7 @@ export function useLookup(session: Session | null): LookupController {
       const promise = lookupEmail(email, session).then((found) => {
         dispatch({ type: 'result', email, found });
         if (inFlight.current?.email === email) inFlight.current = null;
-        return found;
+        return true;
       });
       inFlight.current = { email, promise };
       return promise;

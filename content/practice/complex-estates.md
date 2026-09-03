@@ -34,7 +34,7 @@ Whether the case is in the Santa Clara County Probate Division in San Jose or th
 
 Arthur has represented beneficiaries and trustees in trust and estate matters involving multiple real properties, LLCs and operating businesses held in trust, and millions of dollars at issue, in the Santa Clara County Superior Court's Probate Division and the San Mateo, Alameda, and San Francisco Superior Courts. Those matters have included disputes among several siblings over a parent's trust, blended-family disputes between a surviving spouse and the children of a first marriage, contested accountings for trusts holding rental portfolios, and fights over who controls a family business after the founder's death.
 
-We do not publish results, and we do not describe clients' matters in a way that would identify them. Every case is different. Past results do not guarantee a similar outcome. What we can tell you is what to expect from us: the records read completely and fast, the experts retained early, and a lawyer who has been in this courtroom with this kind of estate before.
+We do not publish results, and we do not describe clients' matters in a way that would identify them. Every case is different. Past results do not guarantee a similar outcome. What we can tell you is what to expect from us: the records read completely and fast, the forensic accountants and appraisers retained early, and a lawyer who has been in this courtroom with this kind of estate before.
 
 ## Who we work with
 

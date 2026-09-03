@@ -7,7 +7,7 @@ import { submitForm } from "@/lib/submit-form";
 
 const inputClass =
   "h-12 w-full rounded-md border border-line-strong bg-white px-3 text-body text-ink placeholder:text-ink-4 " +
-  "focus:border-maroon-500 focus:outline-none focus:ring-2 focus:ring-maroon-500/30";
+  "focus:border-maroon-700 focus:outline-none focus:ring-2 focus:ring-maroon-700/30";
 
 const labelClass = "block text-small font-medium text-ink";
 
@@ -120,7 +120,7 @@ export function ContactForm({ initialMessage }: ContactFormProps = {}) {
           {NOTICE_OPTIONS.map((option) => (
             <label
               key={option}
-              className="inline-flex h-11 cursor-pointer items-center gap-2 rounded-md border border-line-strong bg-white px-4 text-body text-ink has-[:checked]:border-maroon-700 has-[:checked]:bg-sand has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-maroon-500/40"
+              className="inline-flex h-11 cursor-pointer items-center gap-2 rounded-md border border-line-strong bg-white px-4 text-body text-ink has-[:checked]:border-maroon-700 has-[:checked]:bg-sand has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-maroon-700/40"
             >
               <input
                 type="radio"

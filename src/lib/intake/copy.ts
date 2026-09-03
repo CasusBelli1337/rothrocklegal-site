@@ -61,16 +61,20 @@ export const AFTER_YOU_SEND: readonly { title: string; body: string }[] = [
   },
   {
     title: 'You get a written fee estimate before any work starts.',
-    body: 'On the call we tell you what it would take and what it would cost. No pitch, no surprise bills.',
+    body: 'We tell you what it would take and what it would cost before any work starts.',
   },
 ];
 
-/** Under the email field when that address already has an unfinished request. */
+/**
+ * Under the email field once the server has been asked about the address. The
+ * same words whether or not a request exists: a page that confirmed one would
+ * tell anyone who typed a relative's address that they contacted a
+ * trust-litigation firm. Only the inbox learns the answer.
+ */
 export const LOOKUP_CARD = {
-  before: 'It looks like you started a request with this email before. We just sent a link to',
-  after: 'so you can pick up where you left off. If you would rather start fresh, just keep going.',
+  body: 'If we already have a request under this email address, we just sent that inbox a link to continue it. If not, just keep going.',
   spam: 'If the email does not arrive in a minute or two, check your spam or junk folder.',
-  startFresh: 'Start fresh',
+  startFresh: 'Keep going',
 } as const;
 
 /** Above the steps when the page opened from an emailed continue link. */
@@ -266,7 +270,8 @@ export const STEP_MINUTES: Record<StepId, number> = {
   story: 2,
   documents: 2,
   scope: 1,
-  review: 1,
+  /** The screen itself plus the evaluation wait it announces ("takes about 3 minutes"). */
+  review: 4,
   'follow-up': 1,
   done: 0,
 };

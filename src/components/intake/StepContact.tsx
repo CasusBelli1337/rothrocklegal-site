@@ -17,13 +17,11 @@ const REPLY_OPTIONS = [
   { value: 'phone', label: 'Phone call' },
 ] as const;
 
-/** "You started a request with this email before": the link is already on its way. */
-function LookupCard({ email, onDismiss }: { email: string; onDismiss(): void }) {
+/** The same card whether or not a request exists; only the inbox learns which (see LOOKUP_CARD). */
+function LookupCard({ onDismiss }: { onDismiss(): void }) {
   return (
     <div role="status" aria-live="polite" className="wizard-banner mt-4">
-      <p className="text-body text-ink">
-        {LOOKUP_CARD.before} <strong className="break-words">{email}</strong> {LOOKUP_CARD.after}
-      </p>
+      <p className="text-body text-ink">{LOOKUP_CARD.body}</p>
       <p className="mt-2 text-small text-ink-3">{LOOKUP_CARD.spam}</p>
       <button
         type="button"
@@ -42,7 +40,7 @@ export function StepContact({ intake }: StepProps) {
   const set = (patch: Partial<typeof contact>) => intake.patchAnswers({ contact: patch });
   const lookup = useLookup(intake.state.session);
   const [waiting, setWaiting] = useState(false);
-  const showCard = lookup.phase === 'found' && lookup.email === normalizeEmail(contact.email);
+  const showCard = lookup.phase === 'answered' && lookup.email === normalizeEmail(contact.email);
 
   // Continue waits for the lookup once per address, so the card is seen before the screen changes.
   const submit = async () => {
@@ -89,7 +87,7 @@ export function StepContact({ intake }: StepProps) {
           />
         </Field>
       </div>
-      {showCard && <LookupCard email={contact.email.trim()} onDismiss={lookup.dismiss} />}
+      {showCard && <LookupCard onDismiss={lookup.dismiss} />}
       <div className="mt-5 grid gap-5 sm:grid-cols-2">
         <Field id="contact-phone" label="Phone" optional>
           <TextInput

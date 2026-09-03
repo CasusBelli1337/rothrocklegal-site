@@ -109,9 +109,18 @@ describe('hand-holding lines', () => {
 
   it('counts the minutes left from the current screen on', () => {
     expect(copy.minutesToGo('follow-up', STEP_ORDER)).toBe('about a minute to go');
-    expect(copy.minutesToGo('review', STEP_ORDER)).toBe('about 2 minutes to go');
-    expect(copy.minutesToGo('contact', STEP_ORDER)).toBe('about 10 minutes to go');
+    // The review screen's count includes the three-minute evaluation wait it announces.
+    expect(copy.minutesToGo('review', STEP_ORDER)).toBe('about 5 minutes to go');
+    expect(copy.minutesToGo('contact', STEP_ORDER)).toBe('about 13 minutes to go');
     expect(copy.minutesToGo('done', STEP_ORDER)).toBe('about a minute to go');
+  });
+
+  it('never tells a stranger whether an email address has a request', () => {
+    expect(copy.LOOKUP_CARD.body).toBe(
+      'If we already have a request under this email address, we just sent that inbox a link to continue it. If not, just keep going.',
+    );
+    expect(copy.LOOKUP_CARD.body).not.toMatch(/started a request|before\./i);
+    expect(copy.LOOKUP_CARD.startFresh).toBe('Keep going');
   });
 
   it('lists what not to send and mentions another lawyer’s files', () => {

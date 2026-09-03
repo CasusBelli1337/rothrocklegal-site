@@ -92,7 +92,8 @@ export function isResumeResponse(value: unknown): value is ResumeResponse {
 
 /* ---- The "started before" card on the contact step ---------------------- */
 
-export type LookupPhase = 'idle' | 'checking' | 'found' | 'clear' | 'dismissed';
+/** `answered` covers both outcomes on purpose: the page shows one card whatever the server said. */
+export type LookupPhase = 'idle' | 'checking' | 'answered' | 'dismissed';
 
 /** `email` is the address the phase is about; a different address starts over. */
 export interface LookupState {
@@ -114,9 +115,9 @@ export function lookupReducer(state: LookupState, event: LookupEvent): LookupSta
       return { phase: 'checking', email: event.email };
     case 'result':
       if (state.phase !== 'checking' || state.email !== event.email) return state;
-      return { phase: event.found ? 'found' : 'clear', email: event.email };
+      return { phase: 'answered', email: event.email };
     case 'dismiss':
-      return state.phase === 'found' ? { ...state, phase: 'dismissed' } : state;
+      return state.phase === 'answered' ? { ...state, phase: 'dismissed' } : state;
   }
 }
 

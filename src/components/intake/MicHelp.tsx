@@ -37,6 +37,19 @@ function HelpCard({ title, children, onRetry }: HelpCardProps) {
   );
 }
 
+/** A break opportunity after the host, so a narrow card wraps "…com/" then the path instead of mid-word. */
+function wrappableUrl(url: string) {
+  const cut = url.indexOf('/');
+  if (cut < 0) return url;
+  return (
+    <>
+      {url.slice(0, cut + 1)}
+      <wbr />
+      {url.slice(cut + 1)}
+    </>
+  );
+}
+
 function DeniedCard({ browser, onRetry }: { browser: BrowserInfo; onRetry(): void }) {
   return (
     <HelpCard title={MIC_DENIED.title} onRetry={onRetry}>
@@ -86,7 +99,7 @@ export function MicHelp({ mic, browser }: MicHelpProps) {
         <HelpCard title={MIC_NO_DEVICE.title} onRetry={mic.retry}>
           <p>{MIC_NO_DEVICE.body}</p>
           <p>
-            {MIC_NO_DEVICE.urlLabel} <strong className="break-words">{CONSULT_PAGE_SHORT_URL}</strong>
+            {MIC_NO_DEVICE.urlLabel} <strong className="break-words">{wrappableUrl(CONSULT_PAGE_SHORT_URL)}</strong>
           </p>
         </HelpCard>
       );

@@ -29,18 +29,18 @@ export const MIC_COPY = {
 
 export const MIC_UNSUPPORTED = {
   title: 'This browser cannot record.',
-  body: 'You can keep typing, or use your phone with the same email. Open this page on your phone, type the same email address, and we will join the two together.',
+  body: 'You can keep typing, or use your phone. Open this page on your phone, type the same email address there, and we will email you a link that picks up where you left off.',
 } as const;
 
 export const MIC_NO_DEVICE = {
   title: 'We could not find a microphone on this computer.',
-  body: 'You can keep typing. Or open this page on your phone: type the same email address there and we will join the two together.',
+  body: 'You can keep typing. Or open this page on your phone: type the same email address there and we will email you a link that picks up where you left off.',
   urlLabel: 'On your phone, go to',
 } as const;
 
 export const MIC_DENIED = {
   title: 'The microphone is blocked for this page.',
-  lead: 'That is easy to fix, and takes about a minute. Here is how in',
+  lead: 'Here is how to turn the microphone back on in',
   afterSteps: 'Then come back here and press Try again.',
 } as const;
 
