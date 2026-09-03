@@ -1,6 +1,5 @@
 import { Slot } from '@/components/lens/Slot';
 import { Container } from '@/components/ui/Container';
-import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { lensCopy } from '@/config/lens-copy';
 
@@ -20,24 +19,20 @@ const steps: { title: string; body: React.ReactNode }[] = [
   },
   {
     title: 'We move.',
-    body: 'A petition in the probate court where the case belongs. Mediation when it makes sense. Trial when it doesn’t.',
+    body: 'We file in court and keep the case moving. Mediation when it makes sense. Trial when it doesn’t.',
   },
 ];
 
 export type StepsLayout = 'list' | 'grid';
 
 /**
- * 'list' stacks the steps with the number beside the title (/contact/).
- * 'grid' runs them four across on the homepage with the number above the
- * title; on a phone, where the grid is one column anyway, it reads as the list.
+ * 'list' stacks the steps (/contact/); 'grid' runs them four across on the
+ * homepage. In both, the square brass number sits to the left of the title on
+ * one row (Arthur, 2026-09-03) and the body hangs under the title.
  */
-const layouts: Record<StepsLayout, { list: string; item: string; body: string }> = {
-  list: { list: 'space-y-8', item: 'flex gap-5', body: 'mt-1.5 max-w-[56ch]' },
-  grid: {
-    list: 'grid gap-8 sm:grid-cols-2 lg:grid-cols-4',
-    item: 'flex gap-5 sm:flex-col sm:gap-4',
-    body: 'mt-1.5 sm:mt-2',
-  },
+const layouts: Record<StepsLayout, { list: string; body: string }> = {
+  list: { list: 'space-y-8', body: 'max-w-[56ch]' },
+  grid: { list: 'grid gap-8 sm:grid-cols-2 lg:grid-cols-4', body: '' },
 };
 
 /** The four steps, reusable on /contact/. */
@@ -46,17 +41,15 @@ export function HowWeWorkSteps({ layout = 'list' }: { layout?: StepsLayout }) {
   return (
     <ol className={c.list}>
       {steps.map((step, i) => (
-        <li key={step.title} className={c.item}>
+        <li key={step.title} className="grid grid-cols-[2.5rem_1fr] items-start gap-x-4">
           <span
             aria-hidden="true"
-            className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-brass-400 font-serif text-lg text-brass-600 tabular"
+            className="grid h-10 w-10 place-items-center border border-brass-400 font-serif text-lg text-brass-600 tabular"
           >
             {i + 1}
           </span>
-          <div>
-            <h3 className="font-sans text-h4 text-ink">{step.title}</h3>
-            <p className={`${c.body} text-body text-ink-2`}>{step.body}</p>
-          </div>
+          <h3 className="flex min-h-10 items-center font-sans text-h4 text-ink">{step.title}</h3>
+          <p className={`${c.body} col-start-2 mt-2 text-body text-ink-2`}>{step.body}</p>
         </li>
       ))}
     </ol>
@@ -67,15 +60,10 @@ export function HowWeWork() {
   return (
     <section className="grid-hairline bg-sand py-16 lg:py-24">
       <Container>
-        <Reveal>
-          <SectionHeading
-            eyebrow="What to expect"
-            title="Here's what happens when you reach out."
-          />
-        </Reveal>
-        <Reveal className="mt-10">
+        <SectionHeading eyebrow="What to expect" title="Here's what happens when you reach out." />
+        <div className="mt-10">
           <HowWeWorkSteps layout="grid" />
-        </Reveal>
+        </div>
       </Container>
     </section>
   );

@@ -66,8 +66,8 @@ export function PrivacyUse() {
           work: our email provider, the form-delivery service (if one is in use), the company that
           hosts the site and the consult-request system, the AI provider described above, Google
           (Meet and Calendar) when we schedule a video meeting with you, and Legion, the AI
-          litigation platform our founder co-founded, where we work on client files after you
-          become a client.
+          litigation platform our founder co-founded, where we work on client files after you become
+          a client.
         </li>
         <li>
           Anyone we are required by law to share it with, for example under a court order or
@@ -118,7 +118,7 @@ export function PrivacyUse() {
           you later, plus anything the law requires us to keep.
         </li>
         <li>
-          <strong>Contact-form notes and emails:</strong> kept on the same schedule as a request.
+          <strong>Emails:</strong> kept on the same schedule as a request.
         </li>
       </ul>
       <p>You can ask us to delete your information sooner. See the next section.</p>

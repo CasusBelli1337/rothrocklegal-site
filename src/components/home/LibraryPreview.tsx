@@ -2,7 +2,6 @@ import { renderVariants, Slot } from '@/components/lens/Slot';
 import { LibraryCard } from '@/components/library/LibraryCard';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
-import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { lensConfig } from '@/config/lens';
 import { lensCopy } from '@/config/lens-copy';
@@ -45,25 +44,25 @@ export function LibraryPreview() {
     `homepage library preview: ${LENSES.map((l) => `${l} ${lists[l].length}`).join(', ')} item(s)`,
   );
   const grids = renderVariants(keys, (key) => (
-    <Reveal stagger className="mt-10 grid gap-5 md:grid-cols-3">
+    <div className="mt-10 grid gap-5 md:grid-cols-3">
       {(byKey.get(key) ?? []).map((item) => (
         <LibraryCard key={item.slug} item={item} />
       ))}
-    </Reveal>
+    </div>
   ));
   return (
     <section className="bg-white py-16 lg:py-24">
       <Container>
-        <Reveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <SectionHeading
             eyebrow="From the library"
-            title="Answers to the questions people google at 2 a.m."
+            title="Answers to common questions."
             lead={<Slot name="library-lead" variants={lensCopy.libraryLead} />}
           />
           <Button variant="secondary" href="/library/" className="shrink-0">
             Browse the library
           </Button>
-        </Reveal>
+        </div>
         {lists.neutral.length > 0 && <Slot name="library-preview" as="div" variants={grids} />}
       </Container>
     </section>

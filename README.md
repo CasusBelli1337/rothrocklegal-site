@@ -49,10 +49,8 @@ node scripts/check-seo.mjs         # h1, title, description, canonical, JSON-LD,
 - Firm facts, navigation, footer, palette: `src/config/site.ts`.
 - Old URLs: `src/config/redirects.ts` (every retired URL keeps a redirect page).
 
-## Contact form
+## Getting in touch
 
-The form posts to `NEXT_PUBLIC_FORM_ENDPOINT` (a Formspree-compatible
-endpoint; see `.env.example`) when it is set. When it is not, which is the
-current state, submitting opens a prefilled email to the firm with the two CC
-addresses from `site.formCc`, so a message is never lost to a dead button. The
-deadline wizard prefills the same form with the visitor's answers and dates.
+The consult request (`/request-a-consult/`, the intake module) is the one way
+in; there is no contact form and no form endpoint. The deadline wizard ends in a
+panel that points at the consult request.

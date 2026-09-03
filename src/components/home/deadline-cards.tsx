@@ -37,16 +37,20 @@ function bindLabel(label: string): string {
   );
 }
 
-/** One clock: hairline above it on phones, to its left from md. */
+/**
+ * One clock: hairline above it on phones, to its left from md. The question
+ * leads; the clock and statute close the item as a citation, not a header
+ * (Arthur, 2026-09-03), pinned to the bottom so the three share a baseline.
+ */
 function DeadlineItem({ card, index }: { card: DeadlineCard; index: number }) {
   const divider =
     index === 0 ? '' : 'border-t border-line pt-8 md:border-t-0 md:border-l md:pt-0 md:pl-8';
   return (
-    <div className={divider}>
-      <p className="eyebrow text-balance leading-snug">{bindLabel(card.label)}</p>
-      <h3 className="mt-3 font-sans text-h4 text-ink">{card.question}</h3>
+    <div className={`flex flex-col ${divider}`}>
+      <h3 className="font-sans text-h4 text-ink">{card.question}</h3>
       <p className="mt-3 text-body text-ink-2">{bindSectionSigns(card.body)}</p>
       {card.more && <Disclosure more={card.more} />}
+      <p className="eyebrow mt-auto pt-4 text-balance leading-snug">{bindLabel(card.label)}</p>
     </div>
   );
 }

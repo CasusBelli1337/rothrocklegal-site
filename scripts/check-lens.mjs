@@ -15,7 +15,7 @@ import path from 'node:path';
 const OUT = path.join(process.cwd(), 'out');
 const LENSES = ['neutral', 'trustee', 'beneficiary'];
 /** Page → minimum distinct slots it must carry. */
-const PAGES = { '/': 12, '/library/': 1, '/contact/': 1 };
+const PAGES = { '/': 10, '/library/': 1, '/contact/': 1 };
 const PREVIEW_TRACES = ['PreviewLensSwitch', 'Preview lens', 'preview:'];
 const failures = [];
 
@@ -40,12 +40,15 @@ let totalSlots = 0;
 for (const [rel, minimum] of Object.entries(PAGES)) {
   const html = read(rel);
   const slots = slotsIn(html);
-  if (slots.size < minimum) failures.push(`${rel}: ${slots.size} slots, expected at least ${minimum}`);
+  if (slots.size < minimum)
+    failures.push(`${rel}: ${slots.size} slots, expected at least ${minimum}`);
   for (const [name, covered] of slots) {
     const missing = LENSES.filter((lens) => !covered.has(lens));
     const extra = [...covered].filter((lens) => !LENSES.includes(lens));
-    if (missing.length > 0) failures.push(`${rel}: slot "${name}" has no ${missing.join('/')} variant`);
-    if (extra.length > 0) failures.push(`${rel}: slot "${name}" has unknown lens ${extra.join('/')}`);
+    if (missing.length > 0)
+      failures.push(`${rel}: slot "${name}" has no ${missing.join('/')} variant`);
+    if (extra.length > 0)
+      failures.push(`${rel}: slot "${name}" has unknown lens ${extra.join('/')}`);
   }
   totalSlots += slots.size;
   console.log(`${rel}: ${slots.size} slots (${[...slots.keys()].join(', ')})`);
@@ -53,15 +56,26 @@ for (const [rel, minimum] of Object.entries(PAGES)) {
 
 const root = read('/');
 const head = root.slice(0, root.indexOf('</head>'));
-const boot = /<script>(try\{var s=JSON\.parse\(localStorage\.getItem\('rl-lens'\)\)[\s\S]*?)<\/script>/.exec(head);
+const boot =
+  /<script>(try\{var s=JSON\.parse\(localStorage\.getItem\('rl-lens'\)\)[\s\S]*?)<\/script>/.exec(
+    head,
+  );
 if (!boot) failures.push('/: lens boot script missing from <head>');
-else if (Buffer.byteLength(boot[1]) >= 400) failures.push(`/: boot script is ${Buffer.byteLength(boot[1])} bytes`);
-if (/<html[^>]*\sdata-lens=/.test(root)) failures.push('/: <html> carries data-lens in the static HTML');
-const a11y = /<script>(try\{var p=JSON\.parse\(localStorage\.getItem\('rl-a11y'\)\)[\s\S]*?)<\/script>/.exec(head);
+else if (Buffer.byteLength(boot[1]) >= 400)
+  failures.push(`/: boot script is ${Buffer.byteLength(boot[1])} bytes`);
+if (/<html[^>]*\sdata-lens=/.test(root))
+  failures.push('/: <html> carries data-lens in the static HTML');
+const a11y =
+  /<script>(try\{var p=JSON\.parse\(localStorage\.getItem\('rl-a11y'\)\)[\s\S]*?)<\/script>/.exec(
+    head,
+  );
 if (!a11y) failures.push('/: reading-options boot script missing from <head>');
-else if (Buffer.byteLength(a11y[1]) >= 400) failures.push(`/: reading-options boot script is ${Buffer.byteLength(a11y[1])} bytes`);
-if (/<html[^>]*\sdata-(text-size|contrast|motion|spacing)=/.test(root)) failures.push('/: <html> carries a reading option in the static HTML');
-if ((root.match(/<h1[\s>]/g) ?? []).length !== 1) failures.push('/: hero variants must live inside the one <h1>');
+else if (Buffer.byteLength(a11y[1]) >= 400)
+  failures.push(`/: reading-options boot script is ${Buffer.byteLength(a11y[1])} bytes`);
+if (/<html[^>]*\sdata-(text-size|contrast|motion|spacing)=/.test(root))
+  failures.push('/: <html> carries a reading option in the static HTML');
+if ((root.match(/<h1[\s>]/g) ?? []).length !== 1)
+  failures.push('/: hero variants must live inside the one <h1>');
 
 function walk(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
@@ -74,11 +88,14 @@ for (const file of walk(OUT).filter((f) => /\.(html|js|css|txt|json)$/.test(f)))
   const text = fs.readFileSync(file, 'utf8');
   scanned += 1;
   for (const trace of PREVIEW_TRACES) {
-    if (text.includes(trace)) failures.push(`${path.relative(OUT, file)}: preview-only trace "${trace}"`);
+    if (text.includes(trace))
+      failures.push(`${path.relative(OUT, file)}: preview-only trace "${trace}"`);
   }
 }
 
-console.log(`checked ${totalSlots} slot groups, boot scripts ${boot ? Buffer.byteLength(boot[1]) : 0} + ${a11y ? Buffer.byteLength(a11y[1]) : 0} bytes, ${scanned} files scanned for preview traces`);
+console.log(
+  `checked ${totalSlots} slot groups, boot scripts ${boot ? Buffer.byteLength(boot[1]) : 0} + ${a11y ? Buffer.byteLength(a11y[1]) : 0} bytes, ${scanned} files scanned for preview traces`,
+);
 if (failures.length > 0) {
   console.error(`FAIL: ${failures.length} problem(s):`);
   for (const line of failures) console.error(`  ${line}`);

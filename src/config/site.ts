@@ -18,8 +18,6 @@ export const site = {
   phone: '(408) 420-7034',
   phoneE164: '+1-408-420-7034',
   email: 'arothrock@rothrocklegal.com',
-  /** Contact-form CCs so a submission is never missed by a single inbox. */
-  formCc: ['jonathan@rothrocklegal.com', 'glin@rothrocklegal.com'],
   /** Office facts shown on the page and mirrored in JSON-LD (SEO-SPEC §3a). No street address. */
   office: {
     city: 'San Jose',
@@ -36,7 +34,7 @@ export const site = {
   replyPromise: 'We strive to respond within one business day.',
   /** Sits beside the phone number, which is text and never a button: Arthur does not field calls. */
   consultLine: 'The fastest way to reach us is a consult request. We read every one.',
-  /** "What happens next" after a consult request or a note (/contact/, thank-you page). */
+  /** "What happens next" after a consult request (the homepage band and /contact/). */
   nextSteps: [
     'We read it.',
     'We run a conflict check.',

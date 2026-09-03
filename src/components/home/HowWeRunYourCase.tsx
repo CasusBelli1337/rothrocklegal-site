@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { Fragment } from 'react';
 import { Slot } from '@/components/lens/Slot';
 import { Container } from '@/components/ui/Container';
-import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { lensCopy } from '@/config/lens-copy';
 import { getTeamMember, teamHref, type TeamMember } from '@/config/team';
@@ -35,7 +34,7 @@ const roles: { members: TeamMember[]; body: React.ReactNode }[] = [
 /** The Legion credential framed as speed (HOMEPAGE-SPEC §5). The lead keeps its slot name: check-lens.mjs counts it. */
 const reasons: { lead: React.ReactNode; body: React.ReactNode }[] = [
   {
-    lead: 'Every page gets read.',
+    lead: 'Records at scale.',
     body: <Slot name="why-faster-lead" variants={lensCopy.whyFasterLead} />,
   },
   {
@@ -76,14 +75,12 @@ export function HowWeRunYourCase() {
   return (
     <section className="bg-white py-16 lg:py-24">
       <Container>
-        <Reveal>
-          <SectionHeading
-            eyebrow="How we run your case"
-            title="Senior judgment where it counts. Associate rates for the heavy lifting."
-          />
-        </Reveal>
+        <SectionHeading
+          eyebrow="How we run your case"
+          title="Senior judgment where it counts. Associate rates for the heavy lifting."
+        />
         <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:gap-12">
-          <Reveal className="lg:col-span-6">
+          <div className="lg:col-span-6">
             <ColumnHeading>Who does what</ColumnHeading>
             <ul className="mt-3 divide-y divide-line">
               {roles.map((role) => (
@@ -95,8 +92,8 @@ export function HowWeRunYourCase() {
                 </li>
               ))}
             </ul>
-          </Reveal>
-          <Reveal className="lg:col-span-6">
+          </div>
+          <div className="lg:col-span-6">
             <ColumnHeading>Why it costs less and moves faster</ColumnHeading>
             <ul className="mt-3 divide-y divide-line">
               {reasons.map((reason, i) => (
@@ -106,10 +103,7 @@ export function HowWeRunYourCase() {
                 </li>
               ))}
             </ul>
-            <p className="mt-4 text-small text-ink-3">
-              We tell you what it would take and what it would cost before any work starts.
-            </p>
-          </Reveal>
+          </div>
         </div>
       </Container>
     </section>

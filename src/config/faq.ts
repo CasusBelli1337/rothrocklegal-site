@@ -63,8 +63,8 @@ export const homeFaq: readonly FaqItem[] = [
   {
     question: 'Which courts do you appear in?',
     answer:
-      'Santa Clara County Superior Court – Probate Division in San Jose most often, plus San ' +
-      'Mateo, Alameda, and San Francisco Superior Courts. By video anywhere in California.',
+      'Santa Clara County Superior Court in San Jose most often, plus San Mateo, Alameda, and ' +
+      'San Francisco Superior Courts. By video anywhere in California.',
   },
   trusteeFeesFaq,
   trusteeAccountingFaq,

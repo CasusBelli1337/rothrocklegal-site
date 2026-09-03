@@ -1,4 +1,4 @@
-import { consultCta, secondaryCta, site } from '@/config/site';
+import { consultCta, secondaryCta, site, type NavItem } from '@/config/site';
 import { Button } from './Button';
 import { Container } from './Container';
 
@@ -6,11 +6,13 @@ interface CtaBandProps {
   title?: React.ReactNode;
   lead?: React.ReactNode;
   primary?: { label: string; href: string };
+  /** The second button; defaults to the deadline wizard, `null` hides it (the wizard page itself). */
+  secondary?: NavItem | null;
   id?: string;
 }
 
 /**
- * The footer's top row: white h2, one lead line, consult button + note button
+ * The footer's top row: white h2, one lead line, consult button + deadline button
  * (DESIGN-BRIEF §6). Flat maroon-950 like the Footer, so the two read as one
  * block split by a single hairline (Arthur, 2026-09-03); the heroes keep band-maroon.
  */
@@ -22,6 +24,7 @@ export function CtaBand({
     </>
   ),
   primary = consultCta,
+  secondary = secondaryCta,
   id,
 }: CtaBandProps) {
   return (
@@ -35,9 +38,11 @@ export function CtaBand({
           <Button variant="inverse" tone="dark" href={primary.href}>
             {primary.label}
           </Button>
-          <Button variant="secondary" tone="dark" href={secondaryCta.href}>
-            {secondaryCta.label}
-          </Button>
+          {secondary && (
+            <Button variant="secondary" tone="dark" href={secondary.href}>
+              {secondary.label}
+            </Button>
+          )}
         </div>
       </Container>
     </section>

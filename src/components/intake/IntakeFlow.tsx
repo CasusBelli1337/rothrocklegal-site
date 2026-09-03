@@ -42,7 +42,7 @@ const STEPS: Record<StepId, ComponentType<StepProps>> = {
   done: StepDone,
 };
 
-/** Pings the API once on mount; the answer picks the full flow or the fallback form. */
+/** Pings the API once on mount; the answer picks the full flow or the fallback notice. */
 function useApiStatus(): ApiStatus {
   const [status, setStatus] = useState<ApiStatus>('checking');
   useEffect(() => {
@@ -82,7 +82,7 @@ export function IntakeFlow() {
   const Step = STEPS[step];
   const number = stepNumber(step);
   return (
-    <div className="wizard intake-flow rounded-xl border border-line bg-white p-5 sm:p-10">
+    <div className="wizard intake-flow border border-line bg-white p-5 sm:p-10">
       <ResumeNotice resume={resume} />
       {number !== null && (
         <div className="mb-8">

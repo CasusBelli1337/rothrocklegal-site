@@ -132,6 +132,7 @@ export default function HowLongDoIHavePage() {
             conversation.
           </>
         }
+        secondary={null}
       />
       <JsonLd
         data={webPage({

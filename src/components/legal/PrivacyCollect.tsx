@@ -7,25 +7,16 @@ export function PrivacyCollect() {
     <>
       <h2>What we collect, and where it goes</h2>
       <p>
-        We collect only what you choose to give us. There are four ways to send us information on
+        We collect only what you choose to give us. There are three ways to send us information on
         this site, and each is described below. Nothing on this site collects information about you
         in the background.
-      </p>
-
-      <h3>The contact form (&ldquo;Tell us your story&rdquo;)</h3>
-      <p>
-        The short form on our contact page asks for your name, your email address, your phone number
-        (optional), what happened, and whether you have received a formal notice. When you press
-        send, the form is delivered to our email inboxes. Depending on how the site is set up, it
-        travels either through a form-delivery service acting on our behalf or through your own
-        email app.
       </p>
 
       <h3>The deadline tool (&ldquo;How Long Do I Have?&rdquo;)</h3>
       <p>
         Your answers stay in your own browser so you can come back to them. Nothing you enter in the
-        deadline tool reaches us unless you then send the contact form or a consult request. You can
-        clear the saved answers from the tool itself or by clearing your browser data.
+        deadline tool reaches us unless you then send a consult request or an email. You can clear
+        the saved answers from the tool itself or by clearing your browser data.
       </p>
 
       <h3>The consult request</h3>
@@ -96,10 +87,10 @@ export function PrivacyCollect() {
 
       <h3>Public records we may look at</h3>
       <p>
-        As part of conflict checking and case review, we may look at public court records and
-        other public sources about the people and the disputes described in your request. We do
-        this to check for conflicts and to see what has already happened in court. We do not buy
-        information about you from data brokers.
+        As part of conflict checking and case review, we may look at public court records and other
+        public sources about the people and the disputes described in your request. We do this to
+        check for conflicts and to see what has already happened in court. We do not buy information
+        about you from data brokers.
       </p>
 
       <h3>Video meetings and scheduling</h3>

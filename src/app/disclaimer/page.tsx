@@ -54,12 +54,12 @@ export default function DisclaimerPage() {
         sign
       </h2>
       <p>
-        Reading this site, using the deadline tool, sending a consult request or a contact-form
-        note, or emailing us does not make you a client and does not create an attorney-client
-        relationship. That relationship begins only when you and the firm both sign a written
-        engagement letter. Until then, we are not your lawyers, we have not agreed to protect any
-        deadline for you, and we may decline your matter. We run a conflict check before we can
-        discuss any matter, and if there is a conflict we may have to decline without saying why.
+        Reading this site, using the deadline tool, sending a consult request, or emailing us does
+        not make you a client and does not create an attorney-client relationship. That relationship
+        begins only when you and the firm both sign a written engagement letter. Until then, we are
+        not your lawyers, we have not agreed to protect any deadline for you, and we may decline
+        your matter. We run a conflict check before we can discuss any matter, and if there is a
+        conflict we may have to decline without saying why.
       </p>
 
       <h2>Deadlines are fact-specific</h2>

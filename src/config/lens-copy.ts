@@ -1,6 +1,6 @@
 import type { Lens, LensCopy } from '@/lib/lens/types';
 import { NOTICE_ARTICLE_PATH } from './lens';
-import { site } from './site';
+import { consultCta, site } from './site';
 
 /**
  * Copy for every lens slot (docs/LENS.md §4). Strings, not JSX: `[label](/href/)`
@@ -27,9 +27,9 @@ const HERO_SUB =
 
 /** One of the three clocks on the homepage deadline band (components/home/deadline-cards.tsx). */
 export interface DeadlineCard {
-  /** The clock and its statute, e.g. "Trust contest · Probate Code § 16061.8". */
+  /** The clock and its statute, e.g. "Trust contest · Probate Code § 16061.8"; rendered last, as a citation. */
   label: string;
-  /** The hook question (h3). */
+  /** The hook question (h3), the first line of the item. */
   question: string;
   body: string;
   /** A native <details> under the body: a paragraph or a numbered list, then one link. */
@@ -48,13 +48,8 @@ export interface DeadlineCards {
   teaser: { lead: string; body: string };
 }
 
-const DEADLINE_EYEBROW = 'Am I too late?';
-const DEADLINE_TITLE = 'Did you get a notice from the trustee?';
-const DEADLINE_LEAD =
-  'Three clocks matter in most of these cases. Each starts on a different day, and two of them ' +
-  'are short.';
+const DEADLINE_TITLE = 'Am I too late?';
 const DEADLINE_CTA: LensLink = { label: 'Check my deadline', href: '/how-long-do-i-have/' };
-const DEADLINE_SECONDARY: LensLink = { label: 'Tell us your story', href: '/contact/' };
 
 /* Every sentence traces to src/lib/deadlines/rules*.ts and RULES.md (beneficiary side)
    or to the notice article and TRUSTEE-RULES.md (trustee side). Edit both together. */
@@ -189,20 +184,10 @@ export const lensCopy = {
       to: 'trustee',
     },
   } satisfies LensCopy<LensSwitch | null>,
-  deadlineEyebrow: {
-    neutral: DEADLINE_EYEBROW,
-    trustee: 'Are you the trustee?',
-    beneficiary: DEADLINE_EYEBROW,
-  },
   deadlineTitle: {
     neutral: DEADLINE_TITLE,
     trustee: 'Have you served the Notification by Trustee?',
     beneficiary: DEADLINE_TITLE,
-  },
-  deadlineLead: {
-    neutral: DEADLINE_LEAD,
-    trustee: 'The clocks in a trust dispute run against you too. Three matter most.',
-    beneficiary: DEADLINE_LEAD,
   },
   deadlineCards: {
     neutral: DEADLINE_CARDS,
@@ -215,9 +200,9 @@ export const lensCopy = {
     beneficiary: DEADLINE_CTA,
   } satisfies LensCopy<LensLink>,
   deadlineSecondary: {
-    neutral: DEADLINE_SECONDARY,
+    neutral: consultCta,
     trustee: { label: 'Check a deadline', href: '/how-long-do-i-have/' },
-    beneficiary: DEADLINE_SECONDARY,
+    beneficiary: consultCta,
   } satisfies LensCopy<LensLink>,
   howStep1: {
     neutral: HOW_STEP_1,

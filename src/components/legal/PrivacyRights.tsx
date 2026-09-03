@@ -42,10 +42,9 @@ export function PrivacyRights() {
 
       <h2>Sending information does not make you a client</h2>
       <p>
-        Sending a consult request, a contact-form note, or an email does not create an
-        attorney-client relationship. That relationship begins only when both you and the firm sign
-        an engagement letter. We may have to decline your matter, and after a conflict check we may
-        not be able to explain why.
+        Sending a consult request or an email does not create an attorney-client relationship. That
+        relationship begins only when both you and the firm sign an engagement letter. We may have
+        to decline your matter, and after a conflict check we may not be able to explain why.
       </p>
       <p>
         Even so, what you tell us stays confidential. The rules that govern California lawyers

@@ -3,7 +3,6 @@ import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { Container } from '@/components/ui/Container';
 import { CtaBand } from '@/components/ui/CtaBand';
 import { Eyebrow } from '@/components/ui/Eyebrow';
-import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { cities, courts, type City } from '@/config/service-areas';
 import { site } from '@/config/site';
@@ -48,7 +47,7 @@ const groups: { county: City['county']; title: string; intro: string }[] = [
 
 function CityEntry({ city }: { city: City }) {
   return (
-    <section id={city.slug} className="scroll-mt-24 rounded-xl border border-line bg-white p-5">
+    <section id={city.slug} className="scroll-mt-24 border border-line bg-white p-5">
       <h3 className="font-sans text-h4 text-ink">{city.name}</h3>
       <p className="mt-1 text-meta text-ink-3">{city.county}</p>
       <p className="mt-3 text-small text-ink-2">{city.note}</p>
@@ -69,9 +68,8 @@ export default function ServiceAreasPage() {
             </h1>
             <p className="mt-6 text-lead text-ink-2">
               We meet by video anywhere in California and appear in person in court. Most of our
-              cases are in Santa Clara County Superior Court &ndash; Probate Division, and we
-              regularly appear in San Mateo, Alameda, and San Francisco Superior Courts.{' '}
-              {site.office.appointments}
+              cases are in Santa Clara County Superior Court, and we regularly appear in San Mateo,
+              Alameda, and San Francisco Superior Courts. {site.office.appointments}
             </p>
           </div>
         </Container>
@@ -79,17 +77,15 @@ export default function ServiceAreasPage() {
 
       <section className="grid-hairline bg-sand py-16 lg:py-20" aria-labelledby="courts">
         <Container>
-          <Reveal>
-            <SectionHeading id="courts" eyebrow="Courts" title="The courts we appear in." />
-          </Reveal>
-          <Reveal stagger className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <SectionHeading id="courts" eyebrow="Courts" title="The courts we appear in." />
+          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {courts.map((court) => (
-              <div key={court.name} className="rounded-xl border border-line bg-white p-5">
+              <div key={court.name} className="border border-line bg-white p-5">
                 <h3 className="font-sans text-h4 text-ink">{court.name}</h3>
                 <p className="mt-2 text-small text-ink-2">{court.address ?? court.city}</p>
               </div>
             ))}
-          </Reveal>
+          </div>
         </Container>
       </section>
 
@@ -100,21 +96,19 @@ export default function ServiceAreasPage() {
           aria-labelledby={`county-${group.county}`}
         >
           <Container>
-            <Reveal>
-              <SectionHeading
-                id={`county-${group.county}`}
-                eyebrow={group.county}
-                title={group.title}
-                lead={group.intro}
-              />
-            </Reveal>
-            <Reveal stagger className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <SectionHeading
+              id={`county-${group.county}`}
+              eyebrow={group.county}
+              title={group.title}
+              lead={group.intro}
+            />
+            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {cities
                 .filter((city) => city.county === group.county)
                 .map((city) => (
                   <CityEntry key={city.slug} city={city} />
                 ))}
-            </Reveal>
+            </div>
           </Container>
         </section>
       ))}

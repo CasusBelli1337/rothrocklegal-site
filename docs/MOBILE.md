@@ -77,7 +77,7 @@ articles, which are `noindex` on purpose).
 - **Hero image.** `<picture>` with 3:2 crops for phones (768/1024/1280 px) and
   4:5 crops for desktop, `fetchpriority="high"`; a phone now fetches 22 to
   64 KB instead of the 145 KB portrait.
-- **Reveal motion** no longer hides content until hydration (`Reveal.tsx`).
+- **Reveal motion** was removed on 2026-09-03; nothing is hidden until hydration.
 - **Consult page CLS** (0.15): the intake flow rendered a short "checking"
   placeholder that later grew into the form. The first step now renders in the
   static HTML; only an offline API swaps in the fallback.
@@ -123,8 +123,8 @@ edges: 320, 360, 375, 390, 430, and a 768 tablet in both orientations.
 
 - The recognitions row in the hero scrolls sideways and is keyboard reachable
   (`tabIndex=0`); it is not a tap target.
-- "Tell us your story" on the homepage deadline tile is a full secondary
-  button since 2026-09-03 (it was an inline link before the tile was rebuilt).
+- The homepage deadline tile's second action ("Request a consult") is a full
+  secondary button since 2026-09-03 (it was an inline link before the rebuild).
 - The desktop nav dropdown still opens on hover, but only where hover exists;
   a touch tablet in landscape opens it by tap.
 - `ArticleToc` mounts both the mobile and the desktop variant, so its scroll

@@ -33,7 +33,7 @@ jobs:
       - run: npm ci
 
       # Public intake API (Cloudflare Tunnel from Arthur's rig; see docs/HANDOFF.md).
-      # Inlined at build time; without it the consult page falls back to the email form.
+      # Inlined at build time; without it the consult page falls back to the email notice.
       - run: npm run build
         env:
           NEXT_PUBLIC_INTAKE_API: https://intake.rothrocklegal.com

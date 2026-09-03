@@ -56,8 +56,9 @@ Navigation weight = half the landing weight, rounded toward zero, never below ±
 ## 3. What changes under a lens
 
 Home hero title and sub-line (plus the escape-hatch link), deadline band
-(eyebrow, hook question, lead, the three clock cards with their teaser as one
-slot, primary and secondary buttons), problem-card order and the
+(the hook question, the three clock cards with their teaser as one slot,
+primary and secondary buttons; the eyebrow and lead were cut 2026-09-03, so
+the homepage carries 11 slots against a floor of 10), problem-card order and the
 complex-estates line, how-we-work step 1 and the "why faster" lead, the
 library preview (three lists, three cards each), the home FAQ order (the two
 trustee questions first), the `/library/` featured card, and the consult flow

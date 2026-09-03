@@ -34,7 +34,7 @@ public/images/** ──────┘   deadline rules,       JSON-LD, metadata
    config, build metadata through `src/lib/seo/metadata.ts`, and emit JSON-LD
    through `src/lib/seo/jsonld.ts`. `generateStaticParams` enumerates
    articles, attorneys, and redirect stubs. The only client components are the
-   library search, the deadline wizard, the contact form, and the menus.
+   library search, the deadline wizard, the consult flow, and the menus.
 5. **Export**: `next build` with `output: 'export'` writes `out/`. Route
    handlers marked `force-static` produce `sitemap.xml`, `robots.txt`,
    `llms.txt`, and `library/index.json` as plain files. `scripts/check-links.mjs`
@@ -43,13 +43,13 @@ public/images/** ──────┘   deadline rules,       JSON-LD, metadata
 ## The deadline wizard
 
 `src/components/wizard/` is the UI (steps config, state in `localStorage`,
-results, prefilled contact form). `src/lib/deadlines/` is the pure logic:
+results, the consult request panel). `src/lib/deadlines/` is the pure logic:
 `rules.ts` and `rules-contests.ts` declare each rule (who it applies to, its
 clocks, its copy), `compute.ts` runs the clocks and picks the later date when
 a rule has two, `dates.ts` does calendar math and the CCP § 12a roll to the
-next court day using `holidays.ts`, and `summary.ts` writes the text the
-contact form is prefilled with. `RULES.md` records the statute text each rule
-was checked against. All of it is unit-tested with Vitest.
+next court day using `holidays.ts`, and `summary.ts` phrases where each
+deadline stands on its result card. `RULES.md` records the statute text each
+rule was checked against. All of it is unit-tested with Vitest.
 
 ## The article pipeline
 

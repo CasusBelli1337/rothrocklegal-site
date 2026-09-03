@@ -1,12 +1,9 @@
 'use client';
 
-import Link from 'next/link';
 import { useEffect, useMemo, useRef } from 'react';
-import { ContactForm } from '@/components/forms/ContactForm';
 import { Button } from '@/components/ui/Button';
 import { consultCta, site } from '@/config/site';
 import { computeDeadlines, hasUrgentOrPassed } from '@/lib/deadlines/compute';
-import { buildSummary } from '@/lib/deadlines/summary';
 import type { DeadlineResult, WizardAnswers } from '@/lib/deadlines/types';
 import { DeadlineCard } from './DeadlineCard';
 
@@ -35,7 +32,7 @@ function ResultsList({ results }: { results: DeadlineResult[] }) {
     return (
       <p className="mt-6 text-body text-ink-2">
         We could not match your answers to a deadline. That does not mean there isn&rsquo;t one.
-        Send us the form below and we will look at your situation.
+        Request a consult below and we will look at your situation.
       </p>
     );
   }
@@ -57,28 +54,23 @@ function ResultsList({ results }: { results: DeadlineResult[] }) {
   );
 }
 
-function NextStep({ summary }: { summary: string }) {
+function NextStep() {
   return (
-    <div className="mt-14 rounded-xl border border-line bg-white p-6 sm:p-10">
+    <div className="mt-14 border border-line bg-white p-6 sm:p-10">
       <p className="eyebrow">Next step</p>
-      <h2 className="mt-3 font-serif text-h2 text-ink">Send us this summary</h2>
-      <p className="mt-3 mb-8 max-w-[60ch] text-body text-ink-2">
-        Your answers and the estimated dates are already filled in below. Add your name and how to
-        reach you, and send it. {site.replyPromise} Rather say it out loud or upload documents?{' '}
-        <Link
-          href={consultCta.href}
-          className="font-semibold text-maroon-700 underline underline-offset-3"
-        >
-          Request a consult instead
-        </Link>
-        .
+      <h2 className="mt-3 font-serif text-h2 text-ink">Bring these dates to a consult request</h2>
+      <p className="mt-3 max-w-[60ch] text-body text-ink-2">
+        Request a consult, tell us what happened in writing or by voice, and mention the dates
+        above. We run a conflict check. {site.replyPromise}
       </p>
-      <ContactForm initialMessage={summary} />
+      <Button href={consultCta.href} className="mt-8">
+        {consultCta.label}
+      </Button>
     </div>
   );
 }
 
-/** Every deadline that may apply, soonest first, then the prefilled contact form. */
+/** Every deadline that may apply, soonest first, then the consult request panel. */
 export function WizardResults({
   answers,
   today,
@@ -87,7 +79,6 @@ export function WizardResults({
   onStartOver,
 }: WizardResultsProps) {
   const results = useMemo(() => computeDeadlines(answers, today), [answers, today]);
-  const summary = useMemo(() => buildSummary(answers, results), [answers, results]);
   const headingRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
@@ -119,7 +110,7 @@ export function WizardResults({
           Start over
         </Button>
       </div>
-      <NextStep summary={summary} />
+      <NextStep />
     </section>
   );
 }

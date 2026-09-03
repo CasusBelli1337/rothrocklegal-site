@@ -1,11 +1,10 @@
 import { Container } from '@/components/ui/Container';
-import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 
 const split: readonly { title: string; body: string }[] = [
   {
     title: 'What the software does',
-    body: 'Reads every page of the bank records and medical files. Builds the timeline. Writes the first draft of pleadings, discovery, and motions.',
+    body: 'Goes through the bank records and medical files. Builds the timeline. Writes the first draft of pleadings, discovery, and motions.',
   },
   {
     title: 'What the lawyers do',
@@ -22,7 +21,7 @@ export function HowWeWork() {
   return (
     <section className="grid-hairline bg-sand py-16 lg:py-20">
       <Container>
-        <Reveal>
+        <div>
           <SectionHeading
             eyebrow="How we work"
             title="The software does the reading. The lawyers make every call."
@@ -55,15 +54,15 @@ export function HowWeWork() {
               visits, no parking, no waiting rooms.
             </p>
           </div>
-        </Reveal>
-        <Reveal stagger className="mt-10 grid gap-4 md:grid-cols-3">
+        </div>
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
           {split.map((item) => (
-            <div key={item.title} className="rounded-xl border border-line bg-white p-6">
+            <div key={item.title} className="border border-line bg-white p-6">
               <h3 className="font-sans text-h4 text-ink">{item.title}</h3>
               <p className="mt-2 text-body text-ink-2">{item.body}</p>
             </div>
           ))}
-        </Reveal>
+        </div>
       </Container>
     </section>
   );

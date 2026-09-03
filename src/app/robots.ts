@@ -23,7 +23,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/contact/thank-you/', '/library/index.json', ...PUBLIC_LINK_PATHS],
+        disallow: ['/library/index.json', ...PUBLIC_LINK_PATHS],
       },
       ...AI_AGENTS.map((userAgent) => ({ userAgent, allow: '/' })),
     ],

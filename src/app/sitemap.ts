@@ -29,7 +29,7 @@ function entry(path: string, updated: string): MetadataRoute.Sitemap[number] {
   };
 }
 
-/** Every indexable URL; drafts (articles, legal pages), unverified bios, stubs, thank-you, and index.json are excluded. */
+/** Every indexable URL; drafts (articles, legal pages), unverified bios, stubs, and index.json are excluded. */
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = staticPages.filter((p) => !p.draft).map((p) => entry(p.path, p.updated));
   const practice = practiceAreas.map((a) => entry(practiceHref(a), a.updatedAt));

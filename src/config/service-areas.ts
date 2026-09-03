@@ -21,7 +21,7 @@ export interface City {
 
 export const courts: readonly Court[] = [
   {
-    name: 'Santa Clara County Superior Court – Probate Division',
+    name: 'Santa Clara County Superior Court',
     address: '191 N. First Street, San Jose',
     city: 'San Jose',
   },

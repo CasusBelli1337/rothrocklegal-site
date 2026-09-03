@@ -27,8 +27,7 @@ export default function PrivacyPolicyPage() {
     >
       <p>
         <strong>Effective date:</strong> {legal.effectiveDate}. This policy covers
-        www.rothrocklegal.com, including the contact form, the deadline tool, and the consult
-        request.
+        www.rothrocklegal.com, including the deadline tool and the consult request.
       </p>
       <p>
         {site.name} (&ldquo;we,&rdquo; &ldquo;us&rdquo;) is a law firm in {site.office.city},{' '}

@@ -3,7 +3,6 @@ import { HowWeWorkSteps } from '@/components/home/HowWeWork';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { Container } from '@/components/ui/Container';
-import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { courts } from '@/config/service-areas';
 import { site } from '@/config/site';
@@ -12,8 +11,8 @@ import { pageMetadata } from '@/lib/seo/metadata';
 
 const TITLE = 'Contact Rothrock Legal – Request a Consult in San Jose';
 const DESCRIPTION =
-  'Request a consult or send a few sentences about what happened. We read it, run a conflict ' +
-  'check, and strive to respond within one business day.';
+  'Request a consult with Rothrock Legal in San Jose. We read it, run a conflict check, and ' +
+  'strive to respond within one business day.';
 const PATH = '/contact/';
 
 export const metadata = pageMetadata({
@@ -31,10 +30,10 @@ export default function ContactPage() {
           <Breadcrumbs trail={[{ label: 'Home', href: '/' }, { label: 'Contact' }]} />
         </Container>
       </div>
-      <ContactBand headingLevel="h1" id="contact-form" showPhone />
+      <ContactBand headingLevel="h1" id="consult" showPhone />
       <section className="grid-hairline bg-sand py-16 lg:py-20">
         <Container className="grid gap-10 lg:grid-cols-12 lg:gap-12">
-          <Reveal className="lg:col-span-7">
+          <div className="lg:col-span-7">
             <SectionHeading
               eyebrow="What to expect"
               title="Here's what happens when you reach out."
@@ -42,8 +41,8 @@ export default function ContactPage() {
             <div className="mt-8">
               <HowWeWorkSteps />
             </div>
-          </Reveal>
-          <Reveal className="lg:col-span-5">
+          </div>
+          <div className="lg:col-span-5">
             <h3 className="eyebrow">Courts we appear in</h3>
             <ul className="mt-4 space-y-3 text-body text-ink-2">
               {courts.map((court) => (
@@ -56,7 +55,7 @@ export default function ContactPage() {
               ))}
             </ul>
             <p className="mt-6 text-small text-ink-3">{site.office.appointments}</p>
-          </Reveal>
+          </div>
         </Container>
       </section>
       <JsonLd
