@@ -4,9 +4,12 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { consultCta, noteCta } from '@/config/site';
+import { PUBLIC_LINK_PATHS } from '@/lib/public/paths';
 
-/** Pages that carry their own primary action; the bar would only cover their form. */
-const HIDDEN_ON = [noteCta.href, consultCta.href].map((href) => href.replace(/\/$/, ''));
+/** Pages that carry their own primary action (or a signature block); the bar would only cover their form. */
+const HIDDEN_ON = [noteCta.href, consultCta.href, ...PUBLIC_LINK_PATHS].map((href) =>
+  href.replace(/\/$/, ''),
+);
 
 /** Text-entry controls open the on-screen keyboard, which would push the bar over the field. */
 function opensKeyboard(target: EventTarget | null): boolean {

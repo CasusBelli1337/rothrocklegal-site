@@ -1,0 +1,22 @@
+/* The two emailed-link pages read at 18px, like the consult flow: the audience
+   skews older and each screen is one task. Only the type scale changes; the
+   Tailwind text utilities read these variables, form controls included. */
+.public-flow {
+  --text-body: 1.125rem;
+  --text-body--line-height: 1.65;
+  --text-small: 1rem;
+  --text-small--line-height: 1.55;
+  --text-meta: 0.9375rem;
+  --text-meta--line-height: 1.4;
+}
+
+/* The one button that finishes the task: taller and full-width on phones. */
+.public-flow .public-primary {
+  height: 3.5rem;
+  font-size: 1.0625rem;
+}
+@media (min-width: 40rem) {
+  .public-flow .public-primary {
+    height: 3rem;
+  }
+}

@@ -10,8 +10,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const OUT = path.join(process.cwd(), 'out');
-/** Pages reached by other means than a link: the entry point, the not-found page, and the form's redirect target. */
-const ORPHAN_EXEMPT = new Set(['/', '/404.html', '/404/', '/contact/thank-you/']);
+/** Pages reached by other means than a link: the entry point, the not-found page, the form's redirect target, and the two emailed-link pages. */
+const ORPHAN_EXEMPT = new Set(['/', '/404.html', '/404/', '/contact/thank-you/', '/sign/', '/schedule/']);
 
 function collectHtmlFiles(dir) {
   const files = [];

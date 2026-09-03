@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { site } from '@/config/site';
+import { PUBLIC_LINK_PATHS } from '@/lib/public/paths';
 
 export const dynamic = 'force-static';
 
@@ -19,7 +20,11 @@ const AI_AGENTS = [
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      { userAgent: '*', allow: '/', disallow: ['/contact/thank-you/', '/library/index.json'] },
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: ['/contact/thank-you/', '/library/index.json', ...PUBLIC_LINK_PATHS],
+      },
       ...AI_AGENTS.map((userAgent) => ({ userAgent, allow: '/' })),
     ],
     sitemap: `${site.canonicalHost}/sitemap.xml`,

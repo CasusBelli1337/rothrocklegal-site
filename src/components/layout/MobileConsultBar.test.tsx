@@ -27,6 +27,12 @@ describe('MobileConsultBar', () => {
     expect(container.querySelector('a')).toBeNull();
   });
 
+  it('stays off the emailed-link pages, where it would cover the signature block', () => {
+    route.pathname = '/sign/';
+    const { container } = render(<MobileConsultBar />);
+    expect(container.querySelector('a')).toBeNull();
+  });
+
   it('steps aside while a text field has focus and returns on blur', () => {
     route.pathname = '/';
     const { container } = render(

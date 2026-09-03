@@ -4,8 +4,9 @@
   "private": true,
   "description": "Static rebuild of rothrocklegal.com (Next.js, exported for GitHub Pages)",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "npm run pdfjs:assets && next dev",
+    "build": "npm run pdfjs:assets && next build",
+    "pdfjs:assets": "node scripts/pdfjs-assets.mjs",
     "test": "vitest run",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
@@ -14,6 +15,7 @@
   },
   "dependencies": {
     "next": "^15.4.6",
+    "pdfjs-dist": "6.1.200",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
