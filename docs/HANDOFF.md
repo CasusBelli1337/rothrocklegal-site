@@ -27,6 +27,95 @@ repo holds the editor module and the intake module.
   removed by Arthur on 2026-09-02 (evening): show, don't tell. Arthur's Legion
   credential sentence stays.
 
+## 2026-09-03 (midday): Arthur's homepage notes, header, footer, fast mode
+
+Six commits on `redesign` (25f1f84, 4cd544b, 0f47191, 1213c17, ba3e470,
+4c4dc1f) plus this docs commit. Nothing pushed; `main` and the live site are
+unchanged. Preview: `http://localhost:9080/_preview/`.
+
+### What changed on the site
+
+- **Header.** The sand "Reading options" strip is gone. The control is the last
+  item of the main nav after "About" (a button), and below `xl` a 44px AA icon
+  button beside the menu button. Both open the same inline bar under the nav
+  row, inside the sticky header, in flow. Because the full nav needs about
+  1,300px, the header row uses an 85rem column (`headerColumnClass`, wider than
+  the 75rem page column, so the logo and consult button sit up to 80px outside
+  the content edge on wide screens), the desktop nav starts at `xl` (1280)
+  rather than `lg`, and 1024 to 1279 gets the compact row (logo, consult
+  button, AA icon, menu). Arthur has not yet seen this trade; revisit if he
+  dislikes the wider header.
+- **Hero chips.** The Santa Clara County chip is gone. Vice Chair chip carries
+  the ABA mark; new "Member, Honorable William A. Ingram American Inn of Court"
+  chip with the Inn's seal; new "Host, The Litigator's Path podcast" chip
+  linking to https://legion.law/podcasts (verified 200; `podcast.url` in
+  `arthur-rothrock.ts` now points there). Icons in `public/images/badges/`
+  (`aba.webp`, `american-inns-of-court.webp`, `litigators-path.webp`), adapted
+  from `#Legion/Marketing/Announcements/2026 ABA AI & Robotics Institute
+  Sponsorship` and the podcast cover. At 1280 the five chips stack one per row
+  (each label is wider than half the text column); the posture proposal's chip
+  item is the moment to relayout them.
+- **Proof strip removed** (`ProofStrip.tsx`, `proof-points.ts`, `priorFirm`
+  deleted). Arthur's team-card line is now "Co-founder and CEO of Legion, an AI
+  litigation platform": no year counts for Arthur anywhere on the site. His bar
+  admission year still shows on his profile as the license line.
+- **Deadline tile rebuilt** (`DeadlineBand.tsx`, `deadline-cards.tsx`,
+  `ui/PhotoCorners.tsx`). One square white tile held by brass photo-album
+  corner mounts. Neutral/beneficiary: "Did you get a notice from the trustee?",
+  three clocks (trust contest § 16061.8 with a "What counts as notice?"
+  `<details>`, will contest §§ 8250/8270, one year from death CCP §§ 366.2/
+  366.3), a "Think you might already be late? Talk to us anyway." teaser, then
+  "Check my deadline" and a secondary "Tell us your story" button. Trustee:
+  "Have you served the Notification by Trustee?", the notice (60 days, with a
+  "What has to be in it?" list), the trust copy (§§ 16061.5, 16061.8), and
+  accountings (§§ 16062, 16460). Every sentence traces to `rules*.ts`,
+  `RULES.md`, `TRUSTEE-RULES.md`, or the notice article. Six deadline slots;
+  `check-lens` floor for `/` is 12 (13 observed). HOMEPAGE-SPEC §2 in the
+  redesign folder was rewritten to match.
+- **"The cases we take" panel and the two complex-estates lines** under the
+  problem cards are gone (`CasesWeTake.tsx`, `complexLine` slot deleted).
+- **What to expect** is the four steps only, four across on `lg`
+  (`HowWeWorkSteps layout="grid"`; `/contact/` keeps the list). Step 4 no longer
+  names a court. **New section "How we run your case"**
+  (`HowWeRunYourCase.tsx`): who does what (three rows, names linked) and why it
+  costs less and moves faster (three points; the Legion sentence stays as the
+  `why-faster-lead` slot, trimmed of the drafting clause the second point now
+  carries).
+- **Footer and CTA band** are one flat `bg-maroon-950` block with a single
+  hairline seam (Arthur: not two purple tiles). `band-maroon` still gradients
+  the heroes; the posture proposal covers those.
+
+### Fast mode and the intake wait copy
+
+- The dedicated intake key's Anthropic org has no fast-mode allowance; the
+  default `ANTHROPIC_API_KEY` org does. Armory `docker-compose.yml` now
+  substitutes `ROTHROCK_INTAKE_ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}` for the
+  intake service (Armory commit 09c9418 on `program/phase2-intake-module`, not
+  pushed). No `.env` was edited (the secrets guard blocks that, correctly). The
+  container was recreated and logs `model claude-opus-5 fast`; a test call was
+  served `speed: fast`.
+- Measured one real text-only evaluation: **41 s** (was 124 s standard). Draft
+  RL-2026-000021 (`timing.run.qa@example.com`) was never submitted, so no email
+  went out; it purges after 30 days or with `purge-qa-data.mjs`. Copy now says
+  "a minute or two"; `STEP_MINUTES.review` is 2.
+
+### The visual-posture proposal (awaiting Arthur)
+
+Arthur asked for a proposal to make the site read firmer and more geometric
+(art deco, hard angles, no rounded tiles) without touching copy or palette.
+Delivered as an artifact page with live before/after specimens
+(https://claude.ai/code/artifact/6590f0d2-c3c4-4d78-8b28-b027b323678c) and a
+Word copy at `#RothrockLegal/Website/Rothrock Legal - Visual Posture Proposal
+(2026-09-03).docx`. Twelve numbered items in three passes; he answers with the
+numbers. Nothing from it is implemented beyond the deadline tile's corners and
+the flat footer block, which he asked for directly.
+
+### Gates (integration worktree at 4c4dc1f)
+
+lint, typecheck, 37 test files / 326 tests, static export, check-links (97
+pages, 7,032 references, 0 broken, 0 orphans), check-seo, check-lens (13 slots
+on `/`, boot scripts 199 + 239 bytes, no preview traces).
+
 ## Wave B (2026-09-03): the two emailed-link pages, and the Wave A review fixes
 
 Branch `program/wave-b-site` (commits d380a88, 27a2b7c, cb09eb7), fast-forwarded
@@ -178,14 +267,13 @@ that email has an open request on the deployed module). Admin queue:
 
 ### What Arthur should look at
 
-1. The proof strip and the team proof lines: each restates a bio fact, but the
-   wording is the builder's. Edit in `src/config/proof-points.ts` and
-   `src/config/team/<slug>.ts` (`proofLine`).
-2. The corner photos on the deadline card (placeholder interpretation).
-3. The high-contrast palette values and the reading-options strip position
-   (above the header, not in the nav row, because the row was full).
-4. Enable Opus fast mode in the Console, then re-measure and shorten the wait
-   copy in `src/lib/intake/copy.ts`.
+1. The team proof lines restate a bio fact, but the wording is the builder's:
+   `src/config/team/<slug>.ts` (`proofLine`). (The proof strip itself was
+   removed on 2026-09-03 at Arthur's request.)
+2. Resolved 2026-09-03: the corner photos became brass photo-album mounts.
+3. The high-contrast palette values. (Resolved 2026-09-03: reading options
+   moved into the nav row; see the section above.)
+4. Resolved 2026-09-03: fast mode runs on the default key; wait copy re-measured.
 5. The privacy policy additions naming Google and Legion.
 
 ### Not done

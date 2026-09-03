@@ -139,9 +139,10 @@ image (/images/...), imageAlt, draft (true|false), oldSlug (legacy posts only)
 
 ## Pages (every URL has a trailing slash)
 
-- `/` home, in the order a worried family member needs: hero, deadline band,
-  problem cards, attorneys strip, how we work, results, library preview, FAQ,
-  where we practice, contact band. A sticky call bar on mobile.
+- `/` home, in the order a worried family member needs: hero, the deadline
+  tile, problem cards, attorneys strip, what to expect (four steps), how we run
+  your case, what clients say, library preview, FAQ, where we practice, contact
+  band. A sticky call bar on mobile.
 - `/trust-litigation/` hub + `/trust-contests/`, `/will-contests/`,
   `/undue-influence-and-capacity/`, `/breach-of-fiduciary-duty/`,
   `/trust-accounting-disputes/`, `/estate-property-disputes/`,
@@ -171,11 +172,17 @@ image (/images/...), imageAlt, draft (true|false), oldSlug (legacy posts only)
 
 ## Reading options and the boot scripts (docs/ACCESSIBILITY.md)
 
-- A sand strip above the header holds one 44px button, "Reading options". It
-  opens an inline bar (never an overlay) with four groups of radio chips: text
-  size (normal / large / larger), contrast (normal / high), motion (full /
-  reduced), spacing (normal / wider). "Back to normal" clears everything. The
-  same controls render inline on `/accessibility/`.
+- "Reading options" sits in the header's menu bar: from `xl` the last item of
+  the main nav after "About" (a `<button>`, never a link), below `xl` a 44px
+  icon-only button left of the menu button. Both open the same inline bar
+  under the nav row, inside the sticky header and in normal flow (never an
+  overlay), with four groups of radio chips: text size (normal / large /
+  larger), contrast (normal / high), motion (full / reduced), spacing (normal /
+  wider). "Back to normal" clears everything. The same controls render inline
+  on `/accessibility/`. The full nav needs about 1,300px, so the header row
+  uses `headerColumnClass` (85rem, wider than `Container`), the desktop nav
+  starts at `xl` rather than `lg`, and the consult button joins the compact
+  row from `lg`.
 - A choice stamps `html[data-text-size|data-contrast|data-motion|data-spacing]`
   and is stored in localStorage `rl-a11y`; the CSS for all four lives in
   `src/app/globals.css`. Text size changes the root font size (100 / 112.5 /
@@ -201,6 +208,8 @@ image (/images/...), imageAlt, draft (true|false), oldSlug (legacy posts only)
   and no longer exist in `@theme`; a selected or hovered surface is `bg-sand`,
   a hover border is `border-line-strong`, and a callout is white with a
   hairline and a brass top rule (`DeadlineCallout`, the follow-up info card).
+  The homepage deadline tile is square-cornered and held by brass photo-album
+  mounts (`components/ui/PhotoCorners`), the frame Arthur chose on 2026-09-03.
   Text selection uses `--color-highlight` (maroon-700 at 18% alpha).
 - Colors go through tokens only, never hex in a component. Guard:
   `grep -rnE "maroon-(50|100|200)\b" src` must print nothing (the plain string
@@ -224,9 +233,10 @@ image (/images/...), imageAlt, draft (true|false), oldSlug (legacy posts only)
   (read from `?resume=` after hydration, then stripped with `replaceState`), and
   `POST /:id/resume-link` -> `{ sent: true }`.
 - Answers carry `spokenText` (what the browser heard, verbatim) beside `story`.
-  The evaluation takes about two minutes today at standard speed (measured
-  124 s on 2026-09-03); `copy.ts` says "about 3 minutes". Re-measure and
-  shorten it once Opus fast mode is enabled for the key's organization.
+  The evaluation ran 41 s at Opus fast speed on 2026-09-03 (124 s at standard
+  speed the same morning); `copy.ts` says "a minute or two". The intake
+  container gets the Armory's default Anthropic key for that allowance (the
+  substitution is in the Armory `docker-compose.yml`, not in any `.env`).
 - Copy lives in `src/lib/intake/copy.ts` and `copy-mic.ts` only; `copy.test.ts`
   enforces the voice guide (no banned words, no em dash, no outcome promises,
   a "Next:" line under every Continue). The flow reads at 18px body text via
