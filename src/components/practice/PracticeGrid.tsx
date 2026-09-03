@@ -28,7 +28,7 @@ export function PracticeGrid() {
             >
               <h3 className="font-sans text-h4 text-ink">{area.title}</h3>
               <p className="mt-2 flex-1 text-small text-ink-3">{area.headline}</p>
-              <p className="mt-4 inline-flex items-center gap-2 text-[15px] font-semibold text-maroon-700">
+              <p className="mt-4 inline-flex items-center gap-2 text-ui font-semibold text-maroon-700">
                 What you can do
                 <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </p>

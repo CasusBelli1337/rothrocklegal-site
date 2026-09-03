@@ -13,6 +13,9 @@ export const arthurRothrock: TeamMember = {
   barStatus: 'Licensed in California, State Bar #312704 (2016)',
   barNumber: '312704',
   focus: 'Trust contests, undue influence, elder financial abuse',
+  // Bar admission 2016 (barStatus) + the Probate Division and Hopkins & Carley paragraphs of the bio.
+  proofLine: "Ten years in San Jose's probate and civil courts",
+  priorFirm: { name: 'Hopkins & Carley', city: 'San Jose' },
   summary:
     'Trial lawyer and founder of Rothrock Legal in San Jose. Co-founder and CEO of Legion, an AI ' +
     "litigation platform, and Vice Chair of the American Bar Association's Artificial " +

@@ -18,6 +18,7 @@ import {
   UsersIcon,
 } from '@/components/icons';
 import { Slot } from '@/components/lens/Slot';
+import { CasesWeTake } from '@/components/home/CasesWeTake';
 import { Card } from '@/components/ui/Card';
 import { Container } from '@/components/ui/Container';
 import { Reveal } from '@/components/ui/Reveal';
@@ -83,7 +84,7 @@ export function ProblemCard({ area, className = '', style, lensEvent }: ProblemC
       <Icon className="h-6 w-6 text-brass-500" />
       <h3 className="mt-4 font-sans text-h4 text-ink">&ldquo;{card.headline}&rdquo;</h3>
       <p className="mt-2 flex-1 text-small text-ink-3">{bindSectionSigns(card.answer)}</p>
-      <p className="mt-4 inline-flex items-center gap-2 text-[15px] font-semibold text-maroon-700">
+      <p className="mt-4 inline-flex items-center gap-2 text-ui font-semibold text-maroon-700">
         What you can do
         <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
       </p>
@@ -114,6 +115,9 @@ export function ProblemCards() {
               lensEvent={`card:${area.slug}`}
             />
           ))}
+        </Reveal>
+        <Reveal className="mt-10">
+          <CasesWeTake />
         </Reveal>
         <p className="mt-8 text-small text-ink-3">
           <Slot

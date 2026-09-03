@@ -94,6 +94,32 @@ export function PrivacyCollect() {
         consult request.
       </p>
 
+      <h3>Public records we may look at</h3>
+      <p>
+        As part of conflict checking and case review, we may look at public court records and
+        other public sources about the people and the disputes described in your request. We do
+        this to check for conflicts and to see what has already happened in court. We do not buy
+        information about you from data brokers.
+      </p>
+
+      <h3>Video meetings and scheduling</h3>
+      <p>
+        Video consultations happen on Google Meet, and we schedule them on the firm&rsquo;s Google
+        Calendar. When we set up a meeting with you, Google receives your name and email address so
+        it can send you the invitation and the meeting link, under Google&rsquo;s own privacy
+        policy. Nothing from Google runs on this website. If you would rather not use Google Meet,
+        tell us and we will find another way to talk.
+      </p>
+
+      <h3>If we agree to work together</h3>
+      <p>
+        You sign the engagement agreement on a signing page that runs on the firm&rsquo;s own
+        systems, not through a third-party e-signature company. After you become a client, we work
+        on your file in Legion, the AI litigation platform our founder co-founded, which is listed
+        among our providers below. Your file is then protected by the rules that cover client
+        information, and this policy keeps applying to what you sent us before you became a client.
+      </p>
+
       <h3>Technical information</h3>
       <p>
         This site does not use analytics, tracking cookies, advertising networks, or social-media

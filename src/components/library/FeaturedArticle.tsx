@@ -17,9 +17,9 @@ export function FeaturedArticle({ item, priority = true }: FeaturedArticleProps)
   return (
     <Link
       href={`/library/${item.slug}/`}
-      className="group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-white transition-[box-shadow,border-color] duration-150 hover:border-maroon-200 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-maroon-500"
+      className="group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-white transition-[box-shadow,border-color] duration-150 hover:border-line-strong hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-maroon-500"
     >
-      <div className="relative aspect-[16/7] overflow-hidden bg-maroon-100">
+      <div className="relative aspect-[16/7] overflow-hidden bg-sand">
         <Image
           src={asset(item.image)}
           alt=""

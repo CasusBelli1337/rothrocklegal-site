@@ -22,7 +22,7 @@ export function TeamCard({ member, headingLevel: Tag = 'h3' }: TeamCardProps) {
       href={teamHref(member)}
       className="group block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-maroon-500 rounded-xl"
     >
-      <div className="aspect-[4/5] overflow-hidden rounded-xl bg-maroon-100">
+      <div className="aspect-[4/5] overflow-hidden rounded-xl bg-sand">
         {hasHeadshot(member) ? (
           // Both headshot files in one srcset: a phone's 2-up grid takes the 400px one, desktop the 800px one.
           <picture>
@@ -47,6 +47,7 @@ export function TeamCard({ member, headingLevel: Tag = 'h3' }: TeamCardProps) {
       </Tag>
       <p className="mt-1 text-meta text-ink-3">{member.title}</p>
       <p className="mt-2 text-small text-ink-2">{member.focus}</p>
+      <p className="mt-1.5 text-small text-ink-3">{member.proofLine}</p>
       <p className="mt-3 text-small font-medium text-maroon-700">
         Read bio <span aria-hidden="true">&rarr;</span>
       </p>

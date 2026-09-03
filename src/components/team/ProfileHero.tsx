@@ -13,7 +13,7 @@ import type { Crumb } from '@/types/content';
 function Portrait({ member }: { member: TeamMember }) {
   return (
     <div className="lg:col-span-5 lg:justify-self-end">
-      <div className="aspect-[4/5] w-full max-w-[18rem] overflow-hidden rounded-2xl bg-maroon-100 shadow-lg lg:w-[24rem] lg:max-w-none">
+      <div className="aspect-[4/5] w-full max-w-[18rem] overflow-hidden rounded-2xl bg-sand shadow-lg lg:w-[24rem] lg:max-w-none">
         {hasHeadshot(member) ? (
           <Image
             src={asset(member.image.large)}

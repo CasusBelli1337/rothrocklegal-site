@@ -120,7 +120,7 @@ export function ContactForm({ initialMessage }: ContactFormProps = {}) {
           {NOTICE_OPTIONS.map((option) => (
             <label
               key={option}
-              className="inline-flex h-11 cursor-pointer items-center gap-2 rounded-md border border-line-strong bg-white px-4 text-body text-ink has-[:checked]:border-maroon-700 has-[:checked]:bg-maroon-50 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-maroon-500/40"
+              className="inline-flex h-11 cursor-pointer items-center gap-2 rounded-md border border-line-strong bg-white px-4 text-body text-ink has-[:checked]:border-maroon-700 has-[:checked]:bg-sand has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-maroon-500/40"
             >
               <input
                 type="radio"

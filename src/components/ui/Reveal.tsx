@@ -15,8 +15,8 @@ interface RevealProps {
  * Motion lives in globals.css. Content renders visible and is hidden (armed)
  * only after hydration, and only if it is still below the viewport, so a slow
  * phone never scrolls into blank sections and the reveal never delays LCP.
- * Reduced-motion users and no-JS readers see everything immediately
- * (DESIGN-BRIEF §8).
+ * Reduced-motion users (the OS setting or the site's reading option) and
+ * no-JS readers see everything immediately (DESIGN-BRIEF §8).
  */
 export function Reveal({ children, className, stagger, id }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -24,7 +24,9 @@ export function Reveal({ children, className, stagger, id }: RevealProps) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduceMotion =
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+      document.documentElement.dataset.motion === 'reduced';
     const inView = el.getBoundingClientRect().top < window.innerHeight;
     if (reduceMotion || inView || !('IntersectionObserver' in window)) return;
     el.classList.add('is-armed');

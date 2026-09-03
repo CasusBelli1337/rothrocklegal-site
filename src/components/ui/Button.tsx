@@ -23,7 +23,7 @@ const base =
   'transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-maroon-500 ' +
   'disabled:cursor-not-allowed disabled:opacity-50';
 
-const sizes = { md: 'h-12 px-6 text-[15px]', sm: 'h-11 px-5 text-[15px]' };
+const sizes = { md: 'h-12 px-6 text-ui', sm: 'h-11 px-5 text-ui' };
 
 const variants: Record<ButtonVariant, Record<'light' | 'dark', string>> = {
   primary: {
@@ -35,12 +35,12 @@ const variants: Record<ButtonVariant, Record<'light' | 'dark', string>> = {
     dark: 'border border-white text-white hover:bg-white/10',
   },
   ghost: {
-    light: 'text-maroon-700 hover:bg-maroon-50',
+    light: 'text-maroon-700 hover:bg-sand',
     dark: 'text-white hover:bg-white/10',
   },
   inverse: {
-    light: 'bg-white text-maroon-700 hover:bg-maroon-50',
-    dark: 'bg-white text-maroon-700 hover:bg-maroon-50',
+    light: 'bg-white text-maroon-700 hover:bg-sand',
+    dark: 'bg-white text-maroon-700 hover:bg-sand',
   },
 };
 

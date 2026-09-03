@@ -11,6 +11,7 @@ import { consultCta, nav, site } from '@/config/site';
 import { MobileMenu } from './MobileMenu';
 import { isActive, navLinkClass } from './nav-link';
 import { NavDropdown } from './NavDropdown';
+import { ReadingOptionsStrip } from './ReadingOptions';
 
 export function Header() {
   const pathname = usePathname();
@@ -25,12 +26,15 @@ export function Header() {
   }, []);
 
   return (
-    <header
-      // Above the z-40 consult bar so the mobile sheet (rendered inside this stacking context) covers it.
-      className={`sticky top-0 z-50 border-b border-line transition-colors duration-150 ${
-        scrolled ? 'bg-paper/90 backdrop-blur' : 'bg-paper'
-      }`}
-    >
+    <>
+      {/* Not sticky: a set-once control at the top of the page, so the nav row keeps its room. */}
+      <ReadingOptionsStrip />
+      <header
+        // Above the z-40 consult bar so the mobile sheet (rendered inside this stacking context) covers it.
+        className={`sticky top-0 z-50 border-b border-line transition-colors duration-150 ${
+          scrolled ? 'bg-paper/90 backdrop-blur' : 'bg-paper'
+        }`}
+      >
       <Container className="flex h-[60px] items-center justify-between gap-6 lg:h-[72px]">
         <Link
           href="/"
@@ -84,6 +88,7 @@ export function Header() {
       </Container>
 
       <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} pathname={pathname} />
-    </header>
+      </header>
+    </>
   );
 }

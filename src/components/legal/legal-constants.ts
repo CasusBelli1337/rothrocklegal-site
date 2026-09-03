@@ -4,7 +4,7 @@
  */
 export const legal = {
   /** CalOPPA requires an effective date (Bus. & Prof. Code § 22575(b)(4)). */
-  effectiveDate: 'September 1, 2026',
+  effectiveDate: 'September 2, 2026',
   /** Unsent consult drafts are purged nightly after this many days (INTAKE-SPEC §7). */
   draftPurgeDays: 30,
   /**

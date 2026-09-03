@@ -17,6 +17,8 @@ export const jonathanJoannides: TeamMember = {
   barStatus: 'Licensed in California, State Bar #311260 (2016)',
   barNumber: '311260',
   focus: 'Depositions, hearings, and motion practice',
+  // Bio paragraph 2: USMC infantry officer and captain; Wilson Sonsini 2016 to 2020; Fenwick & West 2022 to 2024.
+  proofLine: 'Former Marine Corps infantry captain; Wilson Sonsini, Fenwick & West',
   summary:
     'Litigator and former U.S. Marine Corps infantry captain who takes the depositions and ' +
     "argues the hearings in Rothrock Legal's trust and estate cases. Founder of Digital " +

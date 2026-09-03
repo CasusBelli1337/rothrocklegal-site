@@ -29,7 +29,7 @@ export const site = {
     appointments:
       'We meet by video. No office visits, no parking, no waiting rooms. San Jose, California.',
   },
-  hours: 'Mon–Fri, 9–5. Send a consult request any time.',
+  hours: 'Mon to Fri, by appointment. Send a consult request any time.',
   /** Attorney responsible for the site (Rule 7.2(c); Bus. & Prof. Code § 6157.2(b)). */
   responsibleAttorney: 'Arthur E. Rothrock',
   /** The reply-time promise, one full sentence, used verbatim everywhere (Arthur, 2026-09-01). */
@@ -146,6 +146,15 @@ export const noteCta: NavItem = {
   href: '/contact/',
 };
 
+/**
+ * Homepage settings. `deadlinePhotos` pins the four attorney headshots to the
+ * corners of the deadline card (Arthur, 2026-09-02); set false to remove them
+ * in one edit, for example when commissioned photography replaces them.
+ */
+export const homepage = {
+  deadlinePhotos: true,
+} as const;
+
 /** Footer "Resources" column (IA.md §3). Practice links come from practice-areas.ts. */
 export const footerResources: readonly NavItem[] = [
   { label: 'How Long Do I Have?', href: '/how-long-do-i-have/' },
@@ -160,6 +169,7 @@ export const footerResources: readonly NavItem[] = [
 export const legalLinks: readonly NavItem[] = [
   { label: 'Privacy Policy', href: '/privacy-policy/' },
   { label: 'Disclaimer', href: '/disclaimer/' },
+  { label: 'Accessibility', href: '/accessibility/' },
   // The firm's internal portal (Google Workspace sign-in at the edge); a link,
   // never a description, per the copy rules.
   { label: 'Attorney Portal', href: 'https://portal.rothrocklegal.com/' },
@@ -188,9 +198,8 @@ export const palette = {
   maroon700: '#66043D',
   maroon600: '#7F1A55',
   maroon500: '#98366F',
-  maroon200: '#E5C2D6',
-  maroon100: '#F3E3EC',
-  maroon50: '#FAF2F6',
+  /** Text selection: maroon-700 at 18% alpha. Tints retired 2026-09-02. */
+  highlight: '#66043D2E',
   paper: '#F8F5F0',
   sand: '#EFEAE2',
   white: '#FFFFFF',

@@ -5,7 +5,7 @@ interface InitialAvatarProps {
   size?: "sm" | "lg";
 }
 
-/** Serif initial on a maroon-100 panel, for people without a photo. */
+/** Serif initial on a sand panel, for people without a photo. */
 export function InitialAvatar({
   name,
   className = "",
@@ -22,7 +22,7 @@ export function InitialAvatar({
     <div
       role="img"
       aria-label={name}
-      className={`flex items-center justify-center bg-maroon-100 text-maroon-700 ${className}`}
+      className={`flex items-center justify-center bg-sand text-ink-3 ${className}`}
     >
       <span
         className={`font-serif font-medium ${size === "lg" ? "text-5xl" : "text-xl"}`}

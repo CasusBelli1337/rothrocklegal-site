@@ -16,6 +16,8 @@ export const gerryLin: TeamMember = {
   barStatus: 'Licensed in California, State Bar #366572 (2025)',
   barNumber: '366572',
   focus: 'Motions, discovery, and cite-checked briefs',
+  // Bio paragraph 1: cite-checks and fact-checks every brief before it is filed.
+  proofLine: 'Cite-checks every brief before it is filed',
   summary:
     "Gerry Lin drafts and checks the motions, discovery, and briefs in the firm's trust and " +
     'estate cases. A 2016 Santa Clara University School of Law graduate, he was admitted to the ' +

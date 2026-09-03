@@ -42,7 +42,7 @@ function TocList({ entries, active }: { entries: readonly TocEntry[]; active: st
         const on = entry.id === active;
         const tone = on
           ? 'border-maroon-700 font-medium text-maroon-700'
-          : 'border-line text-ink-2 hover:border-maroon-200 hover:text-maroon-700';
+          : 'border-line text-ink-2 hover:border-line-strong hover:text-maroon-700';
         return (
           <li key={entry.id}>
             <a

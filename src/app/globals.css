@@ -12,9 +12,8 @@
   --color-maroon-700: #66043d;
   --color-maroon-600: #7f1a55;
   --color-maroon-500: #98366f;
-  --color-maroon-200: #e5c2d6;
-  --color-maroon-100: #f3e3ec;
-  --color-maroon-50: #faf2f6;
+  /* Text selection: maroon-700 at 18% alpha. The pink tints (maroon-50/100/200) were retired 2026-09-02 (Arthur). */
+  --color-highlight: #66043d2e;
 
   --color-paper: #f8f5f0;
   --color-sand: #efeae2;
@@ -69,6 +68,8 @@
   --text-body--line-height: 1.6;
   --text-small: 0.875rem;
   --text-small--line-height: 1.5;
+  /* Nav, buttons, footer links: rem so the reading options' text size scales it. */
+  --text-ui: 0.9375rem;
   --text-meta: 0.8125rem;
   --text-meta--line-height: 1.4;
   --text-meta--letter-spacing: 0.01em;
@@ -105,6 +106,12 @@
     --text-small: 0.9375rem;
   }
 }
+/* Body copy is 17px from lg up (16px on phones): easier on older eyes at desk distance. */
+@media (min-width: 64rem) {
+  :root {
+    --text-body: 1.0625rem;
+  }
+}
 
 @layer base {
   html {
@@ -134,7 +141,7 @@
     color: var(--color-ink);
   }
   ::selection {
-    background: var(--color-maroon-200);
+    background: var(--color-highlight);
     color: var(--color-ink);
   }
   :focus-visible {
@@ -296,4 +303,68 @@ html[data-lens='beneficiary'] .lens-ordered {
     transition-duration: 0ms !important;
     animation-duration: 0ms !important;
   }
+}
+
+/*
+ * Reading options (docs/ACCESSIBILITY.md). The visitor's choices are stamped on
+ * <html> before first paint by the inline head script (src/lib/a11y/boot.ts)
+ * and kept in localStorage `rl-a11y`. No attribute means the plain site.
+ */
+
+/* Text size: everything is in rem, so the root font-size scales the whole page. */
+html[data-text-size='large'] {
+  font-size: 112.5%;
+}
+html[data-text-size='larger'] {
+  font-size: 125%;
+}
+
+/* High contrast: ink goes to black, borders strengthen, and the lighter maroon
+   and brass text deepen (all pairings ≥ 7:1 on paper). */
+html[data-contrast='high'] {
+  --color-ink: #000000;
+  --color-ink-2: #0a0908;
+  --color-ink-3: #3f3a36;
+  --color-ink-4: #6b645e;
+  --color-line: #cbc2b5;
+  --color-line-strong: #8f877f;
+  --color-maroon-600: #52032f;
+  --color-brass-600: #6b4a0c;
+}
+
+/* Reduced motion: the same rules prefers-reduced-motion applies, chosen by hand. */
+html[data-motion='reduced'] {
+  scroll-behavior: auto;
+}
+html[data-motion='reduced'] [data-reveal],
+html[data-motion='reduced'] [data-reveal-stagger] > * {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+html[data-motion='reduced'] *,
+html[data-motion='reduced'] ::before,
+html[data-motion='reduced'] ::after {
+  transition-duration: 0ms !important;
+  animation-duration: 0ms !important;
+}
+
+/* Wider spacing: taller lines, a little air between words, bigger paragraph gaps. */
+html[data-spacing='wider'] {
+  --text-lead--line-height: 1.75;
+  --text-body-lg--line-height: 1.95;
+  --text-body--line-height: 1.85;
+  --text-small--line-height: 1.7;
+  --text-meta--line-height: 1.6;
+  letter-spacing: 0.01em;
+  word-spacing: 0.06em;
+}
+html[data-spacing='wider'] .prose-article {
+  line-height: 1.95;
+}
+html[data-spacing='wider'] .prose-article > * + * {
+  margin-top: 1.75em;
+}
+html[data-spacing='wider'] .prose-article li + li {
+  margin-top: 0.85em;
 }

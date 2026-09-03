@@ -42,17 +42,19 @@ export function MobileConsultBar() {
     <>
       {/* Reserves the bar plus the home-indicator inset, so the footer's last line is never covered. */}
       <div aria-hidden="true" className="h-[calc(3.5rem+env(safe-area-inset-bottom))] lg:hidden" />
-      <div
+      {/* A landmark, so the bar is reachable by region navigation and axe's "content in landmarks" rule holds. */}
+      <nav
+        aria-label="Quick action"
         hidden={keyboardOpen}
         className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white pb-[env(safe-area-inset-bottom)] lg:hidden"
       >
         <Link
           href={consultCta.href}
-          className="flex h-14 items-center justify-center bg-maroon-700 text-[15px] font-semibold text-white"
+          className="flex h-14 items-center justify-center bg-maroon-700 text-ui font-semibold text-white"
         >
           {consultCta.label}
         </Link>
-      </div>
+      </nav>
     </>
   );
 }
