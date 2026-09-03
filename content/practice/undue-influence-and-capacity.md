@@ -28,7 +28,15 @@ We start by mapping the relationship: who had access, who had authority, and whe
 
 The drafting lawyer's file matters as much as the medical chart. Notes from the meeting, who was present, who paid, and whether the lawyer met with the person alone. We subpoena it early. We also look for the pattern of isolation and control that the statute describes: changed locks, changed phone numbers, a caregiver who answers every call.
 
-Cases are filed in the Santa Clara County Probate Division in San Jose, or in the county where the trust or estate is being administered. We use Legion, the AI litigation platform our founder co-founded, to go through the medical and financial records quickly, and we retain a geriatric psychiatrist or neuropsychologist when the capacity question needs an expert.
+Cases are filed in the Santa Clara County Probate Division in San Jose, or in the county where the trust or estate is being administered. We use Legion, the AI litigation platform our founder co-founded, to go through the medical and financial records quickly, and we retain a geriatric psychiatrist or neuropsychologist when the capacity question calls for medical testimony.
+
+## A caregiver married my parent. Can anything be done?
+
+It happens more often than families expect. The helper who came three days a week becomes a spouse, sometimes in a courthouse ceremony nobody heard about until later. Undoing the marriage itself is hard. The law asks very little of a person before letting them marry, and once a parent has died, an annulment for lack of mental capacity is no longer available to anyone.
+
+In 2019 California changed the law so that families no longer have to undo the marriage. Since January 1, 2020, a gift or estate plan change made for a caregiver spouse within six months of the wedding is presumed to be the product of fraud or undue influence, and a caregiver whose spouse died within six months of the wedding is presumed not to be entitled to a spouse's share of the estate. The caregiver has to prove otherwise by clear and convincing evidence, and on a gift pays the other side's fees if they cannot.
+
+The six-month windows are what make these cases, so the dates of the care, the marriage, any new document, and the death matter from day one. We explain the details, and what can be done while a parent is still alive, in [A caregiver married my parent: what California law allows](/library/caregiver-married-my-parent-what-california-law-allows/).
 
 ## Common situations
 
