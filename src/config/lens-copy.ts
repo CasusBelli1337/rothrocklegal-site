@@ -25,14 +25,130 @@ const HERO_SUB =
   'he died. We represent beneficiaries who were cut out and trustees who are being accused. ' +
   'Deadlines can be as short as 120 days – [check yours before it runs](/how-long-do-i-have/).';
 
+/** One of the three clocks on the homepage deadline band (components/home/deadline-cards.tsx). */
+export interface DeadlineCard {
+  /** The clock and its statute, e.g. "Trust contest · Probate Code § 16061.8". */
+  label: string;
+  /** The hook question (h3). */
+  question: string;
+  body: string;
+  /** A native <details> under the body: a paragraph or a numbered list, then one link. */
+  more?: {
+    summary: string;
+    body?: string;
+    items?: readonly string[];
+    link: LensLink;
+  };
+}
+
+/** The card set is one slot, so a framing swaps all three clocks and the teaser together. */
+export interface DeadlineCards {
+  cards: readonly [DeadlineCard, DeadlineCard, DeadlineCard];
+  /** The strip under the cards for the visitor who thinks it is already too late. */
+  teaser: { lead: string; body: string };
+}
+
 const DEADLINE_EYEBROW = 'Am I too late?';
-const DEADLINE_TITLE = 'Most trust contests run on a 120-day clock. Some have less.';
-const DEADLINE_BODY =
-  'Once a trustee mails the notice required by Probate Code § 16061.7, you usually have 120 days ' +
-  'to contest the trust. Will contests, elder abuse claims, and accounting disputes each have ' +
-  'their own clock. Answer four questions and we’ll tell you which deadlines probably apply to you.';
+const DEADLINE_TITLE = 'Did you get a notice from the trustee?';
+const DEADLINE_LEAD =
+  'Three clocks matter in most of these cases. Each starts on a different day, and two of them ' +
+  'are short.';
 const DEADLINE_CTA: LensLink = { label: 'Check my deadline', href: '/how-long-do-i-have/' };
-const DEADLINE_SECONDARY = 'Or [tell us your story](/contact/)';
+const DEADLINE_SECONDARY: LensLink = { label: 'Tell us your story', href: '/contact/' };
+
+/* Every sentence traces to src/lib/deadlines/rules*.ts and RULES.md (beneficiary side)
+   or to the notice article and TRUSTEE-RULES.md (trustee side). Edit both together. */
+const DEADLINE_CARDS: DeadlineCards = {
+  cards: [
+    {
+      label: 'Trust contest · Probate Code § 16061.8',
+      question: 'Did a letter called “Notification by Trustee” arrive?',
+      body:
+        'From the day it was mailed, you have 120 days to contest the trust. If you ask for a copy ' +
+        'of the trust and it is delivered inside those 120 days, you get 60 days from that delivery ' +
+        'if that is later.',
+      more: {
+        summary: 'What counts as notice?',
+        body:
+          'A written notice from the trustee saying the trust has become irrevocable, giving the ' +
+          'trustee’s name and address, and warning that you have 120 days to contest it (Probate ' +
+          'Code § 16061.7). It usually arrives by mail, with or without a copy of the trust.',
+        link: { label: 'Read about the 120-day rule', href: '/library/?category=deadlines' },
+      },
+    },
+    {
+      label: 'Will contest · Probate Code §§ 8250, 8270',
+      question: 'Has the will been filed with the court?',
+      body:
+        'Before a judge admits the will, you can object at or before the hearing. After the order ' +
+        'admitting it, you have 120 days to ask the court to revoke it.',
+    },
+    {
+      label: 'One year from death · Code of Civil Procedure §§ 366.2, 366.3',
+      question: 'Did the person die less than a year ago?',
+      body:
+        'Money they owed you, property they kept, or a promise to leave you something: those ' +
+        'claims must be filed within one year of the death. This limit is strict, and courts ' +
+        'enforce it to the day.',
+    },
+  ],
+  teaser: {
+    lead: 'Think you might already be late? Talk to us anyway.',
+    body:
+      'Some clocks may never have started, because the notice was defective or never served. ' +
+      'Others run from the day you discovered the problem, not the day it happened. Only a lawyer ' +
+      'who has seen your documents can tell you which rules apply to you.',
+  },
+};
+
+const TRUSTEE_DEADLINE_CARDS: DeadlineCards = {
+  cards: [
+    {
+      label: 'Notification by Trustee · Probate Code § 16061.7',
+      question: 'Have you sent the notice yet?',
+      body:
+        'You have 60 days from the death to mail it to every beneficiary and every heir, ' +
+        'including a child the trust left out. Serve it properly and each of them has 120 days to ' +
+        'contest the trust. Serve it wrong, or leave it unsent, and their window stays open.',
+      more: {
+        summary: 'What has to be in it?',
+        items: [
+          'Who created the trust, and the date it was signed.',
+          'Each trustee’s name, address, and telephone number.',
+          'The address where the trust is being administered.',
+          'Anything else the trust document says a notice must include.',
+          'A statement that the recipient may ask for a true and complete copy of the trust.',
+          'After a death, the 120-day warning in the statute’s exact words, in bold, in its own ' +
+            'paragraph.',
+        ],
+        link: { label: 'Read the guide to the notice', href: NOTICE_ARTICLE_PATH },
+      },
+    },
+    {
+      label: 'Copy of the trust · Probate Code §§ 16061.5, 16061.8',
+      question: 'Has anyone asked for a copy of the trust?',
+      body:
+        'Any beneficiary or heir who asks is entitled to one. If the copy is delivered inside the ' +
+        '120-day window, that person’s contest deadline becomes 60 days from the delivery when ' +
+        'that is later. Send the copy with the notice and only the 120-day clock is left to run.',
+    },
+    {
+      label: 'Accountings · Probate Code §§ 16062, 16460',
+      question: 'Has a beneficiary asked for an accounting?',
+      body:
+        'You owe every current beneficiary a written account at least once a year. One that ' +
+        'fairly discloses a problem starts a three-year clock on claims about it. Without one, ' +
+        'the clock runs from the day the beneficiary discovered the problem, or should have.',
+    },
+  ],
+  teaser: {
+    lead: 'Already been accused? The deadlines still matter.',
+    body:
+      'When a beneficiary petitions to remove you, or to make you repay the trust, the first ' +
+      'questions are what you sent, to whom, and when. We represent beneficiaries as well, so we ' +
+      'know exactly what they look for in a notice.',
+  },
+};
 
 const HOW_STEP_1 =
   'Tell us what happened, in writing or by voice, and upload what you have. We run a conflict ' +
@@ -40,8 +156,7 @@ const HOW_STEP_1 =
 
 const WHY_FASTER_LEAD =
   'Arthur is the co-founder and CEO of Legion, an AI litigation platform. That’s why we can go ' +
-  'through thousands of pages of bank records and medical files in days instead of months, and ' +
-  'why our drafting doesn’t sit in a queue.';
+  'through thousands of pages of bank records and medical files in days instead of months.';
 
 const LIBRARY_LEAD =
   'Deadlines, trust contests, trustees who won’t account, elder financial abuse. Plain English, ' +
@@ -76,24 +191,24 @@ export const lensCopy = {
   } satisfies LensCopy<LensSwitch | null>,
   deadlineEyebrow: {
     neutral: DEADLINE_EYEBROW,
-    trustee: 'Did the clock start?',
+    trustee: 'Are you the trustee?',
     beneficiary: DEADLINE_EYEBROW,
   },
   deadlineTitle: {
     neutral: DEADLINE_TITLE,
-    trustee: 'The 120-day clock is yours to start.',
+    trustee: 'Have you served the Notification by Trustee?',
     beneficiary: DEADLINE_TITLE,
   },
-  deadlineBody: {
-    neutral: DEADLINE_BODY,
-    trustee:
-      'Once you serve the Notification by Trustee required by Probate Code § 16061.7, the ' +
-      'beneficiaries have 120 days to contest the trust, or 60 days from the day they get a copy ' +
-      'of the trust terms, whichever is later (Probate Code § 16061.8). You have 60 days from the ' +
-      'death to serve it. Serve it wrong, or hold the trust copy back, and the window stays open. ' +
-      'We represent beneficiaries as well, so we know exactly what they look for in a notice.',
-    beneficiary: DEADLINE_BODY,
+  deadlineLead: {
+    neutral: DEADLINE_LEAD,
+    trustee: 'The clocks in a trust dispute run against you too. Three matter most.',
+    beneficiary: DEADLINE_LEAD,
   },
+  deadlineCards: {
+    neutral: DEADLINE_CARDS,
+    trustee: TRUSTEE_DEADLINE_CARDS,
+    beneficiary: DEADLINE_CARDS,
+  } satisfies LensCopy<DeadlineCards>,
   deadlineCta: {
     neutral: DEADLINE_CTA,
     trustee: { label: 'How to serve the notice', href: NOTICE_ARTICLE_PATH },
@@ -101,9 +216,9 @@ export const lensCopy = {
   } satisfies LensCopy<LensLink>,
   deadlineSecondary: {
     neutral: DEADLINE_SECONDARY,
-    trustee: 'Or [check a deadline](/how-long-do-i-have/)',
+    trustee: { label: 'Check a deadline', href: '/how-long-do-i-have/' },
     beneficiary: DEADLINE_SECONDARY,
-  },
+  } satisfies LensCopy<LensLink>,
   howStep1: {
     neutral: HOW_STEP_1,
     trustee:
@@ -115,8 +230,7 @@ export const lensCopy = {
     neutral: WHY_FASTER_LEAD,
     trustee:
       'Arthur is the co-founder and CEO of Legion, an AI litigation platform. That’s why we can go ' +
-      'through years of trust statements and your own records in days instead of months, and why ' +
-      'our drafting doesn’t sit in a queue.',
+      'through years of trust statements and your own records in days instead of months.',
     beneficiary: WHY_FASTER_LEAD,
   },
   libraryLead: {

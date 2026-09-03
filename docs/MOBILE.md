@@ -123,8 +123,8 @@ edges: 320, 360, 375, 390, 430, and a 768 tablet in both orientations.
 
 - The recognitions row in the hero scrolls sideways and is keyboard reachable
   (`tabIndex=0`); it is not a tap target.
-- "tell us your story" inside a one-line sentence on the homepage deadline
-  callout stays an inline link (WCAG 2.5.8 exempts it).
+- "Tell us your story" on the homepage deadline tile is a full secondary
+  button since 2026-09-03 (it was an inline link before the tile was rebuilt).
 - The desktop nav dropdown still opens on hover, but only where hover exists;
   a touch tablet in landscape opens it by tap.
 - `ArticleToc` mounts both the mobile and the desktop variant, so its scroll

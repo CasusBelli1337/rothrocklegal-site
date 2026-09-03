@@ -146,15 +146,6 @@ export const noteCta: NavItem = {
   href: '/contact/',
 };
 
-/**
- * Homepage settings. `deadlinePhotos` pins the four attorney headshots to the
- * corners of the deadline card (Arthur, 2026-09-02); set false to remove them
- * in one edit, for example when commissioned photography replaces them.
- */
-export const homepage = {
-  deadlinePhotos: true,
-} as const;
-
 /** Footer "Resources" column (IA.md §3). Practice links come from practice-areas.ts. */
 export const footerResources: readonly NavItem[] = [
   { label: 'How Long Do I Have?', href: '/how-long-do-i-have/' },

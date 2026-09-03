@@ -28,7 +28,9 @@ beneficiary }} />` (`src/components/lens/Slot.tsx`) renders every framing
   from `--lens-order-<lens>` custom properties (`src/lib/lens/order.ts`).
 - **Config**: `src/config/lens.ts` holds every weight, threshold, and order;
   `src/config/lens-copy.ts` holds every variant as plain strings
-  (`[label](/href/)` = link, `*word*` = em-word). `scripts/check-lens.mjs` fails
+  (`[label](/href/)` = link, `*word*` = em-word), or for the buttons and the
+  deadline cards as typed objects of strings rendered through
+  `renderVariants`. `scripts/check-lens.mjs` fails
   the build if any slot in the export lacks a framing.
 
 ## 2. Signals
@@ -54,7 +56,8 @@ Navigation weight = half the landing weight, rounded toward zero, never below ±
 ## 3. What changes under a lens
 
 Home hero title and sub-line (plus the escape-hatch link), deadline band
-(eyebrow, title, body, button, secondary link), problem-card order and the
+(eyebrow, hook question, lead, the three clock cards with their teaser as one
+slot, primary and secondary buttons), problem-card order and the
 complex-estates line, how-we-work step 1 and the "why faster" lead, the
 library preview (three lists, three cards each), the home FAQ order (the two
 trustee questions first), the `/library/` featured card, and the consult flow

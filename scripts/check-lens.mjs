@@ -15,7 +15,7 @@ import path from 'node:path';
 const OUT = path.join(process.cwd(), 'out');
 const LENSES = ['neutral', 'trustee', 'beneficiary'];
 /** Page → minimum distinct slots it must carry. */
-const PAGES = { '/': 11, '/library/': 1, '/contact/': 1 };
+const PAGES = { '/': 12, '/library/': 1, '/contact/': 1 };
 const PREVIEW_TRACES = ['PreviewLensSwitch', 'Preview lens', 'preview:'];
 const failures = [];
 
