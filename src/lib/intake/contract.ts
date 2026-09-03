@@ -6,7 +6,8 @@
  * Any change happens here first, then in both copies. #seam:rothrock-intake-contract
  */
 
-export const INTAKE_API_VERSION = 1 as const;
+/** 2 adds spokenText, lookup, resume (Phase 2). Servers answer clients of the same major version. */
+export const INTAKE_API_VERSION = 2 as const;
 
 /** The eight situations on the homepage plus "other". Keys match practice-area slugs. */
 export const SITUATIONS = [
@@ -104,6 +105,12 @@ export interface IntakeAnswers {
   relationship?: Relationship;
   parties: Party[];
   story: string; // typed or transcribed
+  /**
+   * Raw phrases the browser's speech recognition heard, appended with a space
+   * as they arrived. Kept even when the person edits the story, so the lawyers
+   * can see which parts were spoken and exactly what was heard.
+   */
+  spokenText?: string;
   voiceNoteFileId?: string; // optional recorded audio
   keyDates: {
     dateOfDeath?: string; // yyyy-mm-dd
@@ -233,6 +240,39 @@ export interface SubmitResponse {
   reference: string;
   status: "submitted";
   nextSteps: string; // plain English shown on the done screen
+}
+
+/**
+ * "Continue by email." The client asks whether an unfinished request exists
+ * for an address. The answer is a single boolean and never more: a typed
+ * email must not reveal anything about someone else's request. When the
+ * answer is found, the server itself emails that address a link carrying a
+ * resume token; the client never receives the token from this call. The
+ * client sends its own session bearer token with this request when it has
+ * one, so the server can leave out the request being typed right now.
+ */
+export interface LookupRequest {
+  email: string;
+}
+export interface LookupResponse {
+  found: boolean;
+}
+
+/** The server has emailed a continue link (a lookup that found a match, or a resend). */
+export interface ResumeSentResponse {
+  sent: true;
+}
+
+/** Exchanges the token from the emailed link for the earlier request. One use; expires. */
+export interface ResumeRequest {
+  token: string;
+}
+export interface ResumeResponse {
+  session: IntakeSession;
+  answers: IntakeAnswers;
+  files: IntakeFile[];
+  /** The screen the person was on when the link was sent, if known (a site step id). */
+  step?: string;
 }
 
 export interface ApiError {
