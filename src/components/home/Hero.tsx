@@ -1,16 +1,19 @@
 import { LensSwitchLink } from '@/components/lens/LensSwitchLink';
 import { renderVariants, Slot } from '@/components/lens/Slot';
-import { Badge } from '@/components/ui/Badge';
+import { Badge, type BadgeImage } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { lensCopy, type LensSwitch } from '@/config/lens-copy';
 import { asset, consultCta, noteCta } from '@/config/site';
+import { arthurRothrock } from '@/config/team/arthur-rothrock';
 
-const chips: {
-  label: React.ReactNode;
-  image?: { src: string; alt: string; width: number; height: number };
-}[] = [
+const podcast = arthurRothrock.podcast;
+if (!podcast?.url) {
+  throw new Error('Hero: arthurRothrock.podcast.url is required for the podcast chip');
+}
+
+const chips: { label: React.ReactNode; image?: BadgeImage; href?: string }[] = [
   {
     label: <>Super Lawyers&reg; Rising Stars 2020&ndash;2026</>,
     image: {
@@ -29,8 +32,29 @@ const chips: {
       height: 200,
     },
   },
-  { label: 'Vice Chair, ABA AI & Robotics National Institute' },
-  { label: <>Santa Clara County Superior Court &ndash; Probate Division</> },
+  {
+    label: 'Vice Chair, ABA AI & Robotics National Institute',
+    image: { src: '/images/badges/aba.webp', alt: '', width: 200, height: 82 },
+  },
+  {
+    label: 'Member, Honorable William A. Ingram American Inn of Court',
+    image: { src: '/images/badges/american-inns-of-court.webp', alt: '', width: 200, height: 200 },
+  },
+  {
+    label: (
+      <>
+        {podcast.role}, {podcast.name} podcast
+      </>
+    ),
+    image: {
+      src: '/images/badges/litigators-path.webp',
+      alt: '',
+      width: 200,
+      height: 200,
+      square: true,
+    },
+    href: podcast.url,
+  },
 ];
 
 /** Crops from scripts/make-image-variants.mjs: 3:2 for the phone layout, 4:5 from lg. */
@@ -82,7 +106,7 @@ export function Hero() {
           >
             {chips.map((chip, i) => (
               <li key={i} className="shrink-0">
-                <Badge tone="dark" image={chip.image}>
+                <Badge tone="dark" image={chip.image} href={chip.href}>
                   {chip.label}
                 </Badge>
               </li>

@@ -130,7 +130,7 @@ export const arthurRothrock: TeamMember = {
     name: "The Litigator's Path",
     role: 'Host',
     description: 'a podcast about building and running a litigation practice',
-    url: 'https://legionlaw.podbean.com/',
+    url: 'https://legion.law/podcasts',
   },
   appearances: arthurAppearances,
   sameAs: [
