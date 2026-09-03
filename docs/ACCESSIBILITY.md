@@ -7,10 +7,19 @@ records the one feature a visitor can see: the reading options, added
 
 ## Reading options
 
-A "Reading options" button (text label plus icon, 44px) sits in the header on
-every page. It opens an inline bar under the header row that pushes the page
-down and never covers anything (UI rule: never cover the workspace). The bar
-holds four choices, each a `<fieldset>` of real radios drawn as chips:
+The "Reading options" control lives in the header's menu bar on every page.
+From `xl` (1280px) it is the last item of the main nav, after "About", styled
+like the links around it (the AA icon joins the label from 1440px, where the
+row has room). Below `xl` it is a 44px icon-only button, `aria-label="Reading
+options"`, immediately left of the menu button; the consult button stays in the
+row from `lg`, where `MobileConsultBar` hands off. Both buttons toggle the same
+bar, which renders inside the sticky `<header>` directly under the nav row, in
+normal flow, so it pushes the page down and never covers anything (UI rule:
+never cover the workspace). Escape and Done close it and return focus to the
+button that is on screen; moving to another page closes it. The header row and
+the bar share `headerColumnClass` (85rem), wider than the 75rem page column,
+because the full nav needs about 1,300px at this type size. The bar holds four
+choices, each a `<fieldset>` of real radios drawn as chips:
 
 | Option    | Values                    | What it does                                                              |
 | --------- | ------------------------- | ------------------------------------------------------------------------- |

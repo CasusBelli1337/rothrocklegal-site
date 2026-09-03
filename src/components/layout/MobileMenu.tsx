@@ -101,7 +101,7 @@ export function MobileMenu({ open, onClose, pathname }: MobileMenuProps) {
     <div
       id="mobile-menu"
       ref={dialogRef}
-      className="fixed inset-0 z-50 lg:hidden"
+      className="fixed inset-0 z-50 xl:hidden"
       role="dialog"
       aria-modal="true"
       aria-label="Menu"

@@ -60,8 +60,9 @@ export default function AccessibilityPage() {
 
       <h2>Reading options</h2>
       <p>
-        The &ldquo;Reading options&rdquo; button at the top of every page opens four settings. You
-        can also set them here. They are saved on this device only, in your browser, and you can
+        The &ldquo;Reading options&rdquo; button in the menu bar at the top of every page (on a
+        phone, the AA icon next to the menu button) opens four settings. You can also set them
+        here. They are saved on this device only, in your browser, and you can
         set them back to normal at any time.
       </p>
       <ul>
