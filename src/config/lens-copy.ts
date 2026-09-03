@@ -34,9 +34,6 @@ const DEADLINE_BODY =
 const DEADLINE_CTA: LensLink = { label: 'Check my deadline', href: '/how-long-do-i-have/' };
 const DEADLINE_SECONDARY = 'Or [tell us your story](/contact/)';
 
-const COMPLEX_LINE =
-  'Multiple properties, an LLC, a family business? [We handle complex estates.](/complex-estates/)';
-
 const HOW_STEP_1 =
   'Tell us what happened, in writing or by voice, and upload what you have. We run a conflict ' +
   `check. ${site.replyPromise}`;
@@ -106,13 +103,6 @@ export const lensCopy = {
     neutral: DEADLINE_SECONDARY,
     trustee: 'Or [check a deadline](/how-long-do-i-have/)',
     beneficiary: DEADLINE_SECONDARY,
-  },
-  complexLine: {
-    neutral: COMPLEX_LINE,
-    trustee:
-      'Trustee of several properties, an LLC, or a family business? ' +
-      '[We handle complex estates.](/complex-estates/)',
-    beneficiary: COMPLEX_LINE,
   },
   howStep1: {
     neutral: HOW_STEP_1,

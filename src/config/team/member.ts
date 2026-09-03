@@ -83,8 +83,6 @@ export interface TeamMember {
    * the bio already says; never a claim the dossier did not verify.
    */
   proofLine: string;
-  /** Where the lawyer practiced before the firm, when the dossier verified it. */
-  priorFirm?: { name: string; city: string };
   /** 1–2 sentences for the meta description and Person JSON-LD. */
   summary: string;
   /** One line under the name on the bio page hero. */

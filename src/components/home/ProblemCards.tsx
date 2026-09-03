@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import type { CSSProperties } from 'react';
 import { oddLastSpan } from '@/lib/grid';
 import { LENS_ORDERED_CLASS, lensOrderStyle } from '@/lib/lens/order';
@@ -17,14 +16,11 @@ import {
   ShieldIcon,
   UsersIcon,
 } from '@/components/icons';
-import { Slot } from '@/components/lens/Slot';
-import { CasesWeTake } from '@/components/home/CasesWeTake';
 import { Card } from '@/components/ui/Card';
 import { Container } from '@/components/ui/Container';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { lensConfig } from '@/config/lens';
-import { lensCopy } from '@/config/lens-copy';
 import {
   getPracticeArea,
   practiceHref,
@@ -116,25 +112,6 @@ export function ProblemCards() {
             />
           ))}
         </Reveal>
-        <Reveal className="mt-10">
-          <CasesWeTake />
-        </Reveal>
-        <p className="mt-8 text-small text-ink-3">
-          <Slot
-            name="complex-line"
-            variants={lensCopy.complexLine}
-            linkClassName="font-medium text-maroon-700 underline underline-offset-3"
-          />
-        </p>
-        <p className="mt-2 text-small text-ink-3">
-          Business or partnership dispute instead?{' '}
-          <Link
-            href="/business-disputes/"
-            className="font-medium text-maroon-700 underline underline-offset-3"
-          >
-            We handle those too.
-          </Link>
-        </p>
       </Container>
     </section>
   );

@@ -20,7 +20,7 @@ const steps: { title: string; body: React.ReactNode }[] = [
   },
   {
     title: 'We move.',
-    body: 'A petition in Santa Clara County Superior Court – Probate Division, or wherever the case belongs. Mediation when it makes sense. Trial when it doesn’t.',
+    body: 'A petition in the probate court where the case belongs. Mediation when it makes sense. Trial when it doesn’t.',
   },
 ];
 

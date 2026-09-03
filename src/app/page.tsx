@@ -6,7 +6,6 @@ import { HomeFaq } from "@/components/home/HomeFaq";
 import { HowWeWork } from "@/components/home/HowWeWork";
 import { LibraryPreview } from "@/components/home/LibraryPreview";
 import { ProblemCards } from "@/components/home/ProblemCards";
-import { ProofStrip } from "@/components/home/ProofStrip";
 import { ServiceArea } from "@/components/home/ServiceArea";
 import { WhatClientsSay } from "@/components/home/WhatClientsSay";
 import { site } from "@/config/site";
@@ -24,7 +23,6 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <ProofStrip />
       <DeadlineBand />
       <ProblemCards />
       <AttorneysStrip />
