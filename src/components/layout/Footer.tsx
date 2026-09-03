@@ -12,16 +12,18 @@ function ColumnHeading({ children }: { children: React.ReactNode }) {
 
 const linkClass = 'tap-row text-ui text-white/80 transition-colors hover:text-white';
 
-/** Four columns + compliance bar (IA.md §3, SEO-SPEC §12 #6). */
+/**
+ * Four columns + compliance bar (IA.md §3, SEO-SPEC §12 #6). Flat maroon-950
+ * with the same vertical rhythm as CtaBand, which sits directly above it on
+ * every page but the homepage, so the two read as one block.
+ */
 export function Footer() {
   return (
-    <footer className="band-maroon">
-      <Container className="grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_0.9fr_1.2fr] lg:py-20">
+    <footer className="bg-maroon-950 text-white">
+      <Container className="grid gap-12 py-14 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_0.9fr_1.2fr] lg:py-16">
         <div>
           <BrandLogo lockup="full" tone="white" className="h-24 w-auto" />
-          <p className="mt-5 max-w-[32ch] text-ui leading-relaxed text-white/80">
-            {site.tagline}
-          </p>
+          <p className="mt-5 max-w-[32ch] text-ui leading-relaxed text-white/80">{site.tagline}</p>
           <p className="mt-5 text-ui font-semibold text-white">{site.phone}</p>
           <p className="mt-1 max-w-[32ch] text-small text-white/70">{site.consultLine}</p>
           <p className="mt-2 text-ui">

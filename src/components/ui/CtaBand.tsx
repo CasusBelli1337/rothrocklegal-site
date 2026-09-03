@@ -9,7 +9,11 @@ interface CtaBandProps {
   id?: string;
 }
 
-/** Maroon gradient band: white h2, one lead line, consult button + note button (DESIGN-BRIEF §6). */
+/**
+ * The footer's top row: white h2, one lead line, consult button + note button
+ * (DESIGN-BRIEF §6). Flat maroon-950 like the Footer, so the two read as one
+ * block split by a single hairline (Arthur, 2026-09-03); the heroes keep band-maroon.
+ */
 export function CtaBand({
   title = 'Start with a consult request.',
   lead = (
@@ -21,7 +25,7 @@ export function CtaBand({
   id,
 }: CtaBandProps) {
   return (
-    <section id={id} className="band-maroon py-16 lg:py-20">
+    <section id={id} className="border-b border-white/15 bg-maroon-950 py-14 text-white lg:py-16">
       <Container className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-[40rem]">
           <h2 className="font-serif text-h2 text-white">{title}</h2>

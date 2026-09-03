@@ -24,12 +24,29 @@ const steps: { title: string; body: React.ReactNode }[] = [
   },
 ];
 
+export type StepsLayout = 'list' | 'grid';
+
+/**
+ * 'list' stacks the steps with the number beside the title (/contact/).
+ * 'grid' runs them four across on the homepage with the number above the
+ * title; on a phone, where the grid is one column anyway, it reads as the list.
+ */
+const layouts: Record<StepsLayout, { list: string; item: string; body: string }> = {
+  list: { list: 'space-y-8', item: 'flex gap-5', body: 'mt-1.5 max-w-[56ch]' },
+  grid: {
+    list: 'grid gap-8 sm:grid-cols-2 lg:grid-cols-4',
+    item: 'flex gap-5 sm:flex-col sm:gap-4',
+    body: 'mt-1.5 sm:mt-2',
+  },
+};
+
 /** The four steps, reusable on /contact/. */
-export function HowWeWorkSteps() {
+export function HowWeWorkSteps({ layout = 'list' }: { layout?: StepsLayout }) {
+  const c = layouts[layout];
   return (
-    <ol className="space-y-8">
+    <ol className={c.list}>
       {steps.map((step, i) => (
-        <li key={step.title} className="flex gap-5">
+        <li key={step.title} className={c.item}>
           <span
             aria-hidden="true"
             className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-brass-400 font-serif text-lg text-brass-600 tabular"
@@ -38,40 +55,11 @@ export function HowWeWorkSteps() {
           </span>
           <div>
             <h3 className="font-sans text-h4 text-ink">{step.title}</h3>
-            <p className="mt-1.5 max-w-[56ch] text-body text-ink-2">{step.body}</p>
+            <p className={`${c.body} text-body text-ink-2`}>{step.body}</p>
           </div>
         </li>
       ))}
     </ol>
-  );
-}
-
-/** The Legion credential, framed as speed (HOMEPAGE-SPEC §5). One paragraph: the fact does the talking (Arthur, 2026-09-02). */
-export function WhyFasterPanel() {
-  return (
-    <div className="rounded-xl border border-line bg-white p-6 lg:p-8">
-      <h3 className="font-serif text-h3 text-ink">Why our cases move faster</h3>
-      <p className="mt-3 text-body text-ink-2">
-        <Slot name="why-faster-lead" variants={lensCopy.whyFasterLead} /> Lawyers still make every
-        judgment call.
-      </p>
-    </div>
-  );
-}
-
-/** Who does what on a case (Arthur, 2026-09-01): senior judgment where it matters, associate rates for the heavy lifting. */
-export function WhoDoesWhatPanel() {
-  return (
-    <div className="rounded-xl border border-line bg-white p-6 lg:p-8">
-      <h3 className="font-serif text-h3 text-ink">Who does what on your case</h3>
-      <p className="mt-3 text-body text-ink-2">
-        Arthur sets the strategy and the big picture on every case. Jonathan, a former Marine Corps
-        infantry captain who practiced at Wilson Sonsini and Fenwick &amp; West, takes the
-        depositions and argues the hearings. Gerry and Max, the associates, execute the plan: the
-        records, the discovery, the drafting, at lower rates. You get senior judgment where it
-        matters, a courtroom presence judges know, and a smaller bill for the heavy lifting.
-      </p>
-    </div>
   );
 }
 
@@ -85,15 +73,9 @@ export function HowWeWork() {
             title="Here's what happens when you reach out."
           />
         </Reveal>
-        <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:gap-12">
-          <Reveal className="lg:col-span-7">
-            <HowWeWorkSteps />
-          </Reveal>
-          <Reveal className="space-y-5 lg:col-span-5">
-            <WhoDoesWhatPanel />
-            <WhyFasterPanel />
-          </Reveal>
-        </div>
+        <Reveal className="mt-10">
+          <HowWeWorkSteps layout="grid" />
+        </Reveal>
       </Container>
     </section>
   );
