@@ -25,7 +25,7 @@ describe('public page copy', () => {
   });
 
   it('uses no em dashes', () => {
-    expect(lines.filter((line) => line.includes('—'))).toEqual([]);
+    expect(lines.filter((line) => line.includes('\u2014'))).toEqual([]);
   });
 
   it('uses none of the voice guide blacklist and never calls the person a client', () => {
