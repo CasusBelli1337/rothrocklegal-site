@@ -1,7 +1,7 @@
 /**
  * Browser speech helpers for the story step: live transcription over the Web
  * Speech API and an audio capture over MediaRecorder. Both are feature-detected;
- * the UI hides the microphone when neither exists.
+ * `mic-help.ts` turns the result into what the screen says.
  */
 
 /* Minimal shapes of the (non-standard) Web Speech API; TypeScript's DOM lib omits them. */
@@ -52,6 +52,12 @@ export function recordingSupported(w: WindowLike | undefined = currentWindow()):
   );
 }
 
+/** Adds a heard phrase to text the person may already have written (one space between, no trailing blanks). */
+export function appendPhrase(base: string, phrase: string): string {
+  const trimmed = base.replace(/\s+$/, '');
+  return trimmed ? `${trimmed} ${phrase}` : phrase;
+}
+
 export interface SpeechSupport {
   transcript: boolean;
   recording: boolean;
@@ -66,7 +72,8 @@ export interface TranscriberHandlers {
   onInterim(text: string): void;
   /** A finished phrase to append to the story. */
   onFinal(text: string): void;
-  onError(message: string): void;
+  /** `code` is the Web Speech error code (`not-allowed`, `audio-capture`, `network`, ...). */
+  onError(code: string): void;
   /** Fires once the transcriber stops for good. */
   onStop(): void;
 }
@@ -75,12 +82,6 @@ export interface Transcriber {
   start(): void;
   stop(): void;
 }
-
-const SPEECH_ERRORS: Record<string, string> = {
-  'not-allowed': 'The browser blocked the microphone. Allow it in the address bar and try again.',
-  'audio-capture': 'We could not find a microphone.',
-  network: 'Speech recognition needs an internet connection.',
-};
 
 /**
  * Continuous, interim-result transcription. Browsers end a session after a
@@ -112,9 +113,7 @@ export function createTranscriber(
   recognition.onerror = (event) => {
     if (event.error === 'no-speech' || event.error === 'aborted') return;
     active = false;
-    handlers.onError(
-      SPEECH_ERRORS[event.error] ?? 'Speech recognition stopped. You can keep typing.',
-    );
+    handlers.onError(event.error);
   };
   recognition.onend = () => {
     if (active) {
@@ -137,7 +136,7 @@ export function createTranscriber(
         recognition.start();
       } catch {
         active = false;
-        handlers.onError('We could not start the microphone.');
+        handlers.onError('start-failed');
       }
     },
     stop() {

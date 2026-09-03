@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import {
+  appendPhrase,
   createTranscriber,
   detectSpeechSupport,
   type SpeechRecognitionLike,
@@ -66,6 +67,13 @@ describe('detectSpeechSupport', () => {
   });
 });
 
+describe('appendPhrase', () => {
+  it('joins with one space and starts clean on empty text', () => {
+    expect(appendPhrase('', 'my mother died')).toBe('my mother died');
+    expect(appendPhrase('My mother died.  \n', 'in March')).toBe('My mother died. in March');
+  });
+});
+
 describe('createTranscriber', () => {
   it('returns null without support', () => {
     expect(createTranscriber(handlers(), {})).toBeNull();
@@ -100,7 +108,7 @@ describe('createTranscriber', () => {
     expect(h.calls.stop).toEqual([true]);
   });
 
-  it('explains a blocked microphone and ignores silence', () => {
+  it('reports the error code for a blocked microphone and ignores silence', () => {
     const h = handlers();
     const transcriber = createTranscriber(h, { SpeechRecognition: FakeRecognition });
     const recognition = FakeRecognition.instances.at(-1)!;
@@ -108,6 +116,6 @@ describe('createTranscriber', () => {
     recognition.onerror?.({ error: 'no-speech' });
     expect(h.calls.error).toEqual([]);
     recognition.onerror?.({ error: 'not-allowed' });
-    expect(h.calls.error[0]).toMatch(/blocked the microphone/);
+    expect(h.calls.error).toEqual(['not-allowed']);
   });
 });

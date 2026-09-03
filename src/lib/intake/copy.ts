@@ -1,6 +1,8 @@
 import type { FundingOption, Party, Relationship, ValueRange } from './contract';
 import type { KeyDateKey, StepId } from './state';
 
+export * from './copy-mic';
+
 /**
  * Every line of copy in the intake flow lives here (config over code; plain
  * English for a worried family member, never legal advice, no em dashes).

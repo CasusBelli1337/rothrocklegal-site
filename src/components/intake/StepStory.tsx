@@ -3,6 +3,7 @@
 import { useCallback, useRef, useState } from 'react';
 import { KEY_DATE_FIELDS, STORY_CHIPS } from '@/lib/intake/copy';
 import { VOICE_NOTE_SLOT, formatBytes } from '@/lib/intake/document-slots';
+import { appendPhrase } from '@/lib/intake/speech';
 import type { KeyDateKey } from '@/lib/intake/state';
 import type { IntakeController } from '@/lib/intake/use-intake';
 import type { UploadBinding } from '@/lib/intake/use-uploads';
@@ -12,11 +13,6 @@ import { StepFrame } from './StepFrame';
 import type { StepProps } from './step-props';
 
 const link = 'tap-link underline underline-offset-3 hover:text-maroon-700';
-
-function appendText(story: string, text: string): string {
-  const trimmed = story.replace(/\s+$/, '');
-  return trimmed ? `${trimmed} ${text}` : text;
-}
 
 function VoiceNoteStatus({ uploads }: { uploads: UploadBinding }) {
   const file = uploads.files.find((f) => f.slot === VOICE_NOTE_SLOT);
@@ -103,11 +99,16 @@ export function StepStory({ intake, uploads }: StepProps) {
   const [interim, setInterim] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { patchAnswers, update } = intake;
+  // A heard phrase lands in the story (which the person may edit) and in spokenText (which they cannot).
   const appendFinal = useCallback(
     (text: string) =>
       update((s) => ({
         ...s,
-        answers: { ...s.answers, story: appendText(s.answers.story, text) },
+        answers: {
+          ...s.answers,
+          story: appendPhrase(s.answers.story, text),
+          spokenText: appendPhrase(s.answers.spokenText ?? '', text),
+        },
       })),
     [update],
   );

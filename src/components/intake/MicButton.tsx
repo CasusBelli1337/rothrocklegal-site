@@ -1,14 +1,10 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
-import {
-  createTranscriber,
-  detectSpeechSupport,
-  startRecording,
-  type Recorder,
-  type SpeechSupport,
-  type Transcriber,
-} from '@/lib/intake/speech';
+import { MIC_COPY } from '@/lib/intake/copy-mic';
+import { showsButton } from '@/lib/intake/mic-help';
+import { useBrowser } from '@/lib/intake/use-browser';
+import { useMic, type MicHandlers } from '@/lib/intake/use-mic';
+import { MicHelp } from './MicHelp';
 
 function MicIcon({ className = 'h-5 w-5' }: { className?: string }) {
   return (
@@ -28,103 +24,67 @@ function MicIcon({ className = 'h-5 w-5' }: { className?: string }) {
   );
 }
 
-interface MicButtonProps {
-  onInterim(text: string): void;
-  onFinal(text: string): void;
-  /** Recorded audio to upload as the `voice-note` slot. */
-  onVoiceNote(file: File): void;
+const IDLE_BUTTON =
+  'inline-flex h-12 items-center gap-2 rounded-md border border-ink px-5 text-body font-semibold text-ink transition-colors hover:bg-sand';
+const STOP_BUTTON =
+  'inline-flex h-14 w-full items-center justify-center gap-2 rounded-md bg-maroon-700 px-8 text-lead font-semibold text-white transition-colors hover:bg-maroon-800 sm:w-auto';
+
+function StatusLine({ phase, transcript, notice }: MicStatusProps) {
+  return (
+    <p className="mt-2 min-h-6 text-small text-ink-3" aria-live="polite">
+      {phase === 'prompt' && MIC_COPY.prompt}
+      {phase === 'asking' && MIC_COPY.asking}
+      {phase === 'listening' && (
+        <span className="inline-flex items-start gap-2 font-medium text-ink">
+          <span
+            aria-hidden="true"
+            className="mt-1.5 h-3 w-3 shrink-0 animate-pulse rounded-full bg-error"
+          />
+          {transcript ? MIC_COPY.listening : MIC_COPY.listeningRecordOnly}
+        </span>
+      )}
+      {notice && <span className="text-error">{notice}</span>}
+    </p>
+  );
 }
 
-const NONE: SpeechSupport = { transcript: false, recording: false };
+interface MicStatusProps {
+  phase: ReturnType<typeof useMic>['phase'];
+  transcript: boolean;
+  notice: string | null;
+}
 
 /**
- * Microphone control for the story step. Live transcription when the browser
- * has the Web Speech API, audio capture when it has MediaRecorder, both when
- * it has both. Renders nothing when it has neither. Stops on unmount.
+ * Microphone control for the story step. Never renders nothing: when the
+ * browser cannot record, has no microphone, or has blocked it, `MicHelp`
+ * explains what to do instead. Stops on unmount.
  */
-export function MicButton({ onInterim, onFinal, onVoiceNote }: MicButtonProps) {
-  const [support, setSupport] = useState<SpeechSupport>(NONE);
-  const [listening, setListening] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const transcriber = useRef<Transcriber | null>(null);
-  const recorder = useRef<Recorder | null>(null);
+export function MicButton(handlers: MicHandlers) {
+  const mic = useMic(handlers);
+  const browser = useBrowser();
+  const { phase, support } = mic;
+  if (!showsButton(phase)) return <MicHelp mic={mic} browser={browser} />;
 
-  useEffect(() => setSupport(detectSpeechSupport()), []);
-
-  const stop = useCallback(async () => {
-    transcriber.current?.stop();
-    transcriber.current = null;
-    const active = recorder.current;
-    recorder.current = null;
-    setListening(false);
-    onInterim('');
-    const file = await active?.stop();
-    if (file) onVoiceNote(file);
-  }, [onInterim, onVoiceNote]);
-
-  useEffect(
-    () => () => {
-      transcriber.current?.stop();
-      void recorder.current?.stop();
-    },
-    [],
-  );
-
-  const start = useCallback(async () => {
-    setError(null);
-    if (support.recording) {
-      try {
-        recorder.current = await startRecording();
-      } catch {
-        setError('The browser blocked the microphone. Allow it in the address bar and try again.');
-        return;
-      }
-    }
-    if (support.transcript) {
-      transcriber.current = createTranscriber({
-        onInterim,
-        onFinal,
-        onError: (message) => {
-          setError(message);
-          void stop();
-        },
-        onStop: () => setListening(false),
-      });
-      transcriber.current?.start();
-    }
-    setListening(true);
-  }, [support, onInterim, onFinal, stop]);
-
-  if (!support.transcript && !support.recording) return null;
-
-  const idleLabel = support.transcript ? 'Speak instead of typing' : 'Record a voice note';
+  const listening = phase === 'listening';
+  const label = listening
+    ? MIC_COPY.stop
+    : phase === 'asking'
+      ? 'Cancel'
+      : support.transcript
+        ? MIC_COPY.speak
+        : MIC_COPY.record;
   return (
-    <div className="flex flex-wrap items-center gap-3">
+    <div>
       <button
         type="button"
         aria-pressed={listening}
-        onClick={() => void (listening ? stop() : start())}
-        className={`inline-flex h-11 items-center gap-2 rounded-md border px-4 text-[15px] font-semibold transition-colors ${
-          listening
-            ? 'border-maroon-700 bg-maroon-50 text-maroon-700'
-            : 'border-ink text-ink hover:bg-sand'
-        }`}
+        onClick={mic.press}
+        className={listening ? STOP_BUTTON : IDLE_BUTTON}
       >
-        <MicIcon />
-        {listening ? 'Stop' : idleLabel}
+        <MicIcon className={listening ? 'h-6 w-6' : 'h-5 w-5'} />
+        {label}
       </button>
-      <span className="text-small text-ink-3" aria-live="polite">
-        {listening && (
-          <span className="inline-flex items-center gap-2">
-            <span aria-hidden="true" className="h-2.5 w-2.5 animate-pulse rounded-full bg-error" />
-            Listening…{' '}
-            {support.transcript
-              ? 'your words appear below as we hear them.'
-              : 'we will listen to the recording.'}
-          </span>
-        )}
-        {error && <span className="text-error">{error}</span>}
-      </span>
+      <StatusLine phase={phase} transcript={support.transcript} notice={mic.notice} />
     </div>
   );
 }
