@@ -12,7 +12,7 @@
   --color-maroon-700: #66043d;
   --color-maroon-600: #7f1a55;
   --color-maroon-500: #98366f;
-  /* Text selection: maroon-700 at 18% alpha. The pink tints (maroon-50/100/200) were retired 2026-09-02 (Arthur). */
+  /* Text selection: maroon-700 at 18% alpha. The pink tints (the 50, 100 and 200 shades) were retired 2026-09-02 (Arthur). */
   --color-highlight: #66043d2e;
 
   --color-paper: #f8f5f0;

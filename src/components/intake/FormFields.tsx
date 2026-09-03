@@ -176,7 +176,7 @@ export function CheckboxRow({
   className = '',
 }: CheckboxRowProps) {
   const frame = card
-    ? `flex cursor-pointer gap-3 rounded-md border bg-white p-4 transition-colors ${checked ? 'border-maroon-700 bg-maroon-50' : 'border-line-strong hover:border-maroon-500'}`
+    ? `flex cursor-pointer gap-3 rounded-md border bg-white p-4 transition-colors ${checked ? 'border-maroon-700 bg-sand' : 'border-line-strong hover:border-maroon-500'}`
     : 'inline-flex cursor-pointer items-center gap-2 py-2';
   return (
     <label

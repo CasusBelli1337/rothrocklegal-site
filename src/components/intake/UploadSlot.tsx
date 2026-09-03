@@ -36,7 +36,7 @@ function DropZone({
         uploads.add(slot, Array.from(event.dataTransfer.files));
       }}
       className={`mt-4 flex flex-col items-center justify-center gap-2 rounded-md border border-dashed px-4 py-6 text-center transition-colors ${
-        dragging ? 'border-maroon-500 bg-maroon-50' : 'border-line-strong bg-paper'
+        dragging ? 'border-maroon-500 bg-sand' : 'border-line-strong bg-paper'
       }`}
     >
       <p className="hidden text-small text-ink-2 [@media(pointer:fine)]:block">Drag files here, or</p>

@@ -27,7 +27,7 @@ function SituationCard({
       onClick={onToggle}
       className={`flex min-h-16 items-center gap-3 rounded-md border bg-white px-4 py-3 text-left text-body transition-colors ${
         pressed
-          ? 'border-maroon-700 bg-maroon-50 text-ink shadow-[inset_0_0_0_1px_var(--color-maroon-700)]'
+          ? 'border-maroon-700 bg-sand text-ink shadow-[inset_0_0_0_1px_var(--color-maroon-700)]'
           : 'border-line-strong text-ink hover:border-maroon-500'
       }`}
     >

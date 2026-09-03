@@ -216,7 +216,7 @@ export function ModuleRenderer(props: ModuleRendererProps) {
   const { module } = props;
   if (module.type === 'info') {
     return (
-      <div className="rounded-xl border-t-4 border-brass-400 bg-maroon-100 p-5">
+      <div className="rounded-xl border border-line border-t-4 border-t-brass-400 bg-white p-5">
         <h3 className="font-sans text-h4 text-ink">{module.title}</h3>
         <p className="mt-2 text-body text-ink-2">{module.body}</p>
       </div>
