@@ -27,6 +27,73 @@ repo holds the editor module and the intake module.
   removed by Arthur on 2026-09-02 (evening): show, don't tell. Arthur's Legion
   credential sentence stays.
 
+## 2026-09-03 (afternoon): Arthur's second-round notes, the form retires, the posture pass
+
+Three commits on `redesign`: db6c13d (secondary CTA becomes the wizard; footer
+keeps its gradient), 0714d8d (copy notes + the contact form retires), e221432
+(the approved posture pass), plus this docs commit. Nothing pushed; `main` and
+the live site are unchanged. Preview: `http://localhost:9080/_preview/`.
+
+### Arthur's notes, applied
+
+- **Deadline tile.** "Am I too late?" is the heading (trustee lens: "Have you
+  served the Notification by Trustee?"); no eyebrow, no lead. Each clock leads
+  with its question, the body follows, and the brass statute citation sits at
+  the bottom of the item. Secondary button is "Request a consult" (trustee:
+  "Check a deadline"). Slots on `/` are 11; `check-lens` floor is 10.
+- **Steps.** Number boxes are square and sit left of the title on one row;
+  boxes align across the row (`items-start`, titles `min-h-10`). Step 4: "We
+  file in court and keep the case moving. Mediation when it makes sense. Trial
+  when it doesn't."
+- **How we run your case.** "Records at scale." replaces "Every page gets
+  read." (Arthur: never represent that every document is reviewed); the
+  about page's software card says "Goes through the bank records" for the
+  same reason. The redundant cost line under the section is gone.
+- **Library preview** heading: "Answers to common questions." **Service area:**
+  "We show up in person when it counts." The " – Probate Division" suffix is
+  gone from the court's name everywhere it was a suffix (service-areas config,
+  footer, FAQ answer, homepage, /service-areas/); sentence prose that describes
+  the division stays.
+- **The contact form is gone.** The consult request is the only way in.
+  `ContactBand` is now the consult band (heading, lead, button; email, phone
+  on /contact/ only, hours, what happens next). `/contact/` keeps the details
+  and the steps. The wizard's results end in "Bring these dates to a consult
+  request" with one button. Deleted: `ContactForm.tsx`, `submit-form.ts`,
+  `/contact/thank-you/`, `NEXT_PUBLIC_FORM_ENDPOINT`, `site.formCc`,
+  `buildSummary`. The intake `Fallback` is an email-us notice. The privacy
+  policy and disclaimer no longer mention a form (`legal.effectiveDate` was
+  NOT changed; Arthur should decide whether that date moves). Site-wide the
+  secondary button is `secondaryCta` = "Check my deadline" (the wizard page
+  passes `secondary={null}` to its CtaBand).
+
+### The posture pass (proposal items 1, 2, 4 to 12; item 3 declined)
+
+- Radius tokens are 0 in `@theme` and every `rounded-*` utility was swept out
+  of `src` (`rounded-full` survives only on spinners, the recording dot, and
+  the preview lens pill). `wizard.css` lost its radii.
+- Brass photo corners frame the practice-page `DeadlineCallout` (no top rule).
+- Buttons: primary `maroon-900`, hover `maroon-950`; secondary `border-2`.
+- Chips are hairline rectangles; the hero's five chips run as a full-width row
+  under the two-column grid (3 + 2 at lg).
+- `DecoRule` (3px over 1px brass, 4.5rem) under every `SectionHeading`.
+- Photos and avatars are square; team cards and the profile portrait carry an
+  offset brass keyline; the hero photo has a 12px offset keyline.
+- Hover: `border-ink`, no shadow, no zoom (cards, library cards, nav panel).
+- Testimonials: brass left bar, no curly quote.
+- Display and h1 at weight 600, tracking -0.02em; nav labels `font-semibold`.
+- `grid-hairline` at 7% ink.
+- **The reveal animation is removed entirely**: `Reveal.tsx`, its test, the
+  `[data-reveal]` CSS, and all 27 wrappers (unwrapped to plain `div`s or
+  removed). Sections render static.
+- Declined: the bands keep `band-maroon`; the footer uses `band-maroon-deep`
+  (dark at the top so the CTA band above it meets it without a seam).
+
+### Gates (integration worktree at e221432)
+
+lint, typecheck, 36 test files / 321 tests, static export, check-links (96
+pages, 6,971 references, 0 broken, 0 orphans), check-seo, check-lens (13 slot
+groups, boot scripts 199 + 239 bytes, no preview traces).
+
 ## 2026-09-03 (midday): Arthur's homepage notes, header, footer, fast mode
 
 Six commits on `redesign` (25f1f84, 4cd544b, 0f47191, 1213c17, ba3e470,
@@ -65,7 +132,7 @@ unchanged. Preview: `http://localhost:9080/_preview/`.
   three clocks (trust contest § 16061.8 with a "What counts as notice?"
   `<details>`, will contest §§ 8250/8270, one year from death CCP §§ 366.2/
   366.3), a "Think you might already be late? Talk to us anyway." teaser, then
-  "Check my deadline" and a secondary "Tell us your story" button. Trustee:
+  "Check my deadline" and a secondary button (later that day: "Request a consult"). Trustee:
   "Have you served the Notification by Trustee?", the notice (60 days, with a
   "What has to be in it?" list), the trust copy (§§ 16061.5, 16061.8), and
   accountings (§§ 16062, 16460). Every sentence traces to `rules*.ts`,
@@ -335,8 +402,8 @@ git checkout redesign   # keep the preview serving the branch
 
 The Pages workflow deploys in ~2 minutes. Do NOT use the editor's Publish
 button for this merge (it squashes). Before go-live: `NEXT_PUBLIC_INTAKE_API`
-must point at the public intake host (see below) or the consult page falls
-back to the email form; clear article drafts Arthur has read
+must point at the public intake host (see below) or the consult page shows
+the email-us notice; clear article drafts Arthur has read
 (`draft: false` in `content/library/<slug>.md`).
 
 ## Intake API – hosting (DECIDED 2026-09-02: Cloudflare Tunnel) and durability
