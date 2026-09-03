@@ -111,7 +111,7 @@ ACCOUNTS-2026-09-02.txt` (copy in OneDrive `#RothrockLegal/Website/`).
 ## The Rothrock Legal lawyer portal (PHASE 1 BUILT 2026-09-02)
 
 Spec approved with Arthur's decisions (light palette, `RLM-YYYY-NNN`,
-current tailnet, firm-owned Postgres 17 holding `portal` + `intake`):
+firm-owned Postgres 17 holding `portal` + `intake`):
 `~/projects/rothrock-legal/portal/PORTAL-SPEC.md` + `PORTAL-WORKFLOW.md`.
 Repo `~/projects/rothrocklegal-portal`, GitHub `CasusBelli1337/rothrocklegal-portal`
 (private, CI green). Its `CLAUDE.md` and `docs/HANDOFF.md` are the entry
@@ -121,10 +121,28 @@ schema), suggestions that never group on their own, potential clients with
 parties, notes, activity, OneDrive folders, matters with the five subfolders
 and intake document copies, nightly backup with a passed restore drill,
 folder reconcile, jobs screen. Stack: `docker compose up -d` in the repo,
-UI at http://127.0.0.1:9090 (tailnet exposure pending one sudo step by
-Arthur, see the portal handoff). The intake database now lives in
+UI at http://127.0.0.1:9090. The intake database now lives in
 `rothrock-postgres` (127.0.0.1:5434); the old copy on `legion-postgres` may
 be dropped after 2026-10-02.
+
+ACCESS DECISION (Arthur, 2026-09-02 evening): the portal is reached at
+`https://portal.rothrocklegal.com` through the same Cloudflare Tunnel, with
+Cloudflare Access enforcing Google Workspace sign-in (`@rothrocklegal.com`)
+at the edge. Tailscale is NOT the path for colleagues (Serve is still on as
+a stopgap; turn it off with `tailscale serve --https=443 off` once Access
+works). Done today: Zero Trust organization `rothrocklegal.cloudflareaccess.com`,
+Google identity provider (OAuth client in Google Cloud project
+`rothrock-portal-sso` under arothrock@), tunnel ingress rule
+`portal.rothrocklegal.com -> rothrocklegal-portal-caddy-1:80`, proxied
+CNAME `portal`, the site footer link "Attorney Portal" (commit db42b7a on
+`redesign`), and the portal code that trusts the Access identity (see the
+portal handoff). NOT possible until the zone is active: creating the Access
+application ("domain does not belong to zone" while pending). After the
+nameserver switch: `CF_ACCESS_TOKEN_FILE=<token file> node
+scripts/cloudflare-access-app.mjs` in the portal repo, put the printed
+`ACCESS_TEAM_DOMAIN` and `ACCESS_AUD` in the portal's env, `docker compose up
+-d portal-api`, open https://portal.rothrocklegal.com from any browser: Google
+sign-in, then the dashboard without a portal password.
 
 ## TODO (in order)
 
@@ -144,7 +162,7 @@ be dropped after 2026-10-02.
 6. DMARC step-up to `p=quarantine` after ~2–3 weeks of clean reports
    (fixed 2026-09-01; reports arrive at arothrock@). Note the DMARC record
    now lives on Cloudflare once the nameservers switch.
-7. Portal: Arthur's first 15 minutes (portal handoff), tailnet invites for JJ, Gerry, Max, confirm Max's email; phase 2 items per the spec.
+7. Portal: after the nameserver switch, create the Access application (above), verify Google sign-in, turn Tailscale Serve off; confirm Max's email; Arthur's first 15 minutes (portal handoff); phase 2 per the spec.
 
 ## Where things are
 
