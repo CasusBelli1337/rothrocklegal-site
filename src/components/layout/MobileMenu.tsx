@@ -24,7 +24,7 @@ function MenuGroup({ item, onClose }: { item: NavItem; onClose: () => void }) {
         {item.children?.map((child) => (
           <li key={child.href}>
             <Link href={child.href} onClick={onClose} className="block rounded-md py-2.5 pl-3">
-              <span className="block text-[15px] font-medium text-ink">{child.label}</span>
+              <span className="block text-ui font-medium text-ink">{child.label}</span>
               <span className="block text-small text-ink-3">{child.sublabel}</span>
             </Link>
           </li>
@@ -33,7 +33,7 @@ function MenuGroup({ item, onClose }: { item: NavItem; onClose: () => void }) {
           <Link
             href={item.href}
             onClick={onClose}
-            className="block py-3 pl-3 text-[15px] font-semibold text-maroon-700"
+            className="block py-3 pl-3 text-ui font-semibold text-maroon-700"
           >
             All practice areas
           </Link>

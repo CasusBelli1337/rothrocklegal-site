@@ -33,7 +33,7 @@ export default function NotFound() {
           <li key={link.href}>
             <Link
               href={link.href}
-              className="tap-row text-[15px] font-medium text-maroon-700 underline underline-offset-3 hover:text-maroon-600"
+              className="tap-row text-ui font-medium text-maroon-700 underline underline-offset-3 hover:text-maroon-600"
             >
               {link.label}
             </Link>

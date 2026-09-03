@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { MenuIcon } from '@/components/icons';
 import { BrandLogo } from '@/components/ui/BrandLogo';
 import { Button } from '@/components/ui/Button';
@@ -11,11 +11,14 @@ import { consultCta, nav, site } from '@/config/site';
 import { MobileMenu } from './MobileMenu';
 import { isActive, navLinkClass } from './nav-link';
 import { NavDropdown } from './NavDropdown';
+import { ReadingOptionsBar, ReadingOptionsButton } from './ReadingOptions';
 
 export function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [readingOpen, setReadingOpen] = useState(false);
+  const closeReading = useCallback(() => setReadingOpen(false), []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -63,13 +66,19 @@ export function Header() {
           )}
         </nav>
 
-        <div className="hidden items-center lg:flex">
+        <div className="hidden items-center gap-3 lg:flex">
+          <ReadingOptionsButton open={readingOpen} onToggle={() => setReadingOpen((v) => !v)} />
           <Button href={consultCta.href} size="sm">
             {consultCta.label}
           </Button>
         </div>
 
-        <div className="flex items-center lg:hidden">
+        <div className="flex items-center gap-1 lg:hidden">
+          <ReadingOptionsButton
+            open={readingOpen}
+            onToggle={() => setReadingOpen((v) => !v)}
+            size="compact"
+          />
           <button
             type="button"
             aria-expanded={menuOpen}
@@ -82,6 +91,9 @@ export function Header() {
           </button>
         </div>
       </Container>
+
+      {/* In the flow under the row: opening it pushes the page down instead of covering it. */}
+      <ReadingOptionsBar open={readingOpen} onClose={closeReading} />
 
       <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} pathname={pathname} />
     </header>

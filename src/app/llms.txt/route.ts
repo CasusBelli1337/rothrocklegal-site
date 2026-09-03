@@ -16,6 +16,7 @@ function build(): string {
     `[FAQ](${url('/faq/')})`,
     `[Where we practice](${url('/service-areas/')})`,
     `[Contact](${url('/contact/')})`,
+    `[Accessibility](${url('/accessibility/')})`,
     ...(site.legalPagesDraft
       ? []
       : [`[Privacy](${url('/privacy-policy/')})`, `[Disclaimer](${url('/disclaimer/')})`]),

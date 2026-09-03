@@ -6,6 +6,7 @@ import { Header } from '@/components/layout/Header';
 import { MobileConsultBar } from '@/components/layout/MobileConsultBar';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { palette, site } from '@/config/site';
+import { a11yBootScript } from '@/lib/a11y/boot';
 import { articleLensWeights } from '@/lib/lens/article-weights';
 import { lensBootScript } from '@/lib/lens/boot';
 import { LensTracker } from '@/lib/lens/LensTracker';
@@ -74,7 +75,8 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    // The lens boot script stamps html[data-lens] before hydration (docs/LENS.md §3).
+    // The two boot scripts stamp html[data-lens] (docs/LENS.md §3) and the reading
+    // options (docs/ACCESSIBILITY.md) before hydration, so neither ever flashes.
     <html
       lang="en"
       className={`${newsreader.variable} ${newsreaderItalic.variable} ${instrumentSans.variable}`}
@@ -82,6 +84,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: lensBootScript() }} />
+        <script dangerouslySetInnerHTML={{ __html: a11yBootScript() }} />
       </head>
       {/* dvh, not vh: mobile browser toolbars shrink the visible viewport. */}
       <body className="min-h-dvh flex flex-col">

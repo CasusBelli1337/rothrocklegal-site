@@ -17,6 +17,7 @@ const staticPages: { path: string; updated: string; draft?: boolean }[] = [
   { path: '/service-areas/', updated: site.lastUpdated },
   { path: '/contact/', updated: site.lastUpdated },
   { path: '/request-a-consult/', updated: site.lastUpdated },
+  { path: '/accessibility/', updated: site.lastUpdated },
   { path: '/privacy-policy/', updated: site.lastUpdated, draft: site.legalPagesDraft },
   { path: '/disclaimer/', updated: site.lastUpdated, draft: site.legalPagesDraft },
 ];

@@ -4,7 +4,8 @@
  *     three framings (neutral, trustee, beneficiary), so the CSS always has
  *     something to show, and the pages carry at least the expected number;
  *  2. the boot script sits in <head> and <html> carries no data-lens at rest,
- *     so crawlers and no-JS readers get the neutral site;
+ *     so crawlers and no-JS readers get the neutral site; the reading-options
+ *     boot script (src/lib/a11y/boot.ts) sits beside it under the same rules;
  *  3. the production export has no trace of the preview-only lens switcher.
  * Run after `next build`: node scripts/check-lens.mjs
  */
@@ -56,6 +57,10 @@ const boot = /<script>(try\{var s=JSON\.parse\(localStorage\.getItem\('rl-lens'\
 if (!boot) failures.push('/: lens boot script missing from <head>');
 else if (Buffer.byteLength(boot[1]) >= 400) failures.push(`/: boot script is ${Buffer.byteLength(boot[1])} bytes`);
 if (/<html[^>]*\sdata-lens=/.test(root)) failures.push('/: <html> carries data-lens in the static HTML');
+const a11y = /<script>(try\{var p=JSON\.parse\(localStorage\.getItem\('rl-a11y'\)\)[\s\S]*?)<\/script>/.exec(head);
+if (!a11y) failures.push('/: reading-options boot script missing from <head>');
+else if (Buffer.byteLength(a11y[1]) >= 400) failures.push(`/: reading-options boot script is ${Buffer.byteLength(a11y[1])} bytes`);
+if (/<html[^>]*\sdata-(text-size|contrast|motion|spacing)=/.test(root)) failures.push('/: <html> carries a reading option in the static HTML');
 if ((root.match(/<h1[\s>]/g) ?? []).length !== 1) failures.push('/: hero variants must live inside the one <h1>');
 
 function walk(dir) {
@@ -73,7 +78,7 @@ for (const file of walk(OUT).filter((f) => /\.(html|js|css|txt|json)$/.test(f)))
   }
 }
 
-console.log(`checked ${totalSlots} slot groups, boot script ${boot ? Buffer.byteLength(boot[1]) : 0} bytes, ${scanned} files scanned for preview traces`);
+console.log(`checked ${totalSlots} slot groups, boot scripts ${boot ? Buffer.byteLength(boot[1]) : 0} + ${a11y ? Buffer.byteLength(a11y[1]) : 0} bytes, ${scanned} files scanned for preview traces`);
 if (failures.length > 0) {
   console.error(`FAIL: ${failures.length} problem(s):`);
   for (const line of failures) console.error(`  ${line}`);
