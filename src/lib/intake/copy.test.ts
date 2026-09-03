@@ -109,9 +109,9 @@ describe('hand-holding lines', () => {
 
   it('counts the minutes left from the current screen on', () => {
     expect(copy.minutesToGo('follow-up', STEP_ORDER)).toBe('about a minute to go');
-    // The review screen's count includes the three-minute evaluation wait it announces.
-    expect(copy.minutesToGo('review', STEP_ORDER)).toBe('about 5 minutes to go');
-    expect(copy.minutesToGo('contact', STEP_ORDER)).toBe('about 13 minutes to go');
+    // The review screen's count includes the evaluation wait it announces (a minute or two).
+    expect(copy.minutesToGo('review', STEP_ORDER)).toBe('about 3 minutes to go');
+    expect(copy.minutesToGo('contact', STEP_ORDER)).toBe('about 11 minutes to go');
     expect(copy.minutesToGo('done', STEP_ORDER)).toBe('about a minute to go');
   });
 

@@ -116,11 +116,12 @@ export const EVALUATION_STAGES = [
   'Checking for gaps…',
 ] as const;
 /**
- * Measured 2026-09-03 on the deployed module: 124 s at standard speed for a
- * three-page PDF, a photo, and a voice note (Opus fast mode was not yet enabled
- * for the key's organization). Rounded up; revisit once fast mode serves.
+ * Measured 2026-09-03 on the deployed module: 41 s at Opus fast speed for a
+ * text-only intake, against 124 s at standard speed earlier that day for a
+ * three-page PDF, a photo, and a voice note. Uploads add time, so the copy
+ * says "a minute or two" rather than the bare measurement.
  */
-export const EVALUATION_WAIT = 'This usually takes about 3 minutes. Please keep this page open.';
+export const EVALUATION_WAIT = 'This usually takes a minute or two. Please keep this page open.';
 
 export const FOLLOW_UP_COPY = {
   optional: '(optional)',
@@ -256,7 +257,7 @@ export const NEXT_UP: Record<StepId, string> = {
   documents: 'Next: a rough idea of what is at stake and how you would pay.',
   scope: 'Next: check everything before you send it.',
   review:
-    'Next: we read what you sent, which takes about 3 minutes. Then we may ask a few optional questions.',
+    'Next: we read what you sent, which takes a minute or two. Then we may ask a few optional questions.',
   'follow-up': 'Next: your reference number, and what happens after that.',
   done: '',
 };
@@ -270,8 +271,8 @@ export const STEP_MINUTES: Record<StepId, number> = {
   story: 2,
   documents: 2,
   scope: 1,
-  /** The screen itself plus the evaluation wait it announces ("takes about 3 minutes"). */
-  review: 4,
+  /** The screen itself plus the evaluation wait it announces ("a minute or two"). */
+  review: 2,
   'follow-up': 1,
   done: 0,
 };
