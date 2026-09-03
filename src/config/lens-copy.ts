@@ -32,7 +32,7 @@ const DEADLINE_BODY =
   'to contest the trust. Will contests, elder abuse claims, and accounting disputes each have ' +
   'their own clock. Answer four questions and we’ll tell you which deadlines probably apply to you.';
 const DEADLINE_CTA: LensLink = { label: 'Check my deadline', href: '/how-long-do-i-have/' };
-const DEADLINE_SECONDARY = 'Or [send us a note](/contact/)';
+const DEADLINE_SECONDARY = 'Or [tell us your story](/contact/)';
 
 const COMPLEX_LINE =
   'Multiple properties, an LLC, a family business? [We handle complex estates.](/complex-estates/)';

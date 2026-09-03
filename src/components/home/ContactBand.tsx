@@ -27,7 +27,7 @@ export function ContactBand({
       <Container className="grid gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-7">
           <Tag className={`font-serif ${Tag === 'h1' ? 'text-h1' : 'text-h2'} text-ink`}>
-            Send us a note.
+            Tell us your story.
           </Tag>
           <p className="mt-4 max-w-[52ch] text-lead text-ink-2">
             A few sentences is enough. {site.replyPromise}

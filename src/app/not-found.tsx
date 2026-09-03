@@ -25,8 +25,8 @@ export default function NotFound() {
       <p className="eyebrow">Page not found</p>
       <h1 className="mt-3 font-serif text-h1 text-ink">We can&rsquo;t find that page.</h1>
       <p className="mt-5 text-lead text-ink-2">
-        It may have moved when the site was rebuilt. Try one of these, or send us a note and
-        we&rsquo;ll point you to the right place.
+        It may have moved when the site was rebuilt. Try one of these, or tell us what you were
+        looking for and we&rsquo;ll point you to the right place.
       </p>
       <ul className="mt-8 grid sm:grid-cols-2 sm:gap-x-6 lg:gap-y-2">
         {links.map((link) => (

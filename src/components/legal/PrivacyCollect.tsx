@@ -12,7 +12,7 @@ export function PrivacyCollect() {
         in the background.
       </p>
 
-      <h3>The contact form (&ldquo;Send us a note&rdquo;)</h3>
+      <h3>The contact form (&ldquo;Tell us your story&rdquo;)</h3>
       <p>
         The short form on our contact page asks for your name, your email address, your phone number
         (optional), what happened, and whether you have received a formal notice. When you press

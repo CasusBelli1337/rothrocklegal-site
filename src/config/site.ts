@@ -142,7 +142,7 @@ export const consultCta: NavItem = {
 
 /** The secondary action: the short contact form. */
 export const noteCta: NavItem = {
-  label: 'Send us a note',
+  label: 'Tell us your story',
   href: '/contact/',
 };
 
