@@ -47,6 +47,7 @@ export function TeamCard({ member, headingLevel: Tag = 'h3' }: TeamCardProps) {
       </Tag>
       <p className="mt-1 text-meta text-ink-3">{member.title}</p>
       <p className="mt-2 text-small text-ink-2">{member.focus}</p>
+      <p className="mt-1.5 text-small text-ink-3">{member.proofLine}</p>
       <p className="mt-3 text-small font-medium text-maroon-700">
         Read bio <span aria-hidden="true">&rarr;</span>
       </p>

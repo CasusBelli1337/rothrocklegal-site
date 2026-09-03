@@ -39,13 +39,20 @@ function TestimonialCard({ t }: { t: Testimonial }) {
   );
 }
 
-/** HOMEPAGE-SPEC §6: three verbatim quotes; the CRPC disclaimer lives in the same component. */
-export function Results() {
+/**
+ * HOMEPAGE-SPEC §6: three verbatim quotes; the CRPC disclaimer lives in the same
+ * component. The firm publishes no results, so nothing here is called one
+ * (Arthur, 2026-09-02).
+ */
+export function WhatClientsSay() {
   return (
     <section className="py-16 lg:py-24">
       <Container>
         <Reveal>
-          <SectionHeading eyebrow="Results" title="What clients say after the dust settles." />
+          <SectionHeading
+            eyebrow="What clients say"
+            title="After the dust settles, this is what they tell us."
+          />
         </Reveal>
         <Reveal stagger className="mt-10 grid gap-5 md:grid-cols-3">
           {testimonials.map((t) => (

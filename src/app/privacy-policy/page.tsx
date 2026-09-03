@@ -48,6 +48,11 @@ export default function PrivacyPolicyPage() {
           AI helps us organize a consult request so a lawyer can review it faster. A lawyer reviews
           everything. The AI provider does not train on what you send.
         </li>
+        <li>
+          As part of conflict checking and case review we may look at public court records about the
+          people and disputes you describe.
+        </li>
+        <li>Video meetings happen on Google Meet. Nothing from Google runs on this website.</li>
         <li>We never sell or share your information for advertising.</li>
         <li>
           If we do not take your matter, we delete what you sent after{' '}

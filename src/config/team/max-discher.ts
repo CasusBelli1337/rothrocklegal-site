@@ -17,6 +17,8 @@ export const maxDischer: TeamMember = {
   barStatus: 'Licensed in California, State Bar #321720 (2018)',
   barNumber: '321720',
   focus: 'Record review and cite-checking in trust, estate, and elder abuse cases',
+  // Bio paragraph 2: Homebase 2018 to 2025, advising San Francisco, Napa, and Clark County.
+  proofLine: 'Seven years advising cities on housing before joining the firm',
   summary:
     "Max Discher works on the firm's trust, estate, and elder financial abuse cases, checking " +
     'every citation and every fact before a brief is filed. Formerly a senior staff attorney at ' +

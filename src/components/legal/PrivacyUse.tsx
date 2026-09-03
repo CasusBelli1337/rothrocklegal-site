@@ -64,7 +64,10 @@ export function PrivacyUse() {
         <li>
           Companies that provide services to us and that may only use your information to do that
           work: our email provider, the form-delivery service (if one is in use), the company that
-          hosts the site and the consult-request system, and the AI provider described above.
+          hosts the site and the consult-request system, the AI provider described above, Google
+          (Meet and Calendar) when we schedule a video meeting with you, and Legion, the AI
+          litigation platform our founder co-founded, where we work on client files after you
+          become a client.
         </li>
         <li>
           Anyone we are required by law to share it with, for example under a court order or
