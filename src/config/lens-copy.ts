@@ -42,8 +42,9 @@ const HOW_STEP_1 =
   `check. ${site.replyPromise}`;
 
 const WHY_FASTER_LEAD =
-  'Arthur is the co-founder and CEO of Legion, an AI litigation platform, and this firm runs on ' +
-  'the same AI platform Legion builds for litigators.';
+  'Arthur is the co-founder and CEO of Legion, an AI litigation platform. That’s why we can go ' +
+  'through thousands of pages of bank records and medical files in days instead of months, and ' +
+  'why our drafting doesn’t sit in a queue.';
 
 const LIBRARY_LEAD =
   'Deadlines, trust contests, trustees who won’t account, elder financial abuse. Plain English, ' +
@@ -123,9 +124,9 @@ export const lensCopy = {
   whyFasterLead: {
     neutral: WHY_FASTER_LEAD,
     trustee:
-      'Arthur is the co-founder and CEO of Legion, an AI litigation platform, and this firm runs ' +
-      'on the same AI platform Legion builds for litigators, which matters most when a case turns ' +
-      'on years of statements and your own records.',
+      'Arthur is the co-founder and CEO of Legion, an AI litigation platform. That’s why we can go ' +
+      'through years of trust statements and your own records in days instead of months, and why ' +
+      'our drafting doesn’t sit in a queue.',
     beneficiary: WHY_FASTER_LEAD,
   },
   libraryLead: {

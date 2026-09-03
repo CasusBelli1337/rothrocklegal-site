@@ -1,6 +1,3 @@
-import Link from 'next/link';
-import { CASE_BLOCK_ID } from '@/components/about/WeDontScareEasily';
-import { ArrowRightIcon } from '@/components/icons';
 import { Slot } from '@/components/lens/Slot';
 import { Container } from '@/components/ui/Container';
 import { Reveal } from '@/components/ui/Reveal';
@@ -49,34 +46,15 @@ export function HowWeWorkSteps() {
   );
 }
 
-/** The Legion credential, framed as speed and a smaller bill (HOMEPAGE-SPEC §5), with the one-line case pointer. */
+/** The Legion credential, framed as speed (HOMEPAGE-SPEC §5). One paragraph: the fact does the talking (Arthur, 2026-09-02). */
 export function WhyFasterPanel() {
   return (
     <div className="rounded-xl border border-line bg-white p-6 lg:p-8">
       <h3 className="font-serif text-h3 text-ink">Why our cases move faster</h3>
       <p className="mt-3 text-body text-ink-2">
-        <Slot name="why-faster-lead" variants={lensCopy.whyFasterLead} /> The software reads
-        thousands of pages of bank records and medical files in days instead of months and writes
-        the first drafts, so fewer hours land on your bill and the work moves faster. Lawyers still
-        make every judgment call.
+        <Slot name="why-faster-lead" variants={lensCopy.whyFasterLead} /> Lawyers still make every
+        judgment call.
       </p>
-      <p className="mt-3 text-body text-ink-2">
-        We meet by video, and in person by appointment when the case calls for it. No office visits,
-        no parking, no waiting rooms.
-      </p>
-      <p className="mt-3 text-body text-ink-2">
-        In June 2026 the federal government ordered the models Legion runs on shut down; Legion took
-        the United States to court in Washington, D.C. with outside trial counsel, Arthur&rsquo;s
-        team did the first drafts on Legion&rsquo;s own platform, and the government withdrew the
-        order on June 30, 2026.
-      </p>
-      <Link
-        href={`/about/#${CASE_BLOCK_ID}`}
-        className="tap-link mt-4 inline-flex items-center gap-2 text-[15px] font-semibold text-maroon-700 hover:text-maroon-600"
-      >
-        Why that matters to your case
-        <ArrowRightIcon className="h-4 w-4" />
-      </Link>
     </div>
   );
 }

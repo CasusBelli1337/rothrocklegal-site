@@ -21,9 +21,10 @@ repo holds the editor module and the intake module.
   titles verified), the deadline wizard, the library (31 articles: 21 new
   drafts + 9 legacy + glossary), the consult-request intake flow, privacy
   policy + disclaimer (cleared by Arthur 2026-09-02), the lens
-  (trustee/beneficiary framing, `docs/LENS.md`, preview switcher pill), the
-  Legion v. United States block on About (Legion sued with outside counsel;
-  never imply Rothrock Legal litigated it).
+  (trustee/beneficiary framing, `docs/LENS.md`, preview switcher pill). The
+  Legion v. United States block on About, and the homepage pointer to it, were
+  removed by Arthur on 2026-09-02 (evening): show, don't tell. Arthur's Legion
+  credential sentence stays.
 
 ## Mobile pass (2026-09-02, branch `redesign-mobile` merged into `redesign`)
 

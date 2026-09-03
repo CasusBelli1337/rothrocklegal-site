@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { ClientWords } from '@/components/about/ClientWords';
 import { HowWeWork } from '@/components/about/HowWeWork';
 import { RecognitionSection } from '@/components/about/RecognitionSection';
-import { WeDontScareEasily } from '@/components/about/WeDontScareEasily';
 import { WhatWeDo } from '@/components/about/WhatWeDo';
 import { WherePractice } from '@/components/about/WherePractice';
 import { JsonLd } from '@/components/seo/JsonLd';
@@ -97,7 +96,6 @@ export default function AboutPage() {
       <WhatWeDo />
       <HowWeWork />
       <WhoWeAre />
-      <WeDontScareEasily />
       <RecognitionSection />
       <WherePractice />
       <ClientWords />
