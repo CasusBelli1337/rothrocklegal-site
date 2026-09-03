@@ -2,7 +2,7 @@
 
 import type { FollowUpAnswer, FollowUpModule } from '@/lib/intake/contract';
 import { VALUE_RANGES } from '@/lib/intake/contract';
-import { VALUE_RANGE_LABELS } from '@/lib/intake/copy';
+import { FOLLOW_UP_COPY, VALUE_RANGE_LABELS } from '@/lib/intake/copy';
 import type { UploadBinding } from '@/lib/intake/use-uploads';
 import { ChoiceCards } from './ChoiceCards';
 import { inputClass, labelClass } from './FormFields';
@@ -50,12 +50,12 @@ function SkipControls({
       onClick={() => onChange(skipped ? undefined : null)}
       className="tap-link shrink-0 text-small text-ink-3 underline underline-offset-3 hover:text-maroon-700"
     >
-      {skipped ? 'Answer it' : 'Skip for now'}
+      {skipped ? FOLLOW_UP_COPY.answer : FOLLOW_UP_COPY.skip}
     </button>
   );
 }
 
-/** Question, required mark, why, skip toggle, then the control (or the "skipped" note). */
+/** Question, optional mark, why, skip toggle, then the control (or the "skipped" note). */
 function ModuleShell({
   module,
   value,
@@ -71,7 +71,7 @@ function ModuleShell({
     <>
       {module.label}
       <span className="ml-1 font-normal text-ink-3">
-        {module.required ? '(required)' : '(optional)'}
+        {module.required ? FOLLOW_UP_COPY.helpsMost : FOLLOW_UP_COPY.optional}
       </span>
     </>
   );
@@ -85,11 +85,11 @@ function ModuleShell({
         ) : (
           <span className={labelClass}>{label}</span>
         )}
-        {!module.required && <SkipControls skipped={skipped} onChange={onChange} />}
+        <SkipControls skipped={skipped} onChange={onChange} />
       </div>
       <WhyWeAsk className="mt-1">{module.why}</WhyWeAsk>
       {skipped ? (
-        <p className="mt-3 text-small text-ink-3">Skipped for now. We may ask again by email.</p>
+        <p className="mt-3 text-small text-ink-3">{FOLLOW_UP_COPY.skipped}</p>
       ) : (
         <div className="mt-3">{children}</div>
       )}

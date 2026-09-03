@@ -114,7 +114,7 @@ describe('validateStep', () => {
     expect(validateStep('review', state)).toBeNull();
   });
 
-  it('blocks the follow-up only on unanswered required modules', () => {
+  it('never blocks the follow-up: every module is optional, required or not', () => {
     const state = filled();
     state.evaluation = {
       headline: 'h',
@@ -124,7 +124,7 @@ describe('validateStep', () => {
         { id: 'b', type: 'yes_no', label: 'B', why: 'w', required: false },
       ],
     };
-    expect(validateStep('follow-up', state)).toMatch(/required/);
+    expect(validateStep('follow-up', state)).toBeNull();
     state.followUpAnswers = { a: 'answer', b: null };
     expect(validateStep('follow-up', state)).toBeNull();
   });

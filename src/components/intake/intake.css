@@ -1,0 +1,25 @@
+/* The consult flow reads at 18px: the audience skews older, and every screen is
+   one idea. Only the type scale changes; colors and spacing stay the site's.
+   Tailwind's text utilities read these variables, so overriding them here
+   re-sizes every `text-body`, `text-small`, and `text-meta` inside the flow,
+   form controls included (iOS stops zooming at 16px and up). */
+.intake-flow {
+  --text-body: 1.125rem;
+  --text-body--line-height: 1.65;
+  --text-small: 1rem;
+  --text-small--line-height: 1.55;
+  --text-meta: 0.9375rem;
+  --text-meta--line-height: 1.4;
+}
+
+/* The one button that moves the person forward: taller and full-width on
+   phones, back to the site's button height from `sm` up. */
+.intake-flow .intake-continue {
+  height: 3.5rem;
+  font-size: 1.0625rem;
+}
+@media (min-width: 40rem) {
+  .intake-flow .intake-continue {
+    height: 3rem;
+  }
+}

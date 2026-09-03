@@ -15,6 +15,16 @@ export const ACKNOWLEDGMENTS = [
   "Do not send us documents that belong to another lawyer's client file or that you were told you may not share.",
 ] as const;
 
+/** One plain sentence under each box, so nobody ticks something they do not follow. */
+export const ACKNOWLEDGMENT_NOTES = [
+  'In plain words: telling us what happened does not make us your lawyers yet, and we are not watching your deadlines until we agree in writing to take your case.',
+  'In plain words: if we already represent someone on the other side, we cannot help you, and the rules stop us from saying who.',
+  'In plain words: if a lawyer gave papers to someone else and they were meant to stay private, please do not send those to us.',
+] as const;
+
+export const NOT_YOUR_LAWYERS_YET =
+  'Nothing here makes us your lawyers yet; an engagement letter does that later.';
+
 export const CONFIDENTIALITY_NOTE =
   'What you send is kept confidential and used only to evaluate whether we can help. AI helps us organize what you send; a lawyer reviews everything before we reply.';
 
@@ -77,6 +87,52 @@ export const STORY_CHIPS = [
   'Who has the documents?',
   'What do you want to happen?',
 ] as const;
+
+/** The documents step: how to add papers on each kind of device, and what to leave out. */
+export const DOCUMENTS_COPY = {
+  phoneHint: 'Tap Choose files, then Take Photo or Photo Library. A photo of each page is fine.',
+  desktopHint:
+    'Click Choose files and pick the papers from your computer. Scans, photos, and PDFs all work.',
+  missing: "I don't have this",
+  nothingYet: 'Nothing to send yet? That is fine. Continue, and we will tell you what to look for.',
+  doNotSendTitle: 'Please do not send',
+  doNotSend: [
+    "Another lawyer's files: anything from a lawyer's client file that was not addressed to you, or that you were told not to share.",
+    "Someone else's private records, such as their medical or bank papers, unless you have a right to them (for example, as the trustee or executor).",
+  ],
+} as const;
+
+export const REVIEW_NOTE =
+  'You can change anything with the Edit links. Nothing is sent until you press Send for review.';
+
+/** The three status lines the client watches while the server reads the intake (INTAKE-SPEC §2 step 7). */
+export const EVALUATION_STAGES = [
+  'Sending your documents…',
+  'Reading what you sent…',
+  'Checking for gaps…',
+] as const;
+export const EVALUATION_WAIT = 'This usually takes about a minute. Please keep this page open.';
+
+export const FOLLOW_UP_COPY = {
+  optional: '(optional)',
+  helpsMost: '(optional, but it helps most)',
+  intro:
+    'Answer what you can. Every item here is optional; skip anything you do not have or do not know.',
+  nothingMore: 'We have what we need for now. Send it, and we will take it from here.',
+  skip: 'Skip for now',
+  answer: 'Answer it',
+  skipped: 'Skipped for now. We may ask again by email.',
+} as const;
+
+/** What happens next, on the done screen. Three short lines. */
+export const DONE_NEXT = [
+  'We run the conflict check first.',
+  'A lawyer reads everything you sent.',
+  REPLY_PROMISE,
+] as const;
+
+export const DONE_KEEP_REFERENCE =
+  'Keep this reference number in case you need to write to us about this request. Until both sides sign an engagement letter, we are not your lawyers, so keep an eye on any dates you already know about.';
 
 export const COUNTIES = [
   'Santa Clara County',
@@ -174,6 +230,46 @@ export const STEP_TITLES: Record<StepId, { title: string; lead?: string }> = {
     title: 'Check what you are sending',
     lead: 'Fix anything that looks wrong. Then send it for review.',
   },
-  'follow-up': { title: 'A few more things' },
+  'follow-up': {
+    title: 'A few more things, all optional',
+    lead: 'We read what you sent. Everything on this screen is optional: answer what you can, skip the rest, and press Send.',
+  },
   done: { title: 'Thank you. We have it.' },
 };
+
+/** Under the Continue button: what the next screen asks for, so nothing is a surprise. */
+export const NEXT_UP: Record<StepId, string> = {
+  start: 'Next: how we can reach you.',
+  contact: 'Next: what is going on, in a few taps.',
+  situations: 'Next: the names of the people involved.',
+  parties: 'Next: tell us what happened, in your own words.',
+  story: 'Next: send any papers you have. None yet is fine.',
+  documents: 'Next: a rough idea of what is at stake and how you would pay.',
+  scope: 'Next: check everything before you send it.',
+  review:
+    'Next: we read what you sent, which takes about a minute. Then we may ask a few optional questions.',
+  'follow-up': 'Next: your reference number, and what happens after that.',
+  done: '',
+};
+
+/** Rough minutes per screen, for the "about N minutes to go" line. */
+export const STEP_MINUTES: Record<StepId, number> = {
+  start: 1,
+  contact: 1,
+  situations: 1,
+  parties: 1,
+  story: 2,
+  documents: 2,
+  scope: 1,
+  review: 1,
+  'follow-up': 1,
+  done: 0,
+};
+
+/** "about 2 minutes to go" from this screen on (this one included). */
+export function minutesToGo(step: StepId, order: readonly StepId[]): string {
+  const from = order.indexOf(step);
+  const total = order.slice(Math.max(from, 0)).reduce((sum, s) => sum + STEP_MINUTES[s], 0);
+  if (total <= 1) return 'about a minute to go';
+  return `about ${total} minutes to go`;
+}

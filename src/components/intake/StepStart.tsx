@@ -2,15 +2,17 @@
 
 import {
   ACKNOWLEDGMENTS,
+  ACKNOWLEDGMENT_NOTES,
   CONFIDENTIALITY_NOTE,
   HOW_IT_WORKS,
+  NOT_YOUR_LAWYERS_YET,
   REMOTE_NOTE,
 } from '@/lib/intake/copy';
 import { CheckboxRow } from './FormFields';
 import { StepFrame, StepNav } from './StepFrame';
 import type { StepProps } from './step-props';
 
-/** Step 0: what happens, the fully-remote note, and the three boxes to tick. */
+/** Step 0: what happens, the fully-remote note, and the three boxes to tick, each explained. */
 export function StepStart({ intake }: StepProps) {
   const { acks } = intake.state;
   const setAck = (index: number, checked: boolean) =>
@@ -41,17 +43,20 @@ export function StepStart({ intake }: StepProps) {
       </p>
       <fieldset className="mt-8">
         <legend className="text-body font-semibold text-ink">Please tick all three boxes</legend>
-        <div className="mt-3 space-y-3">
+        <p className="mt-1 text-small text-ink-3">{NOT_YOUR_LAWYERS_YET}</p>
+        <div className="mt-3 space-y-4">
           {ACKNOWLEDGMENTS.map((text, i) => (
-            <CheckboxRow
-              key={text}
-              card
-              id={`ack-${i}`}
-              checked={acks[i]}
-              onChange={(checked) => setAck(i, checked)}
-            >
-              {text}
-            </CheckboxRow>
+            <div key={text}>
+              <CheckboxRow
+                card
+                id={`ack-${i}`}
+                checked={acks[i]}
+                onChange={(checked) => setAck(i, checked)}
+              >
+                {text}
+              </CheckboxRow>
+              <p className="mt-1.5 pl-4 text-small text-ink-3">{ACKNOWLEDGMENT_NOTES[i]}</p>
+            </div>
           ))}
         </div>
       </fieldset>

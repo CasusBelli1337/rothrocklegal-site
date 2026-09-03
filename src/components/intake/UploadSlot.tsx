@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { buttonClass } from '@/components/ui/Button';
 import type { IntakeFile } from '@/lib/intake/contract';
+import { DOCUMENTS_COPY } from '@/lib/intake/copy';
 import { ACCEPT_ATTRIBUTE, ACCEPTED_TYPES_LABEL, formatBytes } from '@/lib/intake/document-slots';
 import type { PendingUpload, UploadBinding } from '@/lib/intake/use-uploads';
 import { CheckboxRow } from './FormFields';
@@ -145,8 +146,13 @@ export function UploadSlot({
           {why && <WhyWeAsk className="mt-1">{why}</WhyWeAsk>}
         </div>
         {missing && (
-          <CheckboxRow id={`missing-${slot}`} checked={missing.checked} onChange={missing.onChange}>
-            I don&rsquo;t have this
+          <CheckboxRow
+            id={`missing-${slot}`}
+            checked={missing.checked}
+            onChange={missing.onChange}
+            className="min-h-11 shrink-0"
+          >
+            {DOCUMENTS_COPY.missing}
           </CheckboxRow>
         )}
       </div>

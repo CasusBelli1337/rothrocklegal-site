@@ -5,7 +5,7 @@ import { CheckIcon } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
 import { errorMessage, submitIntake } from '@/lib/intake/api';
 import type { EvaluationClientView } from '@/lib/intake/contract';
-import { EVALUATION_UNAVAILABLE } from '@/lib/intake/copy';
+import { EVALUATION_UNAVAILABLE, EVALUATION_WAIT, REVIEW_NOTE } from '@/lib/intake/copy';
 import type { IntakeState, StepId } from '@/lib/intake/state';
 import {
   EVALUATION_STAGES,
@@ -19,34 +19,37 @@ import type { StepProps } from './step-props';
 
 function Summary({ state, onEdit }: { state: IntakeState; onEdit(step: StepId): void }) {
   return (
-    <dl className="divide-y divide-line border-y border-line">
-      {reviewRows(state).map((row) => (
-        <div key={row.label} className="grid gap-2 py-4 sm:grid-cols-[10rem_1fr_auto] sm:gap-6">
-          <dt className="text-small font-semibold text-ink">{row.label}</dt>
-          <dd className="space-y-1 text-body text-ink-2">
-            {row.lines.length > 0 ? (
-              row.lines.map((line, i) => (
-                <p key={i} className="whitespace-pre-line break-words">
-                  {line}
-                </p>
-              ))
-            ) : (
-              <p className="text-ink-3">Nothing entered</p>
-            )}
-          </dd>
-          <dd>
-            <button
-              type="button"
-              onClick={() => onEdit(row.step)}
-              className="tap-link text-small font-medium text-maroon-700 underline underline-offset-3 hover:text-maroon-600"
-              aria-label={`Edit ${row.label}`}
-            >
-              Edit
-            </button>
-          </dd>
-        </div>
-      ))}
-    </dl>
+    <>
+      <p className="mb-4 text-body text-ink">{REVIEW_NOTE}</p>
+      <dl className="divide-y divide-line border-y border-line">
+        {reviewRows(state).map((row) => (
+          <div key={row.label} className="grid gap-2 py-4 sm:grid-cols-[10rem_1fr_auto] sm:gap-6">
+            <dt className="text-small font-semibold text-ink">{row.label}</dt>
+            <dd className="space-y-1 text-body text-ink-2">
+              {row.lines.length > 0 ? (
+                row.lines.map((line, i) => (
+                  <p key={i} className="whitespace-pre-line break-words">
+                    {line}
+                  </p>
+                ))
+              ) : (
+                <p className="text-ink-3">Nothing entered</p>
+              )}
+            </dd>
+            <dd>
+              <button
+                type="button"
+                onClick={() => onEdit(row.step)}
+                className="tap-link text-small font-medium text-maroon-700 underline underline-offset-3 hover:text-maroon-600"
+                aria-label={`Edit ${row.label}`}
+              >
+                Edit
+              </button>
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </>
   );
 }
 
@@ -82,10 +85,7 @@ function Stages({ phase }: { phase: EvaluationPhase }) {
           );
         })}
       </ol>
-      <p className="mt-6 text-small text-ink-3">
-        This usually takes two to five minutes while we read everything you sent. Please keep this
-        page open.
-      </p>
+      <p className="mt-6 text-small text-ink-3">{EVALUATION_WAIT}</p>
     </div>
   );
 }

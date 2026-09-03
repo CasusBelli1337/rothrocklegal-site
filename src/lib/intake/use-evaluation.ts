@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { errorMessage, getEvaluation, saveAnswers, startEvaluation, type Session } from './api';
 import type { EvaluationClientView, IntakeAnswers } from './contract';
+import { EVALUATION_STAGES } from './copy';
 
 export type EvaluationPhase =
   | 'idle'
@@ -14,12 +15,7 @@ export type EvaluationPhase =
   | 'timeout'
   | 'error';
 
-/** The three status lines the client watches while the server reads the intake (INTAKE-SPEC §2 step 7). */
-export const EVALUATION_STAGES = [
-  'Sending your documents…',
-  'Reading what you sent…',
-  'Checking for gaps…',
-] as const;
+export { EVALUATION_STAGES };
 
 /** Which stage line a phase lights up; null when nothing is in flight. */
 export function stageIndex(phase: EvaluationPhase): number | null {

@@ -143,13 +143,8 @@ const VALIDATORS: Partial<Record<StepId, Validator>> = {
     s.answers.story.trim()
       ? null
       : 'Tell us what happened, even briefly. A few sentences is enough.',
-  'follow-up': (s) => {
-    const modules = s.evaluation?.modules ?? [];
-    const missing = modules.some(
-      (m) => m.type !== 'info' && m.required && !isAnswered(m, s.followUpAnswers[m.id]),
-    );
-    return missing ? 'Please answer the questions marked required.' : null;
-  },
+  // Follow-up: every module is optional on the client (the screen says so), even when the
+  // evaluator marks one `required`; that flag only changes its label to "helps most".
 };
 
 export function validateStep(step: StepId, state: IntakeState): string | null {

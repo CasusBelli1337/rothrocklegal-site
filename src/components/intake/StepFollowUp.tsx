@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { errorMessage, saveFollowUp, submitIntake } from '@/lib/intake/api';
 import type { FollowUpAnswer, FollowUpModule, IntakeFile } from '@/lib/intake/contract';
+import { FOLLOW_UP_COPY } from '@/lib/intake/copy';
 import { validateStep } from '@/lib/intake/state';
 import { ModuleRenderer } from './ModuleRenderer';
 import { StepFrame, StepNav } from './StepFrame';
@@ -76,9 +77,7 @@ export function StepFollowUp({ intake, uploads }: StepProps) {
       )}
       {modules.length > 0 ? (
         <>
-          <p className="mt-6 text-small text-ink-3">
-            Answer what you can. Anything marked optional can wait.
-          </p>
+          <p className="mt-6 text-body text-ink-2">{FOLLOW_UP_COPY.intro}</p>
           <div className="mt-4 space-y-4">
             {modules.map((module) => (
               <ModuleRenderer
@@ -92,9 +91,7 @@ export function StepFollowUp({ intake, uploads }: StepProps) {
           </div>
         </>
       ) : (
-        <p className="mt-6 text-body text-ink-2">
-          We have what we need for now. Send it, and we will take it from here.
-        </p>
+        <p className="mt-6 text-body text-ink-2">{FOLLOW_UP_COPY.nothingMore}</p>
       )}
     </StepFrame>
   );

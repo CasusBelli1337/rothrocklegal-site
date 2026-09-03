@@ -47,7 +47,7 @@ describe('ModuleRenderer', () => {
     expect(screen.queryByText('Skip for now')).toBeNull();
   });
 
-  it('short_text: labeled input, placeholder, required mark, no skip', () => {
+  it('short_text: labeled input, placeholder, "helps most" mark, skip still offered', () => {
     const onChange = mount({
       id: 'name',
       type: 'short_text',
@@ -58,8 +58,8 @@ describe('ModuleRenderer', () => {
     });
     const input = screen.getByLabelText(/Trustee's full name/) as HTMLInputElement;
     expect(input.placeholder).toBe('First and last name');
-    expect(screen.getByText('(required)')).toBeTruthy();
-    expect(screen.queryByText('Skip for now')).toBeNull();
+    expect(screen.getByText('(optional, but it helps most)')).toBeTruthy();
+    expect(screen.getByText('Skip for now')).toBeTruthy();
     fireEvent.change(input, { target: { value: 'Pat Smith' } });
     expect(onChange).toHaveBeenCalledWith('Pat Smith');
     expect(screen.getByText('We check it.')).toBeTruthy();

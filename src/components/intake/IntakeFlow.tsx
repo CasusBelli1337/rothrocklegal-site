@@ -4,11 +4,13 @@ import { useCallback, useEffect, useState, type ComponentType } from 'react';
 import { ping } from '@/lib/intake/api';
 import type { IntakeFile } from '@/lib/intake/contract';
 import { VOICE_NOTE_SLOT } from '@/lib/intake/document-slots';
-import { NUMBERED_STEP_COUNT, stepNumber, type StepId } from '@/lib/intake/state';
+import { minutesToGo } from '@/lib/intake/copy';
+import { NUMBERED_STEP_COUNT, STEP_ORDER, stepNumber, type StepId } from '@/lib/intake/state';
 import { useIntake } from '@/lib/intake/use-intake';
 import { useResume } from '@/lib/intake/use-resume';
 import { useUploads } from '@/lib/intake/use-uploads';
 import '@/components/wizard/wizard.css';
+import './intake.css';
 import { Fallback } from './Fallback';
 import { ProgressBar } from './ProgressBar';
 import { ResumeNotice } from './ResumeNotice';
@@ -80,11 +82,15 @@ export function IntakeFlow() {
   const Step = STEPS[step];
   const number = stepNumber(step);
   return (
-    <div className="wizard rounded-xl border border-line bg-white p-6 sm:p-10">
+    <div className="wizard intake-flow rounded-xl border border-line bg-white p-5 sm:p-10">
       <ResumeNotice resume={resume} />
       {number !== null && (
         <div className="mb-8">
-          <ProgressBar step={number} total={NUMBERED_STEP_COUNT} />
+          <ProgressBar
+            step={number}
+            total={NUMBERED_STEP_COUNT}
+            timeLeft={minutesToGo(step, STEP_ORDER)}
+          />
         </div>
       )}
       <div key={step}>
