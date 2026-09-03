@@ -29,7 +29,7 @@ export const site = {
     appointments:
       'We meet by video. No office visits, no parking, no waiting rooms. San Jose, California.',
   },
-  hours: 'Mon–Fri, 9–5. Send a consult request any time.',
+  hours: 'Mon to Fri, by appointment. Send a consult request any time.',
   /** Attorney responsible for the site (Rule 7.2(c); Bus. & Prof. Code § 6157.2(b)). */
   responsibleAttorney: 'Arthur E. Rothrock',
   /** The reply-time promise, one full sentence, used verbatim everywhere (Arthur, 2026-09-01). */
@@ -188,9 +188,8 @@ export const palette = {
   maroon700: '#66043D',
   maroon600: '#7F1A55',
   maroon500: '#98366F',
-  maroon200: '#E5C2D6',
-  maroon100: '#F3E3EC',
-  maroon50: '#FAF2F6',
+  /** Text selection: maroon-700 at 18% alpha. Tints retired 2026-09-02. */
+  highlight: '#66043D2E',
   paper: '#F8F5F0',
   sand: '#EFEAE2',
   white: '#FFFFFF',

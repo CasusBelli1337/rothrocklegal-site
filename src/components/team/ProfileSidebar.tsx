@@ -58,7 +58,7 @@ function MembershipsAndLeadership({ member }: { member: TeamMember }) {
 
 const chipClass =
   'inline-flex min-h-11 items-center rounded-full border border-line bg-white px-4 text-small text-ink ' +
-  'transition-colors hover:border-maroon-200 hover:text-maroon-700';
+  'transition-colors hover:border-line-strong hover:text-maroon-700';
 
 function PracticeChips({ member }: { member: TeamMember }) {
   return (

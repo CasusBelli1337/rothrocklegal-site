@@ -18,7 +18,7 @@ interface CardProps {
 export const cardClass = 'rounded-xl border border-line bg-white p-6';
 
 const interactiveClass =
-  'group transition-[box-shadow,border-color] duration-150 hover:border-maroon-200 hover:shadow-md ' +
+  'group transition-[box-shadow,border-color] duration-150 hover:border-line-strong hover:shadow-md ' +
   'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-maroon-500';
 
 /** White card with a hairline; never a shadow at rest (DESIGN-BRIEF §4). */

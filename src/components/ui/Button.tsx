@@ -35,12 +35,12 @@ const variants: Record<ButtonVariant, Record<'light' | 'dark', string>> = {
     dark: 'border border-white text-white hover:bg-white/10',
   },
   ghost: {
-    light: 'text-maroon-700 hover:bg-maroon-50',
+    light: 'text-maroon-700 hover:bg-sand',
     dark: 'text-white hover:bg-white/10',
   },
   inverse: {
-    light: 'bg-white text-maroon-700 hover:bg-maroon-50',
-    dark: 'bg-white text-maroon-700 hover:bg-maroon-50',
+    light: 'bg-white text-maroon-700 hover:bg-sand',
+    dark: 'bg-white text-maroon-700 hover:bg-sand',
   },
 };
 

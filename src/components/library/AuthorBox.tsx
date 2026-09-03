@@ -15,7 +15,7 @@ export function AuthorBox({ member }: { member: TeamMember }) {
       aria-labelledby="author-heading"
       className="mt-14 rounded-xl border border-line bg-white p-6 sm:flex sm:gap-6"
     >
-      <div className="h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-maroon-100">
+      <div className="h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-sand">
         {hasHeadshot(member) ? (
           <Image
             src={asset(member.image.small)}

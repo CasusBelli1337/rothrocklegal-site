@@ -124,7 +124,7 @@ export function NavDropdown({ item, active }: NavDropdownProps) {
               key={child.href}
               href={child.href}
               onClick={() => setOpen(false)}
-              className="rounded-md px-3 py-2.5 transition-colors hover:bg-maroon-50 focus-visible:bg-maroon-50 focus-visible:outline-none"
+              className="rounded-md px-3 py-2.5 transition-colors hover:bg-sand focus-visible:bg-sand focus-visible:outline-none"
             >
               <span className="block text-[15px] font-medium text-ink">{child.label}</span>
               <span className="mt-0.5 block text-small text-ink-3">{child.sublabel}</span>
