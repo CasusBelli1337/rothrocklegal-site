@@ -160,6 +160,9 @@ export const footerResources: readonly NavItem[] = [
 export const legalLinks: readonly NavItem[] = [
   { label: 'Privacy Policy', href: '/privacy-policy/' },
   { label: 'Disclaimer', href: '/disclaimer/' },
+  // The firm's internal portal (Google Workspace sign-in at the edge); a link,
+  // never a description, per the copy rules.
+  { label: 'Attorney Portal', href: 'https://portal.rothrocklegal.com/' },
 ] as const;
 
 export const social = {
