@@ -36,7 +36,7 @@ function ReadingOptionGroup({ option, value, onChoose }: GroupProps) {
               checked={value === choice.value}
               onChange={() => onChoose(option.key, choice.value)}
               // The radio itself fills the chip (44px tall), so the whole chip is the real target.
-              className="absolute inset-0 m-0 h-full w-full cursor-pointer opacity-0"
+              className="absolute -inset-px m-0 cursor-pointer opacity-0"
             />
             {choice.label}
           </label>
