@@ -137,10 +137,10 @@ const HOW_STEP_1 =
   'Tell us what happened, in writing or by voice, and upload what you have. We run a conflict ' +
   `check. ${site.replyPromise}`;
 
-/** The "faster" commitment in the Legion Litigator section (components/legion/Commitments.tsx). */
+/** The "technology" commitment in the Legion AI Litigator section (components/legion/Commitments.tsx). */
 const WHY_FASTER_LEAD =
-  'Thousands of pages of bank records and medical files are organized and searchable in days ' +
-  'instead of months, and first drafts come back in hours.';
+  'Cutting-edge AI sharpens the research, the drafting, and the strategy behind your case, so ' +
+  'the lawyers’ hours go to judgment and advocacy, not paperwork.';
 
 const LIBRARY_LEAD =
   'Deadlines, trust contests, trustees who won’t account, elder financial abuse. Plain English, ' +
@@ -203,8 +203,8 @@ export const lensCopy = {
   whyFasterLead: {
     neutral: WHY_FASTER_LEAD,
     trustee:
-      'Years of trust statements and your own records are organized and searchable in days ' +
-      'instead of months, and first drafts come back in hours.',
+      'Cutting-edge AI sharpens the research, the drafting, and the strategy behind your ' +
+      'defense, so the lawyers’ hours go to judgment and advocacy, not paperwork.',
     beneficiary: WHY_FASTER_LEAD,
   },
   libraryLead: {

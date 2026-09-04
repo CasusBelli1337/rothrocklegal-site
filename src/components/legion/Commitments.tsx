@@ -8,10 +8,10 @@ interface CommitmentsProps {
 }
 
 /**
- * The four commitments a Legion Litigator makes, from config. The "faster"
- * commitment carries the `why-faster-lead` lens slot (a trustee reads about
- * trust statements, a beneficiary about bank and medical records), so the
- * homepage keeps that framing where "How we run your case" used to hold it.
+ * The four commitments behind the Legion AI Litigator seal, from config. The
+ * "technology" commitment carries the `why-faster-lead` lens slot (a trustee
+ * reads "the strategy behind your defense"), so the homepage keeps that
+ * framing where "How we run your case" used to hold it.
  */
 export function Commitments({ layout = 'grid' }: CommitmentsProps) {
   const listClass = layout === 'grid' ? 'grid gap-6 sm:grid-cols-2' : 'space-y-5';

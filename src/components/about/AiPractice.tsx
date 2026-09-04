@@ -12,7 +12,7 @@ const legionLogo = { src: '/images/partners/legion-logo.svg', width: 613, height
 export const AI_PRACTICE_ID = 'ai-enabled-practice';
 
 function Designation() {
-  const { title, meaning, first } = legionLitigator.about;
+  const { title, meaning, ask } = legionLitigator.about;
   return (
     <div className="mt-14 grid gap-10 border-t border-line pt-14 lg:grid-cols-12 lg:gap-16">
       <div className="flex justify-center lg:col-span-4 lg:justify-start">
@@ -22,7 +22,7 @@ function Designation() {
         <h3 className="font-serif text-h3 text-ink">{title}</h3>
         <div className="mt-4 max-w-[64ch] space-y-4 text-body-lg text-ink-2">
           <p>{meaning}</p>
-          <p>{first}</p>
+          <p>{ask}</p>
         </div>
         <div className="mt-8">
           <Commitments />
@@ -34,9 +34,9 @@ function Designation() {
 
 /**
  * The Legion section (Arthur, 2026-09-03: "AI is in our DNA"; 2026-09-04: the
- * mark stands big beside the words, no box and no caption, and the Legion
- * Litigator designation follows). Legion is described as what the firm uses;
- * the site never sells it.
+ * mark stands big beside the words, no box and no caption, and the Legion AI
+ * Litigator seal follows). Legion is described as what the firm uses; the
+ * site never sells it.
  */
 export function AiPractice() {
   return (

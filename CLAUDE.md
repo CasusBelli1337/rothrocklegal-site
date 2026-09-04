@@ -86,13 +86,19 @@ Components read config; they never hardcode firm facts, URLs, or copy lists.
   a `LensCopy`); `ProfileBio`/`ProfileHero` render them through `Slot`, and
   Arthur's opening paragraph and hero line carry the three framings
   (`check-lens.mjs` counts his page).
-- `src/config/legion-litigator.ts`: the Legion Litigator designation (Arthur,
+- `src/config/legion-litigator.ts`: the Legion AI Litigator seal (Arthur,
   2026-09-04): the homepage section (`components/home/LegionLitigator.tsx`),
   the About block, the four commitments (`components/legion/Commitments.tsx`;
-  the "faster" one is the `why-faster-lead` lens slot), and the seal's words
-  (`components/legion/LegionLitigatorSeal.tsx`, an inline SVG in theme tokens;
+  the "technology" one is the `why-faster-lead` lens slot), and the seal's
+  words (`components/legion/LegionLitigatorSeal.tsx`, an inline SVG in theme
+  tokens: the name on the top arc, "SECURE · RESPONSIBLE · ACCOUNTABLE" on the
+  bottom arc, both upright, the Legion mark and "AI LITIGATOR" at the centre;
   `public/images/badges/legion-litigator-seal.{svg,png}` are the standalone
-  exports for packaging the badge for other lawyers' sites).
+  exports for packaging the badge for other lawyers' sites). The copy says what
+  the seal promises (safeguarded information, a lawyer in charge, the best
+  technology on the research, drafting, and strategy, the savings passed on),
+  never who conferred it, never the mechanics ("organizing records" is out),
+  and never "better results".
 - `src/config/service-areas.ts` (courts, counties, cities), `redirects.ts`
   (every retired URL), `testimonials.ts`, `faq.ts`.
 - `src/lib/library/articles.ts`: loader over `content/library/*.md`. Validates
@@ -169,7 +175,7 @@ image (/images/...), imageAlt, draft (true|false)
 
 - `/` home, in the order a worried family member needs: hero, the deadline
   tile, problem cards, attorneys strip, what to expect (four steps), the Legion
-  Litigator section (the seal, the designation, the four commitments; it
+  AI Litigator section (the seal, what it promises, the four commitments; it
   replaced "How we run your case" on 2026-09-04 because that section previewed
   how the firm delegates), what clients say, library preview, FAQ, where we
   practice, contact band. A sticky call bar on mobile.
@@ -383,14 +389,15 @@ step, storyRead, evaluation, followUpAnswers }` (read from `?resume=` after
   no phone field; `formatDetection.telephone: false` stays so iOS never links
   digits.
 - Legion appears as Arthur's credential ("co-founder and CEO of Legion, an
-  AI litigation platform") and, since 2026-09-04, as the Legion Litigator
-  designation: the About page's "An AI-enabled practice" section
+  AI litigation platform") and, since 2026-09-04, as the Legion AI Litigator
+  seal: the About page's "An AI-enabled practice" section
   (`components/about/AiPractice.tsx`, the Legion mark big beside the words,
   no box, no caption, then the designation block) and the homepage section
   (`components/home/LegionLitigator.tsx`). Both describe the platform as what
-  the firm uses on the family's case and what the designation commits the
-  lawyer to. Never sell it, never address other lawyers, never a pitch, never
-  "reads every page" or "reviews every document", never "better results".
+  the firm uses on the family's case and what the seal commits the lawyer to;
+  neither says Arthur conferred the seal on himself. Never sell it, never
+  address other lawyers, never a pitch, never "reads every page" or "reviews
+  every document", never "better results".
 - Never preview how the firm divides its work (Arthur, 2026-09-04): no "who
   does what", no "associate rates for the heavy lifting", no "senior judgment
   where it counts". The site says what the firm handles and who the lawyers

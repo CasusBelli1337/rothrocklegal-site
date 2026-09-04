@@ -5,56 +5,80 @@ import { asset } from '@/config/site';
 const LOGO = { src: '/images/partners/legion-logo.svg', width: 613, height: 328 };
 
 const SIZE = 360;
-const CENTER = SIZE / 2;
-/** Ring radii, outside in: the maroon rule, the brass hairline, the text path, the inner hairline. */
-const R = { outer: 172, brass: 164, text: 146, inner: 128 } as const;
-const LOGO_WIDTH = 168;
+const C = SIZE / 2;
+/**
+ * Radii, outside in: the maroon rule, the brass hairline, the top arc's
+ * baseline (glyphs grow outward), the bottom arc's baseline (glyphs grow
+ * inward, so it sits further out and the two bands of letters line up), the
+ * separators, and the inner hairline.
+ */
+const R = { outer: 172, brass: 164, top: 146, bottom: 158, dots: 152, inner: 128 } as const;
+const LOGO_WIDTH = 156;
 const LOGO_HEIGHT = Math.round((LOGO_WIDTH * LOGO.height) / LOGO.width);
 
-/** A full circle starting at the bottom and running clockwise, so text anchored at its midpoint is centred on 12 o'clock. */
-function ringPath(r: number): string {
-  return `M ${CENTER} ${CENTER + r} a ${r} ${r} 0 1 1 0 ${-2 * r} a ${r} ${r} 0 1 1 0 ${2 * r}`;
+/** A full circle from the bottom, clockwise: text anchored at its midpoint is centred on twelve o'clock and reads upright. */
+function topArc(r: number): string {
+  return `M ${C} ${C + r} a ${r} ${r} 0 1 1 0 ${-2 * r} a ${r} ${r} 0 1 1 0 ${2 * r}`;
 }
+
+/** Nine o'clock to three o'clock the long way round the bottom: text anchored at its midpoint is centred on six o'clock and reads upright. */
+function bottomArc(r: number): string {
+  return `M ${C - r} ${C} a ${r} ${r} 0 0 0 ${2 * r} 0`;
+}
+
+/** A small brass diamond, the seal's separator at nine and three o'clock. */
+function Diamond({ x }: { x: number }) {
+  return (
+    <path
+      d={`M ${x - 4} ${C} L ${x} ${C - 4} L ${x + 4} ${C} L ${x} ${C + 4} Z`}
+      fill="var(--color-brass-400)"
+    />
+  );
+}
+
+const SANS = { fontFamily: 'var(--font-sans)' } as const;
+const SERIF = { fontFamily: 'var(--font-serif)' } as const;
 
 interface SealProps {
   className?: string;
 }
 
 /**
- * The Legion Litigator seal: a round badge in the site's palette with the
- * designation running around the ring, the Legion mark at the centre, the word
- * LITIGATOR in the serif under it, and the designation number and year. The
- * white face keeps it legible on sand and on white. Colors are theme tokens,
- * type is the site's own faces, so it is one component to lift when the seal
- * is packaged for other lawyers' sites.
+ * The Legion AI Litigator seal: a round badge in the site's palette. The name
+ * runs along the top arc, three keystone words along the bottom, both upright,
+ * with a brass diamond at each side; the Legion mark sits at the centre over
+ * "AI LITIGATOR" in the serif and the year. The white face keeps it legible on
+ * sand and on white. Colors are theme tokens and type is the site's own faces,
+ * so it is one component to lift when the seal is packaged for other lawyers.
  */
 export function LegionLitigatorSeal({ className = '' }: SealProps) {
-  const { ring, word, line, title } = legionLitigator.seal;
+  const { top, bottom, word, line, title } = legionLitigator.seal;
   return (
     <svg viewBox={`0 0 ${SIZE} ${SIZE}`} role="img" aria-label={title} className={className}>
       <title>{title}</title>
       <defs>
-        <path id="legion-seal-ring" d={ringPath(R.text)} />
+        <path id="legion-seal-top" d={topArc(R.top)} />
+        <path id="legion-seal-bottom" d={bottomArc(R.bottom)} />
       </defs>
       <circle
-        cx={CENTER}
-        cy={CENTER}
+        cx={C}
+        cy={C}
         r={R.outer}
         fill="var(--color-white)"
         stroke="var(--color-maroon-700)"
         strokeWidth={2.5}
       />
       <circle
-        cx={CENTER}
-        cy={CENTER}
+        cx={C}
+        cy={C}
         r={R.brass}
         fill="none"
         stroke="var(--color-brass-400)"
         strokeWidth={1}
       />
       <circle
-        cx={CENTER}
-        cy={CENTER}
+        cx={C}
+        cy={C}
         r={R.inner}
         fill="none"
         stroke="var(--color-brass-400)"
@@ -62,52 +86,66 @@ export function LegionLitigatorSeal({ className = '' }: SealProps) {
       />
       <text
         fill="var(--color-brass-600)"
-        fontSize={13}
+        fontSize={18}
         fontWeight={600}
-        letterSpacing={3.2}
+        letterSpacing={4.5}
         textAnchor="middle"
-        style={{ fontFamily: 'var(--font-sans)' }}
+        style={SANS}
       >
-        <textPath href="#legion-seal-ring" startOffset="50%">
-          {ring}
+        <textPath href="#legion-seal-top" startOffset="50%">
+          {top}
         </textPath>
       </text>
+      <text
+        fill="var(--color-brass-600)"
+        fontSize={14}
+        fontWeight={600}
+        letterSpacing={3}
+        textAnchor="middle"
+        style={SANS}
+      >
+        <textPath href="#legion-seal-bottom" startOffset="50%">
+          {bottom}
+        </textPath>
+      </text>
+      <Diamond x={C - R.dots} />
+      <Diamond x={C + R.dots} />
       <image
         href={asset(LOGO.src)}
-        x={CENTER - LOGO_WIDTH / 2}
-        y={CENTER - LOGO_HEIGHT / 2 - 34}
+        x={C - LOGO_WIDTH / 2}
+        y={C - LOGO_HEIGHT / 2 - 30}
         width={LOGO_WIDTH}
         height={LOGO_HEIGHT}
       />
       <text
-        x={CENTER}
-        y={CENTER + 78}
+        x={C}
+        y={C + 62}
         textAnchor="middle"
         fill="var(--color-maroon-700)"
-        fontSize={30}
+        fontSize={22}
         fontWeight={500}
-        letterSpacing={5}
-        style={{ fontFamily: 'var(--font-serif)' }}
+        letterSpacing={3.5}
+        style={SERIF}
       >
         {word}
       </text>
       <line
-        x1={CENTER - 56}
-        x2={CENTER + 56}
-        y1={CENTER + 92}
-        y2={CENTER + 92}
+        x1={C - 46}
+        x2={C + 46}
+        y1={C + 76}
+        y2={C + 76}
         stroke="var(--color-brass-400)"
         strokeWidth={1}
       />
       <text
-        x={CENTER}
-        y={CENTER + 112}
+        x={C}
+        y={C + 95}
         textAnchor="middle"
         fill="var(--color-ink-3)"
         fontSize={11}
         fontWeight={600}
-        letterSpacing={2}
-        style={{ fontFamily: 'var(--font-sans)' }}
+        letterSpacing={2.5}
+        style={SANS}
       >
         {line}
       </text>

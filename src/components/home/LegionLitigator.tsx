@@ -6,10 +6,10 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { legionLitigator } from '@/config/legion-litigator';
 
 /**
- * The Legion Litigator section (Arthur, 2026-09-04), in the slot "How we run
- * your case" held: the seal, what the designation means for the family's case,
- * the four commitments, and a link to the fuller account on the About page.
- * It speaks to the family, never to other lawyers.
+ * The Legion AI Litigator section (Arthur, 2026-09-04), in the slot "How we
+ * run your case" held: the seal, what it promises the family, the four
+ * commitments, and a link to the fuller account on the About page. It speaks
+ * to the family, never to other lawyers, and never says who conferred the seal.
  */
 export function LegionLitigator() {
   const { eyebrow, title, lead, link } = legionLitigator.home;

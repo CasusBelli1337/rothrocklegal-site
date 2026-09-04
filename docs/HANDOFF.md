@@ -57,20 +57,27 @@ site are unchanged.
   (attorneys) are deleted; the About "Who we are" paragraph, the two home FAQ
   answers, and the sibling-trust article's staffing FAQ no longer say who does
   what. CLAUDE.md "Copy rules" now carries the rule.
-- **The Legion Litigator designation.** In the homepage slot the removed
-  section held: the seal (`components/legion/LegionLitigatorSeal.tsx`, an
-  inline SVG in theme tokens with the Legion mark at the centre, "LITIGATOR"
-  in the serif, "No. 001 · Est. 2026", and the ring "LEGION LITIGATOR ·
-  RESPONSIBLE AI IN LEGAL PRACTICE · A LAWYER BEHIND EVERY FILING" centred on
-  twelve o'clock), what the designation means for the family, and four
-  commitments (`config/legion-litigator.ts`; the "faster" one is the
-  `why-faster-lead` lens slot). The About section shows the Legion mark big
-  beside the words, no box and no caption, then the same designation block.
-  Standalone exports for packaging: `public/images/badges/legion-litigator-seal.svg`
-  (Legion mark inlined, Newsreader 500 and Instrument Sans 600 embedded as
-  base64 woff2) and `.png` (1440 px, rendered in Chrome from that SVG), copied
-  with a README to OneDrive `#Legion/Marketing/Legion Litigator/`. Arthur
-  floated "Legion Lawyer" as the alternative name; "Legion Litigator" shipped.
+- **The Legion AI Litigator seal.** In the homepage slot the removed section
+  held: the seal (`components/legion/LegionLitigatorSeal.tsx`, an inline SVG
+  in theme tokens: "LEGION AI LITIGATOR" on the top arc, "SECURE · RESPONSIBLE
+  · ACCOUNTABLE" on the bottom arc, both reading upright with a brass diamond
+  at nine and three o'clock, the Legion mark over "AI LITIGATOR" in the serif
+  and "EST. 2026" at the centre), what the seal promises the family, and four
+  commitments (`config/legion-litigator.ts`: information safeguarded, a lawyer
+  in charge at every step, the best technology on the research, drafting, and
+  strategy (the `why-faster-lead` lens slot), the savings are yours). The
+  About section shows the Legion mark big beside the words, no box and no
+  caption, then the same block with the line clients are meant to take away:
+  "is AI being used on my matter, and who is in charge of it?" Arthur's second
+  pass the same day: the first cut said he was the CEO who conferred the
+  designation on himself and led with organizing records; both are gone, and
+  the ring's long sentence (cramped, half upside down at phone size) became
+  the two arcs. Standalone exports for packaging:
+  `public/images/badges/legion-litigator-seal.svg` (Legion mark inlined,
+  Newsreader 500 and Instrument Sans 600 embedded as base64 woff2) and `.png`
+  (1440 px, rendered in Chrome from that SVG), copied with a README to
+  OneDrive `#Legion/Marketing/Legion Litigator/`. Arthur's intent: a mark
+  clients learn to ask their lawyers about.
 - **The wizard jump.** `src/lib/intake/scroll.ts` became
   `src/lib/reveal-panel.ts`, shared by the consult flow and the deadline
   wizard: one effect in `DeadlineWizard` scrolls the panel under the header
@@ -133,8 +140,10 @@ site are unchanged.
 
 ### Left for Arthur
 
-- "Legion Litigator" or "Legion Lawyer": the former shipped; the name, the
-  designation number, and the year are config (`legion-litigator.ts`).
+- The seal's words, the name, and the year are config (`legion-litigator.ts`);
+  "better results" was kept off the site on purpose (the outcome rule and RPC
+  7.1): the copy says "the best technology available" and "the savings are
+  yours" instead. Say the word and it changes.
 - The portal prints "Sep 1, 2026" (`dateStyle: 'medium'`) where the email and
   summary print "September 1, 2026"; both American. One line in
   `packages/ui/src/lib/format.ts` changes every portal date if you want them

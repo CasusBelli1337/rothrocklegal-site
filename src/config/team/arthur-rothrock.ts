@@ -41,10 +41,9 @@ const LEGION =
   'discovery, motions, the same fifty-page documents rebuilt by hand. Arthur co-founded ' +
   'Legion, an AI litigation platform used by California litigators, to do that drafting in ' +
   'minutes instead of days, and he runs his own cases on it. The hours a family pays for go ' +
-  'to strategy, evidence, and the courtroom, not to typing. He is the first Legion Litigator, ' +
-  'a designation for lawyers who commit to using AI responsibly: a lawyer makes every ' +
-  'decision and stands behind every filing, and the time the technology saves comes off the ' +
-  "client's bill.";
+  'to strategy, evidence, and the courtroom, not to typing. Rothrock Legal carries the Legion ' +
+  'AI Litigator seal: a commitment that AI is used responsibly at every level of a client’s ' +
+  'case, with a lawyer in charge of every decision and the savings passed on.';
 
 const AI_VOICE =
   'That work made him a regular voice on how lawyers should use AI. He is Vice Chair of the ' +

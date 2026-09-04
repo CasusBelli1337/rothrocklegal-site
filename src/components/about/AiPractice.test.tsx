@@ -18,14 +18,14 @@ describe('AiPractice', () => {
     expect(container.querySelector('figure, figcaption')).toBeNull();
   });
 
-  it('carries the Legion Litigator designation: the seal, the meaning, and the four commitments', () => {
+  it('carries the Legion AI Litigator seal, its meaning, and the four commitments', () => {
     render(<AiPractice />);
     expect(screen.getByRole('heading', { level: 3 }).textContent).toBe(legionLitigator.about.title);
     expect(screen.getByRole('img', { name: legionLitigator.seal.title })).toBeTruthy();
     for (const commitment of legionLitigator.commitments) {
       expect(screen.getByText(commitment.lead)).toBeTruthy();
     }
-    // The "faster" commitment is the why-faster-lead lens slot with all three framings.
+    // The "technology" commitment is the why-faster-lead lens slot with all three framings.
     expect(document.querySelectorAll('[data-slot="why-faster-lead"]').length).toBeGreaterThan(0);
   });
 

@@ -20,7 +20,7 @@ export const metadata = pageMetadata({
 });
 
 /**
- * Section order is fixed by HOMEPAGE-SPEC §0. The Legion Litigator section
+ * Section order is fixed by HOMEPAGE-SPEC §0. The Legion AI Litigator section
  * follows "What to expect" where "How we run your case" used to be; that
  * section previewed how the firm divides its work, which Arthur cut on
  * 2026-09-04.

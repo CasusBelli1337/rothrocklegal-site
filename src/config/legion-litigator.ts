@@ -1,13 +1,14 @@
 /**
- * The Legion Litigator designation (Arthur, 2026-09-04): a mark for lawyers
- * who commit to using AI responsibly, so that clients get more work, sooner,
- * for less, with a lawyer making every decision and standing behind every
- * filing. Arthur is the first to carry it; the long-term plan is a designation
- * other lawyers can earn and show on their own sites, so the seal
- * (components/legion/LegionLitigatorSeal.tsx) is built to be packaged.
- * Every word the two sections share lives here; the "faster" commitment's body
- * is a lens slot in lens-copy.ts. Never a pitch to lawyers: the copy speaks to
- * the family whose case it is.
+ * The Legion AI Litigator seal (Arthur, 2026-09-04): a mark for a practice
+ * that has committed to using AI responsibly at every level of a client's
+ * case. The long-term plan is a designation other lawyers earn and show, and
+ * a question clients learn to ask, so the seal
+ * (components/legion/LegionLitigatorSeal.tsx) is built to be packaged and the
+ * words stay high level: what the seal promises, never who conferred it and
+ * never the mechanics ("organizing records" is out). Every word the two
+ * sections share lives here; the "technology" commitment's body is a lens
+ * slot in lens-copy.ts. Never a pitch to lawyers: the copy speaks to the
+ * family whose case it is, and never promises an outcome.
  */
 
 export interface Commitment {
@@ -17,54 +18,61 @@ export interface Commitment {
 }
 
 export const legionLitigator = {
-  name: 'Legion Litigator',
+  name: 'Legion AI Litigator',
   /** The homepage section. */
   home: {
-    eyebrow: 'Legion Litigator',
-    title: 'An AI-enabled practice, with a lawyer behind every page.',
+    eyebrow: 'Legion AI Litigator',
+    title: 'AI, used responsibly at every level of your case.',
     lead:
-      'Arthur Rothrock is the co-founder and CEO of Legion, an AI litigation platform built for ' +
-      'California litigators, and the first lawyer to carry the Legion Litigator designation. ' +
-      'Here is what that means for your case.',
-    link: { label: 'How the firm uses AI', href: '/about/#ai-enabled-practice' },
+      'Rothrock Legal carries the Legion AI Litigator seal. It stands for four commitments ' +
+      'about how AI is used for the people this firm represents: to safeguard what you share, ' +
+      'to keep a lawyer in charge of every decision, to bring the best technology available to ' +
+      'the work, and to pass the savings on to you.',
+    link: { label: 'What the seal means', href: '/about/#ai-enabled-practice' },
   },
   /** The designation block on the About page. */
   about: {
-    title: 'The Legion Litigator designation',
+    title: 'The Legion AI Litigator seal',
     meaning:
-      'A Legion Litigator is a lawyer who commits to using AI responsibly: to do more for ' +
-      'clients, sooner, at a lower cost, with a lawyer making every decision and standing ' +
-      'behind every filing.',
-    first:
-      'Arthur is the first lawyer to carry the designation. The commitments below are what it ' +
-      'stands for, and what you can hold this firm to.',
+      'A Legion AI Litigator is a lawyer who has committed to using AI responsibly at every ' +
+      'level of a client’s case: the research, the drafting, and the strategy, with a lawyer in ' +
+      'charge of every decision, the client’s information safeguarded, and the savings passed on.',
+    ask:
+      'Whoever you talk to about your case, it is a fair question to ask: is AI being used on ' +
+      'my matter, and who is in charge of it? This seal is one firm’s answer, in writing. The ' +
+      'commitments below are what you can hold us to.',
   },
   commitments: [
     {
-      lead: 'The technology reads. A lawyer decides.',
+      lead: 'Your information is safeguarded.',
       body:
-        'AI organizes the records and writes the first drafts. It decides nothing. The lawyer ' +
-        'who signs a filing is the one who answers for it in court.',
+        'Everything you share is protected by a lawyer’s duty of confidentiality and handled on ' +
+        'systems built for law firms, under the same rules as everything else a lawyer holds.',
     },
-    { lead: 'Faster where it matters.' },
     {
-      lead: 'Your information stays protected.',
+      lead: 'A lawyer is in charge at every step.',
       body:
-        'What you send is used for your case and handled under a lawyer’s duty of ' +
-        'confidentiality, the same as everything else a lawyer holds.',
+        'AI never decides anything. A lawyer directs the research, shapes the strategy, signs ' +
+        'every filing, and answers for it in court.',
     },
+    { lead: 'The best technology, on the hard parts.' },
     {
       lead: 'The savings are yours.',
       body:
-        'Fewer hours billed for organizing and drafting. More of your budget on the work that ' +
-        'moves the case.',
+        'The hours the technology saves are hours you are not billed for. More of your budget ' +
+        'goes to the judgment and the advocacy that move your case.',
     },
   ] as readonly Commitment[],
-  /** The seal's words. The ring is centred on 12 o'clock with its gap at the bottom; keep it short enough to fit once. */
+  /**
+   * The seal's words: the name on the top arc, three keystone words on the
+   * bottom arc, the designation at the centre under the Legion mark, and the
+   * year. Keep each arc short enough to sit well inside its half of the ring.
+   */
   seal: {
-    ring: 'LEGION LITIGATOR · RESPONSIBLE AI IN LEGAL PRACTICE · A LAWYER BEHIND EVERY FILING',
-    word: 'LITIGATOR',
-    line: 'No. 001 · Est. 2026',
-    title: 'Legion Litigator designation, No. 001, established 2026',
+    top: 'LEGION AI LITIGATOR',
+    bottom: 'SECURE · RESPONSIBLE · ACCOUNTABLE',
+    word: 'AI LITIGATOR',
+    line: 'EST. 2026',
+    title: 'Legion AI Litigator seal: secure, responsible, accountable use of AI, established 2026',
   },
 } as const;
