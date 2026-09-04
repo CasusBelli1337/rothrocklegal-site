@@ -79,6 +79,15 @@
   height: 1.1rem;
   flex: none;
 }
+/* A choice that sits beside text inputs takes their height (3rem) so the row lines up. */
+.wizard-choice.is-compact {
+  height: 3rem;
+  padding: 0 1rem;
+  align-items: center;
+}
+.wizard-choice.is-compact input {
+  margin-top: 0;
+}
 
 .wizard-date {
   height: 3rem;

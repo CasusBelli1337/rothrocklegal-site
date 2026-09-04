@@ -12,6 +12,8 @@ interface ChoiceCardsProps<T extends string> {
   value: T | '' | readonly T[];
   onChange(value: T, checked: boolean): void;
   columns?: 1 | 2;
+  /** Input-height cards with the label's spacing, for a choice that sits in a row of text fields. */
+  compact?: boolean;
 }
 
 /**
@@ -28,6 +30,7 @@ export function ChoiceCards<T extends string>({
   value,
   onChange,
   columns = 1,
+  compact = false,
 }: ChoiceCardsProps<T>) {
   const multi = Array.isArray(value);
   const selected = (option: T) =>
@@ -45,7 +48,7 @@ export function ChoiceCards<T extends string>({
         </p>
       )}
       <div
-        className={`${hideLegend ? '' : 'mt-3'} grid gap-3 ${columns === 2 ? 'sm:grid-cols-2' : ''}`}
+        className={`${hideLegend ? '' : compact ? 'mt-1.5' : 'mt-3'} grid gap-3 ${columns === 2 ? 'sm:grid-cols-2' : ''}`}
       >
         {options.map((option) => {
           const id = `${name}-${option.value}`;
@@ -54,7 +57,7 @@ export function ChoiceCards<T extends string>({
             <label
               key={option.value}
               htmlFor={id}
-              className={`wizard-choice ${checked ? 'is-selected' : ''}`}
+              className={`wizard-choice ${compact ? 'is-compact' : ''} ${checked ? 'is-selected' : ''}`}
             >
               <input
                 id={id}

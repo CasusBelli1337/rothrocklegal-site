@@ -6,7 +6,7 @@ import { normalizeEmail } from '@/lib/intake/resume';
 import { useLookup } from '@/lib/intake/use-lookup';
 import { validateStep } from '@/lib/intake/validate';
 import { ChoiceCards } from './ChoiceCards';
-import { Field, TextInput, hintId } from './FormFields';
+import { Field, TextInput } from './FormFields';
 import { StepFrame, StepNav } from './StepFrame';
 import type { StepProps } from './step-props';
 
@@ -27,7 +27,8 @@ function LookupCard({ onDismiss }: { onDismiss(): void }) {
   );
 }
 
-/** Step 1: name and email (with the "started before" check), then how to reply and a phone number. */
+/** Step 1: name and email (with the "started before" check), then how to reply and a phone number.
+ *  Two rows of two, every control 3rem tall, so the four line up (Arthur, 2026-09-04). */
 export function StepContact({ intake }: StepProps) {
   const { contact } = intake.state.answers;
   const set = (patch: Partial<typeof contact>) => intake.patchAnswers({ contact: patch });
@@ -64,7 +65,7 @@ export function StepContact({ intake }: StepProps) {
             autoComplete="name"
           />
         </Field>
-        <Field id="contact-email" label="Email" hint={CONTACT_COPY.emailHint}>
+        <Field id="contact-email" label="Email">
           <TextInput
             id="contact-email"
             type="email"
@@ -72,7 +73,6 @@ export function StepContact({ intake }: StepProps) {
             onChange={(email) => set({ email })}
             onBlur={() => void lookup.check(contact.email)}
             autoComplete="email"
-            describedBy={hintId('contact-email')}
           />
         </Field>
       </div>
@@ -85,6 +85,7 @@ export function StepContact({ intake }: StepProps) {
           value={contact.replyBy}
           onChange={(replyBy) => set({ replyBy })}
           columns={2}
+          compact
         />
         <Field id="contact-phone" label="Phone" optional>
           <TextInput

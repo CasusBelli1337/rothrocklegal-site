@@ -91,7 +91,6 @@ export const RESUME_COPY = {
 } as const;
 
 export const CONTACT_COPY = {
-  emailHint: 'We reply here. It is also how you come back to this request from another device.',
   replyLegend: 'How should we reply?',
   replyOptions: [
     { value: 'email', label: 'Email (fastest)' },
@@ -232,10 +231,7 @@ export const FUNDING_LABELS: Record<FundingOption, string> = {
 
 export const STEP_TITLES: Record<StepId, { title: string; lead?: string }> = {
   start: { title: 'Before we start' },
-  contact: {
-    title: 'How do we reach you?',
-    lead: 'We reply by email unless you tell us otherwise.',
-  },
+  contact: { title: 'How do we reach you?' },
   story: {
     title: 'Tell us what happened',
     lead: 'In your own words: who, what, when, where, and how. Type it or tap the microphone.',
