@@ -19,8 +19,12 @@ type Validator = (state: IntakeState) => string | null;
 /** Plain-English problems, one per step; null means the step may advance. */
 const VALIDATORS: Partial<Record<StepId, Validator>> = {
   // Only the last start tile has anything to check; the first two just advance.
+  // The message never tells anyone to tick a box: a box is ticked only by
+  // someone who read the statement and agreed with it (Arthur, 2026-09-04).
   start: (s) =>
-    s.startTile < 2 || s.acks.every(Boolean) ? null : 'Please tick all three boxes to continue.',
+    s.startTile < 2 || s.acks.every(Boolean)
+      ? null
+      : 'Your request can go ahead only once you have agreed to all three statements above.',
   contact: (s) => {
     if (!s.answers.contact.fullName.trim()) return 'Please enter your name.';
     if (!isValidEmail(s.answers.contact.email))

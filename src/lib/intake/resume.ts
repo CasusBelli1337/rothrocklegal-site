@@ -1,4 +1,9 @@
-import type { IntakeStatus, ResumeResponse } from './contract';
+import type {
+  EvaluationClientView,
+  FollowUpAnswer,
+  IntakeStatus,
+  ResumeResponse,
+} from './contract';
 import { evaluationKey, storyKey } from './readings';
 import {
   emptyAnswers,
@@ -51,9 +56,20 @@ export function resumeStep(status: IntakeStatus, state: IntakeState, serverStep?
   return steps.indexOf(remembered) < steps.indexOf(incomplete) ? remembered : incomplete;
 }
 
-/** The whole flow state from the server's answer; the person already ticked the three boxes once. */
+/** Only answers to questions the restored evaluation still asks; anything else is stale. */
+function keptFollowUpAnswers(
+  evaluation: EvaluationClientView | null,
+  saved: Record<string, FollowUpAnswer> | undefined,
+): Record<string, FollowUpAnswer> {
+  if (!saved || typeof saved !== 'object') return {};
+  const asked = new Set((evaluation?.modules ?? []).map((module) => module.id));
+  return Object.fromEntries(Object.entries(saved).filter(([id]) => asked.has(id)));
+}
+
+/** The whole flow state from the server's answer; the person already agreed to the three statements once. */
 export function stateFromResume(response: ResumeResponse): IntakeState {
   const answers = mergeAnswers(emptyAnswers(), response.answers ?? {});
+  const evaluation = response.evaluation ?? null;
   const draft: IntakeState = {
     ...emptyState(),
     session: response.session,
@@ -62,7 +78,8 @@ export function stateFromResume(response: ResumeResponse): IntakeState {
     answers: { ...answers, acknowledgedDisclaimers: true },
     files: Array.isArray(response.files) ? response.files : [],
     storyRead: response.storyRead ?? null,
-    evaluation: response.evaluation ?? null,
+    evaluation,
+    followUpAnswers: keptFollowUpAnswers(evaluation, response.followUpAnswers),
   };
   const keyed: IntakeState = {
     ...draft,

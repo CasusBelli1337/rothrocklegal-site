@@ -144,6 +144,24 @@ describe('stateFromResume', () => {
     expect(state.step).toBe('scope');
   });
 
+  it('brings back the follow-up answers, dropping any the evaluation no longer asks', () => {
+    const state = stateFromResume(
+      response('follow-up', 'follow-up', {
+        evaluation,
+        followUpAnswers: { q: true, gone: 'stale' },
+      }),
+    );
+    expect(state.followUpAnswers).toEqual({ q: true });
+  });
+
+  it('starts with no follow-up answers when the server sent none', () => {
+    expect(stateFromResume(response('draft', 'scope')).followUpAnswers).toEqual({});
+    expect(
+      stateFromResume(response('follow-up', 'follow-up', { followUpAnswers: { q: true } }))
+        .followUpAnswers,
+    ).toEqual({});
+  });
+
   it('fills defaults when the server sends less than the client keeps', () => {
     const thin = {
       session: session(),

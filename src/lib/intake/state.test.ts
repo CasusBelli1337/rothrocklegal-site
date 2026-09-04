@@ -129,15 +129,20 @@ describe('mergeAnswers', () => {
 });
 
 describe('validateStep', () => {
-  it('lets the first two start tiles advance and checks the boxes on the third', () => {
+  it('lets the first two start tiles advance and waits for all three agreements on the third', () => {
     const state = emptyState();
     expect(validateStep('start', { ...state, startTile: 0 })).toBeNull();
     expect(validateStep('start', { ...state, startTile: 1 })).toBeNull();
-    expect(validateStep('start', { ...state, startTile: 2 })).toMatch(/three boxes/);
+    expect(validateStep('start', { ...state, startTile: 2 })).toMatch(/agreed to all three/);
     state.acks = [true, true, false];
-    expect(validateStep('start', { ...state, startTile: 2 })).toMatch(/three boxes/);
+    expect(validateStep('start', { ...state, startTile: 2 })).toMatch(/agreed to all three/);
     state.acks = [true, true, true];
     expect(validateStep('start', { ...state, startTile: 2 })).toBeNull();
+  });
+
+  it('never tells anyone to tick a box', () => {
+    const state = { ...emptyState(), startTile: 2 as const };
+    expect(validateStep('start', state)).not.toMatch(/tick/i);
   });
 
   it('requires a name and a usable email', () => {

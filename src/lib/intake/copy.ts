@@ -2,6 +2,7 @@ import type { FundingOption, Party, ValueRange } from './contract';
 import type { StartTile, StepId } from './state';
 
 export * from './copy-mic';
+export * from './copy-review';
 
 /**
  * Every line of copy in the intake flow lives here (config over code; plain
@@ -15,7 +16,7 @@ export const REMOTE_NOTE = 'We meet by video, and in person by appointment.';
 export const START_TILES: Record<StartTile, { title: string; button: string }> = {
   0: { title: 'Before we start', button: 'Got it, next' },
   1: { title: 'What happens after you send this', button: 'Next' },
-  2: { title: 'Three boxes to tick', button: 'Start' },
+  2: { title: 'Three things to read carefully', button: 'Start' },
 };
 
 /** The first tile: what this is, in three short lines. */
@@ -48,7 +49,11 @@ export const AFTER_YOU_SEND: readonly { title: string; body: string }[] = [
   },
 ];
 
-/** The third tile: the boxes the client must tick (the second per the ethics memo, 2026-09-03). */
+/**
+ * The third tile: the three statements to read (the second per the ethics memo,
+ * 2026-09-03). Nobody is told to tick a box; a box is ticked only by someone
+ * who read the statement and agreed with it (Arthur, 2026-09-04).
+ */
 export const ACKNOWLEDGMENTS = [
   'Sending this does not make you a client and does not create an attorney-client relationship until both sides sign an engagement letter.',
   'We run an automated conflict check on the names in your submission before any lawyer reads it, and we may decline your matter for any reason. If a conflict is found, no lawyer will read your description or your documents; they are deleted, and only the names, the date, and the fact that we declined are kept in our conflicts records.',
@@ -62,7 +67,8 @@ export const ACKNOWLEDGMENT_NOTES = [
   'In plain words: if a lawyer gave papers to someone else and they were meant to stay private, please do not send those to us.',
 ] as const;
 
-export const ACKNOWLEDGMENTS_LEGEND = 'Please tick all three boxes';
+export const ACKNOWLEDGMENTS_LEGEND =
+  'Please read each statement carefully. If you understand it and agree, tick its box.';
 
 export const CONFLICT_WHY =
   'We check every name against our client list before we can talk. That protects you.';
@@ -169,6 +175,9 @@ export const PARTIES_COPY = {
     'The person who died, the trustee or executor, other family, anyone on the other side, and their lawyer if you know the name.',
   add: 'Add someone',
   remove: 'Remove',
+  /** Per person, under the name and role: the box people were stuffing into the name field. */
+  personNoteLabel: 'Note',
+  personNoteHint: 'How they are related, or anything we should know.',
   noteLabel: 'Anything to add or correct?',
   noteHint: 'A name we missed, a wrong role, or how these people are related.',
 } as const;
@@ -190,8 +199,6 @@ export const FOLLOW_UP_COPY = {
   answer: 'Answer it',
   skipped: 'Skipped for now. We may ask again by email.',
 } as const;
-
-export const REVIEW_NOTE = 'Nothing is sent until you press Send.';
 
 /** What happens next, on the done screen. Three short lines. */
 export const DONE_NEXT = [

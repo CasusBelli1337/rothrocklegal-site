@@ -1,7 +1,8 @@
 import { SITUATIONS, VOICE_NOTE_SLOT, type IntakeAnswers } from '@/lib/intake/contract';
-import { FUNDING_LABELS, VALUE_RANGE_LABELS } from '@/lib/intake/copy';
+import { FOLLOW_UP_REVIEW, FUNDING_LABELS, VALUE_RANGE_LABELS } from '@/lib/intake/copy';
+import { followUpLines } from '@/lib/intake/follow-up-format';
 import { whatWeUnderstood } from '@/lib/intake/readings';
-import type { IntakeState, StepId } from '@/lib/intake/state';
+import { hasFollowUp, type IntakeState, type StepId } from '@/lib/intake/state';
 
 /** One block of the review summary; `step` is where "Edit" goes. */
 export interface ReviewRow {
@@ -58,6 +59,15 @@ function scopeLines(a: IntakeAnswers): string[] {
   ].filter(Boolean);
 }
 
+/** The answers to the questions the evaluation asked, one line each, in its order. */
+function followUpRow(state: IntakeState): ReviewRow {
+  return {
+    label: FOLLOW_UP_REVIEW.label,
+    step: 'follow-up',
+    lines: followUpLines(state.evaluation?.modules ?? [], state.followUpAnswers, state.files),
+  };
+}
+
 /** The compact summary for the review screen, in step order. */
 export function reviewRows(state: IntakeState): ReviewRow[] {
   const a = state.answers;
@@ -68,5 +78,6 @@ export function reviewRows(state: IntakeState): ReviewRow[] {
     { label: 'Documents', step: 'documents', lines: documentLines(state) },
     { label: 'People involved', step: 'parties', lines: partyLines(a) },
     { label: 'Scope and cost', step: 'scope', lines: scopeLines(a) },
+    ...(hasFollowUp(state) ? [followUpRow(state)] : []),
   ];
 }

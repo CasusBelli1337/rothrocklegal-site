@@ -13,7 +13,8 @@
  * upload slot replaces the per-document slots, and a submission whose names
  * match the firm's conflict list is held for a lawyer's decision
  * (`conflict-hold` / `declined`). 2 added spokenText, lookup, resume.
- * Servers answer clients of the same major version.
+ * Servers answer clients of the same major version. 2026-09-04: a resume also
+ * carries the follow-up answers.
  */
 export const INTAKE_API_VERSION = 3 as const;
 
@@ -341,6 +342,8 @@ export interface ResumeResponse {
   /** What the model has already read, so the resumed screens need no second wait. */
   storyRead?: StoryRead;
   evaluation?: EvaluationClientView;
+  /** The person's answers to the follow-up questions so far, when any were saved. */
+  followUpAnswers?: Record<string, FollowUpAnswer>;
 }
 
 export interface ApiError {

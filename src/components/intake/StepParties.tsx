@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { Button } from '@/components/ui/Button';
 import type { Party } from '@/lib/intake/contract';
 import {
@@ -23,6 +23,51 @@ import { WhyWeAsk } from './WhyWeAsk';
 
 const EMPTY_ROW: Party = { name: '', role: 'decedent' };
 
+/**
+ * One key per row that outlives its position. Keyed by index, removing a person
+ * would hand their DOM row to the next person, so anything half typed below the
+ * removed row lost its focus and its caret.
+ */
+function useRowKeys(count: number) {
+  const keys = useRef<number[]>([]);
+  const nextKey = useRef(0);
+  if (keys.current.length > count) keys.current.length = count;
+  while (keys.current.length < count) keys.current.push(nextKey.current++);
+  return useMemo(
+    () => ({
+      at: (index: number) => keys.current[index],
+      added: () => keys.current.push(nextKey.current++),
+      removed: (index: number) => keys.current.splice(index, 1),
+    }),
+    [],
+  );
+}
+
+/** The optional line under each person: how they are related, or anything else we should know. */
+function PartyNote({
+  id,
+  party,
+  onChange,
+}: {
+  id: string;
+  party: Party;
+  onChange(party: Party): void;
+}) {
+  return (
+    <div className="mt-3">
+      <Field id={id} label={PARTIES_COPY.personNoteLabel} optional hint={PARTIES_COPY.personNoteHint}>
+        <TextInput
+          id={id}
+          value={party.note ?? ''}
+          onChange={(note) => onChange({ ...party, note: note || undefined })}
+          describedBy={hintId(id)}
+          autoComplete="off"
+        />
+      </Field>
+    </div>
+  );
+}
+
 function PartyRow({
   index,
   party,
@@ -37,31 +82,35 @@ function PartyRow({
   const nameId = `party-${index}-name`;
   const roleId = `party-${index}-role`;
   return (
-    <li className="grid gap-3 border border-line bg-white p-3 sm:grid-cols-[1fr_1fr_auto] sm:items-end">
-      <Field id={nameId} label={index === 0 ? 'Name' : `Name (person ${index + 1})`}>
-        <TextInput
-          id={nameId}
-          value={party.name}
-          onChange={(name) => onChange({ ...party, name })}
-          // Otherwise the phone offers to fill in the visitor's own name for the person who died.
-          autoComplete="off"
-        />
-      </Field>
-      <Field id={roleId} label="Who are they?">
-        <SelectInput<Party['role']>
-          id={roleId}
-          value={party.role}
-          onChange={(role) => onChange({ ...party, role: role || 'other' })}
-          options={PARTY_ROLE_OPTIONS}
-        />
-      </Field>
-      <button
-        type="button"
-        onClick={onRemove}
-        className="h-12 text-small text-ink-3 underline underline-offset-3 hover:text-maroon-700"
-      >
-        {PARTIES_COPY.remove}
-      </button>
+    <li className="border border-line bg-white p-3">
+      {/* The name takes the room: people write "Leila Reyes Stadler (mother)" when it is too narrow. */}
+      <div className="grid gap-3 sm:grid-cols-[3fr_2fr_auto] sm:items-end">
+        <Field id={nameId} label={index === 0 ? 'Name' : `Name (person ${index + 1})`}>
+          <TextInput
+            id={nameId}
+            value={party.name}
+            onChange={(name) => onChange({ ...party, name })}
+            // Otherwise the phone offers to fill in the visitor's own name for the person who died.
+            autoComplete="off"
+          />
+        </Field>
+        <Field id={roleId} label="Who are they?">
+          <SelectInput<Party['role']>
+            id={roleId}
+            value={party.role}
+            onChange={(role) => onChange({ ...party, role: role || 'other' })}
+            options={PARTY_ROLE_OPTIONS}
+          />
+        </Field>
+        <button
+          type="button"
+          onClick={onRemove}
+          className="h-12 text-small text-ink-3 underline underline-offset-3 hover:text-maroon-700"
+        >
+          {PARTIES_COPY.remove}
+        </button>
+      </div>
+      <PartyNote id={`party-${index}-note`} party={party} onChange={onChange} />
     </li>
   );
 }
@@ -70,26 +119,31 @@ function PartyRow({
 function PartiesList({ intake }: { intake: IntakeController }) {
   const stored = intake.state.answers.parties;
   const parties = stored.length > 0 ? stored : [EMPTY_ROW];
+  const keys = useRowKeys(parties.length);
   const setParties = (next: Party[]) => intake.patchAnswers({ parties: next });
+  const add = () => {
+    keys.added();
+    setParties([...parties, { name: '', role: 'family' }]);
+  };
+  const remove = (index: number) => {
+    keys.removed(index);
+    setParties(parties.filter((_, i) => i !== index));
+  };
   return (
     <>
       <ul className="space-y-3">
         {parties.map((party, index) => (
           <PartyRow
-            key={index}
+            key={keys.at(index)}
             index={index}
             party={party}
             onChange={(next) => setParties(parties.map((p, i) => (i === index ? next : p)))}
-            onRemove={() => setParties(parties.filter((_, i) => i !== index))}
+            onRemove={() => remove(index)}
           />
         ))}
       </ul>
       <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-2">
-        <Button
-          variant="secondary"
-          size="sm"
-          onClick={() => setParties([...parties, { name: '', role: 'family' }])}
-        >
+        <Button variant="secondary" size="sm" onClick={add}>
           {PARTIES_COPY.add}
         </Button>
         <WhyWeAsk>{CONFLICT_WHY}</WhyWeAsk>

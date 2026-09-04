@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { createIntake, errorMessage, saveAnswers } from './api';
+import { createIntake, errorMessage, saveAnswers, saveFollowUp } from './api';
 import type {
   EvaluationClientView,
   FollowUpAnswer,
@@ -9,6 +9,7 @@ import type {
   StoryRead,
   SubmitResponse,
 } from './contract';
+import { withUploadAnswers } from './follow-up';
 import {
   markEvaluationBackground,
   markEvaluationUnavailable,
@@ -89,28 +90,62 @@ function usePersistedState(): [IntakeState, (fn: Updater) => void, boolean] {
   return [state, setPersisted, hydrated];
 }
 
-/** Debounced `PUT answers` once a server session exists; the first run after hydration is skipped. */
-function useAutosave(state: IntakeState, hydrated: boolean): SaveStatus {
+/** Debounced save once a server session exists; the first run after hydration is skipped. */
+function useDebouncedSave(ready: boolean, save: () => Promise<unknown>): SaveStatus {
   const [status, setStatus] = useState<SaveStatus>('idle');
   const skipNext = useRef(true);
-  const { session, answers } = state;
 
   useEffect(() => {
-    if (!hydrated || !session) return;
+    if (!ready) return;
     if (skipNext.current) {
       skipNext.current = false;
       return;
     }
     setStatus('saving');
     const timer = setTimeout(() => {
-      saveAnswers(session, answers)
+      save()
         .then(() => setStatus('saved'))
         .catch(() => setStatus('error'));
     }, AUTOSAVE_DELAY_MS);
     return () => clearTimeout(timer);
-  }, [session, answers, hydrated]);
+  }, [ready, save]);
 
   return status;
+}
+
+/** Loudest of the two save lines: a save in flight wins, then a failure, then a success. */
+const STATUS_RANK: Record<SaveStatus, number> = { idle: 0, saved: 1, error: 2, saving: 3 };
+function loudest(a: SaveStatus, b: SaveStatus): SaveStatus {
+  return STATUS_RANK[a] >= STATUS_RANK[b] ? a : b;
+}
+
+/**
+ * `PUT answers` and `PUT follow-up`, both debounced. The follow-up answers used
+ * to reach the server only at Send, so a closed tab lost them; the whole map
+ * goes every time because the server replaces rather than merges.
+ */
+function useAutosave(state: IntakeState, hydrated: boolean): SaveStatus {
+  const { session, answers, files, followUpAnswers } = state;
+  const modules = state.evaluation?.modules;
+
+  const putAnswers = useCallback(
+    () => (session ? saveAnswers(session, answers) : Promise.resolve()),
+    [session, answers],
+  );
+  const followUp = useMemo(
+    () =>
+      modules && modules.length > 0 ? withUploadAnswers(modules, followUpAnswers, files) : null,
+    [modules, followUpAnswers, files],
+  );
+  const putFollowUp = useCallback(
+    () => (session && followUp ? saveFollowUp(session, followUp) : Promise.resolve()),
+    [session, followUp],
+  );
+
+  const started = hydrated && session !== null;
+  const answersStatus = useDebouncedSave(started, putAnswers);
+  const followUpStatus = useDebouncedSave(started && followUp !== null, putFollowUp);
+  return loudest(answersStatus, followUpStatus);
 }
 
 /** The start step's Start button: the session is created here, once. */

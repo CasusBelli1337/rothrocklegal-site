@@ -115,6 +115,15 @@ describe('hand-holding lines', () => {
     for (const note of copy.ACKNOWLEDGMENT_NOTES) expect(note).toMatch(/^In plain words: /);
   });
 
+  it('asks the person to read and agree, and never to tick every box', () => {
+    expect(copy.ACKNOWLEDGMENTS_LEGEND).toBe(
+      'Please read each statement carefully. If you understand it and agree, tick its box.',
+    );
+    expect(copy.START_TILES[2].title).toBe('Three things to read carefully');
+    for (const line of [copy.ACKNOWLEDGMENTS_LEGEND, copy.START_TILES[2].title])
+      expect(line).not.toMatch(/tick (all|the |three|every|both)/i);
+  });
+
   it('counts the minutes left from the current screen on', () => {
     expect(copy.minutesToGo('review', STEP_ORDER)).toBe('about a minute to go');
     expect(copy.minutesToGo('follow-up', STEP_ORDER)).toBe('about 2 minutes to go');
