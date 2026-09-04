@@ -10,6 +10,7 @@ import type {
   SubmitResponse,
 } from './contract';
 import {
+  markEvaluationBackground,
   markEvaluationUnavailable,
   markStoryReadUnavailable,
   receiveEvaluation,
@@ -62,6 +63,8 @@ export interface IntakeController {
   markStoryReadUnavailable(): void;
   receiveEvaluation(view: EvaluationClientView): void;
   markEvaluationUnavailable(): void;
+  /** "Keep going while we finish reading": the server completes the pass in the background. */
+  markEvaluationBackground(): void;
   finish(result: SubmitResponse): void;
 }
 
@@ -210,6 +213,7 @@ type Mutators = Pick<
   | 'markStoryReadUnavailable'
   | 'receiveEvaluation'
   | 'markEvaluationUnavailable'
+  | 'markEvaluationBackground'
   | 'finish'
 >;
 
@@ -239,6 +243,7 @@ function useMutators(update: (fn: Updater) => void, move: (fn: Updater) => void)
       markStoryReadUnavailable: () => update(markStoryReadUnavailable),
       receiveEvaluation: (view) => update((s) => receiveEvaluation(s, view)),
       markEvaluationUnavailable: () => update(markEvaluationUnavailable),
+      markEvaluationBackground: () => update(markEvaluationBackground),
       finish: (result) => move((s) => ({ ...s, result, step: 'done' })),
     }),
     [update, move],

@@ -43,9 +43,10 @@ describe('fileProblem', () => {
   });
 
   it('explains each limit in plain English', () => {
-    expect(fileProblem({ name: 'a.pdf', size: 1 }, MAX_FILES)).toMatch(/up to 20 files/);
+    expect(fileProblem({ name: 'a.pdf', size: 1 }, MAX_FILES)).toMatch(/up to 500 files/);
     expect(fileProblem({ name: 'virus.exe', size: 1 }, 0)).toMatch(/cannot read/);
-    expect(fileProblem({ name: 'big.pdf', size: 26 * 1024 * 1024 }, 0)).toMatch(/over 25 MB/);
+    expect(fileProblem({ name: 'big.pdf', size: 96 * 1024 * 1024 }, 0)).toMatch(/over 95 MB/);
+    expect(fileProblem({ name: 'ok.pdf', size: 94 * 1024 * 1024 }, 0)).toBeNull();
     expect(fileProblem({ name: 'empty.txt', size: 0 }, 0)).toMatch(/empty/);
   });
 });

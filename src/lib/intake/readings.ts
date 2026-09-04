@@ -67,29 +67,52 @@ function seedParties(state: IntakeState, parties: readonly Party[] | undefined):
   return { ...state, answers: { ...state.answers, parties: namedParties(parties) } };
 }
 
-/** Pass 2 came back: keep it and seed the people it found. Stale follow-up answers are dropped. */
+/**
+ * Pass 2 came back: keep it and seed the people it found. When it names nobody
+ * (the server's generic view after a failed read says the same as a real one)
+ * the people from pass 1 stand in, so the person never faces an empty list.
+ * Stale follow-up answers are dropped.
+ */
 export function receiveEvaluation(state: IntakeState, view: EvaluationClientView): IntakeState {
   const kept = new Set((view.modules ?? []).map((m) => m.id));
   const followUpAnswers = Object.fromEntries(
     Object.entries(state.followUpAnswers).filter(([id]) => kept.has(id)),
   );
+  const found = namedParties(view.parties);
   return seedParties(
     {
       ...state,
-      evaluation: { ...view, modules: view.modules ?? [], parties: namedParties(view.parties) },
+      evaluation: { ...view, modules: view.modules ?? [], parties: found },
       evaluationFor: evaluationKey(state),
+      readingInBackground: false,
       followUpAnswers,
     },
-    view.parties,
+    found.length > 0 ? found : state.storyRead?.parties,
   );
 }
 
 /** Pass 2 timed out or failed: the manual screens take over, seeded from pass 1 when it ran. */
 export function markEvaluationUnavailable(state: IntakeState): IntakeState {
   return seedParties(
-    { ...state, evaluation: null, evaluationFor: evaluationKey(state), followUpAnswers: {} },
+    {
+      ...state,
+      evaluation: null,
+      evaluationFor: evaluationKey(state),
+      readingInBackground: false,
+      followUpAnswers: {},
+    },
     state.storyRead?.parties,
   );
+}
+
+/**
+ * The person chose to keep going while the server is still reading: the same
+ * manual screens, seeded from pass 1, with a note that the reading continues
+ * on its own. The follow-up screen is skipped and Send submits; the server
+ * finishes the evaluation for the lawyers after that.
+ */
+export function markEvaluationBackground(state: IntakeState): IntakeState {
+  return { ...markEvaluationUnavailable(state), readingInBackground: true };
 }
 
 /** The one-line "what we understood", from the fuller pass when it ran. */

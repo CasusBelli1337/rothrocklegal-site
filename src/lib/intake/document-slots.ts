@@ -11,9 +11,14 @@ export function slotsForSituations(situations: readonly SituationKey[]): Documen
   );
 }
 
-/** Upload rules shown on the documents step. */
-export const MAX_FILE_BYTES = 25 * 1024 * 1024;
-export const MAX_FILES = 20;
+/**
+ * Upload rules shown on the documents step; the server enforces the same
+ * numbers (legion-intake config/files.ts). A whole case file is welcome: the
+ * server reads it in batches when it will not fit one read.
+ */
+export const MAX_FILE_MB = 95;
+export const MAX_FILE_BYTES = MAX_FILE_MB * 1024 * 1024;
+export const MAX_FILES = 500;
 
 export const ACCEPTED_EXTENSIONS = [
   '.pdf',
@@ -27,8 +32,7 @@ export const ACCEPTED_EXTENSIONS = [
   '.txt',
 ] as const;
 
-export const ACCEPTED_TYPES_LABEL =
-  'PDF, JPG, PNG, HEIC, Word (.docx), email (.eml, .msg), or plain text. Up to 25 MB each, 20 files total.';
+export const ACCEPTED_TYPES_LABEL = `PDF, JPG, PNG, HEIC, Word (.docx), email (.eml, .msg), or plain text. Up to ${MAX_FILE_MB} MB each, up to ${MAX_FILES} files.`;
 
 /** `accept` attribute for the file input. */
 export const ACCEPT_ATTRIBUTE = ACCEPTED_EXTENSIONS.join(',');
@@ -48,7 +52,7 @@ export function fileProblem(
   if (!(ACCEPTED_EXTENSIONS as readonly string[]).includes(extensionOf(file.name)))
     return `We cannot read "${file.name}". Send a PDF, photo, Word file, email, or text file.`;
   if (file.size > MAX_FILE_BYTES)
-    return `"${file.name}" is over 25 MB. Try a smaller scan or split it into parts.`;
+    return `"${file.name}" is over ${MAX_FILE_MB} MB. Try a smaller scan or split it into parts.`;
   if (file.size === 0) return `"${file.name}" is empty.`;
   return null;
 }

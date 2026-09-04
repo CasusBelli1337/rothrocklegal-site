@@ -51,6 +51,8 @@ export interface IntakeState {
   evaluation: EvaluationClientView | null;
   /** The story and files the last evaluation (or failed attempt) was made from; null when none ran. */
   evaluationFor: string | null;
+  /** True when the person chose to keep going while the server was still reading; the server finishes on its own. */
+  readingInBackground: boolean;
   followUpAnswers: Record<string, FollowUpAnswer>;
   result: SubmitResponse | null;
 }
@@ -78,6 +80,7 @@ export function emptyState(): IntakeState {
     storyReadFor: null,
     evaluation: null,
     evaluationFor: null,
+    readingInBackground: false,
     followUpAnswers: {},
     result: null,
   };

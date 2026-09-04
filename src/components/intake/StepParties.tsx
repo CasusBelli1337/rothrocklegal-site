@@ -5,13 +5,15 @@ import { Button } from '@/components/ui/Button';
 import type { Party } from '@/lib/intake/contract';
 import {
   CONFLICT_WHY,
+  EVALUATION_BACKGROUND,
   EVALUATION_FALLBACK,
+  EVALUATION_KEEP_GOING,
   EVALUATION_READING_TITLE,
   PARTIES_COPY,
   PARTY_ROLE_OPTIONS,
 } from '@/lib/intake/copy';
 import { needsEvaluation } from '@/lib/intake/readings';
-import { useEvaluation } from '@/lib/intake/use-evaluation';
+import { useEvaluation, type EvaluationController } from '@/lib/intake/use-evaluation';
 import type { IntakeController } from '@/lib/intake/use-intake';
 import { Field, SelectInput, TextArea, TextInput, hintId } from './FormFields';
 import { EvaluationStages } from './Reading';
@@ -112,10 +114,39 @@ function PartiesNote({ intake }: { intake: IntakeController }) {
   );
 }
 
+/** After the wait has run long: the person may move on; the server finishes reading on its own. */
+function KeepGoing({ intake, evaluation }: { intake: IntakeController; evaluation: EvaluationController }) {
+  const keepGoing = () => {
+    evaluation.cancel();
+    intake.markEvaluationBackground();
+  };
+  return (
+    <div className="wizard-banner mt-6" role="status">
+      <p className="text-body font-semibold text-ink">{EVALUATION_KEEP_GOING.title}</p>
+      <p className="mt-1 text-body text-ink-2">{EVALUATION_KEEP_GOING.body}</p>
+      <div className="mt-4">
+        <Button variant="secondary" onClick={keepGoing}>
+          {EVALUATION_KEEP_GOING.button}
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+/** The one-line note above the list when the model did not supply it: still reading, or could not read. */
+function ManualNote({ background }: { background: boolean }) {
+  return (
+    <div className="wizard-banner mb-4" role="status">
+      <p className="text-body text-ink">{background ? EVALUATION_BACKGROUND : EVALUATION_FALLBACK}</p>
+    </div>
+  );
+}
+
 /**
  * Step 5: the model reads the story and the uploads (pass 2) behind three
  * moving lines; then the people it found, editable, for the conflict check.
- * When the evaluation is unavailable the list is seeded from pass 1 instead.
+ * A long read offers "keep going"; when the evaluation is unavailable or still
+ * running in the background, the list is seeded from pass 1 instead.
  */
 export function StepParties({ intake }: StepProps) {
   const { state } = intake;
@@ -139,6 +170,7 @@ export function StepParties({ intake }: StepProps) {
         footer={<StepNav intake={intake} busy />}
       >
         <EvaluationStages phase={evaluation.phase} />
+        {evaluation.slow && <KeepGoing intake={intake} evaluation={evaluation} />}
       </StepFrame>
     );
   }
@@ -154,11 +186,7 @@ export function StepParties({ intake }: StepProps) {
       lead={fromModel ? PARTIES_COPY.found : PARTIES_COPY.manual}
       onSubmit={submit}
     >
-      {!fromModel && (
-        <div className="wizard-banner mb-4" role="status">
-          <p className="text-body text-ink">{EVALUATION_FALLBACK}</p>
-        </div>
-      )}
+      {!fromModel && <ManualNote background={state.readingInBackground} />}
       <PartiesList intake={intake} />
       <PartiesNote intake={intake} />
     </StepFrame>

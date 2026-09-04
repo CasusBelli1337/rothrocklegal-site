@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { EvaluationClientView, StoryRead } from './contract';
 import {
   evaluationKey,
+  markEvaluationBackground,
   markEvaluationUnavailable,
   markStoryReadUnavailable,
   needsEvaluation,
@@ -128,5 +129,34 @@ describe('pass 2: the evaluation', () => {
     const withRead = receiveStoryRead(draft(), read);
     expect(whatWeUnderstood(withRead)).toBe(read.whatWeUnderstood);
     expect(whatWeUnderstood(receiveEvaluation(withRead, view))).toBe('Fuller reading.');
+  });
+});
+
+describe('an evaluation that names nobody', () => {
+  it('seeds the people from pass 1 instead of leaving the list empty', () => {
+    const withRead = receiveStoryRead(draft(), read);
+    const after = receiveEvaluation(withRead, { ...view, parties: [] });
+    expect(after.evaluation?.parties).toEqual([]);
+    expect(after.answers.parties).toEqual([{ name: 'Mother', role: 'decedent' }]);
+  });
+});
+
+describe('keep going while the server finishes reading', () => {
+  it('seeds the people from pass 1, skips the follow-up screen, and remembers that the reading continues', () => {
+    const withRead = receiveStoryRead(draft(), read);
+    const after = markEvaluationBackground(withRead);
+    expect(after.readingInBackground).toBe(true);
+    expect(after.evaluation).toBeNull();
+    expect(after.followUpAnswers).toEqual({});
+    expect(after.answers.parties).toEqual([{ name: 'Mother', role: 'decedent' }]);
+    // The same story and files never start a second wait.
+    expect(evaluationKey(after)).toBe(after.evaluationFor);
+    expect(needsEvaluation(after)).toBe(false);
+  });
+
+  it('a later evaluation, or a plain failure, clears the background note', () => {
+    const background = markEvaluationBackground(draft());
+    expect(receiveEvaluation(background, view).readingInBackground).toBe(false);
+    expect(markEvaluationUnavailable(background).readingInBackground).toBe(false);
   });
 });

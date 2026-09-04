@@ -262,8 +262,26 @@ image (/images/...), imageAlt, draft (true|false)
   is `PUT /:id/follow-up` (when modules exist) then `POST /:id/submit`.
 - One upload slot: `DOCUMENTS_SLOT` from the contract (plus `VOICE_NOTE_SLOT`
   for the recording, transcribed server-side); files are multipart `slot` +
-  `file` on `POST /:id/files`, 20 at most. No per-document slots and no "I
-  don't have this" toggles.
+  `file` on `POST /:id/files`, up to 500 files of 95 MB each (`document-slots.ts`
+  mirrors the module's `FILE_LIMITS`; Cloudflare caps one request body at
+  100 MB). No per-document slots and no "I don't have this" toggles. The site
+  uploads three at a time (`use-uploads.ts` `MAX_CONCURRENT_UPLOADS`), tries a
+  failed upload once more on its own, then lists it as "Could not upload" with
+  the reason; the count line reads "12 of 65 uploaded" live (`UploadCount`,
+  `upload-summary.ts`) and a list past eight rows scrolls in its own box.
+  Continue waits only for uploads still on their way; a failed file never blocks.
+- The flow never waits on the model. A whole case file is read on the server
+  in batches (module README "Budgets and chunking") and can take minutes; after
+  45 s of "Reading what you sent" (`use-evaluation.ts` `KEEP_GOING_AFTER_MS`)
+  the parties screen offers "Keep going while we finish reading"
+  (`EVALUATION_KEEP_GOING`), which stops polling, seeds the people from the
+  triage read (`markEvaluationBackground`, `state.readingInBackground`), skips
+  the follow-up step, and lets Send submit; the module finishes the pass in the
+  background and alerts the team when it settles. A server error or the 10-min
+  polling cap shows the calm fallback copy (`EVALUATION_FALLBACK`), never an
+  error state that stops Next. The evaluation output now carries `counsel`
+  (opposing and prior lawyers with contact details) for the attorneys; the
+  client view is unchanged.
 - Other endpoints: `POST /api/intake` (new session, created when the third
   tile's Start is pressed), `PUT /:id/answers` (debounced autosave and an
   explicit save before each pass), `POST /api/intake/lookup` `{ email }` ->
@@ -292,7 +310,9 @@ step, storyRead, evaluation }` (read from `?resume=` after hydration, then
 - Answers carry `spokenText` (what the browser heard, verbatim) beside `story`.
   Measured 2026-09-03 at Opus fast speed: triage 7 to 8 s; the evaluation 27 s
   with no documents and 147 s with nine documents (21 MB, 19,678 output tokens
-  of which 9,778 thinking); `copy.ts` says "a minute or two". The intake
+  of which 9,778 thinking); `copy.ts` says "a minute or two". A 200-file case
+  file (323 MB) went down the digest path; see the module README for the
+  numbers. The intake
   container gets the Armory's default Anthropic key for that allowance (the
   substitution is in the Armory `docker-compose.yml`, not in any `.env`).
 - `IntakeState.version` is 2; `loadState` drops a saved v1 draft (the old

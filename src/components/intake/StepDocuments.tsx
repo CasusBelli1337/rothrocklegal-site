@@ -1,24 +1,27 @@
 'use client';
 
-import { DOCUMENTS_SLOT, VOICE_NOTE_SLOT, type DocumentAsk } from '@/lib/intake/contract';
-import { DOCUMENTS_COPY } from '@/lib/intake/copy';
-import { MAX_FILES, slotsForSituations } from '@/lib/intake/document-slots';
+import { DOCUMENTS_SLOT, type DocumentAsk } from '@/lib/intake/contract';
+import { DOCUMENTS_COPY, UPLOAD_COPY } from '@/lib/intake/copy';
+import { slotsForSituations } from '@/lib/intake/document-slots';
 import { StepFrame } from './StepFrame';
 import { UploadSlot } from './UploadSlot';
 import type { StepProps } from './step-props';
 
-/** Step 4: guidance tailored to the story (or to the situations), then one drop zone for everything. */
+/**
+ * Step 4: guidance tailored to the story (or to the situations), then one drop
+ * zone for everything. Continue waits only for uploads still on their way; a
+ * file that could not be uploaded is listed and never blocks the flow.
+ */
 export function StepDocuments({ intake, uploads }: StepProps) {
   const { storyRead, answers } = intake.state;
   const asks: readonly DocumentAsk[] = storyRead?.documents?.length
     ? storyRead.documents
     : slotsForSituations(answers.situations);
-  const sent = uploads.files.filter((f) => f.slot !== VOICE_NOTE_SLOT).length;
   const uploading = uploads.pending.some((p) => p.status === 'uploading');
 
   const submit = () => {
     if (uploading) {
-      intake.setError('Please wait for your files to finish uploading.');
+      intake.setError(UPLOAD_COPY.wait);
       return;
     }
     void intake.next();
@@ -43,9 +46,6 @@ export function StepDocuments({ intake, uploads }: StepProps) {
           headingHidden
         />
       </div>
-      <p className="mt-3 text-small text-ink-3 tabular" aria-live="polite">
-        {sent} of {MAX_FILES} sent.
-      </p>
       <p className="mt-3 text-small text-ink-2">{DOCUMENTS_COPY.nothingYet}</p>
       <p className="mt-1 text-small text-ink-3">{DOCUMENTS_COPY.doNotSend}</p>
     </StepFrame>

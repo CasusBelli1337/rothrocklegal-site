@@ -5,6 +5,11 @@ import { deleteFile, errorMessage, uploadFile, type Session, type UploadHandle }
 import type { IntakeFile } from './contract';
 import { fileProblem } from './document-slots';
 
+/** Uploads in flight at once; the rest wait in order (a whole case file arrives as hundreds). */
+export const MAX_CONCURRENT_UPLOADS = 3;
+/** A failed upload is tried again once on its own before it is listed as not sent. */
+export const AUTO_RETRIES = 1;
+
 /** A file on its way up, or one that failed. */
 export interface PendingUpload {
   localId: string;
@@ -16,6 +21,8 @@ export interface PendingUpload {
   error?: string;
   /** False when the file never left the browser (wrong type, too big): retrying cannot help. */
   retryable: boolean;
+  /** Tries so far (0 while still queued for the first). */
+  attempts: number;
 }
 
 /** What a drop zone needs; the same binding serves the documents step and follow-up upload modules. */
@@ -30,7 +37,9 @@ export interface UploadBinding {
 
 interface Source {
   file: File;
+  slot: string;
   handle?: UploadHandle;
+  attempts: number;
 }
 
 const NO_SESSION = 'Your session expired. Go back to the start and try again.';
@@ -49,6 +58,8 @@ export function useUploads(
 ): UploadBinding {
   const [pending, setPending] = useState<PendingUpload[]>([]);
   const sources = useRef(new Map<string, Source>());
+  const queue = useRef<string[]>([]);
+  const active = useRef(0);
   const alive = useRef(true);
 
   useEffect(() => {
@@ -65,25 +76,63 @@ export function useUploads(
 
   const drop = useCallback((localId: string) => {
     sources.current.delete(localId);
+    queue.current = queue.current.filter((id) => id !== localId);
     if (alive.current) setPending((list) => list.filter((p) => p.localId !== localId));
   }, []);
 
-  const begin = useCallback(
-    (localId: string, slot: string, file: File) => {
+  /** Starts queued uploads while fewer than MAX_CONCURRENT_UPLOADS are in flight. */
+  const startRef = useRef<(localId: string) => void>(() => undefined);
+  const pump = useCallback(() => {
+    while (active.current < MAX_CONCURRENT_UPLOADS && queue.current.length > 0) {
+      const next = queue.current.shift();
+      if (next) startRef.current(next);
+    }
+  }, []);
+
+  /** Starts one upload now; on failure it is tried once more on its own, then left as not sent. */
+  const start = useCallback(
+    (localId: string) => {
+      const source = sources.current.get(localId);
+      if (!source) return;
       if (!session) {
         patch(localId, { status: 'error', error: NO_SESSION });
         return;
       }
-      const handle = uploadFile(session, slot, file, (progress) => patch(localId, { progress }));
-      sources.current.set(localId, { file, handle });
+      active.current += 1;
+      source.attempts += 1;
+      patch(localId, { status: 'uploading', progress: 0, error: undefined, attempts: source.attempts });
+      const handle = uploadFile(session, source.slot, source.file, (progress) =>
+        patch(localId, { progress }),
+      );
+      source.handle = handle;
       handle.promise
         .then((uploaded) => {
+          active.current -= 1;
           drop(localId);
           onUploaded(uploaded);
         })
-        .catch((caught) => patch(localId, { status: 'error', error: errorMessage(caught) }));
+        .catch((caught: unknown) => {
+          active.current -= 1;
+          if (!sources.current.has(localId)) return;
+          if (source.attempts <= AUTO_RETRIES && alive.current) {
+            patch(localId, { progress: 0, error: undefined });
+            queue.current.unshift(localId);
+            return;
+          }
+          patch(localId, { status: 'error', error: errorMessage(caught) });
+        })
+        .finally(pump);
     },
-    [session, patch, drop, onUploaded],
+    [session, patch, drop, onUploaded, pump],
+  );
+  startRef.current = start;
+
+  const enqueue = useCallback(
+    (localId: string) => {
+      queue.current.push(localId);
+      pump();
+    },
+    [pump],
   );
 
   const add = useCallback(
@@ -101,25 +150,26 @@ export function useUploads(
           status: problem ? 'error' : 'uploading',
           error: problem ?? undefined,
           retryable: !problem,
+          attempts: 0,
         };
         setPending((list) => [...list, entry]);
         if (problem) continue;
         count += 1;
-        begin(localId, slot, file);
+        sources.current.set(localId, { file, slot, attempts: 0 });
+        enqueue(localId);
       }
     },
-    [files.length, pending.length, begin],
+    [files.length, pending.length, enqueue],
   );
 
   const retry = useCallback(
     (localId: string) => {
       const source = sources.current.get(localId);
-      const entry = pending.find((p) => p.localId === localId);
-      if (!source || !entry) return;
-      patch(localId, { status: 'uploading', progress: 0, error: undefined });
-      begin(localId, entry.slot, source.file);
+      if (!source) return;
+      source.attempts = 0;
+      enqueue(localId);
     },
-    [pending, patch, begin],
+    [enqueue],
   );
 
   const cancel = useCallback(

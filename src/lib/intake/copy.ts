@@ -122,6 +122,19 @@ export const DOCUMENTS_COPY = {
     "Please do not send another lawyer's client file, or someone else's private records you have no right to.",
 } as const;
 
+/** The upload list: a live count by file, and what a failed file says (the flow never waits on one). */
+export const UPLOAD_COPY = {
+  progress: (done: number, total: number): string => `${done} of ${total} uploaded`,
+  failedCount: (n: number): string =>
+    n === 1
+      ? '1 file could not be uploaded. Try again, or continue without it.'
+      : `${n} files could not be uploaded. Try again, or continue without them.`,
+  notSent: 'Could not upload',
+  retrying: 'Trying again…',
+  wait: 'Please wait for your files to finish uploading.',
+  showAll: (n: number): string => `Show all ${n} files`,
+} as const;
+
 /** The three status lines the client watches while the server reads the intake. */
 export const EVALUATION_STAGES = [
   'Sending your documents…',
@@ -134,10 +147,22 @@ export const EVALUATION_STAGES = [
  * three-page PDF, a photo, and a voice note. Uploads add time, so the copy
  * says "a minute or two" rather than the bare measurement.
  */
-export const EVALUATION_WAIT = 'This usually takes a minute or two. Please keep this page open.';
+export const EVALUATION_WAIT =
+  'This usually takes a minute or two. A large stack of documents takes longer. Please keep this page open.';
 export const EVALUATION_READING_TITLE = 'Reading what you sent';
 export const EVALUATION_FALLBACK =
   'We could not finish reading what you sent just now. Add the people involved yourself; a lawyer reads everything after you send it.';
+
+/** After the wait has run long (a whole case file): the person may move on while the server finishes. */
+export const EVALUATION_KEEP_GOING = {
+  title: 'We are still reading your documents.',
+  body: 'You can keep going; we will finish in the background. A lawyer sees everything you sent, whether or not we finish before you press Send.',
+  button: 'Keep going while we finish reading',
+} as const;
+
+/** On the people screen after "keep going": the list is seeded from the story alone. */
+export const EVALUATION_BACKGROUND =
+  'We are still reading your documents in the background. Add the people involved yourself; nothing you sent is lost.';
 
 export const PARTIES_COPY = {
   found: 'Here is who we found in your story and documents. Fix anything that is wrong.',
