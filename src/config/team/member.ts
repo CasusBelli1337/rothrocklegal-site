@@ -4,6 +4,31 @@
  * `@/config/team` stays the one import path for the rest of the site.
  */
 
+import type { LensCopy } from '@/lib/lens/types';
+
+/**
+ * Copy that may change with the visitor's lens (docs/LENS.md): one value for
+ * everyone, or a neutral, trustee, and beneficiary framing. Components render
+ * a framed value through `components/lens/Slot`.
+ */
+export type Framed<T> = T | LensCopy<T>;
+
+export function isFramed<T>(value: Framed<T>): value is LensCopy<T> {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    !Array.isArray(value) &&
+    'neutral' in value &&
+    'trustee' in value &&
+    'beneficiary' in value
+  );
+}
+
+/** Every framing of a value; a plain value is the same for all three. */
+export function framings<T>(value: Framed<T>): LensCopy<T> {
+  return isFramed(value) ? value : { neutral: value, trustee: value, beneficiary: value };
+}
+
 export interface TeamBadge {
   src: string;
   alt: string;
@@ -38,10 +63,10 @@ export interface TeamRole {
   badge?: TeamBadge;
 }
 
+/** No graduation years anywhere on the site (Arthur, 2026-09-04). */
 export interface TeamEducation {
   school: string;
   degree: string;
-  year?: string;
   /** Activities, honors, journals. */
   notes?: readonly string[];
 }
@@ -87,19 +112,18 @@ export interface TeamMember {
   barStatus?: string;
   /** State Bar number, verified only. Drives `hasCredential` in JSON-LD. */
   barNumber?: string;
-  /** One line for cards: 'Trust contests, undue influence, elder financial abuse'. */
-  focus: string;
   /**
-   * One verifiable fact for the team cards (show, not tell). Restates something
-   * the bio already says; never a claim the dossier did not verify.
+   * One line for the bio page hero and the meta description: the practice, not
+   * a job description ('Trust and estate litigation'). Team cards show only the
+   * name, the title, and a link to the bio (Arthur, 2026-09-04).
    */
-  proofLine: string;
+  focus: string;
   /** 1–2 sentences for the meta description and Person JSON-LD. */
   summary: string;
-  /** One line under the name on the bio page hero. */
-  heroLine?: string;
-  /** Bio paragraphs for the profile page, in order. */
-  bio: readonly string[];
+  /** One line under the name on the bio page hero; may carry a framing per lens. */
+  heroLine?: Framed<string>;
+  /** Bio paragraphs for the profile page, in order; may carry a framing per lens. */
+  bio: Framed<readonly string[]>;
   image: { large: string; small: string; alt: string };
   email?: string;
   credentials: readonly TeamCredential[];

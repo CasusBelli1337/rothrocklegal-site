@@ -47,15 +47,20 @@ with the sticky action bar, `IntakeFlow` as the panel) and `src/lib/intake/`
 the logic: `state.ts` (the step order, with `follow-up` visible only when the
 evaluation left questions), `validate.ts`, `readings.ts` (the two model passes,
 keyed to what they read so no wait repeats), `use-triage.ts` and
-`use-evaluation.ts` (the polls), `scroll.ts` (the panel comes under the header
-on every screen change), `resume.ts` (continue by email), and `copy.ts`. The
+`use-evaluation.ts` (the polls), `resume.ts` (continue by email), and `copy.ts`;
+the panel is brought under the header on every screen change by
+`src/lib/reveal-panel.ts`, shared with the deadline wizard. The
 wire shapes are `contract.ts`, copied verbatim from the intake module. CLAUDE.md
 "Consult flow (intake v3)" has the step-by-step.
 
 ## The deadline wizard
 
 `src/components/wizard/` is the UI (steps config, state in `localStorage`,
-results, the consult request panel). `src/lib/deadlines/` is the pure logic:
+results, the consult request panel). Every Continue, Back, "Change my answers",
+and "Start over" runs `src/lib/reveal-panel.ts`: the panel's top edge lands
+under the sticky header and focus moves to the question or the results
+heading without a second scroll; a validation message deliberately does not
+move the page (Arthur, 2026-09-04: the wizard used to jump on every step). `src/lib/deadlines/` is the pure logic:
 `rules.ts` and `rules-contests.ts` declare each rule (who it applies to, its
 clocks, its copy), `compute.ts` runs the clocks and picks the later date when
 a rule has two, `dates.ts` does calendar math and the CCP § 12a roll to the

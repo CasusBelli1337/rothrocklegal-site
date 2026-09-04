@@ -1,10 +1,12 @@
 /**
- * Gerry Lin – TEAM-DOSSIER.md §1 (2026-09-01). State Bar #366572, Active,
- * admitted 2025-12-12 [CalBar]. "Associate Attorney" is Arthur's call
- * (2026-09-01). J.D. 2016, UT Austin, and the 2018–2025 work history come from
- * the dossier's LinkedIn Addendum (self-reported). The Addendum flags the
- * "provisionally licensed" label for the 2023–2025 work, so the bio says
- * "worked at" instead; the remote-from-Texas line stays out.
+ * Gerry Lin – TEAM-DOSSIER.md §1 and his LinkedIn profile, re-read signed in
+ * on 2026-09-04. State Bar #366572, Active [CalBar]. "Associate Attorney" is
+ * Arthur's call (2026-09-01). Santa Clara Law in Arthur's class, UT Austin
+ * before it, and the firms come from LinkedIn (self-reported). The bio is
+ * about who he is and his credentials, not the work he does inside the firm
+ * (Arthur, 2026-09-04); the "provisionally licensed" label from the Koster
+ * years stays out ("worked at"), as does the remote-from-Texas line. No
+ * graduation or bar-admission years anywhere.
  */
 
 import { headshot, type TeamMember } from './member';
@@ -15,34 +17,26 @@ export const gerryLin: TeamMember = {
   title: 'Associate Attorney',
   barStatus: 'Licensed in California, State Bar #366572',
   barNumber: '366572',
-  focus: 'Motions, discovery, and cite-checked briefs',
-  // Bio paragraph 1: cite-checks and fact-checks every brief before it is filed.
-  proofLine: 'Cite-checks every brief before it is filed',
+  focus: 'Trust and estate litigation',
   summary:
-    "Gerry Lin drafts and checks the motions, discovery, and briefs in the firm's trust and " +
-    'estate cases. A 2016 Santa Clara University School of Law graduate, he was admitted to the ' +
-    'California bar in December 2025.',
+    'Gerry Lin is an associate attorney at Rothrock Legal in San Jose, a graduate of Santa ' +
+    'Clara University School of Law, and a member of the State Bar of California.',
   bio: [
-    'Gerry Lin handles the writing that trust and estate litigation runs on. When a trustee ' +
-      'will not produce an accounting, a sibling contests a trust amendment, or a witness needs ' +
-      'to be compelled to sit for a deposition, someone has to turn the facts into a motion the ' +
-      'probate judge can act on. At Rothrock Legal that is often Gerry. He drafts motions to ' +
-      'compel, meet-and-confer letters, discovery responses, and supporting declarations, and he ' +
-      'cite-checks and fact-checks every brief before it is filed.',
-    "He also works inside the firm's AI-assisted drafting process. Rothrock Legal drafts with " +
-      'tools built by Legion, the litigation platform Arthur co-founded, and Gerry is one of the ' +
-      'people who reads what the tools produce, checks it against the record, and fixes what ' +
-      'needs fixing. The judge sees the finished brief. Gerry sees every version before that.',
-    'Gerry earned his J.D. at Santa Clara University School of Law in 2016, in the same class ' +
-      'as Arthur and JJ, after undergraduate studies at the University of Texas at Austin. He ' +
-      'clerked at two law firms from 2018 to 2020, worked at two law offices from 2023 to 2025, ' +
-      'and was admitted to the State Bar of California on December 12, 2025 (Bar No. 366572). ' +
-      'He joined Rothrock Legal in 2025.',
+    "Gerry Lin is an associate attorney at Rothrock Legal, working on the firm's trust and " +
+      'estate cases. He is a graduate of Santa Clara University School of Law, where he and ' +
+      'Arthur were classmates, and a member of the State Bar of California.',
+    'Before joining the firm he worked at two law offices, Koster & Leadbetter, LLP and the Law ' +
+      'Office of A. Thomas Koster, and clerked at two law firms, Tsao-Wu & Yee LLP and Loung Law ' +
+      'Firm PLLC, after a legal internship at Tsao-Wu, Chow & Yee LLP during law school.',
+    'He came to law school from the University of Texas at Austin.',
   ],
   image: headshot('gerry-lin', 'Gerry Lin, Associate Attorney at Rothrock Legal'),
   credentials: [],
   leadership: [],
-  education: [{ school: 'Santa Clara University School of Law', degree: 'J.D.', year: '2016' }],
+  education: [
+    { school: 'Santa Clara University School of Law', degree: 'J.D.' },
+    { school: 'The University of Texas at Austin', degree: 'Undergraduate studies' },
+  ],
   memberships: [],
   appearances: [],
   sameAs: [
@@ -50,5 +44,5 @@ export const gerryLin: TeamMember = {
     'https://www.linkedin.com/in/gerry-lin-34862894/',
   ],
   practices: ['trust-accounting-disputes', 'breach-of-fiduciary-duty', 'trust-contests'],
-  updatedAt: '2026-09-01',
+  updatedAt: '2026-09-04',
 };

@@ -75,7 +75,24 @@ Components read config; they never hardcode firm facts, URLs, or copy lists.
   chip and `noindex`. Count-checked at 4. Badge art on a role, a membership
   (`membershipBadges`, keyed by the exact membership string), or the podcast
   turns it into a recognition tile (`team/recognition-tiles.ts`); items
-  without art stay in the sidebar lists.
+  without art stay in the sidebar lists. Bios are about who the person is and
+  their credentials, never how the firm divides its work (Arthur, 2026-09-04:
+  no "takes the depositions", no "cite-checks every brief"); team cards show
+  the name, the title, and "Read bio" only. No graduation or bar-admission
+  years anywhere (`TeamEducation` has no year; `team.test.ts` guards it).
+  Arthur is "a litigator", never "a trial lawyer"; Jonathan Joannides is
+  "Jonathan", never "JJ"; he "founded" Digital Frontier Law, with no word on
+  what he does there now. `bio` and `heroLine` may be `Framed<T>` (one value or
+  a `LensCopy`); `ProfileBio`/`ProfileHero` render them through `Slot`, and
+  Arthur's opening paragraph and hero line carry the three framings
+  (`check-lens.mjs` counts his page).
+- `src/config/legion-litigator.ts`: the Legion Litigator designation (Arthur,
+  2026-09-04): the homepage section (`components/home/LegionLitigator.tsx`),
+  the About block, the four commitments (`components/legion/Commitments.tsx`;
+  the "faster" one is the `why-faster-lead` lens slot), and the seal's words
+  (`components/legion/LegionLitigatorSeal.tsx`, an inline SVG in theme tokens;
+  `public/images/badges/legion-litigator-seal.{svg,png}` are the standalone
+  exports for packaging the badge for other lawyers' sites).
 - `src/config/service-areas.ts` (courts, counties, cities), `redirects.ts`
   (every retired URL), `testimonials.ts`, `faq.ts`.
 - `src/lib/library/articles.ts`: loader over `content/library/*.md`. Validates
@@ -151,16 +168,19 @@ image (/images/...), imageAlt, draft (true|false)
 ## Pages (every URL has a trailing slash)
 
 - `/` home, in the order a worried family member needs: hero, the deadline
-  tile, problem cards, attorneys strip, what to expect (four steps), how we run
-  your case, what clients say, library preview, FAQ, where we practice, contact
-  band. A sticky call bar on mobile.
+  tile, problem cards, attorneys strip, what to expect (four steps), the Legion
+  Litigator section (the seal, the designation, the four commitments; it
+  replaced "How we run your case" on 2026-09-04 because that section previewed
+  how the firm delegates), what clients say, library preview, FAQ, where we
+  practice, contact band. A sticky call bar on mobile.
 - `/trust-litigation/` hub + `/trust-contests/`, `/will-contests/`,
   `/undue-influence-and-capacity/`, `/breach-of-fiduciary-duty/`,
   `/trust-accounting-disputes/`, `/estate-property-disputes/`,
   `/financial-elder-abuse/`, `/business-disputes/`. One template
   (`components/practice/PracticePage.tsx`), each route file is five lines.
-- `/attorneys/` + `/attorneys/<slug>/` for `arthur-rothrock`, `gerry-lin`,
-  `jonathan-joannides`, `max-discher`.
+- `/attorneys/` (the four cards and the CTA band; the "How we work as a team"
+  section went with the homepage one) + `/attorneys/<slug>/` for
+  `arthur-rothrock`, `gerry-lin`, `jonathan-joannides`, `max-discher`.
 - `/about/`, `/how-long-do-i-have/` (the wizard, ends in a consult request panel),
   `/library/` (search + category chips, `?category=&q=` synced to the URL) +
   `/library/<slug>/`, `/faq/`, `/service-areas/`, `/contact/`,
@@ -237,8 +257,11 @@ image (/images/...), imageAlt, draft (true|false)
   Armory `legion-intake` module; the editor preview reaches it through the
   Armory Caddy at `localhost:9080/api/intake/*`). `INTAKE_API_VERSION` is 3.
 - Step order (`state.ts` `STEP_ORDER`): `start` (three compact tiles: before we
-  start, what happens after you send, the three acknowledgment boxes with their
-  plain-English gloss in brackets on the label), then numbered `contact`
+  start, what happens after you send, then "Three things to read carefully":
+  the three statements with their plain-English gloss in brackets on the label,
+  each box ticked only by someone who read it and agrees; the copy never tells
+  anyone to tick anything, and the validation line says the request can go
+  ahead only once all three are agreed to, Arthur 2026-09-04), then numbered `contact`
   (name, email, reply preference, phone; no city or county), `story` (one line
   of guidance, the box, the microphone), `situations`, `documents`, `parties`,
   `scope`, `follow-up`, `review`, and `done`. `follow-up` exists only when the
@@ -256,10 +279,17 @@ image (/images/...), imageAlt, draft (true|false)
 /:id/evaluate` then `GET /:id/evaluation` every 3 s (10 min cap) while
   `parties` shows the three staged lines; then the people the evaluation found
   (seeded once into `answers.parties`, from `storyRead.parties` when the
-  evaluation is unavailable), a role select each, "Add someone", and an
-  optional note (`answers.partiesNote`). `scope` asks the value range only when
-  `evaluation.askValue` is true or the evaluation is unavailable. Review's Send
-  is `PUT /:id/follow-up` (when modules exist) then `POST /:id/submit`.
+  evaluation is unavailable), a role select each, an optional one-line note per
+  person (`party.note`, the portal's Note column; the name field is wider than
+  the role select so a long name is not clipped, Arthur 2026-09-04), "Add
+  someone", and an optional note for the whole list (`answers.partiesNote`).
+  `scope` asks the value range only when `evaluation.askValue` is true or the
+  evaluation is unavailable. `follow-up` answers are debounced-autosaved with
+  `PUT /:id/follow-up` beside `PUT /:id/answers` (the whole map every time; the
+  server replaces rather than merges), and the review screen lists them under
+  "Your answers to our questions" (`follow-up-format.ts`, `review-rows.ts`:
+  American dates, Yes/No, "Skipped for now", "Not answered", file counts).
+  Review's Send is `PUT /:id/follow-up` (when modules exist) then `POST /:id/submit`.
 - One upload slot: `DOCUMENTS_SLOT` from the contract (plus `VOICE_NOTE_SLOT`
   for the recording, transcribed server-side); files are multipart `slot` +
   `file` on `POST /:id/files`, up to 500 files of 95 MB each (`document-slots.ts`
@@ -288,9 +318,10 @@ image (/images/...), imageAlt, draft (true|false)
   `{ found }` (the site sends its session bearer so its own draft is excluded;
   the server emails a one-use 24 h link; the card reads the same whatever the
   answer), `POST /api/intake/resume` `{ token }` -> `{ session, answers, files,
-step, storyRead, evaluation }` (read from `?resume=` after hydration, then
-  stripped with `replaceState`; `stateFromResume` restores both readings so
-  neither screen waits twice), and `POST /:id/resume-link` -> `{ sent: true }`.
+step, storyRead, evaluation, followUpAnswers }` (read from `?resume=` after
+  hydration, then stripped with `replaceState`; `stateFromResume` restores both
+  readings so neither screen waits twice, and the follow-up answers for the
+  modules the evaluation still asks), and `POST /:id/resume-link` -> `{ sent: true }`.
 - The action bar (`StepNav`) is `position: sticky; bottom: 0` inside the panel:
   Back and Start over on the left, the save status, the primary button on the
   right (full-width on phones) with its "Next:" line from `md`; a validation
@@ -299,8 +330,9 @@ step, storyRead, evaluation }` (read from `?resume=` after hydration, then
   and sticks to the viewport bottom on a tall one (the viewport-filling
   `min-height` was removed on 2026-09-04; it left a page of white space under
   the start tiles and hid the button). On every step or
-  tile change `revealPanel()` (`scroll.ts`) scrolls the panel's top edge under
-  the sticky header (`window.scrollTo`, `auto` under reduced motion) and focuses
+  tile change `revealPanel()` (`src/lib/reveal-panel.ts`, shared with the
+  deadline wizard since 2026-09-04) scrolls the panel's top edge under the
+  sticky header (`window.scrollTo`, `auto` under reduced motion) and focuses
   the step heading with `preventScroll`; never the top of the page.
 - The page is the breadcrumbs, the panel (its small serif heading is the h1),
   and one disclaimer line. Every start tile fits a 1366×768 viewport.
@@ -317,7 +349,8 @@ step, storyRead, evaluation }` (read from `?resume=` after hydration, then
   container gets the Armory's default Anthropic key for that allowance (the
   substitution is in the Armory `docker-compose.yml`, not in any `.env`).
 - `IntakeState.version` is 2; `loadState` drops a saved v1 draft (the old
-  order). Copy lives in `src/lib/intake/copy.ts` and `copy-mic.ts` only;
+  order). Copy lives in `src/lib/intake/copy.ts`, `copy-mic.ts`, and
+  `copy-review.ts` only (the last two re-exported by `copy.ts`);
   `copy.test.ts` enforces the voice guide (no banned words, no em dash, no
   outcome promises, a "Next:" line for every numbered screen). The flow reads
   at 18px body text via `components/intake/intake.css`.
@@ -349,13 +382,19 @@ step, storyRead, evaluation }` (read from `?resume=` after hydration, then
 - No phone number anywhere (Arthur does not field calls, 2026-09-03). `site` has
   no phone field; `formatDetection.telephone: false` stays so iOS never links
   digits.
-- Legion appears only as Arthur's credential ("co-founder and CEO of Legion,
-  an AI litigation platform"). Never sell it, never address other lawyers.
-  One exception (Arthur, 2026-09-03): the About page's "An AI-enabled
-  practice" section (`components/about/AiPractice.tsx`) shows the Legion mark
-  (`public/images/partners/legion-logo.svg`) and describes the platform as
-  what the firm uses on the family's case. Still never a pitch, and never
-  "reads every page" or "reviews every document".
+- Legion appears as Arthur's credential ("co-founder and CEO of Legion, an
+  AI litigation platform") and, since 2026-09-04, as the Legion Litigator
+  designation: the About page's "An AI-enabled practice" section
+  (`components/about/AiPractice.tsx`, the Legion mark big beside the words,
+  no box, no caption, then the designation block) and the homepage section
+  (`components/home/LegionLitigator.tsx`). Both describe the platform as what
+  the firm uses on the family's case and what the designation commits the
+  lawyer to. Never sell it, never address other lawyers, never a pitch, never
+  "reads every page" or "reviews every document", never "better results".
+- Never preview how the firm divides its work (Arthur, 2026-09-04): no "who
+  does what", no "associate rates for the heavy lifting", no "senior judgment
+  where it counts". The site says what the firm handles and who the lawyers
+  are.
 - Every page ends in the footer compliance line: attorney responsible for the
   site, city, "Attorney advertising" (Rule 7.2(c); Bus. & Prof. Code
   § 6157.2(b)). Articles, practice pages, and the wizard carry the disclaimer.

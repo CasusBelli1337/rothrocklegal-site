@@ -21,7 +21,6 @@ function EducationAndAdmissions({ member }: { member: TeamMember }) {
         {member.education.map((e) => (
           <li key={`${e.school}-${e.degree}`}>
             <span className="font-medium text-ink">{e.degree}</span>, {e.school}
-            {e.year && `, ${e.year}`}
             {e.notes && (
               <ul className="mt-1 space-y-0.5 text-meta text-ink-3">
                 {e.notes.map((note) => (

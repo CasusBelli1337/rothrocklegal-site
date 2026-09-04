@@ -31,7 +31,7 @@ Appraisers value the real estate at death and again at distribution. A forensic 
 
 ### How does Rothrock Legal staff a sibling trust case?
 
-Arthur Rothrock runs strategy and the settlement track. Jonathan "JJ" Joannides, a litigator who practiced at Wilson Sonsini and Fenwick & West, takes the depositions and contested hearings. Associates Gerry Lin and Max Discher work the records. Arthur is the co-founder and CEO of Legion, an AI litigation platform, which is why a small firm can read a decade of statements in days; lawyers still make every judgment call.
+With a small team. Arthur Rothrock, a litigator, founded the firm; Jonathan Joannides, a former Marine Corps infantry officer who practiced at Wilson Sonsini and Fenwick & West, is Of Counsel; Gerry Lin and Max Discher are the associates. Arthur is the co-founder and CEO of Legion, an AI litigation platform, which is why a small firm can read a decade of statements in days; lawyers still make every judgment call.
 
 ## Can a sibling co-trustee be removed for hostility alone?
 

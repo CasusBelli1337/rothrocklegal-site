@@ -1,6 +1,6 @@
 /**
  * Lens gates over the static export in out/ (docs/LENS.md):
- *  1. every data-slot on the homepage, /library/, and /contact/ carries all
+ *  1. every data-slot on the homepage, /library/, /contact/, and Arthur's bio carries all
  *     three framings (neutral, trustee, beneficiary), so the CSS always has
  *     something to show, and the pages carry at least the expected number;
  *  2. the boot script sits in <head> and <html> carries no data-lens at rest,
@@ -15,7 +15,7 @@ import path from 'node:path';
 const OUT = path.join(process.cwd(), 'out');
 const LENSES = ['neutral', 'trustee', 'beneficiary'];
 /** Page → minimum distinct slots it must carry. */
-const PAGES = { '/': 10, '/library/': 1, '/contact/': 1 };
+const PAGES = { '/': 10, '/library/': 1, '/contact/': 1, '/attorneys/arthur-rothrock/': 2 };
 const PREVIEW_TRACES = ['PreviewLensSwitch', 'Preview lens', 'preview:'];
 const failures = [];
 

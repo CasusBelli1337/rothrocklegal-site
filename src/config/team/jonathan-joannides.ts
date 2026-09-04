@@ -1,56 +1,51 @@
 /**
- * Jonathan "JJ" Joannides – TEAM-DOSSIER.md §2 (2026-09-01). State Bar
- * #311260, Active, admitted 2016-12-01 [CalBar]. "Of Counsel" is Arthur's
- * call (2026-09-01), as is his role: depositions and hearings. Firm dates,
- * awards, MICS year, CIPP, and the HomeFirst years come from the dossier's
- * LinkedIn Addendum (self-reported). Still out: N.D. Cal. admission, Wine
- * Country Marines. "Practiced at" Wilson Sonsini and Fenwick, never "over a
- * decade" (about 5.5 years combined; RPC 7.1).
+ * Jonathan Joannides – TEAM-DOSSIER.md §2 and its LinkedIn Addendum
+ * (2026-09-01). State Bar #311260, Active [CalBar]. "Of Counsel" is Arthur's
+ * call (2026-09-01). "Jonathan", never "JJ", in professional contexts (Arthur,
+ * 2026-09-04), and the bio says he founded Digital Frontier Law without
+ * describing what he does there today. Firm tenures, awards, the degrees,
+ * CIPP, and HomeFirst come from LinkedIn (self-reported). Still out: N.D. Cal.
+ * admission, Wine Country Marines. "Practiced at" Wilson Sonsini and Fenwick,
+ * never "over a decade" (about 5.5 years combined; RPC 7.1). No graduation or
+ * bar-admission years anywhere (Arthur, 2026-09-04).
  */
 
 import { headshot, type TeamMember } from './member';
 
 export const jonathanJoannides: TeamMember = {
   slug: 'jonathan-joannides',
-  name: 'Jonathan "JJ" Joannides',
+  name: 'Jonathan Joannides',
   title: 'Of Counsel',
   barStatus: 'Licensed in California, State Bar #311260',
   barNumber: '311260',
-  focus: 'Depositions, hearings, and motion practice',
-  // Bio paragraph 2: USMC infantry officer and captain; Wilson Sonsini 2016 to 2020; Fenwick & West 2022 to 2024.
-  proofLine: 'Former Marine Corps infantry captain; Wilson Sonsini, Fenwick & West',
+  focus: 'Trust and estate litigation; privacy and cybersecurity',
   summary:
-    'Litigator and former U.S. Marine Corps infantry captain who takes the depositions and ' +
-    "argues the hearings in Rothrock Legal's trust and estate cases. Founder of Digital " +
-    'Frontier Law in San Jose and President of the Honorable William A. Ingram American Inn of ' +
-    'Court.',
+    'Litigator and former U.S. Marine Corps infantry captain, Of Counsel to Rothrock Legal in ' +
+    'San Jose. Founder of Digital Frontier Law and President of the Honorable William A. ' +
+    'Ingram American Inn of Court.',
   bio: [
-    'Jonathan Joannides, JJ to everyone who works with him, is the lawyer who takes the ' +
-      "depositions and argues the hearings in the firm's trust and estate cases. Arthur sets " +
-      'the strategy; JJ is the one across the table from the witness and at the lectern in ' +
-      'court. He also works on discovery disputes, oppositions, ' +
-      'and replies, including sanctions motions and protective orders.',
-    'Before law school he served nearly ten years in the U.S. Marine Corps as an infantry ' +
-      'officer and captain. He led infantry platoons in combat in Iraq, ran counter-piracy ' +
-      'operations off the coast of Somalia, and advised U.S. diplomatic posts in Bahrain and ' +
-      'Pakistan on security. He went from that to Santa Clara University School of Law, then ' +
-      'practiced at Wilson Sonsini in Palo Alto from 2016 to 2020, where the firm gave him its ' +
-      'John Wilson Award for pro bono work in 2018 and its Pro Bono Award in 2019, then at ' +
-      'Fenwick & West from 2022 to 2024 on privacy and cybersecurity, advising companies from ' +
-      'startups to the Fortune 500. In 2025 he founded Digital Frontier Law, APC, a San Jose ' +
-      'firm focused on AI, privacy, cybersecurity, and intellectual property, which he still ' +
-      'runs.',
-    'JJ holds a J.D. from Santa Clara University School of Law (2016), a Master of Information ' +
-      'and Cybersecurity from UC Berkeley (2024), and a B.S. in Computer Science and ' +
-      'Mathematics from the University of Minnesota (2003), and he is certified as a CIPP/E and ' +
-      'CIPP/US privacy professional. He was admitted to the State Bar of California in December ' +
-      '2016.',
-    'He is President of the Honorable William A. Ingram American Inn of Court and served from ' +
-      '2018 to 2024 on the board of HomeFirst, a provider of shelter and services for people ' +
-      'without homes in Santa Clara County, including a term as its chairman. He and Arthur ' +
-      'were classmates at Santa Clara Law.',
+    'Jonathan Joannides is a litigator and a former U.S. Marine Corps infantry officer. He is ' +
+      "Of Counsel to Rothrock Legal on the firm's trust and estate cases, and he is President " +
+      'of the Honorable William A. Ingram American Inn of Court, the Santa Clara County chapter ' +
+      'of a national organization devoted to skill and civility in the courtroom.',
+    'Before law school he served nearly ten years in the Marine Corps as an infantry officer ' +
+      'and captain. He led infantry platoons in combat in Iraq, ran counter-piracy operations ' +
+      'off the coast of Somalia, and advised U.S. diplomatic posts in Bahrain and Pakistan on ' +
+      'security.',
+    'He went from the Marines to Santa Clara University School of Law, where he and Arthur were ' +
+      'classmates, then practiced at Wilson Sonsini in Palo Alto, which gave him its John Wilson ' +
+      "Award, the firm's highest pro bono honor, and its Pro Bono Award, and at Fenwick & West, " +
+      'advising companies from startups to the Fortune 500 on privacy and cybersecurity. He ' +
+      'founded Digital Frontier Law, APC, a San Jose firm focused on AI, privacy, cybersecurity, ' +
+      'and intellectual property.',
+    'Jonathan holds a J.D. from Santa Clara University School of Law, a Master of Information ' +
+      'and Cybersecurity from UC Berkeley, and a B.S. in Computer Science and Mathematics from ' +
+      'the University of Minnesota. He is certified as a CIPP/E and CIPP/US privacy professional ' +
+      'and is a member of the State Bar of California.',
+    'He served six years on the board of HomeFirst, the largest provider of shelter and ' +
+      'services to people without homes in Santa Clara County, including a term as its chairman.',
   ],
-  image: headshot('jonathan-joannides', 'Jonathan "JJ" Joannides, Of Counsel at Rothrock Legal'),
+  image: headshot('jonathan-joannides', 'Jonathan Joannides, Of Counsel at Rothrock Legal'),
   credentials: [],
   leadership: [
     {
@@ -64,13 +59,9 @@ export const jonathanJoannides: TeamMember = {
     },
   ],
   education: [
-    { school: 'Santa Clara University School of Law', degree: 'J.D.', year: '2016' },
-    { school: 'UC Berkeley', degree: 'Master of Information and Cybersecurity', year: '2024' },
-    {
-      school: 'University of Minnesota',
-      degree: 'B.S., Computer Science and Mathematics',
-      year: '2003',
-    },
+    { school: 'Santa Clara University School of Law', degree: 'J.D.' },
+    { school: 'UC Berkeley', degree: 'Master of Information and Cybersecurity' },
+    { school: 'University of Minnesota', degree: 'B.S., Computer Science and Mathematics' },
   ],
   memberships: [],
   appearances: [],
@@ -85,5 +76,5 @@ export const jonathanJoannides: TeamMember = {
     'trust-accounting-disputes',
     'business-disputes',
   ],
-  updatedAt: '2026-09-01',
+  updatedAt: '2026-09-04',
 };

@@ -14,6 +14,7 @@ import type { TeamCredential, TeamMember } from './team/member';
 
 export type {
   AppearanceKind,
+  Framed,
   TeamAppearance,
   TeamBadge,
   TeamCredential,
@@ -22,7 +23,7 @@ export type {
   TeamPodcast,
   TeamRole,
 } from './team/member';
-export { headshot } from './team/member';
+export { framings, headshot, isFramed } from './team/member';
 
 /** Arthur first (HOMEPAGE-SPEC §4), then the team in the dossier's order. */
 export const team: readonly TeamMember[] = [
@@ -42,10 +43,8 @@ export function teamHref(member: Pick<TeamMember, 'slug'>): string {
   return `/attorneys/${member.slug}/`;
 }
 
-/** 'Arthur E. Rothrock' → 'Arthur'; 'Jonathan "JJ" Joannides' → 'JJ'. */
+/** 'Arthur E. Rothrock' → 'Arthur'. */
 export function firstName(member: Pick<TeamMember, 'name'>): string {
-  const nickname = member.name.match(/["“]([^"”]+)["”]/);
-  if (nickname) return nickname[1];
   return member.name.split(/\s+/)[0];
 }
 

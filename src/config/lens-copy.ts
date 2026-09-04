@@ -137,9 +137,10 @@ const HOW_STEP_1 =
   'Tell us what happened, in writing or by voice, and upload what you have. We run a conflict ' +
   `check. ${site.replyPromise}`;
 
+/** The "faster" commitment in the Legion Litigator section (components/legion/Commitments.tsx). */
 const WHY_FASTER_LEAD =
-  'Arthur is the co-founder and CEO of Legion, an AI litigation platform. That’s why we can go ' +
-  'through thousands of pages of bank records and medical files in days instead of months.';
+  'Thousands of pages of bank records and medical files are organized and searchable in days ' +
+  'instead of months, and first drafts come back in hours.';
 
 const LIBRARY_LEAD =
   'Deadlines, trust contests, trustees who won’t account, elder financial abuse. Plain English, ' +
@@ -202,8 +203,8 @@ export const lensCopy = {
   whyFasterLead: {
     neutral: WHY_FASTER_LEAD,
     trustee:
-      'Arthur is the co-founder and CEO of Legion, an AI litigation platform. That’s why we can go ' +
-      'through years of trust statements and your own records in days instead of months.',
+      'Years of trust statements and your own records are organized and searchable in days ' +
+      'instead of months, and first drafts come back in hours.',
     beneficiary: WHY_FASTER_LEAD,
   },
   libraryLead: {

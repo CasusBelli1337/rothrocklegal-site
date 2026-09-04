@@ -1,11 +1,12 @@
 /**
- * Max Discher – TEAM-DOSSIER.md §3 (2026-09-01). State Bar #321720, Active,
- * admitted 2018-08-25 [CalBar]. "Associate Attorney" is Arthur's call
- * (2026-09-01). Homebase years, the Morehouse degree, the commissioner seat,
- * and Maker Nexus come from the dossier's LinkedIn Addendum (self-reported).
- * His "contract attorney" LinkedIn line is left out: it would contradict the
- * title Arthur chose. The Dominican Republic work is not on LinkedIn and is
- * no longer relied on.
+ * Max Discher – TEAM-DOSSIER.md §3 and his LinkedIn profile, re-read signed in
+ * on 2026-09-04. State Bar #321720, Active [CalBar]. "Associate Attorney" is
+ * Arthur's call (2026-09-01). Homebase, the internships, the Morehouse degree,
+ * the Redwood City seats, Maker Nexus, the CERT training, the BART award, and
+ * the conference work come from LinkedIn (self-reported). The bio is about who
+ * he is and his credentials, not the work he does inside the firm (Arthur,
+ * 2026-09-04). His "contract attorney" LinkedIn line is left out: it would
+ * contradict the title Arthur chose. No graduation or bar-admission years.
  */
 
 import { headshot, type TeamMember } from './member';
@@ -16,35 +17,32 @@ export const maxDischer: TeamMember = {
   title: 'Associate Attorney',
   barStatus: 'Licensed in California, State Bar #321720',
   barNumber: '321720',
-  focus: 'Record review and cite-checking in trust, estate, and elder abuse cases',
-  // Bio paragraph 2: Homebase 2018 to 2025, advising San Francisco, Napa, and Clark County.
-  proofLine: 'Seven years advising cities on housing before joining the firm',
+  focus: 'Trust, estate, and elder financial abuse litigation',
   summary:
-    "Max Discher works on the firm's trust, estate, and elder financial abuse cases, checking " +
-    'every citation and every fact before a brief is filed. Formerly a senior staff attorney at ' +
-    'Homebase, a Bay Area nonprofit working to end homelessness.',
+    'Max Discher is an associate attorney at Rothrock Legal in San Jose. A Santa Clara ' +
+    'University School of Law graduate, he spent seven years as a staff attorney at Homebase, ' +
+    'a Bay Area nonprofit working to end homelessness.',
   bio: [
-    "Max Discher works on Rothrock Legal's trust, estate, and elder abuse cases. His job is the " +
-      'part of litigation clients never see and judges always notice: he reads the record, ' +
-      'verifies every citation in a brief, and checks that each argument matches what the ' +
-      'documents actually say. In a trust contest, one wrong date or one overstated fact can ' +
-      'cost a family its credibility with the court. Max is the reason that does not happen.',
-    'He came to litigation from public interest law. From 2018 to 2025 he was a staff ' +
-      'attorney, and later senior staff attorney, at Homebase, a Bay Area nonprofit that helps ' +
-      'communities end homelessness. He advised San Francisco, Napa, and Clark County, Nevada ' +
-      'on federal housing funding rules and local homelessness policy. Before that he worked ' +
-      'with asylum seekers in Australia and with indigent criminal defendants in California.',
-    'Max earned his B.A. in French Language and Literature at Morehouse College (2008) and his ' +
-      'J.D. at Santa Clara University School of Law (2016), with a certificate in public ' +
-      'international law. He was admitted to the State Bar of California in August 2018. His ' +
-      'State Bar profile lists elder law, trusts and estates, and wills and probate as his ' +
-      'practice areas. He speaks French.',
-    "Max grew up in Redwood City and still lives there. He served two years on the city's " +
-      'Police Advisory Committee, and in 2025 the City Council appointed him a commissioner on ' +
-      'the Housing and Human Concerns Committee, where his term runs through 2030. He also sits ' +
-      'on the executive board of Maker Nexus, a nonprofit makerspace in Sunnyvale. He has said ' +
-      'he prides himself on “a relentless pursuit of compromise,” which turns out to be a useful ' +
-      'habit in a family fight over a trust.',
+    "Max Discher is an associate attorney at Rothrock Legal, working on the firm's trust, " +
+      'estate, and elder financial abuse cases. He came to litigation from public interest law, ' +
+      'and he is a graduate of Santa Clara University School of Law, where he and Arthur were ' +
+      'classmates.',
+    'For seven years he was a staff attorney, and later senior staff attorney, at Homebase, a ' +
+      'San Francisco nonprofit that helps communities end homelessness. He advised San Francisco, ' +
+      'Napa, and Clark County, Nevada on federal housing funding rules and homelessness policy, ' +
+      'and presented that work at national conferences. Before that he interned in criminal ' +
+      'defense in Redwood City, with asylum seekers in Melbourne, and at a law firm in Budapest.',
+    'Max earned his B.A. in French Language and Literature at Morehouse College and his J.D. at ' +
+      'Santa Clara University School of Law, with a certificate in public international law. He ' +
+      'is a member of the State Bar of California, and his State Bar profile lists elder law, ' +
+      'trusts and estates, and wills and probate as his practice areas. He speaks French.',
+    'Max grew up in Redwood City and still lives there. The City Council appointed him a ' +
+      'commissioner on its Housing and Human Concerns Committee after two years on the Police ' +
+      'Advisory Committee. He sits on the executive board of Maker Nexus, a nonprofit makerspace ' +
+      "in Sunnyvale, trains with his community's emergency response team, and in 2019 the BART " +
+      'Police gave him their Good Samaritan Award for an act of bravery. He has said he prides ' +
+      'himself on “a relentless pursuit of compromise,” which turns out to be a useful habit in ' +
+      'a family fight over a trust.',
   ],
   image: headshot('max-discher', 'Max Discher, Associate Attorney at Rothrock Legal'),
   credentials: [],
@@ -64,10 +62,9 @@ export const maxDischer: TeamMember = {
     {
       school: 'Santa Clara University School of Law',
       degree: 'J.D.',
-      year: '2016',
       notes: ['Certificate in Public International Law'],
     },
-    { school: 'Morehouse College', degree: 'B.A., French Language and Literature', year: '2008' },
+    { school: 'Morehouse College', degree: 'B.A., French Language and Literature' },
   ],
   memberships: [],
   appearances: [],
@@ -81,5 +78,5 @@ export const maxDischer: TeamMember = {
     'trust-contests',
     'will-contests',
   ],
-  updatedAt: '2026-09-01',
+  updatedAt: '2026-09-04',
 };

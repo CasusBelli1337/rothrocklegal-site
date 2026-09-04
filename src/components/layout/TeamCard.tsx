@@ -15,7 +15,11 @@ interface TeamCardProps {
   headingLevel?: 'h2' | 'h3';
 }
 
-/** 4:5 photo in an offset brass outline, name, title, one-line focus, "Read bio" (DESIGN-BRIEF §6). */
+/**
+ * 4:5 photo in an offset brass outline, name, title, "Read bio" (DESIGN-BRIEF
+ * §6). No line about what the person does: the cards are the people and their
+ * titles, the bio is where the rest lives (Arthur, 2026-09-04).
+ */
 export function TeamCard({ member, headingLevel: Tag = 'h3' }: TeamCardProps) {
   return (
     <Link
@@ -46,8 +50,6 @@ export function TeamCard({ member, headingLevel: Tag = 'h3' }: TeamCardProps) {
         {member.name}
       </Tag>
       <p className="mt-1 text-meta text-ink-3">{member.title}</p>
-      <p className="mt-2 text-small text-ink-2">{member.focus}</p>
-      <p className="mt-1.5 text-small text-ink-3">{member.proofLine}</p>
       <p className="mt-3 text-small font-medium text-maroon-700">
         Read bio <span aria-hidden="true">&rarr;</span>
       </p>

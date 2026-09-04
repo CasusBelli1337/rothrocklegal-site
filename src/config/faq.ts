@@ -38,9 +38,9 @@ export const homeFaq: readonly FaqItem[] = [
     question: 'What does it cost to contest a trust or will?',
     answer:
       'We give you a written fee estimate before any work starts. Most trust and estate cases ' +
-      'are billed hourly, with Arthur and Jonathan on strategy, depositions, and hearings and ' +
-      'the associates handling the document work at lower rates. Tell us about your situation ' +
-      'and we will tell you what it would take.',
+      'are billed hourly, and the AI platform the firm runs on keeps the organizing and ' +
+      'drafting hours down. Tell us about your situation and we will tell you what it would ' +
+      'take.',
   },
   {
     question: 'Do I have a case?',
@@ -183,11 +183,10 @@ export const faqGroups: readonly FaqGroup[] = [
       {
         question: 'What makes Rothrock Legal different from other firms?',
         answer:
-          'A small firm focused on trust and estate litigation, run by a trial lawyer who also ' +
+          'A small firm focused on trust and estate litigation, run by a litigator who also ' +
           'builds litigation software. We are fully remote. The same AI platform Legion builds ' +
-          'for litigators does the reading and the first drafts, the associates handle the ' +
-          'document work at lower rates, and a lawyer makes every judgment call. You talk to the ' +
-          'people doing the work.',
+          'for litigators does the reading and the first drafts, and a lawyer makes every ' +
+          'judgment call. You talk to the people doing the work.',
       },
       {
         question: 'How do I get started?',

@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { hasHeadshot } from '@/components/layout/TeamCard';
+import { Slot } from '@/components/lens/Slot';
 import { Badge } from '@/components/ui/Badge';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { Button } from '@/components/ui/Button';
@@ -7,7 +8,7 @@ import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { InitialAvatar } from '@/components/ui/InitialAvatar';
 import { asset, consultCta, secondaryCta } from '@/config/site';
-import { hasPlaceholders, type TeamMember } from '@/config/team';
+import { framings, hasPlaceholders, type TeamMember } from '@/config/team';
 import type { Crumb } from '@/types/content';
 
 function Portrait({ member }: { member: TeamMember }) {
@@ -52,7 +53,7 @@ export function ProfileHero({ member }: { member: TeamMember }) {
             <h1 className="mt-4 font-serif text-h1 text-white">{member.name}</h1>
             {member.heroLine && (
               <p className="mt-4 max-w-[34ch] font-serif-italic text-lead text-white/85 italic">
-                {member.heroLine}
+                <Slot name="hero-line" variants={framings(member.heroLine)} />
               </p>
             )}
             <div className="mt-6 space-y-1.5">

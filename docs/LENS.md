@@ -59,11 +59,16 @@ Home hero title and sub-line (plus the escape-hatch link), deadline band
 (the hook question, the three clock cards with their teaser as one slot,
 primary and secondary buttons; the eyebrow and lead were cut 2026-09-03, so
 the homepage carries 11 slots against a floor of 10), problem-card order and the
-complex-estates line, how-we-work step 1 and the "why faster" lead, the
-library preview (three lists, three cards each), the home FAQ order (the two
-trustee questions first), the `/library/` featured card, and the consult flow
-(the trustee situation pre-checked once per tab session, still editable).
-Every framed variant keeps one clause acknowledging the other side.
+complex-estates line, how-we-work step 1 and the "why faster" lead (since
+2026-09-04 the "Faster where it matters" commitment in the Legion Litigator
+section, on the homepage and the About page), the library preview (three
+lists, three cards each), the home FAQ order (the two trustee questions
+first), the `/library/` featured card, the consult flow (the trustee situation
+pre-checked once per tab session, still editable), and Arthur's bio page: the
+hero line and the opening paragraph of the bio (`hero-line` and `bio` slots,
+`Framed<T>` values in `src/config/team/arthur-rothrock.ts`; `check-lens.mjs`
+expects at least two slots there). Every framed variant keeps one clause
+acknowledging the other side.
 
 ## 4. Preview switcher
 

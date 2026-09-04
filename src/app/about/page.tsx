@@ -68,17 +68,13 @@ function WhoWeAre() {
         </div>
         <div className="mt-6 max-w-[64ch] space-y-4 text-body-lg text-ink-2">
           <p>
-            Here&rsquo;s how the work gets divided. Arthur sets the strategy and keeps the big
-            picture on every case. Jonathan Joannides, a former Marine Corps infantry captain who
-            practiced at Wilson Sonsini and Fenwick &amp; West and now serves as President of the
-            Honorable William A. Ingram American Inn of Court, takes the depositions and argues the
-            hearings. Gerry Lin and Max Discher, our associates, execute the plan: the records, the
-            discovery, the drafting.
+            Four lawyers. Arthur Rothrock, a litigator, founded the firm. Jonathan Joannides, a
+            former Marine Corps infantry captain who practiced at Wilson Sonsini and Fenwick &amp;
+            West and is President of the Honorable William A. Ingram American Inn of Court, is Of
+            Counsel. Gerry Lin and Max Discher are the associates. Three of us were classmates at
+            Santa Clara University School of Law.
           </p>
-          <p>
-            The point is simple. Senior judgment where it counts, a courtroom presence the judges
-            know, and associate rates for the heavy lifting.
-          </p>
+          <p>The people you meet in the first conversation are the people who work the case.</p>
         </div>
         <div className="mt-10">
           <TeamGrid />

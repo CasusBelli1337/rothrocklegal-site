@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { TeamGrid } from '@/components/team/TeamGrid';
-import { TeamHowWeWork } from '@/components/team/TeamHowWeWork';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { Container } from '@/components/ui/Container';
 import { CtaBand } from '@/components/ui/CtaBand';
@@ -14,7 +13,7 @@ export const metadata: Metadata = pageMetadata({
   title: 'Our Attorneys – Trust & Estate Litigation, San Jose',
   description:
     'Meet the Rothrock Legal team: the San Jose trust and estate litigators who read your ' +
-    'consult request, run your case, and try it if it comes to that.',
+    'consult request and work your case.',
   path: PATH,
 });
 
@@ -41,7 +40,6 @@ export default function AttorneysPage() {
           <TeamGrid headingLevel="h2" />
         </Container>
       </section>
-      <TeamHowWeWork />
       <CtaBand />
     </>
   );

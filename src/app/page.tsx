@@ -3,8 +3,8 @@ import { ContactBand } from '@/components/home/ContactBand';
 import { DeadlineBand } from '@/components/home/DeadlineBand';
 import { Hero } from '@/components/home/Hero';
 import { HomeFaq } from '@/components/home/HomeFaq';
-import { HowWeRunYourCase } from '@/components/home/HowWeRunYourCase';
 import { HowWeWork } from '@/components/home/HowWeWork';
+import { LegionLitigator } from '@/components/home/LegionLitigator';
 import { LibraryPreview } from '@/components/home/LibraryPreview';
 import { ProblemCards } from '@/components/home/ProblemCards';
 import { ServiceArea } from '@/components/home/ServiceArea';
@@ -19,7 +19,12 @@ export const metadata = pageMetadata({
   path: '/',
 });
 
-/** Section order is fixed by HOMEPAGE-SPEC §0; "How we run your case" follows "What to expect" (Arthur, 2026-09-03). */
+/**
+ * Section order is fixed by HOMEPAGE-SPEC §0. The Legion Litigator section
+ * follows "What to expect" where "How we run your case" used to be; that
+ * section previewed how the firm divides its work, which Arthur cut on
+ * 2026-09-04.
+ */
 export default function HomePage() {
   return (
     <>
@@ -28,7 +33,7 @@ export default function HomePage() {
       <ProblemCards />
       <AttorneysStrip />
       <HowWeWork />
-      <HowWeRunYourCase />
+      <LegionLitigator />
       <WhatClientsSay />
       <LibraryPreview />
       <HomeFaq />
