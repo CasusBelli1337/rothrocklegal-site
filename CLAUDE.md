@@ -310,9 +310,10 @@ step, storyRead, evaluation }` (read from `?resume=` after hydration, then
 - Answers carry `spokenText` (what the browser heard, verbatim) beside `story`.
   Measured 2026-09-03 at Opus fast speed: triage 7 to 8 s; the evaluation 27 s
   with no documents and 147 s with nine documents (21 MB, 19,678 output tokens
-  of which 9,778 thinking); `copy.ts` says "a minute or two". A 200-file case
-  file (323 MB) went down the digest path; see the module README for the
-  numbers. The intake
+  of which 9,778 thinking); `copy.ts` says "a minute or two". The 202-file Sorden case file (RL-2026-000041,
+  2026-09-03: 197 accepted in 7 s, keep-going at 48 s, Send 3 s) went down the
+  digest path and finished for the attorneys 11 minutes after Send; the module
+  README has the numbers. The intake
   container gets the Armory's default Anthropic key for that allowance (the
   substitution is in the Armory `docker-compose.yml`, not in any `.env`).
 - `IntakeState.version` is 2; `loadState` drops a saved v1 draft (the old
