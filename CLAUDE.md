@@ -277,8 +277,10 @@ step, storyRead, evaluation }` (read from `?resume=` after hydration, then
   Back and Start over on the left, the save status, the primary button on the
   right (full-width on phones) with its "Next:" line from `md`; a validation
   message renders above the buttons so the button never moves. The panel
-  (`.intake-flow`) is a flex column with `min-height: 100dvh` minus the header,
-  so the bar rests at the viewport bottom on every screen. On every step or
+  (`.intake-flow`) hugs its content: the bar follows the copy on a short screen
+  and sticks to the viewport bottom on a tall one (the viewport-filling
+  `min-height` was removed on 2026-09-04; it left a page of white space under
+  the start tiles and hid the button). On every step or
   tile change `revealPanel()` (`scroll.ts`) scrolls the panel's top edge under
   the sticky header (`window.scrollTo`, `auto` under reduced motion) and focuses
   the step heading with `preventScroll`; never the top of the page.

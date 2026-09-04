@@ -11,15 +11,16 @@
   --text-meta: 0.9375rem;
   --text-meta--line-height: 1.4;
 
-  /* The panel fills the viewport below the sticky header (60px, 72px from xl,
-     plus a little air), so the action bar rests at the same spot on every
-     screen: the bottom of the viewport once the panel is scrolled into place.
-     `revealPanel` in src/lib/intake/scroll.ts does the scrolling. */
+  /* The panel hugs its content. It used to fill the viewport below the sticky
+     header so the action bar always sat at the bottom of the screen, but that
+     left a page of white space under the short start tiles and pushed the one
+     button out of sight (Arthur, 2026-09-04). Now the button follows the copy;
+     the bar still sticks to the viewport bottom while a screen is taller than
+     the viewport. `revealPanel` in src/lib/intake/scroll.ts scrolls the panel's
+     top edge under the header on every step change. */
   --intake-top: calc(60px + 1rem);
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - var(--intake-top));
-  min-height: calc(100dvh - var(--intake-top));
 }
 @media (min-width: 80rem) {
   .intake-flow {
@@ -27,9 +28,9 @@
   }
 }
 
-/* The step body grows to push the action bar down; the bar sticks to the bottom
-   of the viewport while the screen is taller than it (Arthur, 2026-09-03: the
-   button must never move or need hunting for). */
+/* The action bar sits right after the step body and sticks to the bottom of the
+   viewport while the screen is taller than it, so the button never needs
+   hunting for on a long step and never floats away on a short one. */
 .intake-body,
 .intake-body > form {
   display: flex;
