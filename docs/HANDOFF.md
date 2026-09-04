@@ -27,6 +27,87 @@ repo holds the editor module and the intake module.
   removed by Arthur on 2026-09-02 (evening): show, don't tell. Arthur's Legion
   credential sentence stays.
 
+## 2026-09-03 (night): Arthur's fourth round, the portal palette, the analyst, whole case files, the conflict list
+
+Commits on `redesign`: e89dcb2 (the panel hugs its content), e0ffeb0 + 539b434
+(whole case files, live upload counts, keep going while we finish reading),
+ef9a1ab (the contact step as two rows of two), plus this docs commit. Portal
+`main` and Armory `program/phase2-intake-module` carry the rest (listed below).
+Nothing pushed anywhere; `main` and the live site are unchanged.
+
+### Arthur's notes, applied
+
+- **The white space under the start tiles.** The panel no longer fills the
+  viewport (`intake.css`); the "Got it, next" button follows the copy, and the
+  bar still sticks to the viewport bottom on a step taller than the screen.
+- **"How do we reach you?"** is two rows of two, every control 3rem tall: name
+  and email, then the reply choice (a compact `wizard-choice` variant) and the
+  phone. The lead sentence and the email hint were the same sentence twice; both
+  are gone.
+- **Portal palette** (portal 8463c62): every fill is maroon-900/950, the pink
+  tints are gone, focus ring maroon-700, selection the highlight token, and a
+  guard test (`packages/ui/src/tokens.test.ts`) blocks the retired tokens. Left
+  for Arthur: the portal keeps rounded corners and pure white paper.
+- **Keys** (memory `rothrock-anthropic-keys`): the portal's key, the dedicated
+  Rothrock intake key, and the data-retention key are one organization where
+  Fable 5.1 works and Opus fast mode has a zero allowance; the Armory default
+  key has fast mode and no Fable. Fable work runs on the Rothrock key; Opus 5
+  work (intake, Centurion, research associates, digests) runs on the Armory
+  key, which the portal now carries as `ANTHROPIC_FAST_API_KEY`.
+- **The analyst** (portal 526323c..b91911b, ce949b9): Fable orchestrates and
+  Opus 5 associates investigate through a `delegate_research` tool run in
+  parallel (a mandatory secondary-source sweep among them); the CEB library has
+  a local semantic index (Ollama `nomic-embed-text`, 8,778 chunks, hybrid
+  `search_treatises`; an `ollama-bridge` user service relays the loopback port
+  to the containers); California Style Manual citation rules with CEB
+  conversions; a Counsel section with a State Bar background check per lawyer;
+  `counsel` on the structured summary and the SummaryCard. Live: RL-2026-000033
+  pass 3, 19 pages, 17 minutes, $23.83, six associates, no truncation.
+- **Whole case files** (Armory a9a144a..126b20e; site e0ffeb0): 95 MB per file,
+  500 files, 5,000 requests per hour per token; pdf.js text plus tesseract OCR
+  for scans and photos, cached beside the upload; every request is sized
+  (bytes, PDF pages, tokens) and, when it will not fit, raw PDFs become text and
+  then a parallel digest pass (Opus fast, count-verified) feeds the evaluation;
+  after 45 s the parties screen offers "Keep going while we finish reading" and
+  the module finishes in the background after Send; a separate counsel pass
+  extracts every lawyer with bar number and contact details (the evaluation
+  grammar was at the API's size limit). Live: 202 files, 296 MB, 6,194 pages
+  OCR'd in 3.5 minutes at 30 cores, 208 of 208 digested, 61 lawyers found.
+- **The conflict list** (OneDrive `#RothrockLegal/#Admin/Conflicts/`): built
+  from Arthur's H&C and Rothrock Legal folders, 917 names across 105 matters,
+  imported into the portal (908 rows) and the module's `parties.csv` (now
+  git-ignored). Arthur: only clients carry a duty of loyalty, so the list is
+  TIERED (Armory 7fefc0e, portal ea0f176): client, prospective client, and
+  family names HOLD; adverse parties, relatives, decedents, estates, entities,
+  and counsel are "Names we know" (a note on the intake, the team email, the
+  portal card, and the memo prompt; counsel kept on purpose: "I am bad with
+  names"). Live: a story naming only Sordenstone and Desmarais went to
+  `submitted` with `known-name`; a story by James L. Sorden held.
+- **Portal statuses** (portal cd27c74): the portal's status list lacked
+  `conflict-hold` and `declined`, so a held request could not open and the
+  auto-link job stopped with an amber banner. Fixed.
+- **Fresh slate.** `node scripts/purge-qa-data.mjs --all --apply` (portal, new
+  `--all` mode; retired PC/RLM numbers are renamed "(purged <date>)" because the
+  number columns are plain unique indexes) then
+  `bash modules/legion-intake/scripts/purge-all-intakes.sh --apply` (Armory,
+  new). Every test request, potential client, matter, file, and mirror folder
+  went to OneDrive `#RothrockLegal/#Archive/QA data purged 2026-09-03/` (nothing
+  deleted from OneDrive); the reference sequence restarted at 1. The nine
+  Sorden instruments Arthur used are kept at
+  `~/projects/rothrock-legal/qa/fixtures/sorden-intake-rl33/`.
+
+### Left for Arthur
+
+- The conflict review docx lists ten open questions (unclear sides on 21
+  matters, the TELP list-only names, the personal folders).
+- Legion.law: the connection reads connected and unused; a dry run uses a fake
+  client, so the only real test creates a matter on production. Not done.
+- The counsel pass misses the prompt cache (about $6 extra per case-file
+  intake); a whole case file costs roughly 4.7M input tokens per first pass.
+- A restart during a submitted intake's background pass marks it failed with
+  no re-alert (visible in the admin view).
+- Portal corners and paper color; the memo RE line now ends at a sentence.
+
 ## 2026-09-03 (evening): Arthur's third-round notes, the library SEO pass, intake v3
 
 Uncommitted at the time of writing; see the commit log for the final shape.
