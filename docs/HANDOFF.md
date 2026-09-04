@@ -18,7 +18,7 @@ repo holds the editor module and the intake module.
   `check-seo`, `check-lens` (15 slot groups, two boot scripts, no preview-tool
   traces), axe 0 violations, Lighthouse mobile a11y 100.
 - What the site is: T&E litigation firm site for beneficiaries AND trustees,
-  11 practice pages, 4 attorney profiles (order Arthur, JJ, Gerry, Max;
+  11 practice pages, 4 attorney profiles (order Arthur, Jonathan, Gerry, Max;
   titles verified), the deadline wizard, the library (22 articles: 21
   drafts + the glossary; the nine legacy posts were retired 2026-09-03), the consult-request intake flow, privacy
   policy + disclaimer (cleared by Arthur 2026-09-02), the lens
@@ -26,6 +26,131 @@ repo holds the editor module and the intake module.
   Legion v. United States block on About, and the homepage pointer to it, were
   removed by Arthur on 2026-09-02 (evening): show, don't tell. Arthur's Legion
   credential sentence stays.
+
+## 2026-09-04: Arthur's fifth round: the bios, the Legion Litigator designation, the wizard jump, the follow-up answers
+
+Commits on `redesign`: 64e753b (the wizard lands the panel under the header),
+2e10e5d (agree before you tick, a note per person, follow-up answers kept),
+9948380 (bios about the people, the Legion Litigator designation, no division
+of labor), plus this docs commit. Gates on 9948380 in the `integration`
+worktree: lint, typecheck, 427 Vitest tests, static export (88 pages, 34
+redirect stubs), `check-links` 0 broken, `check-seo`, `check-lens` (15 slot
+groups: 11 on `/`, 2 on Arthur's bio). Nothing pushed; `main` and the live
+site are unchanged.
+
+### Arthur's notes, applied
+
+- **Bios.** Arthur is "a litigator" (he is handing trials to Jonathan; the
+  site says nothing about that). His opening paragraph and hero line carry
+  three framings through the lens (neutral, beneficiary, trustee; `Framed<T>`
+  in `member.ts`, `ProfileBio`/`ProfileHero` render through `Slot`). Jonathan
+  is "Jonathan", not "JJ"; he "founded" Digital Frontier Law, with no word on
+  what he does there now. Max and Gerry were rebuilt from their LinkedIn
+  profiles, re-read signed in (captures in this session's scratchpad; the
+  2026-09-01 addendum in `~/projects/rothrock-legal/team/TEAM-DOSSIER.md`
+  still holds), around who they are and their credentials: Santa Clara Law
+  in Arthur's class, Homebase and the Redwood City seats and the 2019 BART
+  Good Samaritan Award for Max, the Koster offices and the two clerkships for
+  Gerry. No graduation or bar-admission years anywhere (`team.test.ts`).
+- **Team surfaces.** Cards show name, title, "Read bio" (`proofLine` is
+  gone). "How we run your case" (home) and "How we work as a team"
+  (attorneys) are deleted; the About "Who we are" paragraph, the two home FAQ
+  answers, and the sibling-trust article's staffing FAQ no longer say who does
+  what. CLAUDE.md "Copy rules" now carries the rule.
+- **The Legion Litigator designation.** In the homepage slot the removed
+  section held: the seal (`components/legion/LegionLitigatorSeal.tsx`, an
+  inline SVG in theme tokens with the Legion mark at the centre, "LITIGATOR"
+  in the serif, "No. 001 · Est. 2026", and the ring "LEGION LITIGATOR ·
+  RESPONSIBLE AI IN LEGAL PRACTICE · A LAWYER BEHIND EVERY FILING" centred on
+  twelve o'clock), what the designation means for the family, and four
+  commitments (`config/legion-litigator.ts`; the "faster" one is the
+  `why-faster-lead` lens slot). The About section shows the Legion mark big
+  beside the words, no box and no caption, then the same designation block.
+  Standalone exports for packaging: `public/images/badges/legion-litigator-seal.svg`
+  (Legion mark inlined, Newsreader 500 and Instrument Sans 600 embedded as
+  base64 woff2) and `.png` (1440 px, rendered in Chrome from that SVG), copied
+  with a README to OneDrive `#Legion/Marketing/Legion Litigator/`. Arthur
+  floated "Legion Lawyer" as the alternative name; "Legion Litigator" shipped.
+- **The wizard jump.** `src/lib/intake/scroll.ts` became
+  `src/lib/reveal-panel.ts`, shared by the consult flow and the deadline
+  wizard: one effect in `DeadlineWizard` scrolls the panel under the header
+  and focuses the question or results heading with `preventScroll` on every
+  Continue, Back, "Change my answers", and "Start over"; a validation message
+  does not move the page. Measured in Arthur's Chrome at 1366×768 and 390×844:
+  a 16 px gap under the header after every move (`DeadlineWizard.test.tsx`).
+- **"Please tick all boxes".** Tile 3 is "Three things to read carefully";
+  the legend asks the person to read each statement and tick its box only if
+  they understand and agree; the validation line says the request can go ahead
+  once all three are agreed to. Nothing tells anyone to tick.
+- **People clipped and duplicated.** The name field is wider than the role
+  select and each person has an optional note (`party.note`, the portal's Note
+  column), so relationships stop being typed into the name. The duplicates were
+  the module and the portal listing the same person from three sources (the
+  typed list, the evaluator, the triage read) under slightly different names;
+  see the module and portal notes below.
+- **Follow-up answers.** Verified against the module's database and the
+  archived QA records: the site's `PUT /:id/follow-up` lands and the answers
+  are stored (the Valle test intake holds date-of-death, notice-received,
+  written-request, assets-list, timeline; pass 2 even cites the date). What
+  was missing was presentation and durability: the team email had no
+  follow-up section, the portal showed the questions asked and the answers
+  given as two disjoint lists (upload-type questions always read as
+  unanswered), and the site sent the answers only at Send. Now: autosaved
+  with the answers (the server replaces the map), listed on the review screen
+  under "Your answers to our questions" (`follow-up-format.ts`), restored by
+  a resume (`ResumeResponse.followUpAnswers`, contract copies diffed). Live
+  run RL-2026-000003: the audit log shows `follow-up-saved` five seconds
+  before `submitted`.
+- **American dates.** The site already formats every date it prints in
+  `en-US`; native date inputs follow the visitor's own browser locale
+  (Arthur's Chrome reports `en-US`). The module and the portal were the
+  places printing ISO or day-first dates; see below.
+
+### The module and the portal (deployed on the rig, not pushed)
+
+- **Armory `program/phase2-intake-module` 2109821** (`modules/legion-intake`,
+  217 tests, container rebuilt, health ok): `ResumeResponse.followUpAnswers`
+  returned; `PUT /:id/follow-up` replaces the stored map (the site autosaves
+  the whole map); `conflicts/people.ts` merges the typed list, the evaluator's
+  people, and the triage read into one row per human for display (client
+  name, role, and note win; the evaluator's note rides beside; a bare given
+  name folds into the one person who answers to it; triage placeholders like
+  "Peter's mother" drop against a real entry), while `findConflicts` still
+  sees every raw name (tested); the team email gained "People named" and
+  "Follow-up questions and answers" (every module asked, in order, with the
+  answer, "Skipped for now", "Not answered", or the file names);
+  `util/us-date.ts` formats every ISO date in the email and
+  `INTAKE-SUMMARY.md` as "September 1, 2026"; the rubric and the triage prompt
+  require American dates in prose and forbid an `upload` module for a paper
+  already uploaded. Rendered against the live RL-2026-000002: the follow-up
+  section exists, "People named" went from 16 rows to 13 with nobody lost.
+- **Portal `main` c403362** (892 tests, `portal-api` and `portal-ui`
+  rebuilt, health ok): the Story card lists every asked question beside its
+  answer under the same rules; People is one table (Name, Role, Note, Source:
+  named by the person, found by the evaluator, or both;
+  `packages/shared/src/people/merge-people.ts` mirrors the module's helper);
+  long names wrap.
+
+### Left for Arthur
+
+- "Legion Litigator" or "Legion Lawyer": the former shipped; the name, the
+  designation number, and the year are config (`legion-litigator.ts`).
+- The portal prints "Sep 1, 2026" (`dateStyle: 'medium'`) where the email and
+  summary print "September 1, 2026"; both American. One line in
+  `packages/ui/src/lib/format.ts` changes every portal date if you want them
+  identical.
+- The Armory admin queue (`modules/legion-intake/frontend`, `IntakeSections.tsx`
+  `FollowUps`) still prints raw module ids and JSON; `follow-up-view.ts` is
+  importable there if you read that page.
+- Two people rows the merge leaves apart on purpose: triage placeholders with
+  no matching role ("Peter's father" when Wolfram is filed as family) and two
+  differently worded "unknown attorney" entries. Anything looser could drop a
+  real person.
+- Test intake RL-2026-000003 (`QA Follow-up Test`, arothrock@) from today's
+  end-to-end run; `purge-qa-data.mjs` retires it.
+- Your portal tab was left on Google's account chooser: the Cloudflare Access
+  session had expired when the intake detail page was opened. Nothing was
+  signed in.
 
 ## 2026-09-03 (night): Arthur's fourth round, the portal palette, the analyst, whole case files, the conflict list
 
