@@ -4,11 +4,11 @@ import { useCallback, useEffect, useRef, useState, type ComponentType } from 're
 import { ping } from '@/lib/intake/api';
 import { VOICE_NOTE_SLOT, type IntakeFile } from '@/lib/intake/contract';
 import { minutesToGo } from '@/lib/intake/copy';
-import { revealPanel } from '@/lib/intake/scroll';
 import { numberedStepCount, stepNumber, visibleSteps, type StepId } from '@/lib/intake/state';
 import { useIntake, type IntakeController } from '@/lib/intake/use-intake';
 import { useResume } from '@/lib/intake/use-resume';
 import { useUploads } from '@/lib/intake/use-uploads';
+import { revealPanel } from '@/lib/reveal-panel';
 import '@/components/wizard/wizard.css';
 import './intake.css';
 import { Fallback } from './Fallback';

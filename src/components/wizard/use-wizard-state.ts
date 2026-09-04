@@ -29,7 +29,7 @@ export interface WizardController {
   isLast: boolean;
   showResults: boolean;
   error: string | null;
-  /** True once the visitor has moved between steps, so focus follows the question. */
+  /** True once the visitor has moved between screens, so the reveal runs (never on first paint). */
   navigated: boolean;
   onChoice(key: ChoiceKey, value: string): void;
   onDate(key: DateAnswerKey, value: string): void;
@@ -121,8 +121,7 @@ export function useWizardState(): WizardController {
     editAnswers: () => go({ showResults: false, stepIndex: steps.length - 1 }),
     startOver() {
       clearWizardState();
-      setError(null);
-      setState(EMPTY_WIZARD_STATE);
+      go(EMPTY_WIZARD_STATE);
     },
   };
 }

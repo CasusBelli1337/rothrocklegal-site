@@ -16,7 +16,7 @@
      left a page of white space under the short start tiles and pushed the one
      button out of sight (Arthur, 2026-09-04). Now the button follows the copy;
      the bar still sticks to the viewport bottom while a screen is taller than
-     the viewport. `revealPanel` in src/lib/intake/scroll.ts scrolls the panel's
+     the viewport. `revealPanel` in src/lib/reveal-panel.ts scrolls the panel's
      top edge under the header on every step change. */
   --intake-top: calc(60px + 1rem);
   display: flex;

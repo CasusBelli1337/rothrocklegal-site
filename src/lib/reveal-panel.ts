@@ -1,8 +1,12 @@
 /**
- * Where the page goes when the flow changes screen: the panel's top edge lands
+ * Where the page goes when a flow changes screen: the panel's top edge lands
  * just under the sticky header, and focus moves to the new heading without a
  * second scroll. Never the top of the page (Arthur, 2026-09-03: every Next and
  * Back threw him to the top and made him scroll back down).
+ *
+ * Shared by the consult flow (`components/intake/IntakeFlow`) and the deadline
+ * wizard (`components/wizard/DeadlineWizard`), which had the same defect
+ * (Arthur, 2026-09-04: "the screen auto scrolled or changed on me").
  */
 
 /** Air between the header's bottom edge and the panel. */

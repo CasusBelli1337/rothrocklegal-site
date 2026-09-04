@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { describe, expect, it, vi } from 'vitest';
-import { panelScrollTarget, prefersReducedMotion, revealPanel } from './scroll';
+import { panelScrollTarget, prefersReducedMotion, revealPanel } from './reveal-panel';
 
 function page(options: {
   panelTop: number;

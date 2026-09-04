@@ -1,17 +1,18 @@
 'use client';
 
-import { useEffect, useMemo, useRef } from 'react';
+import { useMemo } from 'react';
 import { Button } from '@/components/ui/Button';
 import { consultCta, site } from '@/config/site';
 import { computeDeadlines, hasUrgentOrPassed } from '@/lib/deadlines/compute';
 import type { DeadlineResult, WizardAnswers } from '@/lib/deadlines/types';
 import { DeadlineCard } from './DeadlineCard';
 
+/** The results heading's id: DeadlineWizard focuses it when the results appear. */
+export const RESULTS_HEADING_ID = 'wizard-results-heading';
+
 interface WizardResultsProps {
   answers: WizardAnswers;
   today: string;
-  /** Move focus to the results heading when they appear after the last step. */
-  focusOnMount: boolean;
   onEdit(): void;
   onStartOver(): void;
 }
@@ -71,26 +72,14 @@ function NextStep() {
 }
 
 /** Every deadline that may apply, soonest first, then the consult request panel. */
-export function WizardResults({
-  answers,
-  today,
-  focusOnMount,
-  onEdit,
-  onStartOver,
-}: WizardResultsProps) {
+export function WizardResults({ answers, today, onEdit, onStartOver }: WizardResultsProps) {
   const results = useMemo(() => computeDeadlines(answers, today), [answers, today]);
-  const headingRef = useRef<HTMLHeadingElement>(null);
-
-  useEffect(() => {
-    if (focusOnMount) headingRef.current?.focus();
-  }, [focusOnMount]);
 
   return (
-    <section aria-labelledby="wizard-results-heading" className="wizard-enter">
+    <section aria-labelledby={RESULTS_HEADING_ID} className="wizard-enter">
       <p className="eyebrow">Your results</p>
       <h2
-        id="wizard-results-heading"
-        ref={headingRef}
+        id={RESULTS_HEADING_ID}
         tabIndex={-1}
         className="mt-3 font-serif text-h2 text-ink outline-none"
       >

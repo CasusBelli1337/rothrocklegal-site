@@ -1,11 +1,32 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/Button';
 import { todayISO } from '@/lib/deadlines/dates';
+import { revealPanel } from '@/lib/reveal-panel';
 import { useWizardState, type WizardController } from './use-wizard-state';
-import { WizardResults } from './WizardResults';
-import { WizardStepView } from './WizardStep';
+import { RESULTS_HEADING_ID, WizardResults } from './WizardResults';
+import { questionHeadingId, WizardStepView } from './WizardStep';
 import './wizard.css';
+
+/** Where focus goes after a move: the results heading, or the question now on screen. */
+export function wizardHeadingId(showResults: boolean, stepId: string): string {
+  return showResults ? RESULTS_HEADING_ID : questionHeadingId(stepId);
+}
+
+/**
+ * Every move scrolls the panel's top edge under the sticky header and focuses
+ * the new heading in place. A validation message is not a move, so the visitor
+ * keeps looking at the question they just answered (Arthur, 2026-09-04).
+ */
+function useRevealOnMove(wizard: WizardController, panel: React.RefObject<HTMLDivElement | null>) {
+  const { navigated, showResults, stepIndex, step } = wizard;
+  const headingId = wizardHeadingId(showResults, step.id);
+  useEffect(() => {
+    if (!navigated) return;
+    revealPanel(panel.current, document.getElementById(headingId));
+  }, [navigated, showResults, stepIndex, headingId, panel]);
+}
 
 function WizardNav({ wizard }: { wizard: WizardController }) {
   return (
@@ -56,7 +77,6 @@ function WizardForm({ wizard }: { wizard: WizardController }) {
           step={step}
           answers={wizard.answers}
           error={wizard.error}
-          focusOnMount={wizard.navigated}
           onChoice={wizard.onChoice}
           onToggleConcern={wizard.onToggleConcern}
           onDate={wizard.onDate}
@@ -73,13 +93,14 @@ function WizardForm({ wizard }: { wizard: WizardController }) {
  */
 export function DeadlineWizard() {
   const wizard = useWizardState();
+  const panelRef = useRef<HTMLDivElement>(null);
+  useRevealOnMove(wizard, panelRef);
   return (
-    <div className="wizard">
+    <div ref={panelRef} className="wizard">
       {wizard.showResults ? (
         <WizardResults
           answers={wizard.answers}
           today={todayISO()}
-          focusOnMount={wizard.navigated}
           onEdit={wizard.editAnswers}
           onStartOver={wizard.startOver}
         />

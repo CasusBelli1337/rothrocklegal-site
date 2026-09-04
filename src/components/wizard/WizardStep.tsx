@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import type { Concern, DateAnswerKey, WizardAnswers } from '@/lib/deadlines/types';
 import {
   CONCERN_OPTIONS,
@@ -11,12 +10,15 @@ import {
 } from './steps';
 import { visibleFields } from './steps-logic';
 
+/** The question legend's id: it labels the choice group, and DeadlineWizard focuses it after a move. */
+export function questionHeadingId(stepId: string): string {
+  return `wizard-q-${stepId}`;
+}
+
 interface WizardStepProps {
   step: WizardStep;
   answers: WizardAnswers;
   error: string | null;
-  /** Move keyboard / screen-reader focus to the question when the step appears. */
-  focusOnMount: boolean;
   onChoice(key: ChoiceKey, value: string): void;
   onToggleConcern(concern: Concern, checked: boolean): void;
   onDate(key: DateAnswerKey, value: string): void;
@@ -136,13 +138,8 @@ function DateInput({
 
 /** Renders one question: the choice cards and/or date inputs, plus the error line. */
 export function WizardStepView(props: WizardStepProps) {
-  const { step, answers, error, focusOnMount, onDate } = props;
-  const questionId = `wizard-q-${step.id}`;
-  const legendRef = useRef<HTMLLegendElement>(null);
-
-  useEffect(() => {
-    if (focusOnMount) legendRef.current?.focus();
-  }, [focusOnMount]);
+  const { step, answers, error, onDate } = props;
+  const questionId = questionHeadingId(step.id);
 
   return (
     <fieldset
@@ -151,7 +148,6 @@ export function WizardStepView(props: WizardStepProps) {
     >
       <legend
         id={questionId}
-        ref={legendRef}
         tabIndex={-1}
         className="font-serif text-h3 text-ink outline-none md:text-h2"
       >
