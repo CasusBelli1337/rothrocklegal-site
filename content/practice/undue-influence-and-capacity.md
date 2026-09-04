@@ -28,7 +28,7 @@ We start by mapping the relationship: who had access, who had authority, and whe
 
 The drafting lawyer's file matters as much as the medical chart. Notes from the meeting, who was present, who paid, and whether the lawyer met with the person alone. We subpoena it early. We also look for the pattern of isolation and control that the statute describes: changed locks, changed phone numbers, a caregiver who answers every call.
 
-Cases are filed in the Santa Clara County Probate Division in San Jose, or in the county where the trust or estate is being administered. We use Legion, the AI litigation platform our founder co-founded, to go through the medical and financial records quickly, and we retain a geriatric psychiatrist or neuropsychologist when the capacity question calls for medical testimony.
+Cases are filed in Santa Clara County Superior Court in San Jose, or in the county where the trust or estate is being administered. We use Legion, the AI litigation platform our founder co-founded, to go through the medical and financial records quickly, and we retain a geriatric psychiatrist or neuropsychologist when the capacity question calls for medical testimony.
 
 ## A caregiver married my parent. Can anything be done?
 

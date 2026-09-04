@@ -7,6 +7,7 @@ import {
   CONSULT_PAGE_SHORT_URL,
   MIC_COPY,
   MIC_DENIED,
+  MIC_INSECURE,
   MIC_NO_DEVICE,
   MIC_UNSUPPORTED,
   micSteps,
@@ -79,7 +80,7 @@ interface MicHelpProps {
   browser: BrowserInfo;
 }
 
-/** What shows instead of the button while checking, or when the microphone cannot be used. */
+/** What shows instead of the button while checking, or when the microphone cannot be used (not secure, unsupported, none, blocked). */
 export function MicHelp({ mic, browser }: MicHelpProps) {
   switch (mic.phase) {
     case 'checking':
@@ -87,6 +88,15 @@ export function MicHelp({ mic, browser }: MicHelpProps) {
         <p className="text-small text-ink-3" aria-live="polite">
           {MIC_COPY.checking}
         </p>
+      );
+    case 'insecure':
+      return (
+        <HelpCard title={MIC_INSECURE.title}>
+          <p>
+            {MIC_INSECURE.body}{' '}
+            <strong className="break-words">https://{wrappableUrl(CONSULT_PAGE_SHORT_URL)}</strong>
+          </p>
+        </HelpCard>
       );
     case 'unsupported':
       return (

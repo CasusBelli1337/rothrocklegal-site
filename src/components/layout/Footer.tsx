@@ -80,15 +80,10 @@ export function Footer() {
         </nav>
 
         <div>
-          <ColumnHeading>Courts we appear in</ColumnHeading>
+          <ColumnHeading>Where cases are heard</ColumnHeading>
           <ul className="mt-5 space-y-3 text-ui text-white/80">
             {courts.map((court) => (
-              <li key={court.name}>
-                {court.name}
-                {court.address && (
-                  <span className="block text-small text-white/60">{court.address}</span>
-                )}
-              </li>
+              <li key={court.name}>{court.name}</li>
             ))}
           </ul>
           <p className="mt-5 text-small text-white/70">{site.hours}</p>

@@ -10,14 +10,14 @@ primaryKeyword: undue influence California
 secondaryKeywords: what is undue influence, presumption of undue influence California, how to prove undue influence, burden of proof for undue influence in California, undue influence trust amendment
 image: /images/library/undue-influence-california-what-it-is-and-how-to-prove-it.webp
 imageAlt: An elderly woman's hand signing a document at a kitchen table while a younger hand steadies the pen
-draft: true
+draft: false
 ---
 
-What is undue influence? The short answer: excessive persuasion that overcomes a person's free will and produces an unfair result. That is the undue influence California statute in one sentence (Probate Code § 86; Welfare and Institutions Code § 15610.70). If a caregiver, a sibling, or a new spouse pushed your parent into signing a document they would never have signed alone, this is the claim.
+What is undue influence? The short answer: excessive persuasion that overcomes a person's free will and produces an unfair result. That is the undue influence California statute in one sentence (Probate Code § 86; Welfare and Institutions Code § 15610.70). If a caregiver, a sibling, or a new spouse pushed your parent into signing a document they would never have signed alone, this is the claim, and it sits at the center of our [undue influence and capacity](/undue-influence-and-capacity/) work.
 
 Here's the thing families get wrong. Undue influence is not a feeling. It is a set of facts you prove with records, and the law puts the burden on you (Probate Code § 8252). A frail parent, a helper who ran the house, a lawyer nobody had heard of, and a document that flipped a lifelong plan: that is a case. A parent who simply liked one child more: that is not.
 
-## The undue influence California statute: one definition, four factors
+## How does California law define undue influence?
 
 Since 2014 California has used one definition in probate court and in elder abuse cases. Probate Code § 86 adopts the Welfare and Institutions Code definition. Undue influence "means excessive persuasion that causes another person to act or refrain from acting by overcoming that person's free will and results in inequity" (Welfare and Institutions Code § 15610.70).
 
@@ -32,7 +32,7 @@ The statute lists four things a court "shall" consider. Score your own facts aga
 
 No single factor decides it; a judge weighs all four. The court in Lintz v. Lintz said the 2014 law "eliminates any doubt that the two standards are now the same" in probate and elder abuse cases. A will, or any part of one, "procured by duress, menace, fraud, or undue influence" is ineffective (Probate Code § 6104), and courts void trusts on the same ground.
 
-## Red flags: the tactics the statute names
+## What are the red flags of undue influence?
 
 Section 15610.70 spells out the tactics. Read the list against what happened in your family:
 
@@ -42,7 +42,7 @@ Section 15610.70 spells out the tactics. Read the list against what happened in 
 
 The classic undue influence trust amendment in Silicon Valley moves a Sunnyvale or Cupertino house to one person, weeks before death, through a lawyer the parent never used. Run that pattern through the four factors. A parent in hospice, dependent on one helper for food and care, is vulnerable, and a helper who holds the power of attorney has apparent authority. Calling in a new lawyer and keeping the family out are tactics the statute names. A plan that hands everything to a newcomer is the inequitable result (Welfare and Institutions Code § 15610.70).
 
-## The presumption of undue influence California law gives you
+## What is the presumption of undue influence in California?
 
 In an undue influence California contest, the court expects you to carry the burden. Two presumptions flip it.
 
@@ -56,15 +56,15 @@ The common-law presumption is older and broader. The California Supreme Court re
 
 Once either presumption applies, the recipient must prove the document was not the product of undue influence. Under the statute, that proof must be clear and convincing (Probate Code § 21380). Without a presumption, the burden of proof for undue influence in California stays on you, and it is heavy. In Doolittle v. Exchange Bank the court repeated the rule: the contestant "bears the burden of proving undue influence" and must prove it by clear and convincing evidence.
 
-## What undue influence is not
+## What is not undue influence under California law?
 
 An unequal estate plan, by itself. The statute says so: "Evidence of an inequitable result, without more, is not sufficient to prove undue influence" (Welfare and Institutions Code § 15610.70). A parent may leave more to the child who moved home and less to the one who calls at Christmas. The statutory presumption exempts relatives on purpose (Probate Code § 21382).
 
 Lack of capacity. That is a different claim with a different test. A parent can understand exactly what they are signing and still sign because someone overcame their will. The will statute lists undue influence as its own ground, apart from capacity (Probate Code § 6104). The two claims usually travel together; see our guide to [lack of testamentary capacity in California](/library/lack-of-testamentary-capacity-california/).
 
-## How to prove undue influence in California: build the record
+## How do you prove undue influence in California?
 
-Proof is built, not asserted. There is no jury in probate court unless a statute provides one (Probate Code § 825). A judge in San Jose decides, and the judge reads records. Here is where the evidence lives in a Santa Clara County contest:
+Proof is built, not asserted. The claim is pleaded as a ground in a [trust contest](/library/how-to-contest-a-trust-in-california/) or a will contest, and the record is the same either way. There is no jury in probate court unless a statute provides one (Probate Code § 825). A judge in San Jose decides, and the judge reads records. Here is where the evidence lives in a Santa Clara County contest:
 
 | Evidence                    | Where it lives and what it shows                                                                                                                 |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -76,7 +76,7 @@ Proof is built, not asserted. There is no jury in probate court unless a statute
 
 The other side builds a record too. In Doolittle the mother had obtained six certificates of independent review before she died, and the court let the trust pay to defend the amendment. Expect the same.
 
-## What to do next
+## What should you do if you suspect undue influence?
 
 1. **Preserve everything.** Do not clean out the house. Photograph medication bottles, calendars, and notes on the fridge. Save texts and voicemails.
 2. **Request the trust in writing.** A beneficiary or heir who asks after a death is entitled to a full copy of the trust terms (Probate Code § 16061.5).
@@ -96,7 +96,7 @@ Not by itself. It is a civil wrong, and because taking an elder's property by un
 
 ### Can a spouse be guilty of undue influence?
 
-Yes. Spouses owe each other "the highest good faith and fair dealing" (Family Code § 721). In Lintz v. Lintz a third wife had her husband move his separate property into community property and sign trusts that disinherited two of his three children. The Court of Appeal held that when one spouse gains an advantage from a transaction, a presumption of undue influence arises and that spouse must rebut it. The voided trusts stayed voided.
+Yes. Spouses owe each other "the highest good faith and fair dealing" (Family Code § 721). In Lintz v. Lintz a third wife had her husband move his separate property into community property and sign trusts that disinherited two of his three children. The Court of Appeal held that when one spouse gains an advantage from a transaction, a presumption of undue influence arises and that spouse must rebut it. The voided trusts stayed voided. If the spouse began as a paid caregiver, see [what California law allows when a caregiver married your parent](/library/caregiver-married-my-parent-what-california-law-allows/).
 
 ### Does a certificate of independent review end the case?
 
@@ -112,6 +112,6 @@ For a trust, 120 days from the day the trustee mails the formal notice after dea
 
 ## Talk to a trust litigation lawyer in San Jose
 
-Rothrock Legal litigates undue influence, capacity, and elder abuse cases in the Santa Clara County Superior Court's Probate Division at 191 N. First Street in San Jose. We also appear in the San Mateo, Alameda, and San Francisco courts. If a parent's plan changed late in life in favor of one person, [contact us](/contact/) and bring the documents. We will tell you which presumption applies and what the record needs to show.
+Rothrock Legal handles undue influence, capacity, and financial elder abuse cases for families in San Jose, Santa Clara County, and across the Bay Area. If a parent's plan changed late in life in favor of one person, [request a consult](/request-a-consult/) and bring the documents. We will tell you which presumption applies and what the record needs to show.
 
 This article is general information about California law, not legal advice about your situation. Reading it does not create an attorney-client relationship with Rothrock Legal; that happens only when both sides sign an engagement letter. Deadlines depend on facts we have not seen and the law changes. Before you rely on any date here, confirm it with a lawyer.

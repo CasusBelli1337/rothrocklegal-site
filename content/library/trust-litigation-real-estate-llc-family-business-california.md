@@ -11,14 +11,14 @@ primaryKeyword: trust owns llc
 secondaryKeywords: llc in a trust, heggstad petition, partition action california, probate code 850 petition, family business inheritance dispute
 image: /images/library/trust-litigation-real-estate-llc-family-business-california.webp
 imageAlt: A conference table with a property deed, an LLC operating agreement, and a stack of appraisal binders
-draft: true
+draft: false
 ---
 
 When a trust owns LLC interests, houses, and an operating business, the litigation runs on three tracks at once. Track one is title: what is in the trust (the Heggstad petition, Probate Code § 850). Track two is value: appraisals and the business valuation. Track three is control: who runs the property and the company while the case is pending, and that is where most of the cost sits.
 
-Cash can be split with arithmetic. A Palo Alto house, a Sunnyvale rental, an LLC that owns a building in Mountain View, and Dad's stake in a Los Gatos company cannot. Somebody has to decide what to sell, what to keep, and who signs the leases. A sibling will disagree with every call.
+Cash can be split with arithmetic. A Palo Alto house, a Sunnyvale rental, an LLC that owns a building in Mountain View, and Dad's stake in a Los Gatos company cannot. Somebody has to decide what to sell, what to keep, and who signs the leases. A sibling will disagree with every call. These are the cases our [complex estates](/complex-estates/) practice is built for.
 
-## Is it even in the trust? The Heggstad petition and Probate Code § 850
+## What if the house was never deeded into the trust?
 
 A trust controls only what was put into it, and often the biggest asset never was. The Menlo Park house is still deeded to Mom and Dad as joint tenants.
 
@@ -26,9 +26,9 @@ The fix is a petition asking the probate court to confirm that the property belo
 
 The Heggstad trustee used a petition for instructions (Probate Code § 17200). Today the vehicle is Probate Code § 850. Notice is served at least 30 days before the hearing, and the court cannot shorten it (Probate Code § 851).
 
-Later cases stretched the rule. In Ukkestad v. RBS Asset Finance, a trust assigning "all of his real and personal property" carried two parcels the settlor never deeded. In Kucker v. Kucker, a general assignment captured stock never re-registered, and in Carne v. Worthington the trust's own words conveyed a house without a deed. A signed trust that describes the property, even generally, usually wins the title question. The fight then moves to capacity and undue influence over the trust itself.
+Later cases stretched the rule. In Ukkestad v. RBS Asset Finance, a trust assigning "all of his real and personal property" carried two parcels the settlor never deeded. In Kucker v. Kucker, a general assignment captured stock never re-registered, and in Carne v. Worthington the trust's own words conveyed a house without a deed. A signed trust that describes the property, even generally, usually wins the title question. The fight then moves to [capacity and undue influence](/undue-influence-and-capacity/) over the trust itself.
 
-## Real estate: the trustee decides sell or keep, and partition is the endgame
+## Can the trustee sell the house, and can siblings force a sale?
 
 Once property is in the trust, the trustee holds title and, unless the document narrows them, has broad powers to sell, partition, lease, or keep it (Probate Code §§ 16226, 16227, 16231, 16220). But every power "is subject to the trustee’s fiduciary duties" (Probate Code § 16202), so the power to sell is not a reason to sell.
 
@@ -36,9 +36,9 @@ A sibling living in the house is the classic problem. The trustee may allow it, 
 
 Distribution is where the fight lands. The trustee can distribute in kind, pro rata or not, and "adjust resulting differences in valuation" (Probate Code § 16246). If the trustee instead deeds the house to four siblings as tenants in common, any of them can file the partition action California law gives co-owners as of right, absent a valid waiver (Code of Civil Procedure §§ 872.210, 872.710).
 
-Where the siblings have no written partition agreement, the Partition of Real Property Act adds a step (Code of Civil Procedure § 874.311). The court sets fair market value, normally by a court-appointed appraisal (Code of Civil Procedure § 874.316). The siblings who did not ask for a sale then get 45 days to buy out the ones who did at that value (Code of Civil Procedure § 874.317).
+Where the siblings have no written partition agreement, the Partition of Real Property Act adds a step (Code of Civil Procedure § 874.311). The court sets fair market value, normally by a court-appointed appraisal (Code of Civil Procedure § 874.316). The siblings who did not ask for a sale then get 45 days to buy out the ones who did at that value (Code of Civil Procedure § 874.317). Our [estate property disputes](/estate-property-disputes/) page covers the house fight on its own.
 
-## When the trust owns LLC interests, the operating agreement decides who controls them
+## Who controls an LLC owned by a trust?
 
 An LLC in a trust is not a building in a trust. The trust owns an interest in the company that owns the building, and the operating agreement governs that interest; the statute fills gaps only where the agreement is silent (Corporations Code § 17701.10).
 
@@ -48,15 +48,15 @@ Second, is the trust a member or only a transferee? A transfer by itself carries
 
 When members deadlock, the exit is a civil suit for judicial dissolution where management "is deadlocked or subject to internal dissension" (Corporations Code § 17707.03). The other members can stop it by buying the moving party's interest for cash at fair market value.
 
-## The family business: you may run it only as the trust or the court allows
+## Can a trustee keep running the family business?
 
 A trustee may continue a business in the trust (Probate Code § 16222). But the same section allows it "only as authorized by the trust instrument or by the court" and, otherwise, "for a reasonable time pending a court hearing on the matter or pending a sale" of the business. Running Dad's company for three years under a silent trust, with no court order, is a breach even if the company did well.
 
-In a family business inheritance dispute, the trustee-sibling who also draws a salary from the company is the flashpoint. A trustee may not "use or deal with trust property for the trustee’s own profit" (Probate Code § 16004). A salary the trustee sets for the trustee looks exactly like that unless the trust or the court approved it, so disclose it, keep it at market, and get it approved in writing. Threatened with a lawsuit? Get your own lawyer, and learn who pays before you bill the trust.
+In a family business inheritance dispute, the trustee-sibling who also draws a salary from the company is the flashpoint. A trustee may not "use or deal with trust property for the trustee’s own profit" (Probate Code § 16004). A salary the trustee sets for the trustee looks exactly like that unless the trust or the court approved it, so disclose it, keep it at market, and get it approved in writing. Threatened with a lawsuit? Get your own lawyer, and learn who pays before you bill the trust; our guide for [the trustee a beneficiary is threatening to sue](/library/youre-the-trustee-and-a-beneficiary-is-threatening-to-sue/) starts there.
 
 If the trustee is the problem, the court can hand the property to a receiver or temporary trustee (Probate Code §§ 16420, 17206). It can suspend the trustee's powers during a removal case if the property "may suffer loss or injury" (Probate Code § 15642).
 
-## Valuation: a good-faith estimate satisfies the account, an appraisal wins the fight
+## How is trust real estate or a family business valued?
 
 A court accounting needs a schedule of estimated market values, and for real estate or a closely held business that "may be satisfied by a good faith estimate by the fiduciary" (Probate Code § 1063). An appraisal is what wins a distribution fight.
 
@@ -64,7 +64,7 @@ Which date governs, death or distribution? A Peninsula house can move by seven f
 
 Date-of-death value also sets the income-tax basis of inherited property (26 U.S.C. § 1014); the details belong to the trust's CPA.
 
-## Sibling co-trustees, deadlock, and how these cases end
+## What happens when sibling co-trustees cannot agree?
 
 Parents in Atherton and Woodside love naming all the children co-trustees. Unless the document says otherwise, co-trustees can act only by "unanimous action" (Probate Code § 15620).
 
@@ -76,7 +76,7 @@ Most of these cases end in a room, not at trial. The court's Early Settlement Co
 
 Rothrock Legal litigates only, and on a multi-entity estate we bring in a forensic accountant and a business appraiser early. Arthur Rothrock is the co-founder and CEO of Legion, an AI litigation platform, which is why a small firm can read a decade of LLC ledgers in days. He has been named to the Super Lawyers® Rising Stars list (Northern California) for 2020 through 2026 and to Best Lawyers: Ones to Watch® in America for 2024 through 2027. He serves as Vice Chair of the American Bar Association's Artificial Intelligence and Robotics National Institute.
 
-## What to do next
+## What should you do next?
 
 1. Pull title on every property and the operating agreement for every entity, then get a dated appraisal on each.
 2. If something is out of the trust, file the Heggstad petition early; notice runs 30 days and cannot be shortened (Probate Code § 851).
@@ -108,6 +108,6 @@ A Heggstad petition that brings property into the trust is administration, so th
 
 ## Talk to a trust litigation lawyer in San Jose
 
-Rothrock Legal represents trustees and beneficiaries in the Santa Clara County Superior Court's Probate Division at 191 N. First Street in San Jose. We also appear in the San Mateo County, Alameda, and San Francisco courts for the Peninsula and the East Bay. If your family's trust holds property or a company in Palo Alto, Los Altos, Atherton, Menlo Park, Saratoga, Los Gatos, Woodside, or Hillsborough and the siblings do not agree, [request a consult](/request-a-consult/). We will tell you what is in the trust, what is not, and who controls it today.
+Rothrock Legal handles trust disputes over real estate, LLC interests, and family businesses for trustees and beneficiaries in San Jose, Santa Clara County, and across the Bay Area, from the Peninsula to the East Bay. If your family's trust holds property or a company in Palo Alto, Los Altos, Atherton, Menlo Park, Saratoga, Los Gatos, Woodside, or Hillsborough and the siblings do not agree, [request a consult](/request-a-consult/). We will tell you what is in the trust, what is not, and who controls it today.
 
 This article is general information about California law, not legal advice about your situation. Reading it does not create an attorney-client relationship with Rothrock Legal; that happens only when both sides sign an engagement letter. Deadlines depend on facts we have not seen and the law changes. Before you rely on any date here, confirm it with a lawyer.

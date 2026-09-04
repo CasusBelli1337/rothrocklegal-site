@@ -10,40 +10,40 @@ primaryKeyword: trust dispute
 secondaryKeywords: siblings fighting over inheritance, estate mediation, trust dispute attorney, inheritance dispute lawyer, estate dispute attorney
 image: /images/library/multi-million-trust-disputes-among-siblings-bay-area.webp
 imageAlt: Four empty chairs around a conference table holding a trust binder, a property appraisal, and a mediator's notepad
-draft: true
+draft: false
 ---
 
 A multi-million trust dispute among siblings in the Bay Area is usually three fights wearing one caption. One is about the document: was the amendment signed in the hospice month really Mom's decision. One is about the trustee: the accounting, the self-dealing, the sibling living in the house for free. One is about the assets: the Palo Alto house, the company, and when it all gets sold.
 
-Here's the thing. Most of these cases settle at mediation, in my experience twelve to twenty-four months in, and the trust should not pay for anyone's side of it. The sibling who files first with a clear petition and a clean file usually sets the terms. Patterns, not promises.
+Here's the thing. Most of these cases settle at mediation, typically twelve to twenty-four months in, and the trust should not pay for anyone's side of it. The sibling who files first with a clear petition and a clean file usually sets the terms. Patterns, not promises.
 
-## How a multi-million trust dispute among siblings starts
+## How does a multi-million trust dispute among siblings start?
 
 Siblings fighting over inheritance rarely start with theft. They start with silence after the funeral and an amendment nobody knew about that moved the Saratoga rental to the child who lived closest.
 
-A contest of the amendment: once the trustee's notice is served, a contest must be filed within 120 days (Probate Code § 16061.8). An accounting demand: a beneficiary can petition to compel one after the trustee ignores a written request for 60 days (Probate Code § 17200). A petition to remove or suspend the trustee, often with an ex parte request to hand the assets to a temporary trustee while the case is pending (Probate Code § 15642). And a fight over what is in the trust: a petition to bring in property the trust claims, or to decide property someone else claims (Probate Code § 850).
+A contest of the amendment: once the trustee's notice is served, a contest must be filed within 120 days (Probate Code § 16061.8); our guide to [how to contest a trust in California](/library/how-to-contest-a-trust-in-california/) covers that petition. An accounting demand: a beneficiary can petition to compel one after the trustee ignores a written request for 60 days (Probate Code § 17200). If the trustee has gone quiet, start with [what to do when a trustee will not give an accounting or a copy of the trust](/library/trustee-wont-give-accounting-or-copy-of-trust-california/). A petition to remove or suspend the trustee, often with an ex parte request to hand the assets to a temporary trustee while the case is pending (Probate Code § 15642). And a fight over what is in the trust: a petition to bring in property the trust claims, or to decide property someone else claims (Probate Code § 850). When the asset is a company or a rental portfolio, see [trust litigation over real estate, LLCs, and the family business](/library/trust-litigation-real-estate-llc-family-business-california/).
 
-### The phases and the clock
+### What are the phases of a multi-asset trust case?
 
 Civil discovery rules apply (Probate Code § 1000), so expect subpoenas to banks and the drafting lawyer, then depositions. A multi-asset sibling case sits at the long end of every range in our guide to [trust litigation in Santa Clara County](/library/trust-and-estate-litigation-in-santa-clara-county/).
 
 Appraisers value the real estate at death and again at distribution. A forensic accountant rebuilds the books from bank statements. A good faith estimate satisfies the account for a house or a closely held business (Probate Code § 1063); an appraisal wins the argument.
 
-### How Rothrock Legal staffs one
+### How does Rothrock Legal staff a sibling trust case?
 
 Arthur Rothrock runs strategy and the settlement track. Jonathan "JJ" Joannides, a litigator who practiced at Wilson Sonsini and Fenwick & West, takes the depositions and contested hearings. Associates Gerry Lin and Max Discher work the records. Arthur is the co-founder and CEO of Legion, an AI litigation platform, which is why a small firm can read a decade of statements in days; lawyers still make every judgment call.
 
-## Four siblings as co-trustees: hostility alone does not remove anyone
+## Can a sibling co-trustee be removed for hostility alone?
 
-Parents name all the children co-trustees to be fair. It is the least fair thing they can do. Unless the trust says otherwise, co-trustees act only by unanimous action (Probate Code § 15620), so one sibling can block a sale for a year by not signing.
+No. Parents name all the children co-trustees to be fair. It is the least fair thing they can do. Unless the trust says otherwise, co-trustees act only by unanimous action (Probate Code § 15620), so one sibling can block a sale for a year by not signing.
 
 The court can remove a trustee "Where hostility or lack of cooperation among cotrustees impairs the administration of the trust" (Probate Code § 15642). The key word is impairs. Hostility justifies removal "when the hostility impairs the proper administration of the trust" (Gilmaker v. Bank of America). In Trolan v. Trolan the trial court removed sibling co-trustees and ordered everything sold; the appeal court reversed, because one dissenting sibling "does nothing to impair" a majority that can act.
 
 So the first order in a deadlocked sibling trust is usually a temporary trustee (Probate Code § 17206) or an agreed professional fiduciary, not a removal trial. If the instrument names no successor, all the adult current beneficiaries can agree on a trust company (Probate Code § 15660). Refuse that request, and if the court later removes you and appoints a trust company, the petitioner's fees can land on you (Probate Code § 15645).
 
-Two limits. The removal ground aimed at drafters and paid caregivers does not reach a trustee related to the settlor by blood or marriage, so a daughter is not removed on that ground just because the amendment favored her (Probate Code § 15642). And a bad-faith petition that would defeat the settlor's intent can leave the petitioner paying the trustee's fees (Probate Code § 15642).
+Two limits. The removal ground aimed at drafters and paid caregivers does not reach a trustee related to the settlor by blood or marriage, so a daughter is not removed on that ground just because the amendment favored her (Probate Code § 15642). And a bad-faith petition that would defeat the settlor's intent can leave the petitioner paying the trustee's fees (Probate Code § 15642). The full list of grounds is in our guide to [trustee breach of fiduciary duty and removal in California](/library/trustee-breach-of-fiduciary-duty-and-removal-california/).
 
-## The trust should not pay for the war
+## Who pays the lawyers in a sibling trust dispute?
 
 The trustee hires a lawyer, as she may (Probate Code § 16247), and pays from the trust account. The trust repays expenditures "properly incurred in the administration of the trust" (Probate Code § 15684). A fight among the beneficiaries over who gets what is not administration.
 
@@ -55,7 +55,7 @@ Two more exposures. A court that finds property was taken in bad faith, or throu
 
 Our article on [using trust funds to pay attorney fees](/library/can-a-trustee-use-trust-funds-to-pay-attorney-fees-california/) has the full table.
 
-## Estate mediation in Santa Clara County: the court's program or a private mediator
+## How does estate mediation work in Santa Clara County?
 
 Santa Clara County offers two doors. The court's Probate Early Settlement Conference Program is open to parties who stipulate on form PB-4063 and pick a neutral from the court's list (Probate Local Rule 3(B)). It "is not a mediation, as defined in Evidence Code § 1115" and "There is no provision for confidentiality of communications" (Probate Local Rule 3(B)(4)). A private mediation is different: nothing said in it is admissible or discoverable (Evidence Code § 1119).
 
@@ -63,7 +63,7 @@ A mediation day is four siblings, four spouses, four lawyers, separate rooms, an
 
 For the sibling who wants to sit it out: in Breslin v. Breslin, beneficiaries who received notice of a court-ordered mediation and stayed home were held bound by the deal the others made. The court limited that holding to "the circumstances here" and one justice dissented, so a no-show can be bound, not always is.
 
-## Keeping the trust out of the fight and your texts out of the evidence
+## How should a trustee act while the siblings are fighting?
 
 Act impartially and write down why. The trustee must "deal impartially with them" (Probate Code § 16003), and sole discretion still means acting "in accordance with fiduciary principles" (Probate Code § 16081). Before every big decision, send a notice of proposed action with the reasons and at least 45 days to object (Probate Code § 16502). No written objection, no liability for that action (Probate Code § 16503).
 
@@ -71,7 +71,7 @@ A beneficiary who consents in writing, knowing the facts, cannot later sue over 
 
 Now the texts. Civil discovery rules apply, so the sibling group chat and the midnight voice memo are discoverable. Assume every message will be read aloud in a courtroom in San Jose. Your own lawyer is the exception: a trustee "may assert the attorney-client privilege against the beneficiaries" (Wells Fargo Bank v. Superior Court).
 
-## Key deadlines
+## What are the deadlines in a sibling trust dispute?
 
 | If this happened                              | You have                                                        | Counted from                                    | Rule                                    |
 | --------------------------------------------- | --------------------------------------------------------------- | ----------------------------------------------- | --------------------------------------- |
@@ -81,9 +81,9 @@ Now the texts. Civil discovery rules apply, so the sibling group chat and the mi
 | Someone took a parent's money or property     | 4 years                                                         | Discovery                                       | Welfare and Institutions Code § 15657.7 |
 | The person you would sue has died             | 1 year                                                          | Date of death                                   | Code of Civil Procedure § 366.2         |
 
-Every row has exceptions, and if no notice was ever mailed the outer limit is unsettled: call a lawyer now. The [deadline wizard](/how-long-do-i-have/) gives you a date.
+Every row has exceptions, and if no notice was ever mailed the outer limit is unsettled: talk to a lawyer now. The [deadline wizard](/how-long-do-i-have/) gives you a date.
 
-## What to do next
+## What should you do next in a sibling trust dispute?
 
 1. Gather the trust, every amendment, the trustee's notice, and the last account.
 2. Calendar the 120 days and confirm the date with a lawyer this week.
@@ -95,7 +95,7 @@ Every row has exceptions, and if no notice was ever mailed the outer limit is un
 
 ### How long does a sibling trust dispute take in the Bay Area?
 
-In my experience a multi-property case with three or four siblings typically settles at mediation twelve to twenty-four months after the first petition, and the few that go to trial run longer. No lawyer can promise you a date.
+A multi-property case with three or four siblings typically settles at mediation twelve to twenty-four months after the first petition, and the few that go to trial run longer. No lawyer can promise you a date.
 
 ### Can the trust pay my legal fees?
 
@@ -119,6 +119,6 @@ Maybe not a litigator, but you need the paperwork done right: the notice served,
 
 ## Talk to a trust litigation lawyer in San Jose
 
-Rothrock Legal represents trustees and beneficiaries in the Santa Clara County Superior Court's Probate Division at 191 N. First Street in San Jose, and in the San Mateo, Alameda, and San Francisco courts. If your family's trust holds a house in Palo Alto, Los Altos, Atherton, Menlo Park, Saratoga, Los Gatos, Woodside, or Hillsborough and the siblings have stopped talking, [request a consult](/request-a-consult/) and bring the trust and the last accounting. We will tell you which of the three fights you are in and where the exit is.
+Rothrock Legal handles [complex trust disputes](/complex-estates/) among siblings for families in San Jose, Santa Clara County, and across the Bay Area. If your family's trust holds a house in Palo Alto, Los Altos, Atherton, Menlo Park, Saratoga, Los Gatos, Woodside, or Hillsborough and the siblings have stopped talking, [request a consult](/request-a-consult/) and bring the trust and the last accounting. We will tell you which of the three fights you are in and where the exit is.
 
 This article is general information about California law, not legal advice about your situation. Reading it does not create an attorney-client relationship with Rothrock Legal; that happens only when both sides sign an engagement letter. Deadlines depend on facts we have not seen and the law changes. Before you rely on any date here, confirm it with a lawyer.

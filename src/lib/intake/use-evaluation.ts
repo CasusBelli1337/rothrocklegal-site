@@ -33,7 +33,7 @@ export function stageIndex(phase: EvaluationPhase): number | null {
 }
 
 export const POLL_INTERVAL_MS = 3000;
-// Measured evaluate latency is 95–300 s (Opus 5 reading every upload); allow headroom.
+// Measured evaluate latency is 41–300 s (Opus reading every upload); allow headroom.
 export const POLL_TIMEOUT_MS = 600_000;
 const CHECKING_AFTER_MS = 30_000;
 
@@ -43,6 +43,8 @@ interface EvaluationOptions {
   session: Session | null;
   answers: IntakeAnswers;
   onReady(view: EvaluationClientView): void;
+  /** Timed out or failed: the manual screens take over. */
+  onUnavailable(): void;
 }
 
 export interface EvaluationController {
@@ -51,15 +53,17 @@ export interface EvaluationController {
   start(): Promise<void>;
 }
 
-/** Saves the final answers, asks for the evaluation, and polls until it is ready or time runs out. */
+/** Pass 2. Saves the answers, asks for the evaluation, and polls until it is ready or time runs out. */
 export function useEvaluation({
   session,
   answers,
   onReady,
+  onUnavailable,
 }: EvaluationOptions): EvaluationController {
   const [phase, setPhase] = useState<EvaluationPhase>('idle');
   const [error, setError] = useState<string | null>(null);
   const alive = useRef(true);
+  const inFlight = useRef(false);
 
   useEffect(() => {
     alive.current = true;
@@ -69,13 +73,11 @@ export function useEvaluation({
   }, []);
 
   const start = useCallback(async () => {
-    if (!session) {
-      setPhase('error');
-      setError('Your session expired. Go back to the start and try again.');
-      return;
-    }
+    if (inFlight.current) return;
+    inFlight.current = true;
     setError(null);
     try {
+      if (!session) throw new Error('Your session expired. Go back to the start and try again.');
       setPhase('saving');
       await saveAnswers(session, answers);
       setPhase('sending');
@@ -86,6 +88,7 @@ export function useEvaluation({
         const elapsed = Date.now() - startedAt;
         if (elapsed > POLL_TIMEOUT_MS) {
           setPhase('timeout');
+          onUnavailable();
           return;
         }
         setPhase(elapsed > CHECKING_AFTER_MS ? 'checking' : 'reading');
@@ -99,8 +102,11 @@ export function useEvaluation({
       if (!alive.current) return;
       setPhase('error');
       setError(errorMessage(caught));
+      onUnavailable();
+    } finally {
+      inFlight.current = false;
     }
-  }, [session, answers, onReady]);
+  }, [session, answers, onReady, onUnavailable]);
 
   return { phase, error, start };
 }

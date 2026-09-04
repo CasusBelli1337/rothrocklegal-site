@@ -13,6 +13,20 @@ const none = { transcript: false, recording: false };
 const devices = (kinds: string[]) => () => Promise.resolve(kinds.map((kind) => ({ kind })));
 
 describe('preflightMic', () => {
+  it('reports a plain-http page before anything else: no permission menu can fix that', async () => {
+    const probe = {
+      support: both,
+      secure: false,
+      devices: () => Promise.reject(new Error('should not be called')),
+      permission: () => Promise.resolve('granted' as const),
+    };
+    expect(await preflightMic(probe)).toBe('insecure');
+    expect(showsButton('insecure')).toBe(false);
+    expect(await preflightMic({ support: both, secure: true, devices: devices(['audioinput']) })).toBe(
+      'prompt',
+    );
+  });
+
   it('reports an unsupported browser before touching devices', async () => {
     const probe = {
       support: none,

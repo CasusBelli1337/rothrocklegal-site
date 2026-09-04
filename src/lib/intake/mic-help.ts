@@ -8,6 +8,7 @@ import type { SpeechSupport } from './speech';
 
 export type MicPhase =
   | 'checking'
+  | 'insecure'
   | 'unsupported'
   | 'no-microphone'
   | 'denied'
@@ -18,7 +19,7 @@ export type MicPhase =
 
 export type PreflightResult = Extract<
   MicPhase,
-  'unsupported' | 'no-microphone' | 'denied' | 'prompt' | 'ready'
+  'insecure' | 'unsupported' | 'no-microphone' | 'denied' | 'prompt' | 'ready'
 >;
 
 export type PermissionResult = 'granted' | 'denied' | 'prompt' | 'unknown';
@@ -26,6 +27,12 @@ export type PermissionResult = 'granted' | 'denied' | 'prompt' | 'unknown';
 /** What the pre-flight can ask the browser; tests pass plain functions. */
 export interface MicProbe {
   support: SpeechSupport;
+  /**
+   * `window.isSecureContext`. Browsers refuse the microphone on a plain http
+   * address and nothing in the permission menu can unblock it (Arthur hit this
+   * on 2026-09-03 testing over http). Undefined counts as secure.
+   */
+  secure?: boolean;
   /** `navigator.mediaDevices.enumerateDevices`, when the browser has it. */
   devices?: () => Promise<{ kind: string }[]>;
   /** `navigator.permissions.query({ name: "microphone" })`; only Chromium answers. */
@@ -57,6 +64,7 @@ async function queryPermission(permission: MicProbe['permission']): Promise<Perm
 
 /** Runs when the story step mounts and again on "Try again". */
 export async function preflightMic(probe: MicProbe): Promise<PreflightResult> {
+  if (probe.secure === false) return 'insecure';
   if (!probe.support.transcript && !probe.support.recording) return 'unsupported';
   if (await hasNoMicrophone(probe.devices)) return 'no-microphone';
   const permission = await queryPermission(probe.permission);

@@ -10,6 +10,7 @@ import type {
   ResumeResponse,
   SaveAnswersResponse,
   SubmitResponse,
+  TriageResponse,
   UploadFileResponse,
 } from './contract';
 
@@ -168,7 +169,20 @@ export async function deleteFile(session: Session, fileId: string): Promise<void
   );
 }
 
-/** Starts (or re-requests, idempotently) the evaluation. 202 while it runs. */
+/** Pass 1: asks the server to read the story alone (idempotent). `reading` while it runs. */
+export function startTriage(session: Session): Promise<TriageResponse> {
+  return request<TriageResponse>(
+    `/api/intake/${session.id}/triage`,
+    { method: 'POST', body: '{}' },
+    session,
+  );
+}
+
+export function getTriage(session: Session): Promise<TriageResponse> {
+  return request<TriageResponse>(`/api/intake/${session.id}/triage`, { method: 'GET' }, session);
+}
+
+/** Pass 2: starts (or re-requests, idempotently) the evaluation. 202 while it runs. */
 export function startEvaluation(session: Session): Promise<EvaluateResponse> {
   return request<EvaluateResponse>(
     `/api/intake/${session.id}/evaluate`,

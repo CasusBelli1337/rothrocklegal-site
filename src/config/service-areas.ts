@@ -3,10 +3,9 @@
  * /service-areas/ page, and the LegalService `areaServed` JSON-LD.
  */
 
+/** Name and city only: no street address anywhere on the site, courthouse included (Arthur, 2026-09-03). */
 export interface Court {
   name: string;
-  /** Shown on the page and in the footer. Only the probate courthouse has a street address. */
-  address?: string;
   city: string;
 }
 
@@ -20,11 +19,7 @@ export interface City {
 }
 
 export const courts: readonly Court[] = [
-  {
-    name: 'Santa Clara County Superior Court',
-    address: '191 N. First Street, San Jose',
-    city: 'San Jose',
-  },
+  { name: 'Santa Clara County Superior Court', city: 'San Jose' },
   { name: 'San Mateo County Superior Court', city: 'Redwood City' },
   { name: 'Alameda County Superior Court', city: 'Oakland' },
   { name: 'San Francisco Superior Court', city: 'San Francisco' },
@@ -49,7 +44,7 @@ export const cities: readonly City[] = [
     name: 'San Jose',
     slug: 'san-jose',
     county: 'Santa Clara County',
-    note: 'Our home court. Trust and estate cases for San Jose families are heard in the Probate Division at 191 N. First Street. We appear there in person; everything else, we do by video.',
+    note: 'Trust and estate cases for San Jose families are heard in Santa Clara County Superior Court, the probate court for the county. Hearings happen in person; everything else, we do by video.',
   },
   {
     name: 'Palo Alto',
@@ -61,7 +56,7 @@ export const cities: readonly City[] = [
     name: 'Los Altos',
     slug: 'los-altos',
     county: 'Santa Clara County',
-    note: 'Los Altos estates often hold a home bought decades ago and a brokerage account with its own beneficiary form. Those disputes are filed in the San Jose Probate Division.',
+    note: 'Los Altos estates often hold a home bought decades ago and a brokerage account with its own beneficiary form. Those disputes are filed in the probate court in San Jose.',
   },
   {
     name: 'Los Altos Hills',
@@ -91,7 +86,7 @@ export const cities: readonly City[] = [
     name: 'Los Gatos',
     slug: 'los-gatos',
     county: 'Santa Clara County',
-    note: 'Los Gatos and Monte Sereno trust and will contests are filed in the San Jose Probate Division.',
+    note: 'Los Gatos and Monte Sereno trust and will contests are filed in the probate court in San Jose.',
   },
   {
     name: 'Saratoga',
@@ -121,7 +116,7 @@ export const cities: readonly City[] = [
     name: 'Menlo Park',
     slug: 'menlo-park',
     county: 'San Mateo County',
-    note: 'Menlo Park cases go to San Mateo County Superior Court in Redwood City. We appear there regularly and meet Menlo Park clients by video.',
+    note: 'Menlo Park cases go to San Mateo County Superior Court in Redwood City. We meet Menlo Park clients by video.',
   },
   {
     name: 'Woodside',
@@ -151,7 +146,7 @@ export const cities: readonly City[] = [
     name: 'Fremont',
     slug: 'fremont',
     county: 'Alameda County',
-    note: 'Fremont sits in Alameda County, so a Fremont trust dispute is usually filed in Alameda County Superior Court. We appear there regularly.',
+    note: 'Fremont sits in Alameda County, so a Fremont trust dispute is usually filed in Alameda County Superior Court in Oakland.',
   },
 ] as const;
 

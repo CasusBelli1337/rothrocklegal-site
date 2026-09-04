@@ -14,7 +14,7 @@ export const maxDischer: TeamMember = {
   slug: 'max-discher',
   name: 'Max Discher',
   title: 'Associate Attorney',
-  barStatus: 'Licensed in California, State Bar #321720 (2018)',
+  barStatus: 'Licensed in California, State Bar #321720',
   barNumber: '321720',
   focus: 'Record review and cite-checking in trust, estate, and elder abuse cases',
   // Bio paragraph 2: Homebase 2018 to 2025, advising San Francisco, Napa, and Clark County.

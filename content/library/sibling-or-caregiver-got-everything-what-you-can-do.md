@@ -10,7 +10,7 @@ primaryKeyword: what to do if a sibling steals your inheritance
 secondaryKeywords: Probate Code 21380, caregiver inheritance laws California, can you sue a sibling for inheritance, sibling stole inheritance, can a caregiver inherit in California
 image: /images/library/sibling-or-caregiver-got-everything-what-you-can-do.webp
 imageAlt: A recorded grant deed for a Sunnyvale house lying beside a hospital wristband and a pen
-draft: true
+draft: false
 ---
 
 What to do if a sibling steals your inheritance depends on one fact most online answers skip: was the person who got everything family, or a caregiver? California treats the two differently. A gift to a caregiver of a dependent adult is presumed to be the product of fraud or undue influence, and the caregiver must disprove it by clear and convincing evidence (Probate Code § 21380). A gift to a brother or sister is presumed nothing at all.
@@ -19,31 +19,31 @@ That does not mean the sibling keeps the house. You prove the case the older way
 
 If the change is in a trust, you usually have 120 days from the day the trustee mails the formal notice (Probate Code § 16061.8).
 
-## The caregiver rule: California presumes the gift was undue influence
+## Is a caregiver's inheritance presumed undue influence in California?
 
-A gift in a will, trust, or deed to a "care custodian" of a "dependent adult" is "presumed to be the product of fraud or undue influence." That applies if the document was signed while the caregiver was providing services, or within 90 days before or after (Probate Code § 21380(a)(3)). Lawyers call it Probate Code 21380. The caregiver inheritance laws California applies turn on those two terms, and the caregiver's lawyer will attack both.
+Yes, when the caregiver was paid or new to your parent's life and your parent was a dependent adult. A gift in a will, trust, or deed to a "care custodian" of a "dependent adult" is "presumed to be the product of fraud or undue influence." That applies if the document was signed while the caregiver was providing services, or within 90 days before or after (Probate Code § 21380(a)(3)). Lawyers call it Probate Code 21380. The caregiver inheritance laws California applies turn on those two terms, and the caregiver's lawyer will attack both.
 
 A care custodian is anyone who provides health or social services to a dependent adult: medicine, wound care, hygiene, companionship, housekeeping, shopping, cooking, or help with money (Probate Code § 21362). In Bernard v. Foley, two friends took a woman into their home for her last two months, changed her diapers, gave her medications, and handled her money. She amended her trust for them there, and the California Supreme Court held they were care custodians.
 
-The statute now protects an unpaid helper whose friendship with your parent began at least 90 days before the care, at least six months before death, and before hospice (Probate Code § 21362(a)). An old friend is safe; a new one is not.
+The statute now protects an unpaid helper whose friendship with your parent began at least 90 days before the care, at least six months before death, and before hospice (Probate Code § 21362(a)). An old friend is safe; a new one is not. If the caregiver married your parent, the rules change again; see [what California law allows when a caregiver marries your parent](/library/caregiver-married-my-parent-what-california-law-allows/).
 
 A dependent adult is a person who, when signing, met one of two tests (Probate Code § 21366). One: could not provide for their own health, food, clothing, or shelter. Two: had trouble managing money or resisting undue influence because of a mental deficit; under 65, the trouble must be substantial. A parent who was sharp and paying her own bills that day is probably not one, and the presumption falls away.
 
 When it does apply, it bites. The caregiver can rebut it only "by clear and convincing evidence" (Probate Code § 21380(b)). A caregiver who fails "shall bear all costs of the proceeding, including reasonable attorney's fees" (Probate Code § 21380(d)). If the drafter of the document is the one who inherits, the presumption cannot be rebutted at all (Probate Code § 21380(c)).
 
-The caregiver-turned-trustee has a second problem. A sole trustee covered by § 21380 can be removed unless the court finds your parent truly wanted that person and was not unduly influenced (Probate Code § 15642(b)(6)). A sibling trustee is exempt from that ground. A caregiver removed on it pays the fees, and any clause excusing that trustee from accounting is void (Probate Code §§ 15642(c), 16062(e)).
+The caregiver-turned-trustee has a second problem. A sole trustee covered by Probate Code § 21380 can be removed unless the court finds your parent truly wanted that person and was not unduly influenced (Probate Code § 15642(b)(6)). A sibling trustee is exempt from that ground. A caregiver removed on it pays the fees, and any clause excusing that trustee from accounting is void (Probate Code §§ 15642(c), 16062(e)).
 
-### The certificate is not the end
+### Does a certificate of independent review protect the caregiver?
 
-There is one escape hatch. An independent lawyer counsels your parent, with no heir or beneficiary present, about the gift and its consequences, looks for fraud or undue influence, and signs a certificate saying there was none. Do that and the presumption goes away (Probate Code § 21384).
+Only a valid one does. An independent lawyer counsels your parent, with no heir or beneficiary present, about the gift and its consequences, looks for fraud or undue influence, and signs a certificate saying there was none. Do that and the presumption goes away (Probate Code § 21384).
 
 Read that certificate closely. "Independent" has a statutory meaning: no legal, business, financial, professional, or personal relationship with the caregiver, and no trustee or executor role or payout under the document (Probate Code § 21370). A lawyer who is named executor in the same will, or who does business with the caregiver, is not independent. A certificate signed with the caregiver in the room fails the statute too (Probate Code § 21384), and the lawyer's file is where you prove it.
 
-## What to do if a sibling steals your inheritance: prove it the Rice v. Clark way
+## What can you do if a sibling steals your inheritance?
 
 If you typed "sibling stole inheritance" into a search bar at two in the morning, this is your section. The statutory presumption does not apply to a person related to your parent by blood or marriage within the fourth degree, or to someone who lived with your parent (Probate Code § 21382(a)). A brother or sister is well inside that circle.
 
-But § 21382 turns off § 21380 and nothing else. Under Rice v. Clark, a presumption of undue influence "shifting the burden of proof" arises when you show three things. The person "had a confidential relationship" with your parent. The person "actively participated in procuring the instrument's preparation or execution." And the person "would benefit unduly" by it.
+But Probate Code § 21382 turns off Probate Code § 21380 and nothing else. Under Rice v. Clark, a presumption of undue influence "shifting the burden of proof" arises when you show three things. The person "had a confidential relationship" with your parent. The person "actively participated in procuring the instrument's preparation or execution." And the person "would benefit unduly" by it.
 
 In plain words, trust means your parent relied on the sibling as caregiver, bookkeeper, or holder of a power of attorney. Procurement means the sibling picked the lawyer, drove Dad there, or sat in the room. Undue benefit means the result breaks from the plan your parent kept for years and the sibling cannot explain why.
 
@@ -51,7 +51,7 @@ Show those three and your sibling must prove the document was not procured by un
 
 The statutory definition of undue influence is the other route: "excessive persuasion that causes another person to act or refrain from acting by overcoming that person's free will and results in inequity" (Welfare and Institutions Code § 15610.70(a)). Our guide to [undue influence in California](/library/undue-influence-california-what-it-is-and-how-to-prove-it/) covers its four factors.
 
-## The red flags that decide these cases
+## What red flags prove undue influence by a sibling or caregiver?
 
 The statute lists the tactics judges look for (Welfare and Institutions Code § 15610.70(a)(3)), and the cases fill in the rest:
 
@@ -69,7 +69,7 @@ One warning. "Evidence of an inequitable result, without more, is not sufficient
 
 Silicon Valley makes these cases house-heavy: a Sunnyvale or Cupertino house bought in 1978 and a deed signed in the last year of life. Pull the recorded deed and compare the recording date with the date of death. In Santa Clara County that one document tells you what kind of case you have.
 
-## What you can ask the court for
+## What remedies can you ask the probate court for?
 
 You ask for all of this by petition in the probate court (Probate Code §§ 17200, 850):
 
@@ -86,7 +86,7 @@ A trust or will change obtained by undue influence is itself financial elder abu
 
 The courts are split on double damages. Levin v. Winston-Levin requires proof of bad faith when the theory is undue influence. Keading v. Keading holds that no separate bad faith finding is needed when the theory is elder financial abuse. Our [financial elder abuse guide](/library/financial-elder-abuse-of-a-parent-california/) has the remedies in depth.
 
-## Key deadlines
+## What are the deadlines to challenge a sibling or caregiver's inheritance?
 
 | If this happened                                                      | You have                                                        | Counted from           | Rule                                    |
 | --------------------------------------------------------------------- | --------------------------------------------------------------- | ---------------------- | --------------------------------------- |
@@ -94,9 +94,9 @@ The courts are split on double damages. Levin v. Winston-Levin requires proof of
 | The taking was financial elder abuse                                  | 4 years                                                         | Discovery of the facts | Welfare and Institutions Code § 15657.7 |
 | The sibling or caregiver has since died                               | 1 year                                                          | Their date of death    | Code of Civil Procedure § 366.2         |
 
-Anger, a demand letter with no deadline, and waiting for probate to sort it out stop none of these clocks. Filing late is worse than not filing. Raising § 21380 or undue influence is a "direct contest" (Probate Code § 21310(b)), and a direct contest brought without probable cause triggers a no-contest clause (Probate Code § 21311). Our guide on [how to contest a trust in California](/library/how-to-contest-a-trust-in-california/) explains probable cause.
+Anger, a demand letter with no deadline, and waiting for probate to sort it out stop none of these clocks. Filing late is worse than not filing. Raising Probate Code § 21380 or undue influence is a "direct contest" (Probate Code § 21310(b)), and a direct contest brought without probable cause triggers a no-contest clause (Probate Code § 21311). Our guide on [how to contest a trust in California](/library/how-to-contest-a-trust-in-california/) explains probable cause.
 
-So what to do if a sibling steals your inheritance comes down to three things: a written request for the trust and an accounting, a hold on every document you can find, and a petition on file inside the deadline. The [deadline wizard](/how-long-do-i-have/) and our [deadline guide](/library/how-long-do-i-have-to-contest-a-trust-or-will-in-california/) cover the exceptions.
+So what to do if a sibling steals your inheritance comes down to three things: a written request for the trust and an accounting, a hold on every document you can find, and a petition on file inside the deadline. If the trustee ignores the request, [what to do when a trustee will not give an accounting or a copy of the trust](/library/trustee-wont-give-accounting-or-copy-of-trust-california/) is the next step. The [deadline wizard](/how-long-do-i-have/) gives you a date. Our [deadline guide](/library/how-long-do-i-have-to-contest-a-trust-or-will-in-california/) covers the exceptions.
 
 ## Frequently asked questions
 
@@ -118,10 +118,10 @@ Yes. The petition asks the probate court to set aside the amendment or deed, rem
 
 ### How long do I have?
 
-In a trust case where you received the trustee's notice, 120 days from mailing (Probate Code § 16061.8). Elder abuse claims run four years from discovery (Welfare and Institutions Code § 15657.7). Any claim against a person who has died runs one year from their death (Code of Civil Procedure § 366.2). Get a date from the wizard, then call a lawyer this week.
+In a trust case where you received the trustee's notice, 120 days from mailing (Probate Code § 16061.8). Elder abuse claims run four years from discovery (Welfare and Institutions Code § 15657.7). Any claim against a person who has died runs one year from their death (Code of Civil Procedure § 366.2). Get a date from the wizard, then talk to a lawyer this week.
 
 ## Talk to a trust litigation lawyer in San Jose
 
-Rothrock Legal litigates caregiver and sibling inheritance disputes in the Santa Clara County Superior Court's Probate Division at 191 N. First Street in San Jose, and in the San Mateo, Alameda, and San Francisco courts. Bring the trust or will, the deed, and the trustee's letter. [Contact us](/contact/) and we will tell you whether you have a presumption case, a proof case, or both.
+Rothrock Legal handles caregiver and sibling inheritance disputes, including [financial elder abuse](/financial-elder-abuse/) claims, for families in San Jose, Santa Clara County, and across the Bay Area. Bring the trust or will, the deed, and the trustee's letter. [Request a consult](/request-a-consult/) and we will tell you whether you have a presumption case, a proof case, or both.
 
 This article is general information about California law, not legal advice about your situation. Reading it does not create an attorney-client relationship with Rothrock Legal; that happens only when both sides sign an engagement letter. Deadlines depend on facts we have not seen and the law changes. Before you rely on any date here, confirm it with a lawyer.

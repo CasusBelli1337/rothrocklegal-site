@@ -24,7 +24,7 @@ The practical deadline is faster. Real property can be sold or refinanced, and a
 
 We trace the property first. Recorder's records, title company files, bank and brokerage statements, and business filings, pulled quickly and organized into a timeline. Legion, the AI litigation platform our founder co-founded, lets us go through years of statements in days and find the transfers that matter.
 
-When the property is at risk of being sold, we act on that first: a notice of pending action against real property, or a request that the court freeze accounts, while the petition proceeds. The petition is filed in the Santa Clara County Probate Division in San Jose or in the county where the estate or trust is being administered.
+When the property is at risk of being sold, we act on that first: a notice of pending action against real property, or a request that the court freeze accounts, while the petition proceeds. The petition is filed in Santa Clara County Superior Court in San Jose or in the county where the estate or trust is being administered.
 
 We plead section 859 whenever the facts support it. The prospect of paying double the value of the property, plus fees, changes how the other side thinks about settlement.
 

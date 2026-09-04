@@ -69,3 +69,9 @@ export function currentBrowser(): BrowserInfo {
   if (typeof navigator === 'undefined') return UNKNOWN_BROWSER;
   return detectBrowser(navigator.userAgent, { maxTouchPoints: navigator.maxTouchPoints });
 }
+
+/** False only on a plain http address (other than localhost), where browsers refuse the microphone. */
+export function isSecureContext(): boolean {
+  if (typeof window === 'undefined') return true;
+  return window.isSecureContext !== false;
+}

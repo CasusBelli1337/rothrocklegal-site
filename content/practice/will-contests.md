@@ -26,7 +26,7 @@ We check the court file first, because the probate calendar sets the schedule. T
 
 Will contests turn on witnesses more than most trust cases do. The attesting witnesses, the drafting lawyer, the doctors, the neighbors. We interview them early and lock in what they remember. Medical and bank records are subpoenaed at the same time, and we use Legion, the AI litigation platform our founder co-founded, to go through them quickly.
 
-Will contests in Santa Clara County are heard in the Probate Division in San Jose. Many settle once the evidence is in front of the other side. The rest are tried to the probate judge.
+Will contests in Santa Clara County are heard in the probate court in San Jose. Many settle once the evidence is in front of the other side. The rest are tried to the probate judge.
 
 ## Common situations
 

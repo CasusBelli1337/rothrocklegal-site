@@ -55,7 +55,7 @@ function DeadlineItem({ card, index }: { card: DeadlineCard; index: number }) {
   );
 }
 
-/** One lens variant of the card set: the three clocks, then the teaser strip under them. */
+/** One lens variant of the card set: the three clocks, then the one-line teaser under them. */
 export function renderDeadlineCards({ cards, teaser }: DeadlineCards) {
   return (
     <>
@@ -64,10 +64,9 @@ export function renderDeadlineCards({ cards, teaser }: DeadlineCards) {
           <DeadlineItem key={card.label} card={card} index={index} />
         ))}
       </div>
-      <div className="mt-10 border-l-4 border-brass-400 pl-5">
-        <p className="font-sans text-h4 text-ink">{teaser.lead}</p>
-        <p className="mt-2 max-w-[70ch] text-body text-ink-2">{bindSectionSigns(teaser.body)}</p>
-      </div>
+      <p className="mt-10 border-l-4 border-brass-400 pl-5 font-sans text-h4 text-ink">
+        {teaser.lead}
+      </p>
     </>
   );
 }

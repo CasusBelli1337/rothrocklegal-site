@@ -5,41 +5,52 @@ import type {
   IntakeAnswers,
   IntakeFile,
   IntakeSession,
+  StoryRead,
   SubmitResponse,
 } from './contract';
 
 /** One localStorage key holds the whole flow (session token included) so a refresh restores it. */
 export const STORAGE_KEY = 'rl-intake';
 
-/** One screen per step (INTAKE-SPEC §2). `start` and `done` are not numbered. */
+/**
+ * One screen per step (v3: story first). `start` and `done` are not numbered;
+ * `follow-up` exists only when the evaluation returned questions.
+ */
 export const STEP_ORDER = [
   'start',
   'contact',
-  'situations',
-  'parties',
   'story',
+  'situations',
   'documents',
+  'parties',
   'scope',
-  'review',
   'follow-up',
+  'review',
   'done',
 ] as const;
 export type StepId = (typeof STEP_ORDER)[number];
-export const NUMBERED_STEP_COUNT = 8;
 
-export type KeyDateKey = keyof IntakeAnswers['keyDates'];
+/** The three compact tiles of the start step, one visible at a time. */
+export type StartTile = 0 | 1 | 2;
+export const LAST_START_TILE: StartTile = 2;
 
 export interface IntakeState {
-  version: 1;
+  version: 2;
   session: IntakeSession | null;
   step: StepId;
-  /** The three start-screen boxes; `answers.acknowledgedDisclaimers` is true once all are ticked. */
+  startTile: StartTile;
+  /** The three boxes on the last start tile; `answers.acknowledgedDisclaimers` is true once all are ticked. */
   acks: [boolean, boolean, boolean];
   answers: IntakeAnswers;
-  /** Key dates the client marked "not sure". */
-  unsureDates: KeyDateKey[];
   files: IntakeFile[];
+  /** Pass 1: what the model read in the story. Null until it ran, or when it could not read it. */
+  storyRead: StoryRead | null;
+  /** The story the last read (or failed attempt) was made from; null when none ran. */
+  storyReadFor: string | null;
+  /** Pass 2: what the model read in the story and the uploads. Null until it ran, or when unavailable. */
   evaluation: EvaluationClientView | null;
+  /** The story and files the last evaluation (or failed attempt) was made from; null when none ran. */
+  evaluationFor: string | null;
   followUpAnswers: Record<string, FollowUpAnswer>;
   result: SubmitResponse | null;
 }
@@ -50,62 +61,76 @@ export function emptyAnswers(): IntakeAnswers {
     situations: [],
     parties: [],
     story: '',
-    keyDates: {},
-    missingDocuments: [],
     acknowledgedDisclaimers: false,
   };
 }
 
 export function emptyState(): IntakeState {
   return {
-    version: 1,
+    version: 2,
     session: null,
     step: 'start',
+    startTile: 0,
     acks: [false, false, false],
     answers: emptyAnswers(),
-    unsureDates: [],
     files: [],
+    storyRead: null,
+    storyReadFor: null,
     evaluation: null,
+    evaluationFor: null,
     followUpAnswers: {},
     result: null,
   };
 }
 
-/** 1..8 for the numbered screens, null for start and done. */
-export function stepNumber(step: StepId): number | null {
-  const index = STEP_ORDER.indexOf(step);
-  return index >= 1 && index <= NUMBERED_STEP_COUNT ? index : null;
+/** True when the evaluation left questions to show; otherwise the follow-up screen is skipped. */
+export function hasFollowUp(state: IntakeState): boolean {
+  return (state.evaluation?.modules.length ?? 0) > 0;
 }
 
-export function nextStep(step: StepId): StepId {
-  const index = STEP_ORDER.indexOf(step);
-  return STEP_ORDER[Math.min(index + 1, STEP_ORDER.length - 1)];
+/** The screens this flow will show, in order. */
+export function visibleSteps(state: IntakeState): readonly StepId[] {
+  return hasFollowUp(state) ? STEP_ORDER : STEP_ORDER.filter((step) => step !== 'follow-up');
 }
 
-export function prevStep(step: StepId): StepId {
-  const index = STEP_ORDER.indexOf(step);
-  return STEP_ORDER[Math.max(index - 1, 0)];
+/** 1..N for the numbered screens (contact through review), null for start and done. */
+export function stepNumber(step: StepId, state: IntakeState): number | null {
+  const order = visibleSteps(state);
+  const index = order.indexOf(step);
+  return index >= 1 && index <= order.length - 2 ? index : null;
 }
 
-/** Back is offered on the numbered screens before the evaluation; after it the answers are sent. */
-export function canGoBack(step: StepId): boolean {
-  return stepNumber(step) !== null && step !== 'follow-up';
+/** 8 with a follow-up screen, 7 without. */
+export function numberedStepCount(state: IntakeState): number {
+  return visibleSteps(state).length - 2;
 }
 
-/** A partial update; the nested objects may themselves be partial. */
-export type AnswersPatch = Omit<Partial<IntakeAnswers>, 'contact' | 'keyDates'> & {
+export function nextStep(state: IntakeState): StepId {
+  const order = visibleSteps(state);
+  const index = order.indexOf(state.step);
+  return order[Math.min(index + 1, order.length - 1)];
+}
+
+export function prevStep(state: IntakeState): StepId {
+  const order = visibleSteps(state);
+  const index = order.indexOf(state.step);
+  return order[Math.max(index - 1, 0)];
+}
+
+/** Back is offered on every screen but the first tile and the done screen. */
+export function canGoBack(state: IntakeState): boolean {
+  if (state.step === 'start') return state.startTile > 0;
+  return state.step !== 'done';
+}
+
+/** A partial update; the contact object may itself be partial. */
+export type AnswersPatch = Omit<Partial<IntakeAnswers>, 'contact'> & {
   contact?: Partial<IntakeAnswers['contact']>;
-  keyDates?: Partial<IntakeAnswers['keyDates']>;
 };
 
-/** Deep-merges the nested objects (contact, keyDates); everything else replaces. */
+/** Deep-merges `contact`; everything else replaces. */
 export function mergeAnswers(base: IntakeAnswers, patch: AnswersPatch): IntakeAnswers {
-  return {
-    ...base,
-    ...patch,
-    contact: { ...base.contact, ...(patch.contact ?? {}) },
-    keyDates: { ...base.keyDates, ...(patch.keyDates ?? {}) },
-  };
+  return { ...base, ...patch, contact: { ...base.contact, ...(patch.contact ?? {}) } };
 }
 
 export function isAnswered(module: FollowUpModule, answer: FollowUpAnswer | undefined): boolean {
@@ -116,49 +141,15 @@ export function isAnswered(module: FollowUpModule, answer: FollowUpAnswer | unde
   return answer.trim().length > 0;
 }
 
-const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-export function isValidEmail(email: string): boolean {
-  return EMAIL.test(email.trim());
-}
-
-type Validator = (state: IntakeState) => string | null;
-
-/** Plain-English problems, one per step; null means the step may advance. */
-const VALIDATORS: Partial<Record<StepId, Validator>> = {
-  start: (s) => (s.acks.every(Boolean) ? null : 'Please tick all three boxes to continue.'),
-  contact: (s) => {
-    if (!s.answers.contact.fullName.trim()) return 'Please enter your name.';
-    if (!isValidEmail(s.answers.contact.email))
-      return 'Please enter an email address we can reply to.';
-    return null;
-  },
-  situations: (s) =>
-    s.answers.situations.length > 0 ? null : 'Pick at least one. "Something else" is fine.',
-  parties: (s) =>
-    s.answers.parties.some((p) => p.name.trim())
-      ? null
-      : 'Add at least one name, even if it is only the person who died.',
-  story: (s) =>
-    s.answers.story.trim()
-      ? null
-      : 'Tell us what happened, even briefly. A few sentences is enough.',
-  // Follow-up: every module is optional on the client (the screen says so), even when the
-  // evaluator marks one `required`; that flag only changes its label to "helps most".
-};
-
-export function validateStep(step: StepId, state: IntakeState): string | null {
-  return VALIDATORS[step]?.(state) ?? null;
-}
-
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null;
 }
 
+/** Only version 2 restores; a v1 draft (the old step order) is dropped. */
 function isIntakeState(value: unknown): value is IntakeState {
   if (!isRecord(value)) return false;
   return (
-    value.version === 1 &&
+    value.version === 2 &&
     typeof value.step === 'string' &&
     (STEP_ORDER as readonly string[]).includes(value.step) &&
     isRecord(value.answers) &&

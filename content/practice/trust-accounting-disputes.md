@@ -22,7 +22,7 @@ There is also a practical clock. A trustee who will not account is often a trust
 
 ## How we handle these cases in Santa Clara County
 
-We send the written demand ourselves, drafted to track the statute so the trustee cannot claim it was unclear. If the trustee stalls, the petition to compel is ready on day 61. Petitions are filed in the Santa Clara County Probate Division in San Jose, or in the county where the trust is administered.
+We send the written demand ourselves, drafted to track the statute so the trustee cannot claim it was unclear. If the trustee stalls, the petition to compel is ready on day 61. Petitions are filed in Santa Clara County Superior Court in San Jose, or in the county where the trust is administered.
 
 When the accounting arrives, we audit it. Legion, the AI litigation platform our founder co-founded, lets us reconcile an accounting against years of bank and brokerage statements in days. That audit becomes the objections, and the objections become the surcharge claim if the numbers do not hold up.
 

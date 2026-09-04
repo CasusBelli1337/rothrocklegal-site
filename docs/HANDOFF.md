@@ -27,6 +27,83 @@ repo holds the editor module and the intake module.
   removed by Arthur on 2026-09-02 (evening): show, don't tell. Arthur's Legion
   credential sentence stays.
 
+## 2026-09-03 (evening): Arthur's third-round notes, the library SEO pass, intake v3
+
+Uncommitted at the time of writing; see the commit log for the final shape.
+Preview: `http://localhost:9080/_preview/`. Intake module deployed on the rig
+(`legion-armory` branch `program/phase2-intake-module`, module v3).
+
+### Arthur's notes, applied
+
+- **Posture.** No statements about matters handled, results, or courts appeared
+  in; the site says what the firm handles (CLAUDE.md Copy rules). The
+  "matters Arthur has handled" section is gone from `complex-estates.md`;
+  every "we regularly appear", "home court", "most of our cases" line was
+  rewritten; Arthur's bio lost its list of courts. No street address anywhere,
+  the courthouse included, and "Probate Division" is never used (`Court` has no
+  address field). Arthur is "Founder" (no "Trial Attorney"); every `barStatus`
+  lost its "(2016)"; the deadline teaser is one line ("Talk to us anyway to
+  confirm – there are exceptions."; trustee: "Already been accused? The
+  deadlines still matter.").
+- **Library.** All 23 articles are `draft: false` (Arthur reviewed them). Every
+  body H2 is a question (`articles.test.ts` enforces it, the FAQ and CTA
+  headings excepted), each article carries 5 to 6 inline links to other
+  articles plus a practice page, the CTA paragraphs say what the firm handles
+  with the geography, no courtroom claims. Statutes are hotlinked to leginfo
+  and case names italicised by the renderer, not by hand
+  (`src/lib/legal-cites*.ts`, 771 links / 166 italics across the site; headings,
+  code spans, existing links, TOC labels, FAQ answers untouched). The library
+  "How long do I have?" card lists the three clocks (`config/deadline-clocks.ts`)
+  so it fills its column instead of leaving white space above the buttons.
+- **Consult flow v3** (CLAUDE.md "Consult flow (intake v3)", spec §10, contract
+  v3): story first, the model reads it (triage, 7 to 8 s at Opus fast speed)
+  and pre-ticks the situations and lists the papers to look for; one upload
+  slot; the evaluation (147 s for nine documents, 21 MB, at fast speed) returns
+  the people it found for confirmation, `askValue`, and at most six refined
+  questions; no city/county, no key-date fields, no chips; the start is three
+  tiles with the acknowledgments' plain-English gloss inline; the action bar is
+  sticky at the bottom right of the panel; every step change scrolls the panel
+  under the header, never to the top of the page.
+- **The failed evaluation** (Arthur's nine-document test): the Anthropic SDK
+  parsed the JSON inside `finalMessage()` and threw on a `max_tokens` cut before
+  the retry ladder saw the stop reason; thinking tokens count against the cap,
+  and the 16k cap was gone mid-output. The module now reads the raw event
+  stream, checks `stop_reason` first, and runs at 64k (retry 96k). Today's run:
+  19,678 output tokens of which 9,778 thinking, `end_turn`.
+- **Conflict hold** (module): every name (the person, their list, the model's
+  extractions from story and documents) is matched against
+  `data/conflicts/parties.csv` at submit; a match holds the submission
+  (`conflict-hold`), the team gets a names-only email, the admin view is
+  redacted to names until a lawyer clicks "False alarm: release" or "Confirm
+  conflict: decline and delete" (fixed decline email from the ethics memo, then
+  story, answers beyond names, files, evaluation, triage, transcript, resume
+  tokens and the OneDrive folder are deleted; `declined` keeps names, matter
+  type, date, decision, audit). Never automatic. Memo of record:
+  `#RothrockLegal/#Admin/Conflicts/Rothrock Legal - Conflict Screening and
+  Declining Prospective Clients (2026-09-03).docx`.
+- **Continue link.** Nothing was broken: a lookup only finds a *different* open
+  request under the address, and the card reads the same either way by design.
+  The wording now says "If a request already exists under this address, a link
+  to continue it is on its way to that inbox. Otherwise, just keep going."
+- **Microphone over plain http** (Arthur's meshnet address): browsers refuse the
+  microphone on an insecure origin; the pre-flight now says so. The live site
+  is https.
+- The preview-only lens pill moved from bottom-right to bottom-centre (above
+  the sticky action bar) so it never covers the flow's buttons.
+
+### Left for Arthur
+
+- The elder-abuse article still lists Santa Clara County APS's two phone
+  numbers (a third party's, kept as a safety resource); say the word and they go.
+- The held intake's OneDrive mirror is still written in full (durability
+  rule); nothing opens it, but the folder is readable. Decide whether held
+  mirrors should be redacted.
+- `data/conflicts/parties.csv` is still a header only; the hold path is
+  tested but has never fired on a real name.
+- Test intakes RL-2026-000033 (Arthur's Sorden materials, arothrock@) and the
+  short QA run exist from tonight's end-to-end drive; `purge-qa-data.mjs`
+  retires them.
+
 ## 2026-09-03 (late afternoon): phone gone, icon header, library reset, About page, the caregiver article
 
 Four commits on `redesign`: a569c0f (caregiver-marriage article + practice
@@ -41,7 +118,7 @@ Nothing pushed; `main` and the live site are unchanged.
 - **No phone number anywhere.** `site.phone`/`phoneE164` deleted with every
   use (footer, contact band, legal pages, accessibility page, JSON-LD
   `telephone`, llms.txt). `PhoneIcon` deleted. `formatDetection.telephone:
-  false` stays. The Google Business Profile still lists a number; that is
+false` stays. The Google Business Profile still lists a number; that is
   outside the site.
 - **Header.** The reading-options control is the 44px AA icon only
   (`ReadingOptionsButton`, `aria-label` "Reading options"); the header row is
@@ -75,7 +152,7 @@ Nothing pushed; `main` and the live site are unchanged.
   page lost the duplicated who-does-what paragraph. Profile eyebrow is now
   "Recognition" / "Awards, roles, and the podcast."
 - **Caregiver-marriage article.** `content/library/caregiver-married-my-parent-
-  what-california-law-allows.md` (draft, 2026-08-11, Undue Influence &
+what-california-law-allows.md` (draft, 2026-08-11, Undue Influence &
   Capacity) on AB 328 (Stats. 2019, ch. 10, effective 2020-01-01): Probate
   Code §§ 21380(a)(4), 21382(a), 21611(d), plus the background (Fam. Code
   §§ 2210(c), 2211(c), Prob. Code §§ 1900, 1901, 6401, 21610, 21362, 21366,
@@ -193,7 +270,7 @@ unchanged. Preview: `http://localhost:9080/_preview/`.
   `arthur-rothrock.ts` now points there). Icons in `public/images/badges/`
   (`aba.webp`, `american-inns-of-court.webp`, `litigators-path.webp`), adapted
   from `#Legion/Marketing/Announcements/2026 ABA AI & Robotics Institute
-  Sponsorship` and the podcast cover. At 1280 the five chips stack one per row
+Sponsorship` and the podcast cover. At 1280 the five chips stack one per row
   (each label is wider than half the text column); the posture proposal's chip
   item is the moment to relayout them.
 - **Proof strip removed** (`ProofStrip.tsx`, `proof-points.ts`, `priorFirm`
@@ -337,6 +414,15 @@ and `main` is untouched; the live site is unchanged.
   ("Step 3 of 8 · about 6 minutes to go"), the Continue button is tall and
   full-width on phones, Back is a text button, and the whole flow reads at 18px.
   Follow-up questions are all optional and say so.
+- **v3 (2026-09-03, after Arthur's test).** Story first: contact, story,
+  situations (the model reads the story and pre-ticks them, "Here is what we
+  understood"), one upload slot with tailored guidance, the people the
+  evaluation found (editable), scope (value asked only when the model could
+  not tell), follow-up only when there are questions, review, done. The start
+  is three compact tiles; the action bar is sticky at the bottom of the panel
+  and never moves; every screen change scrolls to the panel, never the page
+  top; no city or county fields, no helper chips, no key dates. Details in
+  CLAUDE.md "Consult flow (intake v3)".
 - **The microphone never disappears.** Before asking, the page checks whether a
   microphone exists and whether the browser has blocked it. If blocked, a card
   shows numbered steps for that browser (Chrome, Edge, Safari on Mac, Firefox,

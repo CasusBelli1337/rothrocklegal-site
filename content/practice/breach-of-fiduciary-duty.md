@@ -28,7 +28,7 @@ Where no accounting has been provided, the deadline is less certain, but the pra
 
 We begin with a written demand for an accounting and the supporting records, because the trustee's response, or silence, frames the case. Then we reconstruct what happened from bank statements, brokerage records, property records, and the trustee's own filings. Legion, the AI litigation platform our founder co-founded, lets us trace transactions through thousands of pages of statements in days.
 
-Breach of fiduciary duty petitions in Santa Clara County are filed in the Probate Division at 191 N. First Street in San Jose. When the assets are at risk, we ask the court for interim relief first: suspension of the trustee, an order freezing accounts, or appointment of a neutral trustee. The surcharge and removal claims follow on the court's calendar.
+Breach of fiduciary duty petitions in Santa Clara County are filed in the probate court in San Jose. When the assets are at risk, we ask the court for interim relief first: suspension of the trustee, an order freezing accounts, or appointment of a neutral trustee. The surcharge and removal claims follow on the court's calendar.
 
 Trustees who have breached their duties usually cannot use trust money to defend themselves, and the court can order them to pay the beneficiaries' fees. We raise that early, because it changes the trustee's calculation about settling.
 

@@ -10,16 +10,16 @@ primaryKeyword: trustee duties checklist
 secondaryKeywords: successor trustee duties california, duties of a trustee in california, what does a trustee do, trustee responsibilities, probate code 16000
 image: /images/library/california-trustee-duties-checklist.webp
 imageAlt: A successor trustee at a kitchen table with a trust binder, a handwritten checklist on a legal pad, and a stack of brokerage statements
-draft: true
+draft: false
 ---
 
-What does a trustee do? In California, a trustee owes the beneficiaries four things: loyalty, prudence, impartiality, and information. Those duties come from Probate Code 16000 and the sections after it, and they apply whether you are paid or not (Probate Code § 16041). This trustee duties checklist turns each duty into something you can do this month.
+What does a trustee do? In California, a trustee owes the beneficiaries four things: loyalty, prudence, impartiality, and information. Those duties come from Probate Code § 16000 and the sections after it, and they apply whether you are paid or not (Probate Code § 16041). This trustee duties checklist turns each duty into something you can do this month.
 
-Here's the thing. A trustee who does these steps and writes them down rarely ends up in the Santa Clara County Probate Division. That matters, because the judge will look at your conduct first. Most family trustees I meet did nothing dishonest. They said yes because a parent asked, and they learned the rules by breaking one.
+Here's the thing. A trustee who does these steps and writes them down rarely ends up in the Santa Clara County probate court. That matters, because the judge will look at your conduct first. Most family trustees who get sued did nothing dishonest. They said yes because a parent asked, and they learned the rules by breaking one.
 
-Any duty broken is a breach of trust (Probate Code § 16400). So this list is also your defense file.
+Any duty broken is a [breach of trust](/library/trustee-breach-of-fiduciary-duty-and-removal-california/) (Probate Code § 16400). So this list is also your defense file.
 
-## Loyalty means the trust never pays for anything of yours
+## What is a trustee's duty of loyalty in California?
 
 Administer the trust "solely in the interest of the beneficiaries" (Probate Code § 16002). Do not use trust property for your own profit, and do not take part in any deal where your interest runs against a beneficiary (Probate Code § 16004). Any deal between you and a beneficiary that leaves you ahead is presumed a breach, and you must prove it was fair (Probate Code § 16004). Trust property stays separate and titled as trust property (Probate Code § 16009).
 
@@ -29,9 +29,9 @@ Administer the trust "solely in the interest of the beneficiaries" (Probate Code
 
 The mistake is the trustee's own mortgage paid from the trust account. Mixing money turns an honest trustee into a suspected one, because the records can no longer prove you were honest.
 
-## Prudence means a written reason for every asset you keep or sell
+## What does the duty of prudence require of a California trustee?
 
-Use the "reasonable care, skill, and caution" a prudent person would (Probate Code § 16040). Take control of the property, preserve it, make it productive, and collect and defend its claims (Probate Code § 16006, § 16007, § 16010, § 16011). Agents you hire must be chosen with care and watched (Probate Code § 16012, § 16052).
+Use the "reasonable care, skill, and caution" a prudent person would (Probate Code § 16040). Take control of the property, preserve it, make it productive, and collect and defend its claims (Probate Code §§ 16006, 16007, 16010, 16011). Agents you hire must be chosen with care and watched (Probate Code §§ 16012, 16052).
 
 Investments are judged by the prudent investor rule (Probate Code § 16046): the portfolio as a whole, not one stock (Probate Code § 16047). You must diversify "unless, under the circumstances, it is prudent not to do so" (Probate Code § 16048) and review the assets within a reasonable time after you take over (Probate Code § 16049). You are judged on what you knew when you decided, "not by hindsight" (Probate Code § 16051).
 
@@ -40,7 +40,7 @@ Investments are judged by the prudent investor rule (Probate Code § 16046): the
 
 The mistake is doing nothing because doing nothing feels safe. In Uzyel v. Kadisha the trustee held a large Qualcomm position and took no step to protect it while it fell. The trial court found he breached his duty by failing to diversify and by failing to protect the principal as it fell. The court of appeal treated the second as a separate breach. He was a skilled investor and you are held to the prudent-person standard, but two years of silence on a stock that is most of the trust is hard to explain under either.
 
-## Impartiality means the sibling in the house pays rent, or you have a written decision
+## What does a trustee's duty of impartiality mean for siblings?
 
 With two or more beneficiaries you must "deal impartially with them" (Probate Code § 16003). The document can loosen that. In Hearst v. Ganzi the will let the trustees favor the remainder beneficiaries, and the income beneficiaries lost for that reason. Even so, the court said the trustees could not treat them differently based on "animus, bad faith or other improper motives."
 
@@ -49,16 +49,16 @@ With two or more beneficiaries you must "deal impartially with them" (Probate Co
 
 The mistake is letting a brother live rent-free in the family house for three years because Mom would have wanted it. Mom's wishes are not a term of the trust (Probate Code § 16000). The other siblings will price that at market rent times 36 months, with interest (Probate Code § 16440).
 
-## Information means an accounting every year, whether anyone asks or not
+## How often does a trustee have to give an accounting in California?
 
-Keep the beneficiaries "reasonably informed" (Probate Code § 16060) and answer reasonable requests about their interest (Probate Code § 16061). Account at least yearly, at the end, and on a change of trustee, to every beneficiary entitled to a current distribution (Probate Code § 16062). The account shows receipts and disbursements, assets and liabilities, your pay, the agents you hired, and two required warnings (Probate Code § 16063). Ignore a written request for 60 days, with nothing sent in the prior six months, and the beneficiary can petition to compel (Probate Code § 17200). A trustee who "fails or declines to act" can be removed (Probate Code § 15642).
+Keep the beneficiaries "reasonably informed" (Probate Code § 16060) and answer reasonable requests about their interest (Probate Code § 16061). Account at least yearly, at the end, and on a change of trustee, to every beneficiary entitled to a current distribution (Probate Code § 16062). The account shows receipts and disbursements, assets and liabilities, your pay, the agents you hired, and two required warnings (Probate Code § 16063). Ignore a [beneficiary's written request](/library/beneficiary-demands-accounting-or-copy-of-trust-trustee-response/) for 60 days, with nothing sent in the prior six months, and the beneficiary can petition to compel (Probate Code § 17200). A trustee who "fails or declines to act" can be removed (Probate Code § 15642).
 
 - Send a short written update every quarter.
 - Send the accounting in the court's format with both warnings. One warning starts a three-year clock in your favor on every claim the account fairly discloses (Probate Code § 16460).
 
 The mistake is silence. Silence is the cheapest breach to commit and the most expensive to defend. Our guide to [preparing a trust accounting that holds up](/library/how-to-prepare-a-trust-accounting-california/) covers the format.
 
-## The trustee duties checklist for your first 60 days
+## What should a successor trustee do in the first 60 days?
 
 Of all the successor trustee duties California law imposes, four come due almost at once.
 
@@ -67,31 +67,31 @@ Of all the successor trustee duties California law imposes, four come due almost
 3. Inventory everything with values and insure the real estate (Probate Code § 16006).
 4. Calendar the annual accounting (Probate Code § 16062) and write your first memo on what the trust holds and what you plan to do with each asset.
 
-## The tools that protect a trustee who is doing it right
+## How can a California trustee protect against being sued?
 
-The duties of a trustee in California come with tools. Trustee responsibilities are the half everyone talks about; the protections are the half nobody mentions.
+The duties of a trustee in California come with tools. Trustee responsibilities are the half everyone talks about; the protections are the half nobody mentions. Our [for trustees](/for-trustees/) page collects them.
 
-### Write down every decision and the reason
+### Why should a trustee write down every decision?
 
 Prudence is judged at the time, not by hindsight (Probate Code § 16051). A dated one-page memo on why you kept the rental or sold the stock is worth more than a good outcome.
 
-### A notice of proposed action before a sale or a big distribution
+### What is a notice of proposed action?
 
 Before you sell the Palo Alto house or make a large distribution, mail a notice with the action, the reasons, and at least 45 days to object to every beneficiary who gets income now or would take principal if the trust ended today (Probate Code § 16502). No written objection in that window means no liability to any beneficiary for that action (Probate Code § 16503). It is not available for your own pay or your lawyer's fees (Probate Code § 16501).
 
-### A petition for instructions when the siblings split
+### When should a trustee file a petition for instructions?
 
-When the document is unclear or the beneficiaries disagree, ask the judge to instruct you (Probate Code § 17200). In Santa Clara County that petition goes to the Probate Division at 191 N. First Street in San Jose. Following the order is the best protection a trustee has.
+When the document is unclear or the beneficiaries disagree, ask the judge to instruct you (Probate Code § 17200). In Santa Clara County that petition goes to the probate court in San Jose. Following the order is the best protection a trustee has.
 
-### A lawyer for the parts you should not do alone
+### Can a trustee hire a lawyer and have the trust pay?
 
 You can hire a lawyer without asking anyone (Probate Code § 16247). The trust repays expenses properly incurred in the administration (Probate Code § 15684). It does not automatically cover a fight over your own conduct. Every fee can be reviewed when your account is settled and ordered repaid after a breach. Our article on [using trust funds to pay attorney fees](/library/can-a-trustee-use-trust-funds-to-pay-attorney-fees-california/) has the full rule.
 
-### The exculpation clause: what it never covers
+### What does an exculpation clause not cover?
 
 Many trusts say the trustee is not liable for good-faith mistakes. California honors that (Probate Code § 16461), with a floor. No clause can relieve a trustee of liability "for breach of trust committed intentionally, with gross negligence, in bad faith, or with reckless indifference to the interest of the beneficiary," or for any profit taken from a breach (Probate Code § 16461). Honest negligence is covered. The rest never is.
 
-## What to do next
+## What should you do next as a new trustee?
 
 1. Read the trust and every amendment, twice.
 2. Serve the notification by trustee and keep the proof of service.
@@ -102,7 +102,7 @@ Many trusts say the trustee is not liable for good-faith mistakes. California ho
 
 ### Is there an official trustee duties checklist form in California?
 
-No. The duties sit in the Probate Code, starting at section 16000, and the court hands out no form.
+No. The duties sit in the Probate Code, starting at Probate Code § 16000, and the court hands out no form.
 
 ### Do I have to hire a lawyer to be a trustee?
 
@@ -126,6 +126,6 @@ A trustee who breaches is chargeable with the loss with interest, any profit mad
 
 ## Talk to a trust litigation lawyer in San Jose
 
-Rothrock Legal represents trustees and beneficiaries in the Santa Clara County Superior Court's Probate Division at 191 N. First Street in San Jose, and in the San Mateo, Alameda, and San Francisco courts. If you are a family trustee in San Jose, Los Gatos, Cupertino, or anywhere in Silicon Valley, [request a consult](/request-a-consult/) and bring the trust, the statements, and your notes. We will tell you what is missing and what to fix first.
+Rothrock Legal advises family trustees and handles [trust disputes](/trust-litigation/) for trustees and beneficiaries in San Jose, Santa Clara County, and across the Bay Area. If you are a family trustee in San Jose, Los Gatos, Cupertino, or anywhere in Silicon Valley, [request a consult](/request-a-consult/) and bring the trust, the statements, and your notes. We will tell you what is missing and what to fix first.
 
 This article is general information about California law, not legal advice about your situation. Reading it does not create an attorney-client relationship with Rothrock Legal; that happens only when both sides sign an engagement letter. Deadlines depend on facts we have not seen and the law changes. Before you rely on any date here, confirm it with a lawyer.

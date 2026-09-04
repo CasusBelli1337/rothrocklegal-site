@@ -61,10 +61,11 @@ export const homeFaq: readonly FaqItem[] = [
       'tried, which is usually what gets it settled.',
   },
   {
-    question: 'Which courts do you appear in?',
+    question: 'Which courts hear these cases?',
     answer:
-      'Santa Clara County Superior Court in San Jose most often, plus San Mateo, Alameda, and ' +
-      'San Francisco Superior Courts. By video anywhere in California.',
+      'Santa Clara County Superior Court in San Jose for Santa Clara County families, and the ' +
+      'San Mateo, Alameda, and San Francisco Superior Courts for the rest of the Bay Area. We ' +
+      'meet by video anywhere in California.',
   },
   trusteeFeesFaq,
   trusteeAccountingFaq,
@@ -163,8 +164,8 @@ export const faqGroups: readonly FaqGroup[] = [
       {
         question: 'Do you take cases outside Santa Clara County?',
         answer:
-          'Yes, throughout the Bay Area: San Mateo, Alameda, and San Francisco Superior Courts ' +
-          'regularly, and elsewhere in California by video and travel when the case calls for it.',
+          'Yes, throughout the Bay Area: San Mateo, Alameda, and San Francisco counties, and ' +
+          'elsewhere in California by video and travel when the case calls for it.',
       },
     ],
   },

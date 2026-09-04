@@ -6,8 +6,16 @@
  * Any change happens here first, then in both copies. #seam:rothrock-intake-contract
  */
 
-/** 2 adds spokenText, lookup, resume (Phase 2). Servers answer clients of the same major version. */
-export const INTAKE_API_VERSION = 2 as const;
+/**
+ * 3 (2026-09-03): story first. The model reads the story before any document
+ * is asked for (`triage`), the evaluation runs after the upload and returns the
+ * people it found plus whether the amount at stake is still unknown, one
+ * upload slot replaces the per-document slots, and a submission whose names
+ * match the firm's conflict list is held for a lawyer's decision
+ * (`conflict-hold` / `declined`). 2 added spokenText, lookup, resume.
+ * Servers answer clients of the same major version.
+ */
+export const INTAKE_API_VERSION = 3 as const;
 
 /** The eight situations on the homepage plus "other". Keys match practice-area slugs. */
 export const SITUATIONS = [
@@ -60,17 +68,19 @@ export type Relationship =
   | "friend-or-caregiver"
   | "other";
 
+export type PartyRole =
+  | "decedent"
+  | "trustee"
+  | "executor"
+  | "beneficiary"
+  | "family"
+  | "caregiver"
+  | "lawyer"
+  | "other";
+
 export interface Party {
   name: string;
-  role:
-    | "decedent"
-    | "trustee"
-    | "executor"
-    | "beneficiary"
-    | "family"
-    | "caregiver"
-    | "lawyer"
-    | "other";
+  role: PartyRole;
   note?: string;
 }
 
@@ -91,7 +101,11 @@ export const FUNDING_OPTIONS = [
 ] as const;
 export type FundingOption = (typeof FUNDING_OPTIONS)[number];
 
-/** Everything the client enters before the AI evaluation. Every field optional until submit. */
+/**
+ * Everything the client enters. Every field is optional until submit. The
+ * v3 flow asks for the story first; `situations` and `parties` start as what
+ * the model read and become the client's own once confirmed or edited.
+ */
 export interface IntakeAnswers {
   contact: {
     fullName: string;
@@ -104,6 +118,8 @@ export interface IntakeAnswers {
   situations: SituationKey[];
   relationship?: Relationship;
   parties: Party[];
+  /** "Anything to add or correct?" under the people-involved list. */
+  partiesNote?: string;
   story: string; // typed or transcribed
   /**
    * Raw phrases the browser's speech recognition heard, appended with a space
@@ -112,7 +128,7 @@ export interface IntakeAnswers {
    */
   spokenText?: string;
   voiceNoteFileId?: string; // optional recorded audio
-  keyDates: {
+  keyDates?: {
     dateOfDeath?: string; // yyyy-mm-dd
     noticeReceived?: string;
     trustCopyReceived?: string;
@@ -123,18 +139,49 @@ export interface IntakeAnswers {
   funding?: FundingOption;
   urgencyNote?: string;
   desiredOutcome?: string;
-  /** Document slots the client said they do not have. */
-  missingDocuments: string[];
+  /** Document slots the client said they do not have (unused by the v3 screens; kept for older drafts). */
+  missingDocuments?: string[];
   acknowledgedDisclaimers: boolean;
 }
 
+/** The one upload slot the documents screen uses (v3). The microphone recording keeps its own. */
+export const DOCUMENTS_SLOT = "documents" as const;
+export const VOICE_NOTE_SLOT = "voice-note" as const;
+
 export interface IntakeFile {
   id: string;
-  slot: string; // document slot key or follow-up module id
+  slot: string; // DOCUMENTS_SLOT, VOICE_NOTE_SLOT, or a follow-up module id
   name: string;
   size: number;
   mimeType: string;
   uploadedAt: string;
+}
+
+/** One paper the model suggests the person look for, in plain words. */
+export interface DocumentAsk {
+  label: string;
+  why: string;
+}
+
+/**
+ * Pass 1 (`triage`): what the model read in the story alone, before any
+ * document is asked for. The client sees all of it and can change it.
+ */
+export interface StoryRead {
+  /** Pre-ticked on the "what is going on" screen. */
+  situations: SituationKey[];
+  /** One to three plain sentences restating the situation. Client-safe. */
+  whatWeUnderstood: string;
+  /** People the story names, with the role each seems to play. */
+  parties: Party[];
+  /** What to upload, tailored to the story. Three to eight items. */
+  documents: DocumentAsk[];
+}
+
+export interface TriageResponse {
+  /** `unavailable` = the model could not read the story; the site shows the manual screens. */
+  status: "reading" | "ready" | "unavailable";
+  storyRead?: StoryRead; // present when status is ready
 }
 
 /** Follow-up modules the evaluator may emit and the site must render. #seam:rothrock-intake-modules */
@@ -190,18 +237,36 @@ export type FollowUpModule =
 
 export type FollowUpAnswer = string | string[] | boolean | null;
 
+/**
+ * Pass 2 (`evaluate`): the model has read the story and every upload. The
+ * site shows `parties` for confirmation, asks the amount at stake only when
+ * `askValue` is true, then renders the modules. Internal findings never
+ * travel here.
+ */
 export interface EvaluationClientView {
   /** Plain-English, no legal advice: what we understood and what would help. */
   headline: string;
   whatWeUnderstood: string;
-  modules: FollowUpModule[]; // ≤ 8
+  /** Everyone found in the story and the documents: name and role only, never the internal note. */
+  parties: Party[];
+  /** True when the amount at stake could not be read from what was sent. */
+  askValue: boolean;
+  modules: FollowUpModule[]; // ≤ 6
 }
 
+/**
+ * `conflict-hold`: a name in the submission matched the firm's conflict list;
+ * a lawyer sees only the names until they decide. `declined`: the lawyer
+ * confirmed the conflict, the person was told, and the substance was deleted.
+ * The client is told only `submitted`, whatever the server holds.
+ */
 export type IntakeStatus =
   | "draft"
   | "evaluating"
   | "follow-up"
   | "submitted"
+  | "conflict-hold"
+  | "declined"
   | "reviewed";
 
 export interface IntakeSession {
@@ -273,6 +338,9 @@ export interface ResumeResponse {
   files: IntakeFile[];
   /** The screen the person was on when the link was sent, if known (a site step id). */
   step?: string;
+  /** What the model has already read, so the resumed screens need no second wait. */
+  storyRead?: StoryRead;
+  evaluation?: EvaluationClientView;
 }
 
 export interface ApiError {
@@ -287,7 +355,11 @@ export interface ApiError {
     | "server-error";
 }
 
-/** Document slots suggested per situation. Shown on the documents step. #seam:rothrock-intake-doc-slots */
+/**
+ * The document checklist the evaluator reasons over, and the site's fallback
+ * guidance (by situation) when the story could not be read.
+ * #seam:rothrock-intake-doc-slots
+ */
 export interface DocumentSlot {
   key: string;
   label: string;

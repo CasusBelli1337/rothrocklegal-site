@@ -12,7 +12,15 @@ imageAlt: Maroon cover card reading AI Glossary for Lawyers and Clients
 draft: false
 ---
 
-AI is a technical field with a lot of jargon. This glossary collects the terms that come up in legal work and explains each one in plain English. The list is alphabetical; use your browser's find command to jump to a term.
+This AI glossary for lawyers and clients defines the artificial intelligence terms that come up in legal work, in a sentence or two each, in plain English. The list is alphabetical; use your browser's find command to jump to a term.
+
+## How does AI show up in a trust or estate case?
+
+Three ways, mostly. A chatbot answers a legal question with a confident hallucination, so a deadline it gives you needs checking against our guide to [how long you have to contest a trust or will](/library/how-long-do-i-have-to-contest-a-trust-or-will-in-california/) or the [deadline wizard](/how-long-do-i-have/). Software sorts and reads documents: computer vision pulls the numbers off years of scanned bank statements, and anomaly detection flags the transfer that does not fit, which is the work behind a [financial elder abuse](/library/financial-elder-abuse-of-a-parent-california/) case. Classification and extraction also turn a box of statements into a [trust accounting](/library/how-to-prepare-a-trust-accounting-california/) a court can read.
+
+The third way is evidence. A parent's voicemail, text, or video is often the best proof in an [undue influence](/library/undue-influence-california-what-it-is-and-how-to-prove-it/) case, and deep fakes are why a court now asks who made a recording, on what device, and when. The terms below are the vocabulary for all of that.
+
+## What do the common AI terms mean?
 
 **Accuracy:** The percentage of an AI model’s predictions that are correct. It is a crucial metric for evaluating a model’s performance on tasks like document classification or predicting outcomes.
 
@@ -64,7 +72,7 @@ AI is a technical field with a lot of jargon. This glossary collects the terms t
 
 **Explainable AI (XAI):** A set of techniques and approaches aimed at making AI models more transparent, interpretable, and accountable by providing human-understandable explanations for their predictions or decisions. Explainable AI is crucial for building trust and ensuring fairness in AI applications.
 
-**Explainability vs. Interpretability:** While “Explainable AI” is included, distinguishing between explainability and interpretability could be beneficial. Interpretability refers to the extent to which a human can understand the cause of a decision, while explainability involves the model providing explanations for its decisions in human-understandable terms.
+**Explainability vs. Interpretability:** Interpretability is how far a human can understand the cause of a model's decision. Explainability is the model giving reasons for its decision in terms a human can follow.
 
 **Federated Learning:** A distributed machine learning approach that enables training models on decentralized data without the need for data sharing. Federated learning could allow AI models to learn from sensitive or confidential data across multiple organizations or jurisdictions while preserving privacy.
 
@@ -94,8 +102,6 @@ AI is a technical field with a lot of jargon. This glossary collects the terms t
 
 **KoboldCPP:** KoboldCpp is an easy-to-use AI text-generation software for GGML and GGUF models. It’s a single self contained distributable from Concedo, that builds off llama.cpp, and adds a versatile Kobold API endpoint, additional format support, Stable Diffusion image generation, backward compatibility, as well as a fancy UI with persistent stories, editing tools, save formats, memory, world info, author’s note, characters, scenarios and everything Kobold and Kobold Lite have to offer.
 
-**Silly Tavern:** An open-source front-end platform that provides a web-based interface for collaborative story writing and role-playing using AI language models.
-
 **Large Language Model (LLM):** A type of AI model trained on vast amounts of text data, enabling it to understand, generate, and reason with human language at an unprecedented scale. LLMs have shown promising results in AI tasks such as document summarization, question answering, and content analysis.
 
 **LangChain:** An open-source framework designed to assist in the development of applications with large language models (LLMs). It provides a standard interface for chains of prompts, allowing developers to focus on creating the application instead of worrying about the specific model implementations.
@@ -110,11 +116,11 @@ AI is a technical field with a lot of jargon. This glossary collects the terms t
 
 **Machine Learning:** A subset of AI that focuses on enabling computers to learn and improve from data without being explicitly programmed. Machine learning is the foundation of modern AI, allowing models to extract insights and make predictions from vast datasets.
 
-**Meta-Learning:** A subfield of machine learning focused on learning to learn, i.e., developing algorithms that can quickly adapt to new tasks or environments by leveraging past experiences. Meta-learning could help AI models rapidly generalize to new tasks or domains with limited training data.
+**Meta-Learning:** A subfield of machine learning focused on learning to learn, i.e., developing algorithms that can quickly adapt to new tasks or environments by drawing on past experiences. Meta-learning could help AI models rapidly generalize to new tasks or domains with limited training data.
 
 **Minimum:** The point in the loss function where the model’s predictions most closely match the ground truth in the training data. Finding this minimum is the goal of training AI models.
 
-**mov2mov:** An emerging concept in AI referring to the task of transforming an input video (mov) into a target video based on a given set of instructions or desired modifications, while preserving the general content and dynamics of the original video.
+**mov2mov:** An emerging concept in AI referring to the task of turning an input video (mov) into a target video based on a given set of instructions or desired modifications, while preserving the general content and dynamics of the original video.
 
 **Multi-Task Learning:** A branch of machine learning where the model is trained on multiple related tasks at the same time, using a shared representation. This can lead to improved learning efficiency and prediction accuracy for the tasks.
 
@@ -146,11 +152,13 @@ AI is a technical field with a lot of jargon. This glossary collects the terms t
 
 **Sandbox:** See Digital Sandbox.
 
-**Sampling Method:** In the context of generative models like Stable Diffusion, a sampling method refers to the algorithm used to generate new data points from the learned probability distribution. Examples include DPM++ 2M SDE Karras, Eular, and DDIM sampling methods, which differ in their trade-offs between generation quality and speed.
+**Sampling Method:** In the context of generative models like Stable Diffusion, a sampling method refers to the algorithm used to generate new data points from the learned probability distribution. Examples include DPM++ 2M SDE Karras, Euler, and DDIM sampling methods, which differ in their trade-offs between generation quality and speed.
 
-**Self-Supervised Learning:** A learning paradigm where the model learns to predict part of the input from other parts of the input, using a pretext task. It is a form of unsupervised learning that can leverage large amounts of unlabeled data effectively.
+**Self-Supervised Learning:** A learning paradigm where the model learns to predict part of the input from other parts of the input, using a pretext task. It is a form of unsupervised learning that can use large amounts of unlabeled data effectively.
 
 **Sentiment Analysis:** The process of using NLP to determine the emotional tone or opinion expressed in a piece of text. Sentiment analysis can be used to gauge public opinion on issues, analyze testimonies, or assess the tone of documents.
+
+**Silly Tavern:** An open-source front-end platform that provides a web-based interface for collaborative story writing and role-playing using AI language models.
 
 **Sharding:** The process of horizontally partitioning a large dataset across multiple distributed servers or machines. Sharding enables the storage and processing of massive datasets that exceed the capacity of a single machine, facilitating the training of large-scale AI models.
 
@@ -166,7 +174,7 @@ AI is a technical field with a lot of jargon. This glossary collects the terms t
 
 **Tensor Library:** A software library that provides efficient implementations of tensor operations and mathematical functions, optimized for performance on various hardware platforms (e.g., CPUs, GPUs, TPUs). Examples include PyTorch, TensorFlow, and MXNet.
 
-**Training Data:** The dataset used to train a machine learning model, typically consisting of input-output pairs. Training data may include labeled examples of documents, outcomes, or expert annotations.
+**Training Data:** The dataset used to train a machine learning model, typically consisting of input-output pairs. Training data may include labeled examples of documents, outcomes, or annotations by a reviewer who knows the subject.
 
 **Transfer Learning:** A machine learning technique where knowledge gained from solving one task is applied to a related task, enabling faster learning and improved performance with less data. Transfer learning can help adapt general AI models to specific domains or use cases.
 
@@ -174,7 +182,7 @@ AI is a technical field with a lot of jargon. This glossary collects the terms t
 
 **text-generation-webui:** The text-generation-webui is a highly popular web interface known for its extensive range of features and potent add-ons. It also enables GPU acceleration for enhanced performance.
 
-**txt2img:** A common functionality in generative AI models that takes a textual description as input and generates a corresponding image as output, leveraging the model’s learned associations between text and visual features.
+**txt2img:** A common functionality in generative AI models that takes a textual description as input and generates a corresponding image as output, using the model’s learned associations between text and visual features.
 
 **Unstructured Data:** Data that does not conform to a predefined structure or format, such as free-form text, images, or audio. Documents like contracts, filings, and memoranda are primarily unstructured, making AI essential for efficient analysis and insight extraction.
 
@@ -187,5 +195,9 @@ AI is a technical field with a lot of jargon. This glossary collects the terms t
 **Weights:** The learnable parameters of a machine learning model that determine the strength of connections between nodes in a neural network. During training, the model adjusts its weights to minimize the loss function and improve its predictions on tasks.
 
 **Zero-Shot Learning:** A learning paradigm where a model is trained to understand tasks or recognize objects during inference that it has never seen during training, relying on understanding the relationships between concepts.
+
+## Talk to a trust litigation lawyer in San Jose
+
+Rothrock Legal handles [trust and estate disputes](/trust-litigation/) for families in San Jose, Santa Clara County, and across the Bay Area. If a question about a trust, a will, or a trustee brought you here, [request a consult](/request-a-consult/) and bring the documents you have.
 
 This article is general information about the law, not legal advice about your situation. Reading it does not create an attorney-client relationship with Rothrock Legal; that happens only when both sides sign an engagement letter. The law changes, and how it applies depends on facts we have not seen. Before you rely on anything here, confirm it with a lawyer.

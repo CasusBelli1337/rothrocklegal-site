@@ -12,7 +12,7 @@ import { pageMetadata } from '@/lib/seo/metadata';
 const TITLE = 'Trust & Estate Litigation FAQ – Costs, Deadlines, Courts';
 const DESCRIPTION =
   'What it costs to contest a trust or will, how long you have, how long cases take, and which ' +
-  'courts we appear in. Plain-English answers from San Jose.';
+  'courts hear these cases. Plain-English answers from San Jose.';
 const PATH = '/faq/';
 
 export const metadata = pageMetadata({ title: TITLE, description: DESCRIPTION, path: PATH });
@@ -29,7 +29,7 @@ export default function FaqPage() {
               The questions people ask before they reach out.
             </h1>
             <p className="mt-6 text-lead text-ink-2">
-              Costs, deadlines, what the process looks like, and where we appear. If yours is not
+              Costs, deadlines, what the process looks like, and where cases are heard. If yours is not
               here, ask it in your consult request.
             </p>
           </div>

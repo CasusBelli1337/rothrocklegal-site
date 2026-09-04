@@ -44,8 +44,8 @@ export interface DeadlineCard {
 /** The card set is one slot, so a framing swaps all three clocks and the teaser together. */
 export interface DeadlineCards {
   cards: readonly [DeadlineCard, DeadlineCard, DeadlineCard];
-  /** The strip under the cards for the visitor who thinks it is already too late. */
-  teaser: { lead: string; body: string };
+  /** One line under the cards for the visitor who thinks it is already too late (Arthur, 2026-09-03: no body). */
+  teaser: { lead: string };
 }
 
 const DEADLINE_TITLE = 'Am I too late?';
@@ -87,13 +87,7 @@ const DEADLINE_CARDS: DeadlineCards = {
         'enforce it to the day.',
     },
   ],
-  teaser: {
-    lead: 'Think you might already be late? Talk to us anyway.',
-    body:
-      'Some clocks may never have started, because the notice was defective or never served. ' +
-      'Others run from the day you discovered the problem, not the day it happened. Only a lawyer ' +
-      'who has seen your documents can tell you which rules apply to you.',
-  },
+  teaser: { lead: 'Talk to us anyway to confirm – there are exceptions.' },
 };
 
 const TRUSTEE_DEADLINE_CARDS: DeadlineCards = {
@@ -136,13 +130,7 @@ const TRUSTEE_DEADLINE_CARDS: DeadlineCards = {
         'the clock runs from the day the beneficiary discovered the problem, or should have.',
     },
   ],
-  teaser: {
-    lead: 'Already been accused? The deadlines still matter.',
-    body:
-      'When a beneficiary petitions to remove you, or to make you repay the trust, the first ' +
-      'questions are what you sent, to whom, and when. We represent beneficiaries as well, so we ' +
-      'know exactly what they look for in a notice.',
-  },
+  teaser: { lead: 'Already been accused? The deadlines still matter.' },
 };
 
 const HOW_STEP_1 =

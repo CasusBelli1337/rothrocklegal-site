@@ -62,8 +62,8 @@ export const trustLitigation: PracticeArea = {
     {
       question: "Which court hears these cases in Santa Clara County?",
       answer:
-        "The Probate Division of Santa Clara County Superior Court at 191 N. First Street in San " +
-        "Jose. Cases from the Peninsula and East Bay go to the San Mateo, Alameda, or San Francisco " +
+        "Santa Clara County Superior Court in San Jose, which hears the county's probate cases. " +
+        "Cases from the Peninsula and East Bay go to the San Mateo, Alameda, or San Francisco " +
         "Superior Courts.",
     },
     {

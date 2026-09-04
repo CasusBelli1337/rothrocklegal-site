@@ -15,19 +15,14 @@ export function WherePractice() {
         <SectionHeading
           eyebrow="Service area"
           title="San Jose first. The whole Bay Area when the case calls for it."
-          lead="We meet by video anywhere in California and appear in person in the courtrooms below."
+          lead="We meet by video anywhere in California. Bay Area trust and estate cases are heard in the courts below."
         />
         <div className="mt-10 grid gap-8 md:grid-cols-2 lg:gap-16">
           <div>
-            <h3 className="font-sans text-h4 text-ink">Courts we appear in</h3>
+            <h3 className="font-sans text-h4 text-ink">Where cases are heard</h3>
             <ul className="mt-4 space-y-3 text-body text-ink-2">
               {courts.map((court) => (
-                <li key={court.name}>
-                  {court.name}
-                  {court.address && (
-                    <span className="block text-small text-ink-3">{court.address}</span>
-                  )}
-                </li>
+                <li key={court.name}>{court.name}</li>
               ))}
             </ul>
           </div>

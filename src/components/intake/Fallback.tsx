@@ -1,10 +1,10 @@
 import { MailIcon } from '@/components/icons';
 import { site } from '@/config/site';
 
-/** Shown when the intake API cannot be reached: a plain notice and the email address, so the page never dead-ends. */
+/** Shown inside the panel when the intake API cannot be reached: a plain notice and the email address, so the page never dead-ends. */
 export function Fallback() {
   return (
-    <div className="border border-line bg-white p-6 sm:p-10">
+    <div className="mt-4 pb-6">
       <div className="wizard-banner" role="status">
         <p className="text-body text-ink">
           Our online intake is not available right now. Please email us instead. We read every

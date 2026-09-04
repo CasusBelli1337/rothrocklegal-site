@@ -1,13 +1,14 @@
-import type { EvaluationClientView, IntakeStatus, ResumeResponse } from './contract';
+import type { IntakeStatus, ResumeResponse } from './contract';
+import { evaluationKey, storyKey } from './readings';
 import {
-  STEP_ORDER,
   emptyAnswers,
   emptyState,
   mergeAnswers,
-  validateStep,
+  visibleSteps,
   type IntakeState,
   type StepId,
 } from './state';
+import { validateStep } from './validate';
 
 /**
  * "Continue by email": the pure parts. The emailed link carries a token; the
@@ -23,55 +24,52 @@ export function readResumeToken(search: string): string | null {
   return token ? token : null;
 }
 
-/** The numbered screens a draft can land on; follow-up and done are chosen by status instead. */
-const RESUMABLE_STEPS: readonly StepId[] = [
-  'contact',
-  'situations',
-  'parties',
-  'story',
-  'documents',
-  'scope',
-  'review',
-];
-
-function isResumableStep(step: string | undefined): step is StepId {
-  return (RESUMABLE_STEPS as readonly string[]).includes(step ?? '');
+/** The numbered screens a draft can land on (follow-up only when the evaluation left questions). */
+function resumableSteps(state: IntakeState): readonly StepId[] {
+  return visibleSteps(state).filter((step) => step !== 'start' && step !== 'done');
 }
 
 /** The first numbered screen whose required answers are missing; review when nothing is. */
 export function firstIncompleteStep(state: IntakeState): StepId {
-  return RESUMABLE_STEPS.find((step) => validateStep(step, state) !== null) ?? 'review';
+  return resumableSteps(state).find((step) => validateStep(step, state) !== null) ?? 'review';
 }
 
+const FINISHED: readonly IntakeStatus[] = ['submitted', 'conflict-hold', 'declined', 'reviewed'];
+
 /**
- * Where a resumed request opens. Status wins for anything past the review;
- * a draft opens on the earlier of the screen the server remembers and the
- * first screen with a missing answer, so nothing required is skipped.
+ * Where a resumed request opens. Anything already sent opens on the done
+ * screen; a request still in progress opens on the earlier of the screen the
+ * server remembers and the first screen with a missing answer, so nothing
+ * required is skipped. The model passes re-run on their own screens if needed.
  */
 export function resumeStep(status: IntakeStatus, state: IntakeState, serverStep?: string): StepId {
-  if (status === 'submitted' || status === 'reviewed') return 'done';
-  if (status === 'follow-up') return 'follow-up';
-  if (status === 'evaluating') return 'review';
+  if (FINISHED.includes(status)) return 'done';
+  const steps = resumableSteps(state);
   const incomplete = firstIncompleteStep(state);
-  if (!isResumableStep(serverStep)) return incomplete;
-  return STEP_ORDER.indexOf(serverStep) < STEP_ORDER.indexOf(incomplete) ? serverStep : incomplete;
+  const remembered = steps.find((step) => step === serverStep);
+  if (!remembered) return incomplete;
+  return steps.indexOf(remembered) < steps.indexOf(incomplete) ? remembered : incomplete;
 }
 
 /** The whole flow state from the server's answer; the person already ticked the three boxes once. */
-export function stateFromResume(
-  response: ResumeResponse,
-  evaluation: EvaluationClientView | null = null,
-): IntakeState {
+export function stateFromResume(response: ResumeResponse): IntakeState {
   const answers = mergeAnswers(emptyAnswers(), response.answers ?? {});
   const draft: IntakeState = {
     ...emptyState(),
     session: response.session,
+    startTile: 2,
     acks: [true, true, true],
     answers: { ...answers, acknowledgedDisclaimers: true },
     files: Array.isArray(response.files) ? response.files : [],
-    evaluation,
+    storyRead: response.storyRead ?? null,
+    evaluation: response.evaluation ?? null,
   };
-  return { ...draft, step: resumeStep(response.session.status, draft, response.step) };
+  const keyed: IntakeState = {
+    ...draft,
+    storyReadFor: draft.storyRead ? storyKey(draft) : null,
+    evaluationFor: draft.evaluation ? evaluationKey(draft) : null,
+  };
+  return { ...keyed, step: resumeStep(response.session.status, keyed, response.step) };
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {

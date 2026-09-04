@@ -13,7 +13,7 @@ export const gerryLin: TeamMember = {
   slug: 'gerry-lin',
   name: 'Gerry Lin',
   title: 'Associate Attorney',
-  barStatus: 'Licensed in California, State Bar #366572 (2025)',
+  barStatus: 'Licensed in California, State Bar #366572',
   barNumber: '366572',
   focus: 'Motions, discovery, and cite-checked briefs',
   // Bio paragraph 1: cite-checks and fact-checks every brief before it is filed.

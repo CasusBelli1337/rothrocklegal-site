@@ -164,6 +164,8 @@ interface CheckboxRowProps {
   children: React.ReactNode;
   /** Card-style row (start-screen acknowledgments) instead of an inline checkbox. */
   card?: boolean;
+  /** Tighter padding and `text-small`, for a card that must fit a laptop screen with two others. */
+  dense?: boolean;
   className?: string;
 }
 
@@ -173,15 +175,16 @@ export function CheckboxRow({
   onChange,
   children,
   card,
+  dense,
   className = '',
 }: CheckboxRowProps) {
   const frame = card
-    ? `flex cursor-pointer gap-3 border bg-white p-4 transition-colors ${checked ? 'border-maroon-700 bg-sand' : 'border-line-strong hover:border-maroon-500'}`
+    ? `flex cursor-pointer gap-3 border bg-white ${dense ? 'p-3' : 'p-4'} transition-colors ${checked ? 'border-maroon-700 bg-sand' : 'border-line-strong hover:border-maroon-500'}`
     : 'inline-flex cursor-pointer items-center gap-2 py-2';
   return (
     <label
       htmlFor={id}
-      className={`${frame} ${className} text-body text-ink has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-maroon-700`}
+      className={`${frame} ${className} ${dense ? 'text-small' : 'text-body'} text-ink has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-maroon-700`}
     >
       <input
         id={id}

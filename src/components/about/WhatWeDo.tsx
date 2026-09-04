@@ -26,9 +26,8 @@ export function WhatWeDo() {
             We contest trusts and wills, prove undue influence and lack of capacity, remove and
             surcharge trustees and executors who break the rules, force accountings, recover
             property that was moved out of a trust or estate under Probate Code section 850, and
-            stop financial elder abuse. Most of it is heard in the Santa Clara County Superior
-            Court&rsquo;s Probate Division in San Jose, and we regularly appear in the San Mateo,
-            Alameda, and San Francisco Superior Courts.
+            stop financial elder abuse. We handle these cases in San Jose and Santa Clara County
+            and across the Bay Area, in San Mateo, Alameda, and San Francisco counties.
           </p>
           <p className="mt-4 max-w-[64ch] text-body-lg text-ink-2">
             We work both sides of the table. A{' '}

@@ -1,21 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { COUNTIES, LOOKUP_CARD } from '@/lib/intake/copy';
+import { CONTACT_COPY, LOOKUP_CARD } from '@/lib/intake/copy';
 import { normalizeEmail } from '@/lib/intake/resume';
-import { validateStep } from '@/lib/intake/state';
 import { useLookup } from '@/lib/intake/use-lookup';
+import { validateStep } from '@/lib/intake/validate';
 import { ChoiceCards } from './ChoiceCards';
-import { Field, SelectInput, TextInput } from './FormFields';
+import { Field, TextInput, hintId } from './FormFields';
 import { StepFrame, StepNav } from './StepFrame';
 import type { StepProps } from './step-props';
-
-const COUNTY_OPTIONS = COUNTIES.map((county) => ({ value: county, label: county }));
-
-const REPLY_OPTIONS = [
-  { value: 'email', label: 'Email (we reply fastest this way)' },
-  { value: 'phone', label: 'Phone call' },
-] as const;
 
 /** The same card whether or not a request exists; only the inbox learns which (see LOOKUP_CARD). */
 function LookupCard({ onDismiss }: { onDismiss(): void }) {
@@ -34,7 +27,7 @@ function LookupCard({ onDismiss }: { onDismiss(): void }) {
   );
 }
 
-/** Step 1: name, email (with the "started before" check), phone, city and county, reply preference. */
+/** Step 1: name and email (with the "started before" check), then how to reply and a phone number. */
 export function StepContact({ intake }: StepProps) {
   const { contact } = intake.state.answers;
   const set = (patch: Partial<typeof contact>) => intake.patchAnswers({ contact: patch });
@@ -62,7 +55,7 @@ export function StepContact({ intake }: StepProps) {
       onSubmit={() => void submit()}
       footer={<StepNav intake={intake} busy={waiting || intake.busy} />}
     >
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2">
         <Field id="contact-name" label="Your full name">
           <TextInput
             id="contact-name"
@@ -71,11 +64,7 @@ export function StepContact({ intake }: StepProps) {
             autoComplete="name"
           />
         </Field>
-        <Field
-          id="contact-email"
-          label="Email"
-          hint="We reply here. It is also how you can come back to this request from another device."
-        >
+        <Field id="contact-email" label="Email" hint={CONTACT_COPY.emailHint}>
           <TextInput
             id="contact-email"
             type="email"
@@ -83,12 +72,20 @@ export function StepContact({ intake }: StepProps) {
             onChange={(email) => set({ email })}
             onBlur={() => void lookup.check(contact.email)}
             autoComplete="email"
-            describedBy="contact-email-hint"
+            describedBy={hintId('contact-email')}
           />
         </Field>
       </div>
       {showCard && <LookupCard onDismiss={lookup.dismiss} />}
-      <div className="mt-5 grid gap-5 sm:grid-cols-2">
+      <div className="mt-5 grid gap-4 sm:grid-cols-2">
+        <ChoiceCards
+          name="contact-reply"
+          legend={CONTACT_COPY.replyLegend}
+          options={CONTACT_COPY.replyOptions}
+          value={contact.replyBy}
+          onChange={(replyBy) => set({ replyBy })}
+          columns={2}
+        />
         <Field id="contact-phone" label="Phone" optional>
           <TextInput
             id="contact-phone"
@@ -98,39 +95,6 @@ export function StepContact({ intake }: StepProps) {
             autoComplete="tel"
           />
         </Field>
-        <Field id="contact-city" label="City" optional>
-          <TextInput
-            id="contact-city"
-            value={contact.city ?? ''}
-            onChange={(city) => set({ city: city || undefined })}
-            autoComplete="address-level2"
-          />
-        </Field>
-        <Field
-          id="contact-county"
-          label="County"
-          optional
-          hint="Where the person lived, if you know it."
-        >
-          <SelectInput
-            id="contact-county"
-            value={(contact.county as (typeof COUNTIES)[number] | undefined) ?? ''}
-            onChange={(county) => set({ county: county || undefined })}
-            options={COUNTY_OPTIONS}
-            placeholder="Choose a county"
-            describedBy="contact-county-hint"
-          />
-        </Field>
-      </div>
-      <div className="mt-6">
-        <ChoiceCards
-          name="contact-reply"
-          legend="How should we reply?"
-          options={REPLY_OPTIONS}
-          value={contact.replyBy}
-          onChange={(replyBy) => set({ replyBy })}
-          columns={2}
-        />
       </div>
     </StepFrame>
   );

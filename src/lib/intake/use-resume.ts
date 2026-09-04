@@ -1,8 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { getEvaluation, resumeIntake, type Session } from './api';
-import type { EvaluationClientView, IntakeStatus } from './contract';
+import { resumeIntake } from './api';
 import { RESUME_PARAM, isResumeResponse, readResumeToken, stateFromResume } from './resume';
 import type { StepId } from './state';
 import type { IntakeController } from './use-intake';
@@ -20,23 +19,11 @@ function stripResumeToken(): void {
   window.history.replaceState(window.history.state, '', url.toString());
 }
 
-/** The follow-up screen needs the evaluation's modules; the resume answer does not carry them. */
-async function evaluationFor(
-  session: Session,
-  status: IntakeStatus,
-): Promise<EvaluationClientView | null> {
-  if (status !== 'follow-up') return null;
-  try {
-    return (await getEvaluation(session)).evaluation ?? null;
-  } catch {
-    return null;
-  }
-}
-
 /**
  * Handles `?resume=<token>` on /request-a-consult/: exchanges it once, after
- * hydration, and replaces the whole flow with the earlier request. The
- * "welcome back" line stays until the person moves to another screen.
+ * hydration, and replaces the whole flow with the earlier request (story read
+ * and evaluation included, so no screen waits twice). The "welcome back" line
+ * stays until the person moves to another screen.
  */
 export function useResume(intake: IntakeController): ResumeController {
   const [phase, setPhase] = useState<ResumePhase>('idle');
@@ -50,8 +37,7 @@ export function useResume(intake: IntakeController): ResumeController {
       try {
         const response = await resumeIntake(token);
         if (!isResumeResponse(response)) throw new Error('unexpected resume shape');
-        const evaluation = await evaluationFor(response.session, response.session.status);
-        const next = stateFromResume(response, evaluation);
+        const next = stateFromResume(response);
         restore(next);
         setRestoredAt(next.step);
         setPhase('restored');

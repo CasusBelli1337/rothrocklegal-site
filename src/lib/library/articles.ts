@@ -4,6 +4,7 @@ import limits from '@/config/seo-limits.json';
 import { site } from '@/config/site';
 import { getTeamMember } from '@/config/team';
 import { parseBool, parseFrontmatter, parseList, requireKey } from '@/lib/frontmatter';
+import { enrichLegalCites } from '@/lib/legal-cites';
 import { byNewest } from '@/lib/library/dates';
 import { extractHeadings, renderMarkdown, stripMarkdown } from '@/lib/markdown';
 import { FAQ_HEADING, extractFaq, searchableText, withoutFaqBody } from '@/lib/markdown-sections';
@@ -133,9 +134,11 @@ function loadArticle(fileName: string): LibraryArticle {
   const visible = withoutFaqBody(body);
   const toc = extractHeadings(visible);
   const faqHeading = toc.find((h) => h.level === 2 && FAQ_HEADING.test(h.text));
-  const html = renderMarkdown(visible, {
-    linkPrefix: process.env.NEXT_PUBLIC_BASE_PATH ?? '',
-  });
+  // Statute links and case italics are added here, over HTML, so the plain-text
+  // surfaces built from the markdown (TOC, FAQ answers, search index) never carry them.
+  const html = enrichLegalCites(
+    renderMarkdown(visible, { linkPrefix: process.env.NEXT_PUBLIC_BASE_PATH ?? '' }),
+  );
   const faq = extractFaq(body);
   if (faqHeading && faq.length === 0) fail(slug, 'FAQ section has no ### questions');
   const wordCount = stripMarkdown(body).split(/\s+/).filter(Boolean).length;

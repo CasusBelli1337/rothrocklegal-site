@@ -3,7 +3,7 @@
 import { useCallback, useReducer, useRef } from 'react';
 import { lookupEmail, type Session } from './api';
 import { LOOKUP_IDLE, lookupReducer, normalizeEmail, type LookupState } from './resume';
-import { isValidEmail } from './state';
+import { isValidEmail } from './validate';
 
 export interface LookupController extends LookupState {
   /**

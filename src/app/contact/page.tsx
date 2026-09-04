@@ -43,15 +43,10 @@ export default function ContactPage() {
             </div>
           </div>
           <div className="lg:col-span-5">
-            <h3 className="eyebrow">Courts we appear in</h3>
+            <h3 className="eyebrow">Where cases are heard</h3>
             <ul className="mt-4 space-y-3 text-body text-ink-2">
               {courts.map((court) => (
-                <li key={court.name}>
-                  {court.name}
-                  {court.address && (
-                    <span className="block text-small text-ink-3">{court.address}</span>
-                  )}
-                </li>
+                <li key={court.name}>{court.name}</li>
               ))}
             </ul>
             <p className="mt-6 text-small text-ink-3">{site.office.appointments}</p>

@@ -40,6 +40,18 @@ public/images/** ──────┘   deadline rules,       JSON-LD, metadata
    `llms.txt`, and `library/index.json` as plain files. `scripts/check-links.mjs`
    and `scripts/check-seo.mjs` run over `out/` as gates.
 
+## The consult flow
+
+`src/components/intake/` is the UI (one `Step*` screen per step, `StepFrame`
+with the sticky action bar, `IntakeFlow` as the panel) and `src/lib/intake/`
+the logic: `state.ts` (the step order, with `follow-up` visible only when the
+evaluation left questions), `validate.ts`, `readings.ts` (the two model passes,
+keyed to what they read so no wait repeats), `use-triage.ts` and
+`use-evaluation.ts` (the polls), `scroll.ts` (the panel comes under the header
+on every screen change), `resume.ts` (continue by email), and `copy.ts`. The
+wire shapes are `contract.ts`, copied verbatim from the intake module. CLAUDE.md
+"Consult flow (intake v3)" has the step-by-step.
+
 ## The deadline wizard
 
 `src/components/wizard/` is the UI (steps config, state in `localStorage`,

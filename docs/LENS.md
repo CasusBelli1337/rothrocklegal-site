@@ -69,7 +69,7 @@ Every framed variant keeps one clause acknowledging the other side.
 
 Only in the Armory editor preview (`EDITOR_PREVIEW=1` sets
 `NEXT_PUBLIC_PREVIEW_TOOLS=1` in `next.config.mjs`), the root layout mounts
-`PreviewLensSwitch`: a pill bottom-right with Neutral / Beneficiary / Trustee
+`PreviewLensSwitch`: a pill at the bottom centre (moved from bottom-right on 2026-09-03 so it never covers the consult flow's sticky action bar) with Neutral / Beneficiary / Trustee
 and Reset. A lens button sets the score to 0 / −3 / +3 through the same store
 call as the escape hatch; Reset clears `rl-lens` and the landing flag. The
 production export has no trace of it (`check-lens.mjs` asserts this).

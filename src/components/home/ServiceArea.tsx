@@ -17,9 +17,9 @@ export function ServiceArea() {
             title="San Jose first. The whole Bay Area when the case calls for it."
           />
           <p className="mt-6 max-w-[62ch] text-body-lg text-ink-2">
-            We show up in person when it counts. Most of our cases are in Santa Clara County
-            Superior Court at 191 N. First Street, and we regularly appear in San Mateo, Alameda,
-            and San Francisco Superior Courts.
+            We show up in person when it counts. We handle trust and estate cases in Santa Clara
+            County Superior Court in San Jose and across the Bay Area, in San Mateo, Alameda, and
+            San Francisco counties.
           </p>
           <div className="mt-8">
             <Button variant="secondary" href="/service-areas/">

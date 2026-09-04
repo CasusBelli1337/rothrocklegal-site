@@ -10,14 +10,14 @@ primaryKeyword: trust accounting in California
 secondaryKeywords: how to get a copy of a trust, trustee refuses to give accounting, beneficiary rights to trust accounting, Probate Code 16061.7 notice, Probate Code 17200 petition
 image: /images/library/trustee-wont-give-accounting-or-copy-of-trust-california.webp
 imageAlt: A sealed envelope labeled Trust on a kitchen table next to a dated, signed letter asking the trustee for an accounting
-draft: true
+draft: false
 ---
 
 The short answer is yes, you are entitled to all of it. After a parent dies with a living trust, every beneficiary gets a formal notice from the trustee within 60 days, a true and complete copy of the trust on request, and an accounting at least once a year. A trust accounting in California is a legal duty, not a favor (Probate Code § 16062). If you ask in writing and the trustee stalls for 60 days, the probate court can order it (Probate Code § 17200).
 
 Here's the thing most families in Silicon Valley get wrong. They ask by phone, nicely, for months. A phone call starts nothing. A dated letter starts a 60-day clock that ends in front of a judge.
 
-## What the trustee owes you, and when
+## What does a trustee have to give beneficiaries in California?
 
 The trustee "has a duty to keep the beneficiaries of the trust reasonably informed of the trust and its administration" (Probate Code § 16060). Beneficiary rights to trust accounting, information, and a copy of the document all hang off that sentence.
 
@@ -28,11 +28,11 @@ The trustee "has a duty to keep the beneficiaries of the trust reasonably inform
 | Information about the administration  | On reasonable request                                              | Beneficiaries                                     | Probate Code § 16061   |
 | A full accounting                     | At least yearly, when the trust ends, and when the trustee changes | Beneficiaries entitled to income or principal now | Probate Code § 16062   |
 
-The notice must tell you that you can ask for a copy of the trust (Probate Code § 16061.7(g)(5)), so the trustee's own letter is your invitation. And "heir" is a legal word: anyone who would inherit under state law if there were no will or trust (Probate Code § 44). So if you were cut out of the trust, you still get the notice and the copy.
+The notice must tell you that you can ask for a copy of the trust (Probate Code § 16061.7(g)(5)), so the trustee's own letter is your invitation. And "heir" is a legal word: anyone who would inherit under state law if there were no will or trust (Probate Code § 44). So if you were cut out of the trust, you still get the notice and the copy. Our guide to [the notification by trustee](/library/how-to-serve-notification-by-trustee-16061-7/) shows what a proper notice contains.
 
 One exception: a living trust signed before July 1, 1987 is exempt from the yearly accounting duty (Probate Code § 16062(b)), though the duty to keep you informed still applies.
 
-## What a real trust accounting in California contains
+## What must a trust accounting in California include?
 
 A spreadsheet titled "what's left" is not an accounting. An account must contain six things (Probate Code § 16063):
 
@@ -40,12 +40,12 @@ A spreadsheet titled "what's left" is not an accounting. An account must contain
 2. The trust's assets and liabilities at the end of the period.
 3. The trustee's compensation.
 4. The agents the trustee hired, their relationship to the trustee, and their pay.
-5. A statement that you may petition the court under Section 17200 to review the account and the trustee's acts.
+5. A statement that you may petition the court under Probate Code section 17200 to review the account and the trustee's acts.
 6. A warning that claims for breach of trust are cut off three years after you receive an account or report disclosing the facts.
 
-Read the last two again. A real accounting must tell you how to challenge it and warn you that a clock is running. Paper that does neither is not the accounting the law requires, though it may still have started the three-year clock covered below.
+Read the last two again. A real accounting must tell you how to challenge it and warn you that a clock is running. Paper that does neither is not the accounting the law requires, though it may still have started the three-year clock covered below. Our guide to [how a trust accounting is prepared](/library/how-to-prepare-a-trust-accounting-california/) shows the court's format, so you can compare it with what you got.
 
-## How to ask: the letter that starts the 60-day clock
+## How do you demand a trust accounting from a trustee?
 
 The court can order an accounting when the trustee "has failed to submit a requested account within 60 days after written request of the beneficiary" and no account was made in the six months before the request (Probate Code § 17200(b)(7)). Information requests work the same way. So put it in writing, date it, and keep proof of mailing.
 
@@ -55,20 +55,22 @@ Here is the paragraph that does the work:
 
 Send it to the trustee's address on the notice and to the trustee's lawyer, if one has surfaced. The date on the letter is day one. Then wait the 60 days without calling to argue.
 
-## What the probate court in San Jose can do
+If you are the trustee who received a letter like this, our guide to [how a trustee should respond to a demand for an accounting](/library/beneficiary-demands-accounting-or-copy-of-trust-trustee-response/) is for you.
 
-Trust disputes for Santa Clara County are heard by the Superior Court's Probate Division at 191 N. First Street in San Jose. The tool is a Probate Code 17200 petition, which covers "the internal affairs of the trust" (Probate Code § 17200(a)). When a trustee refuses to give accounting records, the petition asks for some or all of these:
+## What can the court do if the trustee refuses to account?
+
+Trust disputes for Santa Clara County are heard by the probate court in San Jose. The tool is a Probate Code 17200 petition, which covers "the internal affairs of the trust" (Probate Code § 17200(a)). When a trustee refuses to give accounting records, the petition asks for some or all of these:
 
 1. An order compelling a copy of the trust (Probate Code § 17200(b)(7)(A)).
 2. An order compelling the information or accounting you requested (Probate Code § 17200(b)(7)(B), (C)).
 3. Removal of the trustee; grounds include breach of trust and a trustee who "fails or declines to act" (Probate Code §§ 17200(b)(10), 15642(b)).
 4. Redress for a breach "by any available remedy" (Probate Code § 17200(b)(12)).
 
-Refusing to account is a breach, not a paperwork lapse. A violation of any duty the trustee owes you is a breach of trust (Probate Code § 16400), and the remedies include an order to perform, removal, reduced fees, and a temporary trustee (Probate Code § 16420).
+Refusing to account is a breach, not a paperwork lapse, and it is the heart of most [trust accounting disputes](/trust-accounting-disputes/). A violation of any duty the trustee owes you is a breach of trust (Probate Code § 16400), and the remedies include an order to perform, removal, reduced fees, and a temporary trustee (Probate Code § 16420).
 
 Silence is also evidence. A trustee who spends a year dodging a request for the statements from the Cupertino house sale has told the court something about those statements. And a trustee who never served the notice "shall be responsible for all damages, attorney's fees, and costs caused by the failure" unless the trustee made a reasonably diligent effort to comply (Probate Code § 16061.9).
 
-## The trap: paperwork you already have may have started a three-year clock
+## Could paperwork you already received have started a three-year clock?
 
 Here's the part that surprises people. A claim against a trustee for breach of trust is barred three years after you receive "an interim or final account in writing, or other written report, that adequately discloses the existence of a claim" (Probate Code § 16460). If nothing you received disclosed it, the three years run from when you discovered, or reasonably should have discovered, the problem.
 
@@ -78,7 +80,7 @@ The contest clock does not wait for the document either. The notice with the bol
 
 Filing late is worse than filing without the document: in Meiri v. Shamtoubi a contest filed months after the deadline was treated as one without probable cause, and the daughter lost her entire inheritance under the no-contest clause. The [deadline wizard](/how-long-do-i-have/) gives you the date; our [guide to contest deadlines](/library/how-long-do-i-have-to-contest-a-trust-or-will-in-california/) covers the exceptions.
 
-## Key deadlines
+## What are the deadlines when a trustee will not give an accounting?
 
 | Event                                            | Time                                                                                         | Rule                   |
 | ------------------------------------------------ | -------------------------------------------------------------------------------------------- | ---------------------- |
@@ -87,7 +89,7 @@ Filing late is worse than filing without the document: in Meiri v. Shamtoubi a c
 | The notice with the bold warning was served      | 120 days to contest, or 60 days from delivery of the trust copy inside that window, if later | Probate Code § 16061.8 |
 | You received a written report disclosing a claim | 3 years to sue for breach of trust; otherwise 3 years from discovery                         | Probate Code § 16460   |
 
-## What to do next
+## What should you do next?
 
 1. Find the trustee's notice. Note the mailing date and whether the 120-day warning is in bold.
 2. Send the demand letter above today, by certified mail and email. Save the receipts.
@@ -123,6 +125,6 @@ Usually not. While the trust can be revoked and the person who can revoke it is 
 
 ## Talk to a trust litigation lawyer in San Jose
 
-Rothrock Legal litigates trust and estate disputes in the Santa Clara County Superior Court's Probate Division at 191 N. First Street in San Jose, and in the San Mateo, Alameda, and San Francisco courts. If a trustee has gone quiet on you, [contact us](/contact/) and bring the notice and your letters. We will tell you what you are owed, what has already started a clock, and whether it is time to file.
+Rothrock Legal handles trust accounting disputes and petitions to compel an accounting for beneficiaries in San Jose, Santa Clara County, and across the Bay Area. If a trustee has gone quiet on you, [request a consult](/request-a-consult/) and bring the notice and your letters. We will tell you what you are owed, what has already started a clock, and whether it is time to file.
 
 This article is general information about California law, not legal advice about your situation. Reading it does not create an attorney-client relationship with Rothrock Legal; that happens only when both sides sign an engagement letter. Deadlines depend on facts we have not seen and the law changes. Before you rely on any date here, confirm it with a lawyer.

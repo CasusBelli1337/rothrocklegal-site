@@ -14,7 +14,7 @@ export const jonathanJoannides: TeamMember = {
   slug: 'jonathan-joannides',
   name: 'Jonathan "JJ" Joannides',
   title: 'Of Counsel',
-  barStatus: 'Licensed in California, State Bar #311260 (2016)',
+  barStatus: 'Licensed in California, State Bar #311260',
   barNumber: '311260',
   focus: 'Depositions, hearings, and motion practice',
   // Bio paragraph 2: USMC infantry officer and captain; Wilson Sonsini 2016 to 2020; Fenwick & West 2022 to 2024.
@@ -28,7 +28,7 @@ export const jonathanJoannides: TeamMember = {
     'Jonathan Joannides, JJ to everyone who works with him, is the lawyer who takes the ' +
       "depositions and argues the hearings in the firm's trust and estate cases. Arthur sets " +
       'the strategy; JJ is the one across the table from the witness and at the lectern in ' +
-      'Santa Clara County Superior Court. He also works on discovery disputes, oppositions, ' +
+      'court. He also works on discovery disputes, oppositions, ' +
       'and replies, including sanctions motions and protective orders.',
     'Before law school he served nearly ten years in the U.S. Marine Corps as an infantry ' +
       'officer and captain. He led infantry platoons in combat in Iraq, ran counter-piracy ' +

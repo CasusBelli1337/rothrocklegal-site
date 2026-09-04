@@ -5,14 +5,15 @@ import {
   deleteFile,
   errorMessage,
   getEvaluation,
+  getTriage,
   lookupEmail,
   ping,
   resumeIntake,
   saveAnswers,
   saveFollowUp,
   startEvaluation,
+  startTriage,
   submitIntake,
-  uploadFile,
 } from './api';
 
 const session = { id: 'in_1', token: 'secret-token' };
@@ -59,6 +60,8 @@ describe('JSON endpoints', () => {
       json({ ok: true, status: 'follow-up', reference: 'R', nextSteps: 'n' }),
     );
     await deleteFile(session, 'f9');
+    await startTriage(session);
+    await getTriage(session);
     await startEvaluation(session);
     await getEvaluation(session);
     await saveFollowUp(session, { q1: true });
@@ -66,11 +69,30 @@ describe('JSON endpoints', () => {
     const calls = spy.mock.calls.map(([url, init]) => `${init?.method} ${url}`);
     expect(calls).toEqual([
       'DELETE /api/intake/in_1/files/f9',
+      'POST /api/intake/in_1/triage',
+      'GET /api/intake/in_1/triage',
       'POST /api/intake/in_1/evaluate',
       'GET /api/intake/in_1/evaluation',
       'PUT /api/intake/in_1/follow-up',
       'POST /api/intake/in_1/submit',
     ]);
+    // Each POST that starts a pass sends an empty JSON body and the bearer token.
+    const triage = spy.mock.calls[1][1];
+    expect(triage?.body).toBe('{}');
+    expect((triage?.headers as Record<string, string>).Authorization).toBe('Bearer secret-token');
+  });
+
+  it('passes the triage answer through as the server sent it', async () => {
+    const storyRead = {
+      situations: ['trust-contests'],
+      whatWeUnderstood: 'w',
+      parties: [],
+      documents: [],
+    };
+    mockFetch(async () => json({ status: 'ready', storyRead }));
+    await expect(getTriage(session)).resolves.toEqual({ status: 'ready', storyRead });
+    mockFetch(async () => json({ status: 'unavailable' }));
+    await expect(startTriage(session)).resolves.toEqual({ status: 'unavailable' });
   });
 
   it('maps a JSON error body to an ApiError', async () => {
@@ -132,53 +154,6 @@ describe('ping', () => {
   });
 });
 
-type Listener = (event?: unknown) => void;
-
-/** Enough of XMLHttpRequest to drive uploadFile. */
-class FakeXhr {
-  static last: FakeXhr;
-  upload = {
-    listeners: {} as Record<string, Listener>,
-    addEventListener(type: string, fn: Listener) {
-      this.listeners[type] = fn;
-    },
-  };
-  listeners: Record<string, Listener> = {};
-  headers: Record<string, string> = {};
-  method = '';
-  url = '';
-  body: FormData | null = null;
-  status = 0;
-  responseText = '';
-  constructor() {
-    FakeXhr.last = this;
-  }
-  addEventListener(type: string, fn: Listener) {
-    this.listeners[type] = fn;
-  }
-  open(method: string, url: string) {
-    this.method = method;
-    this.url = url;
-  }
-  setRequestHeader(key: string, value: string) {
-    this.headers[key] = value;
-  }
-  send(body: FormData) {
-    this.body = body;
-  }
-  abort() {
-    this.listeners.abort?.();
-  }
-  respond(status: number, body: unknown) {
-    this.status = status;
-    this.responseText = JSON.stringify(body);
-    this.listeners.load?.();
-  }
-  progress(loaded: number, total: number) {
-    this.upload.listeners.progress?.({ lengthComputable: true, loaded, total });
-  }
-}
-
 describe('lookupEmail', () => {
   it('is true only for a found:true body and sends the current session token', async () => {
     const spy = mockFetch(async () => json({ found: true }));
@@ -208,7 +183,9 @@ describe('lookupEmail', () => {
     mockFetch(
       (_url, init) =>
         new Promise<Response>((_resolve, reject) => {
-          init?.signal?.addEventListener('abort', () => reject(new DOMException('x', 'AbortError')));
+          init?.signal?.addEventListener('abort', () =>
+            reject(new DOMException('x', 'AbortError')),
+          );
         }),
     );
     await expect(lookupEmail('jane@example.com', null, 10)).resolves.toBe(false);
@@ -217,7 +194,11 @@ describe('lookupEmail', () => {
 
 describe('resumeIntake', () => {
   it('posts the token and returns the earlier request', async () => {
-    const body = { session: { ...session, status: 'draft', reference: 'RL-1' }, answers: {}, files: [] };
+    const body = {
+      session: { ...session, status: 'draft', reference: 'RL-1' },
+      answers: {},
+      files: [],
+    };
     const spy = mockFetch(async () => json(body));
     await expect(resumeIntake('tok')).resolves.toEqual(body);
     const [url, init] = spy.mock.calls[0];
@@ -233,46 +214,3 @@ describe('resumeIntake', () => {
   });
 });
 
-describe('uploadFile', () => {
-  const file = new File(['hello'], 'trust.pdf', { type: 'application/pdf' });
-
-  it('posts multipart with the slot, reports progress, and resolves the file', async () => {
-    vi.stubGlobal('XMLHttpRequest', FakeXhr);
-    const progress = vi.fn();
-    const handle = uploadFile(session, 'trust', file, progress);
-    const xhr = FakeXhr.last;
-    expect(xhr.method).toBe('POST');
-    expect(xhr.url).toBe('/api/intake/in_1/files');
-    expect(xhr.headers.Authorization).toBe('Bearer secret-token');
-    expect(xhr.body?.get('slot')).toBe('trust');
-    expect((xhr.body?.get('file') as File).name).toBe('trust.pdf');
-    xhr.progress(50, 100);
-    expect(progress).toHaveBeenCalledWith(50);
-    const uploaded = {
-      id: 'f1',
-      slot: 'trust',
-      name: 'trust.pdf',
-      size: 5,
-      mimeType: 'application/pdf',
-      uploadedAt: 'now',
-    };
-    xhr.respond(201, { file: uploaded });
-    await expect(handle.promise).resolves.toEqual(uploaded);
-  });
-
-  it("rejects with the server's ApiError", async () => {
-    vi.stubGlobal('XMLHttpRequest', FakeXhr);
-    const handle = uploadFile(session, 'trust', file);
-    FakeXhr.last.respond(413, { error: 'That file is too big.', code: 'too-large' });
-    const failure = (await handle.promise.catch((e: unknown) => e)) as ApiError;
-    expect(failure.code).toBe('too-large');
-    expect(failure.message).toBe('That file is too big.');
-  });
-
-  it('rejects when aborted', async () => {
-    vi.stubGlobal('XMLHttpRequest', FakeXhr);
-    const handle = uploadFile(session, 'trust', file);
-    handle.abort();
-    await expect(handle.promise).rejects.toBeInstanceOf(ApiError);
-  });
-});

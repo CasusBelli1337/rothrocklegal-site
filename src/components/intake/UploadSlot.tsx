@@ -3,10 +3,8 @@
 import { useState } from 'react';
 import { buttonClass } from '@/components/ui/Button';
 import type { IntakeFile } from '@/lib/intake/contract';
-import { DOCUMENTS_COPY } from '@/lib/intake/copy';
 import { ACCEPT_ATTRIBUTE, ACCEPTED_TYPES_LABEL, formatBytes } from '@/lib/intake/document-slots';
 import type { PendingUpload, UploadBinding } from '@/lib/intake/use-uploads';
-import { CheckboxRow } from './FormFields';
 import { WhyWeAsk } from './WhyWeAsk';
 
 const linkButton =
@@ -35,7 +33,7 @@ function DropZone({
         setDragging(false);
         uploads.add(slot, Array.from(event.dataTransfer.files));
       }}
-      className={`mt-4 flex flex-col items-center justify-center gap-2 border border-dashed px-4 py-6 text-center transition-colors ${
+      className={`mt-3 flex flex-col items-center justify-center gap-2 border border-dashed px-4 py-5 text-center transition-colors ${
         dragging ? 'border-maroon-500 bg-sand' : 'border-line-strong bg-paper'
       }`}
     >
@@ -118,47 +116,27 @@ export interface UploadSlotProps {
   why?: string;
   multiple?: boolean;
   uploads: UploadBinding;
-  /** "I don't have this" toggle (documents step only). */
-  missing?: { checked: boolean; onChange(checked: boolean): void };
-  /** Keep the heading for screen readers only (a follow-up module already shows the question). */
+  /** Keep the heading for screen readers only (the screen already shows the question). */
   headingHidden?: boolean;
 }
 
-/** One document slot: heading, why, drop zone, per-file progress, retry, remove. */
+/** One upload slot: heading, why, drop zone, per-file progress, retry, remove. */
 export function UploadSlot({
   slot,
   label,
   why,
   multiple = true,
   uploads,
-  missing,
   headingHidden,
 }: UploadSlotProps) {
   const files = uploads.files.filter((f) => f.slot === slot);
   const pending = uploads.pending.filter((p) => p.slot === slot);
-  const hidden = missing?.checked ?? false;
-  const frame = headingHidden
-    ? ''
-    : `border border-line p-4 sm:p-5 ${hidden ? 'bg-sand/60' : 'bg-white'}`;
+  const frame = headingHidden ? '' : 'border border-line bg-white p-4 sm:p-5';
   return (
     <section aria-label={label} className={frame}>
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-x-6">
-        <div className="min-w-0 flex-1">
-          <h3 className={headingHidden ? 'sr-only' : 'font-sans text-h4 text-ink'}>{label}</h3>
-          {why && <WhyWeAsk className="mt-1">{why}</WhyWeAsk>}
-        </div>
-        {missing && (
-          <CheckboxRow
-            id={`missing-${slot}`}
-            checked={missing.checked}
-            onChange={missing.onChange}
-            className="min-h-11 shrink-0"
-          >
-            {DOCUMENTS_COPY.missing}
-          </CheckboxRow>
-        )}
-      </div>
-      {!hidden && <DropZone slot={slot} multiple={multiple} uploads={uploads} />}
+      <h3 className={headingHidden ? 'sr-only' : 'font-sans text-h4 text-ink'}>{label}</h3>
+      {why && <WhyWeAsk className="mt-1">{why}</WhyWeAsk>}
+      <DropZone slot={slot} multiple={multiple} uploads={uploads} />
       {(files.length > 0 || pending.length > 0) && (
         <ul className="mt-2 divide-y divide-line" aria-live="polite">
           {files.map((file) => (

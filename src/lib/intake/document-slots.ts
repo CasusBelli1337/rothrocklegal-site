@@ -1,16 +1,19 @@
 import { DOCUMENT_SLOTS, type DocumentSlot, type SituationKey } from './contract';
 
-/** Slots suggested for the chosen situations; "all" slots always show, in catalog order. */
+/**
+ * The fallback guidance for the documents screen when the story could not be
+ * read: the catalog papers for the chosen situations ("all" slots always show,
+ * in catalog order). Each carries the same label and why the model would give.
+ */
 export function slotsForSituations(situations: readonly SituationKey[]): DocumentSlot[] {
   return DOCUMENT_SLOTS.filter(
     (slot) => slot.situations === 'all' || slot.situations.some((key) => situations.includes(key)),
   );
 }
 
-/** Upload rules shown on the documents step (INTAKE-SPEC §2 step 5). */
+/** Upload rules shown on the documents step. */
 export const MAX_FILE_BYTES = 25 * 1024 * 1024;
 export const MAX_FILES = 20;
-export const VOICE_NOTE_SLOT = 'voice-note';
 
 export const ACCEPTED_EXTENSIONS = [
   '.pdf',

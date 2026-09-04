@@ -1,11 +1,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { enrichLegalCites } from '@/lib/legal-cites';
 import { renderMarkdown } from '@/lib/markdown';
 import { categorySlug } from '@/types/content';
 
 /**
  * Practice-page body copy lives in content/practice/<slug>.md as `## ` sections
- * (CONTRACTS §3). Each section is rendered with the shared markdown renderer.
+ * (CONTRACTS §3). Each section is rendered with the shared markdown renderer,
+ * then statute citations are linked and case names italicized (legal-cites.ts).
  */
 
 export interface PracticeSection {
@@ -31,7 +33,7 @@ export function getPracticeBody(slug: string): PracticeSection[] {
     let id = categorySlug(heading);
     while (seen.has(id)) id = `${id}-2`;
     seen.add(id);
-    return { id, heading, html: renderMarkdown(body) };
+    return { id, heading, html: enrichLegalCites(renderMarkdown(body)) };
   });
   if (sections.length < MIN_SECTIONS) {
     throw new Error(

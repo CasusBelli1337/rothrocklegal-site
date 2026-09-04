@@ -9,14 +9,14 @@ import { arthurAppearances } from './arthur-rothrock-appearances';
 export const arthurRothrock: TeamMember = {
   slug: 'arthur-rothrock',
   name: 'Arthur E. Rothrock',
-  title: 'Founder and Trial Attorney',
-  barStatus: 'Licensed in California, State Bar #312704 (2016)',
+  title: 'Founder',
+  barStatus: 'Licensed in California, State Bar #312704',
   barNumber: '312704',
   focus: 'Trust contests, undue influence, elder financial abuse',
   // Restates the Legion paragraph of the bio; no year counts anywhere on the site (Arthur, 2026-09-03).
   proofLine: 'Co-founder and CEO of Legion, an AI litigation platform',
   summary:
-    'Trial lawyer and founder of Rothrock Legal in San Jose. Co-founder and CEO of Legion, an AI ' +
+    'Founder of Rothrock Legal in San Jose. Co-founder and CEO of Legion, an AI ' +
     "litigation platform, and Vice Chair of the American Bar Association's Artificial " +
     'Intelligence and Robotics National Institute.',
   heroLine: 'The San Jose trial lawyer families call when a trust goes wrong.',
@@ -26,8 +26,7 @@ export const arthurRothrock: TeamMember = {
       "late-life “amendment,” the brother whose co-trustee sibling won't show the books. " +
       'His cases are trust and will contests, undue influence and capacity fights, breach of ' +
       'fiduciary duty by trustees and executors, Probate Code section 850 property disputes, and ' +
-      "financial elder abuse, mostly in the Santa Clara County Superior Court's Probate Division " +
-      'and the San Mateo, Alameda, and San Francisco courts.',
+      'financial elder abuse.',
     'He prepares every case as if it will be tried, because the cases that settle well are the ' +
       'ones the other side believes you will try.',
     "Here's the thing about litigation bills: most of the money goes to drafting. Pleadings, " +
@@ -56,7 +55,7 @@ export const arthurRothrock: TeamMember = {
   ],
   image: headshot(
     'arthur-rothrock',
-    'Arthur E. Rothrock, founder and trial attorney at Rothrock Legal',
+    'Arthur E. Rothrock, founder of Rothrock Legal',
   ),
   email: 'arothrock@rothrocklegal.com',
   credentials: [

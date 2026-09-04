@@ -26,7 +26,7 @@ We start with the envelope. The postmark or the proof of service on the trustee'
 
 The evidence in a trust contest is mostly in other people's files: the drafting lawyer's notes, the doctor's chart, the bank's records, the caregiver agency's logs. We subpoena them early. We use Legion, the AI litigation platform our founder co-founded, to go through those records in days, which lets us know what the case looks like before the other side does.
 
-Trust contests in Santa Clara County are filed in the Probate Division at 191 N. First Street in San Jose. Most settle at mediation once the records are in. The ones that do not are tried to a judge, not a jury, which rewards preparation over theater.
+Trust contests in Santa Clara County are filed in the probate court in San Jose. Most settle at mediation once the records are in. The ones that do not are tried to a judge, not a jury, which rewards preparation over theater.
 
 ## Common situations
 

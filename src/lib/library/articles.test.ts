@@ -58,14 +58,23 @@ describe('library loader', () => {
     expect(anchor.bodyHtml).toContain('<div class="table-wrap" tabindex="0">');
     expect(anchor.outroHtml).toMatch(/^<h2 id="talk-to-a-trust-litigation-lawyer-in-san-jose">/);
     expect(anchor.outroHtml).toContain('<p class="disclaimer">');
-    expect(anchor.toc.map((h) => h.id)).toContain('key-deadlines');
+    expect(anchor.toc.filter((h) => h.level === 2).length).toBeGreaterThanOrEqual(4);
     expect(anchor.bodyText).not.toContain('attorney-client relationship');
   });
 
   it('excludes drafts on request', () => {
     const published = getArticles({ includeDrafts: false });
     expect(published.every((a) => !a.draft)).toBe(true);
-    expect(published.length).toBeLessThan(articles.length);
+    expect(published.length).toBe(articles.filter((a) => !a.draft).length);
+  });
+
+  // Arthur, 2026-09-03: section headings are the questions people search for.
+  it('writes every section heading as a question, apart from the FAQ heading', () => {
+    for (const a of articles) {
+      const fixed = ['frequently-asked-questions', 'talk-to-a-trust-litigation-lawyer-in-san-jose'];
+      const sections = a.toc.filter((h) => h.level === 2 && !fixed.includes(h.id));
+      for (const h of sections) expect(`${a.slug}: ${h.text}`).toMatch(/\?$/);
+    }
   });
 
   it('features the anchor deadlines article', () => {

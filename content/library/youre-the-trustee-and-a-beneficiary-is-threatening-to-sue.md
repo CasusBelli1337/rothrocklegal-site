@@ -10,37 +10,37 @@ primaryKeyword: beneficiary is threatening to sue
 secondaryKeywords: trustee vs beneficiary, can a beneficiary sue a trustee, can a trustee be sued, trustee liability, attorney for trustee
 image: /images/library/youre-the-trustee-and-a-beneficiary-is-threatening-to-sue.webp
 imageAlt: A kitchen table with a trust binder, a bank statement, and an unopened letter from a law firm
-draft: true
+draft: false
 ---
 
 If a beneficiary is threatening to sue you as trustee, do these five things first: stop spending trust money on anything not routine, gather every record you have, answer any written request within 60 days, get your own lawyer, and send an accounting if you have not. Do not fire back a letter, and do not pay a lawyer from the trust to fight your own corner until you know the rule on who pays (Probate Code § 15684).
 
-Here's the thing. Most of the trustees I meet did not take anything. They said yes at a hospital bedside, never did this before, and made three mistakes that look terrible on paper: they went quiet, they let money mix, and they used the trust account as the family checkbook. A judge in the Santa Clara County Probate Division does not care that you meant well, only what your file shows.
+Here's the thing. Most family trustees in this spot did not take anything. They said yes at a hospital bedside, never did this before, and made three mistakes that look terrible on paper: they went quiet, they let money mix, and they used the trust account as the family checkbook. A judge in the Santa Clara County probate court does not care that you meant well, only what your file shows.
 
-## A beneficiary is threatening to sue: what the judge will look at first
+## Can a beneficiary sue a trustee, and what will the judge look at?
 
-Can a beneficiary sue a trustee? Yes, at any time, by filing a petition in the probate court (Probate Code § 17200); in Santa Clara County that is the Probate Division in San Jose. The petition will say you breached a duty. The law puts four on every trustee, paid or not (Probate Code § 16041):
+Can a beneficiary sue a trustee? Yes, at any time, by filing a petition in the probate court (Probate Code § 17200); in Santa Clara County that is the probate court in San Jose. The petition will say you breached a duty. The law puts four on every trustee, paid or not (Probate Code § 16041):
 
 - Loyalty. You must administer the trust "solely in the interest of the beneficiaries" (Probate Code § 16002). Not yours.
 - Impartiality. With more than one beneficiary you must "deal impartially with them" (Probate Code § 16003).
 - Care. You must act with "reasonable care, skill, and caution" the way a prudent person would (Probate Code § 16040). Careful, not clever.
 - Information. You must keep beneficiaries "reasonably informed" (Probate Code § 16060) and account at least yearly to anyone entitled to a distribution (Probate Code § 16062).
 
-Trustee vs beneficiary fights almost never start with theft. They start with the fourth duty. Ignore a written request for information or an accounting for 60 days, having sent nothing in the prior six months, and they can petition to compel it (Probate Code § 17200). Your silence becomes their Exhibit A.
+Trustee vs beneficiary fights almost never start with theft. They start with the fourth duty. Ignore a written request for information or an accounting for 60 days, having sent nothing in the prior six months, and they can petition to compel it (Probate Code § 17200). Your silence becomes their Exhibit A. Our [California trustee duties checklist](/library/california-trustee-duties-checklist/) walks through all four duties from the trustee's chair.
 
 Trustee liability is personal. A court can order you to repay the trust's loss with interest, give up any profit you made, and pay the profit the trust missed (Probate Code § 16440), then cut your pay and remove you. The same statute has a door for honest mistakes: a trustee who "acted reasonably and in good faith" can be excused in whole or in part. That door opens only for a trustee with a clean file.
 
-## The first seven days: stop, preserve, and answer in writing
+## What should a trustee do in the first seven days after a threat?
 
 No new distributions, no payments to yourself, no "loan" to a sibling, until you have advice. Routine bills, taxes, and insurance continue (Probate Code § 16243). If you have paid personal expenses from the trust, stop today and list every one; voluntary repayment beats a surcharge.
 
 Preserve everything: bank statements, the trust and every amendment, the deed, the emails, the texts. Civil discovery rules apply in probate court (Probate Code § 1000), and deleted texts are found.
 
-Answer in writing. After a parent's death every beneficiary and every heir who asks gets "a true and complete copy of the terms" (Probate Code § 16061.5), so send it. If the letter asked for an accounting, promise one by a date inside the 60 days and keep the promise. Do not argue. Date it, send it by mail and email, and keep a copy.
+Answer in writing. After a parent's death every beneficiary and every heir who asks gets "a true and complete copy of the terms" (Probate Code § 16061.5), so send it. If the letter asked for an accounting, promise one by a date inside the 60 days and keep the promise. Do not argue. Date it, send it by mail and email, and keep a copy. Our guide to [responding to a beneficiary's demand for an accounting or the trust](/library/beneficiary-demands-accounting-or-copy-of-trust-trustee-response/) has the reply.
 
 Check the notice. If no one mailed the formal notification by trustee within 60 days of the death (Probate Code § 16061.7), fix it now; a trustee who fails to serve it "shall be responsible for all damages, attorney’s fees, and costs caused by the failure" (Probate Code § 16061.9). The notice also starts the beneficiary's 120-day clock to contest the trust. Our guide on [serving the notification by trustee](/library/how-to-serve-notification-by-trustee-16061-7/) walks through it; the [deadline wizard](/how-long-do-i-have/) covers the other side's clocks.
 
-## Get your own lawyer, and learn who pays before you bill the trust
+## Can a trustee pay a lawyer with trust money?
 
 You can hire a lawyer without asking anyone (Probate Code § 16247). Whether the trust pays is where family trustees go wrong.
 
@@ -52,7 +52,7 @@ Interim payments are the trap. People ex rel. Harris v. Shine allowed them only 
 
 So sign two engagement letters: trustee work, billed to the trust and listed in the accounting; personal advice, paid by you. Moeller v. Superior Court explains why: a successor trustee inherits the privilege over administration advice, but advice you sought personally can stay yours if you hired "a separate lawyer" and paid "out of its personal funds." And a trustee "may assert the attorney-client privilege against the beneficiaries" (Wells Fargo Bank v. Superior Court). Our article on [using trust funds to pay attorney fees](/library/can-a-trustee-use-trust-funds-to-pay-attorney-fees-california/) has the full table.
 
-## Fix what can be fixed before anyone files
+## What can a trustee fix before a beneficiary files a petition?
 
 A threat is a window: most of what a beneficiary wants needs no judge.
 
@@ -64,7 +64,7 @@ When the document is unclear, a petition for instructions (Probate Code § 17200
 
 Get consents, never by holding a distribution hostage. A beneficiary who consents in writing, knowing the facts, cannot later sue over the act (Probate Code § 16463), and a release after full disclosure does the same (Probate Code § 16464). But you may not condition a required distribution on a release (Probate Code § 16004.5).
 
-## If a petition is filed anyway: what the first hearing is about
+## What happens at the first hearing if a beneficiary files a petition?
 
 You get at least 30 days' notice of the hearing (Probate Code § 17203), unless the beneficiary goes in ex parte. In Santa Clara County an ex parte request needs 24 hours' notice to you, and the court allows 48 hours for an opposition (Probate Local Rule 2(B)(3)). The rule itself says: "If there will be an objection, and the matter is not urgent, do not submit it ex parte." So an ex parte filing claims an emergency: money moving, a house in escrow, a trustee gone silent.
 
@@ -74,12 +74,12 @@ Removal needs a ground: a breach, unfitness, failure to act, excessive pay, or o
 
 Most of these cases end in a room, not a trial. Santa Clara County runs a Probate Early Settlement Conference Program with court neutrals (Probate Local Rule 3(B)). Take it seriously: in Breslin v. Breslin beneficiaries who got notice of a court-ordered mediation and skipped it were held bound by the deal the others made.
 
-## What to do next
+## What should you do next as a trustee?
 
 1. Freeze anything unusual and collect every record. Routine bills, taxes, and insurance only, until you have advice.
 2. Reply in writing within the 60 days: the trust terms, a date for the accounting, no argument.
 3. Confirm the notification by trustee was served; if not, serve it now.
-4. Hire a lawyer under two engagement letters and keep the invoices separate.
+4. Hire a [lawyer for trustees](/for-trustees/) under two engagement letters and keep the invoices separate.
 5. Prepare the accounting in the court's format with both statutory warnings, and use a notice of proposed action for the next big decision.
 
 ## Frequently asked questions
@@ -106,6 +106,6 @@ Sometimes, but it does not end your exposure. A trustee's liability "is not rele
 
 ## Talk to a trust litigation lawyer in San Jose
 
-Rothrock Legal represents trustees and beneficiaries in the Santa Clara County Superior Court's Probate Division at 191 N. First Street in San Jose, and in the San Mateo, Alameda, and San Francisco courts. If you are a family trustee in San Jose, Sunnyvale, Los Gatos, or anywhere in Silicon Valley and a beneficiary has threatened to sue, [contact us](/contact/) this week and bring the trust, the letter, and the statements. We will tell you what your file shows, what to fix first, and whether the trust can pay for it.
+Rothrock Legal handles trustee defense and trustee-beneficiary disputes for families in San Jose, Santa Clara County, and across the Bay Area. If you are a family trustee in San Jose, Sunnyvale, Los Gatos, or anywhere in Silicon Valley and a beneficiary has threatened to sue, [request a consult](/request-a-consult/) this week and bring the trust, the letter, and the statements. We will tell you what your file shows, what to fix first, and whether the trust can pay for it.
 
 This article is general information about California law, not legal advice about your situation. Reading it does not create an attorney-client relationship with Rothrock Legal; that happens only when both sides sign an engagement letter. Deadlines depend on facts we have not seen and the law changes. Before you rely on any date here, confirm it with a lawyer.

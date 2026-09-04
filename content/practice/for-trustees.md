@@ -48,7 +48,7 @@ One more point: if a removal petition was filed in bad faith and removal would g
 
 We start with the records, because that is where the court will start. The trust, every amendment, the notice you served, the account statements, and whatever accounting exists. Legion, the AI litigation platform our founder co-founded, reads all of it in days and gives us a transaction-by-transaction picture of the administration. If there is a problem, we want to be the ones who find it.
 
-Then we fix what can be fixed. A missing accounting gets prepared. A defective notice gets re-served. A commingled account gets unwound and documented. Many trustee cases in the Santa Clara County Probate Division at 191 N. First Street in San Jose end when the trustee produces a clean accounting and the objections run out of things to say.
+Then we fix what can be fixed. A missing accounting gets prepared. A defective notice gets re-served. A commingled account gets unwound and documented. Many trustee cases in the probate court in San Jose end when the trustee produces a clean accounting and the objections run out of things to say.
 
 Where the beneficiary is really after your removal or your money, we defend the petition on the merits. Removal requires cause. Surcharge requires a breach and a loss caused by it, and the court can excuse a trustee who acted reasonably and in good faith (Probate Code section 16440). Undue influence and elder abuse claims require evidence, not a family's suspicion about which child was closest to the parent.
 

@@ -12,7 +12,7 @@ If the elder is alive, protect them first. That can mean a report to Adult Prote
 
 Then gather the records. Bank and brokerage statements, credit card statements, property records, and any powers of attorney the abuser was using. Note who had access, when it started, and what changed. Isolation is a pattern: missed calls, a caregiver who screens visitors, a phone number that changed.
 
-The civil claim is filed in superior court, often in the probate division when it involves a trust or an estate, and it is usually paired with a section 850 petition to recover specific property, a trust or will contest if documents were changed, and a breach of fiduciary duty claim if the abuser was a trustee or agent under a power of attorney.
+The civil claim is filed in superior court, often in the probate court when it involves a trust or an estate, and it is usually paired with a section 850 petition to recover specific property, a trust or will contest if documents were changed, and a breach of fiduciary duty claim if the abuser was a trustee or agent under a power of attorney.
 
 ## How fast you need to move
 
@@ -24,7 +24,7 @@ The evidence also ages. Banks purge video and records, care agencies close, and 
 
 We begin by identifying every account, every property, and every person who had access, and by getting the elder's medical picture for the period in question. Then we subpoena the records and trace the money. Legion, the AI litigation platform our founder co-founded, lets us follow transfers through years of statements in days, which is often the difference between a case that can be proven and one that cannot.
 
-Where the elder is alive, we coordinate the civil case with whatever protection is needed. Where the elder has died, we bring the claim through the trustee or the estate, or as an heir where the law allows. Cases involving a trust or estate are filed in the Santa Clara County Probate Division in San Jose; others in the civil division or in the county where the abuser or the property is.
+Where the elder is alive, we coordinate the civil case with whatever protection is needed. Where the elder has died, we bring the claim through the trustee or the estate, or as an heir where the law allows. Cases involving a trust or estate are filed in the probate court in San Jose; others in the civil court or in the county where the abuser or the property is.
 
 We plead the fee statute and, where property can be traced, section 859 double damages. The abuser's exposure to fees and double recovery is what usually brings these cases to a settlement that actually returns the money.
 

@@ -2,7 +2,7 @@
 
 Most people never expect to be in probate court. Then a parent dies, a sibling produces a trust amendment nobody knew about, or the trustee stops returning calls. Trust and estate litigation is the court process for sorting that out. It covers contests to a trust or will, claims that someone used undue influence or that the person lacked capacity, breach of fiduciary duty by a trustee or executor, petitions to remove a trustee, disputes over accountings and information, Probate Code section 850 petitions to recover property, and financial elder abuse. It also covers the other side of the table: the trustee, usually a family member who never asked for the job, who is the one being accused.
 
-These cases almost all start the same way: with a petition in the probate division of the superior court under Probate Code section 17200, or an objection to a petition someone else filed. In Santa Clara County that means the Probate Division at 191 N. First Street in San Jose. The court decides who is right based on documents, medical records, bank records, and the testimony of the people who were there.
+These cases almost all start the same way: with a petition in the probate court under Probate Code section 17200, or an objection to a petition someone else filed. In Santa Clara County that means the Superior Court in San Jose. The court decides who is right based on documents, medical records, bank records, and the testimony of the people who were there.
 
 ## What the law says
 
@@ -35,7 +35,7 @@ These clocks overlap and they do not wait for each other. The wizard on this sit
 
 We start every matter the same way: a conversation about dates, then the documents. The trust, every amendment, the notice letter, the will, the deed history on the family home, and whatever bank and medical records can be gathered quickly. From those we can usually tell you within days whether you have a claim worth bringing and what it would take.
 
-Where the case belongs in the Santa Clara County Probate Division, we file there. Where it belongs in San Mateo, Alameda, or San Francisco, we file there. We prepare every case as if it will be tried, because the cases that settle well are the ones the other side believes you will try. Mediation is usually available and often works, but only after the other side has seen the evidence.
+Where the case belongs in Santa Clara County Superior Court, we file there. Where it belongs in San Mateo, Alameda, or San Francisco, we file there. We prepare every case as if it will be tried, because the cases that settle well are the ones the other side believes you will try. Mediation is usually available and often works, but only after the other side has seen the evidence.
 
 Our founder is the co-founder and CEO of Legion, an AI litigation platform. That is why we can go through thousands of pages of bank and medical records in days rather than months, and why drafting does not sit in a queue. The lawyers still make every judgment call.
 

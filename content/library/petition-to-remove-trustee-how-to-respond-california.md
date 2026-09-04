@@ -10,18 +10,18 @@ primaryKeyword: trustee removal
 secondaryKeywords: petition to remove trustee california, response to petition to remove trustee, remove trustee, Probate Code 15642, trustee defense attorney, trustee removal petition
 image: /images/library/petition-to-remove-trustee-how-to-respond-california.webp
 imageAlt: A served court petition and a notice of hearing on a kitchen table next to a trust binder and a wall calendar with one date circled
-draft: true
+draft: false
 ---
 
 A trustee removal petition is a lawsuit inside the trust. A California court removes a trustee for a breach, unfitness, failure to act, excessive pay, or other good cause (Probate Code § 15642). It does not remove a trustee because a beneficiary is angry. The first hearing is usually about suspending you while the case is pending, not removing you, and a trustee who responds on time, with records and a lawyer, has a real defense.
 
 If you typed "petition to remove trustee California" into a search bar at midnight, you found sample petitions and nothing for the trustee. This is the trustee's side. Most family trustees who get served did not take anything. They got slow, went quiet, or paid for something from the wrong account, and a sibling with a lawyer did the rest.
 
-Here's the thing. The judge in the Santa Clara County Probate Division looks at your conduct first, before anyone's motives. That is the honest part.
+Here's the thing. The judge in the Santa Clara County probate court looks at your conduct first, before anyone's motives. That is the honest part.
 
-## Trustee removal needs a ground, and anger is not one
+## What are the grounds to remove a trustee in California?
 
-Probate Code 15642 lists nine grounds. Each is a question about what you did or failed to do, not about how the beneficiary feels.
+Probate Code § 15642 lists nine grounds. Each is a question about what you did or failed to do, not about how the beneficiary feels.
 
 | Ground (Probate Code § 15642(b))                                         | What the judge needs to see                                                           |
 | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- |
@@ -39,9 +39,11 @@ Friction alone loses. "Hostility between the beneficiary and the trustee is a gr
 
 Getty v. Getty is the exception that should worry you. It upheld the suspension of a trustee's litigation powers over a conflict of interest, with no proof of past wrongdoing: "The purpose of removing a trustee is not to inflict a penalty for past action, but to preserve the trust assets." If you are also the buyer of the trust's Los Gatos house, expect that argument.
 
-## The first 30 days: respond, preserve, and watch the ex parte trap
+If the petition also accuses you of undue influence or elder abuse, read our guide for the [family trustee accused of undue influence or elder abuse](/library/accused-of-undue-influence-or-elder-abuse-family-trustee-defense/).
 
-You get at least 30 days' notice of the hearing (Probate Code § 17203). In Santa Clara County the petition goes to the Probate Division at 191 N. First Street in San Jose. Cases there are randomly assigned to an all-purpose judge who decides everything up to trial (Probate Local Rule 1(A)). There is no jury (Probate Code § 17006).
+## How do you respond to a trustee removal petition?
+
+You get at least 30 days' notice of the hearing (Probate Code § 17203). In Santa Clara County the petition goes to the probate court in San Jose. Cases there are randomly assigned to an all-purpose judge who decides everything up to trial (Probate Local Rule 1(A)). There is no jury (Probate Code § 17006).
 
 File a written response. A response to petition to remove trustee is a "response or objection in writing" filed at or before the hearing (Probate Code § 1043). Civil discovery rules apply (Probate Code § 1000), so document requests and a deposition follow.
 
@@ -49,25 +51,25 @@ Preserve everything, including texts; deleted texts are found.
 
 Do not talk to the beneficiary's lawyer without your own. Hire a trustee defense attorney, under two engagement letters if the fight could reach your own share. If all you have is a threat, start with [what to do when a beneficiary is threatening to sue](/library/youre-the-trustee-and-a-beneficiary-is-threatening-to-sue/).
 
-### The ex parte suspension request
+### Can the court suspend me as trustee before the hearing?
 
-If trust property or a beneficiary's interests "may suffer loss or injury" while the case is pending, the court may hand the property to a co-trustee, receiver, or temporary trustee and suspend your powers "to the extent the court deems necessary" (Probate Code § 15642(e); Probate Code § 17206). It can act on its own motion and suspend rather than remove (Schwartz v. Labow).
+Yes, if there is a showing of risk. If trust property or a beneficiary's interests "may suffer loss or injury" while the case is pending, the court may hand the property to a co-trustee, receiver, or temporary trustee and suspend your powers "to the extent the court deems necessary" (Probate Code § 15642(e); Probate Code § 17206). It can act on its own motion and suspend rather than remove (Schwartz v. Labow).
 
 In Santa Clara County an ex parte request needs 24 hours' notice to you, and the court allows 48 hours, not counting weekends or holidays, for your opposition (Probate Local Rule 2(B)(3)). The rule tells petitioners: "If there will be an objection, and the matter is not urgent, do not submit it ex parte." Your opposition shows there is no emergency: intact accounts, current statements, no sale or distribution without notice. A trustee who shows up inside the 48 hours with records usually keeps the keys; one who ignores the email does not.
 
-## How the defense is built
+## How do you defend against a trustee removal petition?
 
 Removal "is largely within the discretion of the trial court" (Gilmaker v. Bank of America), so the defense is evidence, not argument. Four pieces.
 
-The file. A written record of each decision and its reason: why the Sunnyvale rental was kept, why one sibling got a distribution in March. A trustee without one is guessing.
+The file. A written record of each decision and its reason: why the Sunnyvale rental was kept, why one sibling got a distribution in March. A trustee without one is guessing. The [California trustee duties checklist](/library/california-trustee-duties-checklist/) lists what that record should show.
 
-The accounting. If you have not accounted, the petition writes itself; the duty runs at least yearly (Probate Code § 16062). Prepare one now in the court's format with the two warnings the statute requires (Probate Code § 16063). It answers the "fails or declines to act" ground and starts a three-year clock on any claim it fairly discloses (Probate Code § 16460). See [how to prepare a trust accounting](/library/how-to-prepare-a-trust-accounting-california/).
+The accounting. If you have not accounted, the petition writes itself; the duty runs at least yearly (Probate Code § 16062). Prepare one now in the court's format with the two warnings the statute requires (Probate Code § 16063). It answers the "fails or declines to act" ground and starts a three-year clock on any claim it fairly discloses (Probate Code § 16460). See [how to prepare a trust accounting](/library/how-to-prepare-a-trust-accounting-california/). If the petition grew out of an ignored demand letter, [how to respond when a beneficiary demands an accounting or a copy of the trust](/library/beneficiary-demands-accounting-or-copy-of-trust-trustee-response/) covers the cure.
 
 The good-faith excuse. If the petition also seeks repayment of a loss, a trustee who "acted reasonably and in good faith under the circumstances as known to the trustee" can be excused in whole or in part (Probate Code § 16440). It is the first-time trustee's statute: honest mistakes, not self-interest.
 
 The settlor's choice. Your parent picked you, and one court has said a chosen trustee "has a duty to oppose any unmeritorious effort to have the selected trustee removed" (Conservatorship of Lefkowitz). If the petition was "filed in bad faith" and removal "would be contrary to the settlor’s intent," the court can make the petitioner pay your fees (Probate Code § 15642(d)).
 
-## Who pays for a trustee removal fight
+## Who pays the legal fees in a trustee removal case?
 
 You can hire a lawyer without anyone's permission (Probate Code § 16247), and the trust repays "Expenditures that were properly incurred in the administration of the trust" (Probate Code § 15684).
 
@@ -77,13 +79,13 @@ Paying your lawyer from the trust while the case is pending is the trap. The cou
 
 It runs the other way too. A beneficiary who files in bad faith against the settlor's intent can be ordered to pay your fees (Probate Code § 15642(d)). A probate court can also charge the fees an unfounded, bad-faith proceeding caused against that beneficiary's share of the trust (Rudnick v. Rudnick). Under the court's equitable power that charge reaches their share of the trust, not their own pocket (Pizarro v. Reynoso); the statutes above can reach further.
 
-## If you would rather resign
+## Should I resign as trustee instead of fighting?
 
-Quitting is allowed, but do it cleanly. A trustee may resign only as the trust instrument provides, with the consent of all adult beneficiaries currently entitled to income or principal, or by court order on your own petition (Probate Code § 15640). Resigning does not erase liability for what happened while you served (Probate Code § 15641). You stay responsible for the trust property until it is delivered to the successor (Probate Code § 15644).
+Sometimes that is the better exit, but do it cleanly. A trustee may resign only as the trust instrument provides, with the consent of all adult beneficiaries currently entitled to income or principal, or by court order on your own petition (Probate Code § 15640). Resigning does not erase liability for what happened while you served (Probate Code § 15641). You stay responsible for the trust property until it is delivered to the successor (Probate Code § 15644).
 
 Who replaces you is fixed: the person the trust names, then a trust company the current adult beneficiaries agree on, then the court's appointee (Probate Code § 15660). In Silicon Valley families that is often a professional fiduciary. A negotiated handoff to one, with your final account settled (Probate Code § 17200), usually beats a removal order with findings against you. Most of these fights end in a settlement room. The court's Probate Early Settlement Conference Program (Probate Local Rule 3(B)) is not a confidential mediation, so plan with your lawyer what to say there.
 
-## Key deadlines
+## What are the deadlines after a trustee removal petition is served?
 
 | Deadline                                                                                                                   | Rule                                                          |
 | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
@@ -94,7 +96,7 @@ Who replaces you is fixed: the person the trust names, then a trust company the 
 
 The beneficiary's clocks are in the [deadline wizard](/how-long-do-i-have/).
 
-## What to do next
+## What should you do next after being served?
 
 1. Calendar the hearing date today and, if there is an ex parte request, the 48-hour opposition window.
 2. Freeze anything unusual. Routine bills, taxes, and insurance only, until you have advice.
@@ -106,7 +108,7 @@ The beneficiary's clocks are in the [deadline wizard](/how-long-do-i-have/).
 
 ### Can I be removed as trustee if I did nothing wrong?
 
-Rarely. Removal needs a ground under Probate Code 15642, and friction alone is not one (Copley v. Copley). But the purpose of removal "is not to inflict a penalty for past action, but to preserve the trust assets." A court can suspend a trustee with a live conflict of interest without proof of past wrongdoing (Getty v. Getty).
+Rarely. Removal needs a ground under Probate Code § 15642, and friction alone is not one (Copley v. Copley). But the purpose of removal "is not to inflict a penalty for past action, but to preserve the trust assets." A court can suspend a trustee with a live conflict of interest without proof of past wrongdoing (Getty v. Getty).
 
 ### Can I keep running the trust while the case is pending?
 
@@ -126,6 +128,6 @@ Sometimes. A trustee removed as a disqualified person under Probate Code § 2138
 
 ## Talk to a trust litigation lawyer in San Jose
 
-Rothrock Legal represents trustees and beneficiaries in the Santa Clara County Superior Court's Probate Division at 191 N. First Street in San Jose, and in the San Mateo, Alameda, and San Francisco courts. If you were served with a petition to remove you as trustee, in San Jose, Palo Alto, Cupertino, or anywhere in Silicon Valley, [request a consult](/request-a-consult/) this week. Bring the petition, the trust, and the statements.
+Rothrock Legal represents [trustees](/for-trustees/) and beneficiaries in trust disputes in San Jose, Santa Clara County, and across the Bay Area. If you were served with a petition to remove you as trustee, in San Jose, Palo Alto, Cupertino, or anywhere in Silicon Valley, [request a consult](/request-a-consult/) this week. Bring the petition, the trust, and the statements.
 
 This article is general information about California law, not legal advice about your situation. Reading it does not create an attorney-client relationship with Rothrock Legal; that happens only when both sides sign an engagement letter. Deadlines depend on facts we have not seen and the law changes. Before you rely on any date here, confirm it with a lawyer.

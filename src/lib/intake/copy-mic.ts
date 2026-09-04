@@ -2,8 +2,8 @@ import type { BrowserInfo, BrowserKind } from './browser';
 
 /**
  * Every microphone string: the button, the listening line, the one-sentence
- * warning before the browser asks, and the three cards (no microphone, blocked,
- * unsupported). Re-exported from copy.ts so the hygiene tests see it.
+ * warning before the browser asks, and the four cards (not secure, no
+ * microphone, blocked, unsupported). Re-exported from copy.ts so the hygiene tests see it.
  */
 
 export const CONSULT_PAGE_SHORT_URL = 'www.rothrocklegal.com/request-a-consult/';
@@ -25,6 +25,11 @@ export const MIC_COPY = {
   couldNotStart: 'We could not start the microphone. You can keep typing.',
   tryAgain: 'Try again',
   keepTyping: 'Typing works just as well. Nothing you have written is lost.',
+} as const;
+
+export const MIC_INSECURE = {
+  title: 'The microphone needs a secure connection.',
+  body: 'Browsers allow the microphone only on an https address, and this page was opened over plain http. Typing works just as well here, or open the page at its usual address:',
 } as const;
 
 export const MIC_UNSUPPORTED = {

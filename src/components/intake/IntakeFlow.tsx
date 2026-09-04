@@ -1,12 +1,12 @@
 'use client';
 
-import { useCallback, useEffect, useState, type ComponentType } from 'react';
+import { useCallback, useEffect, useRef, useState, type ComponentType } from 'react';
 import { ping } from '@/lib/intake/api';
-import type { IntakeFile } from '@/lib/intake/contract';
-import { VOICE_NOTE_SLOT } from '@/lib/intake/document-slots';
+import { VOICE_NOTE_SLOT, type IntakeFile } from '@/lib/intake/contract';
 import { minutesToGo } from '@/lib/intake/copy';
-import { NUMBERED_STEP_COUNT, STEP_ORDER, stepNumber, type StepId } from '@/lib/intake/state';
-import { useIntake } from '@/lib/intake/use-intake';
+import { revealPanel } from '@/lib/intake/scroll';
+import { numberedStepCount, stepNumber, visibleSteps, type StepId } from '@/lib/intake/state';
+import { useIntake, type IntakeController } from '@/lib/intake/use-intake';
 import { useResume } from '@/lib/intake/use-resume';
 import { useUploads } from '@/lib/intake/use-uploads';
 import '@/components/wizard/wizard.css';
@@ -18,6 +18,7 @@ import { StepContact } from './StepContact';
 import { StepDocuments } from './StepDocuments';
 import { StepDone } from './StepDone';
 import { StepFollowUp } from './StepFollowUp';
+import { STEP_HEADING_ID } from './StepFrame';
 import { StepParties } from './StepParties';
 import { StepReview } from './StepReview';
 import { StepScope } from './StepScope';
@@ -28,17 +29,17 @@ import type { StepProps } from './step-props';
 
 type ApiStatus = 'checking' | 'online' | 'offline';
 
-/** One screen component per step (INTAKE-SPEC §2). */
+/** One screen component per step (v3 order). */
 const STEPS: Record<StepId, ComponentType<StepProps>> = {
   start: StepStart,
   contact: StepContact,
-  situations: StepSituations,
-  parties: StepParties,
   story: StepStory,
+  situations: StepSituations,
   documents: StepDocuments,
+  parties: StepParties,
   scope: StepScope,
-  review: StepReview,
   'follow-up': StepFollowUp,
+  review: StepReview,
   done: StepDone,
 };
 
@@ -57,11 +58,31 @@ function useApiStatus(): ApiStatus {
   return status;
 }
 
+/** Every screen or tile change scrolls the panel under the header and focuses the new heading; never the page top. */
+function useRevealOnChange(
+  intake: IntakeController,
+  panel: React.RefObject<HTMLDivElement | null>,
+) {
+  const { navigated } = intake;
+  const { step, startTile } = intake.state;
+  useEffect(() => {
+    if (!navigated) return;
+    revealPanel(panel.current, document.getElementById(STEP_HEADING_ID));
+  }, [navigated, step, startTile, panel]);
+}
+
+interface IntakeFlowProps {
+  /** The page's h1, rendered inside the panel so it is in the static HTML. */
+  heading: React.ReactNode;
+}
+
 /** The "Request a consult" flow: one screen per step with progress and autosave; an API check runs alongside. */
-export function IntakeFlow() {
+export function IntakeFlow({ heading }: IntakeFlowProps) {
   const intake = useIntake();
   const status = useApiStatus();
   const resume = useResume(intake);
+  const panelRef = useRef<HTMLDivElement>(null);
+  useRevealOnChange(intake, panelRef);
   const { addFile, patchAnswers, removeFile } = intake;
 
   const onUploaded = useCallback(
@@ -73,29 +94,35 @@ export function IntakeFlow() {
   );
   const uploads = useUploads(intake.state.session, intake.state.files, onUploaded, removeFile);
 
-  // The first screen needs no server, so it renders at once (also in the static HTML). A short
-  // placeholder that later grew into the form pushed everything below it down (CLS 0.17 on phones).
-  // Only an offline answer swaps in the fallback; a saved session restores its step after hydration.
-  if (status === 'offline') return <Fallback />;
-
-  const { step } = intake.state;
-  const Step = STEPS[step];
-  const number = stepNumber(step);
+  const { state } = intake;
+  const Step = STEPS[state.step];
+  const number = stepNumber(state.step, state);
   return (
-    <div className="wizard intake-flow border border-line bg-white p-5 sm:p-10">
-      <ResumeNotice resume={resume} />
-      {number !== null && (
-        <div className="mb-8">
-          <ProgressBar
-            step={number}
-            total={NUMBERED_STEP_COUNT}
-            timeLeft={minutesToGo(step, STEP_ORDER)}
-          />
-        </div>
+    <div
+      ref={panelRef}
+      className="wizard intake-flow border border-line bg-white px-5 pt-5 sm:px-8 sm:pt-6"
+    >
+      {heading}
+      {/* The first screen needs no server, so it renders at once (also in the static HTML); only an offline answer swaps in the fallback. */}
+      {status === 'offline' ? (
+        <Fallback />
+      ) : (
+        <>
+          <ResumeNotice resume={resume} />
+          {number !== null && (
+            <div className="mt-3">
+              <ProgressBar
+                step={number}
+                total={numberedStepCount(state)}
+                timeLeft={minutesToGo(state.step, visibleSteps(state))}
+              />
+            </div>
+          )}
+          <div key={`${state.step}-${state.startTile}`} className="intake-body wizard-enter mt-5">
+            <Step intake={intake} uploads={uploads} />
+          </div>
+        </>
       )}
-      <div key={step}>
-        <Step intake={intake} uploads={uploads} />
-      </div>
     </div>
   );
 }

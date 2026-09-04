@@ -10,6 +10,38 @@
   --text-small--line-height: 1.55;
   --text-meta: 0.9375rem;
   --text-meta--line-height: 1.4;
+
+  /* The panel fills the viewport below the sticky header (60px, 72px from xl,
+     plus a little air), so the action bar rests at the same spot on every
+     screen: the bottom of the viewport once the panel is scrolled into place.
+     `revealPanel` in src/lib/intake/scroll.ts does the scrolling. */
+  --intake-top: calc(60px + 1rem);
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - var(--intake-top));
+  min-height: calc(100dvh - var(--intake-top));
+}
+@media (min-width: 80rem) {
+  .intake-flow {
+    --intake-top: calc(72px + 1rem);
+  }
+}
+
+/* The step body grows to push the action bar down; the bar sticks to the bottom
+   of the viewport while the screen is taller than it (Arthur, 2026-09-03: the
+   button must never move or need hunting for). */
+.intake-body,
+.intake-body > form {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.intake-bar {
+  position: sticky;
+  bottom: 0;
+  margin-top: auto;
+  background: var(--color-white);
+  border-top: 1px solid var(--color-line);
 }
 
 /* The one button that moves the person forward: taller and full-width on

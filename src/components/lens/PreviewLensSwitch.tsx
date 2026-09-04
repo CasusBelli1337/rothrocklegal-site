@@ -41,7 +41,7 @@ export function PreviewLensSwitch() {
     <div
       role="group"
       aria-label="Preview lens"
-      className="fixed right-4 bottom-[4.5rem] z-50 flex items-center gap-1 rounded-full bg-maroon-900 p-1 text-white shadow-md sm:pl-3 lg:bottom-4"
+      className="fixed bottom-[4.5rem] left-1/2 z-50 flex -translate-x-1/2 items-center gap-1 rounded-full bg-maroon-900 p-1 text-white shadow-md sm:pl-3 lg:bottom-24"
     >
       <span className="mr-1 hidden text-eyebrow font-semibold tracking-[0.14em] text-white/70 uppercase sm:inline">
         Lens

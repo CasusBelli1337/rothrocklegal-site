@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
+import { isSecureContext } from './browser';
 import { MIC_COPY } from './copy-mic';
 import {
   classifyMediaError,
@@ -62,6 +63,7 @@ function browserProbe(support: SpeechSupport): MicProbe {
   const permissions = navigator.permissions;
   return {
     support,
+    secure: isSecureContext(),
     devices: media?.enumerateDevices ? () => media.enumerateDevices() : undefined,
     permission: permissions?.query
       ? async () => {
