@@ -8,9 +8,13 @@ repo holds the editor module and the intake module.
 
 ## State of the site
 
-- Branch `redesign` (this checkout) is the complete redesign, NOT yet on
-  `main`, NOT live. www.rothrocklegal.com still serves the 2026-08-31
-  Wix-faithful rebuild. Preview: Armory → Rothrock Website Editor
+- LIVE since 2026-09-06 (Arthur's call, this session): `main` was
+  fast-forwarded to `redesign` at 957efde and pushed; the Pages deploy (run
+  34056715878) succeeded and www.rothrocklegal.com serves the redesign. The
+  editor's checkout is on `main` now, so Publish edits `main` directly. A live
+  end-to-end consult run the same hour (RL-2026-000004, QA Live Check,
+  arothrock@) went through the tunnel: triage 5 s, evaluation 42 s, sent.
+  Preview: Armory → Rothrock Website Editor
   (`http://localhost:9080/tools/website-editor-rothrock/`; raw preview
   `http://localhost:9080/_preview/`). Never `next build` in this checkout.
 - Gates on `redesign` (after Wave A, 2026-09-03): lint, typecheck, 262 Vitest
@@ -35,8 +39,10 @@ Commits on `redesign`: 64e753b (the wizard lands the panel under the header),
 of labor), plus this docs commit. Gates on 9948380 in the `integration`
 worktree: lint, typecheck, 427 Vitest tests, static export (88 pages, 34
 redirect stubs), `check-links` 0 broken, `check-seo`, `check-lens` (15 slot
-groups: 11 on `/`, 2 on Arthur's bio). Nothing pushed; `main` and the live
-site are unchanged.
+groups: 11 on `/`, 2 on Arthur's bio). Pushed and live on 2026-09-06 (see
+"State of the site"); the portal `main` and the Armory branch were pushed to
+their GitHub repos the same day (the Armory's shared org remote stays
+fetch-only).
 
 ### Arthur's notes, applied
 
