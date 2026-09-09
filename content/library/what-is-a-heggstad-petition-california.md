@@ -2,7 +2,7 @@
 title: What Is a Heggstad Petition? Getting Property Into the Trust
 description: A Heggstad petition asks a California probate court to confirm property your parent never retitled was in the trust. What wins, what fails, and the cost.
 excerpt: Your parent listed the house in the trust and never signed the deed. A Heggstad petition can fix that without probate, but only if the right paper exists. Here is what the court needs to see, how the hearing works in San Jose, and what happens when it fails.
-date: 2022-02-15
+date: 2025-04-15
 updated: 2025-05-06
 author: arthur-rothrock
 category: For Trustees

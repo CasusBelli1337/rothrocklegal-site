@@ -29,9 +29,12 @@ describe('library loader', () => {
     }
   });
 
-  it('spreads publish dates across 2022 to 2026 and never updates before publishing', () => {
+  it('publishes nothing before the firm opened and never updates before publishing', () => {
+    // Rothrock Legal opened July 2024; a publish date earlier than that is backdating.
+    const FIRM_OPENED = '2024-07';
     const years = new Set(articles.map((a) => a.date.slice(0, 4)));
-    expect([...years].sort()).toEqual(['2022', '2023', '2024', '2025', '2026']);
+    expect([...years].sort()).toEqual(['2024', '2025', '2026']);
+    for (const a of articles) expect(a.date.slice(0, 7) >= FIRM_OPENED).toBe(true);
     expect(articles[0].slug).toBe(FEATURED_SLUG);
     for (const a of articles) expect(a.updated >= a.date).toBe(true);
   });

@@ -2,7 +2,7 @@
 title: Trust Beneficiary Rights: A Trustee's 60-Day Response Guide
 description: Trust beneficiary rights in California are a copy of the trust, reasonable information, and a yearly account. A trustee has 60 days to answer in writing.
 excerpt: A beneficiary has sent you a demand for the trust and an accounting. Here is what they are owed, what they are not, the 60-day clock that starts the day the letter lands, and how to answer so your reply is your best exhibit instead of theirs.
-date: 2024-01-30
+date: 2025-05-20
 author: arthur-rothrock
 category: For Trustees
 tags: trustee, beneficiary demand, trust accounting, copy of trust, 17200 petition, San Jose
