@@ -59,9 +59,11 @@ How it works, in the order the browser sees it:
    OS setting (the scroll-in reveal was removed on 2026-09-03).
 
 Nothing leaves the browser. The choices are functional storage, not tracking,
-and the privacy policy's "no analytics, no tracking cookies" statements stay
-true. There is no cookie banner because nothing is a cookie (Arthur,
-2026-09-02).
+and they are not what the privacy policy's "Technical information" section
+discloses: that section covers Google Analytics, the one tracker on the site
+(added 2026-09-16, `components/seo/Analytics.tsx`, off in the editor preview).
+There is no cookie banner (Arthur, 2026-09-02, kept 2026-09-16 when the tag
+went in).
 
 ## Text sizes
 

@@ -38,7 +38,10 @@ export default function PrivacyPolicyPage() {
 
       <h2>The short version</h2>
       <ul>
-        <li>We collect only what you type, say, or upload. No tracking, no analytics, no ads.</li>
+        <li>
+          We collect only what you type, say, or upload, plus a count of visits to our pages
+          through Google Analytics. No ads, no profiles.
+        </li>
         <li>
           We use it for one thing: to decide whether we can help you, which includes a conflict
           check.
@@ -51,7 +54,10 @@ export default function PrivacyPolicyPage() {
           As part of conflict checking and case review we may look at public court records about the
           people and disputes you describe.
         </li>
-        <li>Video meetings happen on Google Meet. Nothing from Google runs on this website.</li>
+        <li>
+          Video meetings happen on Google Meet. Google Analytics is the only thing from Google that
+          runs on this website.
+        </li>
         <li>We never sell or share your information for advertising.</li>
         <li>
           If we do not take your matter, we delete what you sent after{' '}

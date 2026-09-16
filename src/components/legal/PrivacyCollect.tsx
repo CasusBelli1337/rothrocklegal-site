@@ -97,8 +97,9 @@ export function PrivacyCollect() {
         Video consultations happen on Google Meet, and we schedule them on the firm&rsquo;s Google
         Calendar. When we set up a meeting with you, Google receives your name and email address so
         it can send you the invitation and the meeting link, under Google&rsquo;s own privacy
-        policy. Nothing from Google runs on this website. If you would rather not use Google Meet,
-        tell us and we will find another way to talk.
+        policy. Google Analytics, described under Technical information below, is the only thing
+        from Google that runs on this website. If you would rather not use Google Meet, tell us and
+        we will find another way to talk.
       </p>
 
       <h3>If we agree to work together</h3>
@@ -112,11 +113,20 @@ export function PrivacyCollect() {
 
       <h3>Technical information</h3>
       <p>
-        This site does not use analytics, tracking cookies, advertising networks, or social-media
-        pixels, and it does not build a profile of you. Two technical details exist because every
-        website has them:
+        This site does not use advertising networks or social-media pixels, and it does not build a
+        profile of you. Three technical details exist because most websites have them:
       </p>
       <ul>
+        <li>
+          Google Analytics counts visits and shows us which pages people read, so we know what to
+          write more of. It sets a cookie so it can tell a return visit from a new one. It does not
+          tell us who you are, Google does not keep your IP address, and we use it for nothing else.
+          Google&rsquo;s handling of it is covered by{' '}
+          <a href="https://policies.google.com/privacy" rel="noopener noreferrer">
+            Google&rsquo;s privacy policy
+          </a>
+          . Blocking it in your browser changes nothing about how the site works.
+        </li>
         <li>
           The site is hosted on {legal.host.name}, which{' '}
           <a href={legal.host.dataCollectionUrl} rel="noopener noreferrer">

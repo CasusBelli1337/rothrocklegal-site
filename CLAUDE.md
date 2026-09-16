@@ -450,3 +450,13 @@ step, storyRead, evaluation, followUpAnswers }` (read from `?resume=` after
 - All four headshots exist at `public/images/team/<slug>-800.webp` and
   `-400.webp`; `TeamCard`/`ProfileHero` still fall back to `InitialAvatar` if
   one is ever missing.
+- Google Analytics (2026-09-16): the one third-party script on the site.
+  `components/seo/Analytics.tsx` renders the GA4 tag from `site.analyticsId`
+  (blank means no tag; the id is the web stream's measurement id under
+  Analytics account "Rothrock Legal", property `rothrocklegal.com`,
+  554691267) and stays off in the editor preview. The privacy policy's
+  "Technical information" section discloses it (cookie, no IP kept, no ads),
+  the short version says "plus a count of visits", and the effective date
+  moved to September 16, 2026. The portal's Website traffic page reads the
+  property through the GA4 Data API. Removing the tag means blanking the id
+  and putting the "no analytics" sentences back.

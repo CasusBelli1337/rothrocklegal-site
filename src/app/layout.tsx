@@ -4,6 +4,7 @@ import { Instrument_Sans, Newsreader } from 'next/font/google';
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
 import { MobileConsultBar } from '@/components/layout/MobileConsultBar';
+import { Analytics } from '@/components/seo/Analytics';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { palette, site } from '@/config/site';
 import { a11yBootScript } from '@/lib/a11y/boot';
@@ -100,6 +101,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <LensTracker articleWeights={articleLensWeights()} />
         {PreviewLensSwitch && <PreviewLensSwitch />}
         <JsonLd data={siteGraph()} />
+        <Analytics />
       </body>
     </html>
   );

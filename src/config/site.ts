@@ -15,6 +15,13 @@ export const site = {
   tagline:
     'Trust and estate litigation for families in San Jose, Santa Clara County, and the San Francisco Bay Area.',
   email: 'arothrock@rothrocklegal.com',
+  /**
+   * Google Analytics 4 measurement id (Admin, Data streams, the web stream), read by
+   * components/seo/Analytics. Blank means no tag. Added 2026-09-16 with the privacy
+   * policy's "Technical information" section; the portal's Website traffic page reads
+   * the property through the GA4 Data API.
+   */
+  analyticsId: 'G-JC25W690LQ',
   /** Office facts shown on the page and mirrored in JSON-LD (SEO-SPEC §3a). No street address. */
   office: {
     city: 'San Jose',
