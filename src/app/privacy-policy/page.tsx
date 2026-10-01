@@ -4,6 +4,7 @@ import { PrivacyCollect } from '@/components/legal/PrivacyCollect';
 import { PrivacyRights } from '@/components/legal/PrivacyRights';
 import { PrivacyUse } from '@/components/legal/PrivacyUse';
 import { site } from '@/config/site';
+import { formatDate } from '@/lib/format-date';
 import { pageMetadata } from '@/lib/seo/metadata';
 
 const DESCRIPTION =
@@ -26,7 +27,7 @@ export default function PrivacyPolicyPage() {
       path="/privacy-policy/"
     >
       <p>
-        <strong>Effective date:</strong> {legal.effectiveDate}. This policy covers
+        <strong>Effective date:</strong> {formatDate(legal.privacyEffectiveDate)}. This policy covers
         www.rothrocklegal.com, including the deadline tool and the consult request.
       </p>
       <p>
@@ -39,8 +40,9 @@ export default function PrivacyPolicyPage() {
       <h2>The short version</h2>
       <ul>
         <li>
-          We collect only what you type, say, or upload, plus a count of visits to our pages
-          through Google Analytics. No ads, no profiles.
+          We collect only what you type, say, or upload, plus a count of visits to our pages, and
+          of a few steps such as sending a consult request, through Google Analytics. No ads, no
+          profiles.
         </li>
         <li>
           We use it for one thing: to decide whether we can help you, which includes a conflict

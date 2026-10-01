@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { LegalPage } from '@/components/layout/LegalPage';
 import { legal } from '@/components/legal/legal-constants';
 import { site } from '@/config/site';
+import { formatDate } from '@/lib/format-date';
 import { pageMetadata } from '@/lib/seo/metadata';
 
 const DESCRIPTION =
@@ -27,7 +28,7 @@ export default function DisclaimerPage() {
       path="/disclaimer/"
     >
       <p>
-        <strong>Effective date:</strong> {legal.effectiveDate}. Please read this page before you
+        <strong>Effective date:</strong> {formatDate(legal.effectiveDate)}. Please read this page before you
         rely on anything on this site or send us information.
       </p>
 
