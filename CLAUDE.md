@@ -35,7 +35,8 @@ and the consult flow; visitors never see it. Details: `docs/LENS.md`.
 - `npm run dev` is only ever run by the editor container. Never start it by
   hand and never run `next build` in the editor's checkout (it owns `.next`).
 - `env -u NODE_ENV npm run build` builds the static export to `out/`.
-- `npm run lint`, `npm run typecheck`, `npm test` (Vitest, `src/**/*.test.ts`).
+- `npm run lint`, `npm run typecheck`, `npm test` (Vitest, `src/**/*.test.ts`
+  and `scripts/**/*.test.mjs`).
 - `npm run check-links` crawls `out/` for broken internal references.
 - `node scripts/check-seo.mjs` runs the SEO gates over `out/` (see Gotchas).
 - `node scripts/import-articles.mjs [dir]` validates and copies writers'
@@ -55,6 +56,11 @@ and the consult flow; visitors never see it. Details: `docs/LENS.md`.
   carries all three framings; on every page the neutral framing is visible and
   the others carry `hidden`; the homepage `<h1>` reads as one headline; boot
   script in `<head>` under 400 bytes; no preview-tool trace).
+- `node scripts/indexnow.mjs plan` lists the URLs the next deploy would send to
+  IndexNow (new sitemap in `out/` against the live one);
+  `node scripts/indexnow.mjs submit --dry-run [--sitemap out/sitemap.xml]` prints
+  the payload without sending it. The deploy workflow runs both for real (see
+  "Search engines and AI readers").
 - `npm run pdfjs:assets` copies pdf.js's worker, wasm decoders, and standard
   fonts into `public/pdfjs/` (git-ignored; `npm run build` and `npm run dev` run
   it first). The `/sign/` page renders the agreement with pdf.js.
@@ -246,6 +252,30 @@ image (/images/...), imageAlt, draft (true|false)
   retired app pages, every old `/post/<slug>/`, all landing on `/library/`) exports through
   `src/app/[...legacy]/` as a meta-refresh page with a canonical to the target
   and `noindex`. Moving a page means adding its old URL there.
+
+## Search engines and AI readers
+
+- IndexNow (Arthur, 2026-10-01): `site.indexNowKey` (32 hex characters, public
+  by design) is served at `/<key>.txt` from `public/`; `scripts/indexnow.test.mjs`
+  checks the pair. `.github/workflows/deploy.yml` runs `scripts/indexnow.mjs` in
+  two steps. `plan` (build job, before the deploy) compares the new
+  `out/sitemap.xml` with the live sitemap and keeps the URLs that are new, whose
+  `<lastmod>` changed, or that left the sitemap; when the live sitemap or the live
+  key file cannot be read (the first deploy) it plans the whole sitemap. `submit`
+  (the `indexnow` job, after the deploy) POSTs `{ host, key, keyLocation, urlList }`
+  to `https://api.indexnow.org/indexnow` and logs the response code (200 or 202 is
+  good; 403 means the key file is not live). Both are `continue-on-error`: a
+  failure never fails or delays the deploy; with no plan, `submit` sends the live
+  sitemap's whole list. Only pages whose `lastmod` moves get resent, so bump
+  `site.lastUpdated`, a practice area's or member's `updatedAt`, or an article's
+  `updated` with a substantive edit. Google does not use IndexNow (the sitemap
+  and Search Console cover it).
+- Raw HTML reads as one framing per lens slot (the `hidden` attribute above), so
+  AI tools and text extractors see the neutral copy only.
+- Every article's Article node names its author by Person `@id`; the bio's
+  "Articles by" section links the other way in HTML. The Person node carries
+  no list of articles: schema.org has no "author of" property, and `subjectOf`
+  would claim the articles are about him.
 
 ## Reading options and the boot scripts (docs/ACCESSIBILITY.md)
 
@@ -482,6 +512,8 @@ step, storyRead, evaluation, followUpAnswers }` (read from `?resume=` after
   TypeScript, sharp). A production-only install blanks the preview.
 - AGENTS.md must stay a symlink to CLAUDE.md (the editor copies symlinks
   verbatim on deploy; a real file would drift).
+- Changing `site.indexNowKey` means renaming `public/<key>.txt` to match in the
+  same commit; until the new file is live, IndexNow answers 403.
 - Meta descriptions are capped at build by `src/config/seo-limits.json`
   (`descriptionMax` 155): `pageMetadata()`, the library loader, `check-seo.mjs`,
   and `import-articles.mjs` all fail above it.
