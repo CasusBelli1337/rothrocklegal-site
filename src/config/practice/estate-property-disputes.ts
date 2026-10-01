@@ -6,6 +6,7 @@ export const estatePropertyDisputes: PracticeArea = {
   title: 'Property disputes (§ 850)',
   headline: 'Assets that were supposed to be in the trust are gone.',
   seoTitle: 'Probate Code 850 Petition Attorney in San Jose',
+  topic: 'Probate Code section 850 petitions',
   description:
     'A house retitled, accounts drained, trust property gone. Probate Code 850 petitions to get it back, and section 859 double damages, in San Jose.',
   summary:
@@ -80,6 +81,8 @@ export const estatePropertyDisputes: PracticeArea = {
     },
   ],
   categories: ['Trustees & Fiduciaries', 'Elder Financial Abuse', 'Probate Process'],
+  // A Heggstad petition is a section 850 petition; the article is filed under For Trustees.
+  featuredArticles: ['what-is-a-heggstad-petition-california'],
   author: 'arthur-rothrock',
   updatedAt: '2026-09-01',
 };

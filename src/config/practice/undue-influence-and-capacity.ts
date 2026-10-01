@@ -6,6 +6,7 @@ export const undueInfluenceAndCapacity: PracticeArea = {
   title: 'Undue influence & capacity',
   headline: 'Someone got to them when they were vulnerable.',
   seoTitle: 'Undue Influence Attorney in San Jose & Santa Clara County',
+  topic: 'undue influence',
   description:
     'Undue influence and lack of capacity claims in San Jose. A new will or trust signed when a parent could not remember names, or after a caregiver moved in.',
   summary:

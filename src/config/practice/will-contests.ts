@@ -6,6 +6,7 @@ export const willContests: PracticeArea = {
   title: "Will contests",
   headline: "The will isn’t what Mom or Dad said it would be.",
   seoTitle: "Will Contest & Probate Litigation Lawyer in San Jose",
+  topic: "will contests",
   description:
     "Will contest lawyer in San Jose. Object before the will is admitted or petition within 120 days after, the grounds that work, and what a contest takes.",
   summary:

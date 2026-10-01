@@ -4,18 +4,19 @@ import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { Container } from '@/components/ui/Container';
 import { CtaBand } from '@/components/ui/CtaBand';
 import { SectionHeading } from '@/components/ui/SectionHeading';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { team, teamHref } from '@/config/team';
+import { collectionPage } from '@/lib/seo/jsonld';
 import { pageMetadata } from '@/lib/seo/metadata';
 import type { Crumb } from '@/types/content';
 
 const PATH = '/attorneys/';
+const TITLE = 'Our Attorneys – Trust & Estate Litigation, San Jose';
+const DESCRIPTION =
+  'Meet the Rothrock Legal team: the San Jose trust and estate litigators who read your ' +
+  'consult request and work your case.';
 
-export const metadata: Metadata = pageMetadata({
-  title: 'Our Attorneys – Trust & Estate Litigation, San Jose',
-  description:
-    'Meet the Rothrock Legal team: the San Jose trust and estate litigators who read your ' +
-    'consult request and work your case.',
-  path: PATH,
-});
+export const metadata: Metadata = pageMetadata({ title: TITLE, description: DESCRIPTION, path: PATH });
 
 const trail: Crumb[] = [{ label: 'Home', href: '/' }, { label: 'Attorneys' }];
 
@@ -41,6 +42,14 @@ export default function AttorneysPage() {
         </Container>
       </section>
       <CtaBand />
+      <JsonLd
+        data={collectionPage({
+          path: PATH,
+          title: TITLE,
+          description: DESCRIPTION,
+          items: team.map((m) => ({ path: teamHref(m), name: m.name })),
+        })}
+      />
     </>
   );
 }

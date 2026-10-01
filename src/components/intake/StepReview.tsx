@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { ANALYTICS_EVENTS, trackEvent } from '@/lib/analytics/events';
 import { errorMessage, saveFollowUp, submitIntake } from '@/lib/intake/api';
 import { REVIEW_NOTE, REVIEW_PACKAGE_NOTE } from '@/lib/intake/copy';
 import { withUploadAnswers } from '@/lib/intake/follow-up';
@@ -59,7 +60,9 @@ export function StepReview({ intake }: StepProps) {
         const modules = state.evaluation?.modules ?? [];
         await saveFollowUp(session, withUploadAnswers(modules, state.followUpAnswers, state.files));
       }
-      intake.finish(await submitIntake(session));
+      const submitted = await submitIntake(session);
+      trackEvent(ANALYTICS_EVENTS.consultSubmitted);
+      intake.finish(submitted);
     } catch (caught) {
       intake.setError(errorMessage(caught));
       setSending(false);

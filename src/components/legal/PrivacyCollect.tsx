@@ -119,7 +119,9 @@ export function PrivacyCollect() {
       <ul>
         <li>
           Google Analytics counts visits and shows us which pages people read, so we know what to
-          write more of. It sets a cookie so it can tell a return visit from a new one. It does not
+          write more of. It also counts a few steps, with nothing you typed or chose attached:
+          starting a consult request, sending one, finishing the deadline tool, and clicking our
+          email address. It sets a cookie so it can tell a return visit from a new one. It does not
           tell us who you are, Google does not keep your IP address, and we use it for nothing else.
           Google&rsquo;s handling of it is covered by{' '}
           <a href="https://policies.google.com/privacy" rel="noopener noreferrer">

@@ -171,13 +171,13 @@ export const legalLinks: readonly NavItem[] = [
 export const social = {
   linkedin: 'https://www.linkedin.com/in/rothrocka/',
   /**
-   * Firm-level profiles for LegalService `sameAs` (ARTHUR-DOSSIER.md §15).
-   * Arthur's personal LinkedIn stands in for the firm until a LinkedIn Company
-   * Page, the Google Business Profile, Avvo, Justia, and State Bar firm URLs
-   * exist; add those here when they do, never before (local-SEO memo, 2026-09-01).
+   * Firm-level profiles for LegalService `sameAs` (ARTHUR-DOSSIER.md §15): pages about
+   * the firm itself. Arthur's personal LinkedIn identifies Arthur, so it lives on his
+   * Person record (team/arthur-rothrock.ts), not here (SEO audit, 2026-10-01). Add a
+   * LinkedIn Company Page, the Google Business Profile, Avvo, Justia, and the State Bar
+   * firm URL when they exist, never before (local-SEO memo, 2026-09-01).
    */
   firmProfiles: [
-    'https://www.linkedin.com/in/rothrocka/',
     'https://profiles.superlawyers.com/california/san-jose/lawfirm/rothrock-legal/3a179706-d225-41e9-aa54-4d24707b0788.html',
     'https://www.bestlawyers.com/firms/rothrock-legal/106701/US',
   ],

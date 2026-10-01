@@ -3,6 +3,7 @@ import { ReadingOptionGroups } from '@/components/layout/ReadingOptionGroups';
 import { legal } from '@/components/legal/legal-constants';
 import { a11yOptions } from '@/config/a11y';
 import { site } from '@/config/site';
+import { formatDate } from '@/lib/format-date';
 import { pageMetadata } from '@/lib/seo/metadata';
 
 const DESCRIPTION =
@@ -113,7 +114,7 @@ export default function AccessibilityPage() {
         site whenever we make a substantial change.
       </p>
       <p>
-        <strong>Last reviewed:</strong> {legal.effectiveDate}. Responsible attorney:{' '}
+        <strong>Last reviewed:</strong> {formatDate(legal.effectiveDate)}. Responsible attorney:{' '}
         {site.responsibleAttorney}, {site.name}, {site.office.city}, {site.office.regionName}.
       </p>
     </LegalPage>

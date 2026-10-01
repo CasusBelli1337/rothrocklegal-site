@@ -15,14 +15,16 @@ import {
   type LibraryArticle,
 } from '@/lib/library/articles';
 import { toListItem } from '@/lib/library/index-item';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { collectionPage } from '@/lib/seo/jsonld';
 import { pageMetadata } from '@/lib/seo/metadata';
 
-export const metadata: Metadata = pageMetadata({
-  title: 'The Library – Trust & Estate Answers in Plain English',
-  description:
-    'Plain-English answers about deadlines, trust and will contests, undue influence, trustees, and elder financial abuse from Rothrock Legal in San Jose.',
-  path: '/library/',
-});
+const PATH = '/library/';
+const TITLE = 'The Library – Trust & Estate Answers in Plain English';
+const DESCRIPTION =
+  'Plain-English answers about deadlines, trust and will contests, undue influence, trustees, and elder financial abuse from Rothrock Legal in San Jose.';
+
+export const metadata: Metadata = pageMetadata({ title: TITLE, description: DESCRIPTION, path: PATH });
 
 /** The featured card per lens (docs/LENS.md §4g): the trustee anchor under the trustee lens, the deadlines anchor otherwise. */
 function FeaturedByLens({ featured }: { featured: LibraryArticle }) {
@@ -85,6 +87,16 @@ export default function LibraryPage() {
       </section>
 
       <CtaBand />
+      <JsonLd
+        data={collectionPage({
+          path: PATH,
+          title: TITLE,
+          description: DESCRIPTION,
+          items: items
+            .filter((item) => !item.draft)
+            .map((item) => ({ path: `/library/${item.slug}/`, name: item.title })),
+        })}
+      />
     </>
   );
 }

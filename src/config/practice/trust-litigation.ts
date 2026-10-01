@@ -7,6 +7,7 @@ export const trustLitigation: PracticeArea = {
   headline:
     "When a trust or will doesn’t look right, we find out what happened.",
   seoTitle: "Trust Litigation Attorneys – San Jose & Santa Clara County",
+  topic: "trust litigation",
   description:
     "Trust litigation attorneys in San Jose and Santa Clara County: trust and will contests, undue influence, trustee breach, and elder financial abuse.",
   summary:

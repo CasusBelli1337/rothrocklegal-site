@@ -111,4 +111,15 @@ describe('DeadlineWizard', () => {
     expect(scrollTo).toHaveBeenCalledWith({ top: PANEL_UNDER_HEADER, behavior: 'smooth' });
     expect(document.activeElement?.id).toBe('wizard-results-heading');
   });
+
+  it('counts a finished run once, with no answers attached, and not a restored one', () => {
+    const gtag = vi.fn();
+    (window as Window & { gtag?: unknown }).gtag = gtag;
+    mount(FINISHED);
+    expect(gtag).not.toHaveBeenCalled();
+    press('Change my answers');
+    press('Show my deadlines');
+    expect(gtag.mock.calls).toEqual([['event', 'deadline_wizard_completed']]);
+    delete (window as Window & { gtag?: unknown }).gtag;
+  });
 });

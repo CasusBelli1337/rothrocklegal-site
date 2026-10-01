@@ -7,6 +7,7 @@ export const businessDisputes: PracticeArea = {
   title: "Business & partnership disputes",
   headline: "A partner or co-owner broke the deal.",
   seoTitle: "Business Dispute Attorney in San Jose",
+  topic: "business and partnership disputes",
   description:
     "Partnership breakups, LLC member and shareholder disputes, breach of contract, and fiduciary claims between co-owners. Business litigation in San Jose.",
   summary:

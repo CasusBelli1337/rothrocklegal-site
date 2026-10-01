@@ -3,8 +3,14 @@
  * Sources and the clause-by-clause map: rothrock-legal/redesign/legal-pages/LEGAL-PAGES-CHECK.md.
  */
 export const legal = {
-  /** CalOPPA requires an effective date (Bus. & Prof. Code § 22575(b)(4)). */
-  effectiveDate: 'September 16, 2026',
+  /**
+   * CalOPPA requires an effective date (Bus. & Prof. Code § 22575(b)(4)). ISO dates;
+   * pages print them with formatDate and sitemap.xml uses them as lastmod.
+   * `effectiveDate` is the disclaimer's and the accessibility statement's.
+   */
+  effectiveDate: '2026-09-16',
+  /** The privacy policy's own date: moved for the GA4 event counts (2026-10-01). */
+  privacyEffectiveDate: '2026-10-01',
   /** Unsent consult drafts are purged nightly after this many days (INTAKE-SPEC §7). */
   draftPurgeDays: 30,
   /**

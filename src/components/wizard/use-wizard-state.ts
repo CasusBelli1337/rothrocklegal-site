@@ -8,6 +8,7 @@ import {
   type Dispatch,
   type SetStateAction,
 } from 'react';
+import { ANALYTICS_EVENTS, trackEvent } from '@/lib/analytics/events';
 import { todayISO } from '@/lib/deadlines/dates';
 import type { Concern, DateAnswerKey, WizardAnswers } from '@/lib/deadlines/types';
 import type { ChoiceKey, WizardStep } from './steps';
@@ -116,6 +117,7 @@ export function useWizardState(): WizardController {
         return;
       }
       go({ stepIndex: isLast ? stepIndex : stepIndex + 1, showResults: isLast });
+      if (isLast) trackEvent(ANALYTICS_EVENTS.deadlineWizardCompleted);
     },
     back: () => go({ stepIndex: Math.max(0, stepIndex - 1) }),
     editAnswers: () => go({ showResults: false, stepIndex: steps.length - 1 }),

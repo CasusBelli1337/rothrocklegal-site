@@ -8,7 +8,11 @@
  *  4. sitemap.xml lists exactly the indexable pages (no stubs, drafts, or noindex pages);
  *     robots.txt exists; llms.txt lists every published article;
  *  5. no em dash anywhere in page text;
- *  6. no /post/ or /news-and-events/ output that is not a redirect stub.
+ *  6. no /post/ or /news-and-events/ output that is not a redirect stub;
+ *  7. every og:image on the canonical host is a file in the export, and article cards are JPEG;
+ *  8. every article's Article/BlogPosting author is a typed Person with a URL;
+ *  9. every robots.txt group closes the private paths (a named crawler ignores `*`);
+ * 10. llms-full.txt exists and carries every published article.
  * Run after `next build`: node scripts/check-seo.mjs
  */
 import fs from 'node:fs';
@@ -47,6 +51,16 @@ function decode(text) {
     .replace(/&amp;/g, '&');
 }
 
+/** The og:image must exist in the export; an article's card must be the JPEG copy (LinkedIn reads no WebP). */
+function checkOgImage(rel, html, stub) {
+  const og = attr(html, /<meta property="og:image" content="([^"]*)"/);
+  if (stub || !og) return;
+  const local = og.replace(/^https:\/\/www\.rothrocklegal\.com/, '');
+  if (local === og) return;
+  if (!fs.existsSync(path.join(OUT, local))) failures.push(`${rel}: og:image ${local} is not in the export`);
+  if (/^\/library\/.+\/$/.test(rel) && !local.endsWith('.jpg')) failures.push(`${rel}: article og:image is not the JPEG card`);
+}
+
 function checkPage(file) {
   const rel = `/${path.relative(OUT, path.dirname(file))}`.replace(/\/$/, '') + '/';
   const html = fs.readFileSync(file, 'utf8');
@@ -68,11 +82,16 @@ function checkPage(file) {
   for (const block of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
     try {
       const data = JSON.parse(block[1]);
-      for (const node of data['@graph'] ?? [data]) types.push(node['@type']);
+      for (const node of data['@graph'] ?? [data]) {
+        types.push(node['@type']);
+        if (['Article', 'BlogPosting'].includes(node['@type']) && !(node.author?.['@type'] === 'Person' && node.author.url))
+          failures.push(`${rel}: ${node['@type']} author is not a typed Person with a url`);
+      }
     } catch {
       failures.push(`${rel}: JSON-LD does not parse`);
     }
   }
+  checkOgImage(rel, html, stub);
   if (/^\/(post|news-and-events)\//.test(rel) && !stub) failures.push(`${rel}: legacy path is not a stub`);
   return { rel, stub, noindex, html, title: title ? decode(title) : '', types };
 }
@@ -93,7 +112,7 @@ for (const p of all.filter((p) => !p.stub)) {
   if (core.length > limits.titleMax) warnings.push(`${p.rel}: title core ${core.length} chars`);
 }
 
-for (const name of ['sitemap.xml', 'robots.txt', 'llms.txt']) {
+for (const name of ['sitemap.xml', 'robots.txt', 'llms.txt', 'llms-full.txt']) {
   if (!fs.existsSync(path.join(OUT, name))) failures.push(`missing ${name}`);
 }
 const sitemap = fs.existsSync(path.join(OUT, 'sitemap.xml'))
@@ -110,6 +129,19 @@ for (const rel of indexable.filter((r) => /^\/library\/.+\/$/.test(r))) {
   if (!llms.includes(rel)) failures.push(`llms.txt: missing published article ${rel}`);
 }
 if (llms.includes('[CONFIRM]')) failures.push('llms.txt: carries a [CONFIRM] placeholder');
+const full = fs.existsSync(path.join(OUT, 'llms-full.txt')) ? fs.readFileSync(path.join(OUT, 'llms-full.txt'), 'utf8') : '';
+for (const rel of indexable.filter((r) => /^\/library\/.+\/$/.test(r))) {
+  if (!full.includes(`URL: https://www.rothrocklegal.com${rel}`)) failures.push(`llms-full.txt: missing ${rel}`);
+}
+
+// A crawler that finds its own group obeys it alone, so every group must repeat the private paths.
+const robots = fs.existsSync(path.join(OUT, 'robots.txt')) ? fs.readFileSync(path.join(OUT, 'robots.txt'), 'utf8') : '';
+const groups = robots.split(/\n\s*\n/).filter((g) => /^User-Agent:/im.test(g));
+for (const group of groups) {
+  for (const p of ['/library/index.json', '/sign/', '/schedule/']) {
+    if (!group.includes(`Disallow: ${p}`)) failures.push(`robots.txt: a group does not disallow ${p}: ${group.split('\n')[0]}`);
+  }
+}
 
 const stubs = all.filter((p) => p.stub).length;
 console.log(

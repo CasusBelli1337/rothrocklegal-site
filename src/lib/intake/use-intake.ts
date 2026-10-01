@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { ANALYTICS_EVENTS, trackEvent } from '@/lib/analytics/events';
 import { createIntake, errorMessage, saveAnswers, saveFollowUp } from './api';
 import type {
   EvaluationClientView,
@@ -157,6 +158,7 @@ async function beginSession(
   try {
     const session = await createIntake();
     update((s) => ({ ...s, session, answers: { ...s.answers, acknowledgedDisclaimers: true } }));
+    trackEvent(ANALYTICS_EVENTS.consultStarted);
     return null;
   } catch (caught) {
     return errorMessage(caught);
