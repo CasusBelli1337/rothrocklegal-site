@@ -342,6 +342,16 @@ step, storyRead, evaluation, followUpAnswers }` (read from `?resume=` after
   the step heading with `preventScroll`; never the top of the page.
 - The page is the breadcrumbs, the panel (its small serif heading is the h1),
   and one disclaimer line. Every start tile fits a 1366×768 viewport.
+- Your package (2026-10-01): tile 0 carries the "Why we ask for so much up
+  front" callout and tile 1 a fifth item, "You leave with your file."
+  (`copy-start.ts`); the review screen says the package follows Send. The done
+  screen's `PackageCard` polls `GET /:id/package` (`use-package.ts`: every 5 s,
+  a 15-minute cap that survives a refresh via sessionStorage
+  `rl-intake-package`): a pulsing line while `preparing`, then the "Download
+  your package" link (`<a download>`, same tab) with size, documents, and
+  expiry; an "arrives by email" line at the cap; nothing at all for
+  `unavailable` or a 4xx. The tile and review copy promise the package, so the
+  module's endpoint must be live before this ships.
 - The microphone pre-flight checks `window.isSecureContext` first: on a plain
   http address it shows the "needs a secure connection" card (typing still
   works) instead of the permission steps.
@@ -355,8 +365,9 @@ step, storyRead, evaluation, followUpAnswers }` (read from `?resume=` after
   container gets the Armory's default Anthropic key for that allowance (the
   substitution is in the Armory `docker-compose.yml`, not in any `.env`).
 - `IntakeState.version` is 2; `loadState` drops a saved v1 draft (the old
-  order). Copy lives in `src/lib/intake/copy.ts`, `copy-mic.ts`, and
-  `copy-review.ts` only (the last two re-exported by `copy.ts`);
+  order). Copy lives in `src/lib/intake/copy.ts`, `copy-start.ts` (the start
+  tiles), `copy-mic.ts`, `copy-review.ts`, and `copy-package.ts` only (the
+  four siblings re-exported by `copy.ts`);
   `copy.test.ts` enforces the voice guide (no banned words, no em dash, no
   outcome promises, a "Next:" line for every numbered screen). The flow reads
   at 18px body text via `components/intake/intake.css`.

@@ -46,8 +46,10 @@ public/images/** ──────┘   deadline rules,       JSON-LD, metadata
 with the sticky action bar, `IntakeFlow` as the panel) and `src/lib/intake/`
 the logic: `state.ts` (the step order, with `follow-up` visible only when the
 evaluation left questions), `validate.ts`, `readings.ts` (the two model passes,
-keyed to what they read so no wait repeats), `use-triage.ts` and
-`use-evaluation.ts` (the polls), `resume.ts` (continue by email), and `copy.ts`;
+keyed to what they read so no wait repeats), `use-triage.ts`,
+`use-evaluation.ts`, and `use-package.ts` (the polls; the last one feeds the
+done screen's package card), `resume.ts` (continue by email), and `copy.ts`
+with its re-exported siblings;
 the panel is brought under the header on every screen change by
 `src/lib/reveal-panel.ts`, shared with the deadline wizard. The
 wire shapes are `contract.ts`, copied verbatim from the intake module. CLAUDE.md
