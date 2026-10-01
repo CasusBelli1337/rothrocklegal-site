@@ -35,7 +35,8 @@ and the consult flow; visitors never see it. Details: `docs/LENS.md`.
 - `npm run dev` is only ever run by the editor container. Never start it by
   hand and never run `next build` in the editor's checkout (it owns `.next`).
 - `env -u NODE_ENV npm run build` builds the static export to `out/`.
-- `npm run lint`, `npm run typecheck`, `npm test` (Vitest, `src/**/*.test.ts`).
+- `npm run lint`, `npm run typecheck`, `npm test` (Vitest, `src/**/*.test.ts`
+  and `scripts/**/*.test.mjs`).
 - `npm run check-links` crawls `out/` for broken internal references.
 - `node scripts/check-seo.mjs` runs the SEO gates over `out/` (see Gotchas).
 - `node scripts/import-articles.mjs [dir]` validates and copies writers'
@@ -52,7 +53,14 @@ and the consult flow; visitors never see it. Details: `docs/LENS.md`.
   screenshots land in `scripts/e2e/shots/` (git-ignored). `curl` is denied in
   this environment; the driver uses node fetch and raw CDP.
 - `node scripts/check-lens.mjs` verifies the lens export (every copy slot
-  carries all three framings, boot script in `<head>`, no preview-tool trace).
+  carries all three framings; on every page the neutral framing is visible and
+  the others carry `hidden`; the homepage `<h1>` reads as one headline; boot
+  script in `<head>` under 400 bytes; no preview-tool trace).
+- `node scripts/indexnow.mjs plan` lists the URLs the next deploy would send to
+  IndexNow (new sitemap in `out/` against the live one);
+  `node scripts/indexnow.mjs submit --dry-run [--sitemap out/sitemap.xml]` prints
+  the payload without sending it. The deploy workflow runs both for real (see
+  "Search engines and AI readers").
 - `npm run pdfjs:assets` copies pdf.js's worker, wasm decoders, and standard
   fonts into `public/pdfjs/` (git-ignored; `npm run build` and `npm run dev` run
   it first). The `/sign/` page renders the agreement with pdf.js.
@@ -91,7 +99,18 @@ Components read config; they never hardcode firm facts, URLs, or copy lists.
   what he does there now. `bio` and `heroLine` may be `Framed<T>` (one value or
   a `LensCopy`); `ProfileBio`/`ProfileHero` render them through `Slot`, and
   Arthur's opening paragraph and hero line carry the three framings
-  (`check-lens.mjs` counts his page).
+  (`check-lens.mjs` counts his page). `writing` (`TeamWriting`; Arthur's is
+  `team/arthur-rothrock-writing.ts`) drives the bio's "Articles by" section
+  (`components/team/ArticlesByMember.tsx`, Arthur 2026-10-01): the library
+  articles by that person, derived from the article index by `author`
+  (`lib/library/by-author.ts`): `featuredArticles` first in their order
+  (deadline, trust contest, will contest, accounting, undue influence, elder
+  abuse, trustee defense), then newest, Technology & the Law last, drafts never,
+  `shown` rows (10) with a count line and "See all articles"; a featured slug that
+  is not a published article by them fails the build. Then "Elsewhere": at most
+  six of their pieces on other sites, newest first, same tab with
+  `rel="noopener"`; Arthur's are his legion.law guides that carry his byline and
+  are on his CV (the product comparisons stay off the firm site).
 - `src/config/legion-litigator.ts`: the Legion AI Litigator seal (Arthur,
   2026-09-04): the homepage section (`components/home/LegionLitigator.tsx`),
   the About block, the four commitments (`components/legion/Commitments.tsx`;
@@ -129,8 +148,13 @@ Components read config; they never hardcode firm facts, URLs, or copy lists.
 - `src/lib/lens/*` + `src/config/lens.ts` (rules) + `src/config/lens-copy.ts`
   (copy): the lens, a browser-only trustee/beneficiary framing inferred from
   the landing path and clicks (`docs/LENS.md`). Copy variants render through
-  `components/lens/Slot` with `data-for`; `html[data-lens]` picks one; URLs
-  never change and nothing is sent anywhere.
+  `components/lens/Slot` with `data-for`, and every framing but the neutral one
+  carries the HTML `hidden` attribute in the export (since 2026-10-01: AI tools
+  reading raw HTML saw two or three headlines in the homepage `<h1>`). The head
+  script stamps `html[data-lens]` and its MutationObserver, plus `LensTracker`,
+  move `hidden` to the matching framing (`slots.ts` `syncLensSlots` is the
+  readable version); no CSS rule picks the framing any more. URLs never change
+  and nothing is sent anywhere.
 - `src/lib/a11y/*` + `src/config/a11y.ts`: the reading options (text size,
   contrast, motion, spacing). `store.ts` owns localStorage `rl-a11y` and the
   `html[data-*]` attributes, `boot.ts` is the head script, `useReadingPrefs.ts`
@@ -211,7 +235,9 @@ image (/images/...), imageAlt, draft (true|false)
   (`components/practice/PracticePage.tsx`), each route file is five lines.
 - `/attorneys/` (the four cards and the CTA band; the "How we work as a team"
   section went with the homepage one) + `/attorneys/<slug>/` for
-  `arthur-rothrock`, `gerry-lin`, `jonathan-joannides`, `max-discher`.
+  `arthur-rothrock`, `gerry-lin`, `jonathan-joannides`, `max-discher`: hero,
+  bio + sidebar, "Articles by" (members with `writing`), recognition, speaking
+  and press, CTA band.
 - `/about/`, `/how-long-do-i-have/` (the wizard, ends in a consult request panel),
   `/library/` (search + category chips, `?category=&q=` synced to the URL) +
   `/library/<slug>/`, `/faq/`, `/service-areas/`, `/contact/`,
@@ -232,6 +258,30 @@ image (/images/...), imageAlt, draft (true|false)
   `src/app/[...legacy]/` as a meta-refresh page with a canonical to the target
   and `noindex`. Moving a page means adding its old URL there.
 
+## Search engines and AI readers
+
+- IndexNow (Arthur, 2026-10-01): `site.indexNowKey` (32 hex characters, public
+  by design) is served at `/<key>.txt` from `public/`; `scripts/indexnow.test.mjs`
+  checks the pair. `.github/workflows/deploy.yml` runs `scripts/indexnow.mjs` in
+  two steps. `plan` (build job, before the deploy) compares the new
+  `out/sitemap.xml` with the live sitemap and keeps the URLs that are new, whose
+  `<lastmod>` changed, or that left the sitemap; when the live sitemap or the live
+  key file cannot be read (the first deploy) it plans the whole sitemap. `submit`
+  (the `indexnow` job, after the deploy) POSTs `{ host, key, keyLocation, urlList }`
+  to `https://api.indexnow.org/indexnow` and logs the response code (200 or 202 is
+  good; 403 means the key file is not live). Both are `continue-on-error`: a
+  failure never fails or delays the deploy; with no plan, `submit` sends the live
+  sitemap's whole list. Only pages whose `lastmod` moves get resent, so bump
+  `site.lastUpdated`, a practice area's or member's `updatedAt`, or an article's
+  `updated` with a substantive edit. Google does not use IndexNow (the sitemap
+  and Search Console cover it).
+- Raw HTML reads as one framing per lens slot (the `hidden` attribute above), so
+  AI tools and text extractors see the neutral copy only.
+- Every article's Article node names its author by Person `@id`; the bio's
+  "Articles by" section links the other way in HTML. The Person node carries
+  no list of articles: schema.org has no "author of" property, and `subjectOf`
+  would claim the articles are about him.
+
 ## Reading options and the boot scripts (docs/ACCESSIBILITY.md)
 
 - "Reading options" is one 44px AA icon button (`aria-label` "Reading options",
@@ -251,11 +301,17 @@ image (/images/...), imageAlt, draft (true|false)
   (`text-[15px]` became the `text-ui` token for this reason).
 - Two tiny inline scripts sit in `<head>` (`src/app/layout.tsx`) and run before
   paint so a stored choice is in place with no flash: the lens boot script
-  (`src/lib/lens/boot.ts`, ~199 bytes) and the reading-options boot script
+  (`src/lib/lens/boot.ts`, ~382 bytes: it installs the slot MutationObserver
+  first, then stamps the lens; observer callbacks are microtasks, so the parser
+  never paints the wrong framing) and the reading-options boot script
   (`src/lib/a11y/boot.ts`, ~239 bytes, hard cap 400). `scripts/check-lens.mjs`
   asserts both are present, under the cap, and that the static `<html>` carries
   none of the attributes. Both have unit tests; edit the source, not the
-  string. A third, the consent boot script (~389 bytes, cap 450), sits beside
+  string. The two share the page's global scope: the lens script uses
+  block-scoped `let` because the reading-options script declares a global `d`
+  that once overwrote the `document` the observer reads (`boot.test.ts` runs
+  both as classic scripts to guard it).
+  A third, the consent boot script (~389 bytes, cap 450), sits beside
   them since 2026-10-01; see "Consent" below.
 - The reduced-motion option mirrors `prefers-reduced-motion` (every transition
   and animation goes to zero). The high-contrast palette lives beside the normal tokens in
@@ -491,6 +547,8 @@ step, storyRead, evaluation, followUpAnswers }` (read from `?resume=` after
   TypeScript, sharp). A production-only install blanks the preview.
 - AGENTS.md must stay a symlink to CLAUDE.md (the editor copies symlinks
   verbatim on deploy; a real file would drift).
+- Changing `site.indexNowKey` means renaming `public/<key>.txt` to match in the
+  same commit; until the new file is live, IndexNow answers 403.
 - Meta descriptions are capped at build by `src/config/seo-limits.json`
   (`descriptionMax` 155): `pageMetadata()`, the library loader, `check-seo.mjs`,
   and `import-articles.mjs` all fail above it.

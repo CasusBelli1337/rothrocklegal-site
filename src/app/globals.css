@@ -257,16 +257,12 @@
 
 /*
  * Lens (docs/LENS.md). Copy variants carry data-for="neutral|trustee|beneficiary"
- * (space-separated when shared); the inline head script stamps html[data-lens]
- * before first paint. No attribute, or "neutral", shows the neutral copy, so
- * crawlers, no-JS readers, and first-time visitors see the plain site.
+ * (space-separated when shared) and the HTML `hidden` attribute does the
+ * showing: the export hides every framing but the neutral one, and the head
+ * script (src/lib/lens/boot.ts) and LensTracker move `hidden` to the framing
+ * matching html[data-lens]. No CSS rule here, so the `[hidden]` rule stays
+ * authoritative and the raw HTML reads as one framing per slot.
  */
-html:not([data-lens]) [data-for]:not([data-for~='neutral']),
-html[data-lens='neutral'] [data-for]:not([data-for~='neutral']),
-html[data-lens='trustee'] [data-for]:not([data-for~='trustee']),
-html[data-lens='beneficiary'] [data-for]:not([data-for~='beneficiary']) {
-  display: none;
-}
 /* Per-lens ordering (problem cards, home FAQ) from inline custom properties; neutral keeps DOM order. */
 html[data-lens='trustee'] .lens-ordered {
   order: var(--lens-order-trustee, 0);

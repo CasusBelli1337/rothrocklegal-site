@@ -1,6 +1,8 @@
 /**
  * Arthur E. Rothrock – every fact here traces to ARTHUR-DOSSIER.md
- * (2026-09-01). Items the dossier marks NEEDS ARTHUR are left out entirely.
+ * (2026-09-01) or to his own CV of September 9, 2026 (which settled the
+ * dossier's open questions on his memberships and several talks). Items still
+ * open are left out entirely.
  * Arthur is "a litigator", never "a trial lawyer" (Arthur, 2026-09-04), and
  * the opening paragraph and hero line carry a framing per lens: neutral for
  * everyone, then the beneficiary's and the trustee's side of the table.
@@ -8,6 +10,7 @@
 
 import { headshot, type TeamMember } from './member';
 import { arthurAppearances } from './arthur-rothrock-appearances';
+import { arthurWriting } from './arthur-rothrock-writing';
 
 const PRACTICE =
   'trust and will contests, undue influence and capacity fights, breach of fiduciary duty by ' +
@@ -49,8 +52,8 @@ const AI_VOICE =
   'That work made him a regular voice on how lawyers should use AI. He is Vice Chair of the ' +
   "American Bar Association's Artificial Intelligence and Robotics National Institute, hosts " +
   "The Litigator's Path, a podcast about running a litigation practice, and has spoken on AI " +
-  'for lawyers at Berkeley Law, CEB, and the Santa Clara County, Silicon Valley, and Monterey ' +
-  'County bar associations. His article on competence, confidentiality, and client consent ' +
+  'for lawyers at Berkeley Law, CEB, the Jerry A. Kasner Estate Planning Symposium, and the ' +
+  'Santa Clara County, Silicon Valley, and Monterey County bar associations. His article on competence, confidentiality, and client consent ' +
   'when lawyers use AI ran in the May 2026 Contra Costa Lawyer.';
 
 const AWARDS =
@@ -60,9 +63,11 @@ const AWARDS =
 
 const EDUCATION =
   'Arthur earned his J.D. from Santa Clara University School of Law, where he was a senior ' +
-  'editor on two of its journals, and his B.A. from Indiana University of Pennsylvania. He is ' +
-  'a member of the State Bar of California, the Honorable William A. Ingram American Inn of ' +
-  'Court, and the Santa Clara County Bar Association. Before founding Rothrock Legal he ' +
+  'editor on two of its journals, and his B.A. in history from Indiana University of ' +
+  'Pennsylvania. He is a member of the State Bar of California, the American Bar ' +
+  'Association, the Honorable William A. Ingram American Inn of Court, the Santa Clara ' +
+  'County Bar Association, the Silicon Valley Bar Association, and the Bar Association of ' +
+  'San Francisco. Before founding Rothrock Legal he ' +
   'litigated at Hopkins & Carley in San Jose.';
 
 const OUTSIDE =
@@ -152,6 +157,7 @@ export const arthurRothrock: TeamMember = {
         'American Bar Association Artificial Intelligence and Robotics National Institute',
       years: '2024–2026',
     },
+    { role: 'Alumni Ambassador', organization: 'Santa Clara University School of Law' },
   ],
   education: [
     {
@@ -161,13 +167,17 @@ export const arthurRothrock: TeamMember = {
         'Santa Clara Law Review, Senior Research Editor',
         'Santa Clara High Tech Law Journal, Senior Comments Editor',
         'High Tech Law Certificate, Corporate Specialization, with Honors',
+        'High Tech Excellence Award',
       ],
     },
-    { school: 'Indiana University of Pennsylvania', degree: 'B.A.' },
+    { school: 'Indiana University of Pennsylvania', degree: 'B.A. in History' },
   ],
   memberships: [
+    'American Bar Association',
     'Honorable William A. Ingram American Inn of Court',
     'Santa Clara County Bar Association',
+    'Silicon Valley Bar Association',
+    'Bar Association of San Francisco',
   ],
   membershipBadges: {
     'Honorable William A. Ingram American Inn of Court': {
@@ -190,6 +200,7 @@ export const arthurRothrock: TeamMember = {
     },
   },
   appearances: arthurAppearances,
+  writing: arthurWriting,
   sameAs: [
     'https://apps.calbar.ca.gov/attorney/Licensee/Detail/312704',
     'https://www.linkedin.com/in/rothrocka/',
@@ -209,5 +220,5 @@ export const arthurRothrock: TeamMember = {
     'complex-estates',
     'business-disputes',
   ],
-  updatedAt: '2026-09-04',
+  updatedAt: '2026-10-01',
 };

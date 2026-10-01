@@ -22,6 +22,12 @@ export const site = {
    * the property through the GA4 Data API.
    */
   analyticsId: 'G-JC25W690LQ',
+  /**
+   * IndexNow key (scripts/indexnow.mjs, run by the deploy workflow): 32 hex characters,
+   * public by design and served at /<key>.txt from public/. Changing it means renaming
+   * that file to match; scripts/indexnow.test.mjs checks the pair.
+   */
+  indexNowKey: 'c92dd84a8ed7cf41116d8a40bda52aa4',
   /** Office facts shown on the page and mirrored in JSON-LD (SEO-SPEC §3a). No street address. */
   office: {
     city: 'San Jose',

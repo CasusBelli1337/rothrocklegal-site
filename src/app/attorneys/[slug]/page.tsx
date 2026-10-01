@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { AppearancesList } from '@/components/team/AppearancesList';
+import { ArticlesByMember } from '@/components/team/ArticlesByMember';
 import { ProfileBio } from '@/components/team/ProfileBio';
 import { ProfileHero } from '@/components/team/ProfileHero';
 import { ProfileSidebar } from '@/components/team/ProfileSidebar';
@@ -88,6 +89,7 @@ export default async function AttorneyPage({ params }: Params) {
         </div>
         <ProfileSidebar member={member} className="lg:col-span-5 xl:col-span-4 xl:col-start-9" />
       </Container>
+      <ArticlesByMember member={member} />
       <Recognition member={member} />
       <SpeakingAndPress member={member} />
       <CtaBand />
