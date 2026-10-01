@@ -52,7 +52,9 @@ and the consult flow; visitors never see it. Details: `docs/LENS.md`.
   screenshots land in `scripts/e2e/shots/` (git-ignored). `curl` is denied in
   this environment; the driver uses node fetch and raw CDP.
 - `node scripts/check-lens.mjs` verifies the lens export (every copy slot
-  carries all three framings, boot script in `<head>`, no preview-tool trace).
+  carries all three framings; on every page the neutral framing is visible and
+  the others carry `hidden`; the homepage `<h1>` reads as one headline; boot
+  script in `<head>` under 400 bytes; no preview-tool trace).
 - `npm run pdfjs:assets` copies pdf.js's worker, wasm decoders, and standard
   fonts into `public/pdfjs/` (git-ignored; `npm run build` and `npm run dev` run
   it first). The `/sign/` page renders the agreement with pdf.js.
@@ -124,8 +126,13 @@ Components read config; they never hardcode firm facts, URLs, or copy lists.
 - `src/lib/lens/*` + `src/config/lens.ts` (rules) + `src/config/lens-copy.ts`
   (copy): the lens, a browser-only trustee/beneficiary framing inferred from
   the landing path and clicks (`docs/LENS.md`). Copy variants render through
-  `components/lens/Slot` with `data-for`; `html[data-lens]` picks one; URLs
-  never change and nothing is sent anywhere.
+  `components/lens/Slot` with `data-for`, and every framing but the neutral one
+  carries the HTML `hidden` attribute in the export (since 2026-10-01: AI tools
+  reading raw HTML saw two or three headlines in the homepage `<h1>`). The head
+  script stamps `html[data-lens]` and its MutationObserver, plus `LensTracker`,
+  move `hidden` to the matching framing (`slots.ts` `syncLensSlots` is the
+  readable version); no CSS rule picks the framing any more. URLs never change
+  and nothing is sent anywhere.
 - `src/lib/a11y/*` + `src/config/a11y.ts`: the reading options (text size,
   contrast, motion, spacing). `store.ts` owns localStorage `rl-a11y` and the
   `html[data-*]` attributes, `boot.ts` is the head script, `useReadingPrefs.ts`
@@ -246,11 +253,16 @@ image (/images/...), imageAlt, draft (true|false)
   (`text-[15px]` became the `text-ui` token for this reason).
 - Two tiny inline scripts sit in `<head>` (`src/app/layout.tsx`) and run before
   paint so a stored choice is in place with no flash: the lens boot script
-  (`src/lib/lens/boot.ts`, ~199 bytes) and the reading-options boot script
+  (`src/lib/lens/boot.ts`, ~382 bytes: it installs the slot MutationObserver
+  first, then stamps the lens; observer callbacks are microtasks, so the parser
+  never paints the wrong framing) and the reading-options boot script
   (`src/lib/a11y/boot.ts`, ~239 bytes, hard cap 400). `scripts/check-lens.mjs`
   asserts both are present, under the cap, and that the static `<html>` carries
   none of the attributes. Both have unit tests; edit the source, not the
-  string.
+  string. The two share the page's global scope: the lens script uses
+  block-scoped `let` because the reading-options script declares a global `d`
+  that once overwrote the `document` the observer reads (`boot.test.ts` runs
+  both as classic scripts to guard it).
 - The reduced-motion option mirrors `prefers-reduced-motion` (every transition
   and animation goes to zero). The high-contrast palette lives beside the normal tokens in
   `globals.css`.
