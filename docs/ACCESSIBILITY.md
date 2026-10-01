@@ -62,8 +62,24 @@ Nothing leaves the browser. The choices are functional storage, not tracking,
 and they are not what the privacy policy's "Technical information" section
 discloses: that section covers Google Analytics, the one tracker on the site
 (added 2026-09-16, `components/seo/Analytics.tsx`, off in the editor preview).
-There is no cookie banner (Arthur, 2026-09-02, kept 2026-09-16 when the tag
-went in).
+Since 2026-10-01 GA4 runs only after a yes in the privacy-choices bar
+(docs/CONSENT.md); the reading options are part of its always-on "Needed for
+the site" category.
+
+## The privacy-choices bar
+
+The bar is the one thing that sits over the page: fixed at the bottom on a
+first visit (and when reopened from "Privacy choices" in the footer), stacked
+above the mobile consult bar. It is a labelled region ("Privacy choices"),
+placed right after the skip link so Tab reaches it second; its three choices
+are 48px tall at 16px text, one style each, and wrap rather than overflow at a
+larger text size. Escape inside it declines a first visit, or closes a
+reopened bar and returns focus to the link. While it is open the page keeps
+room for it (`--consent-bar-h` body padding, `--consent-cover` scroll padding,
+so the focused control is never hidden behind it, WCAG 2.4.11). It uses the
+same tokens as everything else, so text size and high contrast follow, and it
+has no animation. The accessibility statement names it as the one exception to
+"no pop-ups cover what you are reading".
 
 ## Text sizes
 

@@ -57,7 +57,12 @@ and the consult flow; visitors never see it. Details: `docs/LENS.md`.
   fonts into `public/pdfjs/` (git-ignored; `npm run build` and `npm run dev` run
   it first). The `/sign/` page renders the agreement with pdf.js.
 
-Full check before a commit: lint, typecheck, test, build, check-links, check-seo, check-lens.
+- `npm run check-consent` (`scripts/check-consent.mjs`) verifies the consent
+  export: the consent boot script in every page's `<head>` under its cap, no
+  `data-consent` on the static `<html>`, no Google tag host in any static HTML,
+  the bar and the footer's "Privacy choices" button on every page.
+
+Full check before a commit: lint, typecheck, test, build, check-links, check-seo, check-lens, check-consent.
 
 ## Architecture (config over code)
 
@@ -250,10 +255,39 @@ image (/images/...), imageAlt, draft (true|false)
   (`src/lib/a11y/boot.ts`, ~239 bytes, hard cap 400). `scripts/check-lens.mjs`
   asserts both are present, under the cap, and that the static `<html>` carries
   none of the attributes. Both have unit tests; edit the source, not the
-  string.
+  string. A third, the consent boot script (~389 bytes, cap 450), sits beside
+  them since 2026-10-01; see "Consent" below.
 - The reduced-motion option mirrors `prefers-reduced-motion` (every transition
   and animation goes to zero). The high-contrast palette lives beside the normal tokens in
   `globals.css`.
+
+## Consent: privacy choices (docs/CONSENT.md)
+
+- Nothing that tracks visits runs before a yes (2026-10-01). Categories live in
+  `src/config/consent.ts`: `necessary` (always on: browser storage that never
+  leaves the device), `analytics` (GA4, offered while `site.analyticsId` is
+  set), and `advertising` (defined; offered only once a vendor is listed).
+  Every word is in `src/config/consent-copy.ts` (`consent-copy.test.tsx`
+  holds it to the voice guide, no em dash, sentences under about 25 words).
+- The choice is stored in localStorage `rl-consent`
+  (`{ version, savedAt, granted, signal }`, `src/lib/consent/store.ts`) and asked
+  again after 12 months or a `consentConfig.version` bump. Global Privacy
+  Control and Do Not Track count as a no: a yes given before the signal
+  appeared is asked again, and advertising never runs under a signal.
+- A third boot script in `<head>` (`src/lib/consent/boot.ts`, under 450 bytes,
+  `CONSENT_BOOT_MAX_BYTES`) stamps `html[data-consent]` (`ask`, `analytics`, or
+  `none`) before paint; the bar (`components/consent/ConsentBanner.tsx`, right
+  after the skip link, drawn fixed at the bottom, above the mobile consult bar)
+  shows under `ask` before hydration, so it never flashes and never shows
+  without JavaScript. Three equal choices: "Accept analytics", "Decline",
+  "Choose" (categories inline, "Save choices"); Escape declines a first visit.
+- The footer's legal row carries "Privacy choices" (`PrivacyChoicesButton`),
+  which reopens the bar; the privacy policy's "Cookies and your choices"
+  section (`#cookies-and-your-choices`, `components/legal/PrivacyCookies.tsx`)
+  carries one too. Listing an advertising vendor
+  (`#seam:consent-advertising`) shows the advertising switch, renames that link
+  "Do Not Sell or Share My Personal Information", and swaps the policy's
+  advertising sentences; follow docs/CONSENT.md "Turning on advertising" first.
 
 ## Palette
 
@@ -471,19 +505,22 @@ step, storyRead, evaluation, followUpAnswers }` (read from `?resume=` after
   `-400.webp`; `TeamCard`/`ProfileHero` still fall back to `InitialAvatar` if
   one is ever missing.
 - Google Analytics (2026-09-16): the one third-party script on the site.
-  `components/seo/Analytics.tsx` renders the GA4 tag from `site.analyticsId`
-  (blank means no tag; the id is the web stream's measurement id under
+  `components/seo/Analytics.tsx` renders `GaLoader` from `site.analyticsId`
+  (blank means no tag and no bar; the id is the web stream's measurement id under
   Analytics account "Rothrock Legal", property `rothrocklegal.com`,
-  554691267) and stays off in the editor preview. Since 2026-10-01 it loads
-  after the page is idle (`lazyOnload`, SEO-SPEC §11: next/script's
-  `afterInteractive` preloaded 174 KB of gtag.js ahead of the CSS, fonts, and
-  hero image), never runs on `/sign/` or `/schedule/`, and strips `?resume=` /
-  `?t=` tokens from the reported address (`lib/analytics/tag.ts`). It sends the
-  four events in `lib/analytics/events.ts`; mark them as key events in GA4
-  Admin. The privacy policy's "Technical information" section discloses it
-  (cookie, no IP kept, no ads, the counted steps), the short version says "plus
-  a count of visits ... and of a few steps", and the privacy policy's effective
-  date is `legal.privacyEffectiveDate` (October 1, 2026; the disclaimer and the
-  accessibility statement keep `legal.effectiveDate`, September 16). The portal's Website traffic page reads the
-  property through the GA4 Data API. Removing the tag means blanking the id
-  and putting the "no analytics" sentences back.
+  554691267) and stays off in the editor preview. Since 2026-10-01 it is
+  consent-first (docs/CONSENT.md): nothing from Google loads until a yes in the
+  privacy-choices bar, then basic Consent Mode v2 (`default` all denied, then
+  `update`, then `config` with Google signals and ad personalization off) once
+  the page is idle (SEO-SPEC §11), never on `/sign/` or `/schedule/`, with
+  `?resume=` / `?t=` tokens stripped from the reported address
+  (`lib/analytics/tag.ts`). A no removes the `_ga` cookies. It sends the four
+  events in `lib/analytics/events.ts` (dropped, never queued, without a yes);
+  mark them as key events in GA4 Admin. The privacy policy's "Technical
+  information" and "Cookies and your choices" sections disclose it, and its
+  effective date is `legal.privacyEffectiveDate` (October 1, 2026; the
+  disclaimer and the accessibility statement keep `legal.effectiveDate`,
+  September 16). The portal's Website traffic page reads the property through
+  the GA4 Data API; it now counts only visitors who said yes. Removing the tag
+  means blanking the id (the bar and footer link then disappear too) and
+  rewriting the policy's analytics sentences.
