@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { errorMessage, saveFollowUp, submitIntake } from '@/lib/intake/api';
-import { REVIEW_NOTE } from '@/lib/intake/copy';
+import { REVIEW_NOTE, REVIEW_PACKAGE_NOTE } from '@/lib/intake/copy';
 import { withUploadAnswers } from '@/lib/intake/follow-up';
 import { hasFollowUp, type IntakeState, type StepId } from '@/lib/intake/state';
 import { reviewRows } from './review-rows';
@@ -73,7 +73,8 @@ export function StepReview({ intake }: StepProps) {
       footer={<StepNav intake={intake} continueLabel="Send" busy={sending} />}
     >
       <Summary state={state} onEdit={intake.goTo} />
-      <p className="mt-4 text-small text-ink-3">{REVIEW_NOTE}</p>
+      <p className="mt-4 text-small text-ink-2">{REVIEW_PACKAGE_NOTE}</p>
+      <p className="mt-2 text-small text-ink-3">{REVIEW_NOTE}</p>
     </StepFrame>
   );
 }

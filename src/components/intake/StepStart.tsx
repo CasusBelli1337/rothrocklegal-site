@@ -8,6 +8,7 @@ import {
   BEFORE_WE_START,
   CONFIDENTIALITY_NOTE,
   START_TILES,
+  UP_FRONT,
 } from '@/lib/intake/copy';
 import type { IntakeController } from '@/lib/intake/use-intake';
 import { CheckboxRow } from './FormFields';
@@ -25,7 +26,7 @@ function Numbered({ n }: { n: number }) {
   );
 }
 
-/** Tile 1: three short lines on what this is. */
+/** Tile 1: three short lines on what this is, then why we ask so much. */
 function BeforeWeStart() {
   return (
     <>
@@ -37,12 +38,16 @@ function BeforeWeStart() {
           </li>
         ))}
       </ol>
-      <p className="mt-5 text-small text-ink-3">{CONFIDENTIALITY_NOTE}</p>
+      <div className="mt-5 border border-line border-t-2 border-t-brass-400 bg-white px-4 py-3 sm:px-5">
+        <h3 className="eyebrow">{UP_FRONT.title}</h3>
+        <p className="mt-2 text-small text-ink-2">{UP_FRONT.body}</p>
+      </div>
+      <p className="mt-4 text-small text-ink-3">{CONFIDENTIALITY_NOTE}</p>
     </>
   );
 }
 
-/** Tile 2: the four steps after Send, tight. */
+/** Tile 2: the five steps after Send, tight. */
 function AfterYouSend() {
   return (
     <ol className="space-y-3">

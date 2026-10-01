@@ -158,6 +158,33 @@ describe('hand-holding lines', () => {
     for (const line of copy.DONE_NEXT) expect(line.length).toBeLessThan(80);
   });
 
+  it('explains the package on the first two tiles, the review screen, and the done screen', () => {
+    expect(copy.UP_FRONT.title).toBe('Why we ask for so much up front');
+    expect(copy.AFTER_YOU_SEND).toHaveLength(5);
+    const last = copy.AFTER_YOU_SEND[copy.AFTER_YOU_SEND.length - 1];
+    expect(last.title).toBe('You leave with your file.');
+    expect(last.body).toContain(`${copy.PACKAGE_LINK_DAYS} days`);
+    expect(copy.UP_FRONT.body).toMatch(/a lawyer still reads everything you send/);
+    const generated = [
+      copy.PACKAGE_COPY.expires('October 15, 2026'),
+      copy.PACKAGE_COPY.contents('12.4 MB', 0),
+      copy.PACKAGE_COPY.contents('12.4 MB', 1),
+      copy.PACKAGE_COPY.contents('12.4 MB', 9),
+    ];
+    const lines = [
+      ...Object.values(copy.UP_FRONT),
+      last.body,
+      copy.REVIEW_PACKAGE_NOTE,
+      ...strings(copy.PACKAGE_COPY),
+      ...generated,
+    ];
+    // "Our own tools", never a sales word; the AI line stays in the confidentiality note.
+    for (const line of lines) {
+      expect(line).not.toMatch(/proprietary|state-of-the-art|cutting-edge|\bAI\b|\u2014/i);
+      expect(BANNED_WORDS.some((word) => new RegExp(`\\b${word}\\b`, 'i').test(line))).toBe(false);
+    }
+  });
+
   it('explains that the microphone needs https and that typing still works', () => {
     expect(copy.MIC_INSECURE.body).toMatch(/https/);
     expect(copy.MIC_INSECURE.body).toMatch(/Typing works/);

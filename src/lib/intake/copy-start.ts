@@ -8,6 +8,9 @@ import type { StartTile } from './state';
 export const REPLY_PROMISE = 'We strive to respond within one business day, by email.';
 export const REMOTE_NOTE = 'We meet by video, and in person by appointment.';
 
+/** How long the package link works; the intake module sets the same expiry. */
+export const PACKAGE_LINK_DAYS = 14;
+
 /** The three start tiles, one at a time; each carries its own button label. */
 export const START_TILES: Record<StartTile, { title: string; button: string }> = {
   0: { title: 'Before we start', button: 'Got it, next' },
@@ -21,6 +24,15 @@ export const BEFORE_WE_START = [
   'Upload what you have. We tell you which papers help.',
   `A lawyer reads it and we reply by email. ${REPLY_PROMISE} ${REMOTE_NOTE}`,
 ] as const;
+
+/**
+ * The first tile's callout: why the flow asks so much, in the person's own
+ * interest (Arthur, 2026-10-01: the flow could feel impersonal).
+ */
+export const UP_FRONT = {
+  title: 'Why we ask for so much up front',
+  body: 'We know it is a lot, but it saves your time and ours: the more we know now, the more useful our first reply can be. Our own tools shape the questions around your answers, and a lawyer still reads everything you send. When you finish, you get a package of everything you gave us, with a plain summary of the deadlines that may apply, whether or not we can take your case.',
+} as const;
 
 export const CONFIDENTIALITY_NOTE =
   'What you send is kept confidential and used only to evaluate whether we can help. AI helps us organize what you send; a lawyer reviews everything before we reply.';
@@ -42,6 +54,10 @@ export const AFTER_YOU_SEND: readonly { title: string; body: string }[] = [
   {
     title: 'You get a written fee estimate before any work starts.',
     body: 'We tell you what it would take and what it would cost before any work starts.',
+  },
+  {
+    title: 'You leave with your file.',
+    body: `A zip file of everything you typed, said, and uploaded, plus a plain summary with the deadlines that may apply. We email you the link, and you can download it for ${PACKAGE_LINK_DAYS} days. It is yours to keep or to hand to another lawyer.`,
   },
 ];
 
