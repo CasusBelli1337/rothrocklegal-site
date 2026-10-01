@@ -7,6 +7,7 @@
  *     so crawlers and no-JS readers get the neutral site; the reading-options
  *     boot script (src/lib/a11y/boot.ts) sits beside it under the same rules;
  *  3. the production export has no trace of the preview-only lens switcher.
+ * The third boot script (consent) has its own gates in scripts/check-consent.mjs.
  * Run after `next build`: node scripts/check-lens.mjs
  */
 import fs from 'node:fs';

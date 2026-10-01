@@ -344,3 +344,24 @@ html[data-spacing='wider'] .prose-article > * + * {
 html[data-spacing='wider'] .prose-article li + li {
   margin-top: 0.85em;
 }
+
+/*
+ * Privacy choices (docs/CONSENT.md). The bar is in the static HTML of every page;
+ * before hydration it shows only under html[data-consent='ask'], stamped by the
+ * inline head script (src/lib/consent/boot.ts), so a returning visitor never sees
+ * it flash and a visitor without JavaScript (when no tracker can run) never sees
+ * it at all. After hydration React adds data-open or `hidden`. While it is open,
+ * use-bar-inset.ts keeps the end of the page and the focused control clear of it.
+ */
+[data-consent-bar]:not([data-open]) {
+  display: none;
+}
+html[data-consent='ask'] [data-consent-bar]:not([hidden]) {
+  display: block;
+}
+body {
+  padding-bottom: var(--consent-bar-h, 0px);
+}
+html {
+  scroll-padding-bottom: var(--consent-cover, 0px);
+}

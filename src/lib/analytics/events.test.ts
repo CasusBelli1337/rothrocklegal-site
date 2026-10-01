@@ -1,6 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { refreshConsent } from '@/lib/consent/client';
+import { recordOf, storageWith } from '@/lib/consent/testing';
 import { ANALYTICS_EVENTS, analyticsEnabled, trackEvent } from './events';
 
 /** Every non-test source file under src/ (the #seam:ga4-events drift guard reads them). */
@@ -18,9 +20,19 @@ function withWindow(gtag?: TestWindow['gtag']) {
   vi.stubGlobal('window', { gtag } satisfies TestWindow);
 }
 
+/** The visitor's stored choice (or none) and privacy signal, as the consent store will read them. */
+function withConsent(record: unknown, navigator: object = {}) {
+  vi.stubGlobal('localStorage', record === null ? storageWith(null) : storageWith(record));
+  vi.stubGlobal('navigator', navigator);
+  refreshConsent();
+}
+
+beforeEach(() => withConsent(recordOf({ granted: ['analytics'] })));
+
 afterEach(() => {
   vi.unstubAllGlobals();
   vi.unstubAllEnvs();
+  refreshConsent();
 });
 
 describe('ANALYTICS_EVENTS', () => {
@@ -68,6 +80,35 @@ describe('trackEvent', () => {
     const gtag = vi.fn();
     withWindow(gtag);
     expect(analyticsEnabled()).toBe(false);
+    trackEvent(ANALYTICS_EVENTS.deadlineWizardCompleted);
+    expect(gtag).not.toHaveBeenCalled();
+  });
+
+  it('drops the event (never queues it) before the visitor has chosen', () => {
+    withConsent(null);
+    const gtag = vi.fn();
+    withWindow(gtag);
+    trackEvent(ANALYTICS_EVENTS.consultStarted);
+    expect(gtag).not.toHaveBeenCalled();
+    // A later yes does not replay what was dropped.
+    withConsent(recordOf({ granted: ['analytics'] }));
+    expect(gtag).not.toHaveBeenCalled();
+  });
+
+  it('drops the event after a decline', () => {
+    withConsent(recordOf({ granted: [] }));
+    const gtag = vi.fn();
+    withWindow(gtag);
+    trackEvent(ANALYTICS_EVENTS.consultSubmitted);
+    expect(gtag).not.toHaveBeenCalled();
+  });
+
+  it('drops the event when a privacy signal appeared after the yes', () => {
+    withConsent(recordOf({ granted: ['analytics'], signal: false }), {
+      globalPrivacyControl: true,
+    });
+    const gtag = vi.fn();
+    withWindow(gtag);
     trackEvent(ANALYTICS_EVENTS.deadlineWizardCompleted);
     expect(gtag).not.toHaveBeenCalled();
   });

@@ -1,4 +1,5 @@
 import { site } from '@/config/site';
+import { hasConsent } from '@/lib/consent/client';
 
 /**
  * The GA4 events the site sends (#seam:ga4-events; mark each as a key event in GA4
@@ -26,9 +27,13 @@ export function analyticsEnabled(): boolean {
 
 type Gtag = (command: 'event', name: AnalyticsEvent) => void;
 
-/** Counts one event. A no-op when the tag is off, blocked, or not loaded yet; never throws. */
+/**
+ * Counts one event. Before a yes to analytics (or after a no) the event is
+ * dropped, not queued: nothing is held back to send later. Also a no-op when
+ * the tag is off, blocked, or not loaded yet; never throws.
+ */
 export function trackEvent(name: AnalyticsEvent): void {
-  if (typeof window === 'undefined' || !analyticsEnabled()) return;
+  if (typeof window === 'undefined' || !analyticsEnabled() || !hasConsent('analytics')) return;
   const gtag = (window as Window & { gtag?: Gtag }).gtag;
   if (typeof gtag !== 'function') return;
   try {

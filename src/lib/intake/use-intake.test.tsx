@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
 import { act, cleanup, renderHook, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { saveConsent } from '@/lib/consent/client';
 import { createIntake } from './api';
 import { emptyState, saveState } from './state';
 import { useIntake } from './use-intake';
@@ -22,6 +23,8 @@ let gtag: ReturnType<typeof vi.fn>;
 
 beforeEach(() => {
   window.localStorage.clear();
+  // Events count only after a yes to analytics (docs/CONSENT.md).
+  saveConsent({ analytics: true, advertising: false });
   gtag = vi.fn();
   (window as Window & { gtag?: unknown }).gtag = gtag;
 });

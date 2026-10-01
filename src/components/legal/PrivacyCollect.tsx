@@ -7,8 +7,9 @@ export function PrivacyCollect() {
       <h2>What we collect, and where it goes</h2>
       <p>
         We collect only what you choose to give us. There are three ways to send us information on
-        this site, and each is described below. Nothing on this site collects information about you
-        in the background.
+        this site, and each is described below. Beyond that, the site receives only the technical
+        details described under Technical information. Google Analytics counts your visit only if
+        you say yes.
       </p>
 
       <h3>The deadline tool (&ldquo;How Long Do I Have?&rdquo;)</h3>
@@ -26,7 +27,7 @@ export function PrivacyCollect() {
       <ul>
         <li>
           <strong>How to reach you:</strong> your full name, email address, phone number (optional),
-          city, county, and how you prefer to hear back.
+          and how you prefer to hear back.
         </li>
         <li>
           <strong>Your situation:</strong> which situations fit, and your relationship to the person
@@ -98,8 +99,8 @@ export function PrivacyCollect() {
         Calendar. When we set up a meeting with you, Google receives your name and email address so
         it can send you the invitation and the meeting link, under Google&rsquo;s own privacy
         policy. Google Analytics, described under Technical information below, is the only thing
-        from Google that runs on this website. If you would rather not use Google Meet, tell us and
-        we will find another way to talk.
+        from Google that runs on this website, and only if you say yes. If you would rather not use
+        Google Meet, tell us and we will find another way to talk.
       </p>
 
       <h3>If we agree to work together</h3>
@@ -113,21 +114,23 @@ export function PrivacyCollect() {
 
       <h3>Technical information</h3>
       <p>
-        This site does not use advertising networks or social-media pixels, and it does not build a
-        profile of you. Three technical details exist because most websites have them:
+        This site does not build a profile of you. Three technical details exist because most
+        websites have them:
       </p>
       <ul>
         <li>
-          Google Analytics counts visits and shows us which pages people read, so we know what to
+          Google Analytics runs only if you say yes in the privacy choices bar (see Cookies and your
+          choices below). It counts visits and shows us which pages people read, so we know what to
           write more of. It also counts a few steps, with nothing you typed or chose attached:
           starting a consult request, sending one, finishing the deadline tool, and clicking our
           email address. It sets a cookie so it can tell a return visit from a new one. It does not
           tell us who you are, Google does not keep your IP address, and we use it for nothing else.
-          Google&rsquo;s handling of it is covered by{' '}
+          We switch off Google&rsquo;s advertising features, so it is never tied to a Google account
+          or used for ads. Google&rsquo;s handling of it is covered by{' '}
           <a href="https://policies.google.com/privacy" rel="noopener noreferrer">
             Google&rsquo;s privacy policy
           </a>
-          . Blocking it in your browser changes nothing about how the site works.
+          . Saying no, or blocking it in your browser, changes nothing about how the site works.
         </li>
         <li>
           The site is hosted on {legal.host.name}, which{' '}
