@@ -1,62 +1,12 @@
 import { describe, expect, it } from 'vitest';
+import { BANNED_PHRASES, BANNED_WORDS, collectStrings } from '@/lib/voice-guide';
 import * as copy from './copy';
 import { STEP_ORDER } from './state';
-
-/** Every string in the copy module, however deeply nested. */
-function strings(value: unknown): string[] {
-  if (typeof value === 'string') return [value];
-  if (Array.isArray(value)) return value.flatMap(strings);
-  if (value && typeof value === 'object') return Object.values(value).flatMap(strings);
-  return [];
-}
-
-/** Arthur's Voice guide: the words and constructions that read as machine-written. */
-const BANNED_WORDS = [
-  'delve',
-  'explore',
-  'navigate',
-  'unlock',
-  'leverage',
-  'elevate',
-  'empower',
-  'transform',
-  'foster',
-  'harness',
-  'landscape',
-  'ecosystem',
-  'synergy',
-  'paradigm',
-  'game-changer',
-  'journey',
-  'realm',
-  'tapestry',
-  'beacon',
-  'furthermore',
-  'moreover',
-  'additionally',
-  'robust',
-  'seamless',
-  'actionable',
-  'expert',
-  'specialist',
-];
-const BANNED_PHRASES = [
-  /it'?s not just about/i,
-  /in today'?s/i,
-  /it'?s important to note/i,
-  /the key takeaway/i,
-  /imagine a world/i,
-  /the future is bright/i,
-  /that'?s a great question/i,
-  /thrilled to/i,
-  /i'?m humbled/i,
-  /we can'?t wait/i,
-];
 
 const WITHOUT_FOLLOW_UP = STEP_ORDER.filter((step) => step !== 'follow-up');
 
 describe('intake copy hygiene', () => {
-  const lines = strings(copy);
+  const lines = collectStrings(copy);
 
   it('has copy to check', () => {
     expect(lines.length).toBeGreaterThan(80);
