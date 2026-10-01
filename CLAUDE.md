@@ -68,7 +68,9 @@ and the consult flow; visitors never see it. Details: `docs/LENS.md`.
 - `npm run check-consent` (`scripts/check-consent.mjs`) verifies the consent
   export: the consent boot script in every page's `<head>` under its cap, no
   `data-consent` on the static `<html>`, no Google tag host in any static HTML,
-  the bar and the footer's "Privacy choices" button on every page.
+  the bar and the footer's "Privacy choices" button on every page, the
+  counter's one inline loader on every page but `/sign/` and `/schedule/`, and
+  no off-site script but the counter's.
 
 Full check before a commit: lint, typecheck, test, build, check-links, check-seo, check-lens, check-consent.
 
@@ -173,11 +175,13 @@ Components read config; they never hardcode firm facts, URLs, or copy lists.
   Import every builder from `@/lib/seo/jsonld`.
 - `src/lib/seo/llms.ts`: `/llms.txt` (the index) and `/llms-full.txt` (every
   practice page and published article in full, links made absolute).
-- `src/lib/analytics/*`: `events.ts` holds the four GA4 events
+- `src/lib/analytics/*`: `events.ts` holds the four analytics events
   (#seam:ga4-events: `consult_started`, `consult_submitted`,
   `deadline_wizard_completed`, `contact_email_click`), always sent with no
-  parameters; `tag.ts` is the loader `components/seo/Analytics` runs after load.
-  `events.test.ts` fails if an event has no `trackEvent(ANALYTICS_EVENTS.x)` call.
+  parameters, to GA4 (only after a yes) and to the counter; `tag.ts` is the GA4
+  loader `components/seo/Analytics` runs after load; `counter.ts` is the
+  counter's inline loader (`components/seo/Counter`). `events.test.ts` fails if
+  an event has no `trackEvent(ANALYTICS_EVENTS.x)` call.
 - `src/components/<domain>/`: `layout`, `home`, `practice`, `team`, `library`,
   `wizard`, `intake`, `about`, `legal`, `lens`, `seo`, `ui`. Client components only where there
   is interaction (`LibraryClient`, `DeadlineWizard`, the intake flow, menus).
@@ -319,7 +323,9 @@ image (/images/...), imageAlt, draft (true|false)
 
 ## Consent: privacy choices (docs/CONSENT.md)
 
-- Nothing that tracks visits runs before a yes (2026-10-01). Categories live in
+- Nothing from a third party, and no cookie or device storage that counts
+  visits, runs before a yes (2026-10-01); the firm's own cookieless counter
+  (see "Visit counter" under Gotchas) is the one exception. Categories live in
   `src/config/consent.ts`: `necessary` (always on: browser storage that never
   leaves the device), `analytics` (GA4, offered while `site.analyticsId` is
   set), and `advertising` (defined; offered only once a vendor is listed).
@@ -582,3 +588,19 @@ step, storyRead, evaluation, followUpAnswers }` (read from `?resume=` after
   the GA4 Data API; it now counts only visitors who said yes. Removing the tag
   means blanking the id (the bar and footer link then disappear too) and
   rewriting the policy's analytics sentences.
+- Visit counter (2026-10-01): the firm's own count, Umami 3.4.0 self-hosted in
+  the Armory (service `umami`, admin at `http://localhost:3039` on the rig only;
+  `legion-armory/docs/references/umami.md`). `site.counter` holds `origin`
+  (`https://count.rothrocklegal.com`, a proxied CNAME to the rothrock-intake
+  tunnel, which forwards only `/c.js` and `/api/c`) and the public `websiteId`.
+  `components/seo/Counter.tsx` puts an inline loader in the static HTML of every
+  page but `/sign/` and `/schedule/`; it does nothing under Global Privacy
+  Control or Do Not Track, otherwise appends the tracker after load with
+  `data-do-not-track`, `data-domains` (only `www.rothrocklegal.com` counts),
+  and no query string or hash. No cookie, nothing written to the browser, no IP
+  stored, so it does not wait for the bar (Arthur; docs/CONSENT.md section 5).
+  The four events also go to it. Off in the editor preview. The off-switch is a
+  blank `origin`: no tag, and `policyCounter()` drops its sentences from the
+  bar's small print and the privacy policy (`counterCopy` in
+  `config/consent-copy.ts`). The portal's read-only key is
+  `rothrocklegal-portal/data/keys/portal-umami.conf`.

@@ -6,7 +6,7 @@ import type { RefObject } from 'react';
 import { showsMobileConsultBar } from '@/components/layout/consult-bar';
 import { Container } from '@/components/ui/Container';
 import { advertisingActive, consentConfig, offeredCategories } from '@/config/consent';
-import { consentCopy, privacyChoicesLabel } from '@/config/consent-copy';
+import { consentCopy, policyCounter, privacyChoicesLabel } from '@/config/consent-copy';
 import { type ConsentState, DENIED, type PrivacySignal } from '@/lib/consent/store';
 import { ConsentChoices } from './ConsentChoices';
 import { barLinkClass, choiceButtonClass } from './styles';
@@ -90,10 +90,12 @@ function Choices({ expanded, onToggle, finish }: ButtonsProps) {
   );
 }
 
+/** The small print; it also notes the firm's own count, which is not a choice here (docs/CONSENT.md). */
 function SmallPrint({ onClose }: { onClose?: () => void }) {
+  const counter = policyCounter();
   return (
     <p className="mt-3 text-body text-ink-3">
-      {consentCopy.changeLater(privacyChoicesLabel())}{' '}
+      {consentCopy.changeLater(privacyChoicesLabel())} {counter && `${counter.barNote} `}
       <Link href="/privacy-policy/#cookies-and-your-choices" className={barLinkClass}>
         {consentCopy.policyLink}
       </Link>

@@ -1,10 +1,11 @@
 import { PrivacyChoicesButton } from '@/components/consent/PrivacyChoicesButton';
 import { buttonClass } from '@/components/ui/Button';
 import { consentConfig } from '@/config/consent';
-import { policyAdvertising, privacyChoicesLabel } from '@/config/consent-copy';
+import { policyAdvertising, policyCounter, privacyChoicesLabel } from '@/config/consent-copy';
 
 /** Privacy policy: "Cookies and your choices" (docs/CONSENT.md; the anchor is linked from the bar). */
 export function PrivacyCookies() {
+  const counter = policyCounter();
   return (
     <>
       <h2 id="cookies-and-your-choices">Cookies and your choices</h2>
@@ -12,6 +13,7 @@ export function PrivacyCookies() {
         On your first visit, a bar at the bottom of the screen asks about analytics. Until you say
         yes, nothing from Google loads and no analytics cookie is set.
       </p>
+      {counter && <p>{counter.cookies}</p>}
       <p>This site keeps two kinds of information in your browser:</p>
       <ul>
         <li>
@@ -47,7 +49,7 @@ export function PrivacyCookies() {
         <strong>Global Privacy Control and Do Not Track.</strong> If your browser sends either
         signal, we treat it as a no to analytics and advertising, and the bar says so. You can still
         turn analytics on yourself. Advertising, if we ever use it, stays off while the signal is
-        on.
+        on.{counter && ` ${counter.signal}`}
       </p>
     </>
   );

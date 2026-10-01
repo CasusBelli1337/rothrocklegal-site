@@ -4,7 +4,7 @@ import { PrivacyCollect } from '@/components/legal/PrivacyCollect';
 import { PrivacyCookies } from '@/components/legal/PrivacyCookies';
 import { PrivacyRights } from '@/components/legal/PrivacyRights';
 import { PrivacyUse } from '@/components/legal/PrivacyUse';
-import { policyAdvertising } from '@/config/consent-copy';
+import { policyAdvertising, policyCounter } from '@/config/consent-copy';
 import { site } from '@/config/site';
 import { formatDate } from '@/lib/format-date';
 import { pageMetadata } from '@/lib/seo/metadata';
@@ -21,6 +21,7 @@ export const metadata = pageMetadata({
 
 /** Privacy policy (CalOPPA, Bus. & Prof. Code § 22575). Clause map: redesign/legal-pages/LEGAL-PAGES-CHECK.md. */
 export default function PrivacyPolicyPage() {
+  const counter = policyCounter();
   return (
     <LegalPage
       eyebrow="Legal"
@@ -29,8 +30,8 @@ export default function PrivacyPolicyPage() {
       path="/privacy-policy/"
     >
       <p>
-        <strong>Effective date:</strong> {formatDate(legal.privacyEffectiveDate)}. This policy covers
-        www.rothrocklegal.com, including the deadline tool and the consult request.
+        <strong>Effective date:</strong> {formatDate(legal.privacyEffectiveDate)}. This policy
+        covers www.rothrocklegal.com, including the deadline tool and the consult request.
       </p>
       <p>
         {site.name} (&ldquo;we,&rdquo; &ldquo;us&rdquo;) is a law firm in {site.office.city},{' '}
@@ -42,11 +43,12 @@ export default function PrivacyPolicyPage() {
       <h2>The short version</h2>
       <ul>
         <li>
-          We collect only what you type, say, or upload. No profiles.
+          We collect only what you type, say, or upload
+          {counter && `, ${counter.shortVersion}`}. No profiles.
         </li>
         <li>
-          If you say yes in the privacy choices bar, Google Analytics also counts your visit and a few
-          steps, such as sending a consult request. Until you answer, nothing from Google loads.
+          If you say yes in the privacy choices bar, Google Analytics also counts your visit and a
+          few steps, such as sending a consult request. Until you answer, nothing from Google loads.
         </li>
         <li>
           We use it for one thing: to decide whether we can help you, which includes a conflict

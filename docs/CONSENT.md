@@ -1,9 +1,11 @@
 # Privacy choices – the consent bar
 
-Added 2026-10-01. Nothing that tracks visits runs until the visitor says yes.
-Today that means Google Analytics 4 (GA4), the one third-party script on the
-site. The design leaves room for an advertising category (a Meta pixel is
-planned) that turns on with one config entry.
+Added 2026-10-01. Nothing from a third party, and nothing that sets a cookie
+or keeps anything on the device to count visits, runs until the visitor says
+yes. Today that means Google Analytics 4 (GA4), the one third-party script on
+the site. The design leaves room for an advertising category (a Meta pixel is
+planned) that turns on with one config entry. The firm's own cookieless
+counter is the one thing that counts visits without a yes; section 5 says why.
 
 ## 1. How it works
 
@@ -60,8 +62,9 @@ planned) that turns on with one config entry.
   and its parent domain; the same cookie sweep runs for every visitor without
   a yes, which clears cookies left from before 2026-10-01. Never on `/sign/` or
   `/schedule/` (the bar still shows there).
-- **Events** (`trackEvent`, `#seam:ga4-events`): dropped, never queued, without
-  a current yes. A later yes does not replay them.
+- **Events** (`trackEvent`, `#seam:ga4-events`): for GA4, dropped, never
+  queued, without a current yes; a later yes does not replay them. The same
+  events also go to the counter (section 5), which needs no yes.
 
 ## 2. Gates
 
@@ -72,13 +75,20 @@ planned) that turns on with one config entry.
   `tag.test.ts` (no Google script before a yes; one after; withdrawal),
   `events.test.ts` and `EmailClickTracker.test.tsx` (events dropped before a
   yes), `consent-copy.test.tsx` (voice guide, no em dash, sentence length,
-  including the rendered policy section), `consent-advertising.test.tsx` (the
-  advertising switch, and the seam ledger below).
+  including the rendered policy section and the counter sentences),
+  `consent-advertising.test.tsx` (the advertising switch, and the seam ledger
+  below), `counter.test.ts` and `Counter.test.tsx` (blank config means no tag,
+  off in the preview, off on `/sign/` and `/schedule/`, off under GPC or DNT,
+  the tag's attributes), and `events.test.ts` (every event reaches both GA4 and
+  the counter; GA4 still only after a yes).
 - `node scripts/check-consent.mjs` (after a build): every page carries the
   boot script in `<head>` under the cap, no page's static `<html>` carries
   `data-consent`, no static HTML references googletagmanager.com or
-  google-analytics.com, every page carries the bar and the footer button, and
-  the privacy policy carries the section the bar links to.
+  google-analytics.com, every page carries the bar and the footer button, the
+  privacy policy carries the section the bar links to, every page but `/sign/`
+  and `/schedule/` carries the counter's one inline loader (those two never
+  mention the counter host), no `<script src>` points off the site, and the
+  only off-site script any inline script names is the counter's.
 
 ## 3. Turning on advertising
 
@@ -154,3 +164,69 @@ the privacy policy's advertising sentences. Before adding it:
   and the policy says so; a business that does not sell or share and says so
   in its policy need not post the notice of right to opt out (§ 7013(g)). The
   firm is likely under every § 1798.140(d) threshold today.
+
+## 5. First-party counter
+
+Added 2026-10-01 at Arthur's request: an accurate first-party count of visits
+that needs no prompt, with GA4 and the bar left exactly as they are.
+
+- **What it is.** Umami 3.4.0, self-hosted in the Armory (service `umami`;
+  `legion-armory/docs/references/umami.md`). The tracker is
+  `https://count.rothrocklegal.com/c.js` and posts to `/api/c` on the same
+  host; the tunnel forwards only those two paths, and the admin is on the rig
+  only. Telemetry and update checks are off, so Umami Software receives
+  nothing.
+- **Config** (`site.counter`): `origin` and `websiteId`. A blank origin is the
+  off-switch: no tag, and `policyCounter()` drops every counter sentence from
+  the bar and the policy.
+- **The tag** (`src/lib/analytics/counter.ts`, `components/seo/Counter.tsx`):
+  an inline loader in the static HTML of every page but `/sign/` and
+  `/schedule/`. Under GPC or DNT (the same test as `privacySignal()`) it does
+  nothing, so not even the script is fetched; otherwise it appends the tracker
+  after the load event with `data-do-not-track` (Umami's own DNT check),
+  `data-auto-track`, `data-domains="www.rothrocklegal.com"` (a local build
+  never counts), and `data-exclude-search` and `data-exclude-hash` (a `?t=` or
+  `?resume=` token never leaves the browser). Off in the editor preview.
+- **What it keeps** (checked against the Umami 3.4.0 source and the `umami`
+  database on 2026-10-01): per page view, the path and title and the referring
+  site; per visitor, the browser, OS, device type, screen size, language, and
+  country (from Cloudflare's `cf-ipcountry` header; region and city stay empty
+  unless Cloudflare's "visitor location headers" transform is turned on, so
+  leave it off). The tracker sets no cookie and writes nothing to the browser;
+  it only reads `localStorage['umami.disabled']`, Umami's own opt-out switch.
+  The IP address arrives in `cf-connecting-ip`, is used for the bot check and
+  the visitor hash, and is not stored: no table has an IP or user-agent
+  column. A visitor is `uuid(website, IP, user agent, daily salt)` keyed by
+  the server's `APP_SECRET` (`SALT_ROTATION=day`), so the same person is a new
+  visitor each day and the hash cannot be reversed without the secret.
+  Headless browsers are dropped as bots. Raw rows are kept 13 months.
+- **Why no prompt.** The sources are those in section 4, checked 2026-10-01;
+  the two Court of Appeal cases named here were not re-verified on Westlaw for
+  this note.
+  - _First party, no third party._ The firm runs the software on its own
+    computer and is the intended recipient of the request. CIPA § 631(a)
+    reaches one who reads a communication "without the consent of all
+    parties"; California courts have long read it as aimed at third-party
+    eavesdroppers, not a party to the communication (Rogers v. Ulrich (1975)
+    52 Cal.App.3d 894; Warden v. Kahn (1979) 99 Cal.App.3d 805). The tracker
+    suits rest on a separate company that can use the data for its own ends;
+    here there is none. Cloudflare carries the request as the firm's network
+    provider, as it does every consult request, and runs no script of its own
+    on the page.
+  - _No cookie, no stored identifier, nothing on the device._ There is nothing
+    for the bar to switch off, and nothing is sold or shared for advertising
+    under the CCPA (§ 1798.140(ad), (ah)).
+  - _Pen registers._ The counter reads the IP address in transit, as every web
+    server does, keeps only the daily hash, and stores no address. SB 690
+    (Stats. 2026, ch. 976) leaves suits over website pen registers to the
+    Attorney General alone, and a first-party count that keeps no address is
+    the least exposed form of that question. Revisit this section if the count
+    ever moves to a third-party service.
+  - _CalOPPA._ The policy must say what the site collects (§ 22575(b)(1)) and
+    how it responds to Do Not Track ((b)(5)). "Technical information" names the
+    counter and what it records; both signal paragraphs say a signal leaves the
+    visitor out.
+  - _Symmetry._ The count is not offered as a choice, so it adds no button and
+    no switch, and the three choices stay equal (§ 7004(a)(2)). The bar's small
+    print says in one sentence that the count runs unless a privacy signal is
+    on, so "Decline" is never read as turning it off.

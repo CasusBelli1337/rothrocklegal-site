@@ -2,7 +2,7 @@
 import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { consentConfig } from '@/config/consent';
-import { consentCopy, privacyChoicesLabels } from '@/config/consent-copy';
+import { consentCopy, counterCopy, privacyChoicesLabels } from '@/config/consent-copy';
 import { closeConsentPanel, hasConsent, refreshConsent } from '@/lib/consent/client';
 import { recordOf } from '@/lib/consent/testing';
 import { ConsentBanner } from './ConsentBanner';
@@ -51,6 +51,15 @@ describe('ConsentBanner', () => {
       (name) => screen.getByRole('button', { name }).className,
     );
     expect(new Set(classes).size).toBe(1);
+  });
+
+  it("notes the firm's own visit count in the small print, never as a choice", () => {
+    renderPage();
+    expect(bar().textContent).toContain(counterCopy.barNote);
+    fireEvent.click(screen.getByRole('button', { name: consentCopy.choose }));
+    const switches = screen.getAllByRole('switch').map((s) => s.getAttribute('aria-label') ?? '');
+    expect(switches.join(' ')).not.toMatch(/count/i);
+    expect(screen.getAllByRole('switch')).toHaveLength(2);
   });
 
   it('hides after "Accept analytics" and grants analytics', () => {

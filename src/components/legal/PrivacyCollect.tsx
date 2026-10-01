@@ -1,7 +1,9 @@
+import { policyCounter } from '@/config/consent-copy';
 import { legal } from './legal-constants';
 
 /** Privacy policy, part 1: every category of information the site collects and where each one goes. */
 export function PrivacyCollect() {
+  const counter = policyCounter();
   return (
     <>
       <h2>What we collect, and where it goes</h2>
@@ -114,7 +116,7 @@ export function PrivacyCollect() {
 
       <h3>Technical information</h3>
       <p>
-        This site does not build a profile of you. Three technical details exist because most
+        This site does not build a profile of you. These technical details exist because most
         websites have them:
       </p>
       <ul>
@@ -132,6 +134,7 @@ export function PrivacyCollect() {
           </a>
           . Saying no, or blocking it in your browser, changes nothing about how the site works.
         </li>
+        {counter && <li>{counter.technical}</li>}
         <li>
           The site is hosted on {legal.host.name}, which{' '}
           <a href={legal.host.dataCollectionUrl} rel="noopener noreferrer">

@@ -23,6 +23,18 @@ export const site = {
    */
   analyticsId: 'G-JC25W690LQ',
   /**
+   * The firm's own visit counter (Umami in the Armory; docs/CONSENT.md "First-party
+   * counter"), read by components/seo/Counter. Cookieless and first party, so it runs
+   * without the privacy-choices bar, but never under Global Privacy Control or Do Not
+   * Track and never on /sign/ or /schedule/. A blank origin is the off-switch: no tag,
+   * and the privacy policy drops its counter sentences. The website id is public by
+   * design (it is in the tag); the portal's read key lives in its data/keys/.
+   */
+  counter: {
+    origin: 'https://count.rothrocklegal.com',
+    websiteId: 'f787c36c-f841-4fbc-99a2-8da0be70d201',
+  },
+  /**
    * IndexNow key (scripts/indexnow.mjs, run by the deploy workflow): 32 hex characters,
    * public by design and served at /<key>.txt from public/. Changing it means renaming
    * that file to match; scripts/indexnow.test.mjs checks the pair.
