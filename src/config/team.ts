@@ -19,9 +19,11 @@ export type {
   TeamBadge,
   TeamCredential,
   TeamEducation,
+  TeamExternalArticle,
   TeamMember,
   TeamPodcast,
   TeamRole,
+  TeamWriting,
 } from './team/member';
 export { framings, headshot, isFramed } from './team/member';
 

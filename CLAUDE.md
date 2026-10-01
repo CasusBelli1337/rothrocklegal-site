@@ -88,7 +88,18 @@ Components read config; they never hardcode firm facts, URLs, or copy lists.
   what he does there now. `bio` and `heroLine` may be `Framed<T>` (one value or
   a `LensCopy`); `ProfileBio`/`ProfileHero` render them through `Slot`, and
   Arthur's opening paragraph and hero line carry the three framings
-  (`check-lens.mjs` counts his page).
+  (`check-lens.mjs` counts his page). `writing` (`TeamWriting`; Arthur's is
+  `team/arthur-rothrock-writing.ts`) drives the bio's "Articles by" section
+  (`components/team/ArticlesByMember.tsx`, Arthur 2026-10-01): the library
+  articles by that person, derived from the article index by `author`
+  (`lib/library/by-author.ts`): `featuredArticles` first in their order
+  (deadline, trust contest, will contest, accounting, undue influence, elder
+  abuse, trustee defense), then newest, Technology & the Law last, drafts never,
+  `shown` rows (10) with a count line and "See all articles"; a featured slug that
+  is not a published article by them fails the build. Then "Elsewhere": at most
+  six of their pieces on other sites, newest first, same tab with
+  `rel="noopener"`; Arthur's are his legion.law guides that carry his byline and
+  are on his CV (the product comparisons stay off the firm site).
 - `src/config/legion-litigator.ts`: the Legion AI Litigator seal (Arthur,
   2026-09-04): the homepage section (`components/home/LegionLitigator.tsx`),
   the About block, the four commitments (`components/legion/Commitments.tsx`;
@@ -213,7 +224,9 @@ image (/images/...), imageAlt, draft (true|false)
   (`components/practice/PracticePage.tsx`), each route file is five lines.
 - `/attorneys/` (the four cards and the CTA band; the "How we work as a team"
   section went with the homepage one) + `/attorneys/<slug>/` for
-  `arthur-rothrock`, `gerry-lin`, `jonathan-joannides`, `max-discher`.
+  `arthur-rothrock`, `gerry-lin`, `jonathan-joannides`, `max-discher`: hero,
+  bio + sidebar, "Articles by" (members with `writing`), recognition, speaking
+  and press, CTA band.
 - `/about/`, `/how-long-do-i-have/` (the wizard, ends in a consult request panel),
   `/library/` (search + category chips, `?category=&q=` synced to the URL) +
   `/library/<slug>/`, `/faq/`, `/service-areas/`, `/contact/`,
