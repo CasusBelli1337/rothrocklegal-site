@@ -40,6 +40,11 @@ export interface PracticeArea {
   headline: string;
   /** `<title>` before the brand suffix (SEO-SPEC §4). */
   seoTitle: string;
+  /**
+   * The subject as a plain topic ('trust contests'): the firm's and each lawyer's
+   * `knowsAbout`, and the page's Service `serviceType` in JSON-LD.
+   */
+  topic: string;
   /** Meta description, ≤ 155 chars. */
   description: string;
   /** Answer-first intro: 40–60 words, names the statute or deadline. */
@@ -57,6 +62,11 @@ export interface PracticeArea {
   faq: readonly FaqItem[];
   /** Library categories used for "related reading". */
   categories: readonly LibraryCategory[];
+  /**
+   * Library slugs shown first in "related reading" whatever their category, for an
+   * article filed elsewhere that answers this page's question (internal linking).
+   */
+  featuredArticles?: readonly string[];
   parent?: "trust-litigation";
   hub?: boolean;
   secondary?: boolean;
@@ -80,6 +90,12 @@ export const practiceAreas: readonly PracticeArea[] = [
 ];
 
 export const practiceHub = trustLitigation;
+
+/** The closing line of every practice page (and the preface of llms-full.txt). */
+export const PRACTICE_DISCLAIMER =
+  'This page is general information, not legal advice, and reading it does not make you a client ' +
+  'of Rothrock Legal. No attorney-client relationship exists until an engagement letter is signed. ' +
+  'Deadlines depend on your facts and change; confirm yours with a lawyer.';
 
 /** The nine spoke pages plus business, in nav order (no hub). */
 export const practicePages: readonly PracticeArea[] = practiceAreas.filter(

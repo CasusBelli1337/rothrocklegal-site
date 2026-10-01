@@ -3,7 +3,10 @@
  * Generates public/images/library/<slug>.webp (1200×675) for every library
  * article whose `image` file is missing: maroon gradient by category, brass
  * rule, the title in Newsreader, and a small "Rothrock Legal · Library" mark.
- * The same file serves as the article's OG image. Idempotent.
+ * Then, for every article, the social-card copy public/images/og/library/<slug>.jpg:
+ * the cover centre-cropped to 1200×630 (the size Facebook, LinkedIn, and X expect)
+ * as JPEG, because LinkedIn and some chat apps do not read WebP. The 22 px trimmed
+ * top and bottom are empty gradient on a generated cover. Idempotent.
  *
  *   node scripts/make-covers.mjs [--force]
  *
@@ -22,6 +25,9 @@ const FONT = path.join(ROOT, 'scripts', 'fonts', 'Newsreader[opsz,wght].ttf');
 const FORCE = process.argv.includes('--force');
 const WIDTH = 1200;
 const HEIGHT = 675;
+const OG_DIR = path.join(ROOT, 'public', 'images', 'og', 'library');
+const OG_WIDTH = 1200;
+const OG_HEIGHT = 630;
 const MARGIN = 96;
 
 /**
@@ -129,30 +135,45 @@ async function makeCover(article, outFile) {
     .toFile(outFile);
 }
 
+/** The JPEG social card beside the cover; returns true when it was written. */
+async function makeOgCard(slug, coverFile) {
+  const ogFile = path.join(OG_DIR, `${slug}.jpg`);
+  if (fs.existsSync(ogFile) && !FORCE) return false;
+  if (!fs.existsSync(coverFile)) throw new Error(`no image to make ${slug}.jpg from: ${coverFile}`);
+  fs.mkdirSync(OG_DIR, { recursive: true });
+  await sharp(coverFile)
+    .resize(OG_WIDTH, OG_HEIGHT, { fit: 'cover', position: 'centre' })
+    .jpeg({ quality: 86, mozjpeg: true })
+    .toFile(ogFile);
+  console.log(`made /images/og/library/${slug}.jpg (${Math.round(fs.statSync(ogFile).size / 1024)} KB)`);
+  return true;
+}
+
 async function main() {
   if (!fs.existsSync(FONT)) throw new Error(`Font missing: ${FONT}`);
   const files = fs.readdirSync(CONTENT).filter((f) => f.endsWith('.md'));
   let made = 0;
   let skipped = 0;
+  let cards = 0;
   for (const file of files) {
     const meta = parseFrontmatter(fs.readFileSync(path.join(CONTENT, file), 'utf8'));
-    if (!meta.image?.startsWith('/images/library/')) {
+    const coverFile = path.join(ROOT, 'public', meta.image ?? '');
+    const generated = meta.image?.startsWith('/images/library/');
+    if (!generated || (fs.existsSync(coverFile) && !FORCE)) {
       skipped += 1;
-      continue;
+    } else {
+      fs.mkdirSync(path.dirname(coverFile), { recursive: true });
+      await makeCover({ title: meta.title, category: meta.category }, coverFile);
+      console.log(`made ${meta.image} (${Math.round(fs.statSync(coverFile).size / 1024)} KB)`);
+      made += 1;
     }
-    const outFile = path.join(ROOT, 'public', meta.image);
-    if (fs.existsSync(outFile) && !FORCE) {
-      skipped += 1;
-      continue;
-    }
-    fs.mkdirSync(path.dirname(outFile), { recursive: true });
-    await makeCover({ title: meta.title, category: meta.category }, outFile);
-    const size = Math.round(fs.statSync(outFile).size / 1024);
-    console.log(`made ${meta.image} (${size} KB)`);
-    made += 1;
+    if (await makeOgCard(path.basename(file, '.md'), coverFile)) cards += 1;
   }
+  const present = fs.readdirSync(OG_DIR).filter((f) => f.endsWith('.jpg')).length;
+  if (present < files.length) throw new Error(`${present} social cards for ${files.length} articles`);
   console.log(
-    `make-covers: ${made} generated, ${skipped} already present or using their own image, ${files.length} articles`,
+    `make-covers: ${made} covers generated, ${skipped} already present or using their own image, ` +
+      `${cards} social cards written, ${files.length} articles`,
   );
 }
 

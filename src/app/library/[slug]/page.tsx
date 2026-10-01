@@ -8,7 +8,8 @@ import { WizardCard } from '@/components/library/WizardCard';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { Container } from '@/components/ui/Container';
 import { CtaBand } from '@/components/ui/CtaBand';
-import { getTeamMember, teamHref } from '@/config/team';
+import { site } from '@/config/site';
+import { getTeamMember, teamHref, type TeamMember } from '@/config/team';
 import {
   TECH_CATEGORY,
   getArticle,
@@ -17,6 +18,7 @@ import {
   type LibraryArticle,
 } from '@/lib/library/articles';
 import { toListItem } from '@/lib/library/index-item';
+import { articleOgImage } from '@/lib/library/og-image';
 import { absoluteUrl, article as articleJsonLd } from '@/lib/seo/jsonld';
 import { pageMetadata } from '@/lib/seo/metadata';
 
@@ -38,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     title: article.title,
     description: article.description,
     path: `/library/${article.slug}/`,
-    image: article.image,
+    image: articleOgImage(article.slug),
     imageAlt: article.imageAlt,
     type: 'article',
     noindex: article.draft,
@@ -52,18 +54,19 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   });
 }
 
-function jsonLd(article: LibraryArticle, authorName: string) {
+function jsonLd(article: LibraryArticle, author: TeamMember) {
   return articleJsonLd({
     slug: article.slug,
     title: article.title,
     description: article.description,
     image: article.image,
+    fallbackImage: site.ogImage,
     date: article.date,
     updated: article.updated,
-    authorSlug: article.author,
-    authorName,
+    author,
     category: article.category,
     tags: article.tags,
+    wordCount: article.wordCount,
     legacy: article.category === TECH_CATEGORY,
   });
 }
@@ -101,7 +104,7 @@ export default async function ArticlePage({ params }: { params: Promise<Params> 
       <RelatedArticles items={related} />
       {/* Articles already close with an H2 "Talk to a trust litigation lawyer in San Jose" (CONTRACTS §6), so the band uses the site-wide title. */}
       <CtaBand />
-      {!article.draft && <JsonLd data={jsonLd(article, author.name)} />}
+      {!article.draft && <JsonLd data={jsonLd(article, author)} />}
     </>
   );
 }

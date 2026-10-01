@@ -6,6 +6,7 @@ export const trustContests: PracticeArea = {
   title: "Trust contests",
   headline: "Someone changed the trust, and it doesn’t add up.",
   seoTitle: "Trust Contest Lawyer in San Jose & Santa Clara County",
+  topic: "trust contests",
   description:
     "Trust contest lawyer in San Jose. The grounds to contest a California trust, the 120-day deadline after the trustee's notice, and what a contest takes.",
   summary:

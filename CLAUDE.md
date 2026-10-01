@@ -40,7 +40,8 @@ and the consult flow; visitors never see it. Details: `docs/LENS.md`.
 - `node scripts/check-seo.mjs` runs the SEO gates over `out/` (see Gotchas).
 - `node scripts/import-articles.mjs [dir]` validates and copies writers'
   articles into `content/library/`.
-- `node scripts/make-covers.mjs [--force]` generates missing library covers.
+- `node scripts/make-covers.mjs [--force]` generates missing library covers and
+  every article's JPEG social card (`public/images/og/library/<slug>.jpg`, 1200×630).
 - `node scripts/make-image-variants.mjs [--force]` generates the width crops
   that `<picture>` elements reference (the hero). Run after changing a source
   image; `next/image` is unoptimized here, so `sizes` alone does nothing.
@@ -100,7 +101,13 @@ Components read config; they never hardcode firm facts, URLs, or copy lists.
   never who conferred it, never the mechanics ("organizing records" is out),
   and never "better results".
 - `src/config/service-areas.ts` (courts, counties, cities), `redirects.ts`
-  (every retired URL), `testimonials.ts`, `faq.ts`.
+  (every retired URL), `testimonials.ts`, `faq.ts`, `crawlers.ts` (the AI
+  crawlers robots.txt names; each shares the `*` group's private paths, because a
+  crawler with its own group ignores `*`).
+- Each practice area carries a `topic` ('trust contests'): the firm's and each
+  lawyer's `knowsAbout` and the page's Service `serviceType`. `featuredArticles`
+  puts a library article from another category first in that page's related
+  reading (the Heggstad article on `/estate-property-disputes/`).
 - `src/lib/library/articles.ts`: loader over `content/library/*.md`. Validates
   the schema and throws with the file name on any violation. `index-item.ts`
   and `preview.ts` are the light shapes for cards. `src/app/library/index.json/route.ts`
@@ -128,9 +135,20 @@ Components read config; they never hardcode firm facts, URLs, or copy lists.
   `api.ts` the fetch layer, `copy.ts` every string, `state.ts` the reducer,
   `mic-help.ts` + `browser.ts` the microphone pre-flight, `resume.ts` continue
   by email. See "Consult flow (intake v2)" below.
-- `src/lib/seo/jsonld.ts` (typed builders: LegalService, WebSite, Person,
-  ProfilePage, Article/BlogPosting, FAQPage, BreadcrumbList, WebPage) and
+- `src/lib/seo/jsonld.ts` (typed builders: LegalService with a ContactPoint,
+  WebSite, Person, ProfilePage; it re-exports `jsonld-core.ts`, the ids and
+  `personRef`, and `jsonld-pages.ts`: Article/BlogPosting with a typed Person
+  author, FAQPage, BreadcrumbList, WebPage, the practice-page WebPage + Service
+  graph, and CollectionPage for `/attorneys/` and `/library/`) and
   `metadata.ts` (`pageMetadata()`: title, description, canonical, OG, Twitter).
+  Import every builder from `@/lib/seo/jsonld`.
+- `src/lib/seo/llms.ts`: `/llms.txt` (the index) and `/llms-full.txt` (every
+  practice page and published article in full, links made absolute).
+- `src/lib/analytics/*`: `events.ts` holds the four GA4 events
+  (#seam:ga4-events: `consult_started`, `consult_submitted`,
+  `deadline_wizard_completed`, `contact_email_click`), always sent with no
+  parameters; `tag.ts` is the loader `components/seo/Analytics` runs after load.
+  `events.test.ts` fails if an event has no `trackEvent(ANALYTICS_EVENTS.x)` call.
 - `src/components/<domain>/`: `layout`, `home`, `practice`, `team`, `library`,
   `wizard`, `intake`, `about`, `legal`, `lens`, `seo`, `ui`. Client components only where there
   is interaction (`LibraryClient`, `DeadlineWizard`, the intake flow, menus).
@@ -146,10 +164,10 @@ category, tags (comma list), primaryKeyword, secondaryKeywords (optional),
 image (/images/...), imageAlt, draft (true|false)
 ```
 
-- `category` is one of the nine in `src/types/content.ts` `LIBRARY_CATEGORIES`:
+- `category` is one of the eleven in `src/types/content.ts` `LIBRARY_CATEGORIES`:
   Deadlines, Trust Contests, Will Contests, Undue Influence & Capacity,
-  Trustees & Fiduciaries, Elder Financial Abuse, Probate Process, Business
-  Disputes, Technology & the Law. The last one holds the AI glossary alone (the nine
+  Trustees & Fiduciaries, Elder Financial Abuse, Probate Process, For Trustees,
+  Complex Estates, Business Disputes, Technology & the Law. The last one holds the AI glossary alone (the nine
   pre-redesign posts were retired on 2026-09-03); it is never featured or previewed.
 - Body: `##` and `###` only (the title is the H1). A
   `## Frequently asked questions` section of `### Question?` + one paragraph
@@ -164,7 +182,9 @@ image (/images/...), imageAlt, draft (true|false)
   `node scripts/import-articles.mjs` (schema, banned words, em dashes, FAQ and
   CTA sections, description ≤ 155), then `node scripts/make-covers.mjs` to
   generate `public/images/library/<slug>.webp` (1200×675, deep maroon gradient by
-  category, maroon-800 to maroon-950 so it matches `band-maroon`, title in Newsreader, also the article's OG image), then build.
+  category, maroon-800 to maroon-950 so it matches `band-maroon`, title in Newsreader) and
+  its social card `public/images/og/library/<slug>.jpg` (the cover centre-cropped to
+  1200×630 as JPEG, the article's og:image; the build fails without it), then build.
 - Dates span 2022 to 2026 by design (Arthur, 2026-09-03). A new article's `date`
   must not precede the newest law, case, or fact it cites; set `updated` only
   when an older article was revised for a later change.
@@ -201,7 +221,7 @@ image (/images/...), imageAlt, draft (true|false)
   `sign-state.ts` and `schedule-state.ts`). Any unknown, expired, or used token
   is the same uniform 404 and the same "not valid or has expired" card.
 - Generated: `/sitemap.xml`, `/robots.txt` (AI crawlers allowed explicitly),
-  `/llms.txt`, `/library/index.json`, `/404.html`.
+  `/llms.txt`, `/llms-full.txt`, `/library/index.json`, `/404.html`.
 - Redirect stubs: every key in `src/config/redirects.ts` (old Wix paths,
   retired app pages, every old `/post/<slug>/`, all landing on `/library/`) exports through
   `src/app/[...legacy]/` as a meta-refresh page with a canonical to the target
@@ -454,9 +474,16 @@ step, storyRead, evaluation, followUpAnswers }` (read from `?resume=` after
   `components/seo/Analytics.tsx` renders the GA4 tag from `site.analyticsId`
   (blank means no tag; the id is the web stream's measurement id under
   Analytics account "Rothrock Legal", property `rothrocklegal.com`,
-  554691267) and stays off in the editor preview. The privacy policy's
-  "Technical information" section discloses it (cookie, no IP kept, no ads),
-  the short version says "plus a count of visits", and the effective date
-  moved to September 16, 2026. The portal's Website traffic page reads the
+  554691267) and stays off in the editor preview. Since 2026-10-01 it loads
+  after the page is idle (`lazyOnload`, SEO-SPEC §11: next/script's
+  `afterInteractive` preloaded 174 KB of gtag.js ahead of the CSS, fonts, and
+  hero image), never runs on `/sign/` or `/schedule/`, and strips `?resume=` /
+  `?t=` tokens from the reported address (`lib/analytics/tag.ts`). It sends the
+  four events in `lib/analytics/events.ts`; mark them as key events in GA4
+  Admin. The privacy policy's "Technical information" section discloses it
+  (cookie, no IP kept, no ads, the counted steps), the short version says "plus
+  a count of visits ... and of a few steps", and the privacy policy's effective
+  date is `legal.privacyEffectiveDate` (October 1, 2026; the disclaimer and the
+  accessibility statement keep `legal.effectiveDate`, September 16). The portal's Website traffic page reads the
   property through the GA4 Data API. Removing the tag means blanking the id
   and putting the "no analytics" sentences back.

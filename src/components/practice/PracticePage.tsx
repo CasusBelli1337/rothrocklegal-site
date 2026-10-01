@@ -3,10 +3,11 @@ import { Container } from '@/components/ui/Container';
 import { CtaBand } from '@/components/ui/CtaBand';
 import { DeadlineCallout } from '@/components/ui/DeadlineCallout';
 import { FaqAccordion } from '@/components/ui/FaqAccordion';
-import { getPracticeArea, practiceHref } from '@/config/practice-areas';
+import { PRACTICE_DISCLAIMER, getPracticeArea, practiceHref } from '@/config/practice-areas';
+import { getTeamMember } from '@/config/team';
 import { getPracticeBody } from '@/lib/practice';
 import { pageMetadata } from '@/lib/seo/metadata';
-import { webPage } from '@/lib/seo/jsonld';
+import { practicePage } from '@/lib/seo/jsonld';
 import { bindSectionSigns } from '@/lib/typography';
 import { PracticeGrid } from './PracticeGrid';
 import { PracticeHero } from './PracticeHero';
@@ -21,11 +22,6 @@ export function practiceMetadata(slug: string) {
     path: practiceHref(area),
   });
 }
-
-const DISCLAIMER =
-  'This page is general information, not legal advice, and reading it does not make you a client ' +
-  'of Rothrock Legal. No attorney-client relationship exists until an engagement letter is signed. ' +
-  'Deadlines depend on your facts and change; confirm yours with a lawyer.';
 
 /** One template for the hub and the eight spoke pages (IA.md §1, SEO-SPEC §8). */
 export function PracticePage({ slug }: { slug: string }) {
@@ -69,20 +65,13 @@ export function PracticePage({ slug }: { slug: string }) {
             </h2>
             <FaqAccordion items={area.faq} className="mt-8" />
           </section>
-          <p className="mt-12 border-t border-line pt-6 text-small text-ink-3">{DISCLAIMER}</p>
+          <p className="mt-12 border-t border-line pt-6 text-small text-ink-3">{PRACTICE_DISCLAIMER}</p>
         </article>
         <PracticeSidebar area={area} sections={sections} />
       </Container>
       <RelatedReading area={area} />
       <CtaBand />
-      <JsonLd
-        data={webPage({
-          path,
-          title: area.seoTitle,
-          description: area.description,
-          updated: area.updatedAt,
-        })}
-      />
+      <JsonLd data={practicePage(area, path, getTeamMember(area.author))} />
     </>
   );
 }

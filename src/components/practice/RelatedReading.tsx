@@ -5,9 +5,15 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import type { PracticeArea } from '@/config/practice-areas';
 import { getLibraryPreview } from '@/lib/library/preview';
 
-/** Up to 4 library articles in the page's categories (LIBRARY-SPEC §8). Renders nothing when empty. */
+/**
+ * Up to 4 library articles: the page's featured ones first, then the newest in its
+ * categories (LIBRARY-SPEC §8). Renders nothing when empty.
+ */
 export function RelatedReading({ area }: { area: PracticeArea }) {
-  const items = getLibraryPreview(4, { categories: area.categories });
+  const items = getLibraryPreview(4, {
+    categories: area.categories,
+    featured: area.featuredArticles,
+  });
   if (items.length === 0) return null;
   return (
     <section className="bg-white py-16 lg:py-20" aria-labelledby="related-reading">

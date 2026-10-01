@@ -7,6 +7,7 @@ export const complexEstates: PracticeArea = {
   headline:
     'Multiple properties, an LLC, a family business, five siblings, and a trust that says one thing while the deeds say another.',
   seoTitle: 'Complex & High-Value Estate Litigation Attorney in San Jose',
+  topic: 'complex and high-value estate litigation',
   description:
     'Several properties, an LLC, a family business in trust, millions at issue. Complex trust and estate litigation in San Jose, Palo Alto, and the Peninsula.',
   summary:

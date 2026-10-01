@@ -6,6 +6,7 @@ export const trustAccountingDisputes: PracticeArea = {
   title: "Accountings & information",
   headline: "The trustee won’t show us the numbers.",
   seoTitle: "Trust Accounting Lawyer for Beneficiaries in San Jose",
+  topic: "trust accountings",
   description:
     "When a trustee refuses to give an accounting, the court can order one. Trust accounting disputes for beneficiaries in San Jose and Santa Clara County.",
   summary:

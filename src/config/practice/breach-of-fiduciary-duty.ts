@@ -6,6 +6,7 @@ export const breachOfFiduciaryDuty: PracticeArea = {
   title: 'Trustees who break the rules',
   headline: 'The trustee is self-dealing, stalling, or paying themselves.',
   seoTitle: 'Trustee Breach of Fiduciary Duty Attorney in San Jose',
+  topic: 'breach of fiduciary duty',
   description:
     'Trustees and executors owe duties. Break them and the court can remove them and make them pay it back. Trustee breach and removal cases in San Jose.',
   summary:

@@ -6,6 +6,7 @@ export const financialElderAbuse: PracticeArea = {
   title: "Financial elder abuse",
   headline: "Someone is draining an elder’s money.",
   seoTitle: "Elder Financial Abuse Attorney in San Jose",
+  topic: "financial elder abuse",
   description:
     "A caregiver with the house, a new friend on the accounts, a relative with a debit card. Elder financial abuse claims, remedies, and deadlines in San Jose.",
   summary:
