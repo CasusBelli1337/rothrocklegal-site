@@ -1,6 +1,7 @@
 /**
  * The two contest rules: trust (Probate Code § 16061.8) and will
- * (Probate Code §§ 8270, 8250). Verified text and reasoning: RULES.md.
+ * (Probate Code §§ 8270, 8250). Verified text and reasoning: RULES.md. The intake
+ * module mirrors these rows in its package. #seam:rothrock-deadline-table
  */
 import { addDays } from './dates';
 import { ONE_TWENTY_DAYS, SIXTY_DAYS, statuteUrl, validDate } from './rules-shared';

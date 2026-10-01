@@ -3,7 +3,9 @@
  * to, the clock(s) it runs, and its plain-English copy. `compute.ts` turns the
  * table into dated results. Every statute here was verified against the text
  * on leginfo.legislature.ca.gov – see RULES.md beside this file. The two
- * contest rules live in rules-contests.ts.
+ * contest rules live in rules-contests.ts. The intake module copies these rows
+ * into the person's package (modules/legion-intake/src/config/deadline-table.ts)
+ * and a drift test there compares them. #seam:rothrock-deadline-table
  */
 import { TRUST_CONTEST_RULE, WILL_CONTEST_RULE } from './rules-contests';
 import {
