@@ -5,6 +5,7 @@ import {
   deleteFile,
   errorMessage,
   getEvaluation,
+  getPackage,
   getTriage,
   lookupEmail,
   ping,
@@ -66,6 +67,7 @@ describe('JSON endpoints', () => {
     await getEvaluation(session);
     await saveFollowUp(session, { q1: true });
     await submitIntake(session);
+    await getPackage(session);
     const calls = spy.mock.calls.map(([url, init]) => `${init?.method} ${url}`);
     expect(calls).toEqual([
       'DELETE /api/intake/in_1/files/f9',
@@ -75,7 +77,11 @@ describe('JSON endpoints', () => {
       'GET /api/intake/in_1/evaluation',
       'PUT /api/intake/in_1/follow-up',
       'POST /api/intake/in_1/submit',
+      'GET /api/intake/in_1/package',
     ]);
+    // The package is asked for with the session bearer; the zip link it returns carries its own token.
+    const pkg = spy.mock.calls[7][1];
+    expect((pkg?.headers as Record<string, string>).Authorization).toBe('Bearer secret-token');
     // Each POST that starts a pass sends an empty JSON body and the bearer token.
     const triage = spy.mock.calls[1][1];
     expect(triage?.body).toBe('{}');
@@ -213,4 +219,3 @@ describe('resumeIntake', () => {
     await expect(resumeIntake('old')).rejects.toMatchObject({ code: 'not-found', status: 404 });
   });
 });
-

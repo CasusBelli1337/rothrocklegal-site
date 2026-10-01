@@ -3,6 +3,7 @@ import { REPLY_PROMISE } from './copy-start';
 import type { StepId } from './state';
 
 export * from './copy-mic';
+export * from './copy-package';
 export * from './copy-review';
 export * from './copy-start';
 

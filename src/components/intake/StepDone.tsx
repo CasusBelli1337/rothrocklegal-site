@@ -3,10 +3,11 @@
 import { CheckIcon } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
 import { CONFLICT_CAVEAT, DONE_KEEP_REFERENCE, DONE_NEXT } from '@/lib/intake/copy';
+import { PackageCard } from './PackageCard';
 import { StepFrame } from './StepFrame';
 import type { StepProps } from './step-props';
 
-/** Step 9: the reference number in large type, what happens next in three lines, the conflict-check caveat. */
+/** Step 9: the reference number in large type, the package card, what happens next in three lines, the conflict-check caveat. */
 export function StepDone({ intake }: StepProps) {
   const { result, session, answers } = intake.state;
   const reference = result?.reference ?? session?.reference ?? '';
@@ -22,6 +23,7 @@ export function StepDone({ intake }: StepProps) {
             : 'A confirmation with this number is on its way to your email.'}
         </p>
       </div>
+      <PackageCard session={session} />
       <h3 className="mt-8 text-body font-semibold text-ink">What happens next</h3>
       <ol className="mt-3 space-y-3">
         {DONE_NEXT.map((line) => (

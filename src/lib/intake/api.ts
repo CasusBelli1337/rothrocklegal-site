@@ -7,6 +7,7 @@ import type {
   IntakeFile,
   IntakeSession,
   LookupResponse,
+  PackageResponse,
   ResumeResponse,
   SaveAnswersResponse,
   SubmitResponse,
@@ -216,6 +217,14 @@ export function submitIntake(session: Session): Promise<SubmitResponse> {
     { method: 'POST', body: '{}' },
     session,
   );
+}
+
+/**
+ * After Send: the person's package (`preparing` while the server builds it).
+ * Asked with the session bearer; the zip link it returns carries its own token.
+ */
+export function getPackage(session: Session): Promise<PackageResponse> {
+  return request<PackageResponse>(`/api/intake/${session.id}/package`, { method: 'GET' }, session);
 }
 
 export interface UploadHandle {

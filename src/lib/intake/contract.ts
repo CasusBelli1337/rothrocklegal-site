@@ -15,6 +15,7 @@
  * (`conflict-hold` / `declined`). 2 added spokenText, lookup, resume.
  * Servers answer clients of the same major version. 2026-09-04: a resume also
  * carries the follow-up answers.
+ * 2026-10-01: a package download after submit (`PackageResponse`).
  */
 export const INTAKE_API_VERSION = 3 as const;
 
@@ -344,6 +345,29 @@ export interface ResumeResponse {
   evaluation?: EvaluationClientView;
   /** The person's answers to the follow-up questions so far, when any were saved. */
   followUpAnswers?: Record<string, FollowUpAnswer>;
+}
+
+/* ---- Your package (2026-10-01) ---------------------------------------- */
+
+/**
+ * After Send, the server assembles a zip of everything the person gave us
+ * (what they typed, what they said, what they uploaded) plus a plain summary
+ * with the deadlines that may apply, so they leave with something useful
+ * whether or not the firm can take the case. `preparing`: the server is
+ * still assembling it (the done screen polls). `ready`: `url` downloads the
+ * zip until `expiresAt`; the same link is emailed. `unavailable`: the feature
+ * is off, the request is not submitted, the link expired, or the package
+ * could not be built; the site shows nothing. The link carries its own
+ * token; it is never the session bearer.
+ */
+export type PackageStatus = "preparing" | "ready" | "unavailable";
+
+export interface PackageResponse {
+  status: PackageStatus;
+  url?: string; // absolute; present when ready
+  expiresAt?: string; // ISO 8601; present when ready
+  sizeBytes?: number; // present when ready
+  fileCount?: number; // uploaded documents included; present when ready
 }
 
 export interface ApiError {
