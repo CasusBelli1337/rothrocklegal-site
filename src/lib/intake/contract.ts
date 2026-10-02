@@ -350,10 +350,11 @@ export interface ResumeResponse {
 /* ---- Your package (2026-10-01) ---------------------------------------- */
 
 /**
- * After Send, the server assembles a zip of everything the person gave us
- * (what they typed, what they said, what they uploaded) plus a plain summary
- * with the deadlines that may apply, so they leave with something useful
- * whether or not the firm can take the case. `preparing`: the server is
+ * After Send, the server assembles a zip holding one summary memo (a plain
+ * restatement of what the person told us, the deadlines that may apply, their
+ * answers, and the list of their documents), their documents renamed to say
+ * what each one is, and their recording when there is one, so they leave with
+ * something useful whether or not the firm can take the case (2026-10-02). `preparing`: the server is
  * still assembling it (the done screen polls). `ready`: `url` downloads the
  * zip until `expiresAt`; the same link is emailed. `unavailable`: the feature
  * is off, the request is not submitted, the link expired, or the package
