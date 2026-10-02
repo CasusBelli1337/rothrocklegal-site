@@ -147,9 +147,8 @@ export const faqGroups: readonly FaqGroup[] = [
       {
         question: 'Can we meet by video?',
         answer:
-          'Yes. We meet by video by default, and in person by appointment when the case calls ' +
-          'for it. No office visits, no parking, no waiting rooms. Court appearances happen in ' +
-          'the courtroom.',
+          'Yes. We meet by video. No office visits, no parking, no waiting rooms. Court ' +
+          'appearances happen in the courtroom.',
       },
     ],
   },

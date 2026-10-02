@@ -493,7 +493,8 @@ step, storyRead, evaluation, followUpAnswers }` (read from `?resume=` after
   Lawyers Rising Stars is not "Super Lawyer"). Bar status only where the
   dossier verified it; otherwise the site says nothing.
 - No street address anywhere, the courthouse included (Arthur, 2026-09-03). The
-  office is "San Jose, California" by appointment and video; a court is named by
+  office is "San Jose, California" and the firm meets by video only, never in
+  person (Arthur, 2026-10-02: no office visits anywhere on the site); a court is named by
   its name and city only (`Court` in `service-areas.ts` has no address field),
   and "Probate Division" is never used: say "the probate court in San Jose" or
   "Santa Clara County Superior Court".

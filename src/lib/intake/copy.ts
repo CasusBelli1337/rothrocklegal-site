@@ -10,7 +10,7 @@ export * from './copy-review';
  */
 
 export const REPLY_PROMISE = 'We strive to respond within one business day, by email.';
-export const REMOTE_NOTE = 'We meet by video, and in person by appointment.';
+export const REMOTE_NOTE = 'We meet by video.';
 
 /** The three start tiles, one at a time; each carries its own button label. */
 export const START_TILES: Record<StartTile, { title: string; button: string }> = {
