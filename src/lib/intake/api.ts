@@ -7,6 +7,7 @@ import type {
   IntakeFile,
   IntakeSession,
   LookupResponse,
+  PackageLinkResponse,
   PackageResponse,
   ResumeResponse,
   SaveAnswersResponse,
@@ -221,10 +222,24 @@ export function submitIntake(session: Session): Promise<SubmitResponse> {
 
 /**
  * After Send: the person's package (`preparing` while the server builds it).
- * Asked with the session bearer; the zip link it returns carries its own token.
+ * Asked with the session bearer; every `ready` answer carries a NEW one-use
+ * link with its own token, good for 15 minutes (`urlExpiresAt`).
  */
 export function getPackage(session: Session): Promise<PackageResponse> {
   return request<PackageResponse>(`/api/intake/${session.id}/package`, { method: 'GET' }, session);
+}
+
+/**
+ * "Send me a new link": the server emails a new one-use link to the request's
+ * own address. Throws ApiError with a message safe to show (429 after three in
+ * a day).
+ */
+export function requestPackageLink(session: Session): Promise<PackageLinkResponse> {
+  return request<PackageLinkResponse>(
+    `/api/intake/${session.id}/package/link`,
+    { method: 'POST', body: '{}' },
+    session,
+  );
 }
 
 export interface UploadHandle {

@@ -16,6 +16,7 @@
  * Servers answer clients of the same major version. 2026-09-04: a resume also
  * carries the follow-up answers.
  * 2026-10-01: a package download after submit (`PackageResponse`).
+ * 2026-10-02: package links work once (`urlExpiresAt`, `PackageLinkResponse`).
  */
 export const INTAKE_API_VERSION = 3 as const;
 
@@ -355,20 +356,37 @@ export interface ResumeResponse {
  * answers, and the list of their documents), their documents renamed to say
  * what each one is, and their recording when there is one, so they leave with
  * something useful whether or not the firm can take the case (2026-10-02). `preparing`: the server is
- * still assembling it (the done screen polls). `ready`: `url` downloads the
- * zip until `expiresAt`; the same link is emailed. `unavailable`: the feature
- * is off, the request is not submitted, the link expired, or the package
- * could not be built; the site shows nothing. The link carries its own
- * token; it is never the session bearer.
+ * still assembling it (the done screen polls). `ready`: `url` is a NEW
+ * one-use link on every answer, good until `urlExpiresAt` (15 minutes) and
+ * never past `expiresAt`, the package's last day. The site downloads with a
+ * form POST to `url` (a GET opens a download page and uses nothing, so a mail
+ * scanner or a link preview cannot spend a link) and asks for the status
+ * again for a fresh link after each click, when the page regains focus, and
+ * before `urlExpiresAt`. The emailed link is a separate one-use link.
+ * `unavailable`: the feature is off, the request is not submitted, the
+ * package ran out, or it could not be built; the site shows nothing. Every
+ * link carries its own token; it is never the session bearer.
  */
 export type PackageStatus = "preparing" | "ready" | "unavailable";
 
 export interface PackageResponse {
   status: PackageStatus;
-  url?: string; // absolute; present when ready
-  expiresAt?: string; // ISO 8601; present when ready
+  url?: string; // absolute; present when ready; works once, until urlExpiresAt
+  urlExpiresAt?: string; // ISO 8601; present when ready
+  expiresAt?: string; // ISO 8601; the package's last day; present when ready
   sizeBytes?: number; // present when ready
   fileCount?: number; // uploaded documents included; present when ready
+}
+
+/**
+ * POST /api/intake/:id/package/link (session bearer, no body): "Send me a new
+ * link". Emails a new one-use link to the request's own email address (never
+ * one in the request) and every earlier emailed link stops working. 429
+ * `rate-limited` after three in a day; 400 `bad-request` when the package is
+ * not ready or the request has no email address; `error` is safe to show.
+ */
+export interface PackageLinkResponse {
+  sent: true;
 }
 
 export interface ApiError {

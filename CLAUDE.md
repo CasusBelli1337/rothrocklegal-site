@@ -483,10 +483,24 @@ step, storyRead, evaluation, followUpAnswers }` (read from `?resume=` after
   screen's `PackageCard` polls `GET /:id/package` (`use-package.ts`: every 5 s,
   a 15-minute cap that survives a refresh via sessionStorage
   `rl-intake-package`): a pulsing line while `preparing`, then the "Download
-  your package" link (`<a download>`, same tab) with size, documents, and
-  expiry; an "arrives by email" line at the cap; nothing at all for
-  `unavailable` or a 4xx. The tile and review copy promise the package, so the
-  module's endpoint must be live before this ships.
+  your package" button with size, documents, the last day, "The link in your
+  email works once, so download your package and keep your own copy.", and
+  "Your package is confidential and may be privileged."; an "arrives by email"
+  line at the cap; nothing at all for `unavailable` or a 4xx. The tile and
+  review copy promise the package, so the module's endpoint must be live
+  before this ships.
+- Package security (2026-10-02; module README "Package security"): every link
+  to the zip works ONCE. Each `ready` status answer carries a new link good for
+  15 minutes (`urlExpiresAt`); a GET of a link only opens a page on the intake
+  server, so the button downloads with a form POST (`submitDownload` in
+  `package.ts`: a hidden form of its own appended to `body`, because the done
+  screen sits inside the step's `<form>` and forms cannot nest; never an
+  `<a download>`, never a nested form). After a press the button holds still
+  and the hook asks for a fresh link (1.5 s), and again when the window
+  regains focus or the page comes back into view, and a minute before
+  `urlExpiresAt`. "Send me a new link" calls `POST /api/intake/:id/package/link`
+  (`requestPackageLink`) and says "A new link is on its way to <email>." or
+  the server's own words (three a day).
 - The microphone pre-flight checks `window.isSecureContext` first: on a plain
   http address it shows the "needs a secure connection" card (typing still
   works) instead of the permission steps.

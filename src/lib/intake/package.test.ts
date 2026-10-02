@@ -6,6 +6,7 @@ const LA = 'America/Los_Angeles';
 
 const pkg = (over: Partial<ReadyPackage> = {}): ReadyPackage => ({
   url: 'https://intake.example/package/abc.zip',
+  urlExpiresAt: '2026-10-01T19:15:00.000Z',
   expiresAt: '2026-10-15T19:00:00.000Z',
   sizeBytes: 13_002_342,
   fileCount: 9,
@@ -38,11 +39,12 @@ describe('formatBytes for a package', () => {
 });
 
 describe('packageDetails', () => {
-  it('says the size, the documents, the expiry, and the email in plain words', () => {
+  it('says the size, the documents, the last day, that the emailed link works once, and that it is confidential', () => {
     expect(packageDetails(pkg(), LA)).toEqual([
       'One zip file, 12.4 MB, with the 9 documents you uploaded.',
-      'The link works until October 15, 2026.',
-      'We also email you this link.',
+      'You can download it until October 15, 2026.',
+      'The link in your email works once, so download your package and keep your own copy.',
+      'Your package is confidential and may be privileged.',
     ]);
   });
 
@@ -57,7 +59,8 @@ describe('packageDetails', () => {
 
   it('leaves out a line the server gave no number for', () => {
     expect(packageDetails(pkg({ sizeBytes: 0, expiresAt: '' }), LA)).toEqual([
-      'We also email you this link.',
+      'The link in your email works once, so download your package and keep your own copy.',
+      'Your package is confidential and may be privileged.',
     ]);
   });
 });
@@ -66,6 +69,7 @@ describe('readyPackage', () => {
   const ready = {
     status: 'ready' as const,
     url: 'https://intake.example/package/abc.zip',
+    urlExpiresAt: '2026-10-01T19:15:00.000Z',
     expiresAt: '2026-10-15T19:00:00.000Z',
     sizeBytes: 100,
     fileCount: 2,
@@ -74,6 +78,7 @@ describe('readyPackage', () => {
   it('passes a complete ready answer through', () => {
     expect(readyPackage(ready)).toEqual({
       url: ready.url,
+      urlExpiresAt: ready.urlExpiresAt,
       expiresAt: ready.expiresAt,
       sizeBytes: 100,
       fileCount: 2,
@@ -91,6 +96,7 @@ describe('readyPackage', () => {
   it('fills missing numbers with zero so the card simply leaves them out', () => {
     expect(readyPackage({ status: 'ready', url: ready.url })).toEqual({
       url: ready.url,
+      urlExpiresAt: '',
       expiresAt: '',
       sizeBytes: 0,
       fileCount: 0,

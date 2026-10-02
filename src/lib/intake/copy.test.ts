@@ -184,7 +184,7 @@ describe('hand-holding lines', () => {
   it('describes the package as one summary memo plus the documents, everywhere', () => {
     // Since 2026-10-02 the zip holds one PDF memo and the documents, nothing else (Arthur).
     expect(copy.WHAT_YOU_GET[0].body).toBe(
-      `A summary memo of what you told us and the deadlines that may apply, with your documents organized and clearly named. We email you the link, and you can download it for ${copy.PACKAGE_LINK_DAYS} days. It is yours to keep or to hand to another lawyer.`,
+      `A summary memo of what you told us and the deadlines that may apply, with your documents organized and clearly named. We email you a link that works once, and you can download it for ${copy.PACKAGE_LINK_DAYS} days. It is yours to keep or to hand to another lawyer.`,
     );
     expect(copy.PACKAGE_COPY.what).toBe(
       'A summary memo of what you told us, the deadlines that may apply, and your documents, organized and clearly named. It is yours to keep or to hand to another lawyer.',
@@ -195,6 +195,19 @@ describe('hand-holding lines', () => {
     expect(collectStrings(copy).filter((line) => /typed, said|plain summary/i.test(line))).toEqual(
       [],
     );
+  });
+
+  it('says on the card that the emailed link works once, that the package is confidential, and how to get a new link', () => {
+    // Package security (2026-10-02): every link works once; Arthur asked for the privilege warning.
+    expect(copy.PACKAGE_COPY.oneUse).toBe(
+      'The link in your email works once, so download your package and keep your own copy.',
+    );
+    expect(copy.PACKAGE_COPY.confidential).toBe('Your package is confidential and may be privileged.');
+    expect(copy.PACKAGE_COPY.newLink).toBe('Send me a new link');
+    expect(copy.PACKAGE_COPY.newLinkSent('qa@example.test')).toBe(
+      'A new link is on its way to qa@example.test.',
+    );
+    expect('emailed' in copy.PACKAGE_COPY).toBe(false);
   });
 
   it('calls the summary a memo in the deadlines item, as the package item does', () => {
@@ -218,6 +231,8 @@ describe('hand-holding lines', () => {
   it('keeps the package and review lines plain, with the one AI line on the third tile', () => {
     const generated = [
       copy.PACKAGE_COPY.expires('October 15, 2026'),
+      copy.PACKAGE_COPY.newLinkSent('qa@example.test'),
+      copy.PACKAGE_COPY.newLinkSent(''),
       copy.PACKAGE_COPY.contents('12.4 MB', 0),
       copy.PACKAGE_COPY.contents('12.4 MB', 1),
       copy.PACKAGE_COPY.contents('12.4 MB', 9),

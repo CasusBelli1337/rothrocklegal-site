@@ -23,7 +23,7 @@ export function StepDone({ intake }: StepProps) {
             : 'A confirmation with this number is on its way to your email.'}
         </p>
       </div>
-      <PackageCard session={session} />
+      <PackageCard session={session} email={answers.contact.email} />
       <h3 className="mt-8 text-body font-semibold text-ink">What happens next</h3>
       <ol className="mt-3 space-y-3">
         {DONE_NEXT.map((line) => (

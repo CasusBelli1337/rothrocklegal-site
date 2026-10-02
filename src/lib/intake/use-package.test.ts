@@ -6,6 +6,9 @@ import type { PackageResponse } from './contract';
 import {
   PACKAGE_POLL_INTERVAL_MS,
   PACKAGE_POLL_TIMEOUT_MS,
+  PACKAGE_REFRESH_AFTER_DOWNLOAD_MS,
+  PACKAGE_REFRESH_BEFORE_EXPIRY_MS,
+  PACKAGE_REFRESH_RETRY_MS,
   PACKAGE_STARTED_KEY,
   usePackage,
 } from './use-package';
@@ -25,6 +28,12 @@ const READY: PackageResponse = {
   sizeBytes: 13_002_342,
   fileCount: 9,
 };
+/** A ready answer whose one-use link lasts 15 minutes from now (fake clock), numbered so a test can tell them apart. */
+const readyLink = (n: number): PackageResponse => ({
+  ...READY,
+  url: `https://intake.example/api/intake/package/link-${n}`,
+  urlExpiresAt: new Date(Date.now() + 15 * 60_000).toISOString(),
+});
 
 /** Lets the pending fetch settle and the loop reach its next sleep. */
 const flush = () => act(() => vi.advanceTimersByTimeAsync(0));
@@ -87,7 +96,7 @@ describe('usePackage', () => {
     getPackage.mockResolvedValue({ status: 'unavailable' });
     const { result } = renderHook(() => usePackage(session));
     await flush();
-    expect(result.current).toEqual({ phase: 'unavailable', ready: null });
+    expect(result.current).toMatchObject({ phase: 'unavailable', ready: null });
     await wait(60_000);
     expect(getPackage).toHaveBeenCalledTimes(1);
   });
@@ -166,5 +175,84 @@ describe('usePackage', () => {
     await wait(60_000);
     expect(result.current.phase).toBe('unavailable');
     expect(getPackage).not.toHaveBeenCalled();
+  });
+
+  describe('once ready, keeps the one-use link fresh', () => {
+    it('asks again when the window regains focus or the page comes back into view, not while hidden', async () => {
+      getPackage.mockResolvedValueOnce(readyLink(1)).mockResolvedValueOnce(readyLink(2)).mockResolvedValueOnce(readyLink(3));
+      const { result } = renderHook(() => usePackage(session));
+      await flush();
+      expect(result.current.ready?.url).toMatch(/link-1$/);
+      await act(async () => {
+        window.dispatchEvent(new Event('focus'));
+      });
+      await flush();
+      expect(result.current.ready?.url).toMatch(/link-2$/);
+      const hidden = vi.spyOn(document, 'visibilityState', 'get').mockReturnValue('hidden');
+      await act(async () => {
+        document.dispatchEvent(new Event('visibilitychange'));
+      });
+      await flush();
+      expect(getPackage).toHaveBeenCalledTimes(2);
+      hidden.mockReturnValue('visible');
+      await act(async () => {
+        document.dispatchEvent(new Event('visibilitychange'));
+      });
+      await flush();
+      expect(result.current.ready?.url).toMatch(/link-3$/);
+      hidden.mockRestore();
+    });
+
+    it('asks again shortly after a download press, and a minute before the link runs out', async () => {
+      // Each link's 15 minutes run from the moment the server answers.
+      for (const n of [1, 2, 3]) getPackage.mockImplementationOnce(async () => readyLink(n));
+      const { result } = renderHook(() => usePackage(session));
+      await flush();
+      act(() => result.current.afterDownload());
+      await wait(PACKAGE_REFRESH_AFTER_DOWNLOAD_MS - 1);
+      expect(getPackage).toHaveBeenCalledTimes(1);
+      await wait(1);
+      expect(result.current.ready?.url).toMatch(/link-2$/);
+      await wait(15 * 60_000 - PACKAGE_REFRESH_BEFORE_EXPIRY_MS - 1);
+      expect(getPackage).toHaveBeenCalledTimes(2);
+      await wait(1);
+      expect(result.current.ready?.url).toMatch(/link-3$/);
+    });
+
+    it('keeps the link it has through a blip and tries once more; drops the card when the package ran out', async () => {
+      getPackage
+        .mockResolvedValueOnce(readyLink(1))
+        .mockRejectedValueOnce(new api.ApiError('offline', 'network', 0))
+        .mockResolvedValueOnce(readyLink(2))
+        .mockResolvedValueOnce({ status: 'unavailable' });
+      const { result } = renderHook(() => usePackage(session));
+      await flush();
+      act(() => result.current.afterDownload());
+      await wait(PACKAGE_REFRESH_AFTER_DOWNLOAD_MS);
+      expect(result.current.ready?.url).toMatch(/link-1$/);
+      await wait(PACKAGE_REFRESH_RETRY_MS);
+      expect(result.current.ready?.url).toMatch(/link-2$/);
+      await act(async () => {
+        window.dispatchEvent(new Event('focus'));
+      });
+      await flush();
+      expect(result.current.phase).toBe('unavailable');
+    });
+
+    it('asks once when focus and visibility arrive together', async () => {
+      let answer: (value: PackageResponse) => void = () => undefined;
+      getPackage
+        .mockResolvedValueOnce(readyLink(1))
+        .mockReturnValueOnce(new Promise<PackageResponse>((resolve) => (answer = resolve)));
+      const { result } = renderHook(() => usePackage(session));
+      await flush();
+      await act(async () => {
+        window.dispatchEvent(new Event('focus'));
+        document.dispatchEvent(new Event('visibilitychange'));
+      });
+      expect(getPackage).toHaveBeenCalledTimes(2);
+      await act(async () => answer(readyLink(2)));
+      expect(result.current.ready?.url).toMatch(/link-2$/);
+    });
   });
 });
