@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { PrivacyChoicesButton } from '@/components/consent/PrivacyChoicesButton';
 import { LinkedInIcon } from '@/components/icons';
 import { BrandLogo } from '@/components/ui/BrandLogo';
 import { Container } from '@/components/ui/Container';
@@ -107,6 +108,7 @@ export function Footer() {
                 {item.label}
               </Link>
             ))}
+            <PrivacyChoicesButton className="tap-row underline underline-offset-3 hover:text-white" />
           </p>
           <p>
             {site.resultsDisclaimer} Super Lawyers is a registered trademark of Thomson Reuters.

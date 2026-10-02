@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import dynamic from 'next/dynamic';
 import { Instrument_Sans, Newsreader } from 'next/font/google';
+import { ConsentBanner } from '@/components/consent/ConsentBanner';
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
 import { MobileConsultBar } from '@/components/layout/MobileConsultBar';
@@ -8,6 +9,7 @@ import { Analytics } from '@/components/seo/Analytics';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { palette, site } from '@/config/site';
 import { a11yBootScript } from '@/lib/a11y/boot';
+import { consentBootScript } from '@/lib/consent/boot';
 import { articleLensWeights } from '@/lib/lens/article-weights';
 import { lensBootScript } from '@/lib/lens/boot';
 import { LensTracker } from '@/lib/lens/LensTracker';
@@ -76,8 +78,9 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    // The two boot scripts stamp html[data-lens] (docs/LENS.md §3) and the reading
-    // options (docs/ACCESSIBILITY.md) before hydration, so neither ever flashes.
+    // The three boot scripts stamp html[data-lens] (docs/LENS.md §3), the reading
+    // options (docs/ACCESSIBILITY.md), and html[data-consent] (docs/CONSENT.md)
+    // before hydration, so none of them ever flashes.
     <html
       lang="en"
       className={`${newsreader.variable} ${newsreaderItalic.variable} ${instrumentSans.variable}`}
@@ -86,12 +89,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: lensBootScript() }} />
         <script dangerouslySetInnerHTML={{ __html: a11yBootScript() }} />
+        <script dangerouslySetInnerHTML={{ __html: consentBootScript() }} />
       </head>
       {/* dvh, not vh: mobile browser toolbars shrink the visible viewport. */}
       <body className="min-h-dvh flex flex-col">
         <a href="#main" className="skip-link">
           Skip to content
         </a>
+        {/* Early in the focus order, so a keyboard or screen-reader visitor meets it first; drawn at the bottom. */}
+        <ConsentBanner />
         <Header />
         <main id="main" className="flex-1">
           {children}

@@ -11,7 +11,8 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "check-links": "node scripts/check-links.mjs",
-    "check-lens": "node scripts/check-lens.mjs"
+    "check-lens": "node scripts/check-lens.mjs",
+    "check-consent": "node scripts/check-consent.mjs"
   },
   "dependencies": {
     "next": "^15.4.6",

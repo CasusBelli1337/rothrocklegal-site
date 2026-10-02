@@ -4,7 +4,8 @@ import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import { lensConfig } from '@/config/lens';
 import { signalForPath } from './signals';
-import { claimSessionFlag, recordEffect } from './store';
+import { syncLensSlots } from './slots';
+import { claimSessionFlag, currentLens, recordEffect } from './store';
 import { LENS_EVENT_ATTR } from './types';
 import { useLens } from './useLens';
 
@@ -24,7 +25,8 @@ interface LensTrackerProps {
 
 /**
  * Mounted once in the root layout. Records the landing and navigation signals,
- * mirrors the resolved lens onto html[data-lens], and relays clicks on
+ * mirrors the resolved lens onto html[data-lens] and onto the `hidden`
+ * attribute of every slot variant (slots.ts), and relays clicks on
  * [data-lens-event] links. Renders nothing.
  */
 export function LensTracker({ articleWeights }: LensTrackerProps) {
@@ -36,8 +38,13 @@ export function LensTracker({ articleWeights }: LensTrackerProps) {
     if (effect) recordEffect(effect);
   }, [pathname, articleWeights]);
 
+  // Reads the store rather than `lens`: on the hydration pass the hook still
+  // reports the server snapshot (neutral), and writing that would hide, for
+  // one pass, the framing the head script already revealed.
   useEffect(() => {
-    document.documentElement.dataset.lens = lens;
+    const resolved = currentLens();
+    document.documentElement.dataset.lens = resolved;
+    syncLensSlots(document, resolved);
   }, [lens]);
 
   useEffect(() => {

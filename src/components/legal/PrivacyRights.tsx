@@ -1,7 +1,9 @@
+import { policyCounter } from '@/config/consent-copy';
 import { site } from '@/config/site';
 
 /** Privacy policy, part 3: your choices and rights, children, the no-client note, changes, contact. */
 export function PrivacyRights() {
+  const counter = policyCounter();
   return (
     <>
       <h2>Your choices and rights</h2>
@@ -28,10 +30,11 @@ export function PrivacyRights() {
         us, we honor the requests above for everyone.
       </p>
       <p>
-        <strong>&ldquo;Do Not Track&rdquo; signals.</strong> We do not track you across other
-        websites or over time, and no other company collects information about your online activity
-        through this site. Because there is nothing to switch off, this site works the same whether
-        or not your browser sends a Do Not Track signal.
+        <strong>&ldquo;Do Not Track&rdquo; signals.</strong> We honor them. If your browser sends Do
+        Not Track or Global Privacy Control, we treat it as a no to analytics and advertising.
+        {counter && ` ${counter.signal}`} See Cookies and your choices. If you say yes to analytics,
+        Google collects information about your visits to this site over time. We do not track you
+        across other websites, and we do not let any other company do so through this site.
       </p>
 
       <h2>Children</h2>

@@ -4,12 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { consultCta } from '@/config/site';
-import { PUBLIC_LINK_PATHS } from '@/lib/public/paths';
-
-/** Pages that carry their own primary action (or a signature block); the bar would only cover their form. */
-const HIDDEN_ON = ['/contact/', consultCta.href, ...PUBLIC_LINK_PATHS].map((href) =>
-  href.replace(/\/$/, ''),
-);
+import { showsMobileConsultBar } from './consult-bar';
 
 /** Text-entry controls open the on-screen keyboard, which would push the bar over the field. */
 function opensKeyboard(target: EventTarget | null): boolean {
@@ -40,7 +35,7 @@ function useKeyboardOpen(): boolean {
 export function MobileConsultBar() {
   const pathname = usePathname();
   const keyboardOpen = useKeyboardOpen();
-  if (HIDDEN_ON.some((prefix) => pathname.startsWith(prefix))) return null;
+  if (!showsMobileConsultBar(pathname)) return null;
   return (
     <>
       {/* Reserves the bar plus the home-indicator inset, so the footer's last line is never covered. */}

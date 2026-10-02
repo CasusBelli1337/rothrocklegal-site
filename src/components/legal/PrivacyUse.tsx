@@ -16,7 +16,7 @@ export function PrivacyUse() {
         <li>If you become a client, as part of your file.</li>
       </ul>
       <p>
-        We do not use your information for marketing. We do not sell it, rent it, or share it for
+        We do not use what you send us for marketing. We do not sell it, rent it, or share it for
         advertising, and we never will.
       </p>
 

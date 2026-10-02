@@ -90,6 +90,31 @@ export interface TeamAppearance {
   url?: string;
 }
 
+/** An article the person wrote for another site, listed under "Elsewhere" on the bio page. */
+export interface TeamExternalArticle {
+  title: string;
+  /** The published page, checked to resolve (200, no redirect) when added. */
+  url: string;
+  /** The site, shown beside the title, e.g. 'legion.law'. */
+  outlet: string;
+  /** ISO publication date, for newest-first order; never shown. */
+  published: string;
+}
+
+/** The bio page's writing section (components/team/ArticlesByMember). */
+export interface TeamWriting {
+  /**
+   * Library slugs listed first, in this order; the person's other published
+   * articles follow, newest first. Each must exist, be theirs, and not be a
+   * draft, or the build fails.
+   */
+  featuredArticles: readonly string[];
+  /** How many library articles the section lists before "See all articles". */
+  shown: number;
+  /** Articles on other sites, at most six (newest first on the page). */
+  elsewhere: readonly TeamExternalArticle[];
+}
+
 export interface TeamPodcast {
   name: string;
   role: string;
@@ -137,6 +162,8 @@ export interface TeamMember {
   membershipBadges?: Readonly<Record<string, TeamBadge>>;
   podcast?: TeamPodcast;
   appearances: readonly TeamAppearance[];
+  /** The "Articles by" section on the bio page; absent means the section is left out. */
+  writing?: TeamWriting;
   /** State Bar licensee profile first, then LinkedIn (SEO-SPEC §3c). */
   sameAs: readonly string[];
   /** Practice-area slugs this person handles (bio links). */

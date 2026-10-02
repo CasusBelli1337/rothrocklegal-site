@@ -1,7 +1,13 @@
 // @vitest-environment jsdom
-import { cleanup, fireEvent, render } from '@testing-library/react';
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { act, cleanup, fireEvent, render } from '@testing-library/react';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { refreshConsent, saveConsent } from '@/lib/consent/client';
 import { EmailClickTracker, isEmailLinkClick } from './EmailClickTracker';
+
+beforeEach(() => {
+  localStorage.clear();
+  act(() => saveConsent({ analytics: true, advertising: false }));
+});
 
 afterEach(() => {
   cleanup();
@@ -22,6 +28,17 @@ describe('EmailClickTracker', () => {
     fireEvent.click(document.getElementById('other') as HTMLElement);
     expect(gtag).toHaveBeenCalledTimes(1);
     expect(gtag).toHaveBeenCalledWith('event', 'contact_email_click');
+  });
+
+  it('sends nothing before a yes to analytics', () => {
+    localStorage.clear();
+    act(() => refreshConsent());
+    const gtag = vi.fn();
+    (window as Window & { gtag?: unknown }).gtag = gtag;
+    render(<EmailClickTracker />);
+    document.body.insertAdjacentHTML('beforeend', '<a href="mailto:a@b.c" id="mail">Email</a>');
+    fireEvent.click(document.getElementById('mail') as HTMLElement);
+    expect(gtag).not.toHaveBeenCalled();
   });
 
   it('ignores clicks that are not on an email link', () => {
