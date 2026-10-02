@@ -45,7 +45,7 @@ export interface TakeAway {
 export const WHAT_YOU_GET: readonly TakeAway[] = [
   {
     title: 'Your file package.',
-    body: `A zip of everything you typed, said, and uploaded, plus a plain summary. We email you the link, and you can download it for ${PACKAGE_LINK_DAYS} days. It is yours to keep or to hand to another lawyer.`,
+    body: `A summary memo of what you told us and the deadlines that may apply, with your documents organized and clearly named. We email you the link, and you can download it for ${PACKAGE_LINK_DAYS} days. It is yours to keep or to hand to another lawyer.`,
   },
   {
     title: 'The deadlines that may apply.',

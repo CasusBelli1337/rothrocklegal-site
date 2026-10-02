@@ -76,7 +76,8 @@ are 48px tall at 16px text, one style each, and wrap rather than overflow at a
 larger text size. Escape inside it declines a first visit, or closes a
 reopened bar and returns focus to the link. While it is open the page keeps
 room for it (`--consent-bar-h` body padding, `--consent-cover` scroll padding,
-so the focused control is never hidden behind it, WCAG 2.4.11). It uses the
+so the focused control is never hidden behind it, WCAG 2.4.11), and the
+consult flow's sticky action bar sits just above it (`--consent-cover`). It uses the
 same tokens as everything else, so text size and high contrast follow, and it
 has no animation. The accessibility statement names it as the one exception to
 "no pop-ups cover what you are reading".

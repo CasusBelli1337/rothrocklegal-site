@@ -12,7 +12,7 @@ import { useBarInset } from './use-bar-inset';
  * announcement, focus on reopen (to the heading) and on close (back to the
  * link that opened it), and Escape.
  */
-export function useConsentBar() {
+export function useConsentBar(placement: string) {
   const consent = useConsent();
   const hydrated = useHydrated();
   const [expanded, setExpanded] = useState(false);
@@ -31,7 +31,7 @@ export function useConsentBar() {
     setExpanded(true);
     headingRef.current?.focus();
   }, [consent.panelOpen]);
-  useBarInset(barRef, open);
+  useBarInset(barRef, open, placement);
 
   /** A choice saves and closes; null only closes (a reopened bar's Close and Escape). */
   const finish = (choice: ConsentState | null) => {

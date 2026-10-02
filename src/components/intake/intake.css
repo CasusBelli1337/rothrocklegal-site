@@ -30,7 +30,10 @@
 
 /* The action bar sits right after the step body and sticks to the bottom of the
    viewport while the screen is taller than it, so the button never needs
-   hunting for on a long step and never floats away on a short one. */
+   hunting for on a long step and never floats away on a short one. While the
+   privacy-choices bar is open it sticks just above that bar instead
+   (`--consent-cover`, published by consent/use-bar-inset.ts), so a first
+   visit never hides the button under it. */
 .intake-body,
 .intake-body > form {
   display: flex;
@@ -39,7 +42,7 @@
 }
 .intake-bar {
   position: sticky;
-  bottom: 0;
+  bottom: var(--consent-cover, 0px);
   margin-top: auto;
   background: var(--color-white);
   border-top: 1px solid var(--color-line);

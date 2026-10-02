@@ -33,7 +33,7 @@ function Ready({ pkg }: { pkg: ReadyPackage }) {
 
 /**
  * The done screen's "Your package" card: a calm line while the server builds
- * the zip, then the download. Nothing at all (no card, no gap) until the
+ * the zip (the summary memo and the documents), then the download. Nothing at all (no card, no gap) until the
  * first answer, or when the server has no package to offer.
  */
 export function PackageCard({ session }: { session: Session | null }) {

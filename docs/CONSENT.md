@@ -34,7 +34,13 @@ counter is the one thing that counts visits without a yes; section 5 says why.
   above the mobile consult bar where that renders (`showsMobileConsultBar`).
   While open, `use-bar-inset.ts` sets `--consent-bar-h` (body padding, so the
   footer's last line scrolls clear) and `--consent-cover` (scroll padding, so
-  a focused control is never hidden behind it, WCAG 2.4.11).
+  a focused control is never hidden behind it, WCAG 2.4.11; and the offset
+  the consult flow's sticky action bar keeps, `intake.css`, so its button
+  stacks above the bar instead of under it). Both are measured again when
+  the bar resizes or a page change moves it, and `--consent-cover` rounds
+  down so no hairline of page shows between the two bars (2026-10-02,
+  `use-bar-inset.test.tsx`). Any new bottom-sticky element must read
+  `--consent-cover` the same way.
 - **Choices**: "Accept analytics", "Decline", and "Choose", one style and one
   size (`styles.ts`). "Choose" opens the categories inline (switches, one
   sentence each, "Save choices"). Escape inside the bar declines a first

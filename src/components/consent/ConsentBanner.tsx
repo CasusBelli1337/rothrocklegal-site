@@ -117,10 +117,10 @@ function SmallPrint({ onClose }: { onClose?: () => void }) {
  * hidden without JavaScript, when no tracker can run anyway.
  */
 export function ConsentBanner() {
-  const bar = useConsentBar();
   const pathname = usePathname();
-  if (offeredCategories().length === 0) return null;
   const position = showsMobileConsultBar(pathname) ? ABOVE_CONSULT_BAR : AT_BOTTOM;
+  const bar = useConsentBar(position);
+  if (offeredCategories().length === 0) return null;
   return (
     <>
       <section

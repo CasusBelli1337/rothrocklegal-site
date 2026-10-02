@@ -451,7 +451,9 @@ step, storyRead, evaluation, followUpAnswers }` (read from `?resume=` after
   hydration, then stripped with `replaceState`; `stateFromResume` restores both
   readings so neither screen waits twice, and the follow-up answers for the
   modules the evaluation still asks), and `POST /:id/resume-link` -> `{ sent: true }`.
-- The action bar (`StepNav`) is `position: sticky; bottom: 0` inside the panel:
+- The action bar (`StepNav`) is `position: sticky` inside the panel, at
+  `bottom: var(--consent-cover, 0px)` so it stacks just above the
+  privacy-choices bar on a first visit (2026-10-02; docs/CONSENT.md):
   Back and Start over on the left, the save status, the primary button on the
   right (full-width on phones) with its "Next:" line from `md`; a validation
   message renders above the buttons so the button never moves. The panel
@@ -469,7 +471,11 @@ step, storyRead, evaluation, followUpAnswers }` (read from `?resume=` after
   761 px). The third tile is the tight one, so its spacing is a notch tighter
   (statement cards `px-3 py-2.5`, 8 px gaps); add a line there only after
   re-measuring.
-- Your package (2026-10-01; start tiles rewritten 2026-10-02): the second
+- Your package (2026-10-01; start tiles rewritten 2026-10-02): the zip holds
+  one PDF summary memo (what the person told us and the deadlines that may
+  apply) plus their documents, organized and clearly named, nothing else
+  (Arthur, 2026-10-02); the tile, the done-screen card (`PACKAGE_COPY.what`),
+  and the review note say so, and `copy.test.ts` pins all three. The second
   start tile's first item is the package and its second the deadlines heads-up
   (`copy-start.ts` `WHAT_YOU_GET`; the earlier "Why we ask for so much up
   front" callout and fifth item "You leave with your file." are gone so nothing

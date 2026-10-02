@@ -134,10 +134,26 @@ describe('hand-holding lines', () => {
       copy.WHAT_YOU_GET,
       copy.WHAT_WE_DO,
     ]);
-    expect(tiles.filter((line) => /\bzip\b/i.test(line))).toHaveLength(1);
+    expect(tiles.filter((line) => /summary memo/i.test(line))).toEqual([copy.WHAT_YOU_GET[0].body]);
     expect(copy.WHAT_YOU_GET[0].body).toContain(`download it for ${copy.PACKAGE_LINK_DAYS} days`);
     expect(tiles.filter((line) => /\b\d+ days\b/.test(line) && !line.includes('120 days'))).toEqual(
       [copy.WHAT_YOU_GET[0].body],
+    );
+  });
+
+  it('describes the package as one summary memo plus the documents, everywhere', () => {
+    // Since 2026-10-02 the zip holds one PDF memo and the documents, nothing else (Arthur).
+    expect(copy.WHAT_YOU_GET[0].body).toBe(
+      `A summary memo of what you told us and the deadlines that may apply, with your documents organized and clearly named. We email you the link, and you can download it for ${copy.PACKAGE_LINK_DAYS} days. It is yours to keep or to hand to another lawyer.`,
+    );
+    expect(copy.PACKAGE_COPY.what).toBe(
+      'A summary memo of what you told us, the deadlines that may apply, and your documents, organized and clearly named. It is yours to keep or to hand to another lawyer.',
+    );
+    expect(copy.REVIEW_PACKAGE_NOTE).toBe(
+      'After you send, you can download a summary memo of what you told us, the deadlines that may apply, and your documents.',
+    );
+    expect(collectStrings(copy).filter((line) => /typed, said|plain summary/i.test(line))).toEqual(
+      [],
     );
   });
 
