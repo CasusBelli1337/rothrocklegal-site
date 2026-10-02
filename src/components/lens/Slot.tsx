@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { slotShows } from '@/lib/lens/slots';
 import { LENSES, type Lens, type LensCopy } from '@/lib/lens/types';
 import { LensText } from './LensText';
 
@@ -16,9 +17,12 @@ interface SlotProps {
 }
 
 /**
- * Renders every framing of one piece of copy into the HTML with `data-for`;
- * globals.css shows the one matching html[data-lens], and the neutral one
- * when nothing is set (crawlers, no-JS readers, first-time visitors).
+ * Renders every framing of one piece of copy into the HTML with `data-for`.
+ * Every framing but the neutral one carries `hidden`, so crawlers, AI tools
+ * reading the raw HTML, no-JS readers, and first-time visitors meet one
+ * framing per slot; the head script and LensTracker move `hidden` to the
+ * framing matching html[data-lens] (src/lib/lens/slots.ts). They may do so
+ * before hydration, hence suppressHydrationWarning (this element only).
  */
 export function Slot({ name, variants, as: Tag = 'span', className, linkClassName }: SlotProps) {
   const groups: { node: ReactNode; lenses: Lens[] }[] = [];
@@ -35,6 +39,8 @@ export function Slot({ name, variants, as: Tag = 'span', className, linkClassNam
           key={lenses.join(' ')}
           data-slot={name}
           data-for={lenses.join(' ')}
+          hidden={!slotShows(lenses.join(' '), 'neutral')}
+          suppressHydrationWarning
           className={className}
         >
           {typeof node === 'string' ? <LensText text={node} linkClassName={linkClassName} /> : node}

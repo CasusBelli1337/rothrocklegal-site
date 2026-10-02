@@ -6,7 +6,7 @@ import type { StartTile } from './state';
  */
 
 export const REPLY_PROMISE = 'We strive to respond within one business day, by email.';
-export const REMOTE_NOTE = 'We meet by video, and in person by appointment.';
+export const REMOTE_NOTE = 'We meet by video.';
 
 /** How long the package link works; the intake module sets the same expiry. */
 export const PACKAGE_LINK_DAYS = 14;

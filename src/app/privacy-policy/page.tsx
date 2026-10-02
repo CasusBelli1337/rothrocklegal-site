@@ -1,8 +1,10 @@
 import { LegalPage } from '@/components/layout/LegalPage';
 import { legal } from '@/components/legal/legal-constants';
 import { PrivacyCollect } from '@/components/legal/PrivacyCollect';
+import { PrivacyCookies } from '@/components/legal/PrivacyCookies';
 import { PrivacyRights } from '@/components/legal/PrivacyRights';
 import { PrivacyUse } from '@/components/legal/PrivacyUse';
+import { policyAdvertising, policyCounter } from '@/config/consent-copy';
 import { site } from '@/config/site';
 import { formatDate } from '@/lib/format-date';
 import { pageMetadata } from '@/lib/seo/metadata';
@@ -19,6 +21,7 @@ export const metadata = pageMetadata({
 
 /** Privacy policy (CalOPPA, Bus. & Prof. Code § 22575). Clause map: redesign/legal-pages/LEGAL-PAGES-CHECK.md. */
 export default function PrivacyPolicyPage() {
+  const counter = policyCounter();
   return (
     <LegalPage
       eyebrow="Legal"
@@ -27,8 +30,8 @@ export default function PrivacyPolicyPage() {
       path="/privacy-policy/"
     >
       <p>
-        <strong>Effective date:</strong> {formatDate(legal.privacyEffectiveDate)}. This policy covers
-        www.rothrocklegal.com, including the deadline tool and the consult request.
+        <strong>Effective date:</strong> {formatDate(legal.privacyEffectiveDate)}. This policy
+        covers www.rothrocklegal.com, including the deadline tool and the consult request.
       </p>
       <p>
         {site.name} (&ldquo;we,&rdquo; &ldquo;us&rdquo;) is a law firm in {site.office.city},{' '}
@@ -40,9 +43,12 @@ export default function PrivacyPolicyPage() {
       <h2>The short version</h2>
       <ul>
         <li>
-          We collect only what you type, say, or upload, plus a count of visits to our pages, and
-          of a few steps such as sending a consult request, through Google Analytics. No ads, no
-          profiles.
+          We collect only what you type, say, or upload
+          {counter && `, ${counter.shortVersion}`}. No profiles.
+        </li>
+        <li>
+          If you say yes in the privacy choices bar, Google Analytics also counts your visit and a
+          few steps, such as sending a consult request. Until you answer, nothing from Google loads.
         </li>
         <li>
           We use it for one thing: to decide whether we can help you, which includes a conflict
@@ -57,10 +63,10 @@ export default function PrivacyPolicyPage() {
           people and disputes you describe.
         </li>
         <li>
-          Video meetings happen on Google Meet. Google Analytics is the only thing from Google that
-          runs on this website.
+          Video meetings happen on Google Meet. Google Analytics, only if you say yes, is the only
+          thing from Google that runs on this website.
         </li>
-        <li>We never sell or share your information for advertising.</li>
+        <li>{policyAdvertising().short}</li>
         <li>
           If we do not take your matter, we delete what you sent after{' '}
           {legal.declinedRetentionMonths} months. You can ask us to delete it sooner.
@@ -71,6 +77,7 @@ export default function PrivacyPolicyPage() {
       </ul>
 
       <PrivacyCollect />
+      <PrivacyCookies />
       <PrivacyUse />
       <PrivacyRights />
     </LegalPage>

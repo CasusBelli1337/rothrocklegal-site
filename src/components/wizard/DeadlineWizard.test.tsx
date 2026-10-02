@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { saveConsent } from '@/lib/consent/client';
 import { DeadlineWizard, wizardHeadingId } from './DeadlineWizard';
 import { WIZARD_STORAGE_KEY, type WizardState } from './storage';
 
@@ -113,6 +114,8 @@ describe('DeadlineWizard', () => {
   });
 
   it('counts a finished run once, with no answers attached, and not a restored one', () => {
+    // Events count only after a yes to analytics (docs/CONSENT.md).
+    saveConsent({ analytics: true, advertising: false });
     const gtag = vi.fn();
     (window as Window & { gtag?: unknown }).gtag = gtag;
     mount(FINISHED);

@@ -1,3 +1,5 @@
+import { MAX_FILE_MB, MAX_FILES } from '@/lib/intake/document-slots';
+
 /**
  * Facts the privacy policy and disclaimer cite (config over code, CONTRACTS.md §3).
  * Sources and the clause-by-clause map: rothrock-legal/redesign/legal-pages/LEGAL-PAGES-CHECK.md.
@@ -18,9 +20,9 @@ export const legal = {
    * PROPOSED 12 months, pending Arthur's decision (LEGAL-PAGES-CHECK.md, open items).
    */
   declinedRetentionMonths: 12,
-  /** Upload limits, mirrored from src/lib/intake/document-slots.ts. */
-  maxUploadMb: 25,
-  maxUploadFiles: 20,
+  /** Upload limits: the same constants the documents step and the server enforce. */
+  maxUploadMb: MAX_FILE_MB,
+  maxUploadFiles: MAX_FILES,
   ai: {
     provider: 'Anthropic',
     commercialTermsUrl: 'https://www.anthropic.com/legal/commercial-terms',

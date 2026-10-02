@@ -6,29 +6,42 @@ import { renderVariants, Slot } from './Slot';
 afterEach(cleanup);
 
 function variantsOf(container: HTMLElement, name: string) {
-  return [...container.querySelectorAll(`[data-slot="${name}"]`)].map((el) => ({
+  return [...container.querySelectorAll<HTMLElement>(`[data-slot="${name}"]`)].map((el) => ({
     lenses: el.getAttribute('data-for'),
+    hidden: el.hidden,
     text: el.textContent,
     html: el.innerHTML,
   }));
 }
 
 describe('Slot', () => {
-  it('renders every lens and shares one element between equal strings', () => {
+  it('renders every lens, shares one element between equal strings, and hides all but neutral', () => {
     const { container } = render(
       <Slot name="t" variants={{ neutral: 'same', trustee: 'other', beneficiary: 'same' }} />,
     );
     expect(variantsOf(container, 't')).toEqual([
-      { lenses: 'neutral beneficiary', text: 'same', html: 'same' },
-      { lenses: 'trustee', text: 'other', html: 'other' },
+      { lenses: 'neutral beneficiary', hidden: false, text: 'same', html: 'same' },
+      { lenses: 'trustee', hidden: true, text: 'other', html: 'other' },
     ]);
+  });
+
+  it('hides each of three distinct non-neutral framings', () => {
+    const { container } = render(
+      <Slot name="d" as="div" variants={{ neutral: 'n', trustee: 't', beneficiary: 'b' }} />,
+    );
+    expect(variantsOf(container, 'd').map(({ lenses, hidden }) => [lenses, hidden])).toEqual([
+      ['neutral', false],
+      ['trustee', true],
+      ['beneficiary', true],
+    ]);
+    expect(container.querySelector('[hidden]')?.outerHTML).toMatch(/^<div[^>]* hidden="">/);
   });
 
   it('falls back to neutral for a missing framing and renders null as an empty element', () => {
     const { container } = render(<Slot name="s" variants={{ neutral: null, trustee: 'x' }} />);
     expect(variantsOf(container, 's')).toEqual([
-      { lenses: 'neutral beneficiary', text: '', html: '' },
-      { lenses: 'trustee', text: 'x', html: 'x' },
+      { lenses: 'neutral beneficiary', hidden: false, text: '', html: '' },
+      { lenses: 'trustee', hidden: true, text: 'x', html: 'x' },
     ]);
   });
 
@@ -61,8 +74,8 @@ describe('Slot', () => {
     expect(renders).toBe(2);
     const { container } = render(<Slot name="n" as="div" variants={variants} />);
     expect(variantsOf(container, 'n')).toEqual([
-      { lenses: 'neutral beneficiary', text: '1', html: '<b>1</b>' },
-      { lenses: 'trustee', text: '2', html: '<b>2</b>' },
+      { lenses: 'neutral beneficiary', hidden: false, text: '1', html: '<b>1</b>' },
+      { lenses: 'trustee', hidden: true, text: '2', html: '<b>2</b>' },
     ]);
     expect(container.querySelector('div[data-slot="n"]')).not.toBeNull();
   });

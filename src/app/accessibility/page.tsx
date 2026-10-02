@@ -58,7 +58,9 @@ export default function AccessibilityPage() {
           setting.
         </li>
         <li>
-          No pop-ups cover what you are reading. Menus and options push the page down instead.
+          No pop-ups cover what you are reading. Menus and options push the page down instead. The
+          one exception is the privacy choices bar on a first visit. It sits at the bottom of the
+          screen, leaves room so you can scroll past it, and works with a keyboard: Escape means no.
         </li>
       </ul>
       <p>

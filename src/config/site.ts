@@ -22,6 +22,24 @@ export const site = {
    * the property through the GA4 Data API.
    */
   analyticsId: 'G-JC25W690LQ',
+  /**
+   * The firm's own visit counter (Umami in the Armory; docs/CONSENT.md "First-party
+   * counter"), read by components/seo/Counter. Cookieless and first party, so it runs
+   * without the privacy-choices bar, but never under Global Privacy Control or Do Not
+   * Track and never on /sign/ or /schedule/. A blank origin is the off-switch: no tag,
+   * and the privacy policy drops its counter sentences. The website id is public by
+   * design (it is in the tag); the portal's read key lives in its data/keys/.
+   */
+  counter: {
+    origin: 'https://count.rothrocklegal.com',
+    websiteId: 'f787c36c-f841-4fbc-99a2-8da0be70d201',
+  },
+  /**
+   * IndexNow key (scripts/indexnow.mjs, run by the deploy workflow): 32 hex characters,
+   * public by design and served at /<key>.txt from public/. Changing it means renaming
+   * that file to match; scripts/indexnow.test.mjs checks the pair.
+   */
+  indexNowKey: 'c92dd84a8ed7cf41116d8a40bda52aa4',
   /** Office facts shown on the page and mirrored in JSON-LD (SEO-SPEC §3a). No street address. */
   office: {
     city: 'San Jose',
@@ -174,12 +192,14 @@ export const social = {
    * Firm-level profiles for LegalService `sameAs` (ARTHUR-DOSSIER.md §15): pages about
    * the firm itself. Arthur's personal LinkedIn identifies Arthur, so it lives on his
    * Person record (team/arthur-rothrock.ts), not here (SEO audit, 2026-10-01). Add a
-   * LinkedIn Company Page, the Google Business Profile, Avvo, Justia, and the State Bar
-   * firm URL when they exist, never before (local-SEO memo, 2026-09-01).
+   * the Google Business Profile, Avvo, Justia, and the State Bar firm URL when they
+   * exist, never before (local-SEO memo, 2026-09-01); the LinkedIn Company Page was
+   * created 2026-10-01.
    */
   firmProfiles: [
     'https://profiles.superlawyers.com/california/san-jose/lawfirm/rothrock-legal/3a179706-d225-41e9-aa54-4d24707b0788.html',
     'https://www.bestlawyers.com/firms/rothrock-legal/106701/US',
+    'https://www.linkedin.com/company/rothrock-legal/',
   ],
 } as const;
 

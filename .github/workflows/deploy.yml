@@ -17,6 +17,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      indexnow_urls: ${{ steps.indexnow_plan.outputs.urls }}
     steps:
       - uses: actions/checkout@v4
 
@@ -38,6 +40,13 @@ jobs:
         env:
           NEXT_PUBLIC_INTAKE_API: https://intake.rothrocklegal.com
 
+      # IndexNow, step 1 of 2 (scripts/indexnow.mjs): compare the new sitemap with the
+      # live one before this deploy replaces it, so step 2 submits only what changed.
+      # Never blocks the deploy; with no plan, step 2 submits the whole sitemap.
+      - id: indexnow_plan
+        continue-on-error: true
+        run: node scripts/indexnow.mjs plan
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
@@ -51,3 +60,27 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  # IndexNow, step 2 of 2: once the pages are live, tell Bing and the other IndexNow
+  # engines which URLs changed and log the response code. A failure here never fails
+  # the deploy (continue-on-error on the job and the step).
+  indexnow:
+    needs: [build, deploy]
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            scripts/indexnow.mjs
+            src/config/site.ts
+          sparse-checkout-cone-mode: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: node scripts/indexnow.mjs submit
+        continue-on-error: true
+        env:
+          INDEXNOW_URLS: ${{ needs.build.outputs.indexnow_urls }}
