@@ -3,8 +3,7 @@
 import { useCallback, useEffect, useRef, useState, type ComponentType } from 'react';
 import { ping } from '@/lib/intake/api';
 import { VOICE_NOTE_SLOT, type IntakeFile } from '@/lib/intake/contract';
-import { minutesToGo } from '@/lib/intake/copy';
-import { numberedStepCount, stepNumber, visibleSteps, type StepId } from '@/lib/intake/state';
+import { numberedStepCount, stepNumber, type StepId } from '@/lib/intake/state';
 import { useIntake, type IntakeController } from '@/lib/intake/use-intake';
 import { useResume } from '@/lib/intake/use-resume';
 import { useUploads } from '@/lib/intake/use-uploads';
@@ -111,11 +110,7 @@ export function IntakeFlow({ heading }: IntakeFlowProps) {
           <ResumeNotice resume={resume} />
           {number !== null && (
             <div className="mt-3">
-              <ProgressBar
-                step={number}
-                total={numberedStepCount(state)}
-                timeLeft={minutesToGo(state.step, visibleSteps(state))}
-              />
+              <ProgressBar step={number} total={numberedStepCount(state)} />
             </div>
           )}
           <div key={`${state.step}-${state.startTile}`} className="intake-body wizard-enter mt-5">

@@ -3,6 +3,7 @@
 import type { FollowUpAnswer, FollowUpModule } from '@/lib/intake/contract';
 import { VALUE_RANGES } from '@/lib/intake/contract';
 import { FOLLOW_UP_COPY, VALUE_RANGE_LABELS } from '@/lib/intake/copy';
+import { questionLabel } from '@/lib/intake/follow-up-format';
 import type { UploadBinding } from '@/lib/intake/use-uploads';
 import { ChoiceCards } from './ChoiceCards';
 import { inputClass, labelClass } from './FormFields';
@@ -69,7 +70,7 @@ function ModuleShell({
   const id = moduleDomId(module.id);
   const label = (
     <>
-      {module.label}
+      {questionLabel(module.label)}
       <span className="ml-1 font-normal text-ink-3">
         {module.required ? FOLLOW_UP_COPY.helpsMost : FOLLOW_UP_COPY.optional}
       </span>
@@ -198,7 +199,7 @@ function control(props: ModuleRendererProps & { module: Answerable }): React.Rea
       return (
         <UploadSlot
           slot={module.id}
-          label={module.label}
+          label={questionLabel(module.label)}
           multiple={module.multiple}
           uploads={uploads}
           headingHidden

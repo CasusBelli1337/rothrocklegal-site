@@ -87,4 +87,30 @@ describe('reviewRows', () => {
       'Send the deed: 1 file sent',
     ]);
   });
+
+  it('tells an upload skipped from one left alone, without the "(multiple files)" note', () => {
+    const modules = evaluation.modules.map((module) =>
+      module.type === 'upload' ? { ...module, label: 'Send the deed (multiple files)' } : module,
+    );
+    const medical = {
+      id: 'medical',
+      type: 'upload' as const,
+      label: 'Medical records (multiple files)',
+      why: 'w',
+      multiple: true,
+      required: false,
+    };
+    const state: IntakeState = {
+      ...withQuestions(),
+      files: [],
+      evaluation: { ...evaluation, modules: [...modules, medical] },
+      followUpAnswers: { 'send-the-deed': null },
+    };
+    const lines = reviewRows(state).at(-1)?.lines ?? [];
+    expect(lines.slice(-2)).toEqual([
+      'Send the deed: Skipped for now',
+      'Medical records: Not answered',
+    ]);
+    expect(lines.filter((line) => line.includes('(multiple files)'))).toEqual([]);
+  });
 });

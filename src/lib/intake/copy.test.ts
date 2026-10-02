@@ -1,9 +1,23 @@
 import { describe, expect, it } from 'vitest';
 import { BANNED_PHRASES, BANNED_WORDS, collectStrings } from '@/lib/voice-guide';
+import type { EvaluationClientView } from './contract';
 import * as copy from './copy';
-import { STEP_ORDER } from './state';
+import { STEP_ORDER, emptyState, type IntakeState, type StepId } from './state';
 
-const WITHOUT_FOLLOW_UP = STEP_ORDER.filter((step) => step !== 'follow-up');
+const WITH_QUESTIONS: EvaluationClientView = {
+  headline: 'h',
+  whatWeUnderstood: 'w',
+  parties: [],
+  askValue: false,
+  modules: [{ id: 'notice-date', type: 'date', label: 'When?', why: 'w', required: false }],
+};
+
+/** The "Next:" line on each screen of one flow, in order. */
+function nextLines(evaluation: EvaluationClientView | null): [StepId, string][] {
+  const base: IntakeState = { ...emptyState(), evaluation };
+  const steps = STEP_ORDER.filter((step) => evaluation || step !== 'follow-up');
+  return steps.map((step) => [step, copy.nextUpLine({ ...base, step })]);
+}
 
 describe('intake copy hygiene', () => {
   const lines = collectStrings(copy);
@@ -46,12 +60,37 @@ describe('intake copy hygiene', () => {
   });
 });
 
+const lines = () => collectStrings(copy);
+
 describe('hand-holding lines', () => {
-  it('gives every numbered screen a "Next:" line, and the done screen none', () => {
-    for (const step of STEP_ORDER) {
-      if (step === 'done') expect(copy.NEXT_UP[step]).toBe('');
-      else expect(copy.NEXT_UP[step]).toMatch(/^Next: /);
-    }
+  it('gives every screen the button can lead to a "Next:" line', () => {
+    for (const line of Object.values(copy.NEXT_UP)) expect(line).toMatch(/^Next: /);
+    expect(Object.keys(copy.NEXT_UP)).toEqual(STEP_ORDER.filter((step) => step !== 'start'));
+  });
+
+  it('names the screen that actually comes next, with the follow-up questions', () => {
+    expect(nextLines(WITH_QUESTIONS)).toEqual([
+      ['start', 'Next: how we can reach you.'],
+      ['contact', 'Next: tell us what happened, in your own words.'],
+      ['story', 'Next: we read your story and show you what we understood.'],
+      ['situations', 'Next: send any papers you have. None yet is fine.'],
+      ['documents', 'Next: we read what you sent, then show you who is involved.'],
+      ['parties', 'Next: a rough idea of what is at stake and how you would pay.'],
+      ['scope', 'Next: a few more questions, all optional.'],
+      ['follow-up', 'Next: check everything before you send it.'],
+      ['review', 'Next: your reference number, and what happens after that.'],
+      ['done', ''],
+    ]);
+  });
+
+  it('names the screen that actually comes next, without them', () => {
+    // Regression (2026-10-02): "Scope and cost" promised the review while the questions came next.
+    const lines = nextLines(null);
+    expect(lines.find(([step]) => step === 'scope')?.[1]).toBe(
+      'Next: check everything before you send it.',
+    );
+    expect(lines.map(([step]) => step)).not.toContain('follow-up');
+    expect(lines.filter(([, line]) => line === '').map(([step]) => step)).toEqual(['done']);
   });
 
   it('titles every screen and every start tile', () => {
@@ -75,14 +114,15 @@ describe('hand-holding lines', () => {
       expect(line).not.toMatch(/tick (all|the |three|every|both)/i);
   });
 
-  it('counts the minutes left from the current screen on', () => {
-    expect(copy.minutesToGo('review', STEP_ORDER)).toBe('about a minute to go');
-    expect(copy.minutesToGo('follow-up', STEP_ORDER)).toBe('about 2 minutes to go');
-    // The documents screen's count includes the evaluation wait the next screen announces.
-    expect(copy.minutesToGo('documents', WITHOUT_FOLLOW_UP)).toBe('about 6 minutes to go');
-    expect(copy.minutesToGo('contact', STEP_ORDER)).toBe('about 11 minutes to go');
-    expect(copy.minutesToGo('contact', WITHOUT_FOLLOW_UP)).toBe('about 10 minutes to go');
-    expect(copy.minutesToGo('done', STEP_ORDER)).toBe('about a minute to go');
+  it('promises no number of minutes', () => {
+    // Regression (2026-10-02): "about 3 minutes" became "about 4" when the questions appeared.
+    expect('minutesToGo' in copy).toBe(false);
+    expect('STEP_MINUTES' in copy).toBe(false);
+    expect(lines().filter((line) => /\b\d+ minutes\b/.test(line))).toEqual([]);
+  });
+
+  it('asks the same question before anything clears the flow', () => {
+    expect(copy.START_OVER_CONFIRM).toBe('Start over? This clears everything you entered.');
   });
 
   it('never tells a stranger whether an email address has a request', () => {
@@ -155,6 +195,13 @@ describe('hand-holding lines', () => {
     expect(collectStrings(copy).filter((line) => /typed, said|plain summary/i.test(line))).toEqual(
       [],
     );
+  });
+
+  it('calls the summary a memo in the deadlines item, as the package item does', () => {
+    expect(copy.WHAT_YOU_GET[1].body).toContain(
+      'Your memo lists the deadlines that may apply to a situation like yours.',
+    );
+    expect(collectStrings(copy).filter((line) => /your summary lists/i.test(line))).toEqual([]);
   });
 
   it('points the deadlines item at the deadline tool, in the same tab', () => {

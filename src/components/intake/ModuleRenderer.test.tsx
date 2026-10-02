@@ -145,13 +145,16 @@ describe('ModuleRenderer', () => {
     mount({
       id: 'deed-upload',
       type: 'upload',
-      label: 'The deed',
+      label: 'The deed (multiple files)',
       why: 'w',
       multiple: true,
       required: true,
     });
     expect(screen.getByText('deed.pdf')).toBeTruthy();
     expect(screen.queryByText('elsewhere.pdf')).toBeNull();
+    // The evaluator's catalog note never reaches the person.
+    expect(document.body.textContent).toContain('The deed');
+    expect(document.body.textContent).not.toContain('(multiple files)');
     const input = document.getElementById('upload-deed-upload') as HTMLInputElement;
     expect(input.type).toBe('file');
     const file = new File(['x'], 'deed2.pdf', { type: 'application/pdf' });

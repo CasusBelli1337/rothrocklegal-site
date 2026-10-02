@@ -1,6 +1,6 @@
 import type { FundingOption, Party, ValueRange } from './contract';
 import { REPLY_PROMISE, START_TILES } from './copy-start';
-import type { StepId } from './state';
+import { nextStep, type IntakeState, type StepId } from './state';
 
 export * from './copy-mic';
 export * from './copy-package';
@@ -65,6 +65,7 @@ export const STORY_READ_COPY = {
 export const DOCUMENTS_COPY = {
   guidanceTitle: 'What helps most for your situation',
   slotLabel: 'Your documents',
+  /** Shown only while nothing has been added to the list. */
   nothingYet: 'Nothing to send yet? That is fine. Continue anyway.',
   doNotSend:
     "Please do not send another lawyer's client file, or someone else's private records you have no right to.",
@@ -204,39 +205,30 @@ export const STEP_TITLES: Record<StepId, { title: string; lead?: string }> = {
   done: { title: 'Thank you. We have it.' },
 };
 
-/** Beside the Continue button: what the next screen asks for, so nothing is a surprise. */
-export const NEXT_UP: Record<StepId, string> = {
-  start: 'Next: how we can reach you.',
-  contact: 'Next: tell us what happened, in your own words.',
-  story: 'Next: we read your story and show you what we understood.',
-  situations: 'Next: send any papers you have. None yet is fine.',
-  documents: 'Next: we read what you sent, then show you who is involved.',
-  parties: 'Next: a rough idea of what is at stake and how you would pay.',
-  scope: 'Next: check everything before you send it.',
-  'follow-up': 'Next: check everything before you send it.',
-  review: 'Next: your reference number, and what happens after that.',
-  done: '',
+/**
+ * Beside the Continue button: what the next screen asks for, so nothing is a
+ * surprise. Keyed by the screen the button leads to, not the one it sits on,
+ * because "Scope and cost" leads to the follow-up questions only when the
+ * evaluation asked some (the 2026-10-02 walkthrough caught the line promising
+ * the review while the questions came next). Read it through `nextUpLine`.
+ */
+export const NEXT_UP: Record<Exclude<StepId, 'start'>, string> = {
+  contact: 'Next: how we can reach you.',
+  story: 'Next: tell us what happened, in your own words.',
+  situations: 'Next: we read your story and show you what we understood.',
+  documents: 'Next: send any papers you have. None yet is fine.',
+  parties: 'Next: we read what you sent, then show you who is involved.',
+  scope: 'Next: a rough idea of what is at stake and how you would pay.',
+  'follow-up': 'Next: a few more questions, all optional.',
+  review: 'Next: check everything before you send it.',
+  done: 'Next: your reference number, and what happens after that.',
 };
 
-/** Rough minutes per screen, for the "about N minutes to go" line. */
-export const STEP_MINUTES: Record<StepId, number> = {
-  start: 1,
-  contact: 1,
-  story: 2,
-  situations: 1,
-  /** Includes the evaluation wait the next screen announces ("a minute or two"). */
-  documents: 3,
-  parties: 1,
-  scope: 1,
-  'follow-up': 1,
-  review: 1,
-  done: 0,
-};
-
-/** "about 2 minutes to go" from this screen on (this one included). */
-export function minutesToGo(step: StepId, order: readonly StepId[]): string {
-  const from = order.indexOf(step);
-  const total = order.slice(Math.max(from, 0)).reduce((sum, s) => sum + STEP_MINUTES[s], 0);
-  if (total <= 1) return 'about a minute to go';
-  return `about ${total} minutes to go`;
+/** The "Next:" line for the screen the person is on: the one `nextStep` will show. None on the done screen. */
+export function nextUpLine(state: IntakeState): string {
+  const to = nextStep(state);
+  return state.step === 'done' || to === 'start' ? '' : NEXT_UP[to];
 }
+
+/** Asked before anything clears the flow: Start over in the action bar, and Start a new request when done. */
+export const START_OVER_CONFIRM = 'Start over? This clears everything you entered.';

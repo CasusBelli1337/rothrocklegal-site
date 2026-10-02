@@ -49,7 +49,7 @@ export const WHAT_YOU_GET: readonly TakeAway[] = [
   },
   {
     title: 'The deadlines that may apply.',
-    body: 'Clocks may already be running. A trust contest, for example, can be due 120 days after the trustee mails notice. Your summary lists the deadlines that may apply to a situation like yours. If a date looks close, talk to a lawyer now.',
+    body: 'Clocks may already be running. A trust contest, for example, can be due 120 days after the trustee mails notice. Your memo lists the deadlines that may apply to a situation like yours. If a date looks close, talk to a lawyer now.',
     // Same tab: the draft lives in localStorage, so Back (or the nav) returns to this tile.
     link: {
       before: 'You can also check a date with ',

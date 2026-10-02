@@ -3,6 +3,7 @@
 import { DOCUMENTS_SLOT, type DocumentAsk } from '@/lib/intake/contract';
 import { DOCUMENTS_COPY, UPLOAD_COPY } from '@/lib/intake/copy';
 import { slotsForSituations } from '@/lib/intake/document-slots';
+import { uploadSummary } from '@/lib/intake/upload-summary';
 import { StepFrame } from './StepFrame';
 import { UploadSlot } from './UploadSlot';
 import type { StepProps } from './step-props';
@@ -18,6 +19,7 @@ export function StepDocuments({ intake, uploads }: StepProps) {
     ? storyRead.documents
     : slotsForSituations(answers.situations);
   const uploading = uploads.pending.some((p) => p.status === 'uploading');
+  const nothingAdded = uploadSummary(uploads.files, uploads.pending, DOCUMENTS_SLOT).total === 0;
 
   const submit = () => {
     if (uploading) {
@@ -46,8 +48,10 @@ export function StepDocuments({ intake, uploads }: StepProps) {
           headingHidden
         />
       </div>
-      <p className="mt-3 text-small text-ink-2">{DOCUMENTS_COPY.nothingYet}</p>
-      <p className="mt-1 text-small text-ink-3">{DOCUMENTS_COPY.doNotSend}</p>
+      <div className="mt-3 space-y-1">
+        {nothingAdded && <p className="text-small text-ink-2">{DOCUMENTS_COPY.nothingYet}</p>}
+        <p className="text-small text-ink-3">{DOCUMENTS_COPY.doNotSend}</p>
+      </div>
     </StepFrame>
   );
 }

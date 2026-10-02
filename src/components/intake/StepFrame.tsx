@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/Button';
-import { NEXT_UP, STEP_TITLES } from '@/lib/intake/copy';
+import { START_OVER_CONFIRM, STEP_TITLES, nextUpLine } from '@/lib/intake/copy';
 import { LAST_START_TILE, canGoBack } from '@/lib/intake/state';
 import type { IntakeController, SaveStatus } from '@/lib/intake/use-intake';
 
@@ -20,6 +20,11 @@ const textButton =
 const quietButton =
   'tap-link text-small text-ink-3 underline underline-offset-3 hover:text-maroon-700';
 
+/** Start over and Start a new request ask first: one tap must never clear a whole request. */
+export function confirmStartOver(intake: IntakeController): void {
+  if (window.confirm(START_OVER_CONFIRM)) intake.startOver();
+}
+
 interface StepNavProps {
   intake: IntakeController;
   continueLabel?: string;
@@ -30,15 +35,17 @@ interface StepNavProps {
  * The action bar, stuck to the bottom of the panel on every screen: Back and
  * Start over on the left, the autosave state, and the primary button on the
  * right with its "Next:" line (from `md`; full-width on phones). A validation
- * message appears above the buttons, so the button itself never moves.
+ * message appears above the buttons, so the button itself never moves. The
+ * left row renders only when it has something in it: on the first tile it was
+ * an empty 44px band (plus its gap) stuck over the tile text on a phone.
  */
 export function StepNav({ intake, continueLabel = 'Continue', busy }: StepNavProps) {
   const { state } = intake;
   const firstTiles = state.step === 'start' && state.startTile < LAST_START_TILE;
-  const next = firstTiles ? '' : NEXT_UP[state.step];
-  const startOver = () => {
-    if (window.confirm('Start over? This clears everything you entered.')) intake.startOver();
-  };
+  const next = firstTiles ? '' : nextUpLine(state);
+  const back = canGoBack(state);
+  const startOver = state.step !== 'start';
+  const saveLabel = state.session ? SAVE_LABELS[intake.saveStatus] : '';
   return (
     <div className="intake-bar -mx-5 px-5 py-3 sm:-mx-8 sm:px-8">
       {intake.error && (
@@ -52,22 +59,28 @@ export function StepNav({ intake, continueLabel = 'Continue', busy }: StepNavPro
         </p>
       )}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-        <div className="flex min-h-11 flex-wrap items-center gap-x-5 gap-y-1 sm:flex-1">
-          {canGoBack(state) && (
-            <button type="button" onClick={intake.back} className={textButton}>
-              Back
-            </button>
-          )}
-          {state.step !== 'start' && (
-            <button type="button" onClick={startOver} className={quietButton}>
-              Start over
-            </button>
-          )}
-          <span className="text-meta text-ink-3" aria-live="polite">
-            {state.session ? SAVE_LABELS[intake.saveStatus] : ''}
-          </span>
-        </div>
-        <div className="flex items-center gap-4 sm:justify-end">
+        {(back || startOver || saveLabel) && (
+          <div className="flex min-h-11 flex-wrap items-center gap-x-5 gap-y-1 sm:flex-1">
+            {back && (
+              <button type="button" onClick={intake.back} className={textButton}>
+                Back
+              </button>
+            )}
+            {startOver && (
+              <button
+                type="button"
+                onClick={() => confirmStartOver(intake)}
+                className={quietButton}
+              >
+                Start over
+              </button>
+            )}
+            <span className="text-meta text-ink-3" aria-live="polite">
+              {saveLabel}
+            </span>
+          </div>
+        )}
+        <div className="flex items-center gap-4 sm:ml-auto sm:justify-end">
           {next && (
             <span className="hidden max-w-[30ch] text-meta text-ink-3 md:block">{next}</span>
           )}

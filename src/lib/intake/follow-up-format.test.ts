@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { FollowUpModule, IntakeFile } from './contract';
-import { followUpLines, formatFollowUpAnswer, longDate } from './follow-up-format';
+import { followUpLines, formatFollowUpAnswer, longDate, questionLabel } from './follow-up-format';
 
 const file = (id: string, slot: string): IntakeFile => ({
   id,
@@ -103,7 +103,15 @@ describe('formatFollowUpAnswer', () => {
     expect(formatFollowUpAnswer(upload, undefined, [file('a', 'send-the-deed')])).toBe(
       '1 file sent',
     );
-    expect(formatFollowUpAnswer(upload, undefined, [file('c', 'documents')])).toBe('No file sent');
+    expect(formatFollowUpAnswer(upload, ['a'], [file('a', 'send-the-deed')])).toBe('1 file sent');
+  });
+
+  it('tells an upload skipped on purpose from one never answered', () => {
+    // Regression (2026-10-02): both read "No file sent" on the review screen.
+    const elsewhere = [file('c', 'documents')];
+    expect(formatFollowUpAnswer(upload, null, elsewhere)).toBe('Skipped for now');
+    expect(formatFollowUpAnswer(upload, undefined, elsewhere)).toBe('Not answered');
+    expect(formatFollowUpAnswer(upload, [], [])).toBe('Not answered');
   });
 
   it('shows an unreadable date as it was typed rather than dropping it', () => {
@@ -125,8 +133,33 @@ describe('followUpLines', () => {
     ]);
   });
 
+  it("drops the evaluator's file-count note from the question", () => {
+    const trust: FollowUpModule = {
+      ...upload,
+      id: 'trust-copy',
+      label: 'The trust and any amendments (multiple files)',
+    };
+    const deed: FollowUpModule = { ...upload, label: 'The deed (one file)' };
+    expect(followUpLines([trust, deed], { 'trust-copy': null }, [])).toEqual([
+      'The trust and any amendments: Skipped for now',
+      'The deed: Not answered',
+    ]);
+  });
+
   it('has nothing to show when the evaluation asked nothing', () => {
     expect(followUpLines([], {}, [])).toEqual([]);
     expect(followUpLines([info], {}, [])).toEqual([]);
+  });
+});
+
+describe('questionLabel', () => {
+  it('reads the question without the catalog note, and leaves everything else alone', () => {
+    expect(questionLabel('Medical records or a diagnosis letter (multiple files)')).toBe(
+      'Medical records or a diagnosis letter',
+    );
+    expect(questionLabel('The deed (One File)')).toBe('The deed');
+    expect(questionLabel('Who drafted the amendment (if you know)?')).toBe(
+      'Who drafted the amendment (if you know)?',
+    );
   });
 });

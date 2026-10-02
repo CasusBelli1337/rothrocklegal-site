@@ -68,3 +68,28 @@ describe('StepStart tiles', () => {
     expect(screen.getByRole('button', { name: START_TILES[2].button })).toBeTruthy();
   });
 });
+
+describe('StepStart action bar', () => {
+  /** Every block in the bar holds something: an empty one is a blank band stuck over the tile on a phone. */
+  function emptyBlocks(container: HTMLElement): number {
+    const bar = container.querySelector('.intake-bar');
+    if (!bar) throw new Error('no action bar');
+    return [...bar.querySelectorAll('div')].filter((div) => !div.textContent?.trim()).length;
+  }
+
+  it('has no empty row on the first tile (regression: a 44px band hid tile text, 2026-10-02)', () => {
+    const { container } = renderTile(0);
+    expect(emptyBlocks(container)).toBe(0);
+    expect(screen.queryByRole('button', { name: 'Back' })).toBeNull();
+  });
+
+  it('keeps Back on the later tiles, and no Start over before the flow has begun', () => {
+    for (const tile of [1, 2] as const) {
+      const { container } = renderTile(tile);
+      expect(emptyBlocks(container)).toBe(0);
+      expect(screen.getByRole('button', { name: 'Back' })).toBeTruthy();
+      expect(screen.queryByRole('button', { name: 'Start over' })).toBeNull();
+      cleanup();
+    }
+  });
+});

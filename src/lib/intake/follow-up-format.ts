@@ -40,10 +40,30 @@ function isValueRange(value: string): value is keyof typeof VALUE_RANGE_LABELS {
   return value in VALUE_RANGE_LABELS;
 }
 
-/** The files sent to an upload question, counted from the slot that carries its id. */
-function uploadText(moduleId: string, files: readonly IntakeFile[]): string {
+/**
+ * The evaluator sometimes copies its catalog's file-count note into a question
+ * ("The trust and any amendments (multiple files)"). The drop zone already says
+ * "Choose files", so the person never sees the note.
+ */
+const FILE_COUNT_NOTE = /\s*\((?:multiple files|one file)\)/gi;
+
+/** A question's words as the person should read them. */
+export function questionLabel(label: string): string {
+  return label.replace(FILE_COUNT_NOTE, '').trim() || label;
+}
+
+/**
+ * An upload question: the files sent to the slot that carries its id, else
+ * whether the person skipped it on purpose or never got to it.
+ */
+function uploadText(
+  moduleId: string,
+  answer: FollowUpAnswer | undefined,
+  files: readonly IntakeFile[],
+): string {
   const sent = files.filter((file) => file.slot === moduleId).length;
-  return sent > 0 ? FOLLOW_UP_REVIEW.filesSent(sent) : FOLLOW_UP_REVIEW.noFiles;
+  if (sent > 0) return FOLLOW_UP_REVIEW.filesSent(sent);
+  return answer === null ? FOLLOW_UP_REVIEW.skipped : FOLLOW_UP_REVIEW.unanswered;
 }
 
 /** One answer in plain English; an unanswered question says so rather than going quiet. */
@@ -52,7 +72,7 @@ export function formatFollowUpAnswer(
   answer: FollowUpAnswer | undefined,
   files: readonly IntakeFile[],
 ): string {
-  if (module.type === 'upload') return uploadText(module.id, files);
+  if (module.type === 'upload') return uploadText(module.id, answer, files);
   if (answer === null) return FOLLOW_UP_REVIEW.skipped;
   if (answer === undefined) return FOLLOW_UP_REVIEW.unanswered;
   if (typeof answer === 'boolean') return answer ? 'Yes' : 'No';
@@ -79,8 +99,8 @@ export function followUpLines(
   const asked = modules.filter(
     (module): module is Exclude<FollowUpModule, { type: 'info' }> => module.type !== 'info',
   );
-  return asked.map(
-    (module) =>
-      `${module.label}${joiner(module.label)}${formatFollowUpAnswer(module, answers[module.id], files)}`,
-  );
+  return asked.map((module) => {
+    const label = questionLabel(module.label);
+    return `${label}${joiner(label)}${formatFollowUpAnswer(module, answers[module.id], files)}`;
+  });
 }

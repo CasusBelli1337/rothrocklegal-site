@@ -4,7 +4,7 @@ import { CheckIcon } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
 import { CONFLICT_CAVEAT, DONE_KEEP_REFERENCE, DONE_NEXT } from '@/lib/intake/copy';
 import { PackageCard } from './PackageCard';
-import { StepFrame } from './StepFrame';
+import { StepFrame, confirmStartOver } from './StepFrame';
 import type { StepProps } from './step-props';
 
 /** Step 9: the reference number in large type, the package card, what happens next in three lines, the conflict-check caveat. */
@@ -37,7 +37,7 @@ export function StepDone({ intake }: StepProps) {
       <p className="mt-6 text-body text-ink-2">{CONFLICT_CAVEAT}</p>
       <p className="mt-4 text-small text-ink-3">{DONE_KEEP_REFERENCE}</p>
       <div className="mt-8">
-        <Button variant="secondary" onClick={intake.startOver}>
+        <Button variant="secondary" onClick={() => confirmStartOver(intake)}>
           Start a new request
         </Button>
       </div>
