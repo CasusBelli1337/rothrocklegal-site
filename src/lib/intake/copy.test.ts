@@ -39,9 +39,10 @@ describe('intake copy hygiene', () => {
     expect(doubled).toEqual([]);
   });
 
-  it('starts the "We email you" step with the reply promise', () => {
-    const step = copy.AFTER_YOU_SEND.find((s) => s.title === 'We email you.');
-    expect(step?.body.startsWith(copy.REPLY_PROMISE)).toBe(true);
+  it("builds the first tile's reply line from the one reply promise and the video note", () => {
+    expect(copy.HOW_THIS_WORKS[2]).toBe(
+      `A lawyer reads everything. ${copy.REPLY_PROMISE} ${copy.REMOTE_NOTE}`,
+    );
   });
 });
 
@@ -57,7 +58,7 @@ describe('hand-holding lines', () => {
     for (const step of STEP_ORDER) expect(copy.STEP_TITLES[step].title.length).toBeGreaterThan(3);
     expect(Object.keys(copy.START_TILES)).toEqual(['0', '1', '2']);
     expect(copy.START_TILES[2].button).toBe('Start');
-    expect(copy.BEFORE_WE_START).toHaveLength(3);
+    expect(copy.HOW_THIS_WORKS).toHaveLength(3);
   });
 
   it('explains each of the three boxes in one plain sentence', () => {
@@ -69,7 +70,7 @@ describe('hand-holding lines', () => {
     expect(copy.ACKNOWLEDGMENTS_LEGEND).toBe(
       'Please read each statement carefully. If you understand it and agree, tick its box.',
     );
-    expect(copy.START_TILES[2].title).toBe('Three things to read carefully');
+    expect(copy.START_TILES[2].title).toBe('What we do with what you send');
     for (const line of [copy.ACKNOWLEDGMENTS_LEGEND, copy.START_TILES[2].title])
       expect(line).not.toMatch(/tick (all|the |three|every|both)/i);
   });
@@ -108,13 +109,50 @@ describe('hand-holding lines', () => {
     for (const line of copy.DONE_NEXT) expect(line.length).toBeLessThan(80);
   });
 
-  it('explains the package on the first two tiles, the review screen, and the done screen', () => {
-    expect(copy.UP_FRONT.title).toBe('Why we ask for so much up front');
-    expect(copy.AFTER_YOU_SEND).toHaveLength(5);
-    const last = copy.AFTER_YOU_SEND[copy.AFTER_YOU_SEND.length - 1];
-    expect(last.title).toBe('You leave with your file.');
-    expect(last.body).toContain(`${copy.PACKAGE_LINK_DAYS} days`);
-    expect(copy.UP_FRONT.body).toMatch(/a lawyer still reads everything you send/);
+  it("runs the start tiles in Arthur's order: the process, what you get, what we do with it", () => {
+    expect(Object.values(copy.START_TILES).map((tile) => tile.title)).toEqual([
+      'How this works',
+      'What you get, whether or not we take your case',
+      'What we do with what you send',
+    ]);
+    expect(copy.WHAT_YOU_GET.map((item) => item.title)).toEqual([
+      'Your file package.',
+      'The deadlines that may apply.',
+      'A straight answer.',
+    ]);
+    expect(copy.WHAT_WE_DO[0]).toMatch(/^We have to run a conflict check first\./);
+  });
+
+  it('says the package once on the start tiles, with the one link-expiry constant', () => {
+    // The 2026-10-01 callout and fifth item said it too; the rewrite replaced both.
+    expect('UP_FRONT' in copy).toBe(false);
+    expect('AFTER_YOU_SEND' in copy).toBe(false);
+    expect('BEFORE_WE_START' in copy).toBe(false);
+    const tiles = collectStrings([
+      copy.HOW_THIS_WORKS,
+      copy.WHY_UP_FRONT,
+      copy.WHAT_YOU_GET,
+      copy.WHAT_WE_DO,
+    ]);
+    expect(tiles.filter((line) => /\bzip\b/i.test(line))).toHaveLength(1);
+    expect(copy.WHAT_YOU_GET[0].body).toContain(`download it for ${copy.PACKAGE_LINK_DAYS} days`);
+    expect(tiles.filter((line) => /\b\d+ days\b/.test(line) && !line.includes('120 days'))).toEqual(
+      [copy.WHAT_YOU_GET[0].body],
+    );
+  });
+
+  it('points the deadlines item at the deadline tool, in the same tab', () => {
+    const deadlines = copy.WHAT_YOU_GET[1];
+    expect(deadlines.link).toEqual({
+      before: 'You can also check a date with ',
+      label: 'our deadline tool',
+      href: '/how-long-do-i-have/',
+      after: '.',
+    });
+    expect(deadlines.body).toMatch(/talk to a lawyer now\.$/);
+  });
+
+  it('keeps the package and review lines plain, with the one AI line on the third tile', () => {
     const generated = [
       copy.PACKAGE_COPY.expires('October 15, 2026'),
       copy.PACKAGE_COPY.contents('12.4 MB', 0),
@@ -122,17 +160,18 @@ describe('hand-holding lines', () => {
       copy.PACKAGE_COPY.contents('12.4 MB', 9),
     ];
     const lines = [
-      ...Object.values(copy.UP_FRONT),
-      last.body,
+      ...collectStrings([copy.HOW_THIS_WORKS, copy.WHY_UP_FRONT, copy.WHAT_YOU_GET]),
+      copy.WHAT_WE_DO[0],
       copy.REVIEW_PACKAGE_NOTE,
       ...collectStrings(copy.PACKAGE_COPY),
       ...generated,
     ];
-    // "Our own tools", never a sales word; the AI line stays in the confidentiality note.
+    // "Our own tools", never a sales word; the AI line stays in the confidentiality line.
     for (const line of lines) {
       expect(line).not.toMatch(/proprietary|state-of-the-art|cutting-edge|\bAI\b|\u2014/i);
       expect(BANNED_WORDS.some((word) => new RegExp(`\\b${word}\\b`, 'i').test(line))).toBe(false);
     }
+    expect(copy.WHAT_WE_DO[1]).toMatch(/AI helps us organize it; a lawyer decides what it means\./);
   });
 
   it('explains that the microphone needs https and that typing still works', () => {

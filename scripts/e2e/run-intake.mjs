@@ -48,7 +48,7 @@ try {
   await page.wait(4000);
   await page.evaluate(`localStorage.removeItem('rl-intake')`);
   await page.navigate(`${BASE}/request-a-consult/`);
-  await page.waitFor(`document.querySelector('.intake-flow') && document.body.innerText.includes('Before we start')`, 60000);
+  await page.waitFor(`document.querySelector('.intake-flow') && document.body.innerText.includes('How this works')`, 60000);
   log('start tile 1:', await heading());
   await shot('start-tile-1');
   log('page scrollHeight', await page.evaluate('document.documentElement.scrollHeight'), 'viewport 768');

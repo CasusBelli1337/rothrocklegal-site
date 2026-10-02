@@ -378,12 +378,19 @@ image (/images/...), imageAlt, draft (true|false)
   (`NEXT_PUBLIC_INTAKE_API` empty; production is proxied by Cloudflare to the
   Armory `legion-intake` module; the editor preview reaches it through the
   Armory Caddy at `localhost:9080/api/intake/*`). `INTAKE_API_VERSION` is 3.
-- Step order (`state.ts` `STEP_ORDER`): `start` (three compact tiles: before we
-  start, what happens after you send, then "Three things to read carefully":
-  the three statements with their plain-English gloss in brackets on the label,
-  each box ticked only by someone who read it and agrees; the copy never tells
-  anyone to tick anything, and the validation line says the request can go
-  ahead only once all three are agreed to, Arthur 2026-09-04), then numbered `contact`
+- Step order (`state.ts` `STEP_ORDER`): `start` (three compact tiles in
+  Arthur's order, 2026-10-02: "How this works" (three numbered lines on the
+  process and what we ask for, the third built from `REPLY_PROMISE` and
+  `REMOTE_NOTE`, then why we ask so much up front); "What you get, whether or
+  not we take your case" (the file package with the `PACKAGE_LINK_DAYS` link,
+  the deadlines that may apply with a same-tab link to `/how-long-do-i-have/`,
+  and a straight answer with the written fee estimate); "What we do with what
+  you send" (the conflict check first, then confidentiality and the one AI
+  line, then the three statements with their plain-English gloss in brackets
+  on the label, each box ticked only by someone who read it and agrees; the
+  copy never tells anyone to tick anything, and the validation line says the
+  request can go ahead only once all three are agreed to, Arthur 2026-09-04)),
+  then numbered `contact`
   (name, email, reply preference, phone; no city or county), `story` (one line
   of guidance, the box, the microphone), `situations`, `documents`, `parties`,
   `scope`, `follow-up`, `review`, and `done`. `follow-up` exists only when the
@@ -457,10 +464,16 @@ step, storyRead, evaluation, followUpAnswers }` (read from `?resume=` after
   sticky header (`window.scrollTo`, `auto` under reduced motion) and focuses
   the step heading with `preventScroll`; never the top of the page.
 - The page is the breadcrumbs, the panel (its small serif heading is the h1),
-  and one disclaimer line. Every start tile fits a 1366×768 viewport.
-- Your package (2026-10-01): tile 0 carries the "Why we ask for so much up
-  front" callout and tile 1 a fifth item, "You leave with your file."
-  (`copy-start.ts`); the review screen says the package follows Send. The done
+  and one disclaimer line. Every start tile fits a 1366×768 viewport
+  (2026-10-02, measured from the static export: bottom edges 554, 525, and
+  761 px). The third tile is the tight one, so its spacing is a notch tighter
+  (statement cards `px-3 py-2.5`, 8 px gaps); add a line there only after
+  re-measuring.
+- Your package (2026-10-01; start tiles rewritten 2026-10-02): the second
+  start tile's first item is the package and its second the deadlines heads-up
+  (`copy-start.ts` `WHAT_YOU_GET`; the earlier "Why we ask for so much up
+  front" callout and fifth item "You leave with your file." are gone so nothing
+  is said twice); the review screen says the package follows Send. The done
   screen's `PackageCard` polls `GET /:id/package` (`use-package.ts`: every 5 s,
   a 15-minute cap that survives a refresh via sessionStorage
   `rl-intake-package`): a pulsing line while `preparing`, then the "Download

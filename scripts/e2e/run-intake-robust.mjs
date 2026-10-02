@@ -59,7 +59,7 @@ try {
   await page.wait(3000);
   await page.evaluate(`localStorage.removeItem('rl-intake')`);
   await page.navigate(`${BASE}/request-a-consult/`);
-  await page.waitFor(`document.querySelector('.intake-flow') && document.body.innerText.includes('Before we start')`, 60000);
+  await page.waitFor(`document.querySelector('.intake-flow') && document.body.innerText.includes('How this works')`, 60000);
   await shot('start');
   await primary('Got it');
   await primary('Next');

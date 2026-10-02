@@ -1,14 +1,16 @@
 'use client';
 
+import Link from 'next/link';
 import {
   ACKNOWLEDGMENTS,
   ACKNOWLEDGMENTS_LEGEND,
   ACKNOWLEDGMENT_NOTES,
-  AFTER_YOU_SEND,
-  BEFORE_WE_START,
-  CONFIDENTIALITY_NOTE,
+  HOW_THIS_WORKS,
   START_TILES,
-  UP_FRONT,
+  WHAT_WE_DO,
+  WHAT_YOU_GET,
+  WHY_UP_FRONT,
+  type TakeAway,
 } from '@/lib/intake/copy';
 import type { IntakeController } from '@/lib/intake/use-intake';
 import { CheckboxRow } from './FormFields';
@@ -26,45 +28,65 @@ function Numbered({ n }: { n: number }) {
   );
 }
 
-/** Tile 1: three short lines on what this is, then why we ask so much. */
-function BeforeWeStart() {
+/** Tile 1: the process and what we ask for, then why we ask so much. */
+function HowThisWorks() {
   return (
     <>
       <ol className="space-y-3">
-        {BEFORE_WE_START.map((line, i) => (
+        {HOW_THIS_WORKS.map((line, i) => (
           <li key={line} className="flex gap-3">
             <Numbered n={i + 1} />
             <span className="pt-0.5 text-body text-ink">{line}</span>
           </li>
         ))}
       </ol>
-      <div className="mt-5 border border-line border-t-2 border-t-brass-400 bg-white px-4 py-3 sm:px-5">
-        <h3 className="eyebrow">{UP_FRONT.title}</h3>
-        <p className="mt-2 text-small text-ink-2">{UP_FRONT.body}</p>
-      </div>
-      <p className="mt-4 text-small text-ink-3">{CONFIDENTIALITY_NOTE}</p>
+      <p className="mt-5 text-small text-ink-2">{WHY_UP_FRONT}</p>
     </>
   );
 }
 
-/** Tile 2: the five steps after Send, tight. */
-function AfterYouSend() {
+function TakeAwayText({ item }: { item: TakeAway }) {
+  const { link } = item;
   return (
-    <ol className="space-y-3">
-      {AFTER_YOU_SEND.map((step, i) => (
-        <li key={step.title} className="flex gap-3">
-          <Numbered n={i + 1} />
-          <p className="pt-0.5 text-small text-ink-2">
-            <span className="font-semibold text-ink">{step.title}</span> {step.body}
-          </p>
-        </li>
-      ))}
-    </ol>
+    <p className="text-small text-ink-2">
+      <span className="font-semibold text-ink">{item.title}</span> {item.body}
+      {link && (
+        <>
+          {' '}
+          {link.before}
+          <Link
+            href={link.href}
+            className="text-maroon-700 underline underline-offset-3 hover:text-maroon-600"
+          >
+            {link.label}
+          </Link>
+          {link.after}
+        </>
+      )}
+    </p>
   );
 }
 
-/** Tile 3: the three boxes, each with its plain-English gloss in brackets on the same label. */
-function Acknowledgments({ intake }: { intake: IntakeController }) {
+/** Tile 2: what the person gets at the end, whether or not we take the case. */
+function WhatYouGet() {
+  return (
+    <ul className="space-y-4">
+      {WHAT_YOU_GET.map((item) => (
+        <li key={item.title} className="flex gap-3">
+          <span aria-hidden="true" className="mt-[0.55em] h-2 w-2 shrink-0 bg-brass-400" />
+          <TakeAwayText item={item} />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/**
+ * Tile 3: what we do with what is sent, then the three boxes, each with its
+ * plain-English gloss in brackets. Spacing is a notch tighter than elsewhere so
+ * the two lines and the statements still fit a 1366x768 screen.
+ */
+function WhatWeDo({ intake }: { intake: IntakeController }) {
   const { acks } = intake.state;
   const setAck = (index: number, checked: boolean) =>
     intake.update((s) => {
@@ -73,23 +95,32 @@ function Acknowledgments({ intake }: { intake: IntakeController }) {
       return { ...s, acks: next };
     });
   return (
-    <fieldset>
-      <legend className="text-body font-semibold text-ink">{ACKNOWLEDGMENTS_LEGEND}</legend>
-      <div className="mt-3 space-y-3">
-        {ACKNOWLEDGMENTS.map((text, i) => (
-          <CheckboxRow
-            key={text}
-            card
-            dense
-            id={`ack-${i}`}
-            checked={acks[i]}
-            onChange={(checked) => setAck(i, checked)}
-          >
-            {text} <span className="text-ink-3">[{ACKNOWLEDGMENT_NOTES[i]}]</span>
-          </CheckboxRow>
+    <>
+      <div className="space-y-2">
+        {WHAT_WE_DO.map((line) => (
+          <p key={line} className="text-small text-ink-2">
+            {line}
+          </p>
         ))}
       </div>
-    </fieldset>
+      <fieldset className="mt-4">
+        <legend className="text-body font-semibold text-ink">{ACKNOWLEDGMENTS_LEGEND}</legend>
+        <div className="mt-2 space-y-2">
+          {ACKNOWLEDGMENTS.map((text, i) => (
+            <CheckboxRow
+              key={text}
+              card
+              dense
+              id={`ack-${i}`}
+              checked={acks[i]}
+              onChange={(checked) => setAck(i, checked)}
+            >
+              {text} <span className="text-ink-3">[{ACKNOWLEDGMENT_NOTES[i]}]</span>
+            </CheckboxRow>
+          ))}
+        </div>
+      </fieldset>
+    </>
   );
 }
 
@@ -104,9 +135,9 @@ export function StepStart({ intake }: StepProps) {
       lead={null}
       footer={<StepNav intake={intake} continueLabel={tile.button} />}
     >
-      {startTile === 0 && <BeforeWeStart />}
-      {startTile === 1 && <AfterYouSend />}
-      {startTile === 2 && <Acknowledgments intake={intake} />}
+      {startTile === 0 && <HowThisWorks />}
+      {startTile === 1 && <WhatYouGet />}
+      {startTile === 2 && <WhatWeDo intake={intake} />}
     </StepFrame>
   );
 }

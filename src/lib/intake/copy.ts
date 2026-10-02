@@ -1,5 +1,5 @@
 import type { FundingOption, Party, ValueRange } from './contract';
-import { REPLY_PROMISE } from './copy-start';
+import { REPLY_PROMISE, START_TILES } from './copy-start';
 import type { StepId } from './state';
 
 export * from './copy-mic';
@@ -180,7 +180,7 @@ export const FUNDING_LABELS: Record<FundingOption, string> = {
 };
 
 export const STEP_TITLES: Record<StepId, { title: string; lead?: string }> = {
-  start: { title: 'Before we start' },
+  start: { title: START_TILES[0].title },
   contact: { title: 'How do we reach you?' },
   story: {
     title: 'Tell us what happened',
