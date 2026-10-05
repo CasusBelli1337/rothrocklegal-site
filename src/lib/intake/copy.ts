@@ -1,4 +1,10 @@
-import type { FundingOption, Party, ValueRange } from './contract';
+import type {
+  FundingOption,
+  HeardAbout,
+  HeardAboutWithDetail,
+  Party,
+  ValueRange,
+} from './contract';
 import { REPLY_PROMISE, START_TILES } from './copy-start';
 import { nextStep, type IntakeState, type StepId } from './state';
 
@@ -46,6 +52,36 @@ export const CONTACT_COPY = {
     { value: 'phone', label: 'Phone call' },
   ],
 } as const;
+
+/**
+ * "How did you hear about us?" on the contact screen (Arthur, 2026-10-05): the
+ * firm reads the answers to see whether its search presence, an AI assistant,
+ * or a paid listing such as Super Lawyers is bringing people in. One choice is
+ * required ("Not sure" is a choice); the detail box is optional.
+ */
+export const HEARD_ABOUT_COPY = {
+  legend: 'How did you hear about us?',
+  missing: 'Tell us how you heard about us. "Not sure" is fine.',
+  /** The review screen's line, then the choice in words. */
+  review: 'How you heard about us',
+} as const;
+
+export const HEARD_ABOUT_LABELS: Record<HeardAbout, string> = {
+  search: 'Google or another search engine',
+  'ai-assistant': 'An AI assistant (ChatGPT, Gemini, Claude)',
+  'super-lawyers': 'Super Lawyers',
+  directory: 'Another lawyer listing site',
+  referral: 'A friend, relative, or another lawyer',
+  other: 'Somewhere else',
+  unsure: 'Not sure',
+};
+
+/** The optional box under the choices that need a word more. */
+export const HEARD_ABOUT_DETAIL_LABELS: Record<HeardAboutWithDetail, string> = {
+  directory: 'Which site?',
+  referral: 'Who referred you?',
+  other: 'Where?',
+};
 
 export const STORY_COPY = {
   label: 'What happened',

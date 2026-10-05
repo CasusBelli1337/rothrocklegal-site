@@ -17,6 +17,8 @@
  * carries the follow-up answers.
  * 2026-10-01: a package download after submit (`PackageResponse`).
  * 2026-10-02: package links work once (`urlExpiresAt`, `PackageLinkResponse`).
+ * 2026-10-05: "How did you hear about us?" (`heardAbout`, `heardAboutDetail`),
+ * so the firm can tell whether search or a paid listing brought a person in.
  */
 export const INTAKE_API_VERSION = 3 as const;
 
@@ -105,6 +107,29 @@ export const FUNDING_OPTIONS = [
 export type FundingOption = (typeof FUNDING_OPTIONS)[number];
 
 /**
+ * "How did you hear about us?" on the contact screen (2026-10-05): which
+ * channel brought the person in, so the firm can see whether its search
+ * presence or a paid lawyer listing is working. `heardAboutDetail` carries
+ * the site or the person's name for `directory`, `referral`, and `other`.
+ * #seam:rothrock-intake-heard-about
+ */
+export const HEARD_ABOUT_OPTIONS = [
+  "search",
+  "ai-assistant",
+  "super-lawyers",
+  "directory",
+  "referral",
+  "other",
+  "unsure",
+] as const;
+export type HeardAbout = (typeof HEARD_ABOUT_OPTIONS)[number];
+/** The choices the site follows with "which site, or who"; a detail saved under any other choice is stale. */
+export const HEARD_ABOUT_WITH_DETAIL = ["directory", "referral", "other"] as const;
+export type HeardAboutWithDetail = (typeof HEARD_ABOUT_WITH_DETAIL)[number];
+export const takesHeardAboutDetail = (choice: HeardAbout): choice is HeardAboutWithDetail =>
+  (HEARD_ABOUT_WITH_DETAIL as readonly string[]).includes(choice);
+
+/**
  * Everything the client enters. Every field is optional until submit. The
  * v3 flow asks for the story first; `situations` and `parties` start as what
  * the model read and become the client's own once confirmed or edited.
@@ -142,6 +167,10 @@ export interface IntakeAnswers {
   funding?: FundingOption;
   urgencyNote?: string;
   desiredOutcome?: string;
+  /** How the person found the firm; asked on the contact screen, required there since 2026-10-05. */
+  heardAbout?: HeardAbout;
+  /** The site or the person behind `directory`, `referral`, or `other`, in the person's words. */
+  heardAboutDetail?: string;
   /** Document slots the client said they do not have (unused by the v3 screens; kept for older drafts). */
   missingDocuments?: string[];
   acknowledgedDisclaimers: boolean;

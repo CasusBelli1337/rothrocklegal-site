@@ -66,6 +66,18 @@ describe('reviewRows', () => {
     ]);
   });
 
+  it('reads back how the person heard about the firm, with the detail in brackets', () => {
+    const state = emptyState();
+    state.answers.contact = { fullName: 'Jane Doe', email: 'jane@example.com', replyBy: 'email' };
+    const you = () => reviewRows(state).find((row) => row.label === 'You')?.lines ?? [];
+    expect(you()).toEqual(['Jane Doe', 'jane@example.com', 'Reply by email']);
+    state.answers.heardAbout = 'super-lawyers';
+    expect(you().at(-1)).toBe('How you heard about us: Super Lawyers');
+    state.answers.heardAbout = 'directory';
+    state.answers.heardAboutDetail = ' Avvo ';
+    expect(you().at(-1)).toBe('How you heard about us: Another lawyer listing site (Avvo)');
+  });
+
   it('reads the follow-up answers back, last, with an Edit link to that screen', () => {
     const rows = reviewRows(withQuestions());
     const row = rows[rows.length - 1];

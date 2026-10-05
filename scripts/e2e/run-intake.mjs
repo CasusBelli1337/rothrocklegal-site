@@ -67,6 +67,7 @@ try {
   await page.setValue('#contact-name', 'James L. Sorden');
   await page.setValue('#contact-email', EMAIL);
   await page.evaluate(`document.querySelector('#contact-email').blur()`);
+  await page.click('label[for="heard-about-search"]');
   await page.wait(1500);
   await primary('Continue');
   await page.wait(1500);

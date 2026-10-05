@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import { BANNED_PHRASES, BANNED_WORDS, collectStrings } from '@/lib/voice-guide';
-import type { EvaluationClientView } from './contract';
+import {
+  HEARD_ABOUT_OPTIONS,
+  HEARD_ABOUT_WITH_DETAIL,
+  type EvaluationClientView,
+} from './contract';
 import * as copy from './copy';
 import { STEP_ORDER, emptyState, type IntakeState, type StepId } from './state';
 
@@ -250,6 +254,16 @@ describe('hand-holding lines', () => {
       expect(BANNED_WORDS.some((word) => new RegExp(`\\b${word}\\b`, 'i').test(line))).toBe(false);
     }
     expect(copy.WHAT_WE_DO[1]).toMatch(/AI helps us organize it; a lawyer decides what it means\./);
+  });
+
+  it('words every "how did you hear about us" choice, names Super Lawyers as conferred, and offers "Not sure"', () => {
+    // 2026-10-05: the answers tell the firm whether search or a paid listing is working.
+    expect(Object.keys(copy.HEARD_ABOUT_LABELS)).toEqual([...HEARD_ABOUT_OPTIONS]);
+    expect(copy.HEARD_ABOUT_LABELS['super-lawyers']).toBe('Super Lawyers');
+    expect(copy.HEARD_ABOUT_LABELS.unsure).toBe('Not sure');
+    expect(copy.HEARD_ABOUT_COPY.missing).toContain('"Not sure" is fine.');
+    expect(Object.keys(copy.HEARD_ABOUT_DETAIL_LABELS)).toEqual([...HEARD_ABOUT_WITH_DETAIL]);
+    for (const label of Object.values(copy.HEARD_ABOUT_DETAIL_LABELS)) expect(label).toMatch(/\?$/);
   });
 
   it('explains that the microphone needs https and that typing still works', () => {

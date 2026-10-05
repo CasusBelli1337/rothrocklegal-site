@@ -42,6 +42,7 @@ export function filled(): IntakeState {
   state.answers.situations = ['trust-contests'];
   state.answers.parties = [{ name: 'John Doe', role: 'decedent' }];
   state.answers.story = 'My father died and the trust changed.';
+  state.answers.heardAbout = 'search';
   return state;
 }
 
@@ -153,6 +154,17 @@ describe('validateStep', () => {
     state.answers.contact.email = 'not-an-email';
     expect(validateStep('contact', state)).toMatch(/email/);
     state.answers.contact.email = 'jane@example.com';
+    expect(validateStep('contact', state)).toBeNull();
+  });
+
+  it('asks how the person heard about the firm, with "Not sure" offered as an answer', () => {
+    // 2026-10-05: the firm reads the answers to see whether search or a paid listing works.
+    const state = filled();
+    state.answers.heardAbout = undefined;
+    expect(validateStep('contact', state)).toBe(
+      'Tell us how you heard about us. "Not sure" is fine.',
+    );
+    state.answers.heardAbout = 'unsure';
     expect(validateStep('contact', state)).toBeNull();
   });
 

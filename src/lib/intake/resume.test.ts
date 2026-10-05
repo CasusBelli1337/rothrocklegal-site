@@ -49,6 +49,7 @@ function response(
       situations: ['trust-contests'],
       parties: [{ name: 'John Doe', role: 'decedent' }],
       story: 'My father died and the trust changed.',
+      heardAbout: 'search',
     },
     files: [
       {
@@ -87,6 +88,12 @@ describe('firstIncompleteStep', () => {
     expect(firstIncompleteStep(state)).toBe('story');
     state.answers.contact.email = '';
     expect(firstIncompleteStep(state)).toBe('contact');
+  });
+
+  it('brings a request started before the "how did you hear about us" question back to the contact screen', () => {
+    const before = response();
+    delete before.answers.heardAbout;
+    expect(firstIncompleteStep(stateFromResume(before))).toBe('contact');
   });
 });
 

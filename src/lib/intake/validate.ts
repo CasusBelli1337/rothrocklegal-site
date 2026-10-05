@@ -1,4 +1,5 @@
 import { VOICE_NOTE_SLOT } from './contract';
+import { HEARD_ABOUT_COPY } from './copy';
 import type { IntakeState, StepId } from './state';
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -29,6 +30,7 @@ const VALIDATORS: Partial<Record<StepId, Validator>> = {
     if (!s.answers.contact.fullName.trim()) return 'Please enter your name.';
     if (!isValidEmail(s.answers.contact.email))
       return 'Please enter an email address we can reply to.';
+    if (!s.answers.heardAbout) return HEARD_ABOUT_COPY.missing;
     return null;
   },
   story: (s) =>

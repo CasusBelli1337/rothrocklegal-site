@@ -391,7 +391,14 @@ image (/images/...), imageAlt, draft (true|false)
   copy never tells anyone to tick anything, and the validation line says the
   request can go ahead only once all three are agreed to, Arthur 2026-09-04)),
   then numbered `contact`
-  (name, email, reply preference, phone; no city or county), `story` (one line
+  (name, email, reply preference, phone; no city or county; then "How did you
+  hear about us?", one required choice from the contract's
+  `HEARD_ABOUT_OPTIONS` with "Not sure" offered, and an optional "which site,
+  or who" box for a listing site, a referral, or "somewhere else"
+  (`components/intake/HeardAbout.tsx`, Arthur 2026-10-05: to see whether search
+  or a paid listing such as Super Lawyers is working; the module stores it,
+  says it in the team email and INTAKE-SUMMARY.md, and the portal shows it on
+  the request and in its list; #seam:rothrock-intake-heard-about)), `story` (one line
   of guidance, the box, the microphone), `situations`, `documents`, `parties`,
   `scope`, `follow-up`, `review`, and `done`. `follow-up` exists only when the
   evaluation returned modules; `visibleSteps()` drops it otherwise, so the

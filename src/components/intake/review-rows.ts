@@ -1,5 +1,11 @@
 import { SITUATIONS, VOICE_NOTE_SLOT, type IntakeAnswers } from '@/lib/intake/contract';
-import { FOLLOW_UP_REVIEW, FUNDING_LABELS, VALUE_RANGE_LABELS } from '@/lib/intake/copy';
+import {
+  FOLLOW_UP_REVIEW,
+  FUNDING_LABELS,
+  HEARD_ABOUT_COPY,
+  HEARD_ABOUT_LABELS,
+  VALUE_RANGE_LABELS,
+} from '@/lib/intake/copy';
 import { followUpLines } from '@/lib/intake/follow-up-format';
 import { whatWeUnderstood } from '@/lib/intake/readings';
 import { hasFollowUp, type IntakeState, type StepId } from '@/lib/intake/state';
@@ -13,9 +19,17 @@ export interface ReviewRow {
 
 const STORY_PREVIEW_CHARS = 240;
 
+/** "How you heard about us: Super Lawyers", the detail in brackets; nothing until it is answered. */
+function heardAboutLine(a: IntakeAnswers): string {
+  if (!a.heardAbout) return '';
+  const detail = a.heardAboutDetail?.trim();
+  const words = HEARD_ABOUT_LABELS[a.heardAbout];
+  return `${HEARD_ABOUT_COPY.review}: ${detail ? `${words} (${detail})` : words}`;
+}
+
 function contactLines(a: IntakeAnswers): string[] {
   const { fullName, email, phone, replyBy } = a.contact;
-  return [fullName, email, phone ?? '', `Reply by ${replyBy}`].filter(Boolean);
+  return [fullName, email, phone ?? '', `Reply by ${replyBy}`, heardAboutLine(a)].filter(Boolean);
 }
 
 /** The model's one-line reading when it ran, otherwise the start of the story itself. */
