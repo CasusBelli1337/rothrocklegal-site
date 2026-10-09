@@ -23,8 +23,8 @@ export interface PackageController extends PackageView {
 export const PACKAGE_POLL_INTERVAL_MS = 5000;
 export const PACKAGE_POLL_TIMEOUT_MS = 15 * 60_000;
 /**
- * Every link works once and the button's lasts 15 minutes (package security,
- * 2026-10-02), so a ready card asks for a fresh one: this long after a press
+ * The button's link lasts 15 minutes (package security, 2026-10-02), so a
+ * ready card asks for a fresh one: this long after a press
  * (the download has started by then), a minute before the link runs out, and
  * whenever the page comes back into view. A failed ask is tried again once.
  */

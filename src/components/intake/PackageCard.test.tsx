@@ -75,7 +75,7 @@ describe('PackageCard', () => {
     expect(screen.queryByRole('button')).toBeNull();
   });
 
-  it('downloads with a form POST to the one-use link from a form of its own, and says the emailed link works once', async () => {
+  it('downloads with a form POST to the button link from a form of its own, and says the emailed link keeps working', async () => {
     getPackage.mockResolvedValue(READY);
     render(
       <form data-testid="step">
@@ -89,7 +89,7 @@ describe('PackageCard', () => {
     expect(downloadButton().type).toBe('button');
     expect(downloadButton().className).toMatch(/bg-maroon-900/);
     expect(card().textContent).toContain(
-      'One zip file, 12.4 MB, with the 9 documents you uploaded. You can download it until October 15, 2026. The link in your email works once, so download your package and keep your own copy. Your package is confidential and may be privileged.',
+      'One zip file, 12.4 MB, with the 9 documents you uploaded. You can download it until October 15, 2026. The link in your email works until then too, as many times as you need. Download your package and keep your own copy. Your package is confidential and may be privileged.',
     );
     fireEvent.click(downloadButton());
     expect(submitted).toEqual([{ method: 'post', action: READY.url }]);

@@ -2,8 +2,10 @@
  * The "Your package" card on the done screen. Since 2026-10-02 the zip holds
  * one PDF summary memo (what the person told us and the deadlines that may
  * apply) plus their documents, organized and clearly named; nothing else.
- * Every link to it works once (the emailed one, and each one behind the
- * button), and the person can ask for a new emailed link.
+ * The emailed link works until the package runs out (one-use links were
+ * tried from 2026-10-02 and dropped on 2026-10-09 after a person was refused
+ * on his second computer); the button's link lasts 15 minutes; the person
+ * can ask for a new emailed link.
  * Re-exported from copy.ts so the hygiene tests see it.
  */
 export const PACKAGE_COPY = {
@@ -14,8 +16,9 @@ export const PACKAGE_COPY = {
   slow: 'This is taking longer than usual. The link will arrive by email when your package is ready.',
   download: 'Download your package',
   expires: (date: string): string => `You can download it until ${date}.`,
-  /** Package security (2026-10-02): every link works once; the button gets a fresh one each time. */
-  oneUse: 'The link in your email works once, so download your package and keep your own copy.',
+  /** Package security (2026-10-09): the emailed link keeps working; the button gets a fresh link each time. */
+  emailedLink:
+    'The link in your email works until then too, as many times as you need. Download your package and keep your own copy.',
   confidential: 'Your package is confidential and may be privileged.',
   newLink: 'Send me a new link',
   newLinkSending: 'Sending…',

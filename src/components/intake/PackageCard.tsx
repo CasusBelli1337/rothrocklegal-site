@@ -42,7 +42,7 @@ function DownloadButton({ pkg, afterDownload }: { pkg: ReadyPackage; afterDownlo
 
 type NewLinkState = { phase: 'idle' | 'sending' | 'sent' } | { phase: 'failed'; message: string };
 
-/** "Send me a new link": the server emails a new one-use link to the request's own address. */
+/** "Send me a new link": the server emails a new link to the request's own address. */
 function NewLink({ session, email }: { session: Session; email: string }) {
   const [state, setState] = useState<NewLinkState>({ phase: 'idle' });
   const send = async () => {

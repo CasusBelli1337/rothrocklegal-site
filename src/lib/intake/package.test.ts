@@ -39,11 +39,11 @@ describe('formatBytes for a package', () => {
 });
 
 describe('packageDetails', () => {
-  it('says the size, the documents, the last day, that the emailed link works once, and that it is confidential', () => {
+  it('says the size, the documents, the last day, that the emailed link keeps working, and that it is confidential', () => {
     expect(packageDetails(pkg(), LA)).toEqual([
       'One zip file, 12.4 MB, with the 9 documents you uploaded.',
       'You can download it until October 15, 2026.',
-      'The link in your email works once, so download your package and keep your own copy.',
+      'The link in your email works until then too, as many times as you need. Download your package and keep your own copy.',
       'Your package is confidential and may be privileged.',
     ]);
   });
@@ -59,7 +59,7 @@ describe('packageDetails', () => {
 
   it('leaves out a line the server gave no number for', () => {
     expect(packageDetails(pkg({ sizeBytes: 0, expiresAt: '' }), LA)).toEqual([
-      'The link in your email works once, so download your package and keep your own copy.',
+      'The link in your email works until then too, as many times as you need. Download your package and keep your own copy.',
       'Your package is confidential and may be privileged.',
     ]);
   });

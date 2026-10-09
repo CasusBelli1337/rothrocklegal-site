@@ -57,7 +57,7 @@ export function packageDetails(pkg: ReadyPackage, timeZone?: string): string[] {
   if (pkg.sizeBytes > 0)
     lines.push(PACKAGE_COPY.contents(formatBytes(pkg.sizeBytes), pkg.fileCount));
   if (date) lines.push(PACKAGE_COPY.expires(date));
-  lines.push(PACKAGE_COPY.oneUse, PACKAGE_COPY.confidential);
+  lines.push(PACKAGE_COPY.emailedLink, PACKAGE_COPY.confidential);
   return lines;
 }
 

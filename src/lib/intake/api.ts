@@ -230,7 +230,7 @@ export function getPackage(session: Session): Promise<PackageResponse> {
 }
 
 /**
- * "Send me a new link": the server emails a new one-use link to the request's
+ * "Send me a new link": the server emails a new link to the request's
  * own address. Throws ApiError with a message safe to show (429 after three in
  * a day).
  */

@@ -400,7 +400,7 @@ export type PackageStatus = "preparing" | "ready" | "unavailable";
 
 export interface PackageResponse {
   status: PackageStatus;
-  url?: string; // absolute; present when ready; works once, until urlExpiresAt
+  url?: string; // absolute; present when ready; works until urlExpiresAt
   urlExpiresAt?: string; // ISO 8601; present when ready
   expiresAt?: string; // ISO 8601; the package's last day; present when ready
   sizeBytes?: number; // present when ready
