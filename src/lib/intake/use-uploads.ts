@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { deleteFile, errorMessage, uploadFile, type Session, type UploadHandle } from './api';
+import { CONSULT_FILES, errorMessage, type FileEndpoints, type Session, type UploadHandle } from './api';
 import type { IntakeFile } from './contract';
 import { fileProblem } from './document-slots';
 
@@ -50,11 +50,13 @@ function nextLocalId(): string {
   return `up-${Date.now().toString(36)}-${counter}`;
 }
 
+/** `endpoints`: where the files go; the consult flow's request by default, an addition's on the add page. */
 export function useUploads(
   session: Session | null,
   files: IntakeFile[],
   onUploaded: (file: IntakeFile) => void,
   onRemoved: (fileId: string) => void,
+  endpoints: FileEndpoints = CONSULT_FILES,
 ): UploadBinding {
   const [pending, setPending] = useState<PendingUpload[]>([]);
   const sources = useRef(new Map<string, Source>());
@@ -101,7 +103,7 @@ export function useUploads(
       active.current += 1;
       source.attempts += 1;
       patch(localId, { status: 'uploading', progress: 0, error: undefined, attempts: source.attempts });
-      const handle = uploadFile(session, source.slot, source.file, (progress) =>
+      const handle = endpoints.upload(session, source.slot, source.file, (progress) =>
         patch(localId, { progress }),
       );
       source.handle = handle;
@@ -123,7 +125,7 @@ export function useUploads(
         })
         .finally(pump);
     },
-    [session, patch, drop, onUploaded, pump],
+    [session, patch, drop, onUploaded, pump, endpoints],
   );
   startRef.current = start;
 
@@ -183,9 +185,9 @@ export function useUploads(
   const remove = useCallback(
     (fileId: string) => {
       onRemoved(fileId);
-      if (session) deleteFile(session, fileId).catch(() => undefined);
+      if (session) endpoints.remove(session, fileId).catch(() => undefined);
     },
-    [session, onRemoved],
+    [session, onRemoved, endpoints],
   );
 
   return { files, pending, add, retry, cancel, remove };

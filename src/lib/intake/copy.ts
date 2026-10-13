@@ -8,6 +8,7 @@ import type {
 import { REPLY_PROMISE, START_TILES } from './copy-start';
 import { nextStep, type IntakeState, type StepId } from './state';
 
+export * from './copy-add';
 export * from './copy-mic';
 export * from './copy-package';
 export * from './copy-review';

@@ -26,6 +26,7 @@ function staticPages(newestArticle: string): { path: string; updated: string; dr
     { path: '/service-areas/', updated: site.lastUpdated },
     { path: '/contact/', updated: site.lastUpdated },
     { path: '/request-a-consult/', updated: site.lastUpdated },
+    { path: '/request-a-consult/add/', updated: site.lastUpdated },
     { path: '/accessibility/', updated: legal.effectiveDate },
     { path: '/privacy-policy/', updated: legal.privacyEffectiveDate, draft: site.legalPagesDraft },
     { path: '/disclaimer/', updated: legal.effectiveDate, draft: site.legalPagesDraft },

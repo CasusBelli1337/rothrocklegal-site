@@ -1,8 +1,11 @@
+import Link from 'next/link';
 import { IntakeFlow } from '@/components/intake/IntakeFlow';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { Container } from '@/components/ui/Container';
 import { site } from '@/config/site';
+import { ADDITION_PAGE_PATH } from '@/lib/intake/contract';
+import { ADD_LATER_COPY } from '@/lib/intake/copy';
 import { webPage } from '@/lib/seo/jsonld';
 import { pageMetadata } from '@/lib/seo/metadata';
 
@@ -40,7 +43,16 @@ export default function RequestConsultPage() {
               }
             />
           </div>
-          <p className="mt-4 text-small text-ink-3">
+          <p className="mt-4 text-small text-ink-2">
+            {ADD_LATER_COPY.consultLead}{' '}
+            <Link
+              href={ADDITION_PAGE_PATH}
+              className="font-medium text-maroon-700 underline underline-offset-3 hover:text-maroon-600"
+            >
+              {ADD_LATER_COPY.consultLink}
+            </Link>
+          </p>
+          <p className="mt-2 text-small text-ink-3">
             Sending this does not make you a client of Rothrock Legal. No attorney&ndash;client
             relationship exists until both sides sign an engagement letter.
           </p>

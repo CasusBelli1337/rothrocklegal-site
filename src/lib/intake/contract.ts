@@ -19,6 +19,8 @@
  * 2026-10-02: package links work once (`urlExpiresAt`, `PackageLinkResponse`).
  * 2026-10-05: "How did you hear about us?" (`heardAbout`, `heardAboutDetail`),
  * so the firm can tell whether search or a paid listing brought a person in.
+ * 2026-10-13: add documents or a note to a request already sent
+ * (`/api/intake/add/*`, "Add to your request" below).
  */
 export const INTAKE_API_VERSION = 3 as const;
 
@@ -386,12 +388,12 @@ export interface ResumeResponse {
  * what each one is, and their recording when there is one, so they leave with
  * something useful whether or not the firm can take the case (2026-10-02). `preparing`: the server is
  * still assembling it (the done screen polls). `ready`: `url` is a NEW
- * one-use link on every answer, good until `urlExpiresAt` (15 minutes) and
+ * link on every answer, good until `urlExpiresAt` (15 minutes) and
  * never past `expiresAt`, the package's last day. The site downloads with a
  * form POST to `url` (a GET opens a download page and uses nothing, so a mail
  * scanner or a link preview cannot spend a link) and asks for the status
  * again for a fresh link after each click, when the page regains focus, and
- * before `urlExpiresAt`. The emailed link is a separate one-use link.
+ * before `urlExpiresAt`. The emailed link is a separate link, good for 14 days.
  * `unavailable`: the feature is off, the request is not submitted, the
  * package ran out, or it could not be built; the site shows nothing. Every
  * link carries its own token; it is never the session bearer.
@@ -409,13 +411,113 @@ export interface PackageResponse {
 
 /**
  * POST /api/intake/:id/package/link (session bearer, no body): "Send me a new
- * link". Emails a new one-use link to the request's own email address (never
+ * link". Emails a new link to the request's own email address (never
  * one in the request) and every earlier emailed link stops working. 429
  * `rate-limited` after three in a day; 400 `bad-request` when the package is
  * not ready or the request has no email address; `error` is safe to show.
  */
 export interface PackageLinkResponse {
   sent: true;
+}
+
+/* ---- Add to your request (2026-10-13) --------------------------------- */
+
+/**
+ * After Send, a person may come back to add documents or a note to a request
+ * they already sent, on `ADDITION_PAGE_PATH`. What was sent is never shown or
+ * changed: an addition is kept beside it. Email first, like "continue by email":
+ *
+ * 1. `POST /api/intake/add/lookup` `{ email }` -> `{ ok: true }`, always, so a
+ *    typed address reveals nothing. When the newest request sent from that
+ *    address in the last `ADDITION_RULES.windowDays` days can still be added
+ *    to, the server emails that address a link to
+ *    `ADDITION_PAGE_PATH?t=<token>` (one use, 24 hours).
+ * 2. `POST /api/intake/add/open` `{ token }` -> `AdditionOpenResponse`: a new
+ *    addition with its own bearer, good for that addition only, until it is
+ *    sent or `expiresAt`. 401 `unauthorized` for a spent or expired link; 400
+ *    `bad-request` when the request can no longer be added to (declined, or
+ *    sent more than `windowDays` days ago); 429 `rate-limited` after
+ *    `perRequest` additions in `perDays` days. `error` is safe to show.
+ * 3. With `Authorization: Bearer <addition token>`:
+ *    `GET /api/intake/add/:id` -> `AdditionState` (a refresh restores the page),
+ *    `PUT /api/intake/add/:id/note` `{ note }` -> `{ ok: true }`,
+ *    `POST /api/intake/add/:id/files` (multipart `slot` = `DOCUMENTS_SLOT` and
+ *    `file`; the consult flow's types and caps) -> `UploadFileResponse`,
+ *    `DELETE /api/intake/add/:id/files/:fileId` -> `{ ok: true }`,
+ *    `POST /api/intake/add/:id/send` `AdditionSendRequest` ->
+ *    `AdditionSendResponse`. 400 with neither a note nor a file, and 400 when
+ *    `fileIds` differs from the files the server holds for this addition (the
+ *    page then reloads `AdditionState` and the person checks the list again).
+ *    After Send the bearer stops working (401).
+ *
+ * The request's own session token never works on these routes, and an
+ * addition's bearer never works on the request's routes.
+ */
+export const ADDITION_PAGE_PATH = "/request-a-consult/add/" as const;
+/** The query parameter that carries the emailed token. */
+export const ADDITION_TOKEN_PARAM = "t" as const;
+
+export const ADDITION_RULES = {
+  /** Days after Send during which a request can be added to. A declined request never can. */
+  windowDays: 180,
+  /** Additions sent per request within any `perDays` days. */
+  perRequest: 5,
+  perDays: 30,
+  /** Characters in "What would you like to add?". */
+  maxNoteChars: 10_000,
+} as const;
+
+export interface AdditionLookupRequest {
+  email: string;
+}
+export interface AdditionLookupResponse {
+  ok: true;
+}
+
+export interface AdditionOpenRequest {
+  token: string;
+}
+
+/** One addition in progress. `token` is its own bearer, never the request's session token. */
+export interface AdditionSession {
+  id: string;
+  token: string;
+  /** The request being added to, e.g. RL-2026-000123. */
+  reference: string;
+  /** When the request itself was sent (ISO 8601). */
+  sentAt: string;
+  /** When this addition stops accepting changes if it is not sent (ISO 8601). */
+  expiresAt: string;
+}
+export interface AdditionOpenResponse {
+  addition: AdditionSession;
+}
+
+/** What a refreshed page needs: the note so far and the files uploaded into this addition. */
+export interface AdditionState {
+  reference: string;
+  sentAt: string;
+  expiresAt: string;
+  note: string;
+  files: IntakeFile[];
+}
+
+export interface AdditionNoteRequest {
+  note: string;
+}
+
+/** The ids of every file the page lists as uploaded; the server sends only when they match its own count. */
+export interface AdditionSendRequest {
+  fileIds: string[];
+}
+
+export interface AdditionSendResponse {
+  reference: string;
+  sent: true;
+  /** Files sent with this addition, counted on the server. */
+  files: number;
+  /** Plain English shown on the done screen. */
+  nextSteps: string;
 }
 
 export interface ApiError {

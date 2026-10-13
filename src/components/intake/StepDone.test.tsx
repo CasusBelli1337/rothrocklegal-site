@@ -27,6 +27,19 @@ afterEach(() => {
   vi.restoreAllMocks();
 });
 
+describe('StepDone "add to your request" line', () => {
+  it('points at the add page in the same tab', () => {
+    render(<StepDone intake={done()} uploads={{} as UploadBinding} />);
+    const link = screen.getByRole('link', { name: 'rothrocklegal.com/request-a-consult/add/' });
+    // next/link drops the trailing slash outside the build (the export keeps trailingSlash: true).
+    expect(link.getAttribute('href')).toMatch(/^\/request-a-consult\/add\/?$/);
+    expect(link.getAttribute('target')).toBeNull();
+    expect(
+      screen.getByText(/If you think of something later, you can add to your request at/),
+    ).toBeTruthy();
+  });
+});
+
 describe('StepDone "Start a new request"', () => {
   it('asks first, and keeps the screen when the answer is no', () => {
     const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false);
