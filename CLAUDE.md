@@ -47,6 +47,12 @@ and the consult flow; visitors never see it. Details: `docs/LENS.md`.
   that `<picture>` elements reference (the hero). Run after changing a source
   image; `next/image` is unoptimized here, so `sizes` alone does nothing.
 
+- `node scripts/e2e/run-add.mjs <email> [token or link]` drives "Add to your
+  request" (`/request-a-consult/add/`) the same way: with the email alone it asks
+  for a link and screenshots the uniform card; with the token from the emailed
+  link it opens the addition, types a note, uploads `ADD_FILES` from
+  `ADD_FILES_DIR`, reloads to prove nothing is lost, sends, and checks the done
+  screen (header of the file; exits 1 on any failure).
 - `node scripts/e2e/run-intake.mjs [email]` drives the consult flow end to end in
   Arthur's Chrome over CDP (localhost:9222) against the editor preview, with
   optional uploads from a Windows-side folder (env vars in the file header);
@@ -242,6 +248,9 @@ image (/images/...), imageAlt, draft (true|false)
   `arthur-rothrock`, `gerry-lin`, `jonathan-joannides`, `max-discher`: hero,
   bio + sidebar, "Articles by" (members with `writing`), recognition, speaking
   and press, CTA band.
+- `/request-a-consult/add/` ("Add to your request", 2026-10-13): out of the nav,
+  in the sitemap, linked from the consult page ("Already sent us a request?") and
+  the consult flow's done screen; see "Consult flow" below.
 - `/about/`, `/how-long-do-i-have/` (the wizard, ends in a consult request panel),
   `/library/` (search + category chips, `?category=&q=` synced to the URL) +
   `/library/<slug>/`, `/faq/`, `/service-areas/`, `/contact/`,
@@ -527,6 +536,26 @@ step, storyRead, evaluation, followUpAnswers }` (read from `?resume=` after
   `copy.test.ts` enforces the voice guide (no banned words, no em dash, no
   outcome promises, a "Next:" line for every numbered screen). The flow reads
   at 18px body text via `components/intake/intake.css`.
+- Add to your request (Arthur, 2026-10-13; module README "Add to your
+  request"): a person who already sent a request adds documents or a note at
+  `/request-a-consult/add/` (`components/intake/add/*`, its own reducer
+  `add-state.ts`, `use-addition.ts`, `api-add.ts`, every word in `copy-add.ts`,
+  re-exported by `copy.ts` so `copy.test.ts` covers it). Email first: the card
+  after "Email me a link" reads the same whether or not a request exists; the
+  emailed link (`?t=`, one use, 24 hours) is read after hydration and stripped
+  with `replaceState`, then opens "Add to your request RL-..., sent on <date>"
+  with one optional box (autosaved), the consult flow's upload slot
+  (`use-uploads.ts` with the addition's file endpoints; `api-files.ts` holds the
+  shared upload helper, `api-core.ts` the fetch layer), and Send, which posts
+  the ids of every file shown so the server can prove the lists agree (on any
+  send error the page reloads the addition and shows the message). The
+  original answers are never shown. The addition's own bearer lives in
+  sessionStorage `rl-intake-add` (restored with a GET after a refresh; a 401
+  clears it), with a done marker so a refresh keeps the done screen. Closed
+  (declined, or sent over 180 days ago) and the five-in-30-days limit have
+  their own cards. The package is not rebuilt; the done screen says "Added to
+  your request" and the reply promise. The consult flow's done screen carries
+  "If you think of something later, you can add to your request at ...".
 - The contract file is copied verbatim into the module
   (`legion-armory/modules/legion-intake/src/shared/contract.ts`) and the spec
   folder (`~/projects/rothrock-legal/redesign/INTAKE-CONTRACT.ts`); change all
