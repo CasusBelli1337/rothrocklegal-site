@@ -23,7 +23,7 @@ export function SignDone({ result }: { result: SignSubmitResponse }) {
         </div>
       </div>
       <p className="mt-6 border-t border-line pt-5 text-body text-ink-2">
-        {result.nextSigner ? copy.nextWithOthers : copy.nextFirm}
+        {(result.nextSigner ? copy.nextWithOthers : copy.nextFirm)(result.countersignerName ?? null)}
       </p>
     </div>
   );

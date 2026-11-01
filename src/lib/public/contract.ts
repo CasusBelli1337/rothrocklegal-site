@@ -31,6 +31,8 @@ export interface SignSubmitResponse {
   signedAt: string;
   /** True when another person still has to sign before the copy goes out. */
   nextSigner: boolean;
+  /** Who countersigns for the firm (the attorney assigned to the matter); absent or null on older servers. */
+  countersignerName?: string | null;
 }
 
 export type ScheduleInviteStatus = 'sent' | 'booked' | 'cancelled' | 'expired';
@@ -125,7 +127,10 @@ export function isSignSubmitResponse(value: unknown): value is SignSubmitRespons
     isRecord(value) &&
     value.done === true &&
     isString(value.signedAt) &&
-    typeof value.nextSigner === 'boolean'
+    typeof value.nextSigner === 'boolean' &&
+    (value.countersignerName === undefined ||
+      value.countersignerName === null ||
+      typeof value.countersignerName === 'string')
   );
 }
 

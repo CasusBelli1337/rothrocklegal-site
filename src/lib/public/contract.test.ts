@@ -37,6 +37,10 @@ describe('public contract guards', () => {
     expect(isSignSubmitResponse({ done: true, signedAt: '2026-09-03T23:12:00Z', nextSigner: false })).toBe(true);
     expect(isSignSubmitResponse({ done: false, signedAt: '2026-09-03T23:12:00Z', nextSigner: false })).toBe(false);
     expect(isSignSubmitResponse({ done: true, signedAt: '2026-09-03T23:12:00Z' })).toBe(false);
+    const signed = { done: true, signedAt: '2026-09-03T23:12:00Z', nextSigner: false };
+    expect(isSignSubmitResponse({ ...signed, countersignerName: 'Gerry Lin' })).toBe(true);
+    expect(isSignSubmitResponse({ ...signed, countersignerName: null })).toBe(true);
+    expect(isSignSubmitResponse({ ...signed, countersignerName: 7 })).toBe(false);
   });
 
   it('accepts an invitation with or without the optional extras', () => {

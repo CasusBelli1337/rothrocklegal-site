@@ -43,6 +43,13 @@ describe('public page copy', () => {
     expect(lines.filter((line) => /\b\d{2,5}\s+\w+\s+(St|Street|Ave|Avenue|Blvd|Road|Rd)\b/i.test(line))).toEqual([]);
   });
 
+  it('names the countersigner the server names, else the firm, and never a fixed attorney on the sign page', () => {
+    expect(copy.SIGN_COPY.done.nextFirm('Max Discher')).toMatch(/^Next: Max Discher countersigns/);
+    expect(copy.SIGN_COPY.done.nextFirm(null)).toMatch(/^Next: a Rothrock Legal attorney countersigns/);
+    expect(copy.SIGN_COPY.done.nextWithOthers('  ')).toContain('Then a Rothrock Legal attorney countersigns');
+    expect(strings(copy.SIGN_COPY).filter((line) => line.includes('Arthur'))).toEqual([]);
+  });
+
   it('spells out the electronic-signature consent', () => {
     const consent = copy.SIGN_COPY.signature.consent;
     expect(consent).toMatch(/electronically/);

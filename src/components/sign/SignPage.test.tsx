@@ -75,7 +75,12 @@ describe('SignPage', () => {
 
   it('keeps the signature block locked until the person confirms they read it, then signs', async () => {
     api.fetchEnvelope.mockResolvedValue(envelope);
-    api.submitSignature.mockResolvedValue({ done: true, signedAt: '2026-09-03T23:12:00.000Z', nextSigner: false });
+    api.submitSignature.mockResolvedValue({
+      done: true,
+      signedAt: '2026-09-03T23:12:00.000Z',
+      nextSigner: false,
+      countersignerName: 'Gerry Lin',
+    });
     visit(`?t=${TOKEN}`);
     const sign = await screen.findByRole('button', { name: SIGN_COPY.signature.button });
     expect((sign as HTMLButtonElement).disabled).toBe(true);
@@ -102,7 +107,10 @@ describe('SignPage', () => {
       typedName: 'Jane Doe',
     });
     expect(screen.getByText(/We received your signature at/)).toBeTruthy();
-    expect(screen.getByText(SIGN_COPY.done.nextFirm)).toBeTruthy();
+    expect(
+      screen.getByText('Next: Gerry Lin countersigns for the firm, and you receive the final signed copy by email.'),
+    ).toBeTruthy();
+    expect(screen.queryByText(/Arthur/)).toBeNull();
   });
 
   it('shows the already-signed card for a signed envelope', async () => {

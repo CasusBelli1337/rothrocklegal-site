@@ -7,6 +7,12 @@ export const FIRM_EMAIL = 'arothrock@rothrocklegal.com';
 export const FIRM_NAME = 'Rothrock Legal';
 export const ATTORNEY_NAME = 'Arthur Rothrock';
 
+/** The firm's countersigner by name when the server names one, otherwise the firm in general. */
+export function countersignerOf(name: string | null | undefined): string {
+  const trimmed = typeof name === 'string' ? name.trim() : '';
+  return trimmed || `a ${FIRM_NAME} attorney`;
+}
+
 export const SHARED_COPY = {
   tryAgain: 'Try again',
   questions: `Questions? Email ${FIRM_EMAIL}.`,
@@ -70,8 +76,11 @@ export const SIGN_COPY = {
     title: 'Thank you.',
     received: (time: string) => `We received your signature at ${time}.`,
     copy: 'A copy will be emailed to you once everyone has signed.',
-    nextWithOthers: `Next: the other person named in the agreement signs with their own link. Then ${ATTORNEY_NAME} countersigns for the firm and everyone receives the final copy by email.`,
-    nextFirm: `Next: ${ATTORNEY_NAME} countersigns for the firm, and you receive the final signed copy by email.`,
+    /** The countersigner is whoever the firm's signature line names (the attorney assigned to the matter). */
+    nextWithOthers: (countersigner: string | null) =>
+      `Next: the other person named in the agreement signs with their own link. Then ${countersignerOf(countersigner)} countersigns for the firm and everyone receives the final copy by email.`,
+    nextFirm: (countersigner: string | null) =>
+      `Next: ${countersignerOf(countersigner)} countersigns for the firm, and you receive the final signed copy by email.`,
   },
   alreadySigned: {
     title: 'You have already signed this agreement.',
